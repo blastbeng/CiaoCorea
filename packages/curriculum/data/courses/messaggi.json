@@ -1,0 +1,605 @@
+{
+  "id": "messaggi",
+  "slug": "messaggi",
+  "title": "메시지 — Messaggi che si mandano davvero",
+  "subtitle": "Saluti, 반말, appuntamenti e risposte brevi: il coreano scritto di ogni giorno",
+  "level": "A1",
+  "description": "Un corso pensato per la scrittura che si fa davvero: aprire una chat, capire quanto formale essere, fissare un appuntamento e chiudere un messaggio senza sembrare un libro di testo. Le lezioni partono dai saluti, passano dai due registri (해요체 e 반말) e finiscono con una chat completa da leggere e degli esercizi di scrittura.",
+  "units": [
+    {
+      "id": "me-u1",
+      "title": "Entrare in una chat",
+      "purpose": "Salutare, presentarsi e capire subito se all'altro si dà del tu o del lei.",
+      "lessons": [
+        {
+          "id": "msg-01",
+          "slug": "saluti-in-chat",
+          "title": "Ciao: 안녕하세요 e 안녕",
+          "titleKo": "안녕하세요",
+          "kind": "vocab",
+          "goal": "Salutare in chat scegliendo fra la forma cortese e quella fra amici, e presentarti in una riga.",
+          "durationMin": 20,
+          "points": [
+            "안녕하세요 va bene con chiunque non conosci: in chat non è mai troppo formale, semmai il contrario.",
+            "안녕 senza 요 è «ciao» fra amici della stessa età o più giovani: scritto a un adulto suona sgarbato.",
+            "반가워요 vuol dire «piacere di conoscerti» e si mette dopo il nome, al primo messaggio.",
+            "In chat il punto fermo spesso si salta e le frasi restano cortissime: una riga, un pensiero.",
+            "네 e 아니요 rispondono a una domanda: 아니요 nega, mentre 아니에요 dice «non sono»."
+          ],
+          "vocab": [
+            { "ko": "안녕하세요", "it": "buongiorno, salve", "rr": "annyeonghaseyo" },
+            { "ko": "안녕", "it": "ciao (fra amici)", "rr": "annyeong" },
+            { "ko": "반가워요", "it": "piacere di conoscerti", "rr": "bangawoyo" },
+            { "ko": "네", "it": "sì", "rr": "ne" },
+            { "ko": "아니요", "it": "no", "rr": "aniyo" },
+            { "ko": "이름", "it": "nome", "rr": "ireum" },
+            { "ko": "잘 지내요?", "it": "come stai?", "rr": "jal jinaeyo" }
+          ],
+          "exercises": [
+            {
+              "id": "msg01-e1",
+              "type": "reading_mcq",
+              "prompt": "«안녕하세요» in una chat si usa…",
+              "options": [
+                "con chiunque, anche con chi non conosci",
+                "solo con i bambini",
+                "solo a voce, mai per iscritto",
+                "solo la mattina"
+              ],
+              "answer": "con chiunque, anche con chi non conosci",
+              "explain": "Il saluto in -하세요 è la forma cortese standard: vale a ogni ora e con ogni persona che non conosci."
+            },
+            {
+              "id": "msg01-e2",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 반가워요?",
+              "answer": "piacere",
+              "accept": ["piacere di conoscerti", "molto piacere", "piacere!"],
+              "explain": "반갑다 è «essere lieto di incontrare qualcuno»: 반가워요 si scrive appena si conosce una persona."
+            },
+            {
+              "id": "msg01-e3",
+              "type": "type_hangul",
+              "prompt": "Scrivi il saluto cortese, quello che va bene sempre.",
+              "answer": "안녕하세요",
+              "explain": "안녕 + 하세요: la forma in -세요 è quella che tiene le distanze senza risultare fredda."
+            },
+            {
+              "id": "msg01-e4",
+              "type": "fill_blank",
+              "prompt": "Completa la presentazione.",
+              "text": "저___ 마리오예요.",
+              "answer": "는",
+              "hint": "저 finisce con una vocale: quale particella del tema ci va?",
+              "explain": "저 termina in vocale, quindi il tema prende 는: 저는 마리오예요."
+            },
+            {
+              "id": "msg01-e5",
+              "type": "reading_mcq",
+              "prompt": "«잘 지내요?» vuol dire…",
+              "options": ["Come stai?", "Come ti chiami?", "Dove abiti?", "Quanti anni hai?"],
+              "answer": "Come stai?",
+              "explain": "잘 지내요? è la domanda di cortesia che apre quasi ogni chat: «stai passando bene le giornate?»."
+            },
+            {
+              "id": "msg01-e6",
+              "type": "type_hangul",
+              "prompt": "Rispondi «sì» a una domanda.",
+              "answer": "네",
+              "accept": ["네."],
+              "explain": "네 è la risposta affermativa; in chat si scrive anche da sola, come un «sì» italiano."
+            },
+            {
+              "id": "msg01-e7",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 이름?",
+              "answer": "nome",
+              "accept": ["il nome"],
+              "explain": "이름 è il nome. «이름이 뭐예요?» è «come ti chiami?», e lo incontrerai nei dialoghi."
+            },
+            {
+              "id": "msg01-e8",
+              "type": "reading_mcq",
+              "prompt": "«안녕» senza 요, a chi lo scrivi?",
+              "options": ["A un amico", "A un professore", "A un cliente", "A chi non conosci"],
+              "answer": "A un amico",
+              "explain": "Togliere 요 abbassa il registro: resta cortese solo con chi ti ha già dato del tu."
+            },
+            {
+              "id": "msg01-e9",
+              "type": "order_words",
+              "prompt": "Rimetti in ordine: «Ciao, piacere».",
+              "words": ["반가워요", "안녕하세요"],
+              "answer": "안녕하세요 반가워요",
+              "explain": "Prima il saluto, poi la formula di cortesia: è l'ordine fisso di ogni primo messaggio."
+            },
+            {
+              "id": "msg01-e10",
+              "type": "fill_blank",
+              "prompt": "Completa: «No».",
+              "text": "«No» in coreano si dice ___.",
+              "options": ["아니요", "네", "안녕", "반가워요"],
+              "answer": "아니요",
+              "explain": "아니요 nega una frase o una domanda; 아니에요 invece nega l'identità: «non sono»."
+            }
+          ]
+        },
+        {
+          "id": "msg-02",
+          "slug": "haeyo-e-banmal",
+          "title": "해요체 e 반말: a chi scrivi",
+          "titleKo": "해요체와 반말",
+          "kind": "grammar",
+          "goal": "Riconoscere e usare i due registri della chat: la forma in -요 con chi non conosci, il 반말 con gli amici.",
+          "durationMin": 25,
+          "points": [
+            "Il coreano sceglie il registro in base a chi legge: -요 tiene le distanze, il 반말 le toglie.",
+            "Per passare al 반말 si toglie 요 e si lascia il resto: 해요 → 해, 봐요 → 봐, 가요 → 가.",
+            "뭐 해? è «che fai?» fra amici; 뭐 해요? è la stessa domanda in forma cortese.",
+            "In chat le domande si accorciano: 밥 먹었어? chiude con il punto interrogativo solo se serve.",
+            "나 e 저 sono lo stesso «io»: 나 con gli amici, 저 con tutti gli altri."
+          ],
+          "vocab": [
+            { "ko": "뭐", "it": "che cosa", "rr": "mwo" },
+            { "ko": "해요", "it": "fai, fa (cortese)", "rr": "haeyo" },
+            { "ko": "해", "it": "fai, fa (informale)", "rr": "hae" },
+            { "ko": "나", "it": "io (informale)", "rr": "na" },
+            { "ko": "지금", "it": "adesso", "rr": "jigeum" },
+            { "ko": "나중에", "it": "più tardi", "rr": "najunge" },
+            { "ko": "봐", "it": "guarda; ci vediamo (informale)", "rr": "bwa" }
+          ],
+          "exercises": [
+            {
+              "id": "msg02-e1",
+              "type": "reading_mcq",
+              "prompt": "«뭐 해?» vuol dire…",
+              "options": ["Che fai?", "Che cosa è?", "Dove sei?", "Chi sei?"],
+              "answer": "Che fai?",
+              "explain": "뭐 è «che cosa», 해 è «fai» in 반말: due parole, una domanda intera."
+            },
+            {
+              "id": "msg02-e2",
+              "type": "type_hangul",
+              "prompt": "Scrivi «che fai?» in forma cortese.",
+              "answer": "뭐 해요",
+              "accept": ["지금 뭐 해요", "뭐 해요?", "지금 뭐 해요?"],
+              "explain": "Aggiungere 요 alla stessa frase la rende cortese: cambia il destinatario, non il contenuto."
+            },
+            {
+              "id": "msg02-e3",
+              "type": "fill_blank",
+              "prompt": "Togli la cortesia: 해요 diventa…",
+              "text": "해요 → ___",
+              "options": ["해", "해요", "했어요", "합니다"],
+              "answer": "해",
+              "explain": "Il 반말 toglie solo 요: la radice del verbo resta identica."
+            },
+            {
+              "id": "msg02-e4",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 나중에?",
+              "answer": "più tardi",
+              "accept": ["dopo", "più tardi!"],
+              "explain": "나중에 è «in un momento successivo»: serve a rimandare senza dire di no."
+            },
+            {
+              "id": "msg02-e5",
+              "type": "reading_mcq",
+              "prompt": "«나 지금 바빠»: a chi lo puoi scrivere?",
+              "options": ["A un amico", "A un professore", "Al capo", "A un negoziante"],
+              "answer": "A un amico",
+              "explain": "바빠 è la forma informale di «sono occupato»: senza 요 è roba da coetanei."
+            },
+            {
+              "id": "msg02-e6",
+              "type": "type_hangul",
+              "prompt": "Scrivi «adesso».",
+              "answer": "지금",
+              "explain": "지금 àncora la frase al momento in cui scrivi: «지금 뭐 해?» è «che fai adesso?»."
+            },
+            {
+              "id": "msg02-e7",
+              "type": "order_words",
+              "prompt": "Rimetti in ordine: «Adesso che fai?» (informale).",
+              "words": ["해", "지금", "뭐"],
+              "answer": "지금 뭐 해",
+              "explain": "Il tempo (지금) va prima della domanda, il verbo resta in fondo."
+            },
+            {
+              "id": "msg02-e8",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 봐?",
+              "answer": "guarda",
+              "accept": ["guardare", "ci vediamo", "guarda!"],
+              "explain": "봐 è «guarda», ma in 나중에 봐 diventa «ci vediamo più tardi»: il verbo «vedere» fa anche da arrivederci."
+            },
+            {
+              "id": "msg02-e9",
+              "type": "reading_mcq",
+              "prompt": "Quale coppia è giusta?",
+              "options": [
+                "해요 = cortese, 해 = informale",
+                "해 = cortese, 해요 = informale",
+                "해요 = passato, 해 = presente",
+                "해 = plurale, 해요 = singolare"
+              ],
+              "answer": "해요 = cortese, 해 = informale",
+              "explain": "La -요 è il segnale della cortesia: c'è, la frase tiene le distanze; manca, la frase è fra amici."
+            },
+            {
+              "id": "msg02-e10",
+              "type": "fill_blank",
+              "prompt": "Completa in forma cortese: «Ci vediamo più tardi».",
+              "text": "나중에 ___.",
+              "options": ["봐요", "봐", "보자", "봤어요"],
+              "answer": "봐요",
+              "explain": "In forma cortese il verbo prende -아/어요: 봐요. 보자 è «vediamoci», un'esortazione fra amici."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "me-u2",
+      "title": "Rispondere e prendere tempo",
+      "purpose": "Leggere una chat vera, rispondere al momento giusto e fissare ora e luogo.",
+      "lessons": [
+        {
+          "id": "msg-03",
+          "slug": "una-chat-da-leggere",
+          "title": "Una chat da leggere",
+          "titleKo": "채팅 읽기",
+          "kind": "reading",
+          "goal": "Leggere una conversazione scritta fra due studenti e ricavarne chi fa cosa, senza tradurre parola per parola.",
+          "durationMin": 25,
+          "points": [
+            "In una chat i nomi davanti ai due punti dicono chi parla: il resto è la battuta.",
+            "Le domande brevi (잘 지내요?, 지금 뭐 해요?) servono a tenere aperta la conversazione.",
+            "지수 씨는요? restituisce la domanda: «e tu, 지수?» — è la mossa più comune per non parlare solo di sé.",
+            "공부해요 è «studio»: da solo regge una risposta intera, senza bisogno di un soggetto.",
+            "Le esclamazioni come 멋있어요! fanno parte della conversazione: senza, la chat sembra un verbale."
+          ],
+          "vocab": [
+            { "ko": "같이", "it": "insieme", "rr": "gachi" },
+            { "ko": "멋있어요", "it": "è bello, che figata", "rr": "meosisseoyo" },
+            { "ko": "그럼", "it": "allora", "rr": "geureom" },
+            { "ko": "내일", "it": "domani", "rr": "naeil" },
+            { "ko": "공부해요", "it": "studio", "rr": "gongbuhaeyo" },
+            { "ko": "한국어", "it": "lingua coreana", "rr": "hangugeo" }
+          ],
+          "passages": [
+            {
+              "title": "지수 e 마리오 in chat",
+              "lines": [
+                "지수: 안녕하세요! 저는 지수예요.",
+                "마리오: 안녕하세요, 지수 씨. 저는 마리오예요.",
+                "지수: 반가워요. 잘 지내요?",
+                "마리오: 네, 잘 지내요. 지수 씨는요?",
+                "지수: 저도 잘 지내요. 지금 뭐 해요?",
+                "마리오: 한국어를 공부해요.",
+                "지수: 멋있어요! 나중에 같이 공부해요.",
+                "마리오: 좋아요. 그럼 내일 봐요!"
+              ],
+              "gloss": [
+                { "ko": "반가워요", "it": "piacere di conoscerti", "rr": "bangawoyo" },
+                { "ko": "잘 지내요?", "it": "come stai?", "rr": "jal jinaeyo" },
+                { "ko": "멋있어요", "it": "è bello, che figata", "rr": "meosisseoyo" },
+                { "ko": "같이", "it": "insieme", "rr": "gachi" },
+                { "ko": "그럼", "it": "allora", "rr": "geureom" },
+                { "ko": "내일", "it": "domani", "rr": "naeil" }
+              ],
+              "translation": "지수: Ciao! Io sono 지수. — 마리오: Ciao, 지수. Io sono 마리오. — 지수: Piacere. Come stai? — 마리오: Bene, sto bene. E tu, 지수? — 지수: Anch'io sto bene. Che fai adesso? — 마리오: Studio il coreano. — 지수: Che bello! Studiamo insieme più tardi. — 마리오: Va bene. Allora a domani!"
+            }
+          ],
+          "exercises": [
+            {
+              "id": "msg03-e1",
+              "type": "reading_mcq",
+              "prompt": "Che cosa studia 마리오?",
+              "options": ["Il coreano", "Il giapponese", "L'italiano", "La matematica"],
+              "answer": "Il coreano",
+              "explain": "한국어를 공부해요: 한국어 è la lingua coreana, 공부해요 è «studio»."
+            },
+            {
+              "id": "msg03-e2",
+              "type": "reading_mcq",
+              "prompt": "«지수 씨는요?» serve a…",
+              "options": [
+                "restituire la domanda",
+                "salutare con rispetto",
+                "chiedere l'età",
+                "dire arrivederci"
+              ],
+              "answer": "restituire la domanda",
+              "explain": "는요? riprende il tema e lo rigira all'altro: «e tu?». È il modo più cortese di non fare un monologo."
+            },
+            {
+              "id": "msg03-e3",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 같이?",
+              "answer": "insieme",
+              "accept": ["insieme!"],
+              "explain": "같이 è «insieme»: 같이 공부해요 è «studiamo insieme»."
+            },
+            {
+              "id": "msg03-e4",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 멋있어요?",
+              "answer": "è bello",
+              "accept": ["bello", "figo", "che bello", "fantastico"],
+              "explain": "멋있다 è «avere stile»: 멋있어요! è il complimento che chiude il giro di domande."
+            },
+            {
+              "id": "msg03-e5",
+              "type": "order_words",
+              "prompt": "Rimetti in ordine: «Studio il coreano».",
+              "words": ["공부해요", "한국어를", "저는"],
+              "answer": "저는 한국어를 공부해요",
+              "explain": "Tema, complemento oggetto con 를, verbo in fondo: è l'ordine che non cambia mai."
+            },
+            {
+              "id": "msg03-e6",
+              "type": "fill_blank",
+              "prompt": "Completa: «Allora ci vediamo domani!»",
+              "text": "그럼 ___ 봐요!",
+              "options": ["내일", "지금", "나중에", "오늘"],
+              "answer": "내일",
+              "explain": "내일 è «domani»: 내일 봐요 è la chiusura più comune di una chat."
+            },
+            {
+              "id": "msg03-e7",
+              "type": "reading_mcq",
+              "prompt": "Chi propone di studiare insieme?",
+              "options": ["지수", "마리오", "Nessuno dei due", "Tutti e due"],
+              "answer": "지수",
+              "explain": "È 지수 a scrivere 나중에 같이 공부해요: 마리오 si limita a rispondere 좋아요."
+            },
+            {
+              "id": "msg03-e8",
+              "type": "type_hangul",
+              "prompt": "Scrivi «insieme».",
+              "answer": "같이",
+              "explain": "같이 si scrive con ㄱ iniziale, ㅏ, ㅌ finale nel primo blocco e 이 nel secondo."
+            }
+          ]
+        },
+        {
+          "id": "msg-04",
+          "slug": "appuntamenti",
+          "title": "Quando e dove: appuntamenti",
+          "titleKo": "언제, 어디",
+          "kind": "vocab",
+          "goal": "Fissare un appuntamento in chat: giorno, ora e luogo, con le parole che evitano l'incontro mancato.",
+          "durationMin": 20,
+          "points": [
+            "오늘 è oggi, 내일 domani, 어제 ieri: cambiano il senso dell'intero messaggio.",
+            "몇 시예요? chiede l'ora; 세 시에 만나요 risponde «ci vediamo alle tre».",
+            "에 segna il tempo (세 시에) e la destinazione (학교에); 에서 dice dove succede qualcosa (학교에서 공부해요).",
+            "만나요 è «ci vediamo / incontriamoci»: da sola chiude un appuntamento.",
+            "약속 è l'impegno preso: 약속이 있어요 dice che hai un appuntamento, 없어요 che non ne hai."
+          ],
+          "vocab": [
+            { "ko": "오늘", "it": "oggi", "rr": "oneul" },
+            { "ko": "내일", "it": "domani", "rr": "naeil" },
+            { "ko": "어제", "it": "ieri", "rr": "eoje" },
+            { "ko": "몇 시", "it": "che ora", "rr": "myeot si" },
+            { "ko": "약속", "it": "appuntamento, impegno", "rr": "yaksok" },
+            { "ko": "만나요", "it": "ci vediamo, incontriamoci", "rr": "mannayo" },
+            { "ko": "시간", "it": "tempo, ora", "rr": "sigan" }
+          ],
+          "exercises": [
+            {
+              "id": "msg04-e1",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 내일?",
+              "answer": "domani",
+              "explain": "내일 è domani; 오늘 è oggi e 어제 è ieri: tre parole da non confondere in un appuntamento."
+            },
+            {
+              "id": "msg04-e2",
+              "type": "reading_mcq",
+              "prompt": "«몇 시예요?» chiede…",
+              "options": ["l'ora", "il giorno", "il luogo", "il prezzo"],
+              "answer": "l'ora",
+              "explain": "몇 è «quanti», 시 è «ora»: insieme, «che ora è?»."
+            },
+            {
+              "id": "msg04-e3",
+              "type": "fill_blank",
+              "prompt": "Completa: «Ci vediamo alle tre».",
+              "text": "세 시___ 만나요.",
+              "options": ["에", "에서", "를", "가"],
+              "answer": "에",
+              "explain": "Il tempo si marca con 에: 세 시에 만나요."
+            },
+            {
+              "id": "msg04-e4",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 약속?",
+              "answer": "appuntamento",
+              "accept": ["l'appuntamento", "impegno", "l'impegno"],
+              "explain": "약속 è l'impegno preso con qualcuno: vale sia per un caffè sia per una riunione."
+            },
+            {
+              "id": "msg04-e5",
+              "type": "type_hangul",
+              "prompt": "Scrivi «oggi».",
+              "answer": "오늘",
+              "explain": "오늘 è oggi: 오늘 시간 있어요? è «oggi hai tempo?»."
+            },
+            {
+              "id": "msg04-e6",
+              "type": "reading_mcq",
+              "prompt": "«내일 시간 있어요?» vuol dire…",
+              "options": ["Domani hai tempo?", "Domani piove?", "Domani che giorno è?", "Domani lavori?"],
+              "answer": "Domani hai tempo?",
+              "explain": "시간 è il tempo libero: chiedere se c'è è il primo passo di ogni appuntamento."
+            },
+            {
+              "id": "msg04-e7",
+              "type": "order_words",
+              "prompt": "Rimetti in ordine: «Ci vediamo domani alle tre».",
+              "words": ["만나요", "내일", "세", "시에"],
+              "answer": "내일 세 시에 만나요",
+              "explain": "Prima il giorno, poi l'ora, poi il verbo: 내일 세 시에 만나요."
+            },
+            {
+              "id": "msg04-e8",
+              "type": "fill_blank",
+              "prompt": "Dove studi? Completa.",
+              "text": "학교___ 공부해요.",
+              "options": ["에서", "에", "를", "은"],
+              "answer": "에서",
+              "explain": "에서 dice dove avviene l'azione: 학교에서 공부해요. 에 da solo indicherebbe la destinazione."
+            },
+            {
+              "id": "msg04-e9",
+              "type": "type_hangul",
+              "prompt": "Scrivi «ieri».",
+              "answer": "어제",
+              "explain": "어제 è ieri: 어제 뭐 했어요? è «che hai fatto ieri?»."
+            },
+            {
+              "id": "msg04-e10",
+              "type": "reading_mcq",
+              "prompt": "«약속이 없어요» vuol dire…",
+              "options": ["Non ho impegni", "Ho un appuntamento", "Sono in ritardo", "Ci vediamo dopo"],
+              "answer": "Non ho impegni",
+              "explain": "없어요 nega 있어요: se l'appuntamento non c'è, la giornata è libera."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "me-u3",
+      "title": "Chiudere il cerchio",
+      "purpose": "Rimettere insieme saluti, registri e appuntamenti in messaggi brevi e chiari.",
+      "lessons": [
+        {
+          "id": "msg-05",
+          "slug": "scrivere-senza-paura",
+          "title": "Scrivere senza paura",
+          "titleKo": "자신 있게 쓰기",
+          "kind": "review",
+          "goal": "Rimettere insieme saluti, registri e appuntamenti in messaggi brevi che si capiscono al primo colpo.",
+          "durationMin": 25,
+          "points": [
+            "Un messaggio chiaro ha tre pezzi: saluto, motivo, chiusura. Anche in coreano, anche in due righe.",
+            "Scegli prima il registro: se scrivi a un adulto, ogni verbo finisce in -요.",
+            "Il verbo resta in fondo: 나중에 문자를 보내요, non «보내요 문자를 나중에».",
+            "답장 è la risposta: chiederla è una frase intera e cortese, 답장 기다려요.",
+            "Le parole imparate tornano come schede nei ripassi: qui le rimetti in fila, là le ricordi."
+          ],
+          "vocab": [
+            { "ko": "문자", "it": "messaggio, sms", "rr": "munja" },
+            { "ko": "답장", "it": "risposta", "rr": "dapjang" },
+            { "ko": "메시지", "it": "messaggio", "rr": "mesiji" },
+            { "ko": "보내요", "it": "mando", "rr": "bonaeyo" },
+            { "ko": "읽어요", "it": "leggo", "rr": "ilgeoyo" },
+            { "ko": "기다려요", "it": "aspetto", "rr": "gidaryeoyo" },
+            { "ko": "고마워요", "it": "grazie", "rr": "gomawoyo" }
+          ],
+          "exercises": [
+            {
+              "id": "msg05-e1",
+              "type": "reading_mcq",
+              "prompt": "«문자를 보내요» vuol dire…",
+              "options": [
+                "Mando un messaggio",
+                "Leggo un messaggio",
+                "Cancello un messaggio",
+                "Aspetto un messaggio"
+              ],
+              "answer": "Mando un messaggio",
+              "explain": "보내요 è «mando»: 문자를 보내요 è l'azione di scrivere e inviare."
+            },
+            {
+              "id": "msg05-e2",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 답장?",
+              "answer": "risposta",
+              "accept": ["la risposta"],
+              "explain": "답장 è la risposta a un messaggio; 답장하다 è il verbo «rispondere»."
+            },
+            {
+              "id": "msg05-e3",
+              "type": "fill_blank",
+              "prompt": "Completa la chiusura cortese: «Grazie, a domani!»",
+              "text": "고마워요, 내일 ___!",
+              "options": ["봐요", "봐", "보자", "봤어요"],
+              "answer": "봐요",
+              "explain": "Il messaggio è in forma cortese (고마워요), quindi anche la chiusura resta in -요: 내일 봐요."
+            },
+            {
+              "id": "msg05-e4",
+              "type": "order_words",
+              "prompt": "Rimetti in ordine: «Ti scrivo più tardi».",
+              "words": ["문자를", "나중에", "보내요"],
+              "answer": "나중에 문자를 보내요",
+              "explain": "Il tempo apre la frase, il complemento oggetto segue, il verbo chiude: 나중에 문자를 보내요."
+            },
+            {
+              "id": "msg05-e5",
+              "type": "type_hangul",
+              "prompt": "Scrivi «aspetto» (forma cortese).",
+              "answer": "기다려요",
+              "explain": "기다리다 è «aspettare»: 기다려요 è la forma cortese, quella che si usa in 답장 기다려요."
+            },
+            {
+              "id": "msg05-e6",
+              "type": "reading_mcq",
+              "prompt": "A un professore scrivi…",
+              "options": [
+                "안녕하세요, 잘 지내세요?",
+                "안녕, 뭐 해?",
+                "안녕, 잘 지내?",
+                "뭐 해, 쌤?"
+              ],
+              "answer": "안녕하세요, 잘 지내세요?",
+              "explain": "Con un adulto ogni verbo prende la forma cortese: 안녕하세요 e 지내세요."
+            },
+            {
+              "id": "msg05-e7",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 읽어요?",
+              "answer": "leggo",
+              "accept": ["leggere", "sto leggendo"],
+              "explain": "읽다 è «leggere»: 읽어요 è la forma cortese del presente."
+            },
+            {
+              "id": "msg05-e8",
+              "type": "fill_blank",
+              "prompt": "Completa: «Oggi non ho tempo».",
+              "text": "오늘 시간이 ___.",
+              "options": ["없어요", "있어요", "많아요", "좋아요"],
+              "answer": "없어요",
+              "explain": "없어요 nega 있어요: con 시간이 forma la frase «non ho tempo»."
+            },
+            {
+              "id": "msg05-e9",
+              "type": "reading_mcq",
+              "prompt": "«답장 기다려요» vuol dire…",
+              "options": [
+                "Aspetto la tua risposta",
+                "Ti ho risposto",
+                "Non ti rispondo",
+                "Ho letto la risposta"
+              ],
+              "answer": "Aspetto la tua risposta",
+              "explain": "답장 è la risposta, 기다려요 è «aspetto»: è una richiesta gentile, non un ordine."
+            },
+            {
+              "id": "msg05-e10",
+              "type": "type_hangul",
+              "prompt": "Scrivi un saluto informale fra amici.",
+              "answer": "안녕",
+              "accept": ["안녕!", "잘 지내"],
+              "explain": "Senza 요 resta il saluto fra coetanei: 안녕. Con un adulto sarebbe 안녕하세요."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

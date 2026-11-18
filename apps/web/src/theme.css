@@ -169,6 +169,27 @@ button {
   color: var(--paper-raised);
 }
 
+/* Il conto dei ripassi in scadenza: un numero, non una scritta. */
+.nav-badge {
+  display: inline-block;
+  min-width: 1.35rem;
+  margin-left: 0.35rem;
+  padding: 0 0.35rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.35rem;
+  text-align: center;
+  vertical-align: 1px;
+}
+
+.app-nav a.active .nav-badge {
+  background: var(--paper-raised);
+  color: var(--ink);
+}
+
 .user-chip {
   display: flex;
   align-items: center;

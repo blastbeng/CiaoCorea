@@ -6,6 +6,7 @@ import type {
   CourseSkipResponse,
   CourseSkipTest,
   CourseView,
+  DueCountResponse,
   LessonDetail,
   LessonView,
   ProgressSummary,
@@ -339,6 +340,14 @@ export async function registerLessonRoutes(app: FastifyInstance, ctx: Ctx): Prom
     const { user } = request as AuthedRequest;
     const views = courseViews(ctx, user.id);
     return reply.send(summaryOf(ctx, user.id, views));
+  });
+
+  // Il badge della shell chiede solo il numero: la lista completa delle carte
+  // si scarica quando lo studente apre i ripassi.
+  app.get('/api/progress/due', { preHandler: auth }, async (request, reply) => {
+    const { user } = request as AuthedRequest;
+    const body: DueCountResponse = { dueCards: countDueCards(ctx.db, user.id) };
+    return reply.send(body);
   });
 
   app.get('/api/review', { preHandler: auth }, async (request, reply) => {

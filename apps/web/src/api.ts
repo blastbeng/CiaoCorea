@@ -3,6 +3,7 @@ import type {
   CourseListResponse,
   CourseView,
   DialogueAnswerResponse,
+  DueCountResponse,
   DialogueDetail,
   DialogueListResponse,
   LessonDetail,
@@ -46,6 +47,16 @@ async function request<T>(url: string, init: RequestInit = {}): Promise<T> {
 
   if (response.status === 204) return undefined as T;
   return (await response.json()) as T;
+}
+
+/**
+ * Il badge dei ripassi vive nella shell e non nella pagina: quando una pagina
+ * consuma una carta lo dice qui, invece di costringere la shell a ricaricare.
+ */
+export const DUE_CHANGED = 'ciaocorea:due-changed';
+
+export function announceDue(dueCards: number): void {
+  window.dispatchEvent(new CustomEvent<number>(DUE_CHANGED, { detail: dueCards }));
 }
 
 export interface SubmitAnswer {
@@ -96,6 +107,9 @@ export const api = {
     }),
 
   summary: () => request<ProgressSummary>('/api/progress/summary'),
+
+  /** Solo il numero dei ripassi in scadenza, per il badge nella shell. */
+  due: () => request<DueCountResponse>('/api/progress/due'),
 
   review: () => request<ReviewResponse>('/api/review'),
 

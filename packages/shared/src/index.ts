@@ -250,6 +250,15 @@ export interface ReviewResponse {
   dueCards: number;
 }
 
+/**
+ * Il solo numero dei ripassi in scadenza: la shell lo chiede a ogni cambio di
+ * pagina per tenere il badge aggiornato, e tirarsi dietro quaranta carte per
+ * scrivere una cifra sarebbe sprecato.
+ */
+export interface DueCountResponse {
+  dueCards: number;
+}
+
 export interface LoginResponse {
   user: SessionUser;
 }

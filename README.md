@@ -24,7 +24,7 @@ Il portale è multi-utente: le iscrizioni si aprono con i codici invito
 | `/corso/:slug/lezione/:lessonId` | teoria, brani di lettura, lessico, esercizi, test di salto |
 | `/dialoghi` e `/dialoghi/:slug` | conversazione scritta a copione |
 | `/dizionario` | ricerca nelle parole del curricolo, con filtri per corso |
-| `/ripassi` | carte in scadenza, giudizio `ho saputo / quasi / non ricordo` |
+| `/ripassi` | carte in scadenza, giudizio `ho saputo / quasi / non ricordo`; il numero nella barra in alto dice quante ne restano |
 | `/progressi` | totali, per corso, parole SRS, obiettivo della settimana, ritmo dei giorni, password |
 | `/registrazione` | nuovo account: nome, email, password, ed eventuale codice invito |
 
@@ -150,6 +150,7 @@ le due della registrazione.
 | POST | `/api/courses/:slug/lessons/:id/attempts` | consegna (`mode: lesson \| skip`) |
 | GET | `/api/courses/:slug/skip-test` | prova per saltare il corso (domande fisse, una per lezione) |
 | POST | `/api/courses/:slug/skip` | consegna la prova del corso: superata chiude tutte le lezioni |
+| GET | `/api/progress/due` | solo il numero dei ripassi in scadenza, per il badge della barra in alto |
 | GET | `/api/review` | carte in scadenza |
 | POST | `/api/review/:cardId` | giudizio `0 \| 1 \| 2` |
 | GET | `/api/dialogues` | elenco dei dialoghi con lo stato di avanzamento |
@@ -191,20 +192,25 @@ Il secondo, `grammatica`, porta dalle lettere alle prime frasi: copula
 이에요/예요, particelle 은/는 e 이/가, presente cortese -아요/-어요, poi 을/를, 에
 ed 에서. Il terzo, `lessico`, mette le parole dentro frasi usabili: famiglia,
 presentazioni (nome, età, provenienza), cibo e bevande, numeri sino-coreani e
-prezzi in won. Il quarto, `a2`, alza il livello: passato in -았어요/-었어요, futuro
-in -(으)ㄹ 거예요, forma di rispetto 높임말 (-(으)시-, 께서, 드시다/계시다) e frasi
-legate con -고, -지만 e -아서/어서. La prima lezione di ogni corso è sempre aperta,
-così chi ha già basi può entrare da lì; le successive seguono l'ordine del corso.
+prezzi in won. Il quarto, `messaggi`, è il corso della scrittura di ogni giorno:
+saluti in chat, i due registri (해요체 e 반말), una conversazione completa da
+leggere, appuntamenti con 오늘/내일/몇 시 e una lezione finale che rimette tutto
+insieme. È lì che si impara quando dare del tu e quando no.
 
-Il quinto, `b1`, è fatto solo di testi da leggere: l'annuncio di una stanza, il
-menu con le note in fondo, il messaggio di servizio in ufficio, una notizia
-breve. Ogni lezione porta il brano in coreano con il glossario delle parole
-difficili, e sotto gli esercizi di comprensione; la traduzione italiana del
-brano arriva solo quando la lezione risulta chiusa.
+Il quinto, `a2`, alza il livello: passato in -았어요/-었어요, futuro in -(으)ㄹ
+거예요, forma di rispetto 높임말 (-(으)시-, 께서, 드시다/계시다) e frasi legate con
+-고, -지만 e -아서/어서. Il sesto, `b1`, è fatto solo di testi da leggere:
+l'annuncio di una stanza, il menu con le note in fondo, il messaggio di servizio
+in ufficio, una notizia breve. Ogni lezione porta il brano in coreano con il
+glossario delle parole difficili, e sotto gli esercizi di comprensione; la
+traduzione italiana del brano arriva solo quando la lezione risulta chiusa.
 
-In tutto: cinque corsi, 24 lezioni, 194 voci di lessico, sette brani di lettura,
-sei dialoghi. Il dizionario consultabile arriva a 222 voci perché comprende
-anche le parole dei gloss, che sono quelle che si incontrano leggendo.
+La prima lezione di ogni corso è sempre aperta, così chi ha già basi può entrare
+da lì; le successive seguono l'ordine del corso.
+
+In tutto: sei corsi, 29 lezioni, 228 voci di lessico, otto brani di lettura, otto
+dialoghi. Il dizionario consultabile arriva a 255 voci perché comprende anche le
+parole dei gloss, che sono quelle che si incontrano leggendo.
 
 ## Il piano della settimana
 
@@ -232,6 +238,9 @@ esattamente come per gli esercizi.
 
 - Il coreano delle battute ancora da recitare non lascia il server: al client
   arriva la consegna in italiano, quindi la soluzione non è leggibile dalla rete.
+- Con il corso `messaggi` sono arrivati due dialoghi nuovi: una chat per
+  organizzare lo studio (`chat-serale`) e un invito a cena in 반말
+  (`invito-cena`), entrambi legati alle lezioni di quel corso.
 - Alcuni dialoghi sono legati al percorso (`after: {courseSlug, lessonId}`): si
   aprono quando quella lezione è superata o saltata. Finché è chiusa, l'elenco
   mostra "in chiusura" con il link alla lezione da fare, la pagina del dialogo

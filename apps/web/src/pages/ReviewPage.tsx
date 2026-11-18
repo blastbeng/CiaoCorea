@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { api } from '../api';
+import { announceDue, api } from '../api';
 import { errorMessage } from '../auth';
 import { useAsync } from '../useAsync';
 
@@ -74,6 +74,7 @@ export function ReviewPage() {
     try {
       const response = await api.gradeCard(card.id, value);
       setRemaining(response.dueCards);
+      announceDue(response.dueCards);
       if (index + 1 >= cards.length) {
         setFinished(true);
       } else {

@@ -566,5 +566,183 @@
         "it": "Ricevuto. Ci vediamo domani."
       }
     ]
+  },
+  {
+    "id": "chat-serale",
+    "slug": "chat-serale",
+    "title": "Chat per studiare insieme",
+    "level": "A1",
+    "setting": "Hai scambiato il numero con 지수, compagna del corso di coreano. È sera e le scrivi per organizzare lo studio di domani.",
+    "goal": "Aprire una chat, restituire la domanda, proporre un orario e chiudere con un saluto.",
+    "points": [
+      "In chat si apre con 안녕하세요 e ci si presenta per primi: 저는 …예요. Non si aspetta che lo faccia l'altro.",
+      "지수 씨는요? restituisce la domanda senza ripeterla: è il modo più naturale di dire «e tu?».",
+      "Un orario si propone con 세 시에 만나요 e si accetta con 좋아요: due parole e l'appuntamento è fissato.",
+      "La chiusura cortese è 내일 봐요: non vuol dire solo «a domani», ma «conto di rivederti»."
+    ],
+    "after": { "courseSlug": "messaggi", "lessonId": "msg-04" },
+    "turns": [
+      {
+        "id": "b-1",
+        "speaker": "지수",
+        "ko": "안녕하세요! 저는 지수예요. 잘 지내요?",
+        "it": "Ciao! Io sono 지수. Come stai?"
+      },
+      {
+        "id": "s-1",
+        "speaker": "Tu",
+        "ko": "네, 잘 지내요. 지수 씨는요?",
+        "it": "Sì, sto bene. E tu, 지수?",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "네, 잘 지내요. 지수 씨는요?",
+            "네, 잘 지내요. 지수예요?",
+            "아니요, 잘 지내요. 지수 씨는요?"
+          ]
+        },
+        "note": "Rispondi e restituisci la domanda: 는요? riprende il nome e lo rigira all'altro. 아니요 negherebbe ciò che hai appena detto."
+      },
+      {
+        "id": "b-2",
+        "speaker": "지수",
+        "ko": "저도 잘 지내요. 내일 시간 있어요?",
+        "it": "Anch'io sto bene. Domani hai tempo?"
+      },
+      {
+        "id": "s-2",
+        "speaker": "Tu",
+        "ko": "네, 시간 있어요. 세 시에 만나요.",
+        "it": "Sì, ho tempo. Ci vediamo alle tre.",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "네, 시간 있어요. 세 시에 만나요.",
+            "네, 시간 없어요. 세 시에 만나요.",
+            "네, 시간 있어요. 세 시예요?"
+          ]
+        },
+        "note": "시간 있어요 dice che il tempo c'è; 세 시에 mette l'ora e 만나요 chiude l'accordo. 없어요 direbbe l'opposto."
+      },
+      {
+        "id": "b-3",
+        "speaker": "지수",
+        "ko": "좋아요! 어디에서 만나요?",
+        "it": "Perfetto! Dove ci vediamo?"
+      },
+      {
+        "id": "s-3",
+        "speaker": "Tu",
+        "ko": "학교 앞에서 만나요.",
+        "it": "Ci vediamo davanti alla scuola.",
+        "answer": {
+          "kind": "type",
+          "hint": "앞 = davanti; 에서 = dove avviene l'incontro.",
+          "accept": ["학교 앞에서 만나요", "학교에서 만나요", "학교 앞이에요", "학교 앞에서 봐요"]
+        },
+        "note": "앞 è «davanti»: 학교 앞 è lo spazio davanti all'edificio. 에서 dice dove succede l'incontro, non dove si va."
+      },
+      {
+        "id": "b-4",
+        "speaker": "지수",
+        "ko": "좋아요. 그럼 내일 세 시에 봐요!",
+        "it": "Bene. Allora a domani alle tre!"
+      },
+      {
+        "id": "s-4",
+        "speaker": "Tu",
+        "ko": "네, 내일 봐요!",
+        "it": "Sì, a domani!",
+        "answer": {
+          "kind": "type",
+          "hint": "Chiudi con 내일 봐요.",
+          "accept": ["네, 내일 봐요", "내일 봐요", "그럼 내일 봐요", "네, 내일 세 시에 봐요"]
+        },
+        "note": "La chiusura ripete il saluto dell'altro: è quello che si fa in chat, e conferma che l'accordo è chiaro."
+      }
+    ]
+  },
+  {
+    "id": "invito-cena",
+    "slug": "invito-cena",
+    "title": "Invito a cena fra amici",
+    "level": "A1",
+    "setting": "민수 è un amico coreano conosciuto al corso. È sabato pomeriggio e gli scrivi in 반말 per invitarlo a cena.",
+    "goal": "Invitare in 반말, dire cosa porti tu e mettersi d'accordo su ora e luogo.",
+    "points": [
+      "Con un amico coetaneo il 반말 toglie 요: 뭐 해? invece di 뭐 해요?. Il resto della frase non cambia.",
+      "우리 집에서 먹을래? è un invito: -(으)ㄹ래? chiede «vuoi?» e si accetta con 좋아.",
+      "내가 …ㄹ게 annuncia ciò che fai tu: 내가 김치를 살게 è «compro io il kimchi».",
+      "갈게 è «vengo, arrivo»: 일곱 시에 갈게 fissa l'ora senza formalità."
+    ],
+    "after": { "courseSlug": "messaggi", "lessonId": "msg-05" },
+    "turns": [
+      {
+        "id": "b-1",
+        "speaker": "민수",
+        "ko": "야, 뭐 해?",
+        "it": "Ehi, che fai?"
+      },
+      {
+        "id": "s-1",
+        "speaker": "Tu",
+        "ko": "아무것도 안 해. 왜?",
+        "it": "Niente. Perché?",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "아무것도 안 해. 왜?",
+            "아무것도 해. 왜?",
+            "아무것도 안 해요. 왜요?"
+          ]
+        },
+        "note": "아무것도 vuole il verbo negativo: 아무것도 안 해 = «non faccio niente». Con 안 해요 torneresti al registro cortese, fuori posto fra amici."
+      },
+      {
+        "id": "b-2",
+        "speaker": "민수",
+        "ko": "오늘 저녁에 우리 집에서 먹을래?",
+        "it": "Stasera vuoi mangiare da me?"
+      },
+      {
+        "id": "s-2",
+        "speaker": "Tu",
+        "ko": "좋아! 내가 김치를 살게.",
+        "it": "Va bene! Compro io il kimchi.",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "좋아! 내가 김치를 살게.",
+            "좋아! 네가 김치를 살게.",
+            "좋아! 내가 김치를 사요."
+          ]
+        },
+        "note": "내가 è «io», 네가 è «tu» (si pronuncia «niga» proprio per non confonderlo). -ㄹ게 annuncia quello che farai tu."
+      },
+      {
+        "id": "b-3",
+        "speaker": "민수",
+        "ko": "고마워! 몇 시에 올 수 있어?",
+        "it": "Grazie! A che ora puoi venire?"
+      },
+      {
+        "id": "s-3",
+        "speaker": "Tu",
+        "ko": "일곱 시에 갈게.",
+        "it": "Vengo alle sette.",
+        "answer": {
+          "kind": "type",
+          "hint": "일곱 시 = alle sette; 갈게 = ci sarò, vengo.",
+          "accept": ["일곱 시에 갈게", "7시에 갈게", "일곱시에 갈게", "일곱 시에 갈게요"]
+        },
+        "note": "올 수 있어? chiede se puoi venire (오다, «venire»); 갈게 risponde con 가다, «andare», perché il punto di vista è quello di chi parte."
+      },
+      {
+        "id": "b-4",
+        "speaker": "민수",
+        "ko": "좋아, 그럼 이따 봐!",
+        "it": "Bene, allora a dopo!"
+      }
+    ]
   }
 ]

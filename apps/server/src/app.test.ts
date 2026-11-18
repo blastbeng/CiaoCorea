@@ -13,9 +13,12 @@ import {
 } from '@ciaocorea/curriculum';
 import type {
   CourseListResponse,
+  CourseSkipResponse,
+  CourseSkipTest,
   DialogueAnswerResponse,
   DialogueDetail,
   DialogueListResponse,
+  DueCountResponse,
   LessonDetail,
   ProfileResponse,
   ReviewResponse,
@@ -74,6 +77,43 @@ async function passLesson(cookie: string, slug: string, lessonId: string): Promi
   expect(response.statusCode).toBe(200);
   const body = response.json() as { attempt: { passed: boolean; score: number } };
   expect(body.attempt.passed, `${lessonId} promossa?`).toBe(true);
+}
+
+/**
+ * Salta un corso intero rispondendo bene a tutte le domande del test: come per
+ * le lezioni, le soluzioni arrivano dal curricolo e non dal server.
+ */
+async function passCourseSkip(cookie: string, slug: string): Promise<CourseSkipResponse> {
+  const test = await app.inject({
+    method: 'GET',
+    url: `/api/courses/${slug}/skip-test`,
+    headers: { cookie },
+  });
+  expect(test.statusCode, `test di salto per ${slug}`).toBe(200);
+  const body = test.json() as CourseSkipTest;
+
+  const course = getCourse(slug);
+  const answers = new Map<string, string>();
+  for (const lesson of course ? courseLessons(course) : []) {
+    for (const exercise of lesson.exercises) answers.set(exercise.id, exercise.answer);
+  }
+
+  const response = await app.inject({
+    method: 'POST',
+    url: `/api/courses/${slug}/skip`,
+    headers: { cookie },
+    payload: {
+      answers: body.exercises.map((exercise) => ({
+        exerciseId: exercise.id,
+        response: answers.get(exercise.id) ?? '',
+      })),
+      durationMs: 60000,
+    },
+  });
+  expect(response.statusCode).toBe(200);
+  const skipped = response.json() as CourseSkipResponse;
+  expect(skipped.attempt.passed, `salto di ${slug} promosso?`).toBe(true);
+  return skipped;
 }
 
 beforeEach(async () => {
@@ -839,6 +879,56 @@ describe('piano di studio', () => {
     expect(body.dueCards).toBe(0);
     expect(body.plan.tasks.map((task) => task.key)).toEqual(['lesson', 'dialogue']);
     expect(body.plan.tasks[1]?.href.startsWith('/dialoghi/')).toBe(true);
+  });
+
+  it('tiene aggiornato il solo conteggio dei ripassi per la shell', async () => {
+    const cookie = await login();
+
+    const anonimo = await app.inject({ method: 'GET', url: '/api/progress/due' });
+    expect(anonimo.statusCode).toBe(401);
+
+    const vuoto = await app.inject({ method: 'GET', url: '/api/progress/due', headers: { cookie } });
+    expect(vuoto.statusCode).toBe(200);
+    // Il badge chiede una cifra: niente carte, niente elenco.
+    expect(vuoto.json()).toEqual({ dueCards: 0 });
+
+    await passLesson(cookie, 'hangul', 'hangul-01');
+
+    const dopo = await app.inject({ method: 'GET', url: '/api/progress/due', headers: { cookie } });
+    expect((dopo.json() as DueCountResponse).dueCards).toBeGreaterThan(0);
+  });
+
+  it('un corso saltato è studio a tutti gli effetti: la settimana lo conta', async () => {
+    const cookie = await login();
+
+    const prima = await app.inject({ method: 'GET', url: '/api/dashboard', headers: { cookie } });
+    const primaBody = prima.json() as CourseListResponse;
+    expect(primaBody.plan.daysStudied).toBe(0);
+    expect(primaBody.dueCards).toBe(0);
+
+    const saltato = await passCourseSkip(cookie, 'messaggi');
+    expect(saltato.lessonsSkipped).toBe(5);
+    // Chi salta non perde il lessico: entra tutto nei ripassi.
+    expect(saltato.reviewsCreated).toBeGreaterThan(0);
+
+    const dopo = await app.inject({ method: 'GET', url: '/api/dashboard', headers: { cookie } });
+    const dopoBody = dopo.json() as CourseListResponse;
+
+    // Il giorno della prova vale come giorno di studio, come una lezione.
+    expect(dopoBody.plan.daysStudied).toBe(1);
+    expect(dopoBody.plan.streakDays).toBe(1);
+    expect(dopoBody.dueCards).toBe(saltato.reviewsCreated);
+
+    // Con i ripassi in scadenza il dialogo lascia il posto alla ripetizione.
+    expect(dopoBody.plan.tasks.map((task) => task.key)).toEqual(['lesson', 'reviews']);
+
+    // Il corso saltato resta nel percorso, chiuso ma visibile.
+    const messaggi = dopoBody.courses.find((course) => course.slug === 'messaggi');
+    expect(messaggi?.stats.skipped).toBe(5);
+    expect(messaggi?.stats.lessons).toBe(5);
+
+    // Saltato il corso, il percorso propone la lezione successiva, non una sua.
+    expect(dopoBody.summary.nextLesson?.courseSlug).not.toBe('messaggi');
   });
 
   it('conta il ripasso come giorno di studio', async () => {

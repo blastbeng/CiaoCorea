@@ -1,10 +1,37 @@
-import type { ReactNode } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { useEffect, useState, type ReactNode } from 'react';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { api, DUE_CHANGED } from '../api';
 import { useAuth } from '../auth';
 
 export function AppShell({ children }: { children: ReactNode }) {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const [dueCards, setDueCards] = useState(0);
+
+  // Il badge è un promemoria, non un dato critico: se la richiesta fallisce si
+  // tiene il numero di prima invece di mostrare un errore nella shell.
+  useEffect(() => {
+    let active = true;
+
+    const refresh = () =>
+      api
+        .due()
+        .then(({ dueCards: count }) => {
+          if (active) setDueCards(count);
+        })
+        .catch(() => undefined);
+
+    refresh();
+    window.addEventListener(DUE_CHANGED, refresh);
+    window.addEventListener('focus', refresh);
+
+    return () => {
+      active = false;
+      window.removeEventListener(DUE_CHANGED, refresh);
+      window.removeEventListener('focus', refresh);
+    };
+  }, [location.pathname]);
 
   const handleLogout = async () => {
     await logout();
@@ -27,7 +54,14 @@ export function AppShell({ children }: { children: ReactNode }) {
           </NavLink>
           <NavLink to="/dialoghi">Conversazione</NavLink>
           <NavLink to="/dizionario">Dizionario</NavLink>
-          <NavLink to="/ripassi">Ripassi</NavLink>
+          <NavLink to="/ripassi">
+            Ripassi
+            {dueCards > 0 ? (
+              <span className="nav-badge" aria-label={`${dueCards} ripassi in scadenza`}>
+                {dueCards > 99 ? '99+' : dueCards}
+              </span>
+            ) : null}
+          </NavLink>
           <NavLink to="/progressi">Progressi</NavLink>
         </nav>
 
