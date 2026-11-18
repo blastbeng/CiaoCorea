@@ -113,6 +113,74 @@ function PasswordForm() {
   );
 }
 
+const GOAL_DAYS = [1, 2, 3, 4, 5, 6, 7];
+
+/**
+ * Obiettivo della settimana: lo sceglie lo studente. Un numero che si regge
+ * vale più di uno alto, e sopra quello si costruisce il piano della giornata.
+ */
+function GoalForm({ initial }: { initial: number }) {
+  const [goal, setGoal] = useState(initial);
+  const [saved, setSaved] = useState(initial);
+  const [busy, setBusy] = useState(false);
+  const [message, setMessage] = useState<{ kind: 'ok' | 'error'; text: string } | null>(null);
+
+  const submit = async (event: FormEvent) => {
+    event.preventDefault();
+    setBusy(true);
+    setMessage(null);
+    try {
+      const response = await api.setGoal(goal);
+      setGoal(response.weeklyGoal);
+      setSaved(response.weeklyGoal);
+      setMessage({
+        kind: 'ok',
+        text: `Obiettivo salvato: ${response.weeklyGoal} ${response.weeklyGoal === 1 ? 'giorno' : 'giorni'} di studio a settimana.`,
+      });
+    } catch (problem) {
+      setMessage({ kind: 'error', text: errorMessage(problem) });
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <form className="stack stack--tight" onSubmit={submit}>
+      <p className="muted small">
+        Un giorno conta quando fai almeno un esercizio o un ripasso. Metti il numero che reggerai
+        davvero: il piano di oggi si regola su questo.
+      </p>
+
+      <label className="field">
+        <span className="stat-label">Giorni di studio a settimana</span>
+        <select
+          className="input"
+          value={goal}
+          onChange={(event) => setGoal(Number(event.target.value))}
+        >
+          {GOAL_DAYS.map((days) => (
+            <option key={days} value={days}>
+              {days} {days === 1 ? 'giorno' : 'giorni'}
+            </option>
+          ))}
+        </select>
+      </label>
+
+      <div className="row">
+        <button type="submit" className="btn btn--primary" disabled={busy || goal === saved}>
+          {busy ? 'Salvo…' : 'Salva l’obiettivo'}
+        </button>
+      </div>
+
+      {message ? (
+        <p className={message.kind === 'ok' ? 'alert alert--ok' : 'alert alert--error'}>
+          {message.text}
+        </p>
+      ) : null}
+    </form>
+  );
+}
+
 export function ProfilePage() {
   const state = useAsync(() => api.profile(), []);
 
@@ -172,6 +240,16 @@ export function ProfilePage() {
           <div className="stat-value">{srs.words}</div>
           <div className="stat-label">Parole in ripasso</div>
         </div>
+      </section>
+
+      <section className="card">
+        <h2>Settimana</h2>
+        <p className="muted small">
+          Sei a {summary.streakDays} {summary.streakDays === 1 ? 'giorno di fila' : 'giorni di fila'}
+          . Che cosa fare oggi sta scritto nel piano, sulla home: qui decidi solo il ritmo della
+          settimana.
+        </p>
+        <GoalForm initial={profile.weeklyGoal} />
       </section>
 
       <section className="card">
@@ -242,13 +320,14 @@ export function ProfilePage() {
           <>
             <p className="muted small">
               Ultime {recent.length} giornate studiate; l'altezza dice quanti esercizi hai fatto.
+              I ripassi contano come giorno di studio, ma non alzano le barre.
             </p>
             <div className="heat" aria-label="Esercizi per giorno">
               {recent.map((day) => (
                 <div
                   className="heat-col"
                   key={day.day}
-                  title={`${formatDay(day.day)}: ${day.exercises} esercizi, ${day.correct} giusti, ${day.lessonsCompleted} lezioni chiuse`}
+                  title={`${formatDay(day.day)}: ${day.exercises} esercizi, ${day.correct} giusti, ${day.lessonsCompleted} lezioni chiuse, ${day.reviews} ripassi`}
                 >
                   <span
                     className="heat-bar"

@@ -200,6 +200,8 @@ export interface CourseListResponse {
   courses: CourseView[];
   summary: ProgressSummary;
   dueCards: number;
+  /** Che cosa fare oggi, e come sta andando la settimana. */
+  plan: StudyPlan;
 }
 
 export interface AttemptResponse {
@@ -455,6 +457,8 @@ export interface DayActivity {
   exercises: number;
   correct: number;
   lessonsCompleted: number;
+  /** Ripassi di parole fatti quel giorno: contano come studio. */
+  reviews: number;
 }
 
 export interface SrsStats {
@@ -492,6 +496,38 @@ export interface CareerTotals {
   accuracy: number;
 }
 
+/** Una cosa da fare oggi, con il link dove farla. */
+export interface PlanTask {
+  key: 'lesson' | 'reviews' | 'dialogue';
+  label: string;
+  detail: string;
+  href: string;
+}
+
+/**
+ * Il piano della giornata: le cose in programma, più lo stato dell'obiettivo
+ * settimanale (giorni di studio su `goal`). È fatto dal server, così la pagina
+ * non deve indovinare niente: mostra e basta.
+ */
+export interface StudyPlan {
+  /** Giorno a cui il piano si riferisce, `YYYY-MM-DD`. */
+  day: string;
+  /** Lunedì della settimana in corso, `YYYY-MM-DD`. */
+  weekStart: string;
+  /** Giorni di studio da raggiungere nella settimana (1-7). */
+  goal: number;
+  /** Giorni già studiati in questa settimana. */
+  daysStudied: number;
+  /** Giorni che mancano alla fine della settimana, oggi compreso. */
+  daysLeft: number;
+  goalMet: boolean;
+  streakDays: number;
+  tasks: PlanTask[];
+  /** Frase di stato: giornata libera, obiettivo raggiunto, recupero. */
+  note: string;
+}
+
+
 export interface ProfileResponse {
   user: SessionUser;
   memberSince: string;
@@ -500,6 +536,8 @@ export interface ProfileResponse {
   courses: CourseSlice[];
   srs: SrsStats;
   activity: DayActivity[];
+  /** Giorni di studio da raggiungere ogni settimana (1-7). */
+  weeklyGoal: number;
   dialogues: DialogueStats;
   /** Quante voci del dizionario del curricolo sono già state incontrate. */
   vocabulary: { seen: number; total: number };

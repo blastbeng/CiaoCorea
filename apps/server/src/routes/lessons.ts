@@ -14,11 +14,13 @@ import type {
 import {
   PASS_THRESHOLD,
   buildCourseView,
+  buildDailyPlan,
   gradeAttempt,
   pickCourseSkipTest,
   pickSkipTest,
   stripExercises,
   summarize,
+  weekStartIso,
   type ProgressRow,
 } from '@ciaocorea/engine';
 import { courseLessons, getCourse, getCourses } from '@ciaocorea/curriculum';
@@ -32,7 +34,10 @@ import {
   recordAttempt,
   skipCourse,
   streakDays,
+  studyDaysSince,
 } from '../repo/progress';
+import { getWeeklyGoal } from '../repo/users';
+import { nextOpenDialogue } from '../repo/dialogues';
 
 function progressMap(ctx: Ctx, userId: string, courseSlug: string): ProgressRow[] {
   return getProgress(ctx.db, userId, courseSlug);
@@ -108,11 +113,22 @@ export async function registerLessonRoutes(app: FastifyInstance, ctx: Ctx): Prom
   const listCourses = async (request: FastifyRequest, reply: FastifyReply) => {
     const { user } = request as AuthedRequest;
     const views = courseViews(ctx, user.id);
-    const body: CourseListResponse = {
-      courses: views,
-      summary: summaryOf(ctx, user.id, views),
-      dueCards: countDueCards(ctx.db, user.id),
-    };
+    const summary = summaryOf(ctx, user.id, views);
+    const due = countDueCards(ctx.db, user.id);
+
+    // Il piano si fa qui, con i dati che la dashboard già legge: la pagina non
+    // deve calcolare nulla, e le due cose non possono divergere.
+    const weekStart = weekStartIso();
+    const plan = buildDailyPlan({
+      summary,
+      dueCards: due,
+      weeklyGoal: getWeeklyGoal(ctx.db, user.id),
+      studyDays: studyDaysSince(ctx.db, user.id, weekStart),
+      dialogue: due === 0 ? nextOpenDialogue(ctx.db, user.id) : null,
+      courses: views.map((course) => ({ slug: course.slug, title: course.title })),
+    });
+
+    const body: CourseListResponse = { courses: views, summary, dueCards: due, plan };
     return reply.send(body);
   };
 

@@ -7,7 +7,9 @@ possibilità di saltare una lezione già conosciuta superando un test.
 
 Oltre al percorso ci sono tre stanze di servizio: il **dizionario** di tutte le
 parole del curricolo, la **coda di ripasso** (SRS) e la pagina dei **progressi**,
-con le statistiche complessive e il cambio della password.
+con le statistiche complessive e il cambio della password. In cima alla home c'è
+il **piano di oggi**: le poche cose da fare, in ordine, sopra all'obiettivo della
+settimana che si sceglie lo studente.
 
 Il portale è multi-utente: le iscrizioni si aprono con i codici invito
 (`REGISTRATION_MODE=invite`), si lasciano aperte (`open`) o si tengono chiuse
@@ -17,13 +19,13 @@ Il portale è multi-utente: le iscrizioni si aprono con i codici invito
 
 | Pagina | Cosa c'è |
 | --- | --- |
-| `/` Percorso | corsi, avanzamento, prossima lezione, ripassi dovuti |
+| `/` Percorso | il piano di oggi, corsi, avanzamento, ripassi dovuti |
 | `/corso/:slug` | unità e lezioni con lo stato di ciascuna |
 | `/corso/:slug/lezione/:lessonId` | teoria, brani di lettura, lessico, esercizi, test di salto |
 | `/dialoghi` e `/dialoghi/:slug` | conversazione scritta a copione |
 | `/dizionario` | ricerca nelle parole del curricolo, con filtri per corso |
 | `/ripassi` | carte in scadenza, giudizio `ho saputo / quasi / non ricordo` |
-| `/progressi` | totali, per corso, parole SRS, ritmo dei giorni, password |
+| `/progressi` | totali, per corso, parole SRS, obiettivo della settimana, ritmo dei giorni, password |
 | `/registrazione` | nuovo account: nome, email, password, ed eventuale codice invito |
 
 ## Come è fatto
@@ -46,6 +48,10 @@ Scelte che vale la pena ricordare:
   lezione risulta superata o saltata, così il testo si affronta da soli.
 - **Database SQLite** (`node:sqlite`, WAL) in `./data/ciaocorea.db`. Nessun
   database da amministrare, backup = copiare un file.
+- **Il piano della giornata lo calcola il server** (`packages/engine/src/plan.ts`):
+  prima la lezione che apre il percorso, poi le parole in scadenza, e la
+  conversazione prende il posto dei ripassi quando non c'è nulla da ripassare. La
+  settimana parte di lunedì e un giorno di studio conta anche solo per i ripassi.
 - **Sessione con cookie httpOnly** `cc_session`, token salvato in DB solo come
   hash SHA-256, scadenza scorrevole. Login limitato per IP + identificativo.
 - **Contenuti in JSON tipizzato**, validati da `npm run content:check`: un
@@ -134,9 +140,10 @@ le due della registrazione.
 | POST | `/api/auth/login` | accesso |
 | POST | `/api/auth/logout` | uscita |
 | GET | `/api/auth/session` | utente corrente o `null` |
-| GET | `/api/dashboard` | corsi, progressi, riepilogo, ripassi dovuti |
+| GET | `/api/dashboard` | corsi, progressi, riepilogo, ripassi dovuti, piano di oggi (`plan`) |
 | GET | `/api/vocabulary` | dizionario: `q` (coreano/romanizzazione/italiano), `course`, `limit`, `offset` |
-| GET | `/api/profile` | progressi, totali, giorni attivi, SRS, dialoghi |
+| GET | `/api/profile` | progressi, totali, giorni attivi (con i ripassi), SRS, dialoghi, `weeklyGoal` |
+| POST | `/api/profile/goal` | obiettivo settimanale: da 1 a 7 giorni di studio |
 | POST | `/api/auth/password` | cambia password chiudendo le altre sessioni |
 | GET | `/api/courses/:slug` | dettaglio corso con stati delle lezioni |
 | GET | `/api/courses/:slug/lessons/:id` | teoria, brani, esercizi pubblici, test di salto |
@@ -198,6 +205,22 @@ brano arriva solo quando la lezione risulta chiusa.
 In tutto: cinque corsi, 24 lezioni, 194 voci di lessico, sette brani di lettura,
 sei dialoghi. Il dizionario consultabile arriva a 222 voci perché comprende
 anche le parole dei gloss, che sono quelle che si incontrano leggendo.
+
+## Il piano della settimana
+
+Sopra ai corsi, la home mostra il piano di oggi: tre cose al massimo, ordinate
+per urgenza. Prima la lezione che apre il percorso, poi le parole in scadenza;
+la conversazione prende il loro posto quando non c'è niente da ripassare. Sotto,
+una riga dice come sta andando la settimana.
+
+- L'**obiettivo** sono i giorni di studio da chiudere fra lunedì e domenica. Lo
+  sceglie lo studente nella pagina dei progressi, da 1 a 7; il server non lo
+  impone e non lo cambia da sé.
+- Un giorno conta quando si fa almeno un esercizio **o** un ripasso: chi passa la
+  giornata solo sulle parole in scadenza ha studiato, e lo streak non si rompe.
+- Date in UTC, settimana da lunedì, `daysLeft` comprende oggi.
+- Quando non c'è niente in scadenza il piano non inventa compiti: resta sulla
+  riga della settimana, che è la cosa vera da sapere.
 
 ## Conversazione
 

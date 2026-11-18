@@ -24,8 +24,8 @@ services:
       LOGIN_MAX_ATTEMPTS: ${LOGIN_MAX_ATTEMPTS:-5}
       LOGIN_WINDOW_MINUTES: ${LOGIN_WINDOW_MINUTES:-15}
 
-    # Credenziali dell'unico account: fuori dal repository, leggibili solo
-    # dall'utente che avvia il servizio.
+    # Segreti del servizio (seed del primo account, codice registrazione):
+    # fuori dal repository, leggibili solo dall'utente che avvia il servizio.
     env_file:
       - ../.secrets/ciaocorea.env
 

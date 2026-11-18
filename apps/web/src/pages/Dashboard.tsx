@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import type { CourseView } from '@ciaocorea/shared';
+import type { CourseView, PlanTask, StudyPlan } from '@ciaocorea/shared';
 import { api } from '../api';
 import { useAuth } from '../auth';
 import { useAsync } from '../useAsync';
@@ -33,6 +33,66 @@ function CourseCard({ course }: { course: CourseView }) {
   );
 }
 
+/** Come si chiama il pulsante di ogni compito: un verbo, non un nome ripetuto. */
+const TASK_ACTION: Record<PlanTask['key'], string> = {
+  lesson: 'Apri la lezione',
+  reviews: 'Ripassa',
+  dialogue: 'Conversare',
+};
+
+/**
+ * Il piano della giornata. Le decisioni le ha già prese il motore (cosa fare,
+ * in che ordine, quanto manca alla settimana): qui si mostrano e basta, così la
+ * pagina non può dire una cosa diversa da quella che risponderebbe l'API.
+ */
+function PlanCard({ plan }: { plan: StudyPlan }) {
+  const closed = Math.min(plan.daysStudied, plan.goal);
+  return (
+    <section className="card plan">
+      <div className="row row--between" style={{ marginBottom: '0.3rem' }}>
+        <p className="stat-label" style={{ margin: 0 }}>
+          Il piano di oggi
+        </p>
+        <span className="badge">
+          {closed}/{plan.goal} giorni questa settimana
+        </span>
+      </div>
+
+      <div className="plan__week" aria-hidden="true">
+        {Array.from({ length: plan.goal }, (_, index) => (
+          <span
+            key={index}
+            className={index < plan.daysStudied ? 'plan__dot plan__dot--done' : 'plan__dot'}
+          />
+        ))}
+      </div>
+
+      {plan.tasks.length > 0 ? (
+        <ul className="plan__tasks">
+          {plan.tasks.map((task) => (
+            <li className="plan__task" key={task.key}>
+              <span className="plan__task-text">
+                <span className="plan__label">{task.label}</span>
+                <span className="plan__detail">{task.detail}</span>
+              </span>
+              <Link className="btn btn--sm btn--primary" to={task.href}>
+                {TASK_ACTION[task.key]}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+
+      <p className="plan__note">{plan.note}</p>
+
+      <p className="faint small">
+        I giorni di studio della settimana li scegli tu:{' '}
+        <Link to="/progressi">regola l’obiettivo nei progressi</Link>.
+      </p>
+    </section>
+  );
+}
+
 export function Dashboard() {
   const { user } = useAuth();
   const state = useAsync(() => api.dashboard(), []);
@@ -49,7 +109,7 @@ export function Dashboard() {
     );
   }
 
-  const { courses, summary, dueCards } = state.data;
+  const { courses, summary, dueCards, plan } = state.data;
 
   return (
     <div className="stack">
@@ -62,21 +122,7 @@ export function Dashboard() {
         </p>
       </header>
 
-      {summary.nextLesson ? (
-        <section className="card">
-          <p className="stat-label">Riprendi da qui</p>
-          <h2 style={{ marginBottom: '0.15rem' }}>{summary.nextLesson.lessonTitle}</h2>
-          <p className="muted small">
-            {courses.find((course) => course.slug === summary.nextLesson?.courseSlug)?.title}
-          </p>
-          <Link
-            className="btn btn--primary"
-            to={`/corso/${summary.nextLesson.courseSlug}/lezione/${summary.nextLesson.lessonId}`}
-          >
-            Apri la lezione
-          </Link>
-        </section>
-      ) : null}
+      <PlanCard plan={plan} />
 
       <section className="grid grid--3">
         <div className="stat">
@@ -107,15 +153,6 @@ export function Dashboard() {
           </p>
         </div>
       </section>
-
-      {dueCards > 0 ? (
-        <div className="alert alert--info row row--between">
-          <span>Hai {dueCards} parole da ripassare oggi.</span>
-          <Link className="btn btn--sm" to="/ripassi">
-            Vai ai ripassi
-          </Link>
-        </div>
-      ) : null}
 
       <section className="stack">
         <h2>I tuoi corsi</h2>

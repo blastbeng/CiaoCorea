@@ -1,6 +1,12 @@
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
+import { z } from 'zod';
 import type { ProfileResponse } from '@ciaocorea/shared';
-import { buildCourseView, summarize } from '@ciaocorea/engine';
+import {
+  WEEKLY_GOAL_MAX,
+  WEEKLY_GOAL_MIN,
+  buildCourseView,
+  summarize,
+} from '@ciaocorea/engine';
 import { getCourses, getDialogues, getVocabulary } from '@ciaocorea/curriculum';
 import type { Ctx } from '../http/context';
 import { requireAuth, type AuthedRequest } from '../auth/guard';
@@ -12,7 +18,7 @@ import {
   srsStats,
   streakDays,
 } from '../repo/progress';
-import { findUserById } from '../repo/users';
+import { findUserById, getWeeklyGoal, setWeeklyGoal } from '../repo/users';
 
 /**
  * La pagina dei progressi: una sola lettura che mette insieme corsi, ripassi,
@@ -76,8 +82,31 @@ export async function registerProfileRoutes(app: FastifyInstance, ctx: Ctx): Pro
         correct: dialogueList.reduce((sum, row) => sum + row.correct, 0),
       },
       vocabulary: { seen, total: curriculum.length },
+      weeklyGoal: getWeeklyGoal(db, user.id),
     };
 
     return reply.send(body);
+  });
+
+  /* -------------------------------------------------------------------- *
+   * L'obiettivo della settimana lo sceglie lo studente. Un numero troppo
+   * facile da alzare non serve a niente, e uno troppo alto si abbandona:
+   * per questo sta fra 1 e 7 giorni, e non viene mai imposto dal server.
+   * -------------------------------------------------------------------- */
+  const goalSchema = z.object({
+    goal: z.number().int().min(WEEKLY_GOAL_MIN).max(WEEKLY_GOAL_MAX),
+  });
+
+  app.post('/api/profile/goal', { preHandler: auth }, async (request, reply) => {
+    const { user } = request as AuthedRequest;
+    const parsed = goalSchema.safeParse(request.body);
+    if (!parsed.success) {
+      return reply.code(400).send({
+        error: 'invalid_goal',
+        message: `L’obiettivo deve essere un numero fra ${WEEKLY_GOAL_MIN} e ${WEEKLY_GOAL_MAX} giorni.`,
+      });
+    }
+
+    return reply.send({ weeklyGoal: setWeeklyGoal(ctx.db, user.id, parsed.data.goal) });
   });
 }

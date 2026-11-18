@@ -788,3 +788,111 @@ describe('brani di lettura', () => {
     expect(unlocked?.locked).toBe(false);
   });
 });
+
+describe('piano di studio', () => {
+  it('ordina la giornata: prima la lezione, poi i ripassi in scadenza', async () => {
+    const cookie = await login();
+
+    const vuoto = await app.inject({ method: 'GET', url: '/api/dashboard', headers: { cookie } });
+    expect(vuoto.statusCode).toBe(200);
+    const vuotoBody = vuoto.json() as CourseListResponse;
+    const piano = vuotoBody.plan;
+
+    // Nessuno studio ancora: il piano c'è, la settimana no.
+    expect(piano.goal).toBe(5);
+    expect(piano.daysStudied).toBe(0);
+    expect(piano.goalMet).toBe(false);
+    expect(piano.streakDays).toBe(0);
+    expect(piano.weekStart <= piano.day).toBe(true);
+    expect(piano.daysLeft).toBeGreaterThanOrEqual(1);
+    // Senza carte in scadenza c'è posto anche per un dialogo.
+    expect(piano.tasks.map((task) => task.key)).toEqual(['lesson', 'dialogue']);
+    expect(piano.tasks[0]?.key).toBe('lesson');
+    expect(piano.tasks[0]?.href).toBe(
+      `/corso/${vuotoBody.summary.nextLesson?.courseSlug}/lezione/${vuotoBody.summary.nextLesson?.lessonId}`,
+    );
+    expect(piano.note).toContain('0 giorni su 5');
+
+    await passLesson(cookie, 'hangul', 'hangul-01');
+
+    const dopo = await app.inject({ method: 'GET', url: '/api/dashboard', headers: { cookie } });
+    const dopoBody = dopo.json() as CourseListResponse;
+    const studiato = dopoBody.plan;
+
+    expect(studiato.daysStudied).toBe(1);
+    expect(studiato.streakDays).toBe(1);
+    expect(studiato.goalMet).toBe(false);
+    // Lezione nuova prima, ripasso dopo: la parola si rivede, il percorso avanza.
+    expect(studiato.tasks.map((task) => task.key)).toEqual(['lesson', 'reviews']);
+    expect(studiato.tasks[1]?.detail).toMatch(/parol/);
+    expect(dopoBody.dueCards).toBeGreaterThan(0);
+    // Il titolo del corso sta nel dettaglio, così si capisce dove si va a finire.
+    expect(studiato.tasks[0]?.detail).toContain(' · ');
+  });
+
+  it('mette un dialogo quando non c’è nulla da ripassare', async () => {
+    const cookie = await login();
+
+    // Nessun card creata: le uniche cose da fare sono una lezione e un dialogo.
+    const response = await app.inject({ method: 'GET', url: '/api/dashboard', headers: { cookie } });
+    const body = response.json() as CourseListResponse;
+    expect(body.dueCards).toBe(0);
+    expect(body.plan.tasks.map((task) => task.key)).toEqual(['lesson', 'dialogue']);
+    expect(body.plan.tasks[1]?.href.startsWith('/dialoghi/')).toBe(true);
+  });
+
+  it('conta il ripasso come giorno di studio', async () => {
+    const cookie = await login();
+    await passLesson(cookie, 'hangul', 'hangul-01');
+
+    const review = await app.inject({ method: 'GET', url: '/api/review', headers: { cookie } });
+    const cards = (review.json() as ReviewResponse).cards;
+    expect(cards.length).toBeGreaterThan(0);
+
+    const graded = await app.inject({
+      method: 'POST',
+      url: `/api/review/${cards[0]?.id}`,
+      headers: { cookie },
+      payload: { grade: 2 },
+    });
+    expect(graded.statusCode).toBe(200);
+
+    const profile = await app.inject({ method: 'GET', url: '/api/profile', headers: { cookie } });
+    const body = profile.json() as ProfileResponse;
+    expect(body.activity).toHaveLength(1);
+    expect(body.activity[0]?.reviews).toBeGreaterThanOrEqual(1);
+  });
+
+  it('lascia scegliere allo studente l’obiettivo della settimana', async () => {
+    const cookie = await login();
+
+    const anonimo = await app.inject({ method: 'POST', url: '/api/profile/goal', payload: { goal: 3 } });
+    expect(anonimo.statusCode).toBe(401);
+
+    const accettato = await app.inject({
+      method: 'POST',
+      url: '/api/profile/goal',
+      headers: { cookie },
+      payload: { goal: 3 },
+    });
+    expect(accettato.statusCode).toBe(200);
+    expect(accettato.json()).toMatchObject({ weeklyGoal: 3 });
+
+    const dashboard = await app.inject({ method: 'GET', url: '/api/dashboard', headers: { cookie } });
+    expect((dashboard.json() as CourseListResponse).plan.goal).toBe(3);
+
+    const profilo = await app.inject({ method: 'GET', url: '/api/profile', headers: { cookie } });
+    expect((profilo.json() as ProfileResponse).weeklyGoal).toBe(3);
+
+    for (const goal of [0, 8, 2.5, 'tre', null]) {
+      const rifiutato = await app.inject({
+        method: 'POST',
+        url: '/api/profile/goal',
+        headers: { cookie },
+        payload: { goal },
+      });
+      expect(rifiutato.statusCode, `goal ${String(goal)}`).toBe(400);
+      expect(rifiutato.json()).toMatchObject({ error: 'invalid_goal' });
+    }
+  });
+});

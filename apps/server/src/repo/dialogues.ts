@@ -1,7 +1,10 @@
 import { randomUUID } from 'node:crypto';
 import type { Dialogue } from '@ciaocorea/shared';
+import { getDialogues } from '@ciaocorea/curriculum';
+import { countAnswerTurns } from '@ciaocorea/engine';
 import type { Db } from '../db/client';
 import { nowIso, todayIso } from '../db/client';
+import { isLessonClosed } from './progress';
 
 /**
  * Il progresso di un dialogo è una sola riga per utente: dove siamo arrivati,
@@ -107,6 +110,35 @@ export function restartDialogue(db: Db, userId: string, slug: string): void {
     userId,
     slug,
   );
+}
+
+/**
+ * Il primo dialogo che lo studente può recitare e non ha ancora finito: è la
+ * proposta per i giorni in cui non c'è né lezione né ripasso. Un dialogo legato
+ * a una lezione si propone solo dopo quella lezione, e uno finito non torna: la
+ * proposta deve essere lavoro nuovo, non un déjà vu.
+ */
+export function nextOpenDialogue(db: Db, userId: string): { slug: string; title: string } | null {
+  const progress = listDialogueProgress(db, userId);
+
+  for (const dialogue of getDialogues()) {
+    if (
+      dialogue.after &&
+      !isLessonClosed(db, userId, dialogue.after.courseSlug, dialogue.after.lessonId)
+    ) {
+      continue;
+    }
+
+    const total = countAnswerTurns(dialogue.turns);
+    if (total === 0) continue;
+
+    const done = progress.get(dialogue.slug);
+    if (done && (done.completedAt !== null || done.answered >= total)) continue;
+
+    return { slug: dialogue.slug, title: dialogue.title };
+  }
+
+  return null;
 }
 
 /**

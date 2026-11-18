@@ -185,10 +185,18 @@ export function recordAttempt(db: Db, input: AttemptInput): AttemptOutcome {
   }
 }
 
-/** Giorni consecutivi con almeno un esercizio fatto. */
+/**
+ * Giorni consecutivi con almeno un'attività: esercizi di una lezione o
+ * ripasso di una carta. Chi passa la giornata solo dai ripassi ha studiato, e
+ * lo streak deve dirlo.
+ */
 export function streakDays(db: Db, userId: string, now: Date = new Date()): number {
   const rows = db
-    .prepare('SELECT day FROM daily_stats WHERE user_id = ? AND exercises > 0 ORDER BY day DESC')
+    .prepare(
+      `SELECT day FROM daily_stats
+       WHERE user_id = ? AND (exercises > 0 OR reviews > 0)
+       ORDER BY day DESC`,
+    )
     .all(userId) as unknown as Array<{ day: string }>;
 
   if (rows.length === 0) return 0;
@@ -210,6 +218,22 @@ export function streakDays(db: Db, userId: string, now: Date = new Date()): numb
     cursor.setUTCDate(cursor.getUTCDate() - 1);
   }
   return streak;
+}
+
+/**
+ * I giorni in cui lo studente ha studiato, da una data in poi: è la lista che
+ * alimenta il piano della settimana. Si prende dal primo della settimana e il
+ * motore ci lavora sopra, così qui non c'è nessuna regola di calendario.
+ */
+export function studyDaysSince(db: Db, userId: string, fromIso: string): string[] {
+  const rows = db
+    .prepare(
+      `SELECT day FROM daily_stats
+       WHERE user_id = ? AND day >= ? AND (exercises > 0 OR reviews > 0)
+       ORDER BY day`,
+    )
+    .all(userId, fromIso) as unknown as Array<{ day: string }>;
+  return rows.map((row) => row.day);
 }
 
 interface CardRow {
@@ -271,7 +295,8 @@ export function gradeCard(
   cardId: string,
   grade: SrsGrade,
   now: Date = new Date(),
-): ReviewCard | null {  const card = db
+): ReviewCard | null {
+  const card = db
     .prepare('SELECT * FROM srs_cards WHERE id = ? AND user_id = ?')
     .get(cardId, userId) as CardRow | undefined;
   if (!card) return null;
@@ -297,6 +322,14 @@ export function gradeCard(
     cardId,
   );
 
+  // Il ripasso è studio: il giorno va segnato in daily_stats, altrimenti chi
+  // passa la giornata sui ripassi resta fuori dallo streak e dal piano.
+  db.prepare(
+    `INSERT INTO daily_stats(user_id, day, lessons_completed, exercises, correct, reviews)
+     VALUES (?, ?, 0, 0, 0, 1)
+     ON CONFLICT(user_id, day) DO UPDATE SET reviews = daily_stats.reviews + 1`,
+  ).run(userId, todayIso(now));
+
   return {
     id: card.id,
     front: card.front,
@@ -319,6 +352,7 @@ export interface ActivityDay {
   exercises: number;
   correct: number;
   lessonsCompleted: number;
+  reviews: number;
 }
 
 /**
@@ -329,7 +363,7 @@ export interface ActivityDay {
 export function activityDays(db: Db, userId: string, limit = 30): ActivityDay[] {
   const rows = db
     .prepare(
-      `SELECT day, exercises, correct, lessons_completed FROM daily_stats
+      `SELECT day, exercises, correct, lessons_completed, reviews FROM daily_stats
        WHERE user_id = ? ORDER BY day DESC LIMIT ?`,
     )
     .all(userId, limit) as unknown as Array<{
@@ -337,6 +371,7 @@ export function activityDays(db: Db, userId: string, limit = 30): ActivityDay[] 
     exercises: number;
     correct: number;
     lessons_completed: number;
+    reviews: number;
   }>;
 
   return rows
@@ -345,6 +380,7 @@ export function activityDays(db: Db, userId: string, limit = 30): ActivityDay[] 
       exercises: row.exercises,
       correct: row.correct,
       lessonsCompleted: row.lessons_completed,
+      reviews: row.reviews,
     }))
     .reverse();
 }

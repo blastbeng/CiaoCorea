@@ -1243,3 +1243,63 @@ a.lesson-row:hover {
   color: var(--ink-soft);
   font-style: italic;
 }
+
+/* ---------- piano di studio ---------- */
+
+.plan__week {
+  display: flex;
+  gap: 0.35rem;
+  margin: 0.15rem 0 0.9rem;
+}
+
+.plan__dot {
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  background: var(--paper);
+}
+
+.plan__dot--done {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.plan__tasks {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0 0 0.9rem;
+  padding: 0;
+  list-style: none;
+}
+
+.plan__task {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 0.75rem;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+}
+
+.plan__task-text {
+  display: grid;
+  min-width: 0;
+}
+
+.plan__label {
+  font-weight: 600;
+}
+
+.plan__detail {
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+}
+
+.plan__note {
+  margin: 0 0 0.5rem;
+  color: var(--ink-soft);
+}

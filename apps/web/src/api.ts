@@ -129,6 +129,13 @@ export const api = {
 
   profile: () => request<ProfileResponse>('/api/profile'),
 
+  /** Quanti giorni di studio lo studente vuole fare in una settimana. */
+  setGoal: (goal: number) =>
+    request<{ weeklyGoal: number }>('/api/profile/goal', {
+      method: 'POST',
+      body: JSON.stringify({ goal }),
+    }),
+
   changePassword: (current: string, next: string) =>
     request<{ ok: boolean; sessionsClosed: number }>('/api/auth/password', {
       method: 'POST',

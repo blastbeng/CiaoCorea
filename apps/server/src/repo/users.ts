@@ -1,5 +1,6 @@
 import { randomUUID } from 'node:crypto';
 import type { SessionUser } from '@ciaocorea/shared';
+import { WEEKLY_GOAL_DEFAULT, clampWeeklyGoal } from '@ciaocorea/engine';
 import type { Db } from '../db/client';
 import { nowIso } from '../db/client';
 
@@ -47,6 +48,24 @@ export function createUser(db: Db, user: NewUser): UserRow {
 
 export function toSessionUser(row: UserRow): SessionUser {
   return { id: row.id, email: row.email, displayName: row.display_name };
+}
+
+/**
+ * Obiettivo settimanale dello studente, in giorni di studio su 7. Il default
+ * sta nel motore: la colonna può mancare nei database vecchi e il valore deve
+ * esserci lo stesso.
+ */
+export function getWeeklyGoal(db: Db, userId: string): number {
+  const row = db
+    .prepare('SELECT weekly_goal FROM users WHERE id = ?')
+    .get(userId) as { weekly_goal: number } | undefined;
+  return row ? clampWeeklyGoal(Number(row.weekly_goal)) : WEEKLY_GOAL_DEFAULT;
+}
+
+export function setWeeklyGoal(db: Db, userId: string, goal: number): number {
+  const value = clampWeeklyGoal(goal);
+  db.prepare('UPDATE users SET weekly_goal = ? WHERE id = ?').run(value, userId);
+  return value;
 }
 
 /**

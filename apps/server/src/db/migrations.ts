@@ -125,6 +125,17 @@ export const MIGRATIONS: Migration[] = [
       CREATE INDEX invites_hash_idx ON invites(code_hash);
     `,
   },
+  {
+    id: '004-study-plan',
+    sql: `
+      -- Un giorno di studio vale anche se passerà solo dai ripassi: senza questa
+      -- colonna, chi ripassa le parole e non tocca lezioni perde lo streak.
+      ALTER TABLE daily_stats ADD COLUMN reviews INTEGER NOT NULL DEFAULT 0;
+      -- L'obiettivo settimanale è dello studente, non del corso: se lo sceglie
+      -- lui, il piano della giornata diventa una cosa sua e non un rimprovero.
+      ALTER TABLE users ADD COLUMN weekly_goal INTEGER NOT NULL DEFAULT 5;
+    `,
+  },
 ];
 
 export function migrate(db: DatabaseSync): void {
