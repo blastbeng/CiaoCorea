@@ -84,3 +84,16 @@ export function scheduleCard(state: SrsState, grade: SrsGrade, now: Date = new D
 export function isDue(dueAt: string, now: Date = new Date()): boolean {
   return dueAt <= now.toISOString().slice(0, 10);
 }
+
+/**
+ * Due errori sulla stessa parola non sono distrazione: sono il segnale che il
+ * calendario sta allungando i passi su una parola che non c'è. Da lì la parola
+ * resta in un elenco a parte, dove si può riprendere senza aspettare la
+ * scadenza — che dopo due errori è comunque domani, ma dopo il terzo sarebbe
+ * fra una settimana.
+ */
+export const FRAGILE_LAPSES = 2;
+
+export function isFragile(state: { lapses: number }): boolean {
+  return state.lapses >= FRAGILE_LAPSES;
+}

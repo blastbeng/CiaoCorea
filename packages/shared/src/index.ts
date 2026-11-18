@@ -277,6 +277,35 @@ export interface ReviewCheckResponse {
 }
 
 /**
+ * Una parola che torna sbagliata spesso. Non è una carta in scadenza: è una
+ * carta che si è già arresa due volte, e che conviene riprendere prima che il
+ * calendario la riporti, perché il calendario nel frattempo l'ha allontanata.
+ */
+export interface FragileWord {
+  id: string;
+  /** La parola coreana, che per una fragile si può sempre guardare. */
+  korean: string;
+  italian: string;
+  hint: string | null;
+  courseSlug: string;
+  lessonId: string;
+  /** Quante volte è stata sbagliata. */
+  lapses: number;
+  dueAt: string;
+}
+
+export interface FragileResponse {
+  words: FragileWord[];
+  /** Quante in tutto: l'elenco si ferma alle più fragili. */
+  total: number;
+}
+
+export interface FragileRetryResponse {
+  word: FragileWord;
+  dueCards: number;
+}
+
+/**
  * I due numeri che la shell mostra accanto alle voci: ripassi in scadenza ed
  * errori da rifare. Li chiede a ogni cambio di pagina per tenere i badge
  * aggiornati, e tirarsi dietro quaranta carte per scrivere due cifre sarebbe

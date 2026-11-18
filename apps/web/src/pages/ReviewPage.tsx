@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { announcePending, api } from '../api';
 import { errorMessage } from '../auth';
+import { FragileWords } from '../components/FragileWords';
 import { HangulInput } from '../components/HangulInput';
 import { useAsync } from '../useAsync';
 
@@ -34,38 +35,44 @@ export function ReviewPage() {
 
   if (cards.length === 0) {
     return (
-      <div className="card empty">
-        <h1>Nessun ripasso in scadenza</h1>
-        <p className="muted">
-          Le parole tornano qui quando è il momento di rivederle. Intanto puoi andare avanti con
-          una lezione.
-        </p>
-        <Link className="btn btn--primary" to="/">
-          Torna al percorso
-        </Link>
+      <div className="stack">
+        <div className="card empty">
+          <h1>Nessun ripasso in scadenza</h1>
+          <p className="muted">
+            Le parole tornano qui quando è il momento di rivederle. Intanto puoi andare avanti con
+            una lezione.
+          </p>
+          <Link className="btn btn--primary" to="/">
+            Torna al percorso
+          </Link>
+        </div>
+        <FragileWords onRetried={state.reload} />
       </div>
     );
   }
 
   if (finished) {
     return (
-      <div className="card empty">
-        <h1>Ripassi finiti</h1>
-        <p className="muted">
-          {remaining && remaining > 0
-            ? `Restano ${remaining} parole in scadenza: puoi continuare.`
-            : 'Per oggi hai chiuso: le prossime carte torneranno più avanti.'}
-        </p>
-        <div className="row" style={{ justifyContent: 'center' }}>
-          <Link className="btn btn--primary" to="/">
-            Torna al percorso
-          </Link>
-          {remaining && remaining > 0 ? (
-            <button type="button" className="btn" onClick={state.reload}>
-              Ricarica
-            </button>
-          ) : null}
+      <div className="stack">
+        <div className="card empty">
+          <h1>Ripassi finiti</h1>
+          <p className="muted">
+            {remaining && remaining > 0
+              ? `Restano ${remaining} parole in scadenza: puoi continuare.`
+              : 'Per oggi hai chiuso: le prossime carte torneranno più avanti.'}
+          </p>
+          <div className="row" style={{ justifyContent: 'center' }}>
+            <Link className="btn btn--primary" to="/">
+              Torna al percorso
+            </Link>
+            {remaining && remaining > 0 ? (
+              <button type="button" className="btn" onClick={state.reload}>
+                Ricarica
+              </button>
+            ) : null}
+          </div>
         </div>
+        <FragileWords onRetried={state.reload} />
       </div>
     );
   }

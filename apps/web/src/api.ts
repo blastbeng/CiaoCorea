@@ -6,6 +6,8 @@ import type {
   DueCountResponse,
   DialogueDetail,
   DialogueListResponse,
+  FragileResponse,
+  FragileRetryResponse,
   LessonDetail,
   ProfileResponse,
   ProgressSummary,
@@ -119,6 +121,12 @@ export const api = {
   due: () => request<DueCountResponse>('/api/progress/due'),
 
   review: () => request<ReviewResponse>('/api/review'),
+
+  /** Le parole che hanno ceduto più volte: si possono riprendere subito. */
+  fragileWords: () => request<FragileResponse>('/api/review/fragile'),
+
+  retryFragile: (cardId: string) =>
+    request<FragileRetryResponse>(`/api/review/fragile/${cardId}`, { method: 'POST' }),
 
   gradeCard: (cardId: string, grade: 0 | 1 | 2) =>
     request<ReviewCheckResponse>(`/api/review/${cardId}`, {

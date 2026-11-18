@@ -7,6 +7,8 @@ import type {
   CourseSkipTest,
   CourseView,
   DueCountResponse,
+  FragileResponse,
+  FragileRetryResponse,
   LessonDetail,
   LessonView,
   ProgressSummary,
@@ -30,10 +32,13 @@ import type { Ctx } from '../http/context';
 import { requireAuth, type AuthedRequest } from '../auth/guard';
 import {
   countDueCards,
+  countFragileCards,
   dueCards,
+  fragileCards,
   getProgress,
   gradeCard,
   recordAttempt,
+  retryCardToday,
   skipCourse,
   streakDays,
   studyDaysSince,
@@ -402,6 +407,26 @@ export async function registerLessonRoutes(app: FastifyInstance, ctx: Ctx): Prom
       answer: outcome.answer,
       dueCards: countDueCards(ctx.db, user.id),
     };
+    return reply.send(body);
+  });
+
+  app.get('/api/review/fragile', { preHandler: auth }, async (request, reply) => {
+    const { user } = request as AuthedRequest;
+    const body: FragileResponse = {
+      words: fragileCards(ctx.db, user.id),
+      total: countFragileCards(ctx.db, user.id),
+    };
+    return reply.send(body);
+  });
+
+  app.post('/api/review/fragile/:cardId', { preHandler: auth }, async (request, reply) => {
+    const { user } = request as AuthedRequest;
+    const { cardId } = request.params as { cardId: string };
+
+    const word = retryCardToday(ctx.db, user.id, cardId);
+    if (!word) return reply.code(404).send({ error: 'not_found', message: 'Card inesistente.' });
+
+    const body: FragileRetryResponse = { word, dueCards: countDueCards(ctx.db, user.id) };
     return reply.send(body);
   });
 }

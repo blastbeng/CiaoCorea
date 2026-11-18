@@ -21,6 +21,8 @@ import type {
   DialogueDetail,
   DialogueListResponse,
   DueCountResponse,
+  FragileResponse,
+  FragileRetryResponse,
   LessonDetail,
   MistakeAnswerResponse,
   MistakesResponse,
@@ -976,6 +978,84 @@ describe('brani di lettura', () => {
       (dialogue) => dialogue.slug === 'ufficio',
     );
     expect(unlocked?.locked).toBe(false);
+  });
+});
+
+describe('parole fragili', () => {
+  async function fragile(cookie: string): Promise<FragileResponse> {
+    const response = await app.inject({
+      method: 'GET',
+      url: '/api/review/fragile',
+      headers: { cookie },
+    });
+    expect(response.statusCode).toBe(200);
+    return response.json() as FragileResponse;
+  }
+
+  async function grade(cookie: string, cardId: string, value: 0 | 1 | 2): Promise<void> {
+    const response = await app.inject({
+      method: 'POST',
+      url: `/api/review/${cardId}`,
+      headers: { cookie },
+      payload: { grade: value },
+    });
+    expect(response.statusCode).toBe(200);
+  }
+
+  it('richiede la sessione e non inventa carte', async () => {
+    const anonimo = await app.inject({ method: 'GET', url: '/api/review/fragile' });
+    expect(anonimo.statusCode).toBe(401);
+
+    const cookie = await login();
+    expect(await fragile(cookie)).toEqual({ words: [], total: 0 });
+
+    const sconosciuta = await app.inject({
+      method: 'POST',
+      url: '/api/review/fragile/non-esiste',
+      headers: { cookie },
+    });
+    expect(sconosciuta.statusCode).toBe(404);
+  });
+
+  it('dopo due errori la parola entra nell’elenco e si riprende oggi', async () => {
+    const cookie = await login();
+    await passLesson(cookie, 'hangul', 'hangul-01');
+
+    const queue = await app.inject({ method: 'GET', url: '/api/review', headers: { cookie } });
+    const first = (queue.json() as ReviewResponse).cards[0];
+    expect(first, 'la lezione ha creato una carta').toBeDefined();
+
+    // Un errore solo è distrazione: si rivede domani, come tutte le altre.
+    await grade(cookie, first.id, 0);
+    expect((await fragile(cookie)).total).toBe(0);
+
+    // Il secondo errore la segna: da qui il calendario la terrebbe lontana.
+    db.prepare('UPDATE srs_cards SET due_at = ? WHERE id = ?').run(todayIso(), first.id);
+    await grade(cookie, first.id, 0);
+
+    const dopo = await fragile(cookie);
+    expect(dopo.total).toBe(1);
+    expect(dopo.words[0]).toMatchObject({
+      id: first.id,
+      korean: first.prompt,
+      italian: first.answer,
+      lapses: 2,
+    });
+    expect(dopo.words[0]?.dueAt > todayIso()).toBe(true);
+
+    const retry = await app.inject({
+      method: 'POST',
+      url: `/api/review/fragile/${first.id}`,
+      headers: { cookie },
+    });
+    expect(retry.statusCode).toBe(200);
+    const retried = retry.json() as FragileRetryResponse;
+    expect(retried.word.dueAt).toBe(todayIso());
+    expect(retried.dueCards).toBeGreaterThan(0);
+
+    // Riprova oggi vuol dire questo: la parola è di nuovo in coda.
+    const again = await app.inject({ method: 'GET', url: '/api/review', headers: { cookie } });
+    expect((again.json() as ReviewResponse).cards.map((card) => card.id)).toContain(first.id);
   });
 });
 

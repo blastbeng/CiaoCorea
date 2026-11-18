@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { reviewDirection, scheduleCard, WRITE_AFTER_REPS } from './srs';
+import { FRAGILE_LAPSES, isFragile, reviewDirection, scheduleCard, WRITE_AFTER_REPS } from './srs';
 
 describe('direzione del ripasso', () => {
   it('una parola nuova si legge, non si scrive', () => {
@@ -23,5 +23,26 @@ describe('direzione del ripasso', () => {
     const next = scheduleCard(state, 0, new Date('2026-01-10T10:00:00Z'));
     expect(next.reps).toBe(0);
     expect(reviewDirection(next.reps, '밥')).toBe('read');
+  });
+});
+
+describe('parole fragili', () => {
+  it('un solo errore è distrazione, due sono fragilità', () => {
+    expect(isFragile({ lapses: 0 })).toBe(false);
+    expect(isFragile({ lapses: FRAGILE_LAPSES - 1 })).toBe(false);
+    expect(isFragile({ lapses: FRAGILE_LAPSES })).toBe(true);
+    expect(isFragile({ lapses: 7 })).toBe(true);
+  });
+
+  it('sono i lapse a contarle, non i ripassi andati bene', () => {
+    const starting = { ease: 2.5, intervalDays: 0, reps: 0, lapses: 0 };
+    const wrong = scheduleCard(starting, 0, new Date('2026-01-10T10:00:00Z'));
+    expect(isFragile(wrong)).toBe(false);
+    const again = scheduleCard(wrong, 0, new Date('2026-01-11T10:00:00Z'));
+    expect(isFragile(again)).toBe(true);
+
+    // Ripassarla bene non la assolve: il conto degli errori resta.
+    const good = scheduleCard(again, 2, new Date('2026-01-12T10:00:00Z'));
+    expect(isFragile(good)).toBe(true);
   });
 });

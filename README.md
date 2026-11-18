@@ -28,7 +28,7 @@ Il portale è multi-utente: le iscrizioni si aprono con i codici invito
 | `/dialoghi` e `/dialoghi/:slug` | conversazione scritta a copione |
 | `/dizionario` | ricerca nelle parole del curricolo, con filtri per corso |
 | `/quaderno` | dodici consegne di scrittura: si scrive la frase, poi si confronta con il modello |
-| `/ripassi` | carte in scadenza, giudizio `ho saputo / quasi / non ricordo`; il numero nella barra in alto dice quante ne restano |
+| `/ripassi` | carte in scadenza, giudizio `ho saputo / quasi / non ricordo`; sotto, le parole fragili da riprovare subito |
 | `/errori` | gli esercizi che hai sbagliato, uno alla volta: azzeccarli li toglie dalla banca |
 | `/progressi` | totali, per corso, parole SRS, obiettivo della settimana, ritmo dei giorni, password |
 | `/registrazione` | nuovo account: nome, email, password, ed eventuale codice invito |
@@ -159,6 +159,8 @@ le due della registrazione.
 | GET | `/api/progress/due` | solo i due numeri dei badge della barra in alto: `dueCards` e `mistakes` |
 | GET | `/api/review` | carte in scadenza: direzione `read`/`write`, senza la risposta delle carte da scrivere |
 | POST | `/api/review/:cardId` | chiude la carta: `{ grade }` per leggere, `{ response }` per scrivere, con l'esito della correzione |
+| GET | `/api/review/fragile` | parole sbagliate due volte o più, dalla più fragile, con `total` |
+| POST | `/api/review/fragile/:cardId` | «riprova oggi»: riporta la carta in coda senza toccare il calendario |
 | GET | `/api/dialogues` | elenco dei dialoghi con lo stato di avanzamento |
 | GET | `/api/dialogues/:slug` | copione pubblico, senza le battute non ancora recitate |
 | POST | `/api/dialogues/:slug/answer` | risposta alla battuta corrente |
@@ -330,3 +332,23 @@ si azzecca.
   così la banca non è tempo sottratto all'abitudine.
 - La barra in alto mostra quanti esercizi aspettano, e la home lo dice con un
   link: una banca piena che nessuno vede è una banca che non serve.
+
+## Parole fragili
+
+Il calendario SRS ha un difetto che si vede solo dopo qualche settimana: una
+parola sbagliata due volte torna il giorno dopo, ma se la si sbaglia ancora il
+passo successivo può essere di una settimana. La pagina dei ripassi tiene quindi
+un elenco a parte, delle parole che **hanno già ceduto almeno due volte**
+(`lapses >= 2`), e permette di riprenderle oggi.
+
+- L'elenco è ordinato dalla più fragile (più errori, poi scadenza più vicina) e
+  mostra il coreano con il significato e la romanizzazione: qui non si indovina,
+  si riconosce. La correzione, quando la carta torna in coda, è la solita.
+- «Riprova oggi» sposta solo la scadenza a oggi (`due_at = today`): non tocca
+  `ease`, `interval_days` né `lapses`. Se la parola si sa, il ripasso la rimanda
+  come qualsiasi altra; se non si sa, il lapse sale e resta nell'elenco.
+- Ripassarla bene non cancella gli errori passati, perché il conto dice quanto
+  quella parola è costata, non se l'ultima volta è andata bene.
+- Compare sotto la coda quando non c'è più niente in scadenza (o quando la coda
+  è finita): è lì che lo studente ha tempo per una parola che non è ancora
+  scaduta.

@@ -1,7 +1,20 @@
 import { randomUUID } from 'node:crypto';
-import type { DayActivity, ExerciseResult, LessonState, ReviewCard, VocabItem } from '@ciaocorea/shared';
+import type {
+  DayActivity,
+  ExerciseResult,
+  FragileWord,
+  LessonState,
+  ReviewCard,
+  VocabItem,
+} from '@ciaocorea/shared';
 import type { ProgressRow } from '@ciaocorea/engine';
-import { matchesAny, reviewDirection, scheduleCard, type SrsGrade } from '@ciaocorea/engine';
+import {
+  FRAGILE_LAPSES,
+  matchesAny,
+  reviewDirection,
+  scheduleCard,
+  type SrsGrade,
+} from '@ciaocorea/engine';
 import type { Db } from '../db/client';
 import { nowIso, todayIso } from '../db/client';
 import { syncMistakes } from './mistakes';
@@ -296,6 +309,65 @@ export function countDueCards(db: Db, userId: string, now: Date = new Date()): n
     .prepare('SELECT COUNT(*) AS total FROM srs_cards WHERE user_id = ? AND due_at <= ?')
     .get(userId, todayIso(now)) as { total: number };
   return Number(row.total);
+}
+
+function toFragileWord(row: CardRow): FragileWord {
+  return {
+    id: row.id,
+    // Il coreano si guarda: una parola fragile non si indovina, si riconosce.
+    korean: row.front,
+    italian: row.back,
+    hint: row.hint,
+    courseSlug: row.course_slug,
+    lessonId: row.lesson_id,
+    lapses: row.lapses,
+    dueAt: row.due_at,
+  };
+}
+
+/** Le parole che hanno ceduto più volte, dalla più fragile. */
+export function fragileCards(db: Db, userId: string, limit = 20): FragileWord[] {
+  const rows = db
+    .prepare(
+      `SELECT id, front, back, hint, course_slug, lesson_id, ease, interval_days, reps, lapses, due_at
+       FROM srs_cards
+       WHERE user_id = ? AND lapses >= ?
+       ORDER BY lapses DESC, due_at ASC
+       LIMIT ?`,
+    )
+    .all(userId, FRAGILE_LAPSES, limit) as unknown as CardRow[];
+
+  return rows.map(toFragileWord);
+}
+
+export function countFragileCards(db: Db, userId: string): number {
+  const row = db
+    .prepare('SELECT COUNT(*) AS total FROM srs_cards WHERE user_id = ? AND lapses >= ?')
+    .get(userId, FRAGILE_LAPSES) as { total: number };
+  return Number(row.total);
+}
+
+/**
+ * «Riprova oggi»: la parola fragile torna in coda adesso, senza toccare il
+ * calendario. Se lo studente la sa, il ripasso la rimanda come qualsiasi altra;
+ * se non la sa, il lapse sale e la parola resta dov'è — in questo elenco.
+ */
+export function retryCardToday(
+  db: Db,
+  userId: string,
+  cardId: string,
+  now: Date = new Date(),
+): FragileWord | null {
+  const row = db
+    .prepare(
+      `SELECT id, front, back, hint, course_slug, lesson_id, ease, interval_days, reps, lapses, due_at
+       FROM srs_cards WHERE id = ? AND user_id = ?`,
+    )
+    .get(cardId, userId) as unknown as CardRow | undefined;
+  if (!row) return null;
+
+  db.prepare('UPDATE srs_cards SET due_at = ? WHERE id = ?').run(todayIso(now), cardId);
+  return toFragileWord({ ...row, due_at: todayIso(now) });
 }
 
 /**
