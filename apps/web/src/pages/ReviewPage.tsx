@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { announcePending, api } from '../api';
 import { errorMessage } from '../auth';
+import { HangulInput } from '../components/HangulInput';
 import { useAsync } from '../useAsync';
 
 export function ReviewPage() {
@@ -12,6 +13,10 @@ export function ReviewPage() {
   const [error, setError] = useState<string | null>(null);
   const [finished, setFinished] = useState(false);
   const [remaining, setRemaining] = useState<number | null>(null);
+  // Le carte da scrivere si correggono sul server e non si autogiudicano: il
+  // risultato resta qui finché lo studente non passa avanti.
+  const [draft, setDraft] = useState('');
+  const [checked, setChecked] = useState<{ correct: boolean; answer: string } | null>(null);
 
   if (state.status === 'loading') return <div className="loading">Cerco i ripassi di oggi…</div>;
   if (state.status === 'error') {
@@ -66,6 +71,15 @@ export function ReviewPage() {
   }
 
   const card = cards[index];
+  const isWrite = card.direction === 'write';
+
+  const advance = () => {
+    setRevealed(false);
+    setChecked(null);
+    setDraft('');
+    if (index + 1 >= cards.length) setFinished(true);
+    else setIndex(index + 1);
+  };
 
   const grade = async (value: 0 | 1 | 2) => {
     if (!card) return;
@@ -75,12 +89,23 @@ export function ReviewPage() {
       const response = await api.gradeCard(card.id, value);
       setRemaining(response.dueCards);
       announcePending();
-      if (index + 1 >= cards.length) {
-        setFinished(true);
-      } else {
-        setIndex(index + 1);
-        setRevealed(false);
-      }
+      advance();
+    } catch (problem) {
+      setError(errorMessage(problem));
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const check = async () => {
+    if (!card || draft.trim().length === 0) return;
+    setBusy(true);
+    setError(null);
+    try {
+      const response = await api.answerCard(card.id, draft);
+      setRemaining(response.dueCards);
+      announcePending();
+      setChecked({ correct: response.correct === true, answer: response.answer ?? '' });
     } catch (problem) {
       setError(errorMessage(problem));
     } finally {
@@ -102,47 +127,64 @@ export function ReviewPage() {
       </div>
 
       <section className="card flash">
-        <p className="stat-label">Leggi e ricorda</p>
-        <div className="flash-front hangul">{card.front}</div>
+        <p className="stat-label">{isWrite ? 'Scrivila in coreano' : 'Leggi e ricorda'}</p>
+        <div className={isWrite ? 'flash-front flash-front--it' : 'flash-front hangul'}>
+          {card.prompt}
+        </div>
         {card.hint ? <p className="hint">{card.hint}</p> : null}
 
-        {revealed ? (
-          <>
-            <p className="flash-back">{card.back}</p>
-            <div className="grade-grid">
-              <button
-                type="button"
-                className="btn"
+        {isWrite ? (
+          checked ? (
+            <>
+              <p className={checked.correct ? 'flash-back' : 'flash-back muted'}>
+                {checked.correct ? 'Giusto.' : 'Non ancora.'}
+              </p>
+              <p className="flash-answer hangul">{checked.answer}</p>
+              <div style={{ marginTop: '1.5rem' }}>
+                <button type="button" className="btn btn--primary" onClick={advance}>
+                  {index + 1 >= cards.length ? 'Chiudi i ripassi' : 'Avanti'}
+                </button>
+              </div>
+            </>
+          ) : (
+            <div style={{ marginTop: '1.5rem' }}>
+              <HangulInput
+                value={draft}
+                onChange={setDraft}
+                onSubmit={check}
+                placeholder="Scrivi in coreano"
                 disabled={busy}
-                onClick={() => grade(0)}
-              >
-                Non lo so
-              </button>
-              <button
-                type="button"
-                className="btn"
-                disabled={busy}
-                onClick={() => grade(1)}
-              >
-                Difficile
-              </button>
+                autoFocus
+              />
               <button
                 type="button"
                 className="btn btn--primary"
-                disabled={busy}
-                onClick={() => grade(2)}
+                style={{ marginTop: '1rem' }}
+                disabled={busy || draft.trim().length === 0}
+                onClick={check}
               >
+                Controlla
+              </button>
+            </div>
+          )
+        ) : revealed ? (
+          <>
+            <p className="flash-back">{card.answer}</p>
+            <div className="grade-grid">
+              <button type="button" className="btn" disabled={busy} onClick={() => grade(0)}>
+                Non lo so
+              </button>
+              <button type="button" className="btn" disabled={busy} onClick={() => grade(1)}>
+                Difficile
+              </button>
+              <button type="button" className="btn btn--primary" disabled={busy} onClick={() => grade(2)}>
                 Facile
               </button>
             </div>
           </>
         ) : (
           <div style={{ marginTop: '1.5rem' }}>
-            <button
-              type="button"
-              className="btn btn--primary"
-              onClick={() => setRevealed(true)}
-            >
+            <button type="button" className="btn btn--primary" onClick={() => setRevealed(true)}>
               Mostra la risposta
             </button>
           </div>
@@ -156,7 +198,9 @@ export function ReviewPage() {
       </section>
 
       <p className="faint small center">
-        La carta torna tanto più tardi quanto più la ricordi: rispondi con sincerità.
+        {isWrite
+          ? 'Le parole che sai leggere tornano da scrivere: la tastiera compone le sillabe.'
+          : 'La carta torna tanto più tardi quanto più la ricordi: rispondi con sincerità.'}
       </p>
     </div>
   );

@@ -11,6 +11,7 @@ import type {
   ProgressSummary,
   MistakeAnswerResponse,
   MistakesResponse,
+  ReviewCheckResponse,
   ReviewResponse,
   SessionUser,
   VocabularyResponse,
@@ -120,9 +121,16 @@ export const api = {
   review: () => request<ReviewResponse>('/api/review'),
 
   gradeCard: (cardId: string, grade: 0 | 1 | 2) =>
-    request<{ dueCards: number }>(`/api/review/${cardId}`, {
+    request<ReviewCheckResponse>(`/api/review/${cardId}`, {
       method: 'POST',
       body: JSON.stringify({ grade }),
+    }),
+
+  /** Le carte da scrivere si correggono sul server: qui si manda la parola. */
+  answerCard: (cardId: string, response: string) =>
+    request<ReviewCheckResponse>(`/api/review/${cardId}`, {
+      method: 'POST',
+      body: JSON.stringify({ response }),
     }),
 
   dialogues: () => request<DialogueListResponse>('/api/dialogues'),

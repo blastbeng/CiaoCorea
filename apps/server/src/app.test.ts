@@ -25,6 +25,8 @@ import type {
   MistakeAnswerResponse,
   MistakesResponse,
   ProfileResponse,
+  ReviewCard,
+  ReviewCheckResponse,
   ReviewResponse,
   VocabularyResponse,
   WritingCheckResponse,
@@ -379,6 +381,114 @@ describe('curricolo e progresso', () => {
       payload: { grade: 1 },
     });
     expect(grade.statusCode).toBe(404);
+  });
+});
+
+describe('ripassi in produzione', () => {
+  async function reviewCards(cookie: string): Promise<ReviewResponse> {
+    const response = await app.inject({ method: 'GET', url: '/api/review', headers: { cookie } });
+    expect(response.statusCode).toBe(200);
+    return response.json() as ReviewResponse;
+  }
+
+  async function grade(cookie: string, cardId: string, value: 0 | 1 | 2): Promise<ReviewCheckResponse> {
+    const response = await app.inject({
+      method: 'POST',
+      url: `/api/review/${cardId}`,
+      headers: { cookie },
+      payload: { grade: value },
+    });
+    expect(response.statusCode).toBe(200);
+    return response.json() as ReviewCheckResponse;
+  }
+
+  /**
+   * Ripassa la parola due volte e la rimette in scadenza oggi: è così che una
+   * carta da leggere diventa una carta da scrivere.
+   */
+  async function makeWritable(cookie: string, cardId: string): Promise<ReviewCard> {
+    await grade(cookie, cardId, 1);
+    await grade(cookie, cardId, 1);
+    db.prepare('UPDATE srs_cards SET due_at = ? WHERE id = ?').run(todayIso(), cardId);
+    const card = (await reviewCards(cookie)).cards.find((item) => item.id === cardId);
+    expect(card, 'carta tornata in scadenza').toBeDefined();
+    expect(card?.direction, 'direzione della carta').toBe('write');
+    return card as ReviewCard;
+  }
+
+  async function answer(cookie: string, cardId: string, response: string) {
+    return app.inject({
+      method: 'POST',
+      url: `/api/review/${cardId}`,
+      headers: { cookie },
+      payload: { response },
+    });
+  }
+
+  it('una parola letta due volte si chiede scritta, senza regalare il coreano', async () => {
+    const cookie = await login();
+    await passLesson(cookie, 'hangul', 'hangul-01');
+
+    const first = (await reviewCards(cookie)).cards[0];
+    expect(first.direction).toBe('read');
+    expect(first.answer).not.toBeNull();
+    const korean = first.prompt;
+    const italian = first.answer;
+
+    const card = await makeWritable(cookie, first.id);
+    expect(card.prompt).toBe(italian);
+    expect(card.answer).toBeNull();
+    // La romanizzazione detterebbe la risposta.
+    expect(card.hint).toBeNull();
+    expect(JSON.stringify(card)).not.toContain(korean);
+  });
+
+  it('scritta bene chiude la carta, sbagliata la riporta a leggere', async () => {
+    const cookie = await login();
+    await passLesson(cookie, 'hangul', 'hangul-01');
+    const first = (await reviewCards(cookie)).cards[0];
+    const korean = first.prompt;
+    const card = await makeWritable(cookie, first.id);
+
+    const wrong = await answer(cookie, card.id, 'sbagliata');
+    expect(wrong.statusCode).toBe(200);
+    const missing = wrong.json() as ReviewCheckResponse;
+    expect(missing.correct).toBe(false);
+    expect(missing.answer).toBe(korean);
+
+    // Reps azzerati: la parola torna da leggere, che è il punto da cui si riparte.
+    db.prepare('UPDATE srs_cards SET due_at = ? WHERE id = ?').run(todayIso(), card.id);
+    const again = (await reviewCards(cookie)).cards.find((item) => item.id === card.id);
+    expect(again?.direction).toBe('read');
+    expect(again?.prompt).toBe(korean);
+
+    const right = await answer(cookie, (await makeWritable(cookie, card.id)).id, korean);
+    expect(right.statusCode).toBe(200);
+    const solved = right.json() as ReviewCheckResponse;
+    expect(solved.correct).toBe(true);
+    expect(solved.answer).toBe(korean);
+    // Scriverla vale un "facile": la carta si allontana nel calendario.
+    expect(solved.card.dueAt > todayIso()).toBe(true);
+  });
+
+  it('non accetta un giudizio al posto di una parola scritta, né il contrario', async () => {
+    const cookie = await login();
+    await passLesson(cookie, 'hangul', 'hangul-01');
+    const first = (await reviewCards(cookie)).cards[0];
+
+    const vetoed = await answer(cookie, first.id, 'parola');
+    expect(vetoed.statusCode).toBe(400);
+    expect(vetoed.json()).toMatchObject({ error: 'needs_grade' });
+
+    const card = await makeWritable(cookie, first.id);
+    const selfGrade = await app.inject({
+      method: 'POST',
+      url: `/api/review/${card.id}`,
+      headers: { cookie },
+      payload: { grade: 2 },
+    });
+    expect(selfGrade.statusCode).toBe(400);
+    expect(selfGrade.json()).toMatchObject({ error: 'needs_response' });
   });
 });
 

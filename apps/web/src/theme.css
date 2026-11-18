@@ -892,6 +892,20 @@ a.lesson-row:hover {
   font-weight: 600;
 }
 
+/* La carta da scrivere mostra l'italiano: il coreano è la risposta, e arriva
+   dopo il tentativo. */
+.flash-front--it {
+  font-family: var(--font);
+  font-size: clamp(1.6rem, 6vw, 2.2rem);
+}
+
+.flash-answer {
+  font-family: var(--font-ko);
+  font-size: 2rem;
+  font-weight: 600;
+  margin-top: 0.75rem;
+}
+
 .grade-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));

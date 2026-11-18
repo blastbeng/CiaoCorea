@@ -5,7 +5,29 @@
  * chi studia da solo sbaglia sistematicamente. Tre pulsanti sono onesti.
  */
 
+import type { ReviewDirection } from '@ciaocorea/shared';
+
 export type SrsGrade = 0 | 1 | 2;
+
+/**
+ * Una parola si legge prima e si scrive dopo. Il riconoscimento è la scala che
+ * porta alla produzione: chiedere di scrivere una parola mai vista vorrebbe
+ * dire dettare, non ripassare.
+ */
+export const WRITE_AFTER_REPS = 2;
+
+/** Solo parole di sole sillabe: i jamo sciolti e le frasi non si scrivono a memoria. */
+const WRITABLE_WORD = /^[가-힣]+$/u;
+
+/**
+ * La direzione con cui la carta torna oggi. Da `read` a `write` si passa con
+ * due ripassi andati bene; un errore riporta i `reps` a zero e quindi la parola
+ * torna a farsi leggere, che è il punto giusto da cui ricominciare.
+ */
+export function reviewDirection(reps: number, korean: string): ReviewDirection {
+  if (!WRITABLE_WORD.test(korean)) return 'read';
+  return reps >= WRITE_AFTER_REPS ? 'write' : 'read';
+}
 
 export interface SrsState {
   ease: number;

@@ -6,7 +6,8 @@ comprensione. Il percorso è a tappe, con esercizi corretti dal server e la
 possibilità di saltare una lezione già conosciuta superando un test.
 
 Oltre al percorso ci sono cinque stanze: il **dizionario** di tutte le parole
-del curricolo, la **coda di ripasso** (SRS), il **quaderno** dove si scrivono
+del curricolo, la **coda di ripasso** (SRS) che dopo due passaggi chiede di
+scrivere la parola, il **quaderno** dove si scrivono
 frasi proprie confrontandole con un modello, la **banca degli errori** con gli
 esercizi sbagliati da rifare, e la pagina dei **progressi**, con le statistiche
 complessive e il cambio della password. In cima alla home c'è il **piano di
@@ -155,8 +156,8 @@ le due della registrazione.
 | GET | `/api/courses/:slug/skip-test` | prova per saltare il corso (domande fisse, una per lezione) |
 | POST | `/api/courses/:slug/skip` | consegna la prova del corso: superata chiude tutte le lezioni |
 | GET | `/api/progress/due` | solo i due numeri dei badge della barra in alto: `dueCards` e `mistakes` |
-| GET | `/api/review` | carte in scadenza |
-| POST | `/api/review/:cardId` | giudizio `0 \| 1 \| 2` |
+| GET | `/api/review` | carte in scadenza: direzione `read`/`write`, senza la risposta delle carte da scrivere |
+| POST | `/api/review/:cardId` | chiude la carta: `{ grade }` per leggere, `{ response }` per scrivere, con l'esito della correzione |
 | GET | `/api/dialogues` | elenco dei dialoghi con lo stato di avanzamento |
 | GET | `/api/dialogues/:slug` | copione pubblico, senza le battute non ancora recitate |
 | POST | `/api/dialogues/:slug/answer` | risposta alla battuta corrente |
@@ -190,7 +191,13 @@ successiva, chi non lo passa torna agli esercizi completi. C'è anche il salto d
 **corso** intero: dodici domande pescate una per lezione, sempre le stesse, e se
 si superano tutte le lezioni del corso risultano chiuse. Ogni parola incontrata
 entra nel ripasso a intervalli (SRS): le carte tornano dopo 1, 3, poi sempre più
-tardi, e il giudizio dato decide di quanto.
+tardi, e il giudizio dato decide di quanto. Dopo due ripassi andati bene la
+parola smette di farsi solo leggere e chiede di essere scritta: lo studente vede
+l'italiano, compone il coreano con la tastiera di jamo e la correzione è del
+server (`compact` + unificazione dei jamo, quindi NFD e NFC valgono uguale).
+Scriverla bene vale un "facile"; sbagliarla azzera i ripassi e la parola torna
+da leggere, che è il passo giusto da cui ricominciare. Jamo sciolti e frasi
+restano sempre da leggere: una frase non si scrive a memoria.
 
 Il primo corso, `hangul`, copre l'alfabeto in otto lezioni: vocali e consonanti
 di base, consonanti aspirate e tese, vocali composte, 받침, regole di lettura e

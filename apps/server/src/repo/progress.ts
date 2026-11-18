@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
-import type { DayActivity, ExerciseResult, LessonState, VocabItem } from '@ciaocorea/shared';
+import type { DayActivity, ExerciseResult, LessonState, ReviewCard, VocabItem } from '@ciaocorea/shared';
 import type { ProgressRow } from '@ciaocorea/engine';
-import { scheduleCard, type SrsGrade } from '@ciaocorea/engine';
+import { matchesAny, reviewDirection, scheduleCard, type SrsGrade } from '@ciaocorea/engine';
 import type { Db } from '../db/client';
 import { nowIso, todayIso } from '../db/client';
 import { syncMistakes } from './mistakes';
@@ -258,14 +258,23 @@ interface CardRow {
   due_at: string;
 }
 
-export interface ReviewCard {
-  id: string;
-  front: string;
-  back: string;
-  hint: string | null;
-  courseSlug: string;
-  lessonId: string;
-  dueAt: string;
+/**
+ * La carta così come la vede il client. Per una parola da scrivere il coreano è
+ * la risposta: non esce dal server, e nemmeno la romanizzazione, che la
+ * detterebbe. Il client scopre com'era scritta solo dopo averci provato.
+ */
+function toReviewCard(row: CardRow, dueAt: string): ReviewCard {
+  const direction = reviewDirection(row.reps, row.front);
+  return {
+    id: row.id,
+    direction,
+    prompt: direction === 'write' ? row.back : row.front,
+    answer: direction === 'write' ? null : row.back,
+    hint: direction === 'write' ? null : row.hint,
+    courseSlug: row.course_slug,
+    lessonId: row.lesson_id,
+    dueAt,
+  };
 }
 
 export function dueCards(db: Db, userId: string, limit = 40, now: Date = new Date()): ReviewCard[] {
@@ -279,15 +288,7 @@ export function dueCards(db: Db, userId: string, limit = 40, now: Date = new Dat
     )
     .all(userId, todayIso(now), limit) as unknown as CardRow[];
 
-  return rows.map((row) => ({
-    id: row.id,
-    front: row.front,
-    back: row.back,
-    hint: row.hint,
-    courseSlug: row.course_slug,
-    lessonId: row.lesson_id,
-    dueAt: row.due_at,
-  }));
+  return rows.map((row) => toReviewCard(row, row.due_at));
 }
 
 export function countDueCards(db: Db, userId: string, now: Date = new Date()): number {
@@ -297,17 +298,53 @@ export function countDueCards(db: Db, userId: string, now: Date = new Date()): n
   return Number(row.total);
 }
 
+/**
+ * Come si chiude una carta: con un voto (le carte da leggere) o con quello che
+ * si è scritto (le carte da scrivere). Il tipo di risposta atteso dipende dalla
+ * direzione, che decide il server: uno studente non può votarsi "facile" una
+ * parola che doveva scrivere.
+ */
+export type CardCheck = { grade: SrsGrade } | { response: string };
+
+export interface CardGraded {
+  card: ReviewCard;
+  /** `null` quando la carta era da leggere e nessuno ha corretto niente. */
+  correct: boolean | null;
+  /** La parola com'era scritta: serve al feedback, dopo il tentativo. */
+  answer: string | null;
+}
+
+export type CardOutcome = ({ ok: true } & CardGraded) | { ok: false; reason: 'needs_response' | 'needs_grade' };
+
 export function gradeCard(
   db: Db,
   userId: string,
   cardId: string,
-  grade: SrsGrade,
+  check: CardCheck,
   now: Date = new Date(),
-): ReviewCard | null {
+): CardOutcome | null {
   const card = db
     .prepare('SELECT * FROM srs_cards WHERE id = ? AND user_id = ?')
     .get(cardId, userId) as CardRow | undefined;
   if (!card) return null;
+
+  const direction = reviewDirection(card.reps, card.front);
+  let grade: SrsGrade;
+  let correct: boolean | null = null;
+  let answer: string | null = null;
+
+  if (direction === 'write') {
+    if (!('response' in check)) return { ok: false, reason: 'needs_response' };
+    // `matchesAny` compatte e unifica: 밥 scritto in NFD resta 밥.
+    correct = matchesAny(check.response, [card.front]).matched;
+    answer = card.front;
+    // Scrivere bene vale quanto un "facile": la parola è stata prodotta, non
+    // solo riconosciuta. Sbagliare azzera i reps, e la parola torna da leggere.
+    grade = correct ? 2 : 0;
+  } else {
+    if (!('grade' in check)) return { ok: false, reason: 'needs_grade' };
+    grade = check.grade;
+  }
 
   const next = scheduleCard(
     { ease: card.ease, intervalDays: card.interval_days, reps: card.reps, lapses: card.lapses },
@@ -338,15 +375,14 @@ export function gradeCard(
      ON CONFLICT(user_id, day) DO UPDATE SET reviews = daily_stats.reviews + 1`,
   ).run(userId, todayIso(now));
 
-  return {
-    id: card.id,
-    front: card.front,
-    back: card.back,
-    hint: card.hint,
-    courseSlug: card.course_slug,
-    lessonId: card.lesson_id,
-    dueAt: next.dueAt,
+  const stored: CardRow = {
+    ...card,
+    ease: next.ease,
+    interval_days: next.intervalDays,
+    reps: next.reps,
+    lapses: next.lapses,
   };
+  return { ok: true, card: toReviewCard(stored, next.dueAt), correct, answer };
 }
 
 /* ------------------------------------------------------------------------- *

@@ -235,10 +235,25 @@ export interface CourseSkipResponse {
   reviewsCreated: number;
 }
 
+/**
+ * Le due direzioni in cui una parola può tornare. `read` è il riconoscimento
+ * (coreano → italiano, con tre pulsanti di autogiudizio); `write` è la
+ * produzione (italiano → coreano scritto), che si corregge da sola e non ha
+ * bisogno che lo studente si dia un voto.
+ */
+export type ReviewDirection = 'read' | 'write';
+
 export interface ReviewCard {
   id: string;
-  front: string;
-  back: string;
+  direction: ReviewDirection;
+  /** Quello che si vede: la parola coreana da leggere, o l'italiano da scrivere. */
+  prompt: string;
+  /** Solo per `read`: il significato. Per `write` la risposta resta sul server. */
+  answer: string | null;
+  /**
+   * La romanizzazione, che aiuta a leggere e rovinerebbe la scrittura: per le
+   * carte da scrivere arriva sempre `null`.
+   */
   hint: string | null;
   courseSlug: string;
   lessonId: string;
@@ -247,6 +262,17 @@ export interface ReviewCard {
 
 export interface ReviewResponse {
   cards: ReviewCard[];
+  dueCards: number;
+}
+
+/**
+ * L'esito di una carta scritta. `correct` e `answer` sono `null` quando la
+ * carta era di lettura e lo studente si è giudicato da solo.
+ */
+export interface ReviewCheckResponse {
+  card: ReviewCard;
+  correct: boolean | null;
+  answer: string | null;
   dueCards: number;
 }
 

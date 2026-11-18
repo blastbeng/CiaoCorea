@@ -10,6 +10,7 @@ import type {
   LessonDetail,
   LessonView,
   ProgressSummary,
+  ReviewCheckResponse,
   ReviewResponse,
 } from '@ciaocorea/shared';
 import {
@@ -110,9 +111,14 @@ const courseSkipSchema = z.object({
   durationMs: z.number().int().min(0).max(3_600_000).nullable().optional(),
 });
 
-const reviewSchema = z.object({
-  grade: z.union([z.literal(0), z.literal(1), z.literal(2)]),
-});
+/**
+ * Una carta si chiude in due modi: con un giudizio (si legge, ci si valuta) o
+ * con la parola scritta (si produce, la correzione è del server).
+ */
+const reviewSchema = z.union([
+  z.object({ grade: z.union([z.literal(0), z.literal(1), z.literal(2)]) }),
+  z.object({ response: z.string().max(200) }),
+]);
 
 export async function registerLessonRoutes(app: FastifyInstance, ctx: Ctx): Promise<void> {
   const auth = requireAuth(ctx);
@@ -373,12 +379,27 @@ export async function registerLessonRoutes(app: FastifyInstance, ctx: Ctx): Prom
     const { cardId } = request.params as { cardId: string };
     const parsed = reviewSchema.safeParse(request.body);
     if (!parsed.success) {
-      return reply.code(400).send({ error: 'invalid_body', message: 'Giudizio non valido.' });
+      return reply.code(400).send({ error: 'invalid_body', message: 'Risposta non valida.' });
     }
 
-    const card = gradeCard(ctx.db, user.id, cardId, parsed.data.grade);
-    if (!card) return reply.code(404).send({ error: 'not_found', message: 'Card inesistente.' });
+    const outcome = gradeCard(ctx.db, user.id, cardId, parsed.data);
+    if (!outcome) return reply.code(404).send({ error: 'not_found', message: 'Card inesistente.' });
+    if (!outcome.ok) {
+      return reply.code(400).send({
+        error: outcome.reason,
+        message:
+          outcome.reason === 'needs_response'
+            ? 'Questa parola va scritta in coreano, non giudicata.'
+            : 'Questa carta si chiude con un giudizio.',
+      });
+    }
 
-    return reply.send({ card, dueCards: countDueCards(ctx.db, user.id) });
+    const body: ReviewCheckResponse = {
+      card: outcome.card,
+      correct: outcome.correct,
+      answer: outcome.answer,
+      dueCards: countDueCards(ctx.db, user.id),
+    };
+    return reply.send(body);
   });
 }
