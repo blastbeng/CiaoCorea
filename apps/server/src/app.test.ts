@@ -10,6 +10,7 @@ import {
   getCourse,
   getDialogue,
   getVocabulary,
+  getWritingPrompts,
 } from '@ciaocorea/curriculum';
 import type {
   CourseListResponse,
@@ -23,10 +24,14 @@ import type {
   ProfileResponse,
   ReviewResponse,
   VocabularyResponse,
+  WritingCheckResponse,
+  WritingResponse,
 } from '@ciaocorea/shared';
 import { buildApp } from './app';
 import { loadConfig } from './config';
-import { openDb, type Db } from './db/client';
+import { openDb, todayIso, type Db } from './db/client';
+import { streakDays, studyDaysSince } from './repo/progress';
+import { saveWritingEntry } from './repo/writing';
 import { ensureSeedUser } from './seed/bootstrap';
 
 const EMAIL = 'blast@example.test';
@@ -984,5 +989,174 @@ describe('piano di studio', () => {
       expect(rifiutato.statusCode, `goal ${String(goal)}`).toBe(400);
       expect(rifiutato.json()).toMatchObject({ error: 'invalid_goal' });
     }
+  });
+});
+
+describe('quaderno di scrittura', () => {
+  it('richiede la sessione', async () => {
+    const response = await app.inject({ method: 'GET', url: '/api/writing' });
+    expect(response.statusCode).toBe(401);
+  });
+
+  it('parte chiuso e non manda la forma giusta al client', async () => {
+    const cookie = await login();
+    const response = await app.inject({ method: 'GET', url: '/api/writing', headers: { cookie } });
+    expect(response.statusCode).toBe(200);
+
+    const body = response.json() as WritingResponse;
+    expect(body.prompts).toHaveLength(getWritingPrompts().length);
+    expect(body.stats).toEqual({ done: 0, total: getWritingPrompts().length, unlocked: 0 });
+    expect(body.prompts.every((prompt) => prompt.unlocked === false)).toBe(true);
+
+    // Il modello è la risposta: uscire adesso vorrebbe dire dettato, non scrittura.
+    expect(response.body).not.toContain('저는 학생이에요');
+
+    const locked = await app.inject({
+      method: 'POST',
+      url: '/api/writing/w-gram-01',
+      headers: { cookie },
+      payload: { text: '저는 학생이에요.' },
+    });
+    expect(locked.statusCode).toBe(403);
+    expect(locked.json()).toMatchObject({ error: 'writing_locked' });
+  });
+
+  it('dopo la lezione la consegna si apre e la forma esatta vale "model"', async () => {
+    const cookie = await login();
+    await passLesson(cookie, 'grammatica', 'gram-01');
+
+    const list = await app.inject({ method: 'GET', url: '/api/writing', headers: { cookie } });
+    const body = list.json() as WritingResponse;
+    const prompt = body.prompts.find((item) => item.id === 'w-gram-01');
+    expect(prompt?.unlocked).toBe(true);
+    expect(prompt?.courseTitle).toBe(getCourse('grammatica')?.title);
+    expect(prompt?.last).toBeNull();
+    // Il corso ha due consegne: solo quella della lezione chiusa si apre.
+    expect(body.stats.unlocked).toBe(1);
+
+    const written = await app.inject({
+      method: 'POST',
+      url: '/api/writing/w-gram-01',
+      headers: { cookie },
+      payload: { text: '저는 학생이에요.' },
+    });
+    expect(written.statusCode).toBe(200);
+
+    const result = written.json() as WritingCheckResponse;
+    expect(result.check.verdict).toBe('model');
+    expect(result.check.missing).toEqual([]);
+    expect(result.check.similarity).toBe(1);
+    expect(result.check.model).toBe('저는 학생이에요.');
+    expect(result.entry.text).toBe('저는 학생이에요.');
+    expect(result.stats.done).toBe(1);
+
+    const again = await app.inject({ method: 'GET', url: '/api/writing', headers: { cookie } });
+    const dopo = again.json() as WritingResponse;
+    expect(dopo.prompts.find((item) => item.id === 'w-gram-01')?.last?.verdict).toBe('model');
+    expect(dopo.stats.done).toBe(1);
+  });
+
+  it('accetta le varianti e dice che cosa manca quando la frase è un’altra', async () => {
+    const cookie = await login();
+    await passLesson(cookie, 'grammatica', 'gram-01');
+
+    const variante = await app.inject({
+      method: 'POST',
+      url: '/api/writing/w-gram-01',
+      headers: { cookie },
+      payload: { text: '학생이에요.' },
+    });
+    expect((variante.json() as WritingCheckResponse).check.verdict).toBe('model');
+
+    const sbagliata = await app.inject({
+      method: 'POST',
+      url: '/api/writing/w-gram-01',
+      headers: { cookie },
+      payload: { text: '저는 선생님이에요.' },
+    });
+    expect(sbagliata.statusCode).toBe(200);
+    const check = (sbagliata.json() as WritingCheckResponse).check;
+    expect(check.verdict).toBe('far');
+    expect(check.missing).toContain('학생');
+    expect(check.similarity).toBeGreaterThan(0);
+    expect(check.similarity).toBeLessThan(1);
+  });
+
+  it('una sillaba sbagliata resta vicina, senza dire che è giusta', async () => {
+    const cookie = await login();
+    await passLesson(cookie, 'grammatica', 'gram-01');
+
+    const response = await app.inject({
+      method: 'POST',
+      url: '/api/writing/w-gram-01',
+      headers: { cookie },
+      payload: { text: '저는 학생이어요.' },
+    });
+    expect(response.statusCode).toBe(200);
+
+    const check = (response.json() as WritingCheckResponse).check;
+    expect(check.verdict).toBe('close');
+    expect(check.missing).toEqual([]);
+    expect(check.similarity).toBeGreaterThan(0.8);
+    expect(check.similarity).toBeLessThan(1);
+  });
+
+  it('rifiuta una consegna inesistente e un testo vuoto', async () => {
+    const cookie = await login();
+
+    const unknown = await app.inject({
+      method: 'POST',
+      url: '/api/writing/w-non-esiste',
+      headers: { cookie },
+      payload: { text: '바다' },
+    });
+    expect(unknown.statusCode).toBe(404);
+
+    await passLesson(cookie, 'grammatica', 'gram-01');
+
+    const empty = await app.inject({
+      method: 'POST',
+      url: '/api/writing/w-gram-01',
+      headers: { cookie },
+      payload: { text: '   ' },
+    });
+    expect(empty.statusCode).toBe(400);
+    expect(empty.json()).toMatchObject({ error: 'empty_text' });
+
+    const noBody = await app.inject({
+      method: 'POST',
+      url: '/api/writing/w-gram-01',
+      headers: { cookie },
+      payload: {},
+    });
+    expect(noBody.statusCode).toBe(400);
+  });
+
+  it('scrivere è una giornata di studio anche senza esercizi', async () => {
+    const cookie = await login();
+    const profile = await app.inject({ method: 'GET', url: '/api/profile', headers: { cookie } });
+    const userId = (profile.json() as ProfileResponse).user.id;
+
+    saveWritingEntry(db, {
+      userId,
+      promptId: 'w-hangul-02',
+      courseSlug: 'hangul',
+      text: '바다',
+      verdict: 'model',
+    });
+
+    const day = todayIso();
+    expect(streakDays(db, userId)).toBe(1);
+    expect(studyDaysSince(db, userId, day)).toEqual([day]);
+
+    const dopo = await app.inject({ method: 'GET', url: '/api/profile', headers: { cookie } });
+    const body = dopo.json() as ProfileResponse;
+    expect(body.activity).toHaveLength(1);
+    expect(body.activity[0]?.writing).toBe(1);
+    expect(body.activity[0]?.exercises).toBe(0);
+    expect(body.summary.streakDays).toBe(1);
+
+    const dashboard = await app.inject({ method: 'GET', url: '/api/dashboard', headers: { cookie } });
+    expect(coursePayload(dashboard.body).plan.daysStudied).toBe(1);
   });
 });

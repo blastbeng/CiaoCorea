@@ -136,6 +136,28 @@ export const MIGRATIONS: Migration[] = [
       ALTER TABLE users ADD COLUMN weekly_goal INTEGER NOT NULL DEFAULT 5;
     `,
   },
+  {
+    id: '005-writing',
+    sql: `
+      -- Il quaderno. Un testo libero non si corregge automaticamente: si tiene
+      -- ogni prova, perché rivedere come è cambiata la stessa frase è il modo
+      -- più onesto di misurare la scrittura.
+      CREATE TABLE writing_entries (
+        id TEXT PRIMARY KEY,
+        user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+        prompt_id TEXT NOT NULL,
+        course_slug TEXT NOT NULL,
+        text TEXT NOT NULL,
+        verdict TEXT NOT NULL,
+        created_at TEXT NOT NULL
+      );
+      CREATE INDEX writing_entries_user_idx ON writing_entries(user_id, created_at);
+
+      -- Scrivere è studiare: senza questa colonna un giorno passato al quaderno
+      -- non conterebbe né per lo streak né per l'obiettivo della settimana.
+      ALTER TABLE daily_stats ADD COLUMN writing INTEGER NOT NULL DEFAULT 0;
+    `,
+  },
 ];
 
 export function migrate(db: DatabaseSync): void {

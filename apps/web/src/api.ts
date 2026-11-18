@@ -12,6 +12,8 @@ import type {
   ReviewResponse,
   SessionUser,
   VocabularyResponse,
+  WritingCheckResponse,
+  WritingResponse,
 } from '@ciaocorea/shared';
 
 export class ApiError extends Error {
@@ -140,6 +142,15 @@ export const api = {
     params.set('limit', String(limit));
     return request<VocabularyResponse>(`/api/vocabulary?${params.toString()}`);
   },
+
+  /** Le consegne del quaderno: il modello arriva solo dopo aver scritto. */
+  writing: () => request<WritingResponse>('/api/writing'),
+
+  submitWriting: (promptId: string, text: string) =>
+    request<WritingCheckResponse>(`/api/writing/${promptId}`, {
+      method: 'POST',
+      body: JSON.stringify({ text }),
+    }),
 
   profile: () => request<ProfileResponse>('/api/profile'),
 

@@ -54,6 +54,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           </NavLink>
           <NavLink to="/dialoghi">Conversazione</NavLink>
           <NavLink to="/dizionario">Dizionario</NavLink>
+          <NavLink to="/quaderno">Quaderno</NavLink>
           <NavLink to="/ripassi">
             Ripassi
             {dueCards > 0 ? (

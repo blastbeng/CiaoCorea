@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto';
-import type { ExerciseResult, LessonState, VocabItem } from '@ciaocorea/shared';
+import type { DayActivity, ExerciseResult, LessonState, VocabItem } from '@ciaocorea/shared';
 import type { ProgressRow } from '@ciaocorea/engine';
 import { scheduleCard, type SrsGrade } from '@ciaocorea/engine';
 import type { Db } from '../db/client';
@@ -186,15 +186,15 @@ export function recordAttempt(db: Db, input: AttemptInput): AttemptOutcome {
 }
 
 /**
- * Giorni consecutivi con almeno un'attività: esercizi di una lezione o
- * ripasso di una carta. Chi passa la giornata solo dai ripassi ha studiato, e
- * lo streak deve dirlo.
+ * Giorni consecutivi con almeno un'attività: esercizi di una lezione, ripasso
+ * di una carta o un testo nel quaderno. Chi passa la giornata solo dai ripassi
+ * ha studiato, e lo streak deve dirlo; lo stesso vale per chi scrive.
  */
 export function streakDays(db: Db, userId: string, now: Date = new Date()): number {
   const rows = db
     .prepare(
       `SELECT day FROM daily_stats
-       WHERE user_id = ? AND (exercises > 0 OR reviews > 0)
+       WHERE user_id = ? AND (exercises > 0 OR reviews > 0 OR writing > 0)
        ORDER BY day DESC`,
     )
     .all(userId) as unknown as Array<{ day: string }>;
@@ -229,7 +229,7 @@ export function studyDaysSince(db: Db, userId: string, fromIso: string): string[
   const rows = db
     .prepare(
       `SELECT day FROM daily_stats
-       WHERE user_id = ? AND day >= ? AND (exercises > 0 OR reviews > 0)
+       WHERE user_id = ? AND day >= ? AND (exercises > 0 OR reviews > 0 OR writing > 0)
        ORDER BY day`,
     )
     .all(userId, fromIso) as unknown as Array<{ day: string }>;
@@ -347,13 +347,8 @@ export function gradeCard(
  * funzionare.
  * ------------------------------------------------------------------------- */
 
-export interface ActivityDay {
-  day: string;
-  exercises: number;
-  correct: number;
-  lessonsCompleted: number;
-  reviews: number;
-}
+/** Il tipo vive in `shared`: la pagina profilo e questa lettura devono combaciare. */
+export type ActivityDay = DayActivity;
 
 /**
  * Gli ultimi giorni di attività, dal più vecchio al più recente: la griglia
@@ -363,7 +358,7 @@ export interface ActivityDay {
 export function activityDays(db: Db, userId: string, limit = 30): ActivityDay[] {
   const rows = db
     .prepare(
-      `SELECT day, exercises, correct, lessons_completed, reviews FROM daily_stats
+      `SELECT day, exercises, correct, lessons_completed, reviews, writing FROM daily_stats
        WHERE user_id = ? ORDER BY day DESC LIMIT ?`,
     )
     .all(userId, limit) as unknown as Array<{
@@ -372,6 +367,7 @@ export function activityDays(db: Db, userId: string, limit = 30): ActivityDay[] 
     correct: number;
     lessons_completed: number;
     reviews: number;
+    writing: number;
   }>;
 
   return rows
@@ -381,6 +377,7 @@ export function activityDays(db: Db, userId: string, limit = 30): ActivityDay[] 
       correct: row.correct,
       lessonsCompleted: row.lessons_completed,
       reviews: row.reviews,
+      writing: row.writing,
     }))
     .reverse();
 }

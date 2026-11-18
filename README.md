@@ -5,10 +5,11 @@ italiano. Si lavora su lettura e scrittura: jamo, sillabe, 받침, lessico,
 comprensione. Il percorso è a tappe, con esercizi corretti dal server e la
 possibilità di saltare una lezione già conosciuta superando un test.
 
-Oltre al percorso ci sono tre stanze di servizio: il **dizionario** di tutte le
-parole del curricolo, la **coda di ripasso** (SRS) e la pagina dei **progressi**,
-con le statistiche complessive e il cambio della password. In cima alla home c'è
-il **piano di oggi**: le poche cose da fare, in ordine, sopra all'obiettivo della
+Oltre al percorso ci sono quattro stanze: il **dizionario** di tutte le parole
+del curricolo, la **coda di ripasso** (SRS), il **quaderno** dove si scrivono
+frasi proprie confrontandole con un modello, e la pagina dei **progressi**, con
+le statistiche complessive e il cambio della password. In cima alla home c'è il
+**piano di oggi**: le poche cose da fare, in ordine, sopra all'obiettivo della
 settimana che si sceglie lo studente.
 
 Il portale è multi-utente: le iscrizioni si aprono con i codici invito
@@ -24,6 +25,7 @@ Il portale è multi-utente: le iscrizioni si aprono con i codici invito
 | `/corso/:slug/lezione/:lessonId` | teoria, brani di lettura, lessico, esercizi, test di salto |
 | `/dialoghi` e `/dialoghi/:slug` | conversazione scritta a copione |
 | `/dizionario` | ricerca nelle parole del curricolo, con filtri per corso |
+| `/quaderno` | dodici consegne di scrittura: si scrive la frase, poi si confronta con il modello |
 | `/ripassi` | carte in scadenza, giudizio `ho saputo / quasi / non ricordo`; il numero nella barra in alto dice quante ne restano |
 | `/progressi` | totali, per corso, parole SRS, obiettivo della settimana, ritmo dei giorni, password |
 | `/registrazione` | nuovo account: nome, email, password, ed eventuale codice invito |
@@ -157,6 +159,8 @@ le due della registrazione.
 | GET | `/api/dialogues/:slug` | copione pubblico, senza le battute non ancora recitate |
 | POST | `/api/dialogues/:slug/answer` | risposta alla battuta corrente |
 | POST | `/api/dialogues/:slug/restart` | riparte da capo, azzerando il progresso del dialogo |
+| GET | `/api/writing` | consegne del quaderno, con lo stato di sblocco e l'ultima prova: senza modello |
+| POST | `/api/writing/:promptId` | confronta il testo con il modello: `verdict`, parole mancanti, modello e nota |
 
 ## Come è organizzato il percorso
 
@@ -209,8 +213,9 @@ La prima lezione di ogni corso è sempre aperta, così chi ha già basi può ent
 da lì; le successive seguono l'ordine del corso.
 
 In tutto: sei corsi, 29 lezioni, 228 voci di lessico, otto brani di lettura, otto
-dialoghi. Il dizionario consultabile arriva a 255 voci perché comprende anche le
-parole dei gloss, che sono quelle che si incontrano leggendo.
+dialoghi e dodici consegne di scrittura. Il dizionario consultabile arriva a 255
+voci perché comprende anche le parole dei gloss, che sono quelle che si
+incontrano leggendo.
 
 ## Il piano della settimana
 
@@ -222,8 +227,9 @@ una riga dice come sta andando la settimana.
 - L'**obiettivo** sono i giorni di studio da chiudere fra lunedì e domenica. Lo
   sceglie lo studente nella pagina dei progressi, da 1 a 7; il server non lo
   impone e non lo cambia da sé.
-- Un giorno conta quando si fa almeno un esercizio **o** un ripasso: chi passa la
-  giornata solo sulle parole in scadenza ha studiato, e lo streak non si rompe.
+- Un giorno conta quando si fa almeno un esercizio, un ripasso **o** un testo nel
+  quaderno: chi passa la giornata solo sulle parole in scadenza, o solo a
+  scrivere, ha studiato, e lo streak non si rompe.
 - Date in UTC, settimana da lunedì, `daysLeft` comprende oggi.
 - Quando non c'è niente in scadenza il piano non inventa compiti: resta sulla
   riga della settimana, che è la cosa vera da sapere.
@@ -251,3 +257,32 @@ esattamente come per gli esercizi.
   il progresso di quel dialogo, non le carte già raccolte.
 - Il conteggio "al primo colpo" distingue una battuta saputa da una appena
   copiata: è il numero che compare a fine dialogo.
+
+## Quaderno
+
+Gli esercizi chiedono di riconoscere; il quaderno chiede di produrre. Ogni
+consegna è un compito breve in italiano («Scrivi "Sono uno studente."») e la
+risposta è una frase in coreano che scrivi tu, con la tastiera o incollando.
+
+Una frase libera non si corregge con una regola, e qui non c'è nessuna AI: il
+patto è un altro, ed è dichiarato allo studente.
+
+- **Il modello arriva dopo l'invio.** `GET /api/writing` non contiene `model`,
+  `must` né `notes`: prima si scrive, poi si guarda. Diversamente sarebbe
+  dettato.
+- La risposta porta un verdetto, non un voto: `model` (la frase è quella),
+  `close` (le parole ci sono, la forma no: somiglianza ≥ 0,6) e `far` (manca
+  qualcosa o è un'altra frase). Con il verdetto arrivano le **parole mancanti**
+  e una nota di grammatica sul punto che quella consegna insegna.
+- Il confronto è mostrato affiancato — il tuo testo e il modello — perché la
+  differenza è il materiale di studio.
+- Le consegne sono dodici, due per corso, in
+  `packages/curriculum/data/writing.json`. Ognuna cita la lezione che insegna
+  quelle parole e si apre quando quella lezione è superata o saltata.
+- Il contenuto è validato da `npm run content:check`: il modello deve contenere
+  Hangul, ogni parola obbligatoria deve comparire nel modello, e le varianti non
+  possono ripetersi a meno di spazi e punteggiatura. Una consegna impossibile
+  non arriva in produzione.
+- Ogni invio si salva in `writing_entries` e conta come giornata di studio
+  (`daily_stats.writing`), perché una serata passata a scrivere è studio come
+  una serie di ripassi.

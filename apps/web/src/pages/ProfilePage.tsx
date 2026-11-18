@@ -147,8 +147,8 @@ function GoalForm({ initial }: { initial: number }) {
   return (
     <form className="stack stack--tight" onSubmit={submit}>
       <p className="muted small">
-        Un giorno conta quando fai almeno un esercizio o un ripasso. Metti il numero che reggerai
-        davvero: il piano di oggi si regola su questo.
+        Un giorno conta quando fai almeno un esercizio, un ripasso o un testo nel quaderno. Metti
+        il numero che reggerai davvero: il piano di oggi si regola su questo.
       </p>
 
       <label className="field">
@@ -307,6 +307,9 @@ export function ProfilePage() {
               <Link className="btn btn--sm" to="/dizionario">
                 Dizionario
               </Link>
+              <Link className="btn btn--sm" to="/quaderno">
+                Quaderno
+              </Link>
             </div>
           </div>
         </div>
@@ -320,14 +323,15 @@ export function ProfilePage() {
           <>
             <p className="muted small">
               Ultime {recent.length} giornate studiate; l'altezza dice quanti esercizi hai fatto.
-              I ripassi contano come giorno di studio, ma non alzano le barre.
+              I ripassi e i testi del quaderno contano come giorno di studio, ma non alzano le
+              barre.
             </p>
             <div className="heat" aria-label="Esercizi per giorno">
               {recent.map((day) => (
                 <div
                   className="heat-col"
                   key={day.day}
-                  title={`${formatDay(day.day)}: ${day.exercises} esercizi, ${day.correct} giusti, ${day.lessonsCompleted} lezioni chiuse, ${day.reviews} ripassi`}
+                  title={`${formatDay(day.day)}: ${day.exercises} esercizi, ${day.correct} giusti, ${day.lessonsCompleted} lezioni chiuse, ${day.reviews} ripassi, ${day.writing} testi`}
                 >
                   <span
                     className="heat-bar"

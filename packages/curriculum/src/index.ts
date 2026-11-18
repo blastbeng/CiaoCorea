@@ -1,4 +1,4 @@
-import type { Course, Dialogue, Lesson, VocabEntry } from '@ciaocorea/shared';
+import type { Course, Dialogue, Lesson, VocabEntry, WritingPrompt } from '@ciaocorea/shared';
 import hangulRaw from '../data/courses/hangul.json';
 import grammaticaRaw from '../data/courses/grammatica.json';
 import lessicoRaw from '../data/courses/lessico.json';
@@ -6,8 +6,10 @@ import messaggiRaw from '../data/courses/messaggi.json';
 import a2Raw from '../data/courses/a2.json';
 import b1Raw from '../data/courses/b1.json';
 import dialoguesRaw from '../data/dialogues.json';
+import writingRaw from '../data/writing.json';
 import { courseSchema, validateCourse, type CurriculumProblem } from './schema';
 import { dialogueSchema, validateDialogue } from './dialogue-schema';
+import { validateWriting, writingPromptSchema } from './writing-schema';
 
 interface RawCourse {
   source: string;
@@ -134,6 +136,67 @@ export function getDialogues(): Dialogue[] {
 
 export function getDialogue(slug: string): Dialogue | undefined {
   return getDialogues().find((dialogue) => dialogue.slug === slug || dialogue.id === slug);
+}
+
+/**
+ * Le consegne del quaderno stanno fuori dal corso: non hanno esercizi né stato
+ * di sblocco, ma una consegna da svolgere e un modello con cui confrontarsi.
+ * Ogni consegna punta alla lezione che insegna le parole che servono: è quella
+ * a decidere quando il quaderno si apre.
+ */
+let cachedWriting: WritingPrompt[] | null = null;
+
+export function getWritingPrompts(): WritingPrompt[] {
+  if (cachedWriting) return cachedWriting;
+
+  const raws: unknown[] = Array.isArray(writingRaw) ? writingRaw : [writingRaw];
+  const problems: CurriculumProblem[] = [];
+  const prompts: WritingPrompt[] = [];
+  const ids = new Set<string>();
+
+  raws.forEach((raw, index) => {
+    const source = `writing.json[${index}]`;
+    problems.push(...validateWriting(raw, source));
+
+    const parsed = writingPromptSchema.safeParse(raw);
+    if (!parsed.success) return;
+
+    if (ids.has(parsed.data.id)) {
+      problems.push({ where: parsed.data.id, message: 'id consegna duplicato' });
+    }
+    ids.add(parsed.data.id);
+
+    // Una consegna che punta a una lezione inesistente non si aprirebbe mai:
+    // meglio scoprirlo qui che davanti a un quaderno vuoto.
+    const course = getCourse(parsed.data.courseSlug);
+    if (!course) {
+      problems.push({
+        where: parsed.data.id,
+        message: `corso inesistente '${parsed.data.courseSlug}'`,
+      });
+    } else if (!findLesson(course, parsed.data.lessonId)) {
+      problems.push({
+        where: parsed.data.id,
+        message: `lezione inesistente '${parsed.data.lessonId}' in '${parsed.data.courseSlug}'`,
+      });
+    }
+
+    prompts.push(parsed.data as WritingPrompt);
+  });
+
+  if (problems.length > 0) {
+    throw new CurriculumError(
+      'Consegne non valide:\n' + problems.map((p) => `  - ${p.where}: ${p.message}`).join('\n'),
+      problems.map((p) => `${p.where}: ${p.message}`),
+    );
+  }
+
+  cachedWriting = prompts;
+  return cachedWriting;
+}
+
+export function getWritingPrompt(id: string): WritingPrompt | undefined {
+  return getWritingPrompts().find((prompt) => prompt.id === id);
 }
 
 /**

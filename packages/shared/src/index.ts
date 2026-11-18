@@ -457,6 +457,90 @@ export interface VocabularyResponse {
 }
 
 /* ------------------------------------------------------------------------- *
+ * Il quaderno: testi scritti dallo studente, senza correzione automatica.
+ * L'app non può giudicare un testo libero, quindi fa l'unica cosa onesta che
+ * può fare: lo confronta con il modello e dice dove manca qualcosa. Il
+ * giudizio finale resta allo studente, che è chi impara.
+ * ------------------------------------------------------------------------- */
+
+export type WritingVerdict = 'model' | 'close' | 'far';
+
+/** Un testo da scrivere, legato alla lezione che insegna le parole che servono. */
+export interface WritingPrompt {
+  id: string;
+  courseSlug: string;
+  lessonId: string;
+  title: string;
+  /** La consegna, in italiano: che cosa bisogna scrivere. */
+  task: string;
+  /** Parole suggerite, da inserire con un clic. */
+  words: string[];
+  /** Forme che devono comparire: sono la lista che il controllo usa. */
+  must: string[];
+  model: string;
+  /** Varianti altrettanto corrette del testo modello. */
+  alt?: string[];
+  /** Perché il modello è scritto così. */
+  notes?: string;
+}
+
+export interface WritingCheck {
+  verdict: WritingVerdict;
+  /** Forme richieste che non compaiono nel testo. */
+  missing: string[];
+  /** Quanto il testo somiglia al modello, da 0 a 1. */
+  similarity: number;
+  model: string;
+  notes?: string;
+}
+
+export interface WritingEntry {
+  id: string;
+  promptId: string;
+  text: string;
+  verdict: WritingVerdict;
+  createdAt: string;
+}
+
+/**
+ * La consegna come la vede il client: il modello e la lista delle forme
+ * obbligatorie restano sul server finché lo studente non ha scritto, altrimenti
+ * il quaderno diventerebbe un esercizio di copia.
+ */
+export interface WritingPromptView {
+  id: string;
+  courseSlug: string;
+  courseTitle: string;
+  lessonId: string;
+  lessonTitle: string;
+  title: string;
+  task: string;
+  words: string[];
+  /** Si apre dopo aver chiuso la lezione che insegna quelle parole. */
+  unlocked: boolean;
+  last: WritingEntry | null;
+}
+
+export interface WritingStats {
+  /** Testi scritti almeno una volta, sul totale disponibile. */
+  done: number;
+  total: number;
+  /** Consegne già aperte: le altre aspettano la loro lezione. */
+  unlocked: number;
+}
+
+export interface WritingResponse {
+  prompts: WritingPromptView[];
+  stats: WritingStats;
+}
+
+export interface WritingCheckResponse {
+  check: WritingCheck;
+  entry: WritingEntry;
+  stats: WritingStats;
+}
+
+/* ------------------------------------------------------------------------- *
  * Profilo dello studente: una lettura d'insieme di ciò che ha fatto, per
  * capirci qualcosa senza dover aprire ogni corso.
  * ------------------------------------------------------------------------- */
@@ -468,6 +552,8 @@ export interface DayActivity {
   lessonsCompleted: number;
   /** Ripassi di parole fatti quel giorno: contano come studio. */
   reviews: number;
+  /** Testi scritti nel quaderno: anche scrivere è una giornata di studio. */
+  writing: number;
 }
 
 export interface SrsStats {

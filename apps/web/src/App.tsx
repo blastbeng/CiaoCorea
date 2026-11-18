@@ -13,6 +13,7 @@ import { ProfilePage } from './pages/ProfilePage';
 import { Register } from './pages/Register';
 import { ReviewPage } from './pages/ReviewPage';
 import { VocabularyPage } from './pages/VocabularyPage';
+import { WritingPage } from './pages/WritingPage';
 
 function RequireAuth({ children }: { children: ReactNode }) {
   const { state } = useAuth();
@@ -66,6 +67,7 @@ export default function App() {
         <Route path="dialoghi/:slug" element={<DialoguePage />} />
         <Route path="ripassi" element={<ReviewPage />} />
         <Route path="dizionario" element={<VocabularyPage />} />
+        <Route path="quaderno" element={<WritingPage />} />
         <Route path="progressi" element={<ProfilePage />} />
         <Route path="*" element={<NotFound />} />
       </Route>

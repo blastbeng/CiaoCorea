@@ -11,6 +11,7 @@ import { registerDialogueRoutes } from './routes/dialogues';
 import { registerLessonRoutes } from './routes/lessons';
 import { registerProfileRoutes } from './routes/profile';
 import { registerVocabularyRoutes } from './routes/vocabulary';
+import { registerWritingRoutes } from './routes/writing';
 
 export interface BuildAppOptions {
   db: Db;
@@ -90,6 +91,7 @@ export async function buildApp({ db, config, logger = false }: BuildAppOptions):
   await registerLessonRoutes(app, ctx);
   await registerDialogueRoutes(app, ctx);
   await registerVocabularyRoutes(app, ctx);
+  await registerWritingRoutes(app, ctx);
   await registerProfileRoutes(app, ctx);
 
   const indexFile = path.join(config.webDist, 'index.html');

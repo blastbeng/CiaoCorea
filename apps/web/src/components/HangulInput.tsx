@@ -9,6 +9,13 @@ interface HangulInputProps {
   autoFocus?: boolean;
   disabled?: boolean;
   id?: string;
+  /**
+   * Testo lungo: una consegna del quaderno sono frasi, non una parola. In
+   * multilinea Invio va a capo e non invia, altrimenti non si potrebbe
+   * scrivere la seconda frase.
+   */
+  multiline?: boolean;
+  rows?: number;
 }
 
 const ROWS: Array<Array<{ label: string; wide?: boolean }>> = [
@@ -32,6 +39,8 @@ export function HangulInput({
   autoFocus,
   disabled,
   id,
+  multiline = false,
+  rows = 3,
 }: HangulInputProps) {
   const [raw, setRaw] = useState(value);
   const emitted = useRef(value);
@@ -62,29 +71,35 @@ export function HangulInput({
     commit(dropLast(raw));
   };
 
-  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    if (multiline) return;
     if (event.key === 'Enter' && onSubmit) {
       event.preventDefault();
       onSubmit();
     }
   };
 
+  const field = {
+    id,
+    className: 'input input--ko',
+    value: composeHangul(raw),
+    onChange: (event: { target: { value: string } }) => commit(event.target.value),
+    placeholder,
+    autoFocus,
+    disabled,
+    autoComplete: 'off',
+    autoCapitalize: 'off',
+    spellCheck: false,
+    lang: 'ko',
+  };
+
   return (
     <div>
-      <input
-        id={id}
-        className="input input--ko"
-        value={composeHangul(raw)}
-        onChange={(event) => commit(event.target.value)}
-        onKeyDown={handleKeyDown}
-        placeholder={placeholder}
-        autoFocus={autoFocus}
-        disabled={disabled}
-        autoComplete="off"
-        autoCapitalize="off"
-        spellCheck={false}
-        lang="ko"
-      />
+      {multiline ? (
+        <textarea {...field} rows={rows} onKeyDown={handleKeyDown} />
+      ) : (
+        <input {...field} onKeyDown={handleKeyDown} />
+      )}
 
       <div className="keyboard" aria-label="Tastiera Hangul su schermo">
         {ROWS.map((row, index) => (

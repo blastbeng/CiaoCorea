@@ -1,0 +1,139 @@
+[
+  {
+    "id": "w-hangul-02",
+    "courseSlug": "hangul",
+    "lessonId": "hangul-02",
+    "title": "Dal suono alla sillaba",
+    "task": "Scrivi in hangul la parola «mare».",
+    "words": [],
+    "must": [],
+    "model": "바다",
+    "notes": "Due sillabe: ㅂ + ㅏ = 바, ㄷ + ㅏ = 다. Fra due vocali la ㅂ si sente morbida, quasi una «p»: «pada», non «bada»."
+  },
+  {
+    "id": "w-hangul-06",
+    "courseSlug": "hangul",
+    "lessonId": "hangul-06",
+    "title": "Il 받침 in due parole",
+    "task": "Scrivi «riso cotto» e «casa», separate da uno spazio.",
+    "words": [],
+    "must": ["밥", "집"],
+    "model": "밥 집",
+    "notes": "밥 finisce con ㅂ, 집 con ㅂ: la consonante finale si scrive sotto la sillaba e si sente, chiusa, senza vocale dopo."
+  },
+  {
+    "id": "w-gram-01",
+    "courseSlug": "grammatica",
+    "lessonId": "gram-01",
+    "title": "Chi sei",
+    "task": "Presentati: scrivi «Sono uno studente.»",
+    "words": ["저는", "학생", "이에요", "예요"],
+    "must": ["저는", "학생"],
+    "model": "저는 학생이에요.",
+    "alt": ["저는 학생입니다.", "학생이에요."],
+    "notes": "저는 apre la frase («quanto a me»). 학생 finisce con il 받침 ㄱ, quindi si attacca 이에요: 예요 va bene solo dopo una vocale."
+  },
+  {
+    "id": "w-gram-03",
+    "courseSlug": "grammatica",
+    "lessonId": "gram-03",
+    "title": "Due cose che fai",
+    "task": "Scrivi due frasi al presente cortese: «Studio coreano» e «Bevo caffè».",
+    "words": ["한국어", "를", "공부해요", "커피", "마셔요"],
+    "must": ["공부해요", "마셔요"],
+    "model": "한국어를 공부해요. 커피를 마셔요.",
+    "alt": ["저는 한국어를 공부해요. 커피를 마셔요."],
+    "notes": "공부하다 diventa 공부해요 (하다 → 해요), 마시다 diventa 마셔요. 를 segna l'oggetto: 한국어를, 커피를."
+  },
+  {
+    "id": "w-less-01",
+    "courseSlug": "lessico",
+    "lessonId": "less-01",
+    "title": "La tua famiglia",
+    "task": "Scrivi tre membri della famiglia: padre, madre, fratello o sorella minore.",
+    "words": ["아버지", "어머니", "동생", "부모님", "언니"],
+    "must": ["아버지", "어머니", "동생"],
+    "model": "아버지 어머니 동생",
+    "notes": "In un elenco le particelle si possono lasciare fuori. 동생 è il più giovane, maschio o femmina: la lingua non lo distingue, l'età sì."
+  },
+  {
+    "id": "w-less-04",
+    "courseSlug": "lessico",
+    "lessonId": "less-04",
+    "title": "Quanto costa",
+    "task": "Scrivi il prezzo: «Sono tremila won.»",
+    "words": ["삼천", "원", "이에요", "얼마예요"],
+    "must": ["삼천", "원"],
+    "model": "삼천 원이에요.",
+    "notes": "I numeri sino-coreani si scrivono attaccati: 삼천 = 3.000. 원 finisce con ㄴ, quindi 원이에요."
+  },
+  {
+    "id": "w-msg-01",
+    "courseSlug": "messaggi",
+    "lessonId": "msg-01",
+    "title": "Ciao, come stai",
+    "task": "Scrivi a un amico: saluta e chiedi come sta, in 반말.",
+    "words": ["안녕", "잘 지내", "안녕하세요", "네"],
+    "must": ["안녕", "잘 지내"],
+    "model": "안녕, 잘 지내?",
+    "alt": ["안녕 잘 지내?"],
+    "notes": "안녕 senza 하세요 è 반말: si usa con chi hai della confidenza. 잘 지내? è la domanda, e il punto interrogativo non è obbligatorio."
+  },
+  {
+    "id": "w-msg-04",
+    "courseSlug": "messaggi",
+    "lessonId": "msg-04",
+    "title": "Darsi un appuntamento",
+    "task": "Proponi un appuntamento: «Ci vediamo domani alle tre.»",
+    "words": ["내일", "세 시", "에", "만나요"],
+    "must": ["내일", "만나요"],
+    "model": "내일 세 시에 만나요.",
+    "notes": "세 시 = le tre, con il numero nativo; 에 segna il momento. 만나요 è anche «incontriamoci»: è la forma che si usa per fissare."
+  },
+  {
+    "id": "w-a2-01",
+    "courseSlug": "a2",
+    "lessonId": "a2-01",
+    "title": "Che cosa hai fatto ieri",
+    "task": "Racconta ieri: «Ieri ho incontrato un amico.»",
+    "words": ["어제", "친구", "를", "만났어요"],
+    "must": ["어제", "만났어요"],
+    "model": "어제 친구를 만났어요.",
+    "notes": "Il passato si fa sul tema: 만나- + -았어요 = 만났어요. 친구를: 를 dopo una vocale, 을 dopo una consonante."
+  },
+  {
+    "id": "w-a2-02",
+    "courseSlug": "a2",
+    "lessonId": "a2-02",
+    "title": "Il prossimo fine settimana",
+    "task": "Scrivi «Il prossimo fine settimana viaggerò con un amico.»",
+    "words": ["다음 주말", "친구와", "여행", "할 거예요"],
+    "must": ["여행", "거예요"],
+    "model": "다음 주말에 친구와 여행할 거예요.",
+    "alt": ["다음 주말에 친구하고 여행할 거예요."],
+    "notes": "여행하다 → 여행할 거예요: il 받침 ㄹ davanti a 거예요. 와/과 = e, con; 친구와 = con un amico."
+  },
+  {
+    "id": "w-b1-01",
+    "courseSlug": "b1",
+    "lessonId": "b1-01",
+    "title": "Due domande all'annuncio",
+    "task": "Scrivi due righe al proprietario: chiedi il deposito e l'affitto mensile.",
+    "words": ["보증금", "월세", "얼마예요", "알려 주세요"],
+    "must": ["보증금", "월세"],
+    "model": "보증금이 얼마예요? 월세도 알려 주세요.",
+    "notes": "이/가 segna ciò che chiedi: 보증금이. 도 = «anche»: 월세도. 알려 주세요 è la richiesta gentile di un'informazione."
+  },
+  {
+    "id": "w-b1-03",
+    "courseSlug": "b1",
+    "lessonId": "b1-03",
+    "title": "Rispondere in ufficio",
+    "task": "Rispondi all'email: «La riunione è stata spostata al terzo piano.»",
+    "words": ["회의", "3층", "으로", "변경됐어요"],
+    "must": ["회의", "변경"],
+    "model": "회의가 3층으로 변경됐어요.",
+    "alt": ["회의가 3층으로 변경되었어요."],
+    "notes": "변경되다 è «essere cambiato»: 변경됐어요 è la forma contratta di 변경되었어요. 으로 segna la destinazione dello spostamento."
+  }
+]

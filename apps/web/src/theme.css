@@ -1324,3 +1324,77 @@ a.lesson-row:hover {
   margin: 0 0 0.5rem;
   color: var(--ink-soft);
 }
+
+/* --- Quaderno: produzione scritta con modello --------------------------- */
+
+.writing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+.writing-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.writing-card--locked {
+  opacity: 0.72;
+}
+
+.writing-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.writing-card__head h2 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.writing-card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--line);
+}
+
+/* Le parole della consegna sono un promemoria, non dei pulsanti. */
+.chip--hint {
+  cursor: default;
+  background: #f7f2ea;
+  border-style: dashed;
+  font-size: 1.1rem;
+  padding: 0.35rem 0.6rem;
+}
+
+textarea.input--ko {
+  resize: vertical;
+  min-height: 5.5rem;
+  line-height: 1.45;
+}
+
+.compare {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 0.75rem;
+}
+
+.compare__ko {
+  margin: 0.2rem 0 0;
+  padding: 0.55rem 0.7rem;
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  font-family: var(--font-ko);
+  font-size: 1.15rem;
+  line-height: 1.5;
+  word-break: break-word;
+}

@@ -1,4 +1,10 @@
-import { courseLessons, getCourses, getDialogues, getVocabulary } from '../src/index';
+import {
+  courseLessons,
+  getCourses,
+  getDialogues,
+  getVocabulary,
+  getWritingPrompts,
+} from '../src/index';
 
 /**
  * Validazione del curricolo a freddo: `npm run content:check`.
@@ -34,13 +40,26 @@ try {
     );
   }
 
+  // Le consegne del quaderno: uno scrive, il controllo le confronta con il
+  // modello. Se il modello non contiene le forme obbligatorie, qui si scopre.
+  const writing = getWritingPrompts();
+  const perCourse = new Map<string, number>();
+  for (const prompt of writing) {
+    perCourse.set(prompt.courseSlug, (perCourse.get(prompt.courseSlug) ?? 0) + 1);
+  }
+  console.log(
+    `✓ quaderno: ${writing.length} consegne (${[...perCourse]
+      .map(([slug, count]) => `${slug}: ${count}`)
+      .join(', ')})`,
+  );
+
   // Il dizionario è ciò che lo studente può cercare: più delle voci elencate
   // nelle lezioni, perché include i gloss dei brani.
   const dictionary = getVocabulary();
 
   console.log(
     `\nTotale: ${courses.length} corsi, ${lessons} lezioni, ${vocab} voci di lessico, ` +
-      `${passages} brani di lettura, ${dialogues.length} dialoghi.`,
+      `${passages} brani di lettura, ${dialogues.length} dialoghi, ${writing.length} consegne di scrittura.`,
   );
   console.log(`Dizionario: ${dictionary.length} voci cercabili.`);
 } catch (error) {

@@ -5,3 +5,4 @@ export * from './srs';
 export * from './dialogue';
 export * from './vocabulary';
 export * from './plan';
+export * from './writing';
