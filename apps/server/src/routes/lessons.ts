@@ -41,6 +41,7 @@ import {
 import { getWeeklyGoal } from '../repo/users';
 import { nextOpenDialogue } from '../repo/dialogues';
 import { countMistakes } from '../repo/mistakes';
+import { writingTaskState } from './writing';
 
 function progressMap(ctx: Ctx, userId: string, courseSlug: string): ProgressRow[] {
   return getProgress(ctx.db, userId, courseSlug);
@@ -137,6 +138,7 @@ export async function registerLessonRoutes(app: FastifyInstance, ctx: Ctx): Prom
       dueCards: due,
       weeklyGoal: getWeeklyGoal(ctx.db, user.id),
       studyDays: studyDaysSince(ctx.db, user.id, weekStart),
+      writing: writingTaskState(ctx, user.id),
       dialogue: due === 0 ? nextOpenDialogue(ctx.db, user.id) : null,
       courses: views.map((course) => ({ slug: course.slug, title: course.title })),
     });

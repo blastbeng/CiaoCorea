@@ -1031,6 +1031,37 @@ describe('piano di studio', () => {
     expect(body.plan.tasks[1]?.href.startsWith('/dialoghi/')).toBe(true);
   });
 
+  it('il quaderno entra nel piano quando una lezione apre una consegna', async () => {
+    const cookie = await login();
+
+    const prima = await app.inject({ method: 'GET', url: '/api/dashboard', headers: { cookie } });
+    const primaBody = prima.json() as CourseListResponse;
+    expect(primaBody.plan.tasks.map((task) => task.key)).toEqual(['lesson', 'dialogue']);
+
+    // Saltare «messaggi» chiude le sue lezioni, quindi apre le sue consegne.
+    await passCourseSkip(cookie, 'messaggi');
+
+    const dopo = await app.inject({ method: 'GET', url: '/api/dashboard', headers: { cookie } });
+    const piano = (dopo.json() as CourseListResponse).plan;
+    const quaderno = piano.tasks.find((task) => task.key === 'writing');
+    expect(quaderno?.href).toBe('/quaderno');
+    expect(quaderno?.detail).toMatch(/consegn/);
+
+    // Un testo scritto è la consegna del giorno: il piano smette di chiederla.
+    const scritto = await app.inject({
+      method: 'POST',
+      url: '/api/writing/w-msg-01',
+      headers: { cookie },
+      payload: { text: '안녕하세요, 잘 지내요? 네, 저는 잘 지내요.' },
+    });
+    expect(scritto.statusCode).toBe(200);
+
+    const fine = await app.inject({ method: 'GET', url: '/api/dashboard', headers: { cookie } });
+    expect((fine.json() as CourseListResponse).plan.tasks.map((task) => task.key)).not.toContain(
+      'writing',
+    );
+  });
+
   it('tiene aggiornato il solo conteggio dei ripassi per la shell', async () => {
     const cookie = await login();
 
@@ -1069,8 +1100,9 @@ describe('piano di studio', () => {
     expect(dopoBody.plan.streakDays).toBe(1);
     expect(dopoBody.dueCards).toBe(saltato.reviewsCreated);
 
-    // Con i ripassi in scadenza il dialogo lascia il posto alla ripetizione.
-    expect(dopoBody.plan.tasks.map((task) => task.key)).toEqual(['lesson', 'reviews']);
+    // Con i ripassi in scadenza il dialogo lascia il posto alla ripetizione, e
+    // le lezioni chiuse hanno aperto il quaderno.
+    expect(dopoBody.plan.tasks.map((task) => task.key)).toEqual(['lesson', 'reviews', 'writing']);
 
     // Il corso saltato resta nel percorso, chiuso ma visibile.
     const messaggi = dopoBody.courses.find((course) => course.slug === 'messaggi');

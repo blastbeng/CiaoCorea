@@ -12,6 +12,7 @@ import type {
 import { checkWriting } from '@ciaocorea/engine';
 import { courseLessons, getCourse, getWritingPrompt, getWritingPrompts } from '@ciaocorea/curriculum';
 import type { Ctx } from '../http/context';
+import { todayIso } from '../db/client';
 import { requireAuth, type AuthedRequest } from '../auth/guard';
 import {
   countWrittenPrompts,
@@ -47,55 +48,77 @@ function isUnlocked(ctx: Ctx, userId: string, prompt: WritingPrompt): boolean {
   return isClosed(lessonStates(ctx, userId, prompt.courseSlug).get(prompt.lessonId));
 }
 
+/** Il quaderno di uno studente: consegne con il loro stato e i totali. */
+export function buildWriting(ctx: Ctx, userId: string): WritingResponse {
+  const prompts = getWritingPrompts();
+  const entries = listWritingEntries(ctx.db, userId);
+  const lastByPrompt = new Map<string, WritingEntry>();
+  for (const entry of entries) {
+    if (!lastByPrompt.has(entry.promptId)) lastByPrompt.set(entry.promptId, entry);
+  }
+
+  // Lo stato delle lezioni si legge una volta per corso: le consegne sono
+  // poche, ma ripetere la query per ognuna sarebbe solo rumore.
+  const statesByCourse = new Map<string, Map<string, LessonState>>();
+  const views: WritingPromptView[] = [];
+
+  for (const prompt of prompts) {
+    const course = getCourse(prompt.courseSlug);
+    const lesson = course ? courseLessons(course).find((item) => item.id === prompt.lessonId) : undefined;
+
+    let states = statesByCourse.get(prompt.courseSlug);
+    if (!states) {
+      states = lessonStates(ctx, userId, prompt.courseSlug);
+      statesByCourse.set(prompt.courseSlug, states);
+    }
+
+    const state = states.get(prompt.lessonId);
+    views.push({
+      id: prompt.id,
+      courseSlug: prompt.courseSlug,
+      courseTitle: course?.title ?? prompt.courseSlug,
+      lessonId: prompt.lessonId,
+      lessonTitle: lesson?.title ?? prompt.lessonId,
+      title: prompt.title,
+      task: prompt.task,
+      words: prompt.words,
+      unlocked: isClosed(state),
+      last: lastByPrompt.get(prompt.id) ?? null,
+    });
+  }
+
+  const stats: WritingStats = {
+    done: countWrittenPrompts(ctx.db, userId),
+    total: prompts.length,
+    unlocked: views.filter((view) => view.unlocked).length,
+  };
+
+  return { prompts: views, stats };
+}
+
+/** Quello che il piano deve sapere del quaderno, senza costruire la pagina. */
+export interface WritingTaskState {
+  /** Consegne aperte che aspettano il primo scritto. */
+  pending: number;
+  /** Se oggi lo studente ha già scritto: una consegna al giorno basta. */
+  wroteToday: boolean;
+}
+
+export function writingTaskState(ctx: Ctx, userId: string, now: Date = new Date()): WritingTaskState {
+  const { prompts } = buildWriting(ctx, userId);
+  const row = ctx.db
+    .prepare('SELECT writing FROM daily_stats WHERE user_id = ? AND day = ?')
+    .get(userId, todayIso(now)) as { writing: number } | undefined;
+
+  return {
+    pending: prompts.filter((prompt) => prompt.unlocked && !prompt.last).length,
+    wroteToday: (row?.writing ?? 0) > 0,
+  };
+}
+
 export async function registerWritingRoutes(app: FastifyInstance, ctx: Ctx): Promise<void> {
   const auth = requireAuth(ctx);
-
-  const build = (userId: string): WritingResponse => {
-    const prompts = getWritingPrompts();
-    const entries = listWritingEntries(ctx.db, userId);
-    const lastByPrompt = new Map<string, WritingEntry>();
-    for (const entry of entries) {
-      if (!lastByPrompt.has(entry.promptId)) lastByPrompt.set(entry.promptId, entry);
-    }
-
-    // Lo stato delle lezioni si legge una volta per corso: le consegne sono
-    // poche, ma ripetere la query per ognuna sarebbe solo rumore.
-    const statesByCourse = new Map<string, Map<string, LessonState>>();
-    const views: WritingPromptView[] = [];
-
-    for (const prompt of prompts) {
-      const course = getCourse(prompt.courseSlug);
-      const lesson = course ? courseLessons(course).find((item) => item.id === prompt.lessonId) : undefined;
-
-      let states = statesByCourse.get(prompt.courseSlug);
-      if (!states) {
-        states = lessonStates(ctx, userId, prompt.courseSlug);
-        statesByCourse.set(prompt.courseSlug, states);
-      }
-
-      const state = states.get(prompt.lessonId);
-      views.push({
-        id: prompt.id,
-        courseSlug: prompt.courseSlug,
-        courseTitle: course?.title ?? prompt.courseSlug,
-        lessonId: prompt.lessonId,
-        lessonTitle: lesson?.title ?? prompt.lessonId,
-        title: prompt.title,
-        task: prompt.task,
-        words: prompt.words,
-        unlocked: isClosed(state),
-        last: lastByPrompt.get(prompt.id) ?? null,
-      });
-    }
-
-    const stats: WritingStats = {
-      done: countWrittenPrompts(ctx.db, userId),
-      total: prompts.length,
-      unlocked: views.filter((view) => view.unlocked).length,
-    };
-
-    return { prompts: views, stats };
-  };
+  const build = (userId: string): WritingResponse => buildWriting(ctx, userId);
 
   app.get('/api/writing', { preHandler: auth }, async (request: FastifyRequest, reply: FastifyReply) => {
     const { user } = request as AuthedRequest;

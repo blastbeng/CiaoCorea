@@ -22,7 +22,7 @@ Il portale è multi-utente: le iscrizioni si aprono con i codici invito
 
 | Pagina | Cosa c'è |
 | --- | --- |
-| `/` Percorso | il piano di oggi, corsi, avanzamento, ripassi dovuti |
+| `/` Percorso | il piano di oggi (lezione, ripassi, quaderno, dialogo), corsi, avanzamento |
 | `/corso/:slug` | unità e lezioni con lo stato di ciascuna |
 | `/corso/:slug/lezione/:lessonId` | teoria, brani di lettura, lessico, esercizi, test di salto |
 | `/dialoghi` e `/dialoghi/:slug` | conversazione scritta a copione |
@@ -54,9 +54,10 @@ Scelte che vale la pena ricordare:
 - **Database SQLite** (`node:sqlite`, WAL) in `./data/ciaocorea.db`. Nessun
   database da amministrare, backup = copiare un file.
 - **Il piano della giornata lo calcola il server** (`packages/engine/src/plan.ts`):
-  prima la lezione che apre il percorso, poi le parole in scadenza, e la
-  conversazione prende il posto dei ripassi quando non c'è nulla da ripassare. La
-  settimana parte di lunedì e un giorno di studio conta anche solo per i ripassi.
+  prima la lezione che apre il percorso, poi le parole in scadenza, poi il
+  quaderno, e la conversazione prende il posto che resta quando la giornata è
+  leggera. La settimana parte di lunedì e un giorno di studio conta anche solo per
+  i ripassi.
 - **Sessione con cookie httpOnly** `cc_session`, token salvato in DB solo come
   hash SHA-256, scadenza scorrevole. Login limitato per IP + identificativo.
 - **Contenuti in JSON tipizzato**, validati da `npm run content:check`: un
@@ -231,10 +232,16 @@ incontrano leggendo.
 ## Il piano della settimana
 
 Sopra ai corsi, la home mostra il piano di oggi: tre cose al massimo, ordinate
-per urgenza. Prima la lezione che apre il percorso, poi le parole in scadenza;
-la conversazione prende il loro posto quando non c'è niente da ripassare. Sotto,
-una riga dice come sta andando la settimana.
+per urgenza. Prima la lezione che apre il percorso, poi le parole in scadenza,
+poi il quaderno; la conversazione prende il posto che resta quando la giornata è
+leggera, cioè quando c'è al massimo un altro compito. Sotto, una riga dice come
+sta andando la settimana.
 
+- Il **quaderno** compare quando c'è almeno una consegna aperta e non ancora
+  scritta, e sparisce appena si scrive un testo: una consegna al giorno basta, e
+  non ha senso chiedere due volte la stessa cosa nella stessa giornata. La
+  consegna si apre quando la lezione che insegna quelle parole è passata o
+  saltata, quindi anche un corso saltato la fa entrare nel piano.
 - L'**obiettivo** sono i giorni di studio da chiudere fra lunedì e domenica. Lo
   sceglie lo studente nella pagina dei progressi, da 1 a 7; il server non lo
   impone e non lo cambia da sé.

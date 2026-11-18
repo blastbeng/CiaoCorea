@@ -81,6 +81,35 @@ describe('piano della giornata', () => {
     expect(senzaRipassi.tasks[1].href).toBe('/dialoghi/al-bar');
   });
 
+  it('mette il quaderno dopo i ripassi', () => {
+    const plan = buildDailyPlan({ ...base, writing: { pending: 3, wroteToday: false } });
+    expect(plan.tasks.map((task) => task.key)).toEqual(['lesson', 'reviews', 'writing']);
+    expect(plan.tasks[2].detail).toBe('3 consegne da scrivere');
+    expect(plan.tasks[2].href).toBe('/quaderno');
+
+    const singolare = buildDailyPlan({ ...base, writing: { pending: 1, wroteToday: false } });
+    expect(singolare.tasks[2].detail).toBe('1 consegna da scrivere');
+  });
+
+  it('non insiste sul quaderno se oggi si è già scritto', () => {
+    const plan = buildDailyPlan({ ...base, writing: { pending: 3, wroteToday: true } });
+    expect(plan.tasks.map((task) => task.key)).toEqual(['lesson', 'reviews']);
+
+    const vuoto = buildDailyPlan({ ...base, writing: { pending: 0, wroteToday: false } });
+    expect(vuoto.tasks.map((task) => task.key)).toEqual(['lesson', 'reviews']);
+  });
+
+  it('non aggiunge la conversazione a una giornata già piena', () => {
+    const dialogue = { slug: 'al-bar', title: 'Al bar' };
+    const plan = buildDailyPlan({
+      ...base,
+      dueCards: 0,
+      dialogue,
+      writing: { pending: 2, wroteToday: false },
+    });
+    expect(plan.tasks.map((task) => task.key)).toEqual(['lesson', 'writing']);
+  });
+
   it('conteggia solo i giorni della settimana in corso', () => {
     // Il 2026-11-13 è venerdì della settimana prima: non deve valere oggi.
     const plan = buildDailyPlan({ ...base, studyDays: ['2026-11-13', '2026-11-17', '2026-11-18'] });

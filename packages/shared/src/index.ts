@@ -662,7 +662,7 @@ export interface CareerTotals {
 
 /** Una cosa da fare oggi, con il link dove farla. */
 export interface PlanTask {
-  key: 'lesson' | 'reviews' | 'dialogue';
+  key: 'lesson' | 'reviews' | 'writing' | 'dialogue';
   label: string;
   detail: string;
   href: string;

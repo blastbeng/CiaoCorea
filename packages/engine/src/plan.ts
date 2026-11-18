@@ -36,6 +36,11 @@ export interface PlanSource {
   weeklyGoal: number;
   /** Giorni `YYYY-MM-DD` in cui lo studente ha studiato; anche fuori settimana. */
   studyDays: readonly string[];
+  /**
+   * Il quaderno: consegne aperte e non ancora scritte, e se oggi si è già
+   * scritto qualcosa. Uno scritto fatto vale la consegna della giornata.
+   */
+  writing?: { pending: number; wroteToday: boolean } | null;
   /** Primi dialogo aperto e non legato a una lezione da fare, se c'è. */
   dialogue?: { slug: string; title: string } | null;
   courses?: ReadonlyArray<{ slug: string; title: string }>;
@@ -46,9 +51,10 @@ export interface PlanSource {
  * Il piano della giornata.
  *
  * La priorità è una sola: prima la lezione (è lì che entra materiale nuovo),
- * poi i ripassi in scadenza (è lì che il materiale non si perde), e la
- * conversazione come terza cosa, nei giorni leggeri: un dialogo da portare a
- * casa è il modo migliore per chiudere una giornata in cui non c'è altro.
+ * poi i ripassi in scadenza (è lì che il materiale non si perde), poi il
+ * quaderno (è lì che il materiale diventa produzione), e la conversazione per
+ * ultima, nei giorni leggeri: un dialogo da portare a casa è il modo migliore
+ * per chiudere una giornata in cui non c'è altro.
  *
  * Non inventa lavoro: se non c'è niente in programma lo dice, e lega il
  * discorso all'obiettivo settimanale, che è l'unica cosa rimasta da fare.
@@ -91,9 +97,25 @@ export function buildDailyPlan(source: PlanSource): StudyPlan {
     });
   }
 
+  // Il quaderno è il passo che trasforma il riconoscimento in produzione: si
+  // propone una volta al giorno, quando c'è una consegna aperta e non si è
+  // ancora scritto niente.
+  if (source.writing && source.writing.pending > 0 && !source.writing.wroteToday) {
+    tasks.push({
+      key: 'writing',
+      label: 'Quaderno',
+      detail:
+        source.writing.pending === 1
+          ? '1 consegna da scrivere'
+          : `${source.writing.pending} consegne da scrivere`,
+      href: '/quaderno',
+    });
+  }
+
   // La conversazione prende spazio solo quando la giornata è leggera: non ha
-  // senso metterla sopra ai ripassi che scadono.
-  if (source.dueCards === 0 && source.dialogue) {
+  // senso metterla sopra ai ripassi che scadono, né dopo una lezione e un
+  // quaderno già in programma.
+  if (source.dueCards === 0 && tasks.length < 2 && source.dialogue) {
     tasks.push({
       key: 'dialogue',
       label: 'Conversazione',

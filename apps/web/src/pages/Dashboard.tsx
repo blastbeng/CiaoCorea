@@ -37,6 +37,7 @@ function CourseCard({ course }: { course: CourseView }) {
 const TASK_ACTION: Record<PlanTask['key'], string> = {
   lesson: 'Apri la lezione',
   reviews: 'Ripassa',
+  writing: 'Apri il quaderno',
   dialogue: 'Conversare',
 };
 
