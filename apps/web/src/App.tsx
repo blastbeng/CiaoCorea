@@ -8,6 +8,7 @@ import { DialoguePage } from './pages/DialoguePage';
 import { DialoguesPage } from './pages/DialoguesPage';
 import { LessonPage } from './pages/LessonPage';
 import { Login } from './pages/Login';
+import { MistakesPage } from './pages/MistakesPage';
 import { NotFound } from './pages/NotFound';
 import { ProfilePage } from './pages/ProfilePage';
 import { Register } from './pages/Register';
@@ -66,6 +67,7 @@ export default function App() {
         <Route path="dialoghi" element={<DialoguesPage />} />
         <Route path="dialoghi/:slug" element={<DialoguePage />} />
         <Route path="ripassi" element={<ReviewPage />} />
+        <Route path="errori" element={<MistakesPage />} />
         <Route path="dizionario" element={<VocabularyPage />} />
         <Route path="quaderno" element={<WritingPage />} />
         <Route path="progressi" element={<ProfilePage />} />

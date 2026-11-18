@@ -5,12 +5,13 @@ italiano. Si lavora su lettura e scrittura: jamo, sillabe, 받침, lessico,
 comprensione. Il percorso è a tappe, con esercizi corretti dal server e la
 possibilità di saltare una lezione già conosciuta superando un test.
 
-Oltre al percorso ci sono quattro stanze: il **dizionario** di tutte le parole
+Oltre al percorso ci sono cinque stanze: il **dizionario** di tutte le parole
 del curricolo, la **coda di ripasso** (SRS), il **quaderno** dove si scrivono
-frasi proprie confrontandole con un modello, e la pagina dei **progressi**, con
-le statistiche complessive e il cambio della password. In cima alla home c'è il
-**piano di oggi**: le poche cose da fare, in ordine, sopra all'obiettivo della
-settimana che si sceglie lo studente.
+frasi proprie confrontandole con un modello, la **banca degli errori** con gli
+esercizi sbagliati da rifare, e la pagina dei **progressi**, con le statistiche
+complessive e il cambio della password. In cima alla home c'è il **piano di
+oggi**: le poche cose da fare, in ordine, sopra all'obiettivo della settimana che
+si sceglie lo studente.
 
 Il portale è multi-utente: le iscrizioni si aprono con i codici invito
 (`REGISTRATION_MODE=invite`), si lasciano aperte (`open`) o si tengono chiuse
@@ -27,6 +28,7 @@ Il portale è multi-utente: le iscrizioni si aprono con i codici invito
 | `/dizionario` | ricerca nelle parole del curricolo, con filtri per corso |
 | `/quaderno` | dodici consegne di scrittura: si scrive la frase, poi si confronta con il modello |
 | `/ripassi` | carte in scadenza, giudizio `ho saputo / quasi / non ricordo`; il numero nella barra in alto dice quante ne restano |
+| `/errori` | gli esercizi che hai sbagliato, uno alla volta: azzeccarli li toglie dalla banca |
 | `/progressi` | totali, per corso, parole SRS, obiettivo della settimana, ritmo dei giorni, password |
 | `/registrazione` | nuovo account: nome, email, password, ed eventuale codice invito |
 
@@ -152,7 +154,7 @@ le due della registrazione.
 | POST | `/api/courses/:slug/lessons/:id/attempts` | consegna (`mode: lesson \| skip`) |
 | GET | `/api/courses/:slug/skip-test` | prova per saltare il corso (domande fisse, una per lezione) |
 | POST | `/api/courses/:slug/skip` | consegna la prova del corso: superata chiude tutte le lezioni |
-| GET | `/api/progress/due` | solo il numero dei ripassi in scadenza, per il badge della barra in alto |
+| GET | `/api/progress/due` | solo i due numeri dei badge della barra in alto: `dueCards` e `mistakes` |
 | GET | `/api/review` | carte in scadenza |
 | POST | `/api/review/:cardId` | giudizio `0 \| 1 \| 2` |
 | GET | `/api/dialogues` | elenco dei dialoghi con lo stato di avanzamento |
@@ -161,6 +163,8 @@ le due della registrazione.
 | POST | `/api/dialogues/:slug/restart` | riparte da capo, azzerando il progresso del dialogo |
 | GET | `/api/writing` | consegne del quaderno, con lo stato di sblocco e l'ultima prova: senza modello |
 | POST | `/api/writing/:promptId` | confronta il testo con il modello: `verdict`, parole mancanti, modello e nota |
+| GET | `/api/mistakes` | banca degli errori: esercizi sbagliati (senza soluzione), lezione di origine, `wrongCount` |
+| POST | `/api/mistakes/:exerciseId` | rifà un esercizio della banca: correzione, `wrongCount` (`null` = uscito), conteggi |
 
 ## Come è organizzato il percorso
 
@@ -286,3 +290,29 @@ patto è un altro, ed è dichiarato allo studente.
 - Ogni invio si salva in `writing_entries` e conta come giornata di studio
   (`daily_stats.writing`), perché una serata passata a scrivere è studio come
   una serie di ripassi.
+
+## Errori
+
+Il ripasso SRS lavora sulle parole; nessuna delle altre pagine guarda a quello
+che **questo** studente ha sbagliato. La banca degli errori lo fa: ogni risposta
+sbagliata in una lezione entra in `exercise_mistakes`, e resta lì finché non la
+si azzecca.
+
+- Si popola da sola: `recordAttempt` aggiorna la banca dentro la stessa
+  transazione che registra il tentativo, quindi una lezione promossa e la sua
+  banca non possono raccontare cose diverse.
+- Il conto per esercizio (`wrong_count`) distingue la distrazione dall' errore
+  vero: la pagina scrive «sbagliato tre volte» e non finge che sia la prima.
+- Azzeccarlo lo toglie dalla banca; sbagliarlo di nuovo alza il conto. Non c'è
+  voto e non si sblocca nulla: è manutenzione, non un esame.
+- Il **test di salto** non entra in banca, né quello della lezione né quello del
+  corso: è una prova di posizionamento, e chi salta di proposito non deve
+  ritrovarsi dodici esercizi da rifare come punizione.
+- Gli esercizi si ricostruiscono dal curricolo con `findExercise(id)` — gli id
+  sono unici in tutto il curricolo — e tornano al client **senza soluzione**,
+  come in lezione: la correzione avviene sul server con la stessa
+  `gradeExercise`.
+- Rifare un errore conta fra gli esercizi del giorno (`daily_stats.exercises`),
+  così la banca non è tempo sottratto all'abitudine.
+- La barra in alto mostra quanti esercizi aspettano, e la home lo dice con un
+  link: una banca piena che nessuno vede è una banca che non serve.

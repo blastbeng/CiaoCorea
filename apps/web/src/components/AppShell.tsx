@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { api, DUE_CHANGED } from '../api';
+import { api, PENDING_CHANGED } from '../api';
 import { useAuth } from '../auth';
 
 export function AppShell({ children }: { children: ReactNode }) {
@@ -8,27 +8,30 @@ export function AppShell({ children }: { children: ReactNode }) {
   const navigate = useNavigate();
   const location = useLocation();
   const [dueCards, setDueCards] = useState(0);
+  const [mistakes, setMistakes] = useState(0);
 
-  // Il badge è un promemoria, non un dato critico: se la richiesta fallisce si
-  // tiene il numero di prima invece di mostrare un errore nella shell.
+  // I badge sono promemoria, non dati critici: se la richiesta fallisce si
+  // tengono i numeri di prima invece di mostrare un errore nella shell.
   useEffect(() => {
     let active = true;
 
     const refresh = () =>
       api
         .due()
-        .then(({ dueCards: count }) => {
-          if (active) setDueCards(count);
+        .then((counts) => {
+          if (!active) return;
+          setDueCards(counts.dueCards);
+          setMistakes(counts.mistakes);
         })
         .catch(() => undefined);
 
     refresh();
-    window.addEventListener(DUE_CHANGED, refresh);
+    window.addEventListener(PENDING_CHANGED, refresh);
     window.addEventListener('focus', refresh);
 
     return () => {
       active = false;
-      window.removeEventListener(DUE_CHANGED, refresh);
+      window.removeEventListener(PENDING_CHANGED, refresh);
       window.removeEventListener('focus', refresh);
     };
   }, [location.pathname]);
@@ -60,6 +63,17 @@ export function AppShell({ children }: { children: ReactNode }) {
             {dueCards > 0 ? (
               <span className="nav-badge" aria-label={`${dueCards} ripassi in scadenza`}>
                 {dueCards > 99 ? '99+' : dueCards}
+              </span>
+            ) : null}
+          </NavLink>
+          <NavLink to="/errori">
+            Errori
+            {mistakes > 0 ? (
+              <span
+                className="nav-badge nav-badge--warn"
+                aria-label={`${mistakes} esercizi da rifare`}
+              >
+                {mistakes > 99 ? '99+' : mistakes}
               </span>
             ) : null}
           </NavLink>

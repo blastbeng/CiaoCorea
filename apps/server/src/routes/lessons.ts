@@ -39,6 +39,7 @@ import {
 } from '../repo/progress';
 import { getWeeklyGoal } from '../repo/users';
 import { nextOpenDialogue } from '../repo/dialogues';
+import { countMistakes } from '../repo/mistakes';
 
 function progressMap(ctx: Ctx, userId: string, courseSlug: string): ProgressRow[] {
   return getProgress(ctx.db, userId, courseSlug);
@@ -50,8 +51,13 @@ function courseViews(ctx: Ctx, userId: string): CourseView[] {
   );
 }
 
+/**
+ * La sintesi del percorso. Gli errori in banca si contano qui, non nel motore:
+ * il motore non conosce il database, e la pagina deve poter dire quanti
+ * esercizi aspettano senza una seconda richiesta.
+ */
 function summaryOf(ctx: Ctx, userId: string, views: CourseView[]): ProgressSummary {
-  return summarize(views, streakDays(ctx.db, userId));
+  return summarize(views, streakDays(ctx.db, userId), countMistakes(ctx.db, userId));
 }
 
 /**
@@ -346,7 +352,10 @@ export async function registerLessonRoutes(app: FastifyInstance, ctx: Ctx): Prom
   // si scarica quando lo studente apre i ripassi.
   app.get('/api/progress/due', { preHandler: auth }, async (request, reply) => {
     const { user } = request as AuthedRequest;
-    const body: DueCountResponse = { dueCards: countDueCards(ctx.db, user.id) };
+    const body: DueCountResponse = {
+      dueCards: countDueCards(ctx.db, user.id),
+      mistakes: countMistakes(ctx.db, user.id),
+    };
     return reply.send(body);
   });
 

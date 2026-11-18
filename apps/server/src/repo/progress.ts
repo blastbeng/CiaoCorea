@@ -4,6 +4,7 @@ import type { ProgressRow } from '@ciaocorea/engine';
 import { scheduleCard, type SrsGrade } from '@ciaocorea/engine';
 import type { Db } from '../db/client';
 import { nowIso, todayIso } from '../db/client';
+import { syncMistakes } from './mistakes';
 
 interface ProgressDbRow {
   lesson_id: string;
@@ -162,6 +163,13 @@ export function recordAttempt(db: Db, input: AttemptInput): AttemptOutcome {
          exercises = daily_stats.exercises + excluded.exercises,
          correct = daily_stats.correct + excluded.correct`,
     ).run(input.userId, day, completedNow ? 1 : 0, input.total, input.correct);
+
+    // Gli errori di una lezione entrano in banca; quelli di un test di salto
+    // no: quel test serve a decidere se si può saltare, e chi salta un corso
+    // di proposito non deve ritrovarsi dodici esercizi da rifare come punizione.
+    if (input.mode === 'lesson') {
+      syncMistakes(db, input.userId, input.courseSlug, input.lessonId, input.results, timestamp);
+    }
 
     // Anche una lezione saltata genera ripassi: saltare non significa sapere.
     let reviewsCreated = 0;

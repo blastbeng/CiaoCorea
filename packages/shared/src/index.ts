@@ -251,12 +251,53 @@ export interface ReviewResponse {
 }
 
 /**
- * Il solo numero dei ripassi in scadenza: la shell lo chiede a ogni cambio di
- * pagina per tenere il badge aggiornato, e tirarsi dietro quaranta carte per
- * scrivere una cifra sarebbe sprecato.
+ * I due numeri che la shell mostra accanto alle voci: ripassi in scadenza ed
+ * errori da rifare. Li chiede a ogni cambio di pagina per tenere i badge
+ * aggiornati, e tirarsi dietro quaranta carte per scrivere due cifre sarebbe
+ * sprecato.
  */
 export interface DueCountResponse {
   dueCards: number;
+  mistakes: number;
+}
+
+/* ------------------------------------------------------------------------- *
+ * Il ripasso degli errori: gli esercizi che questo studente ha sbagliato
+ * restano in una banca finché non li azzecca. Non è il ripasso delle parole
+ * (quello è SRS, per parola): qui torna l'esercizio intero, com'era, con il
+ * conto di quante volte è andato storto.
+ * ------------------------------------------------------------------------- */
+
+/** Un esercizio sbagliato, con la lezione da cui viene e quante volte è caduto. */
+export interface MistakeItem {
+  exercise: PublicExercise;
+  courseSlug: string;
+  courseTitle: string;
+  lessonId: string;
+  lessonTitle: string;
+  /** Quante volte è stato sbagliato: 2 significa che non era distrazione. */
+  wrongCount: number;
+  lastWrongAt: string;
+}
+
+export interface MistakesStats {
+  /** Esercizi ancora in banca. */
+  total: number;
+  /** Lezioni da cui arrivano: dicono dove tornare a rileggere. */
+  lessons: number;
+}
+
+export interface MistakesResponse {
+  items: MistakeItem[];
+  stats: MistakesStats;
+}
+
+export interface MistakeAnswerResponse {
+  /** La correzione, con la risposta attesa: qui è lecito, è già stata data. */
+  result: ExerciseResult;
+  /** Restano in banca con questo conto; `null` se l'esercizio è uscito. */
+  wrongCount: number | null;
+  stats: MistakesStats;
 }
 
 export interface LoginResponse {
@@ -409,6 +450,8 @@ export interface ProgressSummary {
   lessonsTotal: number;
   percent: number;
   streakDays: number;
+  /** Esercizi sbagliati e non ancora rifatti: 0 quando la banca è vuota. */
+  mistakesOpen: number;
   nextLesson: {
     courseSlug: string;
     lessonId: string;

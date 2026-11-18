@@ -190,6 +190,17 @@ button {
   color: var(--ink);
 }
 
+/* Gli errori da rifare: un colore diverso dai ripassi, perché sono due cose
+   diverse — le carte tornano da sole, gli errori aspettano te. */
+.nav-badge--warn {
+  background: var(--warn);
+}
+
+.app-nav a.active .nav-badge--warn {
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+
 .user-chip {
   display: flex;
   align-items: center;

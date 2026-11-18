@@ -19,6 +19,7 @@ import {
   streakDays,
 } from '../repo/progress';
 import { findUserById, getWeeklyGoal, setWeeklyGoal } from '../repo/users';
+import { countMistakes } from '../repo/mistakes';
 
 /**
  * La pagina dei progressi: una sola lettura che mette insieme corsi, ripassi,
@@ -35,7 +36,7 @@ export async function registerProfileRoutes(app: FastifyInstance, ctx: Ctx): Pro
     const views = getCourses().map((course) =>
       buildCourseView({ course, progress: getProgress(db, user.id, course.slug) }),
     );
-    const summary = summarize(views, streakDays(db, user.id));
+    const summary = summarize(views, streakDays(db, user.id), countMistakes(db, user.id));
 
     const totals = lifetimeTotals(db, user.id);
     const srs = srsStats(db, user.id);

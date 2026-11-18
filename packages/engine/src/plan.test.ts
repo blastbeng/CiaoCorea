@@ -14,6 +14,7 @@ const summary = (over: Partial<ProgressSummary> = {}): ProgressSummary => ({
   lessonsTotal: 24,
   percent: 12,
   streakDays: 2,
+  mistakesOpen: 0,
   nextLesson: {
     courseSlug: 'grammatica',
     lessonId: 'gram-03',

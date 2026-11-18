@@ -1,4 +1,4 @@
-import type { Course, Dialogue, Lesson, VocabEntry, WritingPrompt } from '@ciaocorea/shared';
+import type { Course, Dialogue, Exercise, Lesson, VocabEntry, WritingPrompt } from '@ciaocorea/shared';
 import hangulRaw from '../data/courses/hangul.json';
 import grammaticaRaw from '../data/courses/grammatica.json';
 import lessicoRaw from '../data/courses/lessico.json';
@@ -74,6 +74,35 @@ export function courseLessons(course: Course): Lesson[] {
 
 export function findLesson(course: Course, lessonId: string): Lesson | undefined {
   return courseLessons(course).find((lesson) => lesson.id === lessonId || lesson.slug === lessonId);
+}
+
+/** Un esercizio con la lezione e il corso da cui viene. */
+export interface ExerciseLocation {
+  exercise: Exercise;
+  course: Course;
+  lesson: Lesson;
+}
+
+/**
+ * La banca degli errori conserva solo un id, e per rimettere in pagina
+ * l'esercizio servono il testo, la consegna e da dove arriva. Gli id degli
+ * esercizi sono unici in tutto il curricolo (i test lo verificano), quindi una
+ * mappa li trova tutti in un colpo: si costruisce una volta e si tiene.
+ */
+let cachedExercises: Map<string, ExerciseLocation> | null = null;
+
+export function findExercise(exerciseId: string): ExerciseLocation | undefined {
+  if (!cachedExercises) {
+    cachedExercises = new Map();
+    for (const course of getCourses()) {
+      for (const lesson of courseLessons(course)) {
+        for (const exercise of lesson.exercises) {
+          cachedExercises.set(exercise.id, { exercise, course, lesson });
+        }
+      }
+    }
+  }
+  return cachedExercises.get(exerciseId);
 }
 
 /**

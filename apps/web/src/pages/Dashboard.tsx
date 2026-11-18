@@ -124,6 +124,18 @@ export function Dashboard() {
 
       <PlanCard plan={plan} />
 
+      {/* Gli errori non entrano nel piano: il piano decide cosa studiare, la
+          banca dice cosa hai già sbagliato. Sono due cose diverse e si vedono
+          diverse, ma se la banca non è vuota vale la pena dirlo qui. */}
+      {summary.mistakesOpen > 0 ? (
+        <p className="alert alert--info">
+          {summary.mistakesOpen === 1
+            ? 'Un esercizio sbagliato aspetta di essere rifatto.'
+            : `${summary.mistakesOpen} esercizi sbagliati aspettano di essere rifatti.`}{' '}
+          <Link to="/errori">Rifai gli errori</Link>
+        </p>
+      ) : null}
+
       <section className="grid grid--3">
         <div className="stat">
           <div className="stat-value">{summary.percent}%</div>

@@ -5,6 +5,7 @@ import type { FastifyInstance } from 'fastify';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import {
   courseLessons,
+  findExercise,
   findLesson,
   getCourses,
   getCourse,
@@ -21,6 +22,8 @@ import type {
   DialogueListResponse,
   DueCountResponse,
   LessonDetail,
+  MistakeAnswerResponse,
+  MistakesResponse,
   ProfileResponse,
   ReviewResponse,
   VocabularyResponse,
@@ -82,6 +85,38 @@ async function passLesson(cookie: string, slug: string, lessonId: string): Promi
   expect(response.statusCode).toBe(200);
   const body = response.json() as { attempt: { passed: boolean; score: number } };
   expect(body.attempt.passed, `${lessonId} promossa?`).toBe(true);
+}
+
+/**
+ * Un tentativo di lezione con le prime `wrong` risposte sbagliate apposta. Le
+ * soluzioni delle altre arrivano dal curricolo: serve a riempire la banca degli
+ * errori senza dover indovinare quali domande cadono.
+ */
+async function attemptWithWrong(
+  cookie: string,
+  slug: string,
+  lessonId: string,
+  wrong: number,
+): Promise<string[]> {
+  const course = getCourse(slug);
+  const lesson = course ? findLesson(course, lessonId) : undefined;
+  expect(lesson, `lezione ${lessonId}`).toBeDefined();
+
+  const exercises = lesson?.exercises ?? [];
+  const wrongIds = exercises.slice(0, wrong).map((exercise) => exercise.id);
+  const answers = exercises.map((exercise) => ({
+    exerciseId: exercise.id,
+    response: wrongIds.includes(exercise.id) ? 'risposta-sbagliata' : exercise.answer,
+  }));
+
+  const response = await app.inject({
+    method: 'POST',
+    url: `/api/courses/${slug}/lessons/${lessonId}/attempts`,
+    headers: { cookie },
+    payload: { mode: 'lesson', answers, durationMs: 30000 },
+  });
+  expect(response.statusCode).toBe(200);
+  return wrongIds;
 }
 
 /**
@@ -895,7 +930,7 @@ describe('piano di studio', () => {
     const vuoto = await app.inject({ method: 'GET', url: '/api/progress/due', headers: { cookie } });
     expect(vuoto.statusCode).toBe(200);
     // Il badge chiede una cifra: niente carte, niente elenco.
-    expect(vuoto.json()).toEqual({ dueCards: 0 });
+    expect(vuoto.json()).toEqual({ dueCards: 0, mistakes: 0 });
 
     await passLesson(cookie, 'hangul', 'hangul-01');
 
@@ -1158,5 +1193,145 @@ describe('quaderno di scrittura', () => {
 
     const dashboard = await app.inject({ method: 'GET', url: '/api/dashboard', headers: { cookie } });
     expect(coursePayload(dashboard.body).plan.daysStudied).toBe(1);
+  });
+});
+
+describe('banca degli errori', () => {
+  it('chiede la sessione', async () => {
+    const response = await app.inject({ method: 'GET', url: '/api/mistakes' });
+    expect(response.statusCode).toBe(401);
+  });
+
+  it('un errore di lezione entra in banca, senza portarsi dietro la soluzione', async () => {
+    const cookie = await login();
+    const [wrongId] = await attemptWithWrong(cookie, 'hangul', 'hangul-01', 1);
+
+    const response = await app.inject({ method: 'GET', url: '/api/mistakes', headers: { cookie } });
+    expect(response.statusCode).toBe(200);
+
+    const body = response.json() as MistakesResponse;
+    expect(body.stats).toEqual({ total: 1, lessons: 1 });
+    expect(body.items[0]?.exercise.id).toBe(wrongId);
+    expect(body.items[0]?.wrongCount).toBe(1);
+    expect(body.items[0]?.courseTitle).toBeTruthy();
+    expect(body.items[0]?.lessonTitle).toBeTruthy();
+
+    // L'esercizio torna com'era nella lezione, cioè senza risposta: la
+    // correzione avviene sul server anche qui.
+    expect(response.body).not.toContain('"answer"');
+    expect(response.body).not.toContain('"accept"');
+  });
+
+  it('sbagliarlo di nuovo alza il conto, azzeccarlo lo toglie dalla banca', async () => {
+    const cookie = await login();
+    const [wrongId] = await attemptWithWrong(cookie, 'hangul', 'hangul-01', 1);
+    const found = findExercise(wrongId ?? '');
+    expect(found).toBeDefined();
+
+    const again = await app.inject({
+      method: 'POST',
+      url: `/api/mistakes/${wrongId}`,
+      headers: { cookie },
+      payload: { response: 'ancora-sbagliata' },
+    });
+    expect(again.statusCode).toBe(200);
+    const retry = again.json() as MistakeAnswerResponse;
+    expect(retry.result.correct).toBe(false);
+    expect(retry.wrongCount).toBe(2);
+    expect(retry.result.expected).toBe(found?.exercise.answer);
+    expect(retry.stats.total).toBe(1);
+
+    const right = await app.inject({
+      method: 'POST',
+      url: `/api/mistakes/${wrongId}`,
+      headers: { cookie },
+      payload: { response: found?.exercise.answer ?? '' },
+    });
+    expect(right.statusCode).toBe(200);
+    const fixed = right.json() as MistakeAnswerResponse;
+    expect(fixed.result.correct).toBe(true);
+    expect(fixed.wrongCount).toBeNull();
+    expect(fixed.stats.total).toBe(0);
+
+    const empty = await app.inject({ method: 'GET', url: '/api/mistakes', headers: { cookie } });
+    expect((empty.json() as MistakesResponse).items).toEqual([]);
+  });
+
+  it('rifare gli errori è studiare e la sintesi lo racconta', async () => {
+    const cookie = await login();
+    const [wrongId] = await attemptWithWrong(cookie, 'hangul', 'hangul-01', 2);
+
+    const before = await app.inject({ method: 'GET', url: '/api/profile', headers: { cookie } });
+    const beforeBody = before.json() as ProfileResponse;
+    expect(beforeBody.summary.mistakesOpen).toBe(2);
+
+    const found = findExercise(wrongId ?? '');
+    await app.inject({
+      method: 'POST',
+      url: `/api/mistakes/${wrongId}`,
+      headers: { cookie },
+      payload: { response: found?.exercise.answer ?? '' },
+    });
+
+    const after = await app.inject({ method: 'GET', url: '/api/profile', headers: { cookie } });
+    const afterBody = after.json() as ProfileResponse;
+    expect(afterBody.summary.mistakesOpen).toBe(1);
+    // L'esercizio rifatto conta fra gli esercizi fatti, altrimenti una serata
+    // passata a correggersi non farebbe avanzare l'abitudine.
+    expect(afterBody.totals.exercises).toBe(beforeBody.totals.exercises + 1);
+  });
+
+  it('una lezione rifatta tutta bene svuota la banca', async () => {
+    const cookie = await login();
+    await attemptWithWrong(cookie, 'hangul', 'hangul-01', 1);
+
+    await passLesson(cookie, 'hangul', 'hangul-01');
+
+    const response = await app.inject({ method: 'GET', url: '/api/mistakes', headers: { cookie } });
+    expect((response.json() as MistakesResponse).stats.total).toBe(0);
+  });
+
+  it('il test di salto non riempie la banca', async () => {
+    const cookie = await login();
+    const test = await app.inject({
+      method: 'GET',
+      url: '/api/courses/hangul/skip-test',
+      headers: { cookie },
+    });
+    expect(test.statusCode).toBe(200);
+    const body = test.json() as CourseSkipTest;
+
+    const attempt = await app.inject({
+      method: 'POST',
+      url: '/api/courses/hangul/skip',
+      headers: { cookie },
+      payload: {
+        answers: body.exercises.map((exercise) => ({
+          exerciseId: exercise.id,
+          response: 'risposta-sbagliata',
+        })),
+        durationMs: 20000,
+      },
+    });
+    expect(attempt.statusCode).toBe(200);
+
+    const mistakes = await app.inject({
+      method: 'GET',
+      url: '/api/mistakes',
+      headers: { cookie },
+    });
+    expect((mistakes.json() as MistakesResponse).stats.total).toBe(0);
+  });
+
+  it("non si risponde a un esercizio che non è in banca", async () => {
+    const cookie = await login();
+    const response = await app.inject({
+      method: 'POST',
+      url: '/api/mistakes/hangul-01-e1',
+      headers: { cookie },
+      payload: { response: 'ㄱ' },
+    });
+    expect(response.statusCode).toBe(404);
+    expect(response.json()).toMatchObject({ error: 'not_found' });
   });
 });

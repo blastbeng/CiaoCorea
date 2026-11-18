@@ -115,7 +115,16 @@ export function nextLessonOf(views: readonly CourseView[]): ProgressSummary['nex
   return null;
 }
 
-export function summarize(views: readonly CourseView[], streakDays: number): ProgressSummary {
+/**
+ * `mistakesOpen` arriva da fuori (la banca degli errori vive nel database che il
+ * motore non conosce) e ha un valore di default: una sintesi senza errori è una
+ * sintesi con zero errori, non una sintesi incompleta.
+ */
+export function summarize(
+  views: readonly CourseView[],
+  streakDays: number,
+  mistakesOpen = 0,
+): ProgressSummary {
   const lessonsPassed = views.reduce((sum, course) => sum + course.stats.passed, 0);
   const lessonsSkipped = views.reduce((sum, course) => sum + course.stats.skipped, 0);
   const lessonsTotal = views.reduce((sum, course) => sum + course.stats.lessons, 0);
@@ -126,6 +135,7 @@ export function summarize(views: readonly CourseView[], streakDays: number): Pro
     lessonsTotal,
     percent: lessonsTotal === 0 ? 0 : Math.round(((lessonsPassed + lessonsSkipped) / lessonsTotal) * 100),
     streakDays,
+    mistakesOpen,
     nextLesson: nextLessonOf(views),
   };
 }

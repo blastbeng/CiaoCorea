@@ -9,6 +9,8 @@ import type {
   LessonDetail,
   ProfileResponse,
   ProgressSummary,
+  MistakeAnswerResponse,
+  MistakesResponse,
   ReviewResponse,
   SessionUser,
   VocabularyResponse,
@@ -52,13 +54,15 @@ async function request<T>(url: string, init: RequestInit = {}): Promise<T> {
 }
 
 /**
- * Il badge dei ripassi vive nella shell e non nella pagina: quando una pagina
- * consuma una carta lo dice qui, invece di costringere la shell a ricaricare.
+ * I badge della shell (ripassi in scadenza, errori da rifare) non vivono nella
+ * pagina che li consuma: quando una pagina chiude una carta o un errore lo dice
+ * qui, e la shell rilegge i conteggi. I due numeri si muovono insieme spesso,
+ * quindi basta un evento solo: "è cambiato quello che mi aspetta".
  */
-export const DUE_CHANGED = 'ciaocorea:due-changed';
+export const PENDING_CHANGED = 'ciaocorea:pending-changed';
 
-export function announceDue(dueCards: number): void {
-  window.dispatchEvent(new CustomEvent<number>(DUE_CHANGED, { detail: dueCards }));
+export function announcePending(): void {
+  window.dispatchEvent(new Event(PENDING_CHANGED));
 }
 
 export interface SubmitAnswer {
@@ -150,6 +154,15 @@ export const api = {
     request<WritingCheckResponse>(`/api/writing/${promptId}`, {
       method: 'POST',
       body: JSON.stringify({ text }),
+    }),
+
+  /** La banca degli errori: gli esercizi sbagliati e non ancora rifatti. */
+  mistakes: () => request<MistakesResponse>('/api/mistakes'),
+
+  answerMistake: (exerciseId: string, response: string) =>
+    request<MistakeAnswerResponse>(`/api/mistakes/${exerciseId}`, {
+      method: 'POST',
+      body: JSON.stringify({ response }),
     }),
 
   profile: () => request<ProfileResponse>('/api/profile'),

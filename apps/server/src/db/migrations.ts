@@ -158,6 +158,25 @@ export const MIGRATIONS: Migration[] = [
       ALTER TABLE daily_stats ADD COLUMN writing INTEGER NOT NULL DEFAULT 0;
     `,
   },
+  {
+    id: '006-mistakes',
+    sql: `
+      -- La banca degli errori. Una riga per esercizio sbagliato: se lo studente
+      -- ci ricasca, il conto sale, così "sbagliato due volte" non si confonde
+      -- con una distrazione. Azzeccarlo lo toglie dalla banca.
+      CREATE TABLE exercise_mistakes (
+        user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+        exercise_id TEXT NOT NULL,
+        course_slug TEXT NOT NULL,
+        lesson_id TEXT NOT NULL,
+        wrong_count INTEGER NOT NULL DEFAULT 1,
+        created_at TEXT NOT NULL,
+        last_wrong_at TEXT NOT NULL,
+        PRIMARY KEY (user_id, exercise_id)
+      );
+      CREATE INDEX exercise_mistakes_user_idx ON exercise_mistakes(user_id, last_wrong_at);
+    `,
+  },
 ];
 
 export function migrate(db: DatabaseSync): void {

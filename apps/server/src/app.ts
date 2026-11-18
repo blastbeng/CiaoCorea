@@ -9,6 +9,7 @@ import type { Ctx } from './http/context';
 import { registerAuthRoutes } from './routes/auth';
 import { registerDialogueRoutes } from './routes/dialogues';
 import { registerLessonRoutes } from './routes/lessons';
+import { registerMistakeRoutes } from './routes/mistakes';
 import { registerProfileRoutes } from './routes/profile';
 import { registerVocabularyRoutes } from './routes/vocabulary';
 import { registerWritingRoutes } from './routes/writing';
@@ -92,6 +93,7 @@ export async function buildApp({ db, config, logger = false }: BuildAppOptions):
   await registerDialogueRoutes(app, ctx);
   await registerVocabularyRoutes(app, ctx);
   await registerWritingRoutes(app, ctx);
+  await registerMistakeRoutes(app, ctx);
   await registerProfileRoutes(app, ctx);
 
   const indexFile = path.join(config.webDist, 'index.html');
