@@ -40,19 +40,12 @@ function Shell() {
 }
 
 export default function App() {
-  const { state } = useAuth();
-
   return (
     <Routes>
-      <Route
-        path="/login"
-        element={state.status === 'authenticated' ? <Navigate to="/" replace /> : <Login />}
-      />
-
-      <Route
-        path="/registrazione"
-        element={state.status === 'authenticated' ? <Navigate to="/" replace /> : <Register />}
-      />
+      {/* Sempre raggiungibili: sono la schermata dei profili, non solo
+          l'accesso. Chi sta studiando può cambiare utente da qui. */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/registrazione" element={<Register />} />
 
       <Route
         element={

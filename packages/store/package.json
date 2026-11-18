@@ -1,0 +1,18 @@
+{
+  "name": "@ciaocorea/store",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "dependencies": {
+    "@ciaocorea/curriculum": "*",
+    "@ciaocorea/engine": "*",
+    "@ciaocorea/shared": "*",
+    "sql.js": "^1.13.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/sql.js": "^1.4.11"
+  }
+}

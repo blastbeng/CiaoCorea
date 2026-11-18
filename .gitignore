@@ -1,11 +1,8 @@
 .aider*
 node_modules/
 dist/
-# Solo il database di runtime: `data/` senza slash iniziale ignorava anche i
-# contenuti del curricolo in packages/curriculum/data.
-/data/
-.env
-.env.local
+# Niente più server: i dati vivono nel browser (IndexedDB), non su disco.
+# Solo file temporanei e di build restano fuori dal repository.
 *.log
 .DS_Store
 coverage/

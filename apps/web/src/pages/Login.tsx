@@ -1,15 +1,19 @@
 import { useState, type FormEvent } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { errorMessage, useAuth } from '../auth';
-import { api } from '../api';
-import { useAsync } from '../useAsync';
 
 interface LocationState {
   from?: string;
 }
 
+/**
+ * La schermata d'ingresso di un portale che vive nel browser: non c'è un
+ * server da convincere, ci sono i profili che hanno già studiato su questo
+ * computer. Si sceglie un nome e si continua; la password serve solo per un
+ * profilo che ha chiuso la sessione.
+ */
 export function Login() {
-  const { login } = useAuth();
+  const { accounts, user, login, switchUser } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = (location.state as LocationState | null)?.from;
@@ -17,23 +21,40 @@ export function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
-  const [busy, setBusy] = useState(false);
+  const [busy, setBusy] = useState<string | null>(null);
 
-  // Come è aperta l'iscrizione lo dice il server: la pagina non deve
-  // promettere un modulo che la rotta di registrazione rifiuterebbe.
-  const info = useAsync(() => api.registration(), []);
+  const go = () => navigate(from && from !== '/login' ? from : '/', { replace: true });
+
+  const choose = async (userId: string, fallbackEmail: string) => {
+    setError(null);
+    setBusy(userId);
+    try {
+      const chosen = await switchUser(userId);
+      if (chosen) {
+        go();
+      } else {
+        // La sessione è scaduta: si riparte dalla password, col nome già scritto.
+        setEmail(fallbackEmail);
+        setError('La sessione di questo profilo è scaduta: inserisci la password.');
+      }
+    } catch (problem) {
+      setError(errorMessage(problem));
+    } finally {
+      setBusy(null);
+    }
+  };
 
   const submit = async (event: FormEvent) => {
     event.preventDefault();
     setError(null);
-    setBusy(true);
+    setBusy('form');
     try {
       await login(email.trim(), password);
-      navigate(from && from !== '/login' ? from : '/', { replace: true });
+      go();
     } catch (problem) {
       setError(errorMessage(problem));
     } finally {
-      setBusy(false);
+      setBusy(null);
     }
   };
 
@@ -48,6 +69,34 @@ export function Login() {
           <p className="muted small">Impara il coreano, un giorno alla volta.</p>
         </div>
 
+        {accounts.length > 0 ? (
+          <div className="card">
+            <span className="label">Chi sta studiando?</span>
+            <ul className="account-list">
+              {accounts.map((account) => (
+                <li key={account.id}>
+                  <button
+                    type="button"
+                    className="account-pick"
+                    disabled={busy !== null || account.id === user?.id}
+                    onClick={() => void choose(account.id, account.email)}
+                  >
+                    <span className="account-pick__name">{account.displayName}</span>
+                    <span className="faint small">
+                      {account.email}
+                      {account.id === user?.id ? ' · profilo attivo' : ''}
+                      {account.id !== user?.id && !account.hasSession ? ' · serve la password' : ''}
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+            <Link className="btn btn--block" to="/registrazione">
+              Crea un nuovo profilo
+            </Link>
+          </div>
+        ) : null}
+
         <form className="card" onSubmit={submit}>
           <label className="field">
             <span className="label">Email o nome utente</span>
@@ -60,7 +109,7 @@ export function Login() {
               autoCapitalize="off"
               spellCheck={false}
               required
-              autoFocus
+              autoFocus={accounts.length === 0}
             />
           </label>
 
@@ -82,18 +131,13 @@ export function Login() {
             </p>
           ) : null}
 
-          <button className="btn btn--primary btn--block" type="submit" disabled={busy}>
-            {busy ? 'Accesso…' : 'Entra'}
+          <button className="btn btn--primary btn--block" type="submit" disabled={busy !== null}>
+            {busy === 'form' ? 'Accesso…' : 'Entra'}
           </button>
 
-          {info.status === 'ready' && !info.data.closed ? (
+          {accounts.length > 0 ? null : (
             <p className="hint center" style={{ marginTop: '0.9rem', marginBottom: 0 }}>
-              Non hai un account? <Link to="/registrazione">Iscriviti</Link>
-              {info.data.needsCode ? ' con il codice di invito' : ''}.
-            </p>
-          ) : (
-            <p className="hint center" style={{ marginTop: '0.9rem', marginBottom: 0 }}>
-              Le iscrizioni sono chiuse: l’accesso è riservato.
+              Primo avvio su questo browser? <Link to="/registrazione">Crea un profilo</Link>.
             </p>
           )}
         </form>

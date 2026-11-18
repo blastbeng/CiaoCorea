@@ -2,8 +2,14 @@
 
 Portale web per imparare il coreano da autodidatta, pensato per chi parla
 italiano. Si lavora su lettura e scrittura: jamo, sillabe, 받침, lessico,
-comprensione. Il percorso è a tappe, con esercizi corretti dal server e la
+comprensione. Il percorso è a tappe, con esercizi corretti nel browser e la
 possibilità di saltare una lezione già conosciuta superando un test.
+
+L'app è **completamente statica**: nessun server, nessun account remoto. Gira su
+GitHub Pages e salva tutto nel browser dello studente (un database SQLite
+compilato in WebAssembly, tenuto in IndexedDB). Il computer che apre il sito
+tiene i propri dati: niente registrazione online, niente email, niente password
+da recuperare.
 
 Oltre al percorso ci sono cinque stanze: il **dizionario** di tutte le parole
 del curricolo, la **coda di ripasso** (SRS) che dopo due passaggi chiede di
@@ -14,9 +20,11 @@ complessive e il cambio della password. In cima alla home c'è il **piano di
 oggi**: le poche cose da fare, in ordine, sopra all'obiettivo della settimana che
 si sceglie lo studente.
 
-Il portale è multi-utente: le iscrizioni si aprono con i codici invito
-(`REGISTRATION_MODE=invite`), si lasciano aperte (`open`) o si tengono chiuse
-(`closed`, default), e gli account si creano anche dalla riga di comando.
+Il portale è **multi-profilo sullo stesso browser**: la pagina dei profili
+(`/login`) elenca chi studia su questo dispositivo e permette di passare da uno
+all'altro con un clic, oppure di crearne uno nuovo (nome, email o nome utente,
+password). Non c'è invito da chiedere e non c'è nulla da confermare: il profilo
+esiste appena lo crei, e resta finché non cancelli i dati del sito.
 
 ## Cosa si incontra
 
@@ -31,7 +39,8 @@ Il portale è multi-utente: le iscrizioni si aprono con i codici invito
 | `/ripassi` | carte in scadenza, giudizio `ho saputo / quasi / non ricordo`; sotto, le parole fragili da riprovare subito |
 | `/errori` | gli esercizi che hai sbagliato, uno alla volta: azzeccarli li toglie dalla banca |
 | `/progressi` | totali, per corso, parole SRS, obiettivo della settimana, ritmo dei giorni, password |
-| `/registrazione` | nuovo account: nome, email, password, ed eventuale codice invito |
+| `/login` | i profili di questo browser: si sceglie chi sta studiando, o si accede con password |
+| `/registrazione` | nuovo profilo locale: nome, email o nome utente, password |
 
 ## Come è fatto
 
@@ -39,114 +48,109 @@ Monorepo npm workspaces, nessun servizio esterno e nessuna dipendenza da AI.
 
 | Percorso | Contenuto |
 | --- | --- |
-| `apps/web` | React 18 + Vite, router, pagine |
-| `apps/server` | Fastify 5, API, sessioni, SQLite |
-| `packages/shared` | Tipi condivisi fra client e server |
+| `apps/web` | React 18 + Vite, router (`HashRouter`), pagine, tema |
+| `packages/store` | il «server» dentro il browser: SQLite via `sql.js`, repo, rotte, sessioni |
+| `packages/shared` | Tipi condivisi fra store e UI |
 | `packages/curriculum` | Schema zod e contenuti dei corsi (JSON) |
-| `packages/engine` | Correzione esercizi, sblocco lezioni, ripasso SRS |
+| `packages/engine` | Correzione esercizi, sblocco lezioni, ripasso SRS, piano |
 
 Scelte che vale la pena ricordare:
 
-- **Le soluzioni non lasciano il server.** Il client riceve esercizi senza
-  `answer`; la correzione avviene nel server, che ignora il punteggio del client.
-  Lo stesso vale per la traduzione dei brani di lettura: arriva solo quando la
-  lezione risulta superata o saltata, così il testo si affronta da soli.
-- **Database SQLite** (`node:sqlite`, WAL) in `./data/ciaocorea.db`. Nessun
-  database da amministrare, backup = copiare un file.
-- **Il piano della giornata lo calcola il server** (`packages/engine/src/plan.ts`):
-  prima la lezione che apre il percorso, poi le parole in scadenza, poi il
-  quaderno, e la conversazione prende il posto che resta quando la giornata è
+- **Le soluzioni non arrivano all'interfaccia prima del tempo.** Le rotte
+  interne restituiscono esercizi senza `answer`, e consegnano la traduzione dei
+  brani solo quando la lezione è superata o saltata: la correzione è un passaggio
+  separato, quindi il testo si affronta da soli. (Chi apre i DevTools ha in mano
+  il proprio database: il patto è didattico, non crittografico.)
+- **Database SQLite nel browser** (`sql.js`, il motore compilato in WebAssembly)
+  serializzato in IndexedDB, con salvataggio ritardato di 400 ms e immediato
+  quando la pagina si nasconde. Nessun dato esce dal dispositivo: il backup è
+  scaricare i byte, la migrazione è copiarli su un altro browser.
+- **Un solo codice per due mondi.** `packages/store` riproduce la superficie di
+  Fastify che le rotte usavano (`request`, `reply`, `setCookie`, `preHandler`) e
+  le rotte sono le stesse di prima: la logica non è stata riscritta per il
+  browser, è stata spostata.
+- **Sessioni in `localStorage`.** Il token di sessione vive lì
+  (`ciaocorea.sessions.v1`), non in un cookie; è quello che rende possibile
+  passare da un profilo all'altro senza rifare il login e senza un server che
+  ricordi chi sei.
+- **Password con WebCrypto**: PBKDF2-SHA256, 210 000 iterazioni, sale casuale.
+  Se il sito è aperto via `http://` su una rete locale il browser nasconde
+  `crypto.subtle`: lì il calcolo scende in TypeScript puro (stesso formato,
+  60 000 iterazioni, ~1 s), così anche quella copia resta usabile.
+- **Il piano della giornata lo calcola `packages/engine/src/plan.ts`** dentro il
+  browser: prima la lezione che apre il percorso, poi le parole in scadenza, poi
+  il quaderno, e la conversazione prende il posto che resta quando la giornata è
   leggera. La settimana parte di lunedì e un giorno di studio conta anche solo per
   i ripassi.
-- **Sessione con cookie httpOnly** `cc_session`, token salvato in DB solo come
-  hash SHA-256, scadenza scorrevole. Login limitato per IP + identificativo.
 - **Contenuti in JSON tipizzato**, validati da `npm run content:check`: un
   errore di scrittura (risposta non fra le opzioni, id duplicato) blocca la
   build del contenuto, non lo studente.
 
 ## Sviluppo
 
+Serve Node 22.5 o successivo. **Nessun file `.env`, nessun servizio da avviare.**
+
 ```bash
-cp .env.example .env          # e compila SEED_USER_PASSWORD
-npm install --include=dev     # attenzione: NODE_ENV=production omette le devDeps
-npm run dev                   # API su :8080 + Vite su :5173 con proxy /api
+NODE_ENV=development npm install  # senza, NODE_ENV=production omette le devDeps
+npm run dev                       # Vite su http://localhost:5173/CiaoCorea/
 ```
 
 Comandi utili:
 
 ```bash
-npm test              # unit + integrazione (server con DB temporaneo)
-npm run typecheck     # tutti i pacchetti, incluso il client
+npm test              # unit + integrazione dello store, in memoria
+npm run typecheck     # tutti i pacchetti, client compreso
 npm run content:check # validazione dei corsi
-npm run build         # client in apps/web/dist + server in un solo file CJS
-
-# account e codici invito (il server deve avere il DB già migrato)
-npm run accounts -- user:list                 # studenti registrati
-npm run accounts -- user:new anna@example.com --name=Anna
-npm run accounts -- invite:new --note="corso del martedì"
-npm run accounts -- invite:list               # chi è ancora valido
+npm run build         # sito statico in apps/web/dist
+npm run preview       # anteprima del build, stessa base /CiaoCorea/
 ```
 
-La password si passa con `--password` o con la variabile `ACCOUNT_PASSWORD`,
-così non finisce nella cronologia dei comandi.
+I test di `packages/store` aprono il database in memoria: girano senza browser e
+senza IndexedDB, e coprono registrazione, multi-profilo, sblocco lezioni, ripassi,
+quaderno, dialoghi, errori e il giro completo di salvataggio/riapertura.
+
+### Cosa c'è nel browser
+
+- `IndexedDB` contiene i byte del database (database `ciaocorea`, archivio
+  `database`, chiave `sqlite`), riscritti in modo ritardato mentre si studia
+  (400 ms) e subito quando la scheda si nasconde.
+- `localStorage` contiene le sessioni (`ciaocorea.sessions.v1`): un token per
+  profilo più quello attivo. È per questo che il cambio profilo è istantaneo.
+- Svuotare i dati del sito cancella profili e progressi. Non c'è copia altrove:
+  è il prezzo (e il vantaggio) di un'app senza server.
 
 ## Deploy
 
-Tutto passa da Docker; l'avvio è il template systemd già presente sulla
-macchina, che esegue `docker compose up` nella cartella del progetto.
+Il sito è pubblicato da GitHub Pages con
+`.github/workflows/deploy-pages.yml`: ogni push su `main` installa le
+dipendenze, esegue `typecheck` e test, compila `apps/web/dist` e lo pubblica.
 
-```bash
-# una volta sola
-sudo systemctl enable docker-compose@ciaocorea
+- URL: <https://blastbeng.github.io/CiaoCorea/>
+- Sorgente Pages: **GitHub Actions** (non il branch `gh-pages`).
+- La base di Vite è `/CiaoCorea/` e il router è `HashRouter`: nessun rewrite
+  lato server, quindi il sito funziona identico anche aperto da `file://` dopo
+  un build.
+- Il `GOOGLE_ANALYTICS`/tracking non c'è: nessuna richiesta di rete dopo il
+  caricamento degli asset.
 
-# avvio / stop / stato
-sudo systemctl start docker-compose@ciaocorea
-sudo systemctl stop docker-compose@ciaocorea
-systemctl status docker-compose@ciaocorea
-journalctl -u docker-compose@ciaocorea -f
-```
+## Rotte interne
 
-L'app risponde su `http://<host>:18091` (porta modificabile con `WEB_PORT`).
-
-Credenziali: `/opt/docker/compose/.secrets/ciaocorea.env`, fuori dal repository
-e con permessi `600`.
-
-```dotenv
-SEED_USER_EMAIL=blast
-SEED_USER_PASSWORD=...
-SEED_USER_NAME=Blast
-
-# closed | invite | open
-REGISTRATION_MODE=invite
-# codice "madre" d'emergenza, per il primo account quando di inviti non ce n'è
-# ancora nessuno in database
-REGISTRATION_CODE=...
-```
-
-Una variabile presente ma vuota (`KEY=`) vale come non settata, quindi il
-default resta quello del codice.
-
-Il volume `./data` contiene il database: è l'unica cosa da salvare. L'utente del
-container ha uid 1000, lo stesso dell'utente che avvia il servizio, così il bind
-mount resta scrivibile senza passare da root.
-
-Se un giorno l'app finisce dietro HTTPS, metti `COOKIE_SECURE=1`: il cookie di
-sessione diventa `Secure` e non viaggia più in chiaro.
-
-## API
-
-Tutte le rotte sotto `/api` richiedono la sessione, tranne `health`, `login` e
-le due della registrazione.
+Non c'è più un'API di rete: `packages/store` espone le stesse rotte di prima a
+un mini-router che le chiama in processo. Restano utili come mappa di cosa fa il
+«server» del browser. Tutte richiedono la sessione, tranne `health`, `login` e
+`register`.
 
 | Metodo | Rotta | Uso |
 | --- | --- | --- |
-| GET | `/api/health` | stato del servizio |
-| GET | `/api/auth/registration` | com'è configurata l'iscrizione: `mode`, `closed`, `needsCode` |
-| POST | `/api/auth/register` | nuovo account (con `code` se serve) e accesso immediato |
+| GET | `/api/health` | stato dello store |
+| POST | `/api/auth/register` | nuovo profilo locale e accesso immediato |
 | POST | `/api/auth/login` | accesso |
 | POST | `/api/auth/logout` | uscita |
 | GET | `/api/auth/session` | utente corrente o `null` |
-| GET | `/api/dashboard` | corsi, progressi, riepilogo, ripassi dovuti, piano di oggi (`plan`) |
+| GET | `/api/auth/me` | richiede la sessione: 401 se manca |
+| GET | `/api/auth/accounts` | i profili presenti in questo browser, per la schermata di scelta |
+| GET | `/api/courses` | corsi, progressi, riepilogo, ripassi dovuti, piano di oggi (`plan`) |
+| GET | `/api/progress/summary` | i numeri della home: lezioni, percentuale, streak, prossima lezione |
 | GET | `/api/vocabulary` | dizionario: `q` (coreano/romanizzazione/italiano), `course`, `limit`, `offset` |
 | GET | `/api/profile` | progressi, totali, giorni attivi (con i ripassi), SRS, dialoghi, `weeklyGoal` |
 | POST | `/api/profile/goal` | obiettivo settimanale: da 1 a 7 giorni di studio |
@@ -196,8 +200,8 @@ si superano tutte le lezioni del corso risultano chiuse. Ogni parola incontrata
 entra nel ripasso a intervalli (SRS): le carte tornano dopo 1, 3, poi sempre più
 tardi, e il giudizio dato decide di quanto. Dopo due ripassi andati bene la
 parola smette di farsi solo leggere e chiede di essere scritta: lo studente vede
-l'italiano, compone il coreano con la tastiera di jamo e la correzione è del
-server (`compact` + unificazione dei jamo, quindi NFD e NFC valgono uguale).
+l'italiano, compone il coreano con la tastiera di jamo e la correzione usa la
+stessa `compact` + unificazione dei jamo, quindi NFD e NFC valgono uguale.
 Scriverla bene vale un "facile"; sbagliarla azzera i ripassi e la parola torna
 da leggere, che è il passo giusto da cui ricominciare. Jamo sciolti e frasi
 restano sempre da leggere: una frase non si scrive a memoria.
@@ -245,7 +249,7 @@ sta andando la settimana.
   consegna si apre quando la lezione che insegna quelle parole è passata o
   saltata, quindi anche un corso saltato la fa entrare nel piano.
 - L'**obiettivo** sono i giorni di studio da chiudere fra lunedì e domenica. Lo
-  sceglie lo studente nella pagina dei progressi, da 1 a 7; il server non lo
+  sceglie lo studente nella pagina dei progressi, da 1 a 7; l'app non lo
   impone e non lo cambia da sé.
 - Un giorno conta quando si fa almeno un esercizio, un ripasso **o** un testo nel
   quaderno: chi passa la giornata solo sulle parole in scadenza, o solo a
@@ -259,11 +263,11 @@ sta andando la settimana.
 I dialoghi non sono generati a runtime: sono copioni scritti a mano in
 `packages/curriculum/data/dialogues.json`, con le battute dell'interlocutore e
 quelle dello studente. Si risponde scegliendo fra le opzioni o scrivendo in
-Hangul con la tastiera su schermo, e il server corregge con le varianti accettate
-esattamente come per gli esercizi.
+Hangul con la tastiera su schermo: la stessa `gradeExercise` degli esercizi
+accetta le varianti previste.
 
-- Il coreano delle battute ancora da recitare non lascia il server: al client
-  arriva la consegna in italiano, quindi la soluzione non è leggibile dalla rete.
+- Il coreano delle battute ancora da recitare non arriva alla pagina: si vede
+  la consegna in italiano, e la battuta compare solo dopo la risposta.
 - Con il corso `messaggi` sono arrivati due dialoghi nuovi: una chat per
   organizzare lo studio (`chat-serale`) e un invito a cena in 반말
   (`invito-cena`), entrambi legati alle lezioni di quel corso.
@@ -326,8 +330,7 @@ si azzecca.
   ritrovarsi dodici esercizi da rifare come punizione.
 - Gli esercizi si ricostruiscono dal curricolo con `findExercise(id)` — gli id
   sono unici in tutto il curricolo — e tornano al client **senza soluzione**,
-  come in lezione: la correzione avviene sul server con la stessa
-  `gradeExercise`.
+  come in lezione: la correzione passa dalla stessa `gradeExercise`.
 - Rifare un errore conta fra gli esercizi del giorno (`daily_stats.exercises`),
   così la banca non è tempo sottratto all'abitudine.
 - La barra in alto mostra quanti esercizi aspettano, e la home lo dice con un

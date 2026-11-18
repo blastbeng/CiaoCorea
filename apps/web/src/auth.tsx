@@ -8,6 +8,7 @@ import {
   type ReactNode,
 } from 'react';
 import type { SessionUser } from '@ciaocorea/shared';
+import type { LocalAccount } from '@ciaocorea/store';
 import { api, ApiError } from './api';
 
 type AuthState =
@@ -19,21 +20,37 @@ export interface RegisterInput {
   displayName: string;
   email: string;
   password: string;
-  code?: string;
 }
 
 interface AuthContextValue {
   state: AuthState;
   user: SessionUser | null;
+  /** I profili creati su questo browser: è la schermata di scelta dell'utente. */
+  accounts: LocalAccount[];
   login: (email: string, password: string) => Promise<void>;
   register: (input: RegisterInput) => Promise<void>;
+  /** Passa a un altro profilo; null se la sua sessione è scaduta. */
+  switchUser: (userId: string) => Promise<SessionUser | null>;
   logout: () => Promise<void>;
+  refreshAccounts: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<AuthState>({ status: 'loading' });
+  const [accounts, setAccounts] = useState<LocalAccount[]>([]);
+
+  const refreshAccounts = useCallback(async () => {
+    try {
+      const body = await api.accounts();
+      setAccounts(body.accounts);
+    } catch {
+      // L'elenco dei profili è comodità: se non si legge, si entra con la
+      // password e basta.
+      setAccounts([]);
+    }
+  }, []);
 
   useEffect(() => {
     let active = true;
@@ -44,45 +61,69 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setState(user ? { status: 'authenticated', user } : { status: 'anonymous' });
       })
       .catch(() => {
-        // Rete assente o server appena riavviato: meglio la schermata di
-        // accesso che un errore bloccante.
+        // Database appena creato o wasm non ancora pronto: meglio la schermata
+        // di accesso che un errore bloccante.
         if (active) setState({ status: 'anonymous' });
+      })
+      .finally(() => {
+        if (active) void refreshAccounts();
       });
     return () => {
       active = false;
     };
-  }, []);
+  }, [refreshAccounts]);
 
-  const login = useCallback(async (email: string, password: string) => {
-    const { user } = await api.login(email, password);
-    setState({ status: 'authenticated', user });
-  }, []);
+  const login = useCallback(
+    async (email: string, password: string) => {
+      const { user } = await api.login(email, password);
+      setState({ status: 'authenticated', user });
+      await refreshAccounts();
+    },
+    [refreshAccounts],
+  );
 
-  // Iscrizione e accesso fanno la stessa cosa, dal punto di vista di questa
-  // pagina: il server ha già messo il cookie di sessione, quindi lo studente
-  // è dentro e il percorso si apre sulla prima lezione.
-  const register = useCallback(async (input: RegisterInput) => {
-    const { user } = await api.register(input);
-    setState({ status: 'authenticated', user });
-  }, []);
+  // Creare un profilo e entrare sono la stessa cosa: il database è locale, non
+  // c'è nessuna email da confermare.
+  const register = useCallback(
+    async (input: RegisterInput) => {
+      const { user } = await api.register(input);
+      setState({ status: 'authenticated', user });
+      await refreshAccounts();
+    },
+    [refreshAccounts],
+  );
+
+  const switchUser = useCallback(
+    async (userId: string) => {
+      const user = await api.switchUser(userId);
+      setState(user ? { status: 'authenticated', user } : { status: 'anonymous' });
+      await refreshAccounts();
+      return user;
+    },
+    [refreshAccounts],
+  );
 
   const logout = useCallback(async () => {
     try {
       await api.logout();
     } finally {
       setState({ status: 'anonymous' });
+      await refreshAccounts();
     }
-  }, []);
+  }, [refreshAccounts]);
 
   const value = useMemo<AuthContextValue>(
     () => ({
       state,
       user: state.status === 'authenticated' ? state.user : null,
+      accounts,
       login,
       register,
+      switchUser,
       logout,
+      refreshAccounts,
     }),
-    [state, login, register, logout],
+    [state, accounts, login, register, switchUser, logout, refreshAccounts],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
@@ -94,7 +135,7 @@ export function useAuth(): AuthContextValue {
   return value;
 }
 
-/** Messaggio unico per gli errori dell'API: il codice serve solo ai log. */
+/** Messaggio unico per gli errori: il codice serve solo ai log. */
 export function errorMessage(error: unknown): string {
   if (error instanceof ApiError) return error.message;
   if (error instanceof Error) return error.message;

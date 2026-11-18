@@ -82,6 +82,11 @@ export function AppShell({ children }: { children: ReactNode }) {
 
         <div className="user-chip">
           <span>{user?.displayName ?? ''}</span>
+          {/* Il database è di questo browser: cambiare utente è scegliere un
+              altro profilo, non rifare l'accesso. */}
+          <Link className="btn btn--sm btn--ghost" to="/login">
+            Profili
+          </Link>
           <button type="button" className="btn btn--sm btn--ghost" onClick={handleLogout}>
             Esci
           </button>

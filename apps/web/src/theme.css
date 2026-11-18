@@ -956,6 +956,42 @@ a.lesson-row:hover {
   margin: 0 auto 0.75rem;
 }
 
+/* La scelta dell'utente: i profili di questo browser, uno per riga. */
+.account-list {
+  list-style: none;
+  margin: 0.6rem 0 1rem;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.account-pick {
+  width: 100%;
+  display: grid;
+  gap: 0.15rem;
+  text-align: left;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper-raised);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.account-pick:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.account-pick:disabled {
+  opacity: 0.65;
+  cursor: default;
+}
+
+.account-pick__name {
+  font-weight: 600;
+}
+
 @media (max-width: 640px) {
   .app-header {
     flex-wrap: wrap;

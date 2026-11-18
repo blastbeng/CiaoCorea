@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="CiaoCorea">
+  <rect width="64" height="64" rx="14" fill="#1f2a44" />
+  <circle cx="24" cy="26" r="12" fill="none" stroke="#f4f1e8" stroke-width="4" />
+  <path d="M24 14v12h12" fill="none" stroke="#f4f1e8" stroke-width="4" stroke-linecap="round" />
+  <path d="M34 48c6 0 11-4.5 11-10" fill="none" stroke="#d4564f" stroke-width="4" stroke-linecap="round" />
+  <circle cx="40" cy="52" r="3" fill="#d4564f" />
+</svg>

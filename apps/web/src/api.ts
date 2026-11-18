@@ -20,40 +20,19 @@ import type {
   WritingCheckResponse,
   WritingResponse,
 } from '@ciaocorea/shared';
+import { ApiError, type AccountsResponse } from '@ciaocorea/store';
+import { getStore } from './db';
 
-export class ApiError extends Error {
-  constructor(
-    readonly status: number,
-    readonly code: string,
-    message: string,
-  ) {
-    super(message);
-    this.name = 'ApiError';
-  }
-}
+/**
+ * Il portale non ha un server: le stesse rotte che prima rispondevano su HTTP
+ * girano nella scheda, sopra SQLite in wasm. Questa è l'unica differenza che le
+ * pagine vedono — le firme restano quelle di prima.
+ */
+export { ApiError };
 
-async function request<T>(url: string, init: RequestInit = {}): Promise<T> {
-  const response = await fetch(url, {
-    credentials: 'same-origin',
-    headers: init.body ? { 'content-type': 'application/json' } : undefined,
-    ...init,
-  });
-
-  if (!response.ok) {
-    let code = 'error';
-    let message = `Errore ${response.status}`;
-    try {
-      const body = (await response.json()) as { error?: string; message?: string };
-      code = body.error ?? code;
-      message = body.message ?? message;
-    } catch {
-      // corpo non JSON: si tiene il messaggio generico
-    }
-    throw new ApiError(response.status, code, message);
-  }
-
-  if (response.status === 204) return undefined as T;
-  return (await response.json()) as T;
+async function request<T>(method: string, url: string, body?: unknown): Promise<T> {
+  const store = await getStore();
+  return store.call<T>(method, url, body);
 }
 
 /**
@@ -74,34 +53,32 @@ export interface SubmitAnswer {
 }
 
 export const api = {
-  session: () => request<{ user: SessionUser | null }>('/api/auth/session'),
+  session: () => request<{ user: SessionUser | null }>('GET', '/api/auth/session'),
+
+  /** I profili creati su questo browser, con quello attivo. */
+  accounts: async (): Promise<AccountsResponse> => (await getStore()).accounts(),
+
+  /** Passa a un profilo senza password; null se la sua sessione è scaduta. */
+  switchUser: async (userId: string): Promise<SessionUser | null> =>
+    (await getStore()).switchUser(userId),
 
   login: (email: string, password: string) =>
-    request<{ user: SessionUser }>('/api/auth/login', {
-      method: 'POST',
-      body: JSON.stringify({ email, password }),
-    }),
+    request<{ user: SessionUser }>('POST', '/api/auth/login', { email, password }),
 
-  /** Come è aperta l'iscrizione: chiuso, con codice, o libera. */
-  registration: () =>
-    request<{ mode: 'closed' | 'invite' | 'open'; closed: boolean; needsCode: boolean }>(
-      '/api/auth/registration',
-    ),
+  register: (input: { displayName: string; email: string; password: string }) =>
+    request<{ user: SessionUser }>('POST', '/api/auth/register', input),
 
-  register: (input: { displayName: string; email: string; password: string; code?: string }) =>
-    request<{ user: SessionUser }>('/api/auth/register', {
-      method: 'POST',
-      body: JSON.stringify(input),
-    }),
+  logout: () => request<{ ok: boolean }>('POST', '/api/auth/logout'),
 
-  logout: () => request<{ ok: boolean }>('/api/auth/logout', { method: 'POST' }),
+  /** Scrive subito il database su IndexedDB: serve prima di chiudere la scheda. */
+  flush: async (): Promise<void> => (await getStore()).flush(),
 
-  dashboard: () => request<CourseListResponse>('/api/dashboard'),
+  dashboard: () => request<CourseListResponse>('GET', '/api/courses'),
 
-  course: (slug: string) => request<{ course: CourseView }>(`/api/courses/${slug}`),
+  course: (slug: string) => request<{ course: CourseView }>('GET', `/api/courses/${slug}`),
 
   lesson: (courseSlug: string, lessonId: string) =>
-    request<LessonDetail>(`/api/courses/${courseSlug}/lessons/${lessonId}`),
+    request<LessonDetail>('GET', `/api/courses/${courseSlug}/lessons/${lessonId}`),
 
   submit: (
     courseSlug: string,
@@ -110,49 +87,41 @@ export const api = {
     answers: SubmitAnswer[],
     durationMs: number,
   ) =>
-    request<AttemptResponse>(`/api/courses/${courseSlug}/lessons/${lessonId}/attempts`, {
-      method: 'POST',
-      body: JSON.stringify({ mode, answers, durationMs }),
+    request<AttemptResponse>('POST', `/api/courses/${courseSlug}/lessons/${lessonId}/attempts`, {
+      mode,
+      answers,
+      durationMs,
     }),
 
-  summary: () => request<ProgressSummary>('/api/progress/summary'),
+  summary: () => request<ProgressSummary>('GET', '/api/progress/summary'),
 
   /** Solo il numero dei ripassi in scadenza, per il badge nella shell. */
-  due: () => request<DueCountResponse>('/api/progress/due'),
+  due: () => request<DueCountResponse>('GET', '/api/progress/due'),
 
-  review: () => request<ReviewResponse>('/api/review'),
+  review: () => request<ReviewResponse>('GET', '/api/review'),
 
   /** Le parole che hanno ceduto più volte: si possono riprendere subito. */
-  fragileWords: () => request<FragileResponse>('/api/review/fragile'),
+  fragileWords: () => request<FragileResponse>('GET', '/api/review/fragile'),
 
   retryFragile: (cardId: string) =>
-    request<FragileRetryResponse>(`/api/review/fragile/${cardId}`, { method: 'POST' }),
+    request<FragileRetryResponse>('POST', `/api/review/fragile/${cardId}`),
 
   gradeCard: (cardId: string, grade: 0 | 1 | 2) =>
-    request<ReviewCheckResponse>(`/api/review/${cardId}`, {
-      method: 'POST',
-      body: JSON.stringify({ grade }),
-    }),
+    request<ReviewCheckResponse>('POST', `/api/review/${cardId}`, { grade }),
 
-  /** Le carte da scrivere si correggono sul server: qui si manda la parola. */
+  /** Le carte da scrivere si correggono dentro la scheda: qui si manda la parola. */
   answerCard: (cardId: string, response: string) =>
-    request<ReviewCheckResponse>(`/api/review/${cardId}`, {
-      method: 'POST',
-      body: JSON.stringify({ response }),
-    }),
+    request<ReviewCheckResponse>('POST', `/api/review/${cardId}`, { response }),
 
-  dialogues: () => request<DialogueListResponse>('/api/dialogues'),
+  dialogues: () => request<DialogueListResponse>('GET', '/api/dialogues'),
 
-  dialogue: (slug: string) => request<DialogueDetail>(`/api/dialogues/${slug}`),
+  dialogue: (slug: string) => request<DialogueDetail>('GET', `/api/dialogues/${slug}`),
 
   answerDialogue: (slug: string, response: string) =>
-    request<DialogueAnswerResponse>(`/api/dialogues/${slug}/answer`, {
-      method: 'POST',
-      body: JSON.stringify({ response }),
-    }),
+    request<DialogueAnswerResponse>('POST', `/api/dialogues/${slug}/answer`, { response }),
 
   restartDialogue: (slug: string) =>
-    request<DialogueDetail>(`/api/dialogues/${slug}/restart`, { method: 'POST' }),
+    request<DialogueDetail>('POST', `/api/dialogues/${slug}/restart`),
 
   vocabulary: (query: string, course: string, offset = 0, limit = 40) => {
     const params = new URLSearchParams();
@@ -160,39 +129,30 @@ export const api = {
     if (course) params.set('course', course);
     if (offset > 0) params.set('offset', String(offset));
     params.set('limit', String(limit));
-    return request<VocabularyResponse>(`/api/vocabulary?${params.toString()}`);
+    return request<VocabularyResponse>('GET', `/api/vocabulary?${params.toString()}`);
   },
 
   /** Le consegne del quaderno: il modello arriva solo dopo aver scritto. */
-  writing: () => request<WritingResponse>('/api/writing'),
+  writing: () => request<WritingResponse>('GET', '/api/writing'),
 
   submitWriting: (promptId: string, text: string) =>
-    request<WritingCheckResponse>(`/api/writing/${promptId}`, {
-      method: 'POST',
-      body: JSON.stringify({ text }),
-    }),
+    request<WritingCheckResponse>('POST', `/api/writing/${promptId}`, { text }),
 
   /** La banca degli errori: gli esercizi sbagliati e non ancora rifatti. */
-  mistakes: () => request<MistakesResponse>('/api/mistakes'),
+  mistakes: () => request<MistakesResponse>('GET', '/api/mistakes'),
 
   answerMistake: (exerciseId: string, response: string) =>
-    request<MistakeAnswerResponse>(`/api/mistakes/${exerciseId}`, {
-      method: 'POST',
-      body: JSON.stringify({ response }),
-    }),
+    request<MistakeAnswerResponse>('POST', `/api/mistakes/${exerciseId}`, { response }),
 
-  profile: () => request<ProfileResponse>('/api/profile'),
+  profile: () => request<ProfileResponse>('GET', '/api/profile'),
 
   /** Quanti giorni di studio lo studente vuole fare in una settimana. */
   setGoal: (goal: number) =>
-    request<{ weeklyGoal: number }>('/api/profile/goal', {
-      method: 'POST',
-      body: JSON.stringify({ goal }),
-    }),
+    request<{ weeklyGoal: number }>('POST', '/api/profile/goal', { goal }),
 
   changePassword: (current: string, next: string) =>
-    request<{ ok: boolean; sessionsClosed: number }>('/api/auth/password', {
-      method: 'POST',
-      body: JSON.stringify({ current, next }),
+    request<{ ok: boolean; sessionsClosed: number }>('POST', '/api/auth/password', {
+      current,
+      next,
     }),
 };

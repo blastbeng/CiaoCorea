@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import App from './App';
 import { AuthProvider } from './auth';
 import './theme.css';
@@ -8,12 +8,14 @@ import './theme.css';
 const root = document.getElementById('root');
 if (!root) throw new Error('Elemento #root mancante');
 
+// HashRouter perché GitHub Pages serve file statici: un percorso come
+// /CiaoCorea/corso/hangul non esiste su disco, quindi la rotta vive dopo `#`.
 ReactDOM.createRoot(root).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <AuthProvider>
         <App />
       </AuthProvider>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>,
 );

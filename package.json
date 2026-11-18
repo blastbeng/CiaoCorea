@@ -2,7 +2,7 @@
   "name": "ciaocorea",
   "version": "0.1.0",
   "private": true,
-  "description": "CiaoCorea - Impara il Coreano: portale web per imparare il coreano in autonomia",
+  "description": "CiaoCorea - Impara il Coreano: portale web statico con database nel browser",
   "workspaces": [
     "apps/*",
     "packages/*"
@@ -11,24 +11,18 @@
     "node": ">=22.5"
   },
   "scripts": {
-    "dev": "node scripts/dev.mjs",
-    "dev:server": "node --env-file-if-exists=.env --import tsx apps/server/src/index.ts",
-    "dev:watch": "tsx watch --env-file-if-exists=.env apps/server/src/index.ts",
+    "dev": "npm run dev --workspace @ciaocorea/web",
     "dev:web": "npm run dev --workspace @ciaocorea/web",
-    "build": "npm run build:web && npm run build:server",
+    "build": "npm run build:web",
     "build:web": "npm run build --workspace @ciaocorea/web",
-    "build:server": "esbuild apps/server/src/index.ts --bundle --platform=node --format=cjs --outfile=apps/server/dist/server.cjs --external:node:* --log-level=warning",
-    "start": "node apps/server/dist/server.cjs",
-    "typecheck": "tsc -p packages/shared --noEmit && tsc -p packages/engine --noEmit && tsc -p packages/curriculum --noEmit && tsc -p apps/server --noEmit && tsc -p apps/web --noEmit",
+    "preview": "npm run preview --workspace @ciaocorea/web",
+    "typecheck": "tsc -p packages/shared --noEmit && tsc -p packages/engine --noEmit && tsc -p packages/curriculum --noEmit && tsc -p packages/store --noEmit && tsc -p apps/web --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "content:check": "tsx packages/curriculum/scripts/check.ts",
-    "seed:user": "node --env-file-if-exists=.env --import tsx apps/server/src/seed/cli.ts",
-    "accounts": "node --env-file-if-exists=.env --import tsx apps/server/src/cli/accounts.ts"
+    "content:check": "tsx packages/curriculum/scripts/check.ts"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
-    "esbuild": "^0.24.2",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2",
     "vitest": "^3.0.5"
