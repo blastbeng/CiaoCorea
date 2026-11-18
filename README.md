@@ -130,8 +130,8 @@ dipendenze, esegue `typecheck` e test, compila `apps/web/dist` e lo pubblica.
 - La base di Vite è `/CiaoCorea/` e il router è `HashRouter`: nessun rewrite
   lato server, quindi il sito funziona identico anche aperto da `file://` dopo
   un build.
-- Il `GOOGLE_ANALYTICS`/tracking non c'è: nessuna richiesta di rete dopo il
-  caricamento degli asset.
+- Nessun analytics, nessun cookie, nessuna chiamata di rete dopo il caricamento
+  degli asset: l'unica cosa che si salva è nel browser.
 
 ## Rotte interne
 
