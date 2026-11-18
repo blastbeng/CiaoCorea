@@ -1,0 +1,160 @@
+import type { DatabaseSync } from 'node:sqlite';
+
+export interface Migration {
+  id: string;
+  sql: string;
+}
+
+/**
+ * Migrazioni numerate e idempotenti, applicate in transazione. Sono SQL puro
+ * perché uno schema che si legge in un file è più facile da verificare di uno
+ * costruito a runtime da dieci funzioni annidate.
+ */
+export const MIGRATIONS: Migration[] = [
+  {
+    id: '001-initial',
+    sql: `
+      CREATE TABLE users (
+        id TEXT PRIMARY KEY,
+        email TEXT NOT NULL UNIQUE,
+        display_name TEXT NOT NULL,
+        password_hash TEXT NOT NULL,
+        role TEXT NOT NULL DEFAULT 'student',
+        created_at TEXT NOT NULL
+      );
+
+      CREATE TABLE sessions (
+        id TEXT PRIMARY KEY,
+        user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+        token_hash TEXT NOT NULL UNIQUE,
+        created_at TEXT NOT NULL,
+        last_seen_at TEXT NOT NULL,
+        expires_at TEXT NOT NULL,
+        user_agent TEXT
+      );
+      CREATE INDEX sessions_user_idx ON sessions(user_id);
+
+      CREATE TABLE lesson_progress (
+        user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+        course_slug TEXT NOT NULL,
+        lesson_id TEXT NOT NULL,
+        state TEXT NOT NULL,
+        best_score INTEGER,
+        attempts INTEGER NOT NULL DEFAULT 0,
+        updated_at TEXT NOT NULL,
+        completed_at TEXT,
+        PRIMARY KEY (user_id, course_slug, lesson_id)
+      );
+
+      CREATE TABLE attempts (
+        id TEXT PRIMARY KEY,
+        user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+        course_slug TEXT NOT NULL,
+        lesson_id TEXT NOT NULL,
+        mode TEXT NOT NULL,
+        score INTEGER NOT NULL,
+        correct INTEGER NOT NULL,
+        total INTEGER NOT NULL,
+        duration_ms INTEGER,
+        detail_json TEXT,
+        created_at TEXT NOT NULL
+      );
+      CREATE INDEX attempts_user_idx ON attempts(user_id, created_at);
+
+      CREATE TABLE srs_cards (
+        id TEXT PRIMARY KEY,
+        user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+        course_slug TEXT NOT NULL,
+        lesson_id TEXT NOT NULL,
+        item_id TEXT NOT NULL,
+        front TEXT NOT NULL,
+        back TEXT NOT NULL,
+        hint TEXT,
+        ease REAL NOT NULL DEFAULT 2.5,
+        interval_days INTEGER NOT NULL DEFAULT 0,
+        reps INTEGER NOT NULL DEFAULT 0,
+        lapses INTEGER NOT NULL DEFAULT 0,
+        grade INTEGER,
+        due_at TEXT NOT NULL,
+        created_at TEXT NOT NULL,
+        updated_at TEXT NOT NULL,
+        UNIQUE (user_id, course_slug, item_id)
+      );
+      CREATE INDEX srs_due_idx ON srs_cards(user_id, due_at);
+
+      CREATE TABLE daily_stats (
+        user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+        day TEXT NOT NULL,
+        lessons_completed INTEGER NOT NULL DEFAULT 0,
+        exercises INTEGER NOT NULL DEFAULT 0,
+        correct INTEGER NOT NULL DEFAULT 0,
+        PRIMARY KEY (user_id, day)
+      );
+    `,
+  },
+  {
+    id: '002-dialogues',
+    sql: `
+      CREATE TABLE dialogue_progress (
+        user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+        dialogue_slug TEXT NOT NULL,
+        turn_index INTEGER NOT NULL DEFAULT 0,
+        correct INTEGER NOT NULL DEFAULT 0,
+        answered INTEGER NOT NULL DEFAULT 0,
+        wrong_on_turn INTEGER NOT NULL DEFAULT 0,
+        completed_at TEXT,
+        updated_at TEXT NOT NULL,
+        PRIMARY KEY (user_id, dialogue_slug)
+      );
+    `,
+  },
+  {
+    id: '003-invites',
+    sql: `
+      CREATE TABLE invites (
+        id TEXT PRIMARY KEY,
+        code_hash TEXT NOT NULL UNIQUE,
+        label TEXT NOT NULL,
+        max_uses INTEGER NOT NULL DEFAULT 1,
+        uses INTEGER NOT NULL DEFAULT 0,
+        created_at TEXT NOT NULL,
+        expires_at TEXT,
+        last_used_at TEXT,
+        revoked_at TEXT
+      );
+      CREATE INDEX invites_hash_idx ON invites(code_hash);
+    `,
+  },
+];
+
+export function migrate(db: DatabaseSync): void {
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS schema_migrations (
+      id TEXT PRIMARY KEY,
+      applied_at TEXT NOT NULL
+    );
+  `);
+
+  const applied = new Set(
+    db
+      .prepare('SELECT id FROM schema_migrations')
+      .all()
+      .map((row) => (row as { id: string }).id),
+  );
+
+  for (const migration of MIGRATIONS) {
+    if (applied.has(migration.id)) continue;
+    db.exec('BEGIN');
+    try {
+      db.exec(migration.sql);
+      db.prepare('INSERT INTO schema_migrations(id, applied_at) VALUES (?, ?)').run(
+        migration.id,
+        new Date().toISOString(),
+      );
+      db.exec('COMMIT');
+    } catch (error) {
+      db.exec('ROLLBACK');
+      throw error;
+    }
+  }
+}

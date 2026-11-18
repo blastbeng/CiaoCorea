@@ -1,0 +1,482 @@
+{
+  "id": "a2",
+  "slug": "a2",
+  "title": "A2 — Prima, dopo e con rispetto",
+  "subtitle": "Passato, futuro, forma onorifica e frasi che si legano",
+  "level": "A2",
+  "description": "Il passo successivo all'A1: raccontare quello che è successo, dire quello che succederà, parlare di qualcuno con la forma di rispetto e unire due idee in una frase sola. Le quattro lezioni lavorano sempre su frasi intere, perché a questo livello il rischio non è più la singola parola ma la frase che non sta in piedi.",
+  "units": [
+    {
+      "id": "a2-u1",
+      "title": "Il tempo",
+      "purpose": "Raccontare ciò che è già successo e progettare ciò che verrà.",
+      "lessons": [
+        {
+          "id": "a2-01",
+          "slug": "passato-atosseosseoyo",
+          "title": "Il passato: -았어요 / -었어요",
+          "titleKo": "과거",
+          "kind": "grammar",
+          "goal": "Raccontare al passato cortese scegliendo fra -았어요 e -었어요, con le contrazioni dei verbi più comuni.",
+          "durationMin": 30,
+          "points": [
+            "Il passato cortese si costruisce con -았어요 o -었어요 attaccato alla radice: 가다 → 갔어요, 먹다 → 먹었어요.",
+            "La scelta dipende dall'ultima vocale della radice: ㅏ o ㅗ prendono 았, tutte le altre prendono 었 (armonia vocalica).",
+            "I verbi in 하다 diventano 했: 공부하다 → 공부했어요, 하다 → 했어요. È la forma più frequente e vale la pena riconoscerla a vista.",
+            "Quando la radice finisce in vocale, la contrazione è la norma: 보다 → 봤어요, 사다 → 샀어요, 오다 → 왔어요.",
+            "La negazione resta davanti al verbo: 안 갔어요 «non sono andato». In alternativa -지 않았어요, più formale.",
+            "Il tempo si segna una volta sola, sul verbo finale: 어제 영화를 봤어요."
+          ],
+          "vocab": [
+            { "ko": "어제", "it": "ieri", "rr": "eoje" },
+            { "ko": "지난주", "it": "la settimana scorsa", "rr": "jinanju" },
+            { "ko": "아침", "it": "mattina", "rr": "achim" },
+            { "ko": "영화", "it": "film", "rr": "yeonghwa" },
+            { "ko": "만나다", "it": "incontrare", "rr": "mannada" },
+            { "ko": "사다", "it": "comprare", "rr": "sada" },
+            { "ko": "재미있다", "it": "essere divertente", "rr": "jaemiitda" },
+            { "ko": "바쁘다", "it": "essere occupato", "rr": "bappeuda" }
+          ],
+          "exercises": [
+            {
+              "id": "a2-01-e1",
+              "type": "reading_mcq",
+              "prompt": "«갔어요» è il passato di quale verbo?",
+              "options": ["가다 (andare)", "오다 (venire)", "사다 (comprare)", "자다 (dormire)"],
+              "answer": "가다 (andare)",
+              "explain": "가다 + 았어요 → 갔어요: la radice 가 incontra 았 e si contrae. 오다 darebbe 왔어요, 사다 샀어요."
+            },
+            {
+              "id": "a2-01-e2",
+              "type": "type_hangul",
+              "prompt": "Scrivi «ho mangiato» (먹다).",
+              "hint": "먹- finisce in consonante e la sua vocale è ㅓ: aggiungi 었어요.",
+              "answer": "먹었어요",
+              "accept": ["저는 먹었어요", "나는 먹었어요"],
+              "explain": "먹다 → 먹었어요. La radice non si contorce: consonante finale + 었어요."
+            },
+            {
+              "id": "a2-01-e3",
+              "type": "type_hangul",
+              "prompt": "Scrivi «ho studiato» (공부하다).",
+              "hint": "Tutti i verbi in -하다 formano il passato allo stesso modo.",
+              "answer": "공부했어요",
+              "accept": ["저는 공부했어요", "나는 공부했어요"],
+              "explain": "공부하 + 였어요 si contrae in 공부했어요: 하다 è il verbo più regolare che ci sia, nel passato."
+            },
+            {
+              "id": "a2-01-e4",
+              "type": "reading_mcq",
+              "prompt": "Che cosa dice «어제 영화를 봤어요»?",
+              "options": ["Ieri ho visto un film.", "Ieri ho comprato un film.", "Domani vedrò un film.", "Ieri non ho visto nessun film."],
+              "answer": "Ieri ho visto un film.",
+              "explain": "어제 = ieri, 영화 = film, 를 segna l'oggetto, 봤어요 = ho visto (passato di 보다)."
+            },
+            {
+              "id": "a2-01-e5",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 만났어요?",
+              "answer": "ho incontrato",
+              "accept": ["ho incontrato", "ho conosciuto", "incontrai", "ho visto"],
+              "explain": "만나다 → 만났어요: radice 만나 + 았 → 만났. La contrazione nasconde la 았, non la cancella."
+            },
+            {
+              "id": "a2-01-e6",
+              "type": "reading_mcq",
+              "prompt": "«안 갔어요» vuol dire…",
+              "options": ["Non sono andato.", "Sono andato.", "Non vado.", "Andrò."],
+              "answer": "Non sono andato.",
+              "explain": "안 nega il verbo e 갔어요 lo mette al passato: la negazione non cambia il tempo."
+            },
+            {
+              "id": "a2-01-e7",
+              "type": "type_hangul",
+              "prompt": "Scrivi «ho comprato» (사다).",
+              "hint": "La radice 사 finisce in vocale: contrazione obbligatoria.",
+              "answer": "샀어요",
+              "accept": ["저는 샀어요", "나는 샀어요"],
+              "explain": "사 + 았 → 샀. Nel parlato la forma contratta è quella normale, non un'eccezione."
+            },
+            {
+              "id": "a2-01-e8",
+              "type": "reading_mcq",
+              "prompt": "Quale di queste forme è al passato?",
+              "options": ["갔어요", "가요", "갈 거예요", "가고 싶어요"],
+              "answer": "갔어요",
+              "explain": "가요 è presente, 갈 거예요 futuro, 가고 싶어요 «voglio andare». Solo 갔어요 racconta qualcosa di già successo."
+            },
+            {
+              "id": "a2-01-e9",
+              "type": "order_words",
+              "prompt": "Rimetti in ordine: «Ieri ho visto un film».",
+              "words": ["봤어요", "어제", "영화를"],
+              "answer": "어제 영화를 봤어요",
+              "explain": "Il tempo va in fondo: ieri (어제) apre la frase, 봤어요 la chiude."
+            },
+            {
+              "id": "a2-01-e10",
+              "type": "fill_blank",
+              "prompt": "Completa al passato: «Ieri ho incontrato un amico».",
+              "text": "어제 친구를___.",
+              "answer": "만났어요",
+              "hint": "만나다 al passato cortese.",
+              "explain": "만나다 → 만나 + 었어요, si scrive 만났어요: la vocale finale della radice cade nella contrazione."
+            }
+          ]
+        },
+        {
+          "id": "a2-02",
+          "slug": "futuro-eugeol-geoyeyo",
+          "title": "Il futuro: -(으)ㄹ 거예요",
+          "titleKo": "미래",
+          "kind": "grammar",
+          "goal": "Parlare di piani e previsioni con -(으)ㄹ 거예요 e dell'intenzione immediata con -(으)려고 해요.",
+          "durationMin": 30,
+          "points": [
+            "Il futuro cortese è -(으)ㄹ 거예요: 가다 → 갈 거예요, 먹다 → 먹을 거예요.",
+            "La scelta è meccanica: ㄹ 거예요 dopo vocale, 을 거예요 dopo consonante finale.",
+            "거예요 viene da 것 + 이에요: alla lettera «è la cosa che…», ma in pratica è semplicemente il futuro.",
+            "Per un'intenzione già decisa si usa -(으)려고 해요: 지금 가려고 해요 «sto per andare / ho intenzione di andare».",
+            "Il futuro serve anche per le previsioni: 내일 비가 올 거예요 «domani pioverà».",
+            "La domanda ha la stessa forma, con intonazione che sale: 주말에 뭐 할 거예요?"
+          ],
+          "vocab": [
+            { "ko": "내일", "it": "domani", "rr": "naeil" },
+            { "ko": "주말", "it": "fine settimana", "rr": "jumal" },
+            { "ko": "다음 주", "it": "la prossima settimana", "rr": "daeum ju" },
+            { "ko": "여행", "it": "viaggio", "rr": "yeohaeng" },
+            { "ko": "계획", "it": "piano, programma", "rr": "gyehoek" },
+            { "ko": "같이", "it": "insieme", "rr": "gachi" },
+            { "ko": "준비하다", "it": "preparare", "rr": "junbihada" },
+            { "ko": "시간", "it": "tempo, ora", "rr": "sigan" }
+          ],
+          "exercises": [
+            {
+              "id": "a2-02-e1",
+              "type": "type_hangul",
+              "prompt": "Scrivi «andrò» (가다) al futuro cortese.",
+              "hint": "가- finisce in vocale: davanti a 거예요 serve solo ㄹ.",
+              "answer": "갈 거예요",
+              "accept": ["저는 갈 거예요", "나는 갈 거예요"],
+              "explain": "가 + ㄹ 거예요 → 갈 거예요. Lo spazio fra 갈 e 거예요 resta: 거예요 è una parola a sé."
+            },
+            {
+              "id": "a2-02-e2",
+              "type": "type_hangul",
+              "prompt": "Scrivi «mangerò» (먹다) al futuro cortese.",
+              "hint": "먹- termina con una consonante: non basta ㄹ.",
+              "answer": "먹을 거예요",
+              "accept": ["저는 먹을 거예요", "나는 먹을 거예요"],
+              "explain": "Con la consonante finale serve 을: 먹 + 을 거예요. 갈 거예요 e 먹을 거예요 sono la stessa regola vista due volte."
+            },
+            {
+              "id": "a2-02-e3",
+              "type": "reading_mcq",
+              "prompt": "«주말에 뭐 할 거예요?» significa…",
+              "options": ["Che cosa farai nel fine settimana?", "Che cosa hai fatto nel fine settimana?", "Che cosa mangi nel fine settimana?", "Dove sei nel fine settimana?"],
+              "answer": "Che cosa farai nel fine settimana?",
+              "explain": "할 거예요 è 하다 al futuro: la domanda chiede un programma, non un ricordo."
+            },
+            {
+              "id": "a2-02-e4",
+              "type": "reading_mcq",
+              "prompt": "«내일 비가 올 거예요» vuol dire…",
+              "options": ["Domani pioverà.", "Ieri ha piovuto.", "Oggi piove.", "Domani non pioverà."],
+              "answer": "Domani pioverà.",
+              "explain": "오다 + ㄹ 거예요 → 올 거예요. Con 비가, 오다 è il verbo che si usa per la pioggia."
+            },
+            {
+              "id": "a2-02-e5",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 여행?",
+              "answer": "viaggio",
+              "accept": ["il viaggio", "viaggiare", "un viaggio"],
+              "explain": "여행 è il viaggio; 여행하다 è il verbo «viaggiare»."
+            },
+            {
+              "id": "a2-02-e6",
+              "type": "reading_mcq",
+              "prompt": "Quale forma esprime un progetto futuro?",
+              "options": ["만날 거예요", "만났어요", "만나요", "만나고 있어요"],
+              "answer": "만날 거예요",
+              "explain": "만날 거예요 = incontrerò; 만났어요 è passato, 만나요 presente, 만나고 있어요 «sto incontrando»."
+            },
+            {
+              "id": "a2-02-e7",
+              "type": "type_hangul",
+              "prompt": "Scrivi «preparerò» (준비하다).",
+              "hint": "준비하- finisce in vocale, e i verbi in 하다 seguono la regola normale.",
+              "answer": "준비할 거예요",
+              "accept": ["저는 준비할 거예요", "나는 준비할 거예요"],
+              "explain": "준비하 + ㄹ 거예요 → 준비할 거예요. Nessuna irregolarità: solo la vocale finale."
+            },
+            {
+              "id": "a2-02-e8",
+              "type": "reading_mcq",
+              "prompt": "«같이 갈 거예요» significa…",
+              "options": ["Andremo insieme.", "Siamo andati insieme.", "Vai insieme?", "Non andremo insieme."],
+              "answer": "Andremo insieme.",
+              "explain": "같이 = insieme; 갈 거예요 = andremo. Il soggetto resta sottinteso, come spesso in coreano."
+            },
+            {
+              "id": "a2-02-e9",
+              "type": "order_words",
+              "prompt": "Rimetti in ordine: «Domani farò un viaggio».",
+              "words": ["거예요", "여행을", "내일", "갈"],
+              "answer": "내일 여행을 갈 거예요",
+              "explain": "Il futuro cortese sta in due pezzi, 갈 + 거예요, e chiude la frase; 내일 apre."
+            },
+            {
+              "id": "a2-02-e10",
+              "type": "fill_blank",
+              "prompt": "Scegli la forma di progetto: «Incontrerò un amico nel fine settimana».",
+              "text": "주말에 친구를___.",
+              "options": ["만날 거예요", "만났어요", "만나요", "만나고 싶어요"],
+              "answer": "만날 거예요",
+              "hint": "Un progetto, non un ricordo.",
+              "explain": "만나다 → 만날 거예요. Le altre forme sono passato, presente, desiderio."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a2-u2",
+      "title": "Rispetto e legami",
+      "purpose": "Parlare di chi va rispettato e tenere insieme due idee in una frase.",
+      "lessons": [
+        {
+          "id": "a2-03",
+          "slug": "forma-di-rispetto",
+          "title": "La forma di rispetto: 높임말",
+          "titleKo": "높임말",
+          "kind": "grammar",
+          "goal": "Usare -(으)시-, le particelle 께서/께 e il vocabolario onorifico quando il soggetto è una persona da rispettare.",
+          "durationMin": 30,
+          "points": [
+            "Quando il soggetto è una persona da rispettare, il verbo prende -(으)시-: 선생님이 가세요 «l'insegnante va».",
+            "Il soggetto rispettato non prende 이/가 ma 께서: 부모님께서 오세요 «i genitori vengono».",
+            "Il complemento di termine rispettato prende 께 invece di 에게: 선생님께 물어봤어요 «l'ho chiesto all'insegnante».",
+            "Alcuni verbi hanno una forma dedicata: 먹다 → 드시다, 있다 → 계시다, 자다 → 주무시다.",
+            "Anche i nomi cambiano: 밥 → 진지, 나이 → 연세, 집 → 댁, 말 → 말씀.",
+            "-세요 serve anche a chiedere gentilmente: 앉으세요 «si sieda», 천천히 읽으세요 «legga piano»."
+          ],
+          "vocab": [
+            { "ko": "부모님", "it": "i genitori", "rr": "bumonim" },
+            { "ko": "할머니", "it": "nonna", "rr": "halmeoni" },
+            { "ko": "진지", "it": "pasto (forma di rispetto)", "rr": "jinji" },
+            { "ko": "연세", "it": "età (forma di rispetto)", "rr": "yeonse" },
+            { "ko": "댁", "it": "casa (forma di rispetto)", "rr": "daek" },
+            { "ko": "말씀", "it": "parole (forma di rispetto)", "rr": "malsseum" },
+            { "ko": "드시다", "it": "mangiare (forma di rispetto)", "rr": "deusida" },
+            { "ko": "계시다", "it": "esserci, stare (forma di rispetto)", "rr": "gyesida" }
+          ],
+          "exercises": [
+            {
+              "id": "a2-03-e1",
+              "type": "reading_mcq",
+              "prompt": "Qual è la forma di rispetto del verbo 먹다?",
+              "options": ["드시다", "먹다", "마시다", "자다"],
+              "answer": "드시다",
+              "explain": "먹다 diventa 드시다 quando il soggetto è una persona da rispettare. 마시다 è bere, 자다 dormire."
+            },
+            {
+              "id": "a2-03-e2",
+              "type": "type_hangul",
+              "prompt": "Completa con la particella del soggetto rispettato: 할머니____ 오셨어요.",
+              "hint": "Sostituisce 이/가 quando il soggetto va rispettato.",
+              "answer": "께서",
+              "explain": "할머니께서 오셨어요: 께서 segna il soggetto rispettato e il verbo prende -시- (오시- → 오셨어요)."
+            },
+            {
+              "id": "a2-03-e3",
+              "type": "reading_mcq",
+              "prompt": "«선생님께서 오세요» significa…",
+              "options": ["L'insegnante viene (forma di rispetto).", "L'insegnante è venuto.", "Vado dall'insegnante.", "L'insegnante non viene."],
+              "answer": "L'insegnante viene (forma di rispetto).",
+              "explain": "께서 + 오세요: il rispetto è nella particella e nel -시- del verbo. Il tempo resta il presente."
+            },
+            {
+              "id": "a2-03-e4",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 연세?",
+              "answer": "età",
+              "accept": ["l'età", "anni", "gli anni"],
+              "explain": "연세 è l'età di una persona da rispettare; per un coetaneo si dice 나이."
+            },
+            {
+              "id": "a2-03-e5",
+              "type": "reading_mcq",
+              "prompt": "Quale parola si usa per «casa» parlando di una persona rispettata?",
+              "options": ["댁", "집", "방", "문"],
+              "answer": "댁",
+              "explain": "댁 è la casa di chi si rispetta (선생님 댁); 집 è la casa normale, 방 la stanza, 문 la porta."
+            },
+            {
+              "id": "a2-03-e6",
+              "type": "type_hangul",
+              "prompt": "Scrivi «si sieda» (forma gentile di 앉다).",
+              "hint": "앉- finisce in consonante: aggiungi 으세요.",
+              "answer": "앉으세요",
+              "explain": "앉 + 으세요 → 앉으세요. Dopo vocale basterebbe -세요, come in 가세요."
+            },
+            {
+              "id": "a2-03-e7",
+              "type": "reading_mcq",
+              "prompt": "«부모님께서 계세요» vuol dire…",
+              "options": ["I miei genitori ci sono / stanno (forma di rispetto).", "I miei genitori mangiano.", "Vado dai miei genitori.", "I miei genitori dormono."],
+              "answer": "I miei genitori ci sono / stanno (forma di rispetto).",
+              "explain": "계시다 è la forma di rispetto di 있다: «esserci». 먹다 → 드시다, 자다 → 주무시다."
+            },
+            {
+              "id": "a2-03-e8",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 말씀?",
+              "answer": "parole",
+              "accept": ["le parole", "discorso", "il discorso", "parola"],
+              "explain": "말씀 è la forma di rispetto di 말: le parole di chi va rispettato."
+            }
+          ]
+        },
+        {
+          "id": "a2-04",
+          "slug": "collegare-frasi",
+          "title": "Collegare le frasi: -고, -지만, -아서",
+          "titleKo": "연결",
+          "kind": "reading",
+          "goal": "Unire due idee con -고, -지만 e -아서/어서, e riconoscere gli stessi rapporti scritti come parole separate.",
+          "durationMin": 30,
+          "points": [
+            "-고 unisce due azioni coordinate: 밥을 먹고 커피를 마셔요 «mangio e poi bevo un caffè».",
+            "-지만 introduce un contrasto: 비싸지만 맛있어요 «è caro ma buono».",
+            "-아서/어서 esprime causa: 피곤해서 일찍 잤어요 «ero stanco, quindi sono andato a letto presto».",
+            "Con -아서/어서 il tempo si marca sul verbo finale: 비가 와서 집에 있었어요.",
+            "그래서, 하지만 e 그리고 dicono le stesse cose come parole separate, all'inizio della frase.",
+            "La virgola coreana non esiste come in italiano: il legame lo fanno le particelle, non la punteggiatura."
+          ],
+          "vocab": [
+            { "ko": "어렵다", "it": "essere difficile", "rr": "eoryeopda" },
+            { "ko": "쉽다", "it": "essere facile", "rr": "swipda" },
+            { "ko": "피곤하다", "it": "essere stanco", "rr": "pigonhada" },
+            { "ko": "비", "it": "pioggia", "rr": "bi" },
+            { "ko": "그래서", "it": "perciò", "rr": "geuraeseo" },
+            { "ko": "하지만", "it": "però, ma", "rr": "hajiman" },
+            { "ko": "그리고", "it": "e, poi", "rr": "geurigo" },
+            { "ko": "일찍", "it": "presto", "rr": "iljjik" }
+          ],
+                    "passages": [
+              {
+                "title": "Cinque frasi legate",
+                "lines": [
+                  "어제 피곤해서 일찍 잤어요.",
+                  "오늘은 쉽지만 내일은 어려울 거예요.",
+                  "밥을 먹고 커피를 마셔요.",
+                  "비가 와서 집에 있어요.",
+                  "그리고 내일 또 만나요."
+                ],
+                "gloss": [
+                  {
+                    "ko": "피곤해서",
+                    "it": "perché ero stanco",
+                    "rr": "pigonhaeseo"
+                  },
+                  {
+                    "ko": "일찍",
+                    "it": "presto",
+                    "rr": "iljjik"
+                  },
+                  {
+                    "ko": "쉽지만",
+                    "it": "è facile, ma",
+                    "rr": "swipjiman"
+                  },
+                  {
+                    "ko": "어려울 거예요",
+                    "it": "sarà difficile",
+                    "rr": "eoryeoul geoyeyo"
+                  },
+                  {
+                    "ko": "마셔요",
+                    "it": "bevo",
+                    "rr": "masyeoyo"
+                  },
+                  {
+                    "ko": "그리고",
+                    "it": "e poi",
+                    "rr": "geurigo"
+                  }
+                ],
+                "translation": "Ieri ero stanco, quindi sono andato a letto presto. Oggi è facile, ma domani sarà difficile. Mangio e poi bevo un caffè. Piove, quindi sto a casa. E domani ci si vede ancora. Ogni frase è due idee cucite da una particella: -아서, -지만, -고."
+              }
+            ],
+          "exercises": [
+            {
+              "id": "a2-04-e1",
+              "type": "reading_mcq",
+              "prompt": "«비싸지만 맛있어요» significa…",
+              "options": ["È caro ma buono.", "È caro e buono.", "È economico ma cattivo.", "Non è né caro né buono."],
+              "answer": "È caro ma buono.",
+              "explain": "지만 mette le due qualità in contrasto: il prezzo alto non cancella il sapore buono."
+            },
+            {
+              "id": "a2-04-e2",
+              "type": "type_hangul",
+              "prompt": "Unisci le due azioni con la particella giusta: 밥을 먹____ 커피를 마셔요.",
+              "hint": "È la particella che significa «e poi», attaccata alla radice del primo verbo.",
+              "answer": "고",
+              "explain": "먹고 마셔요: -고 coordina due verbi e il tempo si segna solo sull'ultimo."
+            },
+            {
+              "id": "a2-04-e3",
+              "type": "reading_mcq",
+              "prompt": "«피곤해서 일찍 잤어요» vuol dire…",
+              "options": ["Ero stanco, quindi sono andato a letto presto.", "Ero stanco ma sono andato a letto tardi.", "Non ero stanco e ho dormito.", "Sono andato a letto presto per svegliarmi presto."],
+              "answer": "Ero stanco, quindi sono andato a letto presto.",
+              "explain": "-아서/어서 lega la causa all'effetto: la stanchezza spiega perché sono andato a letto presto."
+            },
+            {
+              "id": "a2-04-e4",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 어렵다?",
+              "answer": "difficile",
+              "accept": ["essere difficile", "è difficile"],
+              "explain": "어렵다 è «essere difficile»; il contrario è 쉽다, «essere facile»."
+            },
+            {
+              "id": "a2-04-e5",
+              "type": "reading_mcq",
+              "prompt": "Quale connettivo esprime un contrasto?",
+              "options": ["하지만", "그래서", "그리고", "먼저"],
+              "answer": "하지만",
+              "explain": "하지만 = «però». 그래서 esprime conseguenza, 그리고 aggiunge, 먼저 ordina («prima»)."
+            },
+            {
+              "id": "a2-04-e6",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 쉽다?",
+              "answer": "facile",
+              "accept": ["essere facile", "è facile"],
+              "explain": "쉽다 è «essere facile», il contrario di 어렵다. Al presente cortese diventa 쉬워요, per la regola del ㅂ."
+            },
+            {
+              "id": "a2-04-e7",
+              "type": "reading_mcq",
+              "prompt": "Completa: «한국어는 어렵____ 재미있어요» (ma).",
+              "options": ["지만", "고", "어서", "그리고"],
+              "answer": "지만",
+              "explain": "어렵지만 재미있어요: «è difficile ma divertente». 어려워서 direbbe «è difficile, quindi…»."
+            },
+            {
+              "id": "a2-04-e8",
+              "type": "reading_mcq",
+              "prompt": "Completa: «비가 와____ 집에 있었어요» (perciò).",
+              "options": ["서", "고", "지만", "도"],
+              "answer": "서",
+              "explain": "비가 와서 집에 있었어요: la pioggia è la causa, stare a casa la conseguenza."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

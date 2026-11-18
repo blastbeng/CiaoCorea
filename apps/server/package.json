@@ -1,0 +1,16 @@
+{
+  "name": "@ciaocorea/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/server.cjs",
+  "dependencies": {
+    "@ciaocorea/curriculum": "*",
+    "@ciaocorea/engine": "*",
+    "@ciaocorea/shared": "*",
+    "@fastify/cookie": "^11.0.2",
+    "@fastify/static": "^8.0.3",
+    "fastify": "^5.2.1",
+    "zod": "^3.24.1"
+  }
+}

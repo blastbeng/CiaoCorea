@@ -1,0 +1,64 @@
+/**
+ * Ripetizione spaziata volutamente semplice: tre soli giudizi
+ * (0 = da rivedere, 1 = giusto, 2 = facile). La versione completa di SM-2
+ * chiede allo studente di giudicare il proprio ricordo su sei livelli, cosa che
+ * chi studia da solo sbaglia sistematicamente. Tre pulsanti sono onesti.
+ */
+
+export type SrsGrade = 0 | 1 | 2;
+
+export interface SrsState {
+  ease: number;
+  intervalDays: number;
+  reps: number;
+  lapses: number;
+}
+
+export const INITIAL_SRS: SrsState = { ease: 2.5, intervalDays: 0, reps: 0, lapses: 0 };
+
+export interface SrsSchedule extends SrsState {
+  /** Quando la card torna: data ISO (solo giorno). */
+  dueAt: string;
+}
+
+const MIN_EASE = 1.3;
+const MAX_EASE = 3.0;
+
+function addDays(from: Date, days: number): string {
+  const copy = new Date(from.getTime());
+  copy.setUTCDate(copy.getUTCDate() + days);
+  return copy.toISOString().slice(0, 10);
+}
+
+export function scheduleCard(state: SrsState, grade: SrsGrade, now: Date = new Date()): SrsSchedule {
+  if (grade === 0) {
+    const lapses = state.lapses + 1;
+    const ease = Math.max(MIN_EASE, state.ease - 0.2);
+    // Una card sbagliata non torna subito: si rivede domani, non ossessivamente.
+    return { ease, intervalDays: 1, reps: 0, lapses, dueAt: addDays(now, 1) };
+  }
+
+  const ease =
+    grade === 2 ? Math.min(MAX_EASE, state.ease + 0.1) : Math.max(MIN_EASE, state.ease - 0.05);
+  const reps = state.reps + 1;
+
+  let intervalDays: number;
+  if (reps === 1) intervalDays = 1;
+  else if (reps === 2) intervalDays = 3;
+  else intervalDays = Math.max(1, Math.round(state.intervalDays * ease));
+
+  // Un "facile" allunga il passo, ma senza scorciatoie assurde.
+  if (grade === 2) intervalDays = Math.max(intervalDays, Math.round(intervalDays * 1.3));
+
+  return {
+    ease,
+    intervalDays,
+    reps,
+    lapses: state.lapses,
+    dueAt: addDays(now, intervalDays),
+  };
+}
+
+export function isDue(dueAt: string, now: Date = new Date()): boolean {
+  return dueAt <= now.toISOString().slice(0, 10);
+}

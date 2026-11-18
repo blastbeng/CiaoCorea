@@ -1,0 +1,836 @@
+{
+  "id": "hangul",
+  "slug": "hangul",
+  "title": "한글 — Leggere e scrivere",
+  "subtitle": "L'alfabeto coreano dalle forme alla lettura reale",
+  "level": "pre-A1",
+  "description": "Otto lezioni per passare da zero a leggere parole e insegne in Hangul. Si parte dalle forme delle lettere, si costruiscono i blocchi sillabici, si arriva alle regole di pronuncia che cambiano davvero come si legge una parola.",
+  "units": [
+    {
+      "id": "h-u1",
+      "title": "Le lettere",
+      "purpose": "Impara l'alfabeto con l'occhio, non con la memoria: prima le forme, poi il suono.",
+      "lessons": [
+        {
+          "id": "hangul-01",
+          "slug": "vocali-base-e-prime-consonanti",
+          "title": "Vocali base e prime consonanti",
+          "titleKo": "기본 모음과 자음",
+          "kind": "letters",
+          "goal": "Riconoscere ㅏ ㅓ ㅗ ㅜ ㅡ ㅣ e montare le prime sillabe con ㅇ ㅁ ㄴ ㄹ.",
+          "durationMin": 25,
+          "points": [
+            "Il coreano si scrive in blocchi sillabici: consonante iniziale, vocale, eventuale consonante finale.",
+            "ㅇ all'inizio di sillaba non si pronuncia: è un segnaposto che porta la vocale (아 = a).",
+            "ㅓ è una o aperta e rilassata, non la o chiusa italiana: la bocca non si stringe.",
+            "ㅡ non esiste in italiano: labbra distese, suono a metà tra i e u.",
+            "Le vocali si distinguono per la direzione dei trattini: ㅏ guarda a destra, ㅓ a sinistra."
+          ],
+          "vocab": [
+            { "ko": "아이", "it": "bambino", "rr": "ai" },
+            { "ko": "오이", "it": "cetriolo", "rr": "oi" },
+            { "ko": "어머니", "it": "madre", "rr": "eomeoni" },
+            { "ko": "나", "it": "io (informale)", "rr": "na" },
+            { "ko": "너", "it": "tu (informale)", "rr": "neo" },
+            { "ko": "이모", "it": "zia materna", "rr": "imo" }
+          ],
+          "exercises": [
+            {
+              "id": "h01-e1",
+              "type": "jamo_choice",
+              "prompt": "Quale vocale si legge «a»?",
+              "options": ["ㅏ", "ㅓ", "ㅗ", "ㅜ"],
+              "answer": "ㅏ",
+              "explain": "ㅏ ha il trattino a destra: la vocale guarda nella direzione in cui si apre la bocca."
+            },
+            {
+              "id": "h01-e2",
+              "type": "jamo_choice",
+              "prompt": "Quale vocale si legge «eu», con le labbra distese?",
+              "options": ["ㅡ", "ㅜ", "ㅣ", "ㅓ"],
+              "answer": "ㅡ",
+              "explain": "ㅡ è un trattino orizzontale: labbra tirate ai lati, senza arrotondare."
+            },
+            {
+              "id": "h01-e3",
+              "type": "block_build",
+              "prompt": "Componi la sillaba «na»: ㅇ non serve, il suono iniziale è ㄴ.",
+              "parts": ["ㄴ", "ㅏ"],
+              "answer": "나",
+              "explain": "ㄴ + ㅏ = 나. La consonante sta a sinistra, la vocale verticale a destra."
+            },
+            {
+              "id": "h01-e4",
+              "type": "block_build",
+              "prompt": "Componi la sillaba «mo»: la vocale ㅗ è orizzontale, quindi la consonante sta sopra.",
+              "parts": ["ㅁ", "ㅗ"],
+              "answer": "모",
+              "explain": "Con le vocali orizzontali (ㅗ ㅜ ㅡ) il blocco si impila: consonante sopra, vocale sotto."
+            },
+            {
+              "id": "h01-e5",
+              "type": "type_hangul",
+              "prompt": "Scrivi in Hangul la sillaba «i» (solo vocale).",
+              "answer": "이",
+              "hint": "Serve ㅇ come segnaposto davanti alla vocale ㅣ.",
+              "explain": "Una vocale da sola non può stare in un blocco: ㅇ la accompagna senza pronunciarsi."
+            },
+            {
+              "id": "h01-e6",
+              "type": "reading_mcq",
+              "prompt": "Che parola è «아이»?",
+              "options": ["bambino", "cetriolo", "madre", "zio"],
+              "answer": "bambino",
+              "explain": "아 = a, 이 = i: 아이 è «bambino»."
+            },
+            {
+              "id": "h01-e7",
+              "type": "reading_mcq",
+              "prompt": "Che parola è «어머니»?",
+              "options": ["madre", "padre", "sorella", "nonna"],
+              "answer": "madre",
+              "explain": "어머니 è la madre; 소녀 sarebbe una ragazza."
+            },
+            {
+              "id": "h01-e8",
+              "type": "type_meaning",
+              "prompt": "Che cosa significa «나»?",
+              "answer": "io",
+              "accept": ["io (informale)", "me"],
+              "explain": "나 è «io» nella forma informale, quella che usi con amici e coetanei."
+            }
+          ]
+        },
+        {
+          "id": "hangul-02",
+          "slug": "consonanti-piene-e-vocali-con-i",
+          "title": "ㅂ ㅅ ㅈ ㅎ e le vocali con la i",
+          "titleKo": "ㅂㅅㅈㅎ와 이중 모음",
+          "kind": "letters",
+          "goal": "Leggere sillabe con ㅂ ㅅ ㅈ ㅎ ㄹ e le vocali derivate ㅑ ㅕ ㅛ ㅠ.",
+          "durationMin": 25,
+          "points": [
+            "ㅂ tra due vocali è una b morbida; a fine sillaba diventa una p chiusa, senza esplosione.",
+            "ㅅ davanti a i diventa sh (시 = shi), altrove resta una s.",
+            "ㅎ è un'aspirazione leggera: si sente in 하다, quasi sparisce tra vocali.",
+            "Le vocali con la i (ㅑ ㅕ ㅛ ㅠ) nascono aggiungendo un secondo trattino alla vocale base.",
+            "ㄹ è tra r e l: la lingua tocca una volta sola il palato, come in una r italiana morbida."
+          ],
+          "vocab": [
+            { "ko": "바다", "it": "mare", "rr": "bada" },
+            { "ko": "사자", "it": "leone", "rr": "saja" },
+            { "ko": "하마", "it": "ippopotamo", "rr": "hama" },
+            { "ko": "이야기", "it": "racconto, storia", "rr": "iyagi" },
+            { "ko": "우유", "it": "latte", "rr": "uyu" },
+            { "ko": "아버지", "it": "padre", "rr": "abeoji" },
+            { "ko": "저", "it": "io (umile)", "rr": "jeo" }
+          ],
+          "exercises": [
+            {
+              "id": "h02-e1",
+              "type": "jamo_choice",
+              "prompt": "Quale consonante si legge «h»?",
+              "options": ["ㅎ", "ㅂ", "ㅈ", "ㅅ"],
+              "answer": "ㅎ",
+              "explain": "ㅎ è l'aspirazione: come un «h» inglese di house."
+            },
+            {
+              "id": "h02-e2",
+              "type": "jamo_choice",
+              "prompt": "Quale vocale corrisponde a «ya»?",
+              "options": ["ㅑ", "ㅕ", "ㅛ", "ㅠ"],
+              "answer": "ㅑ",
+              "explain": "ㅑ = ㅏ + un trattino in più: la i si aggiunge prima della vocale base."
+            },
+            {
+              "id": "h02-e3",
+              "type": "block_build",
+              "prompt": "Componi «ba».",
+              "parts": ["ㅂ", "ㅏ"],
+              "answer": "바",
+              "explain": "ㅂ + ㅏ = 바. In 바다 (mare) la ㅂ è morbida perché seguita da vocale."
+            },
+            {
+              "id": "h02-e4",
+              "type": "block_build",
+              "prompt": "Componi «ju».",
+              "parts": ["ㅈ", "ㅜ"],
+              "answer": "주",
+              "explain": "ㅈ + ㅜ = 주: ㅈ suona come la «gi» di «giro»."
+            },
+            {
+              "id": "h02-e5",
+              "type": "type_hangul",
+              "prompt": "Scrivi in Hangul la sillaba «si» (attenzione: si legge «shi»).",
+              "answer": "시",
+              "hint": "ㅅ + ㅣ.",
+              "explain": "시 si pronuncia shi: davanti a ㅣ la ㅅ diventa sc."
+            },
+            {
+              "id": "h02-e6",
+              "type": "type_hangul",
+              "prompt": "Scrivi in Hangul «neo» (tu, informale).",
+              "answer": "너",
+              "hint": "ㄴ + ㅓ.",
+              "explain": "너 è il «tu» informale; con una persona adulta si usa invece 당신 o il titolo."
+            },
+            {
+              "id": "h02-e7",
+              "type": "reading_mcq",
+              "prompt": "Che cosa significa «바다»?",
+              "options": ["mare", "montagna", "fiume", "cielo"],
+              "answer": "mare",
+              "explain": "바다 = mare, una delle prime parole che si leggono davvero."
+            },
+            {
+              "id": "h02-e8",
+              "type": "type_meaning",
+              "prompt": "Che cosa significa «사자»?",
+              "answer": "leone",
+              "accept": ["il leone"],
+              "explain": "사자 = leone. 사 da sola significa anche «quattro» in sino-coreano."
+            }
+          ]
+        },
+        {
+          "id": "hangul-03",
+          "slug": "vocali-e-e-consonanti-aspirate",
+          "title": "ㅐ ㅔ e le consonanti aspirate",
+          "titleKo": "ㅐㅔ와 격음",
+          "kind": "letters",
+          "goal": "Distinguere ㅐ da ㅔ e leggere ㅋ ㅌ ㅍ ㅊ, le versioni aspirate di ㄱ ㄷ ㅂ ㅈ.",
+          "durationMin": 25,
+          "points": [
+            "ㅐ e ㅔ suonano quasi uguali ai giorni nostri: entrambe tendono a una «e» aperta.",
+            "Le aspirate ㅋ ㅌ ㅍ ㅊ sono le stesse consonanti con un soffio d'aria in più.",
+            "Metti la mano davanti alla bocca: con ㅋ senti il getto d'aria, con ㄱ quasi no.",
+            "ㅊ è la versione aspirata di ㅈ: suona «ch» di «ciao».",
+            "Nelle parole comuni la differenza tra ㅐ e ㅔ conta più nella scrittura che nella pronuncia."
+          ],
+          "vocab": [
+            { "ko": "개", "it": "cane", "rr": "gae" },
+            { "ko": "네", "it": "sì", "rr": "ne" },
+            { "ko": "커피", "it": "caffè", "rr": "keopi" },
+            { "ko": "토마토", "it": "pomodoro", "rr": "tomato" },
+            { "ko": "피자", "it": "pizza", "rr": "pija" },
+            { "ko": "차", "it": "tè", "rr": "cha" },
+            { "ko": "새", "it": "uccello", "rr": "sae" }
+          ],
+          "exercises": [
+            {
+              "id": "h03-e1",
+              "type": "jamo_choice",
+              "prompt": "Quale consonante è l'aspirata di ㄱ?",
+              "options": ["ㅋ", "ㄲ", "ㅌ", "ㅊ"],
+              "answer": "ㅋ",
+              "explain": "ㄱ → ㅋ: stesso punto di articolazione, più aria."
+            },
+            {
+              "id": "h03-e2",
+              "type": "jamo_choice",
+              "prompt": "Quale vocale si legge «ae»?",
+              "options": ["ㅐ", "ㅔ", "ㅒ", "ㅖ"],
+              "answer": "ㅐ",
+              "explain": "ㅐ = ㅏ + ㅣ scritti insieme; oggi suona molto vicino a ㅔ."
+            },
+            {
+              "id": "h03-e3",
+              "type": "block_build",
+              "prompt": "Componi «keo» (come in 커피, caffè).",
+              "parts": ["ㅋ", "ㅓ"],
+              "answer": "커",
+              "explain": "ㅋ + ㅓ = 커. La ㅋ è un colpo di gola con molto soffio."
+            },
+            {
+              "id": "h03-e4",
+              "type": "block_build",
+              "prompt": "Componi «cha» (tè).",
+              "parts": ["ㅊ", "ㅏ"],
+              "answer": "차",
+              "explain": "ㅊ + ㅏ = 차, che significa anche «auto» e «differenza» in altre parole."
+            },
+            {
+              "id": "h03-e5",
+              "type": "type_hangul",
+              "prompt": "Scrivi in Hangul «pi» (come nell'inizio di «pizza» coreana: 피자).",
+              "answer": "피",
+              "hint": "ㅍ + ㅣ.",
+              "explain": "ㅍ è la p aspirata: labbra chiuse e sbuffo d'aria."
+            },
+            {
+              "id": "h03-e6",
+              "type": "reading_mcq",
+              "prompt": "Che cosa significa «커피»?",
+              "options": ["caffè", "tè", "latte", "acqua"],
+              "answer": "caffè",
+              "explain": "커피 è un prestito dall'inglese coffee, adattato alla fonologia coreana."
+            },
+            {
+              "id": "h03-e7",
+              "type": "reading_mcq",
+              "prompt": "Che cosa significa «개»?",
+              "options": ["cane", "gatto", "uccello", "cavallo"],
+              "answer": "cane",
+              "explain": "개 = cane. 고양이 è il gatto."
+            },
+            {
+              "id": "h03-e8",
+              "type": "type_meaning",
+              "prompt": "Che cosa significa «네»?",
+              "answer": "sì",
+              "accept": ["si", "sì (informale)"],
+              "explain": "네 è «sì»; 네가 può anche significare «tu» in un altro contesto, ma qui è la risposta affermativa."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h-u2",
+      "title": "I blocchi sillabici",
+      "purpose": "Il coreano non si legge lettera per lettera: si legge blocco per blocco, e il blocco ha regole.",
+      "lessons": [
+        {
+          "id": "hangul-04",
+          "slug": "consonanti-semplici-doppie-aspirate",
+          "title": "Semplici, doppie, aspirate: il tris che cambia la parola",
+          "titleKo": "평음, 경음, 격음",
+          "kind": "syllables",
+          "goal": "Sentire e riconoscere la differenza tra ㄱ/ㄲ/ㅋ, ㄷ/ㄸ/ㅌ, ㅂ/ㅃ/ㅍ, ㅅ/ㅆ, ㅈ/ㅉ/ㅊ.",
+          "durationMin": 30,
+          "points": [
+            "Ogni consonante «forte» ha tre versioni: semplice, tesa (doppia) e aspirata.",
+            "Le doppie (ㄲ ㄸ ㅃ ㅆ ㅉ) si pronunciano con la gola tesa e senza aria: sono più dure, non più lunghe.",
+            "Le aspirate (ㅋ ㅌ ㅍ ㅊ) hanno molto soffio: è l'aria, non il volume, a distinguerle.",
+            "La differenza non è un dettaglio: 불 «fuoco» e 뿔 «corno» sono parole diverse.",
+            "All'inizio conviene esercitarsi sulle coppie minime ad alta voce, una dopo l'altra."
+          ],
+          "vocab": [
+            { "ko": "불", "it": "fuoco", "rr": "bul" },
+            { "ko": "뿔", "it": "corno", "rr": "ppul" },
+            { "ko": "달", "it": "luna", "rr": "dal" },
+            { "ko": "딸", "it": "figlia", "rr": "ttal" },
+            { "ko": "살", "it": "carne / anni di età", "rr": "sal" },
+            { "ko": "쌀", "it": "riso crudo", "rr": "ssal" }
+          ],
+          "exercises": [
+            {
+              "id": "h04-e1",
+              "type": "jamo_choice",
+              "prompt": "Quale consonante è la versione tesa (doppia) di ㅂ?",
+              "options": ["ㅃ", "ㅍ", "ㅂ", "ㅁ"],
+              "answer": "ㅃ",
+              "explain": "ㅃ si scrive raddoppiando ㅂ e si pronuncia con labbra tese, senza soffio."
+            },
+            {
+              "id": "h04-e2",
+              "type": "jamo_choice",
+              "prompt": "Quale parola significa «figlia»?",
+              "options": ["딸", "달", "탈", "살"],
+              "answer": "딸",
+              "explain": "딸 = figlia, 달 = luna: la ㄸ tesa è l'unica differenza."
+            },
+            {
+              "id": "h04-e3",
+              "type": "jamo_choice",
+              "prompt": "Quale parola significa «riso crudo»?",
+              "options": ["쌀", "살", "잘", "찰"],
+              "answer": "쌀",
+              "explain": "쌀 è il riso crudo; 밥 è il riso cotto, cioè il pasto."
+            },
+            {
+              "id": "h04-e4",
+              "type": "block_build",
+              "prompt": "Componi «tta» (ㄸ + ㅏ).",
+              "parts": ["ㄸ", "ㅏ"],
+              "answer": "따",
+              "explain": "Le doppie si scrivono come due lettere affiancate ma restano un solo suono."
+            },
+            {
+              "id": "h04-e5",
+              "type": "type_hangul",
+              "prompt": "Scrivi in Hangul «bul» (fuoco).",
+              "answer": "불",
+              "hint": "ㅂ + ㅜ + ㄹ.",
+              "explain": "불 ha un 받침 ㄹ: il blocco diventa più alto perché ospita la consonante finale."
+            },
+            {
+              "id": "h04-e6",
+              "type": "type_meaning",
+              "prompt": "Che cosa significa «달»?",
+              "answer": "luna",
+              "accept": ["la luna", "mese"],
+              "explain": "달 è la luna, e anche «mese» nel senso di durata."
+            },
+            {
+              "id": "h04-e7",
+              "type": "reading_mcq",
+              "prompt": "In «뿔», come si pronuncia la consonante iniziale rispetto a «불»?",
+              "options": ["Tesa, senza soffio", "Aspirata, con molto soffio", "Identica", "Nasale"],
+              "answer": "Tesa, senza soffio",
+              "explain": "ㅃ è tesa: corde vocali chiuse e rilascio secco. ㅍ sarebbe aspirata."
+            }
+          ]
+        },
+        {
+          "id": "hangul-05",
+          "slug": "vocali-composte",
+          "title": "Vocali composte: ㅘ ㅙ ㅚ ㅝ ㅞ ㅟ ㅢ",
+          "titleKo": "복합 모음",
+          "kind": "syllables",
+          "goal": "Leggere le vocali che nascono dall'unione di due vocali e riconoscerle dentro le parole.",
+          "durationMin": 25,
+          "points": [
+            "Le vocali composte sono due vocali scritte insieme: ㅗ + ㅏ = ㅘ.",
+            "ㅘ suona «ua» come in «quando»: 과 = gwa.",
+            "ㅝ suona «uo»: 원 = won, la moneta coreana.",
+            "ㅚ e ㅟ oggi si pronunciano spesso «we» e «wi».",
+            "ㅢ è la più instabile: all'inizio «ui», ma dopo consonante tende a «i»."
+          ],
+          "vocab": [
+            { "ko": "과일", "it": "frutta", "rr": "gwail" },
+            { "ko": "원", "it": "won (moneta)", "rr": "won" },
+            { "ko": "회사", "it": "azienda", "rr": "hoesa" },
+            { "ko": "귀", "it": "orecchio", "rr": "gwi" },
+            { "ko": "의사", "it": "medico", "rr": "uisa" },
+            { "ko": "쇠", "it": "ferro / manzo", "rr": "soe" }
+          ],
+          "exercises": [
+            {
+              "id": "h05-e1",
+              "type": "jamo_choice",
+              "prompt": "Da quali vocali nasce ㅘ?",
+              "options": ["ㅗ + ㅏ", "ㅜ + ㅓ", "ㅗ + ㅐ", "ㅡ + ㅣ"],
+              "answer": "ㅗ + ㅏ",
+              "explain": "Le vocali orizzontali si combinano con quelle verticali: ㅗ + ㅏ = ㅘ."
+            },
+            {
+              "id": "h05-e2",
+              "type": "jamo_choice",
+              "prompt": "Quale vocale senti in «원» (won)?",
+              "options": ["ㅝ", "ㅘ", "ㅚ", "ㅟ"],
+              "answer": "ㅝ",
+              "explain": "원 = ㅇ + ㅝ + ㄴ, si legge «won»."
+            },
+            {
+              "id": "h05-e3",
+              "type": "block_build",
+              "prompt": "Componi «gwa» (come in 과일, frutta).",
+              "parts": ["ㄱ", "ㅘ"],
+              "answer": "과",
+              "explain": "ㄱ + ㅘ = 과. La vocale composta sta a destra del blocco."
+            },
+            {
+              "id": "h05-e4",
+              "type": "type_hangul",
+              "prompt": "Scrivi in Hangul «won» (la moneta).",
+              "answer": "원",
+              "hint": "ㅇ + ㅝ + ㄴ.",
+              "explain": "원 è anche l'unità di base degli indirizzi coreani: 서울시 … 원."
+            },
+            {
+              "id": "h05-e5",
+              "type": "reading_mcq",
+              "prompt": "Che cosa significa «과일»?",
+              "options": ["frutta", "verdura", "pane", "carne"],
+              "answer": "frutta",
+              "explain": "과일 = frutta; 채소 = verdura."
+            },
+            {
+              "id": "h05-e6",
+              "type": "type_meaning",
+              "prompt": "Che cosa significa «회사»?",
+              "answer": "azienda",
+              "accept": ["società", "impresa", "ufficio"],
+              "explain": "회사 è l'azienda; 회사원 è l'impiegato."
+            },
+            {
+              "id": "h05-e7",
+              "type": "reading_mcq",
+              "prompt": "Come si legge «귀»?",
+              "options": ["gwi", "gui", "gi", "gwe"],
+              "answer": "gwi",
+              "explain": "ㅟ si legge «wi»: 귀 = gwi, orecchio."
+            }
+          ]
+        },
+        {
+          "id": "hangul-06",
+          "slug": "batchim-consonante-finale",
+          "title": "받침: la consonante finale",
+          "titleKo": "받침",
+          "kind": "reading",
+          "goal": "Leggere le sillabe con consonante finale e sapere che il 받침 cambia il suono della sillaba.",
+          "durationMin": 30,
+          "points": [
+            "Il 받침 è la consonante che chiude la sillaba: in 밥 c'è ㅂ finale.",
+            "Un blocco con 받침 si scrive su tre livelli: consonante, vocale, consonante sotto.",
+            "A fine sillaba le consonanti si neutralizzano: ㅂ ㅍ ㅃ diventano tutte una «p» chiusa.",
+            "ㄱ ㅋ ㄲ diventano una «k» senza esplosione; ㄷ ㅌ ㅈ ㅊ ㅅ ㅆ diventano una «t» chiusa.",
+            "ㄴ ㅁ ㅇ restano nasali e si sentono chiaramente: 안, 암,앙."
+          ],
+          "vocab": [
+            { "ko": "밥", "it": "riso cotto, pasto", "rr": "bap" },
+            { "ko": "집", "it": "casa", "rr": "jip" },
+            { "ko": "책", "it": "libro", "rr": "chaek" },
+            { "ko": "물", "it": "acqua", "rr": "mul" },
+            { "ko": "밤", "it": "notte / castagna", "rr": "bam" },
+            { "ko": "강", "it": "fiume", "rr": "gang" },
+            { "ko": "사람", "it": "persona", "rr": "saram" }
+          ],
+                    "passages": [
+              {
+                "title": "Leggi ad alta voce: sillabe chiuse",
+                "lines": [
+                  "밥과 물",
+                  "책과 사람",
+                  "밤의 강",
+                  "집 앞의 강",
+                  "사람의 밤"
+                ],
+                "gloss": [
+                  {
+                    "ko": "밥",
+                    "it": "riso cotto, pasto",
+                    "rr": "bab"
+                  },
+                  {
+                    "ko": "물",
+                    "it": "acqua",
+                    "rr": "mul"
+                  },
+                  {
+                    "ko": "책",
+                    "it": "libro",
+                    "rr": "chaek"
+                  },
+                  {
+                    "ko": "사람",
+                    "it": "persona",
+                    "rr": "saram"
+                  },
+                  {
+                    "ko": "밤",
+                    "it": "notte (e anche castagna)",
+                    "rr": "bam"
+                  },
+                  {
+                    "ko": "강",
+                    "it": "fiume",
+                    "rr": "gang"
+                  },
+                  {
+                    "ko": "집",
+                    "it": "casa",
+                    "rr": "jib"
+                  },
+                  {
+                    "ko": "과",
+                    "it": "e, insieme a",
+                    "rr": "gwa"
+                  }
+                ],
+                "translation": "Riso e acqua. Libro e persona. Il fiume della notte. Il fiume davanti a casa. La notte di una persona. Sono cinque righe da leggere ad alta voce: in ogni blocco la consonante finale c'è e va chiusa piano, senza aggiungere vocali."
+              }
+            ],
+          "exercises": [
+            {
+              "id": "h06-e1",
+              "type": "jamo_choice",
+              "prompt": "Quale consonante fa da 받침 in «밥»?",
+              "options": ["ㅂ", "ㅁ", "ㅍ", "ㅃ"],
+              "answer": "ㅂ",
+              "explain": "밥 = ㅂ + ㅏ + ㅂ: l'ultima ㅂ chiude la sillaba."
+            },
+            {
+              "id": "h06-e2",
+              "type": "jamo_choice",
+              "prompt": "In «집», come suona il 받침 ㅂ?",
+              "options": ["Una p chiusa, senza esplosione", "Una b sonora", "Una m", "Non si sente"],
+              "answer": "Una p chiusa, senza esplosione",
+              "explain": "A fine sillaba ㅂ si neutralizza: labbra chiuse e stop, nessuna vocale dopo."
+            },
+            {
+              "id": "h06-e3",
+              "type": "block_build",
+              "prompt": "Componi «mul» (acqua).",
+              "parts": ["ㅁ", "ㅜ", "ㄹ"],
+              "answer": "물",
+              "explain": "Con la vocale orizzontale ㅜ, il 받침 ㄹ va sotto: il blocco è alto tre livelli."
+            },
+            {
+              "id": "h06-e4",
+              "type": "type_hangul",
+              "prompt": "Scrivi in Hangul «gang» (fiume).",
+              "answer": "강",
+              "hint": "ㄱ + ㅏ + ㅇ.",
+              "explain": "강 = fiume; 한강 è il fiume Han che attraversa Seul."
+            },
+            {
+              "id": "h06-e5",
+              "type": "type_hangul",
+              "prompt": "Scrivi in Hangul «chaek» (libro).",
+              "answer": "책",
+              "hint": "ㅊ + ㅐ + ㄱ.",
+              "explain": "책 = libro; 서점 è la libreria dove si comprano i 책."
+            },
+            {
+              "id": "h06-e6",
+              "type": "reading_mcq",
+              "prompt": "Che cosa significa «사람»?",
+              "options": ["persona", "casa", "città", "amico"],
+              "answer": "persona",
+              "explain": "사람 = persona; 한국 사람 = persona coreana."
+            },
+            {
+              "id": "h06-e7",
+              "type": "reading_mcq",
+              "prompt": "Che cosa significa «물»?",
+              "options": ["acqua", "fuoco", "vento", "terra"],
+              "answer": "acqua",
+              "explain": "물 = acqua; 물고기 è il pesce, letteralmente «carne d'acqua»."
+            },
+            {
+              "id": "h06-e8",
+              "type": "type_meaning",
+              "prompt": "Che cosa significa «밤»?",
+              "answer": "notte",
+              "accept": ["la notte", "castagna"],
+              "explain": "밤 è sia la notte sia la castagna: il contesto decide."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h-u3",
+      "title": "Leggere davvero",
+      "purpose": "Dalle regole alla strada: leggere insegne, menu e nomi propri senza tradurre tutto.",
+      "lessons": [
+        {
+          "id": "hangul-07",
+          "slug": "doppi-batchim-e-regole-di-pronuncia",
+          "title": "Doppi 받침 e regole di pronuncia",
+          "titleKo": "겹받침과 발음 규칙",
+          "kind": "reading",
+          "goal": "Leggere parole con doppio 받침 e applicare le tre regole che cambiano la pronuncia reale.",
+          "durationMin": 30,
+          "points": [
+            "Alcune sillabe hanno due consonanti finali: 값, 삶, 앉다. Se ne pronuncia solo una.",
+            "Regola del legamento: se la sillaba dopo inizia con vocale o ㅇ, il 받침 si sposta e si sente (한국어 → 한구거).",
+            "Regola della nasalizzazione: ㄱ ㄷ ㅂ davanti a ㄴ ㅁ diventano nasali (합니다 → 함니다).",
+            "Regola della tensificazione: dopo un 받침, ㄱ ㄷ ㅂ ㅅ ㅈ diventano tese (학교 → 학꾜).",
+            "Queste regole non si studiano a memoria: si ascoltano e si applicano leggendo ad alta voce."
+          ],
+          "vocab": [
+            { "ko": "값", "it": "prezzo", "rr": "gap" },
+            { "ko": "삶", "it": "vita", "rr": "sam" },
+            { "ko": "앉다", "it": "sedersi", "rr": "anda" },
+            { "ko": "한국어", "it": "lingua coreana", "rr": "hangugeo" },
+            { "ko": "합니다", "it": "faccio (formale)", "rr": "hamnida" },
+            { "ko": "학교", "it": "scuola", "rr": "hakgyo" }
+          ],
+                    "passages": [
+              {
+                "title": "Leggi ad alta voce: le tre regole",
+                "lines": [
+                  "한국어와 학교",
+                  "값과 삶",
+                  "합니다, 앉다",
+                  "한국어 사람",
+                  "학교 앞의 강"
+                ],
+                "gloss": [
+                  {
+                    "ko": "한국어",
+                    "it": "la lingua coreana",
+                    "rr": "hangugeo"
+                  },
+                  {
+                    "ko": "학교",
+                    "it": "scuola",
+                    "rr": "hakgyo"
+                  },
+                  {
+                    "ko": "값",
+                    "it": "prezzo",
+                    "rr": "gap"
+                  },
+                  {
+                    "ko": "삶",
+                    "it": "vita",
+                    "rr": "salmm"
+                  },
+                  {
+                    "ko": "합니다",
+                    "it": "faccio (forma formale)",
+                    "rr": "hamnida"
+                  },
+                  {
+                    "ko": "앉다",
+                    "it": "sedersi",
+                    "rr": "anjda"
+                  },
+                  {
+                    "ko": "와",
+                    "it": "e, insieme a",
+                    "rr": "wa"
+                  }
+                ],
+                "translation": "Il coreano e la scuola. Il prezzo e la vita. «faccio», «sedersi». Una persona del coreano, cioè un coreano. Il fiume davanti alla scuola. Leggi le stesse parole due volte: prima come sono scritte, poi come escono dalla bocca (한구거, 함니다, 학꾜)."
+              }
+            ],
+          "exercises": [
+            {
+              "id": "h07-e1",
+              "type": "jamo_choice",
+              "prompt": "In «값» (prezzo), quale consonante del doppio 받침 si sente?",
+              "options": ["ㅂ", "ㅅ", "entrambe", "nessuna"],
+              "answer": "ㅂ",
+              "explain": "값 si legge «gap»: del gruppo ㅄ si pronuncia solo la prima consonante."
+            },
+            {
+              "id": "h07-e2",
+              "type": "jamo_choice",
+              "prompt": "Come si pronuncia «한국어» applicando il legamento?",
+              "options": ["한구거", "한국어", "한구고", "항구거"],
+              "answer": "한구거",
+              "explain": "Il 받침 ㄱ si sposta sulla sillaba dopo, che inizia con vocale: 한국어 → 한구거."
+            },
+            {
+              "id": "h07-e3",
+              "type": "jamo_choice",
+              "prompt": "Come si pronuncia «합니다» nella parlata reale?",
+              "options": ["함니다", "합니다", "합미다", "하미다"],
+              "answer": "함니다",
+              "explain": "ㅂ davanti a ㄴ diventa ㅁ: è la nasalizzazione."
+            },
+            {
+              "id": "h07-e4",
+              "type": "jamo_choice",
+              "prompt": "Come si pronuncia «학교»?",
+              "options": ["학꾜", "학교", "하교", "학쿄"],
+              "answer": "학꾜",
+              "explain": "Dopo il 받침 ㄱ, la ㄱ di 교 si tende: è la tensificazione."
+            },
+            {
+              "id": "h07-e5",
+              "type": "type_hangul",
+              "prompt": "Scrivi in Hangul «an-da», cioè «sedersi» (infinito dizionariale).",
+              "answer": "앉다",
+              "hint": "ㅇ + ㅏ + ㄵ, poi 다.",
+              "explain": "앉다 ha un doppio 받침 ㄵ: si pronuncia «an», la ㅈ si perde."
+            },
+            {
+              "id": "h07-e6",
+              "type": "reading_mcq",
+              "prompt": "Che cosa significa «값»?",
+              "options": ["prezzo", "vita", "casa", "tempo"],
+              "answer": "prezzo",
+              "explain": "값 = prezzo; 값이 비싸요 = è caro."
+            },
+            {
+              "id": "h07-e7",
+              "type": "type_meaning",
+              "prompt": "Che cosa significa «학교»?",
+              "answer": "scuola",
+              "accept": ["la scuola"],
+              "explain": "학교 = scuola. 학원 è invece l'istituto privato di ripetizioni, molto diffuso in Corea."
+            }
+          ]
+        },
+        {
+          "id": "hangul-08",
+          "slug": "leggere-parole-vere",
+          "title": "Leggere parole vere: menu, insegne, nomi",
+          "titleKo": "실제 단어 읽기",
+          "kind": "review",
+          "goal": "Mettere insieme tutto e leggere con sicurezza una piccola serie di parole quotidiane.",
+          "durationMin": 30,
+          "points": [
+            "Ora hai tutti gli strumenti: consonanti, vocali, 받침 e regole di pronuncia.",
+            "Le parole di origine cinese (한자어) sono circa il 60% del lessico: molte si riconoscono dai caratteri comuni.",
+            "I prestiti dall'inglese si leggono come sono scritti in Hangul: 커피, 피자, 버스, 컴퓨터.",
+            "Nei menu e nelle insegne la parola chiave è spesso l'ultima: 김치찌개 è uno stufato di kimchi.",
+            "Il modo migliore per non dimenticare l'alfabeto è leggere qualcosa ogni giorno, anche solo un'insegna."
+          ],
+          "vocab": [
+            { "ko": "김치", "it": "kimchi", "rr": "gimchi" },
+            { "ko": "비빔밥", "it": "riso misto con verdure", "rr": "bibimbap" },
+            { "ko": "불고기", "it": "manzo marinato grigliato", "rr": "bulgogi" },
+            { "ko": "버스", "it": "autobus", "rr": "beoseu" },
+            { "ko": "컴퓨터", "it": "computer", "rr": "keompyuteo" },
+            { "ko": "서울", "it": "Seul", "rr": "seoul" },
+            { "ko": "감사합니다", "it": "grazie (formale)", "rr": "gamsahamnida" }
+          ],
+          "exercises": [
+            {
+              "id": "h08-e1",
+              "type": "reading_mcq",
+              "prompt": "Che piatto è «비빔밥»?",
+              "options": ["Riso misto con verdure", "Stufato di kimchi", "Manzo marinato", "Zuppa di alghe"],
+              "answer": "Riso misto con verdure",
+              "explain": "비비다 = mescolare, 밥 = riso: il piatto si mescola prima di mangiarlo."
+            },
+            {
+              "id": "h08-e2",
+              "type": "reading_mcq",
+              "prompt": "Come si legge «서울»?",
+              "options": ["Seoul", "Soul", "Se-ul", "Seol"],
+              "answer": "Seoul",
+              "explain": "서 = seo, 울 = ul: Seoul. La traslitterazione ufficiale è proprio Seoul."
+            },
+            {
+              "id": "h08-e3",
+              "type": "type_hangul",
+              "prompt": "Scrivi in Hangul «bus» (autobus).",
+              "answer": "버스",
+              "hint": "ㅂ + ㅓ, poi ㅅ + ㅡ.",
+              "explain": "버스 è un prestito: si legge «beoseu», con la ㅡ finale che sostituisce la consonante inglese."
+            },
+            {
+              "id": "h08-e4",
+              "type": "type_hangul",
+              "prompt": "Scrivi in Hangul «kimchi».",
+              "answer": "김치",
+              "hint": "ㄱ + ㅣ + ㅁ, poi ㅊ + ㅣ.",
+              "explain": "김치: 김 non significa «alghe» qui, è solo la prima sillaba del nome."
+            },
+            {
+              "id": "h08-e5",
+              "type": "type_meaning",
+              "prompt": "Che cosa significa «감사합니다»?",
+              "answer": "grazie",
+              "accept": ["grazie (formale)", "la ringrazio"],
+              "explain": "감사합니다 è il grazie formale: si usa con sconosciuti, superiori e nei negozi."
+            },
+            {
+              "id": "h08-e6",
+              "type": "reading_mcq",
+              "prompt": "Che cosa significa «불고기»?",
+              "options": ["Manzo marinato grigliato", "Riso misto", "Kimchi fritto", "Pollo piccante"],
+              "answer": "Manzo marinato grigliato",
+              "explain": "불 = fuoco, 고기 = carne: carne cotta sul fuoco, marinata in salsa di soia."
+            },
+            {
+              "id": "h08-e7",
+              "type": "reading_mcq",
+              "prompt": "Quale parola è un prestito dall'inglese?",
+              "options": ["컴퓨터", "김치", "서울", "감사합니다"],
+              "answer": "컴퓨터",
+              "explain": "컴퓨터 viene da computer: i prestiti si leggono esattamente come sono scritti."
+            },
+            {
+              "id": "h08-e8",
+              "type": "type_hangul",
+              "prompt": "Scrivi in Hangul «bulgogi» (불고기).",
+              "answer": "불고기",
+              "hint": "Tre sillabe: 불 + 고 + 기.",
+              "explain": "불고기: la ㄹ finale di 불 si lega alla sillaba dopo, quindi si sente «bulgogi»."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,269 @@
+{
+  "id": "b1",
+  "slug": "b1",
+  "title": "B1 — Leggere il coreano vero",
+  "subtitle": "Annunci, menu, messaggi di lavoro, notizie brevi",
+  "level": "B1",
+  "description": "Quattro lezioni di lettura su testi che esistono per davvero: un annuncio di stanza, un menu appeso alla parete, un messaggio d'ufficio, una notizia in cinque righe. Ogni lezione parte dal brano, con il glossario delle parole difficili; le domande di comprensione lavorano su dettagli concreti — cifre, date, posti, conseguenze — perché a questo livello la lettura si gioca tutta lì. La traduzione del brano si apre solo dopo il primo tentativo.",
+  "units": [
+    {
+      "id": "b1-u1",
+      "title": "Testi appesi al muro",
+      "purpose": "Leggere ciò che si incontra per strada: un annuncio e un menu, dove le cifre dicono più delle frasi.",
+      "lessons": [
+        {
+          "id": "b1-01",
+          "slug": "annuncio-di-stanza",
+          "title": "L'annuncio di una stanza",
+          "titleKo": "원룸 광고",
+          "kind": "reading",
+          "goal": "Estrarre da un annuncio immobiliare le cifre che contano: deposito, affitto mensile, spese e data di ingresso.",
+          "durationMin": 35,
+          "points": [
+            "In un annuncio le cifre dicono più delle parole: prima cerca 보증금, 월세, 관리비 e le date, poi leggi il resto con calma.",
+            "Le valute corrono in 만 원: 500만 원 sono cinque milioni di won, non cinquecento.",
+            "-되다 segnala un cambiamento che subisci: 전용면적은 8평입니다 descrive, 입주 가능합니다 dice che si può fare.",
+            "도보 5분 sono cinque minuti a piedi; 지하철 2호선 è la linea 2 della metropolitana e 역 è la stazione.",
+            "포함 vuol dire «incluso»: 관리비 포함 = le spese sono dentro il prezzo, non aggiunte dopo.",
+            "Negli annunci i verbi chiudono in -(ㅂ)니다, la forma piatta e formale dello scritto: 입니다, 됩니다, 가능합니다."
+          ],
+          "vocab": [
+            {"ko": "보증금", "it": "deposito cauzionale", "rr": "bojeongeum"},
+            {"ko": "월세", "it": "affitto mensile", "rr": "wolse"},
+            {"ko": "관리비", "it": "spese condominiali", "rr": "gwanribi"},
+            {"ko": "전용면적", "it": "superficie esclusiva", "rr": "jeongnyongmyeonjeok"},
+            {"ko": "입주", "it": "trasferirsi, entrare in casa", "rr": "ipju"},
+            {"ko": "도보", "it": "a piedi", "rr": "dobu"},
+            {"ko": "지하철", "it": "metropolitana", "rr": "jihacheol"},
+            {"ko": "포함", "it": "inclusione, compreso", "rr": "poham"},
+            {"ko": "가능", "it": "possibile, si può", "rr": "ganeung"},
+            {"ko": "연락처", "it": "recapito telefonico", "rr": "yeonrakcheo"}
+          ],
+          "passages": [
+            {
+              "title": "신촌 역세권 원룸 소개",
+              "lines": [
+                "신촌 역세권 원룸입니다.",
+                "전용면적은 8평입니다.",
+                "보증금 500만 원, 월세 55만 원입니다.",
+                "관리비는 월 5만 원이고, 수도비와 난방비가 포함됩니다.",
+                "지하철 2호선 신촌역까지 도보 5분입니다.",
+                "입주는 3월 2일부터 가능합니다.",
+                "연락처: 010-1234-5678 (김수진)"
+              ],
+              "gloss": [
+                {"ko": "역세권", "it": "zona ben collegata alla stazione", "rr": "yeoksegwon"},
+                {"ko": "원룸", "it": "monolocale", "rr": "wollum"},
+                {"ko": "평", "it": "pyeong, unità di superficie (≈ 3,3 m²)", "rr": "pyeong"},
+                {"ko": "수도비", "it": "bolletta dell'acqua", "rr": "sudo-bi"},
+                {"ko": "난방비", "it": "spese di riscaldamento", "rr": "nanbangbi"},
+                {"ko": "신촌역", "it": "stazione di Sinchon", "rr": "Sinchon-yeok"}
+              ],
+              "translation": "È un monolocale in zona ben collegata alla stazione. La superficie esclusiva è di 8 pyeong (circa 26 m²). Deposito cauzionale 5.000.000 di won, affitto 550.000 won al mese. Le spese sono 50.000 won al mese e comprendono l'acqua e il riscaldamento. Sono cinque minuti a piedi fino alla stazione di Sinchon, sulla linea 2 della metropolitana. Ci si può trasferire dal 2 marzo. Recapito: 010-1234-5678 (Kim Sujin)."
+            }
+          ],
+          "exercises": [
+            {"id": "b1-01-e1", "type": "reading_mcq", "prompt": "Quanto si paga di affitto ogni mese?", "options": ["55만 원 (550.000 won)", "500만 원 (5.000.000 won)", "5만 원 (50.000 won)", "Non c'è scritto"], "answer": "55만 원 (550.000 won)", "explain": "월세 55만 원: 55 × 10.000 = 550.000 won. Il 500만 원 è il deposito, che si versa una volta sola."},
+            {"id": "b1-01-e2", "type": "reading_mcq", "prompt": "Che cosa è compreso nella 관리비?", "options": ["L'acqua e il riscaldamento", "La corrente e internet", "Le pulizie condominiali", "Il parcheggio"], "answer": "L'acqua e il riscaldamento", "explain": "수도비와 난방비가 포함됩니다: acqua e riscaldamento sono dentro. Di corrente e internet l'annuncio non parla."},
+            {"id": "b1-01-e3", "type": "reading_mcq", "prompt": "Da quando si può entrare nella stanza?", "options": ["Dal 2 marzo", "Dal 12 marzo", "Dal 30 aprile", "Non è possibile"], "answer": "Dal 2 marzo", "explain": "입주는 3월 2일부터 가능합니다: 3월 = marzo, 2일 = il giorno 2, -부터 = a partire da."},
+            {"id": "b1-01-e4", "type": "reading_mcq", "prompt": "Quanto dista la stazione della metropolitana?", "options": ["Cinque minuti a piedi", "Cinque minuti in autobus", "Cinque fermate di metropolitana", "Non è vicino a una stazione"], "answer": "Cinque minuti a piedi", "explain": "도보 5분 = cinque minuti a piedi. 도보 è il modo (a piedi), 5분 è il tempo."},
+            {"id": "b1-01-e5", "type": "type_meaning", "prompt": "Che cosa vuol dire 보증금?", "answer": "il deposito cauzionale", "accept": ["deposito cauzionale", "deposito", "il deposito", "cauzione", "la cauzione", "deposito garantito"], "explain": "보증금 è la somma che lasci al proprietario come garanzia: torna indietro quando lasci la casa."},
+            {"id": "b1-01-e6", "type": "type_meaning", "prompt": "Che cosa vuol dire 월세?", "answer": "l'affitto mensile", "accept": ["affitto mensile", "affitto", "l affitto", "affitto al mese", "il canone di affitto", "canone di affitto"], "explain": "월 = mese, 세 = affitto: la cifra che paghi ogni mese. Si oppone a 보증금, che è il deposito iniziale."},
+            {"id": "b1-01-e7", "type": "type_hangul", "prompt": "Scrivi in coreano «a piedi» (come mezzo per spostarsi).", "hint": "È la parola che sta davanti a 5분 nell'annuncio.", "answer": "도보", "accept": ["도보 5분", "도보로"], "explain": "도보 (步道) = cammino a piedi. 도보 5분 = cinque minuti a piedi."},
+            {"id": "b1-01-e8", "type": "type_hangul", "prompt": "Scrivi in coreano «incluso / compreso».", "hint": "Nel testo appare con -됩니다: …포함됩니다.", "answer": "포함", "accept": ["포함됩니다", "포함 포함"], "explain": "포함 + 됩니다 = «è incluso». 포함 da solo è il nome: l'inclusione."},
+            {"id": "b1-01-e9", "type": "reading_mcq", "prompt": "Chi bisogna contattare per l'annuncio?", "options": ["김수진", "박민준", "신촌", "관리인"], "answer": "김수진", "explain": "Dopo 연락처 c'è il numero e il nome di chi risponde: 김수진."}
+          ]
+        },
+        {
+          "id": "b1-02",
+          "slug": "menu-e-prezzi",
+          "title": "Il menu e le note in fondo",
+          "titleKo": "메뉴판",
+          "kind": "reading",
+          "goal": "Leggere un menu: prezzi, porzioni, piccantezza, orari del pranzo speciale e regole di pagamento.",
+          "durationMin": 30,
+          "points": [
+            "Sul menu il numero nudo è un prezzo in 원: 9,000 = 9.000 won, e di solito è il prezzo di 1인분.",
+            "Le stelle raccontano il piccante: 매움 ★★ è più piccante di 매움 ★, e i coreani lo scrivono senza scuse.",
+            "계절 메뉴 compare solo in alcuni mesi: 냉면 6월부터 9월까지 significa che a dicembre non lo ordini.",
+            "Le note in fondo non sono decorazione: dicono come si paga, e spesso c'è un minimo per il contante.",
+            "공깃밥 è il riso semplice, ordinato a parte: il 찌개 si mangia con esso, non da solo.",
+            "~부터 ~까지 segna l'intervallo: 11:30~13:30 è la finestra del pranzo speciale."
+          ],
+          "vocab": [
+            {"ko": "메뉴", "it": "menu", "rr": "manyeo"},
+            {"ko": "1인분", "it": "una porzione, per una persona", "rr": "ilinbun"},
+            {"ko": "공깃밥", "it": "riso in bianco", "rr": "gonggitbap"},
+            {"ko": "매움", "it": "piccantezza", "rr": "maeum"},
+            {"ko": "계절 메뉴", "it": "menu stagionale", "rr": "gyejeol manyeo"},
+            {"ko": "결제", "it": "pagamento", "rr": "gyeolje"},
+            {"ko": "현금", "it": "contante, denaro contante", "rr": "hyeongeum"},
+            {"ko": "계산서", "it": "conto, scontrino", "rr": "gyesanseo"},
+            {"ko": "수저", "it": "posate (cucchiaio e bacchette)", "rr": "sujeo"},
+            {"ko": "특선", "it": "selezione speciale", "rr": "teokseon"}
+          ],
+          "passages": [
+            {
+              "title": "메뉴판 — 단골 식당",
+              "lines": [
+                "비빔밥 9,000원 / 김치찌개 8,500원 (매움 ★★)",
+                "된장찌개 8,000원 (매움 ★) / 청국장 9,000원",
+                "냉면 11,000원 (계절 메뉴: 6월~9월)",
+                "공깃밥 1,000원 / 김치 무료",
+                "점심 특선: 11:30~13:30, 7,000원",
+                "카드로 결제할 수 있습니다. 현금은 1만 원부터 받습니다."
+              ],
+              "gloss": [
+                {"ko": "찌개", "it": "stufato zuppa, jjim", "rr": "jjigae"},
+                {"ko": "무료", "it": "gratis", "rr": "mu-ryo"},
+                {"ko": "부터", "it": "a partire da", "rr": "buteo"},
+                {"ko": "받다", "it": "ricevere, accettare", "rr": "batda"},
+                {"ko": "점심", "it": "pranzo", "rr": "jeomsim"}
+              ],
+              "translation": "Bibimbap 9.000 won / zuppa di kimchi 8.500 won (piccante ★★). Zuppa di doenjang 8.000 won (piccante ★) / cheonggukjang 9.000 won. Naengmyeon 11.000 won (menu stagionale: da giugno a settembre). Riso in bianco 1.000 won / kimchi gratis. Pranzo speciale: dalle 11:30 alle 13:30, 7.000 won. Si può pagare con la carta; i contanti si accettano da 10.000 won in su."
+            }
+          ],
+          "exercises": [
+            {"id": "b1-02-e1", "type": "reading_mcq", "prompt": "Quanto costa il 비빔밥?", "options": ["9.000 won", "8.500 won", "7.000 won", "11.000 won"], "answer": "9.000 won", "explain": "비빔밥 9,000원: la virgola è il separatore delle migliaia, come da noi il punto."},
+            {"id": "b1-02-e2", "type": "reading_mcq", "prompt": "Perché a dicembre non puoi ordinare il 냉면?", "options": ["È un menu stagionale, solo da giugno a settembre", "È finito", "Costa troppo", "È piccante"], "answer": "È un menu stagionale, solo da giugno a settembre", "explain": "계절 메뉴: 6월~9월 = da giugno a settembre. Fuori da quell'intervallo il piatto non c'è."},
+            {"id": "b1-02-e3", "type": "reading_mcq", "prompt": "Il pranzo speciale a 7.000 won si prende quando?", "options": ["Dalle 11:30 alle 13:30", "Dalle 13:30 alle 15:30", "Tutto il giorno", "Solo la sera"], "answer": "Dalle 11:30 alle 13:30", "explain": "점심 특선: 11:30~13:30. Il trattino (~) è l'intervallo, come l'italiano «dalle… alle…»."},
+            {"id": "b1-02-e4", "type": "reading_mcq", "prompt": "Che cosa NON puoi fare in questo ristorante?", "options": ["Pagare un conto di 8.000 won in contanti", "Pagare con la carta", "Ordinare il riso in bianco", "Mangiare il kimchi"], "answer": "Pagare un conto di 8.000 won in contanti", "explain": "현금은 1만 원부터 받습니다: i contanti si prendono solo da 10.000 won in su, quindi 8.000 in contanti no."},
+            {"id": "b1-02-e5", "type": "type_meaning", "prompt": "Che cosa vuol dire 1인분?", "answer": "una porzione, per una persona", "accept": ["una porzione", "porzione", "per una persona", "per persona", "monoporzione", "la porzione di una persona"], "explain": "인 = persona, 분 = porzione (forma cortese di 개). 1인분 è la quantità per una persona."},
+            {"id": "b1-02-e6", "type": "type_meaning", "prompt": "Che cosa vuol dire 공깃밥?", "answer": "il riso in bianco", "accept": ["riso in bianco", "riso", "il riso", "riso semplice", "una ciotola di riso", "riso bollito"], "explain": "밥 è il riso cotto: qui si ordina a parte, a 1.000 won, e accompagna il 찌개."},
+            {"id": "b1-02-e7", "type": "type_hangul", "prompt": "Scrivi in coreano «pagamento» (la parola della nota in fondo).", "hint": "Appare in 결제할 수 있습니다.", "answer": "결제", "accept": ["결제하다", "결제를"], "explain": "결제 = pagamento. 결제할 수 있습니다 = «si può pagare / è possibile pagare»."},
+            {"id": "b1-02-e8", "type": "type_hangul", "prompt": "Scrivi in coreano «contanti».", "hint": "La nota dice che da 1만 원 in su si accettano.", "answer": "현금", "accept": ["현금은", "현금으로"], "explain": "현금 (現金) = denaro contante, opposto a 카드 (carta)."},
+            {"id": "b1-02-e9", "type": "reading_mcq", "prompt": "Quanto costa il 김치?", "options": ["Niente: è 무료", "1.000 won", "8.000 won", "Non è in menu"], "answer": "Niente: è 무료", "explain": "김치 무료 = gratis. È il contorno che arriva sempre, senza chiederlo."}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b1-u2",
+      "title": "Testi che arrivano addosso",
+      "purpose": "Capire i messaggi e le notizie: orari cambiati, richieste, cause e conseguenze.",
+      "lessons": [
+        {
+          "id": "b1-03",
+          "slug": "messaggio-di-lavoro",
+          "title": "Un messaggio in ufficio",
+          "titleKo": "사무실 메시지",
+          "kind": "reading",
+          "goal": "Capire un comunicato interno: il nuovo orario, il posto, ciò che viene chiesto e come si risponde.",
+          "durationMin": 35,
+          "points": [
+            "-ㅂ니다 è la forma piatta e formale dei comunicati scritti: 변경되었습니다, 감사합니다. È educazione a distanza, non calore.",
+            "주세요 è una richiesta: 보내 주세요 = «mandi, per favore». Con 미리 (per tempo) suona gentile, non un ordine.",
+            "-로 marca lo strumento: 메일로 보내 주세요 = «mandi per email». La stessa 로 di 아이스로 주세요 del caffè.",
+            "-되다 al passato (변경되었습니다) dice che la data che leggi dopo è quella nuova, non la vecchia.",
+            "층 conta i piani: 5층 è il quinto piano; 회의실 è la sala riunioni (실 = stanza).",
+            "불편한 일이 있으면 미리 알려 주세요 non pretende un sì: apre una strada, e rispondere è legittimo."
+          ],
+          "vocab": [
+            {"ko": "회의", "it": "riunione", "rr": "hoeui"},
+            {"ko": "자료", "it": "materiale, documenti", "rr": "jaryo"},
+            {"ko": "일정", "it": "programma, scaletta", "rr": "iljeong"},
+            {"ko": "변경되다", "it": "essere cambiato, spostato", "rr": "byeongyeongdoe-da"},
+            {"ko": "장소", "it": "luogo, posto", "rr": "jangso"},
+            {"ko": "메일", "it": "email", "rr": "meil"},
+            {"ko": "층", "it": "piano (di edificio)", "rr": "cheung"},
+            {"ko": "미리", "it": "in anticipo, per tempo", "rr": "miri"},
+            {"ko": "요청", "it": "richiesta", "rr": "yucheong"},
+            {"ko": "불편하다", "it": "essere scomodo, avere un problema", "rr": "bulpyeonhada"}
+          ],
+          "passages": [
+            {
+              "title": "팀 공지 — 회의 시간 변경",
+              "lines": [
+                "팀원 여러분, 안녕하세요.",
+                "이번 주 회의가 3월 12일 (수) 오후 3시로 변경되었습니다.",
+                "장소는 5층 회의실입니다.",
+                "자료는 회의 전에 메일로 보내 주세요.",
+                "불편한 일이 있으면 미리 알려 주세요.",
+                "감사합니다. — 박민준"
+              ],
+              "gloss": [
+                {"ko": "팀원", "it": "i membri del team", "rr": "timwon"},
+                {"ko": "여러분", "it": "tutti voi, signore e signori", "rr": "yeoreobun"},
+                {"ko": "이번 주", "it": "questa settimana", "rr": "ibeon ju"},
+                {"ko": "오후", "it": "pomeriggio", "rr": "ohu"},
+                {"ko": "전에", "it": "prima di", "rr": "jeone"},
+                {"ko": "알려 주세요", "it": "fate sapere", "rr": "allyeo juseyo"}
+              ],
+              "translation": "Cari colleghi, buongiorno. La riunione di questa settimana è stata spostata alle 15 di mercoledì 12 marzo. Il luogo è la sala riunioni al quinto piano. Per favore mandate il materiale per email prima della riunione. Se c'è qualcosa che non va, fatemelo sapere per tempo. Grazie — Park Minjun."
+            }
+          ],
+          "exercises": [
+            {"id": "b1-03-e1", "type": "reading_mcq", "prompt": "Quando si fa la riunione?", "options": ["Mercoledì 12 marzo, alle 15", "Martedì 12 marzo, alle 15", "Mercoledì 12 marzo, alle 3 del mattino", "Non c'è una data"], "answer": "Mercoledì 12 marzo, alle 15", "explain": "3월 12일 (수) 오후 3시: 수 = mercoledì (da 수요일), 오후 3시 = le 15. È l'orario nuovo, segnato da 변경되었습니다."},
+            {"id": "b1-03-e2", "type": "reading_mcq", "prompt": "Dove si fa la riunione?", "options": ["Nella sala riunioni al quinto piano", "Nella sala riunioni al terzo piano", "In una stanza al piano terra", "Non è scritto"], "answer": "Nella sala riunioni al quinto piano", "explain": "장소는 5층 회의실입니다: 5층 = quinto piano, 회의실 = sala riunioni."},
+            {"id": "b1-03-e3", "type": "reading_mcq", "prompt": "Che cosa viene chiesto ai colleghi?", "options": ["Di mandare il materiale per email prima della riunione", "Di arrivare dieci minuti prima", "Di portar da mangiare", "Di disdire la riunione"], "answer": "Di mandare il materiale per email prima della riunione", "explain": "자료는 회의 전에 메일로 보내 주세요: il materiale, prima della riunione, per email."},
+            {"id": "b1-03-e4", "type": "reading_mcq", "prompt": "«불편한 일이 있으면 미리 알려 주세요» significa…", "options": ["Segnala per tempo qualsiasi problema", "Vieni in ufficio il prima possibile", "Non mancare alla riunione", "Porta i materiali in sala"], "answer": "Segnala per tempo qualsiasi problema", "explain": "불편하다 = essere scomodo/avere un problema; -면 = se; 미리 = per tempo; 알려 주세요 = fammelo sapere."},
+            {"id": "b1-03-e5", "type": "type_meaning", "prompt": "Che cosa vuol dire 자료?", "answer": "il materiale, i documenti", "accept": ["materiale", "i materiali", "documenti", "i documenti", "il documento", "le carte", "materiale di studio"], "explain": "자료 sono i documenti che sostengono il lavoro: slides, stampati, file."},
+            {"id": "b1-03-e6", "type": "type_meaning", "prompt": "Che cosa vuol dire 변경되다?", "answer": "essere cambiato, spostato", "accept": ["essere cambiato", "essere spostato", "cambiato", "spostato", "cambiamento", "è cambiato", "è stato spostato"], "explain": "변경 (cambio) + 되다 (diventare/subire): la riunione non cambia da sola, le viene cambiato l'orario."},
+            {"id": "b1-03-e7", "type": "type_hangul", "prompt": "Scrivi in coreano «email» (come sta nel messaggio).", "hint": "Nel testo compare con -로: … 보내 주세요.", "answer": "메일", "accept": ["메일로", "이메일"], "explain": "메일 (da «mail»): 메일로 보내 주세요 = mandala per email."},
+            {"id": "b1-03-e8", "type": "type_hangul", "prompt": "Scrivi in coreano «riunione».", "hint": "È la parola che apre la frase dell'orario.", "answer": "회의", "accept": ["회의가", "회의실"], "explain": "회의 = riunione; 회의실 è la stanza dove si fa."},
+            {"id": "b1-03-e9", "type": "reading_mcq", "prompt": "Perché il messaggio usa 변경되었습니다 e 감사합니다?", "options": ["È la forma formale e piatta dello scritto", "È il parlato fra amici", "È un modo antico e poetico", "È la forma interrogativa"], "answer": "È la forma formale e piatta dello scritto", "explain": "-ㅂ니다 è il registro neutro-formale: avvisi, comunicati, notizie. Fra colleghi e al bar la stessa idea esce in forma cortese: 바뀌었어요, 괜찮아요, 고마워요."}
+          ]
+        },
+        {
+          "id": "b1-04",
+          "slug": "notizia-breve",
+          "title": "Una notizia in cinque righe",
+          "titleKo": "짧은 뉴스",
+          "kind": "reading",
+          "goal": "Ricavare da una breve notizia che cosa è successo, che cosa può succedere e quali conseguenze ne seguono.",
+          "durationMin": 35,
+          "points": [
+            "-다고 밝혔다 è il modo delle notizie: «ha dichiarato che…». La frase riportata non è l'opinione del giornale, è la voce di chi parla.",
+            "-(으)ㄹ 수 있다 esprime possibilità: 눈이 올 수 있습니다 = «può nevicare», non «nevicherà».",
+            "-(으)ㄴ니 lega causa e invito: 도로가 얼 수 있으니 조심해 주세요 = «le strade possono ghiacciare, quindi fate attenzione».",
+            "평균 기온 è la temperatura media; 낮아지다 si usa per i valori che scendono, non per i prezzi in offerta.",
+            "늦추다 = posticipare: 등교 시간을 한 시간 늦췄습니다 = l'ingresso a scuola è rinviato di un'ora.",
+            "Le notizie contano: 5도, 한 시간, 몇 곳. Se il numero non c'è, l'informazione non c'è: è la prima cosa da verificare nelle domande."
+          ],
+          "vocab": [
+            {"ko": "기상청", "it": "agenzia meteorologica", "rr": "gisancheong"},
+            {"ko": "기온", "it": "temperatura", "rr": "gion"},
+            {"ko": "평균", "it": "media, medio", "rr": "pyeonggyun"},
+            {"ko": "낮아지다", "it": "abbassarsi, scendere", "rr": "naja-jida"},
+            {"ko": "눈", "it": "neve", "rr": "nun"},
+            {"ko": "얼다", "it": "ghiacciare, gelare", "rr": "eolda"},
+            {"ko": "운전", "it": "guida, guidare", "rr": "unjeon"},
+            {"ko": "등교", "it": "andare a scuola, ingresso a scuola", "rr": "deunggyo"},
+            {"ko": "늦추다", "it": "posticipare, ritardare", "rr": "neutjuda"},
+            {"ko": "밝히다", "it": "dichiarare, rendere noto", "rr": "balhida"}
+          ],
+          "passages": [
+            {
+              "title": "사회 면 한 단 — 겨울 서울",
+              "lines": [
+                "지난주 서울의 평균 기온이 5도 낮아졌습니다.",
+                "기상청은 이번 주에 눈이 올 수 있다고 밝혔습니다.",
+                "도로가 얼 수 있으니 운전할 때 조심해 주세요.",
+                "학교 몇 곳이 내일 등교 시간을 한 시간 늦췄습니다."
+              ],
+              "gloss": [
+                {"ko": "지난주", "it": "la settimana scorsa", "rr": "jinanju"},
+                {"ko": "도", "it": "grado (di temperatura)", "rr": "do"},
+                {"ko": "도로", "it": "strada, carreggiata", "rr": "doro"},
+                {"ko": "조심하다", "it": "fare attenzione, con prudenza", "rr": "josimhada"},
+                {"ko": "내일", "it": "domani", "rr": "naeil"}
+              ],
+              "translation": "La settimana scorsa la temperatura media a Seoul è scesa di 5 gradi. L'agenzia meteorologica ha dichiarato che questa settimana può nevicare. Le strade possono ghiacciare, quindi fate attenzione quando guidate. Alcune scuole hanno posticipato di un'ora l'orario di ingresso per domani."
+            }
+          ],
+          "exercises": [
+            {"id": "b1-04-e1", "type": "reading_mcq", "prompt": "Che cosa è successo la settimana scorsa a Seoul?", "options": ["La temperatura media è scesa di 5 gradi", "Ha nevicato per cinque giorni", "Le scuole hanno chiuso", "Le strade sono state chiuse"], "answer": "La temperatura media è scesa di 5 gradi", "explain": "평균 기온이 5도 낮아졌습니다: la media è scesa di 5 gradi. La neve riguarda la settimana successiva ed è solo una possibilità."},
+            {"id": "b1-04-e2", "type": "reading_mcq", "prompt": "Che cosa ha annunciato il 기상청 per questa settimana?", "options": ["Può nevicare", "Nevicherà sicuro domani", "La temperatura salirà di 5 gradi", "Non succederà nulla"], "answer": "Può nevicare", "explain": "눈이 올 수 있습니다 = può nevicare. -ㄹ 수 있다 è possibilità, non previsione certa: «sicuro» non c'è nel testo."},
+            {"id": "b1-04-e3", "type": "reading_mcq", "prompt": "Che cosa consigliano le autorità?", "options": ["Attenzione quando si guida", "Di non uscire di casa", "Di scaldare le acque", "Di chiudere le scuole"], "answer": "Attenzione quando si guida", "explain": "도로가 얼 수 있으니 운전할 때 조심해 주세요: la causa è il ghiaccio, il consiglio riguarda la guida."},
+            {"id": "b1-04-e4", "type": "reading_mcq", "prompt": "Di quanto hanno posticipato l'ingresso a scuola?", "options": ["Un'ora", "Due ore", "Mezza giornata", "Non lo hanno posticipato"], "answer": "Un'ora", "explain": "한 시간 늦췄습니다: un'ora. Nota la misura — 한 = uno, 시간 = ora, 늦추다 = posticipare."},
+            {"id": "b1-04-e5", "type": "type_meaning", "prompt": "Che cosa vuol dire 기상청?", "answer": "l'agenzia meteorologica", "accept": ["agenzia meteorologica", "agenzia meteo", "agenzia del meteo", "ufficio meteo", "servizio meteorologico", "i meteorologi", "centro meteo"], "explain": "기상 (meteo) + 청 (ufficio pubblico): è l'ente nazionale che annuncia meteo e allarmi."},
+            {"id": "b1-04-e6", "type": "type_meaning", "prompt": "Che cosa vuol dire 조심하다?", "answer": "fare attenzione", "accept": ["fare attenzione", "stare attenti", "attenzione", "essere prudenti", "con prudenza", "piano"], "explain": "조심 (prudenza) + 하다: la frase che senti mille volte per strada, «attento!»."},
+            {"id": "b1-04-e7", "type": "type_hangul", "prompt": "Scrivi in coreano «temperatura».", "hint": "Sta nella prima riga, con 평균.", "answer": "기온", "accept": ["기온이", "평균 기온"], "explain": "기온 (氣溫) = temperatura. 평균 기온 = temperatura media."},
+            {"id": "b1-04-e8", "type": "type_hangul", "prompt": "Scrivi in coreano «neve».", "hint": "Una sola sillaba, nel verbo della seconda riga.", "answer": "눈", "accept": ["눈이", "눈이 올"], "explain": "눈 = neve (e anche «occhio»: il contesto decide, come in italiano «banco»)."},
+            {"id": "b1-04-e9", "type": "reading_mcq", "prompt": "«눈이 올 수 있습니다» esprime…", "options": ["una possibilità, non una certezza", "una certezza assoluta", "un desiderio", "un rimpianto"], "answer": "una possibilità, non una certezza", "explain": "-(으)ㄹ 수 있다 = «può accadere». Per la certezza si userebbe -ㄹ 거예요: «nevicherà». Il bollettino lascia aperta la strada, come fa anche l'italiano in questa frase."}
+          ]
+        }
+      ]
+    }
+  ]
+}

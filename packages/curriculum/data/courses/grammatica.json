@@ -1,0 +1,463 @@
+{
+  "id": "grammatica",
+  "slug": "grammatica",
+  "title": "문법 — Frasi che stanno in piedi",
+  "subtitle": "Dalla copula ai verbi al presente, con le particelle che servono",
+  "level": "A1",
+  "description": "Quattro lezioni per costruire le prime frasi complete: identificare una persona, dire cosa c'è e cosa non c'è, coniugare i verbi al presente cortese e legare oggetto e luogo con le particelle. Niente elenchi da imparare a memoria: ogni regola arriva con esempi che si usano subito.",
+  "units": [
+    {
+      "id": "g-u1",
+      "title": "Frasi che stanno in piedi",
+      "purpose": "Impara a dire chi sei e che cosa c'è, con la copula e le prime particelle.",
+      "lessons": [
+        {
+          "id": "gram-01",
+          "slug": "identificare-ieyo-yeyo",
+          "title": "Identificare: 이에요 / 예요",
+          "titleKo": "이에요/예요",
+          "kind": "grammar",
+          "goal": "Dire «sono…», «è…» e negarlo con 아니에요, scegliendo la forma giusta dopo consonante o vocale.",
+          "durationMin": 25,
+          "points": [
+            "In coreano il verbo sta in fondo: 저는 학생이에요 si legge «io studente-sono», non «sono uno studente».",
+            "이에요 si attacca dopo una consonante finale: 학생이에요, 사람이에요. 예요 dopo una vocale: 의사예요, 친구예요.",
+            "La negazione è 아니에요: 학생이 아니에요, 의사가 아니에요.",
+            "저는 è «io» in forma cortese, 나는 è la stessa cosa fra amici: nei dialoghi con sconosciuti si usa 저.",
+            "Il punto fermo si mette alla fine della frase, non dopo ogni parola: 저는 이탈리아 사람이에요."
+          ],
+          "vocab": [
+            { "ko": "저", "it": "io (cortese)", "rr": "jeo" },
+            { "ko": "학생", "it": "studente", "rr": "haksaeng" },
+            { "ko": "의사", "it": "medico", "rr": "uisa" },
+            { "ko": "선생님", "it": "insegnante", "rr": "seonsaengnim" },
+            { "ko": "이탈리아", "it": "Italia", "rr": "itallia" },
+            { "ko": "사람", "it": "persona", "rr": "saram" },
+            { "ko": "이름", "it": "nome", "rr": "ireum" }
+          ],
+          "exercises": [
+            {
+              "id": "g01-e1",
+              "type": "reading_mcq",
+              "prompt": "학생 significa…",
+              "options": ["insegnante", "studente", "medico", "amico"],
+              "answer": "studente",
+              "explain": "학생 è lo studente; 선생님 è l'insegnante: condividono 생, ma il primo studia e il secondo insegna."
+            },
+            {
+              "id": "g01-e2",
+              "type": "reading_mcq",
+              "prompt": "«의사» indica…",
+              "options": ["il medico", "lo studente", "il nome", "la persona"],
+              "answer": "il medico",
+              "explain": "의사 è il medico. La parola per «nome» è 이름, per «persona» è 사람."
+            },
+            {
+              "id": "g01-e3",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 선생님?",
+              "answer": "insegnante",
+              "accept": ["l'insegnante", "professore", "il professore", "la professoressa"],
+              "explain": "선생님 è l'insegnante; 님 è un suffisso di rispetto, come il «signor» che in italiano si mette davanti."
+            },
+            {
+              "id": "g01-e4",
+              "type": "type_hangul",
+              "prompt": "Completa: 저는 학생____.",
+              "hint": "학생 finisce con una consonante: quale forma della copula ci va?",
+              "answer": "이에요",
+              "explain": "학생 termina con ㅇ, quindi sotto c'è un 받침: si usa 이에요, non 예요."
+            },
+            {
+              "id": "g01-e5",
+              "type": "reading_mcq",
+              "prompt": "Che cosa dice «저는 이탈리아 사람이에요»?",
+              "options": ["Sono italiano.", "Non sono italiano.", "Sei italiano?", "L'Italia è bella."],
+              "answer": "Sono italiano.",
+              "explain": "사람 è «persona»: «io persona italiana-sono» è il modo coreano di dire «sono italiano»."
+            },
+            {
+              "id": "g01-e6",
+              "type": "type_hangul",
+              "prompt": "Scrivi «Sono uno studente».",
+              "hint": "저는 + 학생 + copula",
+              "answer": "저는 학생이에요",
+              "accept": ["나는 학생이에요", "학생이에요"],
+              "explain": "L'ordine è fisso: tema, complemento, verbo. Il verbo non si sposta mai."
+            },
+            {
+              "id": "g01-e7",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 이름?",
+              "answer": "nome",
+              "accept": ["il nome"],
+              "explain": "이름 è il nome. «Come ti chiami?» è 이름이 뭐예요?, che incontrerai presto."
+            },
+            {
+              "id": "g01-e8",
+              "type": "reading_mcq",
+              "prompt": "«학생이 아니에요» vuol dire…",
+              "options": ["Non sono uno studente.", "Sono uno studente.", "Sei uno studente?", "Lo studente non c'è."],
+              "answer": "Non sono uno studente.",
+              "explain": "아니에요 nega la copula: mette la frase al negativo senza cambiare l'ordine delle parole."
+            },
+            {
+              "id": "g01-e9",
+              "type": "order_words",
+              "prompt": "Rimetti in ordine: «Sono italiano».",
+              "words": ["사람이에요", "저는", "이탈리아"],
+              "answer": "저는 이탈리아 사람이에요",
+              "explain": "Il verbo sta in fondo: prima il tema (저는), poi l'informazione, poi la copula."
+            },
+            {
+              "id": "g01-e10",
+              "type": "fill_blank",
+              "prompt": "Completa: «Il mio nome è Kim Minsu».",
+              "text": "제 이름___ 김민수예요.",
+              "answer": "이",
+              "hint": "La particella del soggetto dopo una consonante.",
+              "explain": "이름 chiude con ㅁ, una consonante finale: il soggetto prende 이, non 가."
+            }
+          ]
+        },
+        {
+          "id": "gram-02",
+          "slug": "tema-e-soggetto",
+          "title": "Tema e soggetto: 은/는 e 이/가",
+          "titleKo": "은/는, 이/가",
+          "kind": "grammar",
+          "goal": "Distinguere la particella del tema da quella del soggetto e usare 있다/없다 per dire che c'è o non c'è.",
+          "durationMin": 25,
+          "points": [
+            "은/는 segna il tema, cioè «quanto a…»: 저는 학생이에요 mette 저 in primo piano e poi dice qualcosa su di lui.",
+            "이/가 segna il soggetto che compie l'azione o che viene identificato: 친구가 와요, 책이 있어요.",
+            "La scelta dipende dall'ultimo suono della parola: dopo consonante 은 e 이, dopo vocale 는 e 가.",
+            "있다 significa «c'è / ho», 없다 «non c'è / non ho»: sono aggettivi-verbi e vogliono 이/가, non 을/를.",
+            "In italiano queste particelle spesso spariscono nella traduzione: non è un errore dimenticarle, è un errore non sceglierle."
+          ],
+          "vocab": [
+            { "ko": "책", "it": "libro", "rr": "chaek" },
+            { "ko": "물", "it": "acqua", "rr": "mul" },
+            { "ko": "집", "it": "casa", "rr": "jip" },
+            { "ko": "친구", "it": "amico", "rr": "chingu" },
+            { "ko": "여기", "it": "qui", "rr": "yeogi" },
+            { "ko": "있어요", "it": "c'è, ho", "rr": "isseoyo" },
+            { "ko": "없어요", "it": "non c'è, non ho", "rr": "eopseoyo" }
+          ],
+          "exercises": [
+            {
+              "id": "g02-e1",
+              "type": "reading_mcq",
+              "prompt": "Che cosa dice «물이 있어요»?",
+              "options": ["C'è dell'acqua.", "Non c'è acqua.", "Bevo l'acqua.", "Dov'è l'acqua?"],
+              "answer": "C'è dell'acqua.",
+              "explain": "물이 è «acqua» con la particella del soggetto; 있어요 dice che c'è."
+            },
+            {
+              "id": "g02-e2",
+              "type": "type_hangul",
+              "prompt": "Completa con la particella del tema: 저___ 학생이에요.",
+              "hint": "저 finisce con una vocale.",
+              "answer": "는",
+              "explain": "저 termina in vocale, quindi il tema si marca con 는: 저는."
+            },
+            {
+              "id": "g02-e3",
+              "type": "reading_mcq",
+              "prompt": "«친구가 없어요» vuol dire…",
+              "options": ["Non ho amici.", "Ho un amico.", "L'amico è qui.", "Chi è l'amico?"],
+              "answer": "Non ho amici.",
+              "explain": "없어요 nega 있어요. Con 가 il soggetto è 친구: «amico non-c'è»."
+            },
+            {
+              "id": "g02-e4",
+              "type": "type_hangul",
+              "prompt": "Scrivi «C'è un libro».",
+              "hint": "책 + particella del soggetto + 있어요",
+              "answer": "책이 있어요",
+              "accept": ["여기 책이 있어요"],
+              "explain": "책 finisce con consonante ㄱ, quindi il soggetto prende 이."
+            },
+            {
+              "id": "g02-e5",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 집?",
+              "answer": "casa",
+              "accept": ["la casa"],
+              "explain": "집 è la casa. 집에 가요 sarà «vado a casa», nella lezione sulle particelle di luogo."
+            },
+            {
+              "id": "g02-e6",
+              "type": "type_hangul",
+              "prompt": "Completa: 물___ 없어요.",
+              "hint": "물 finisce con una consonante.",
+              "answer": "이",
+              "explain": "물 termina con ㄹ: il soggetto prende 이, non 가."
+            },
+            {
+              "id": "g02-e7",
+              "type": "reading_mcq",
+              "prompt": "«여기 있어요» si traduce con…",
+              "options": ["È qui.", "Non è qui.", "Vengo qui.", "Dove sei?"],
+              "answer": "È qui.",
+              "explain": "여기 è «qui», 있어요 dice che c'è: insieme, «è qui»."
+            },
+            {
+              "id": "g02-e8",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 친구?",
+              "answer": "amico",
+              "accept": ["l'amico", "amica", "l'amica"],
+              "explain": "친구 vale per amico e amica: il coreano non distingue il genere qui."
+            },
+            {
+              "id": "g02-e9",
+              "type": "order_words",
+              "prompt": "Rimetti in ordine: «C'è dell'acqua qui».",
+              "words": ["있어요", "물이", "여기에"],
+              "answer": "여기에 물이 있어요",
+              "explain": "여기에 = «qui», 물이 = «l'acqua», 있어요 = «c'è»: il verbo chiude la frase."
+            },
+            {
+              "id": "g02-e10",
+              "type": "fill_blank",
+              "prompt": "Scegli la particella del soggetto.",
+              "text": "책___ 있어요.",
+              "options": ["이", "가", "를", "에"],
+              "answer": "이",
+              "hint": "Dopo una consonante finale.",
+              "explain": "이 dopo consonante, 가 dopo vocale: 책이 있어요, 물이 있어요, 친구가 있어요."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-u2",
+      "title": "Verbi e complementi",
+      "purpose": "Coniuga al presente cortese e lega quello che mangi, bevi e fai al posto giusto.",
+      "lessons": [
+        {
+          "id": "gram-03",
+          "slug": "presente-cortese",
+          "title": "Presente cortese: -아요 / -어요",
+          "titleKo": "현재 시제",
+          "kind": "grammar",
+          "goal": "Portare un verbo dal dizionario alla forma -요 e riconoscerne il significato in una frase.",
+          "durationMin": 30,
+          "points": [
+            "Il dizionario dà i verbi in -다: 가다, 먹다, 마시다, 보다. Per parlare si toglie 다 e si aggiunge la desinenza.",
+            "Se l'ultima vocale è ㅏ o ㅗ si usa 아요: 가다 → 가요, 사다 → 사요, 좋다 → 좋아요.",
+            "Con tutte le altre vocali si usa 어요: 먹다 → 먹어요, 배우다 → 배워요.",
+            "하다 diventa 해요: 공부하다 → 공부해요. È il verbo più frequente, vale la pena riconoscerlo a vista.",
+            "Il presente coreano copre anche il futuro vicino: 내일 가요 significa «domani vado», non serve un'altra forma.",
+            "Nel parlato quotidiano l'oggetto può restare senza particella: 밥 먹어요 è naturale quanto 밥을 먹어요."
+          ],
+          "vocab": [
+            { "ko": "가요", "it": "vado", "rr": "gayo" },
+            { "ko": "먹어요", "it": "mangio", "rr": "meogeoyo" },
+            { "ko": "마셔요", "it": "bevo", "rr": "masyeoyo" },
+            { "ko": "봐요", "it": "vedo, guardo", "rr": "bwayo" },
+            { "ko": "공부해요", "it": "studio", "rr": "gongbuhaeyo" },
+            { "ko": "사요", "it": "compro", "rr": "sayo" },
+            { "ko": "좋아해요", "it": "mi piace", "rr": "joahaeyo" },
+            { "ko": "밥", "it": "riso, pasto", "rr": "bap" }
+          ],
+          "exercises": [
+            {
+              "id": "g03-e1",
+              "type": "type_hangul",
+              "prompt": "Scrivi «mangio» (forma cortese) da 먹다.",
+              "hint": "Togli 다 e guarda la vocale: ㅓ.",
+              "answer": "먹어요",
+              "explain": "먹다 → 먹 + 어요 = 먹어요. La ㅓ resta, non si trasforma."
+            },
+            {
+              "id": "g03-e2",
+              "type": "reading_mcq",
+              "prompt": "«공부해요» vuol dire…",
+              "options": ["Studio.", "Mangio.", "Compro.", "Guardo."],
+              "answer": "Studio.",
+              "explain": "공부하다 è studiare; 하다 diventa 해요, quindi 공부해요."
+            },
+            {
+              "id": "g03-e3",
+              "type": "type_hangul",
+              "prompt": "Scrivi «vado» da 가다.",
+              "hint": "La vocale è ㅏ: quale desinenza si attacca?",
+              "answer": "가요",
+              "explain": "가 + 아요 si contrae in 가요: la ㅏ assorbe la desinenza."
+            },
+            {
+              "id": "g03-e4",
+              "type": "reading_mcq",
+              "prompt": "Che cosa dice «밥 먹어요»?",
+              "options": ["Mangio.", "Bevo.", "Compro il riso.", "Il riso è qui."],
+              "answer": "Mangio.",
+              "explain": "밥 è il pasto per eccellenza: senza particella, «mangio» basta."
+            },
+            {
+              "id": "g03-e5",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 사요?",
+              "answer": "compro",
+              "accept": ["comprare", "io compro"],
+              "explain": "사다 è comprare; 사 + 아요 si contrae in 사요."
+            },
+            {
+              "id": "g03-e6",
+              "type": "type_hangul",
+              "prompt": "Da 좋아하다 ricava «mi piace».",
+              "hint": "하다 è regolare: diventa 해요.",
+              "answer": "좋아해요",
+              "explain": "좋아하다 → 좋아해요. La radice resta, cambia solo 하다."
+            },
+            {
+              "id": "g03-e7",
+              "type": "reading_mcq",
+              "prompt": "«커피 마셔요» si traduce con…",
+              "options": ["Bevo caffè.", "Compro caffè.", "Il caffè è qui.", "Non bevo caffè."],
+              "answer": "Bevo caffè.",
+              "explain": "마시다 perde ㅣ e diventa 마셔요: 마시 + 어요 = 마셔요."
+            },
+            {
+              "id": "g03-e8",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 봐요?",
+              "answer": "vedo",
+              "accept": ["guardo", "io vedo", "io guardo"],
+              "explain": "보다 → 보 + 아요 si contrae in 봐요. La contrazione nasconde la radice: riconoscila."
+            },
+            {
+              "id": "g03-e9",
+              "type": "order_words",
+              "prompt": "Rimetti in ordine: «Mangio del riso».",
+              "words": ["먹어요", "밥", "저는"],
+              "answer": "저는 밥 먹어요",
+              "explain": "Tema, oggetto, verbo: 저는 + 밥 + 먹어요. Il verbo non si sposta dalla fine."
+            },
+            {
+              "id": "g03-e10",
+              "type": "fill_blank",
+              "prompt": "Scegli il verbo giusto: «Bevo il caffè».",
+              "text": "저는 커피를___.",
+              "options": ["마셔요", "먹어요", "가요", "자요"],
+              "answer": "마셔요",
+              "hint": "Con il caffè si usa il verbo «bere».",
+              "explain": "마시다 → 마셔요: radice 마시 + 어요, con la vocale che si ritira."
+            }
+          ]
+        },
+        {
+          "id": "gram-04",
+          "slug": "oggetti-e-luoghi",
+          "title": "Oggetti e luoghi: 을/를, 에, 에서",
+          "titleKo": "을/를, 에, 에서",
+          "kind": "grammar",
+          "goal": "Segnare l'oggetto, la destinazione e il luogo in cui si svolge l'azione senza confondere 에 con 에서.",
+          "durationMin": 30,
+          "points": [
+            "을/를 marca l'oggetto dell'azione: 밥을 먹어요, 커피를 마셔요. 을 dopo consonante, 를 dopo vocale.",
+            "에 indica dove si va o dove qualcosa si trova: 학교에 가요, 집에 있어요.",
+            "에서 indica il luogo in cui l'azione avviene: 집에서 공부해요, 도서관에서 공부해요.",
+            "La differenza si vede nella domanda: 어디에 가요? chiede la destinazione, 어디에서 공부해요? chiede dove studi.",
+            "에 non si usa con i verbi di movimento verso un'attività: «andare a studiare» è 공부하러 가요, che vedrai più avanti."
+          ],
+          "vocab": [
+            { "ko": "커피", "it": "caffè", "rr": "keopi" },
+            { "ko": "학교", "it": "scuola", "rr": "hakgyo" },
+            { "ko": "도서관", "it": "biblioteca", "rr": "doseogwan" },
+            { "ko": "영화", "it": "film", "rr": "yeonghwa" },
+            { "ko": "을/를", "it": "particella dell'oggetto", "rr": "eul/reul" },
+            { "ko": "에", "it": "a, in (destinazione)", "rr": "e" },
+            { "ko": "에서", "it": "in, da (dove si agisce)", "rr": "eseo" }
+          ],
+          "exercises": [
+            {
+              "id": "g04-e1",
+              "type": "type_hangul",
+              "prompt": "Completa con la particella dell'oggetto: 밥___ 먹어요.",
+              "hint": "밥 finisce con una consonante.",
+              "answer": "을",
+              "explain": "밥 termina in ㅂ, quindi l'oggetto prende 을: 밥을."
+            },
+            {
+              "id": "g04-e2",
+              "type": "type_hangul",
+              "prompt": "Completa con la particella dell'oggetto: 커피___ 마셔요.",
+              "hint": "커피 finisce con una vocale.",
+              "answer": "를",
+              "explain": "커피 termina in ㅣ: la particella è 를."
+            },
+            {
+              "id": "g04-e3",
+              "type": "reading_mcq",
+              "prompt": "«학교에 가요» vuol dire…",
+              "options": ["Vado a scuola.", "Studio a scuola.", "La scuola è qui.", "Non vado a scuola."],
+              "answer": "Vado a scuola.",
+              "explain": "에 segna la destinazione del movimento: il verbo è 가요, non 공부해요."
+            },
+            {
+              "id": "g04-e4",
+              "type": "reading_mcq",
+              "prompt": "«집에서 공부해요» si traduce con…",
+              "options": ["Studio a casa.", "Vado a casa.", "La casa è qui.", "Torno a casa."],
+              "answer": "Studio a casa.",
+              "explain": "에서 dice dove avviene l'azione: si studia, e lo si fa a casa."
+            },
+            {
+              "id": "g04-e5",
+              "type": "type_hangul",
+              "prompt": "Scrivi «Vado a scuola».",
+              "hint": "학교 + particella di destinazione + 가요",
+              "answer": "학교에 가요",
+              "accept": ["저는 학교에 가요", "나는 학교에 가요"],
+              "explain": "Il luogo di destinazione prende 에, il verbo di movimento resta in fondo."
+            },
+            {
+              "id": "g04-e6",
+              "type": "reading_mcq",
+              "prompt": "«도서관에서 공부해요» vuol dire…",
+              "options": ["Studio in biblioteca.", "Vado in biblioteca.", "La biblioteca è chiusa.", "Compro un libro."],
+              "answer": "Studio in biblioteca.",
+              "explain": "도서관 è la biblioteca; 에서 la trasforma nel luogo dell'azione."
+            },
+            {
+              "id": "g04-e7",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 영화?",
+              "answer": "film",
+              "accept": ["il film", "un film"],
+              "explain": "영화 è il film. «Guardo un film» sarà 영화를 봐요."
+            },
+            {
+              "id": "g04-e8",
+              "type": "reading_mcq",
+              "prompt": "«어디에 가요?» chiede…",
+              "options": ["Dove vai?", "Dove studi?", "Che cosa compri?", "Chi è?"],
+              "answer": "Dove vai?",
+              "explain": "어디 è «dove»; con 에 la domanda riguarda la destinazione, non il luogo dell'azione."
+            },
+            {
+              "id": "g04-e9",
+              "type": "order_words",
+              "prompt": "Rimetti in ordine: «Studio in biblioteca».",
+              "words": ["공부해요", "도서관에서", "저는"],
+              "answer": "저는 도서관에서 공부해요",
+              "explain": "에서 è il luogo dove si svolge l'azione: 도서관에서 + verbo in fondo alla frase."
+            },
+            {
+              "id": "g04-e10",
+              "type": "fill_blank",
+              "prompt": "Completa con la particella della destinazione.",
+              "text": "학교___ 가요.",
+              "answer": "에",
+              "hint": "La scuola è dove si va, non dove si studia.",
+              "explain": "에 segna la destinazione (학교에 가요), 에서 il luogo dove si agisce (학교에서 공부해요)."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

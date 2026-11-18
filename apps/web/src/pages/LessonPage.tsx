@@ -1,0 +1,670 @@
+import { useRef, useState, type KeyboardEvent } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import {
+  CLOZE_MARKER,
+  type AttemptResponse,
+  type CourseView,
+  type LessonDetail,
+  type PublicExercise,
+  type ReadingPassage,
+} from '@ciaocorea/shared';
+import { api } from '../api';
+import { errorMessage } from '../auth';
+import { remainingTiles, splitCloze } from '../exercises';
+import { HangulInput } from '../components/HangulInput';
+import { composeHangul } from '../hangul';
+import { useAsync } from '../useAsync';
+
+type Mode = 'lesson' | 'skip';
+
+const KOREAN = /[\u3131-\u318e\uac00-\ud7a3]/;
+
+function isKorean(text: string): boolean {
+  return KOREAN.test(text);
+}
+
+/* ------------------------------------------------------------------ */
+/* Input per tipo di esercizio                                         */
+/* ------------------------------------------------------------------ */
+
+interface InputProps {
+  exercise: PublicExercise;
+  value: string;
+  onChange: (value: string) => void;
+  onSubmit: () => void;
+  disabled: boolean;
+}
+
+function ExerciseInput({ exercise, value, onChange, onSubmit, disabled }: InputProps) {
+  if (exercise.type === 'jamo_choice' || exercise.type === 'reading_mcq') {
+    return (
+      <div className="options">
+        {exercise.options.map((option) => (
+          <button
+            key={option}
+            type="button"
+            disabled={disabled}
+            className={[
+              'option',
+              isKorean(option) ? 'option--ko' : '',
+              value === option ? 'option--selected' : '',
+            ]
+              .filter(Boolean)
+              .join(' ')}
+            onClick={() => onChange(option)}
+          >
+            {option}
+          </button>
+        ))}
+      </div>
+    );
+  }
+
+  if (exercise.type === 'block_build') {
+    return (
+      <div>
+        <div className="assembly">
+          {value ? (
+            composeHangul(value)
+          ) : (
+            <span className="assembly-empty">Tocca i pezzi qui sotto, nell'ordine giusto…</span>
+          )}
+        </div>
+
+        <div className="chips">
+          {exercise.parts.map((part, position) => (
+            <button
+              key={`${part}-${position}`}
+              type="button"
+              className="chip"
+              disabled={disabled}
+              onClick={() => onChange(value + part)}
+            >
+              {part}
+            </button>
+          ))}
+        </div>
+
+        {value ? (
+          <button
+            type="button"
+            className="btn btn--sm btn--ghost"
+            style={{ marginTop: '0.6rem' }}
+            disabled={disabled}
+            onClick={() => onChange('')}
+          >
+            Cancella
+          </button>
+        ) : null}
+      </div>
+    );
+  }
+
+  if (exercise.type === 'order_words') {
+    const tiles = value ? value.split(' ') : [];
+    const left = remainingTiles(exercise.words, tiles);
+
+    return (
+      <div>
+        <div className="assembly assembly--sentence">
+          {tiles.length === 0 ? (
+            <span className="assembly-empty">Tocca le parole nell&rsquo;ordine giusto…</span>
+          ) : (
+            tiles.map((token, position) => (
+              <button
+                key={`${token}-${position}`}
+                type="button"
+                className="tile tile--filled"
+                disabled={disabled}
+                onClick={() => onChange(tiles.filter((_, index) => index !== position).join(' '))}
+              >
+                {token}
+              </button>
+            ))
+          )}
+        </div>
+
+        <div className="chips">
+          {left.map(({ word, index }) => (
+            <button
+              key={`${word}-${index}`}
+              type="button"
+              className="tile"
+              disabled={disabled}
+              onClick={() => onChange([...tiles, word].join(' '))}
+            >
+              {word}
+            </button>
+          ))}
+        </div>
+
+        {tiles.length > 0 ? (
+          <button
+            type="button"
+            className="btn btn--sm btn--ghost"
+            style={{ marginTop: '0.6rem' }}
+            disabled={disabled}
+            onClick={() => onChange('')}
+          >
+            Cancella
+          </button>
+        ) : null}
+      </div>
+    );
+  }
+
+  if (exercise.type === 'fill_blank') {
+    const { before, after } = splitCloze(exercise.text, CLOZE_MARKER);
+    const clause = (
+      <p className="cloze">
+        <span>{before}</span>
+        <span
+          className={['cloze__blank', exercise.options ? 'cloze__blank--choice' : '']
+            .filter(Boolean)
+            .join(' ')}
+        >
+          {value || '\u00a0\u00a0\u00a0'}
+        </span>
+        <span>{after}</span>
+      </p>
+    );
+
+    if (exercise.options) {
+      return (
+        <div>
+          {clause}
+          <div className="options">
+            {exercise.options.map((option) => (
+              <button
+                key={option}
+                type="button"
+                disabled={disabled}
+                className={[
+                  'option',
+                  isKorean(option) ? 'option--ko' : '',
+                  value === option ? 'option--selected' : '',
+                ]
+                  .filter(Boolean)
+                  .join(' ')}
+                onClick={() => onChange(option)}
+              >
+                {option}
+              </button>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <div>
+        {clause}
+        <HangulInput
+          value={value}
+          onChange={onChange}
+          onSubmit={onSubmit}
+          disabled={disabled}
+          autoFocus
+          placeholder="Scrivi la parola che manca"
+        />
+      </div>
+    );
+  }
+
+  if (exercise.type === 'type_hangul') {
+    return (
+      <HangulInput
+        value={value}
+        onChange={onChange}
+        onSubmit={onSubmit}
+        disabled={disabled}
+        autoFocus
+        placeholder="Scrivi in coreano"
+      />
+    );
+  }
+
+  return (
+    <input
+      className="input"
+      value={value}
+      onChange={(event) => onChange(event.target.value)}
+      onKeyDown={(event: KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          onSubmit();
+        }
+      }}
+      placeholder="Scrivi in italiano"
+      disabled={disabled}
+      autoFocus
+      autoComplete="off"
+      spellCheck={false}
+    />
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Brani di lettura                                                    */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Un brano si legge prima di fare gli esercizi: le parole difficili sono già
+ * sotto gli occhi, la traduzione arriva solo quando la lezione è chiusa, così
+ * lo studente prova da sé e non legge la risposta per prima.
+ *
+ * La traduzione non è nascosta qui: il server la toglie dalla risposta finché
+ * la lezione non è superata o saltata. Se il campo è vuoto, non c'è nulla da
+ * mostrare.
+ */
+function PassageCard({ passage }: { passage: ReadingPassage }) {
+  return (
+    <section className="card passage">
+      <h2>{passage.title}</h2>
+
+      <div className="passage__ko">
+        {passage.lines.map((line, index) => (
+          <p key={`${passage.title}-${index}`} className="passage__line">
+            {line}
+          </p>
+        ))}
+      </div>
+
+      <h3>Parole da guardare prima</h3>
+      <ul className="gloss">
+        {passage.gloss.map((item) => (
+          <li key={`${item.ko}-${item.it}`}>
+            <span className="ko">{item.ko}</span>
+            <span className="gloss__it">{item.it}</span>
+            <span className="faint small">{item.rr}</span>
+          </li>
+        ))}
+      </ul>
+
+      {passage.translation ? (
+        <div className="passage__it">
+          <h3>Traduzione</h3>
+          <p>{passage.translation}</p>
+        </div>
+      ) : (
+        <p className="hint">
+          Prova a capire il brano da solo: la traduzione compare quando la lezione è
+          superata o saltata.
+        </p>
+      )}
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Studio                                                              */
+/* ------------------------------------------------------------------ */
+
+function StudyView({ detail, onStart }: { detail: LessonDetail; onStart: (mode: Mode) => void }) {
+  const { lesson } = detail;
+  const canSkip = detail.skipTest.length > 0;
+
+  return (
+    <div className="stack">
+      <section className="card">
+        <h2>In breve</h2>
+        <p className="muted">{lesson.goal}</p>
+        <ul className="points">
+          {lesson.points.map((point) => (
+            <li key={point}>{point}</li>
+          ))}
+        </ul>
+      </section>
+
+      {lesson.vocab.length > 0 ? (
+        <section className="card">
+          <h2>Parole della lezione</h2>
+          <ul className="vocab">
+            {lesson.vocab.map((item) => (
+              <li key={`${item.ko}-${item.it}`}>
+                <div className="ko">{item.ko}</div>
+                <div>{item.it}</div>
+                <div className="faint small">{item.rr}</div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
+      {(lesson.passages ?? []).map((passage, index) => (
+        <PassageCard key={`${lesson.id}-passage-${index}`} passage={passage} />
+      ))}
+
+      <div className="row">
+        <button type="button" className="btn btn--primary" onClick={() => onStart('lesson')}>
+          Inizia gli esercizi
+        </button>
+      </div>
+
+      {canSkip ? (
+        <section className="card">
+          <h3>Conosci già questi contenuti?</h3>
+          <p className="muted small">
+            Affronta un test rapido di {detail.skipTest.length} domande. Se lo superi la lezione
+            risulta saltata e passi avanti; se no, ti restano gli esercizi completi.
+          </p>
+          <button type="button" className="btn" onClick={() => onStart('skip')}>
+            Fai il test di salto
+          </button>
+        </section>
+      ) : null}
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Esercizi                                                            */
+/* ------------------------------------------------------------------ */
+
+interface RunnerProps {
+  detail: LessonDetail;
+  mode: Mode;
+  onFinish: (result: AttemptResponse) => void;
+}
+
+function Runner({ detail, mode, onFinish }: RunnerProps) {
+  const exercises = mode === 'skip' ? detail.skipTest : detail.exercises;
+  const [index, setIndex] = useState(0);
+  const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const startedAt = useRef(Date.now());
+
+  const current = exercises[index];
+  const value = current ? (answers[current.id] ?? '') : '';
+  const answered = value.trim().length > 0;
+  const last = index === exercises.length - 1;
+
+  const submit = async () => {
+    setBusy(true);
+    setError(null);
+    try {
+      const payload = exercises.map((exercise) => ({
+        exerciseId: exercise.id,
+        response: answers[exercise.id] ?? '',
+      }));
+      const result = await api.submit(
+        detail.course.slug,
+        detail.lesson.id,
+        mode,
+        payload,
+        Date.now() - startedAt.current,
+      );
+      onFinish(result);
+    } catch (problem) {
+      setError(errorMessage(problem));
+      setBusy(false);
+    }
+  };
+
+  const advance = () => {
+    if (busy) return;
+    if (last) {
+      void submit();
+      return;
+    }
+    setIndex(index + 1);
+  };
+
+  if (!current) {
+    return <div className="alert alert--error">Questa lezione non ha esercizi disponibili.</div>;
+  }
+
+  return (
+    <div className="card">
+      <div className="exercise-head">
+        <span className="badge">
+          {mode === 'skip' ? 'Test di salto' : 'Esercizio'} {index + 1}/{exercises.length}
+        </span>
+        <div className="progress" style={{ flex: 1 }}>
+          <span style={{ width: `${((index + (answered ? 1 : 0)) / exercises.length) * 100}%` }} />
+        </div>
+      </div>
+
+      <p className="exercise-prompt">{current.prompt}</p>
+      {current.hint ? <p className="hint">Suggerimento: {current.hint}</p> : null}
+
+      <ExerciseInput
+        exercise={current}
+        value={value}
+        onChange={(next) => setAnswers((previous) => ({ ...previous, [current.id]: next }))}
+        onSubmit={advance}
+        disabled={busy}
+      />
+
+      {error ? (
+        <p className="alert alert--error" role="alert" style={{ marginTop: '1rem' }}>
+          {error}
+        </p>
+      ) : null}
+
+      <div className="row" style={{ marginTop: '1.25rem' }}>
+        {index > 0 ? (
+          <button
+            type="button"
+            className="btn btn--ghost"
+            onClick={() => setIndex(index - 1)}
+            disabled={busy}
+          >
+            Indietro
+          </button>
+        ) : null}
+
+        <button
+          type="button"
+          className="btn btn--primary"
+          onClick={advance}
+          disabled={!answered || busy}
+        >
+          {busy ? 'Correggo…' : last ? 'Consegna' : 'Avanti'}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Esito                                                               */
+/* ------------------------------------------------------------------ */
+
+function nextLessonOf(course: CourseView, lessonId: string) {
+  const all = course.units.flatMap((unit) => unit.lessons);
+  const position = all.findIndex((lesson) => lesson.id === lessonId);
+  if (position < 0 || position + 1 >= all.length) return null;
+  return { slug: course.slug, lesson: all[position + 1]! };
+}
+
+interface ResultProps {
+  detail: LessonDetail;
+  mode: Mode;
+  result: AttemptResponse;
+  exercises: PublicExercise[];
+  onRetry: () => void;
+}
+
+function ResultView({ detail, mode, result, exercises, onRetry }: ResultProps) {
+  const { attempt } = result;
+  const byId = new Map(exercises.map((exercise) => [exercise.id, exercise]));
+  const next = attempt.passed ? nextLessonOf(result.course, detail.lesson.id) : null;
+
+  return (
+    <div className="stack">
+      <section className="card">
+        <div className="score">
+          <span className="score-value">{attempt.score}%</span>
+          <div>
+            <p style={{ margin: 0, fontWeight: 600 }}>
+              {attempt.passed
+                ? mode === 'skip'
+                  ? 'Test superato: lezione saltata'
+                  : 'Lezione superata'
+                : 'Non ancora: ti serve l’80%'}
+            </p>
+            <p className="muted small" style={{ margin: 0 }}>
+              {attempt.correct} risposte corrette su {attempt.total}
+            </p>
+          </div>
+        </div>
+
+        <div className="row" style={{ marginTop: '1.25rem' }}>
+          {next ? (
+            <Link
+              className="btn btn--primary"
+              to={`/corso/${next.slug}/lezione/${next.lesson.id}`}
+            >
+              Lezione successiva: {next.lesson.title}
+            </Link>
+          ) : null}
+
+          <button type="button" className={next ? 'btn' : 'btn btn--primary'} onClick={onRetry}>
+            Riprova
+          </button>
+
+          <Link className="btn btn--ghost" to={`/corso/${detail.course.slug}`}>
+            Torna al corso
+          </Link>
+        </div>
+      </section>
+
+      <section className="card">
+        <h2>Dettaglio</h2>
+        <ul className="result-list">
+          {attempt.results.map((item) => {
+            const exercise = byId.get(item.exerciseId);
+            return (
+              <li
+                key={item.exerciseId}
+                className={`result-item result-item--${item.correct ? 'ok' : 'wrong'}`}
+              >
+                <span
+                  className={`result-mark result-mark--${item.correct ? 'ok' : 'wrong'}`}
+                  aria-hidden="true"
+                >
+                  {item.correct ? '✓' : '✗'}
+                </span>
+                <div>
+                  <div style={{ fontWeight: 600 }}>{exercise?.prompt ?? item.exerciseId}</div>
+                  <div className="small">
+                    <span className="muted">La tua risposta: </span>
+                    <span className={exercise && isKorean(item.expected) ? 'hangul' : ''}>
+                      {item.response || '—'}
+                    </span>
+                  </div>
+                  {item.correct ? null : (
+                    <div className="small">
+                      <span className="muted">Risposta attesa: </span>
+                      <span className={isKorean(item.expected) ? 'hangul' : ''}>
+                        {item.expected}
+                      </span>
+                    </div>
+                  )}
+                  {exercise?.explain ? <div className="hint">{exercise.explain}</div> : null}
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Sessione                                                            */
+/* ------------------------------------------------------------------ */
+
+function Session({ detail }: { detail: LessonDetail }) {
+  const [mode, setMode] = useState<Mode | null>(null);
+  const [runId, setRunId] = useState(0);
+  const [result, setResult] = useState<AttemptResponse | null>(null);
+
+  const start = (next: Mode) => {
+    setMode(next);
+    setResult(null);
+    setRunId((value) => value + 1);
+  };
+
+  const exercises = mode === 'skip' ? detail.skipTest : detail.exercises;
+
+  if (result && mode) {
+    return (
+      <ResultView
+        detail={detail}
+        mode={mode}
+        result={result}
+        exercises={exercises}
+        onRetry={() => start(mode)}
+      />
+    );
+  }
+
+  if (mode) {
+    return (
+      <Runner
+        key={`${mode}-${runId}`}
+        detail={detail}
+        mode={mode}
+        onFinish={(attempt) => setResult(attempt)}
+      />
+    );
+  }
+
+  return <StudyView detail={detail} onStart={start} />;
+}
+
+/* ------------------------------------------------------------------ */
+/* Pagina                                                              */
+/* ------------------------------------------------------------------ */
+
+export function LessonPage() {
+  const { slug = '', lessonId = '' } = useParams();
+  const state = useAsync(() => api.lesson(slug, lessonId), [slug, lessonId]);
+
+  if (state.status === 'loading') return <div className="loading">Carico la lezione…</div>;
+
+  if (state.status === 'error') {
+    return (
+      <div className="stack">
+        <div className="alert alert--error" role="alert">
+          {state.error}
+        </div>
+        <Link className="btn" to={`/corso/${slug}`}>
+          Torna al corso
+        </Link>
+      </div>
+    );
+  }
+
+  const detail = state.data;
+
+  return (
+    <div>
+      <p className="small" style={{ marginBottom: '0.4rem' }}>
+        <Link to={`/corso/${detail.course.slug}`}>← {detail.course.title}</Link>
+        <span className="faint"> · {detail.unit.title}</span>
+      </p>
+
+      <header style={{ marginBottom: '1.25rem' }}>
+        <div className="row row--between">
+          <h1 style={{ marginBottom: '0.15rem' }}>{detail.lesson.title}</h1>
+          <span className={`badge badge--${detail.lesson.state}`}>
+            {detail.lesson.bestScore !== null ? `migliore ${detail.lesson.bestScore}%` : 'nuova'}
+          </span>
+        </div>
+        <p className="ko-lg" style={{ margin: '0.2rem 0 0.5rem' }}>
+          {detail.lesson.titleKo}
+        </p>
+        <p className="muted" style={{ marginBottom: 0 }}>
+          {detail.lesson.goal} · {detail.lesson.durationMin} min
+        </p>
+      </header>
+
+      <Session detail={detail} />
+    </div>
+  );
+}

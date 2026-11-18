@@ -1,0 +1,460 @@
+{
+  "id": "lessico",
+  "slug": "lessico",
+  "title": "단어 — Parole di ogni giorno",
+  "subtitle": "Famiglia, presentazioni, cibo e numeri: il lessico che si usa davvero",
+  "level": "A1",
+  "description": "Quattro lezioni di vocabolario scelto per la vita quotidiana: come si chiamano i parenti (e perché cambiano con chi parla), come ci si presenta senza sembrare un libro di testo, come si ordina da mangiare e come si leggono i prezzi in won. Ogni parola arriva dentro una frase usabile, non in una lista da mandare a memoria.",
+  "units": [
+    {
+      "id": "l-u1",
+      "title": "Persone",
+      "purpose": "Nominare la famiglia e presentarsi con nome, età e provenienza.",
+      "lessons": [
+        {
+          "id": "less-01",
+          "slug": "la-famiglia",
+          "title": "La famiglia: 가족",
+          "titleKo": "가족",
+          "kind": "vocab",
+          "goal": "Riconoscere i termini di parentela e capire perché fratello e sorella maggiore hanno due nomi diversi.",
+          "durationMin": 20,
+          "points": [
+            "I fratelli maggiori cambiano nome secondo chi parla: una ragazza dice 오빠 e 언니, un ragazzo dice 형 e 누나.",
+            "동생 vale per fratello o sorella minore, senza distinzione di sesso: il coreano non la marca nella parola.",
+            "부모님 sono i genitori detti con rispetto: 님 si aggiunge alle persone a cui si deve riguardo.",
+            "할아버지 e 할머니 sono nonno e nonna; con 님 diventano 할아버님, 할머님 quando si parla a loro.",
+            "In coreano la parentela si chiede presto: 가족이 어떻게 되세요? è «quanti siete in famiglia?», letteralmente «com'è la sua famiglia?»."
+          ],
+          "vocab": [
+            { "ko": "가족", "it": "famiglia", "rr": "gajok" },
+            { "ko": "아버지", "it": "padre", "rr": "abeoji" },
+            { "ko": "어머니", "it": "madre", "rr": "eomeoni" },
+            { "ko": "부모님", "it": "genitori (di rispetto)", "rr": "bumonim" },
+            { "ko": "오빠", "it": "fratello maggiore (di una ragazza)", "rr": "oppa" },
+            { "ko": "언니", "it": "sorella maggiore (di una ragazza)", "rr": "eonni" },
+            { "ko": "형", "it": "fratello maggiore (di un ragazzo)", "rr": "hyeong" },
+            { "ko": "누나", "it": "sorella maggiore (di un ragazzo)", "rr": "nuna" },
+            { "ko": "동생", "it": "fratello o sorella minore", "rr": "dongsaeng" },
+            { "ko": "할아버지", "it": "nonno", "rr": "harabeoji" },
+            { "ko": "할머니", "it": "nonna", "rr": "halmeoni" }
+          ],
+          "exercises": [
+            {
+              "id": "l01-e1",
+              "type": "reading_mcq",
+              "prompt": "«가족» significa…",
+              "options": ["famiglia", "genitori", "fratelli", "nonni"],
+              "answer": "famiglia",
+              "explain": "가족 è la famiglia intera; 부모님 sono solo i genitori."
+            },
+            {
+              "id": "l01-e2",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 어머니?",
+              "answer": "madre",
+              "accept": ["la madre", "mamma", "la mamma"],
+              "explain": "어머니 è la madre; 아버지 è il padre, stessa struttura."
+            },
+            {
+              "id": "l01-e3",
+              "type": "reading_mcq",
+              "prompt": "«오빠» è…",
+              "options": [
+                "il fratello maggiore, detto da una ragazza",
+                "il fratello maggiore, detto da un ragazzo",
+                "la sorella maggiore, detta da un ragazzo",
+                "il fratello minore"
+              ],
+              "answer": "il fratello maggiore, detto da una ragazza",
+              "explain": "오빠 si usa solo se a parlare è una ragazza; un ragazzo direbbe 형."
+            },
+            {
+              "id": "l01-e4",
+              "type": "type_hangul",
+              "prompt": "Scrivi «i genitori» nella forma di rispetto.",
+              "hint": "부모 + suffisso di rispetto 님",
+              "answer": "부모님",
+              "explain": "부모님 è la forma da usare con chiunque: 부모 da sola suona scolastica o brusca."
+            },
+            {
+              "id": "l01-e5",
+              "type": "reading_mcq",
+              "prompt": "«동생» indica…",
+              "options": [
+                "un fratello o una sorella minore",
+                "un fratello maggiore",
+                "il padre",
+                "un cugino"
+              ],
+              "answer": "un fratello o una sorella minore",
+              "explain": "동생 non dice il sesso: lo si capisce dal contesto o aggiungendo 남동생 / 여동생."
+            },
+            {
+              "id": "l01-e6",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 할아버지?",
+              "answer": "nonno",
+              "accept": ["il nonno"],
+              "explain": "할아버지 è il nonno; 할머니 è la nonna."
+            },
+            {
+              "id": "l01-e7",
+              "type": "type_hangul",
+              "prompt": "Scrivi «famiglia».",
+              "hint": "Tre sillabe, quella centrale ha il 받침 ㄱ.",
+              "answer": "가족",
+              "explain": "가족: 가 + 족. Il 받침 ㄱ di 족 si sente come una k chiusa."
+            },
+            {
+              "id": "l01-e8",
+              "type": "reading_mcq",
+              "prompt": "«누나» la dice…",
+              "options": [
+                "un ragazzo, parlando della sorella maggiore",
+                "una ragazza, parlando del fratello maggiore",
+                "chiunque, parlando della nonna",
+                "una ragazza, parlando della sorella minore"
+              ],
+              "answer": "un ragazzo, parlando della sorella maggiore",
+              "explain": "누나 è la coppia maschile di 언니: stessa persona, nome diverso secondo chi parla."
+            },
+            {
+              "id": "l01-e9",
+              "type": "order_words",
+              "prompt": "Rimetti in ordine: «Non ho fratelli o sorelle minori».",
+              "words": ["없어요", "동생이", "저는"],
+              "answer": "저는 동생이 없어요",
+              "explain": "없어요 nega l'esistenza, «non ho / non c'è»: la particella resta attaccata alla parola, 동생이."
+            },
+            {
+              "id": "l01-e10",
+              "type": "fill_blank",
+              "prompt": "Completa con la parola giusta: «Mia madre è coreana».",
+              "text": "제 ___는 한국 사람이에요.",
+              "answer": "어머니",
+              "hint": "Il nome cortese della madre.",
+              "explain": "제 è la forma cortese di «mio» e si attacca alla parola: 제 어머니 = mia madre."
+            }
+          ]
+        },
+        {
+          "id": "less-02",
+          "slug": "presentarsi",
+          "title": "Presentarsi: 이름, 나이, 출신",
+          "titleKo": "소개",
+          "kind": "vocab",
+          "goal": "Dire nome, età e provenienza, e capire le domande che l'altro farà.",
+          "durationMin": 25,
+          "points": [
+            "이름이 뭐예요? è «come ti chiami?»; si risponde 제 이름은 마르코예요.",
+            "Per l'età si usa il numero nativo davanti al contatore 살: 스물다섯 살이에요 = ho venticinque anni.",
+            "Davanti a un contatore i numeri nativi si accorciano: 하나 → 한, 둘 → 두, 셋 → 세, 넷 → 네.",
+            "이탈리아에서 왔어요 usa 에서, «da»: la provenienza si esprime con il luogo d'origine.",
+            "만나서 반가워요 è il «piacere» che si dice al primo incontro; 반가워요 da solo va bene fra coetanei."
+          ],
+          "vocab": [
+            { "ko": "이름", "it": "nome", "rr": "ireum" },
+            { "ko": "나이", "it": "età", "rr": "nai" },
+            { "ko": "살", "it": "anni (contatore)", "rr": "sal" },
+            { "ko": "스물", "it": "venti (numero nativo)", "rr": "seumul" },
+            { "ko": "서른", "it": "trenta (numero nativo)", "rr": "seoreun" },
+            { "ko": "만나다", "it": "incontrare", "rr": "mannada" },
+            { "ko": "반가워요", "it": "piacere (di conoscerti)", "rr": "bangawoyo" },
+            { "ko": "에서", "it": "da (provenienza)", "rr": "eseo" }
+          ],
+          "exercises": [
+            {
+              "id": "l02-e1",
+              "type": "type_hangul",
+              "prompt": "Scrivi «piacere di conoscerti» in forma cortese.",
+              "hint": "만나서 + 반갑다 alla forma cortese",
+              "answer": "만나서 반가워요",
+              "accept": ["반가워요", "만나서 반가워요"],
+              "explain": "만나서 반가워요 è la formula completa: letteralmente «incontrandoti, sono contento»."
+            },
+            {
+              "id": "l02-e2",
+              "type": "reading_mcq",
+              "prompt": "Che cosa chiede «이름이 뭐예요?»",
+              "options": ["Come ti chiami?", "Quanti anni hai?", "Di dove sei?", "Come stai?"],
+              "answer": "Come ti chiami?",
+              "explain": "이름 è il nome; 뭐예요? è «che cosa è?». Insieme, la domanda sul nome."
+            },
+            {
+              "id": "l02-e3",
+              "type": "type_hangul",
+              "prompt": "Scrivi «Ho venticinque anni».",
+              "hint": "스물다섯 + 살 + 이에요",
+              "answer": "스물다섯 살이에요",
+              "accept": ["저는 스물다섯 살이에요", "스물다섯살이에요"],
+              "explain": "살 è il contatore degli anni d'età e vuole il numero nativo, non quello sino-coreano."
+            },
+            {
+              "id": "l02-e4",
+              "type": "reading_mcq",
+              "prompt": "«저는 이탈리아에서 왔어요» vuol dire…",
+              "options": ["Vengo dall'Italia.", "Vado in Italia.", "Abito in Italia.", "Sono italiano di nascita."],
+              "answer": "Vengo dall'Italia.",
+              "explain": "에서 indica il punto di partenza: 왔어요 è il passato di 오다, «sono venuto»."
+            },
+            {
+              "id": "l02-e5",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 나이?",
+              "answer": "età",
+              "accept": ["l'età", "anni"],
+              "explain": "나이 è l'età. «Quanti anni ha?» è 나이가 어떻게 되세요?, forma cortese e frequente."
+            },
+            {
+              "id": "l02-e6",
+              "type": "type_hangul",
+              "prompt": "Scrivi «tre» nella forma che precede un contatore.",
+              "hint": "셋 perde il 받침 ㅅ davanti al contatore.",
+              "answer": "세",
+              "explain": "셋 → 세, 넷 → 네, 하나 → 한: davanti al contatore il numero si accorcia."
+            },
+            {
+              "id": "l02-e7",
+              "type": "reading_mcq",
+              "prompt": "«저는 학생이에요. 스물두 살이에요.» significa…",
+              "options": [
+                "Sono uno studente. Ho ventidue anni.",
+                "Sono uno studente. Ho venti anni.",
+                "Sono un insegnante. Ho ventidue anni.",
+                "Studio ventidue ore."
+              ],
+              "answer": "Sono uno studente. Ho ventidue anni.",
+              "explain": "둘 diventa 두 davanti a 살: 스물두 살 sono ventidue anni."
+            },
+            {
+              "id": "l02-e8",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 만나서 반가워요?",
+              "answer": "piacere di conoscerti",
+              "accept": ["piacere", "molto piacere"],
+              "explain": "È la frase del primo incontro: si dice una volta, stringendo la mano o facendo un cenno."
+            },
+            {
+              "id": "l02-e9",
+              "type": "order_words",
+              "prompt": "Rimetti in ordine: «Ho trent'anni».",
+              "words": ["살이에요", "저는", "서른"],
+              "answer": "저는 서른 살이에요",
+              "explain": "Età in coreano: numero nativo + 살 + 에요. 서른 è il trenta nativo, non 30."
+            },
+            {
+              "id": "l02-e10",
+              "type": "fill_blank",
+              "prompt": "Scegli il verbo: «Vengo dall'Italia».",
+              "text": "이탈리아에서___.",
+              "options": ["왔어요", "가요", "먹어요", "있어요"],
+              "answer": "왔어요",
+              "hint": "La provenienza si dice con il verbo «venire».",
+              "explain": "에서 + 왔어요: «sono venuto da». La stessa struttura regge anche 한국에서 왔어요."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l-u2",
+      "title": "Cibo e numeri",
+      "purpose": "Ordinare, leggere un menù e capire un prezzo.",
+      "lessons": [
+        {
+          "id": "less-03",
+          "slug": "cibo-e-bevande",
+          "title": "Cibo e bevande: 음식",
+          "titleKo": "음식",
+          "kind": "vocab",
+          "goal": "Ordinare qualcosa, dire se è buono o piccante e usare i classificatori per le porzioni.",
+          "durationMin": 25,
+          "points": [
+            "Per ordinare si usa … 주세요: 커피 한 잔 주세요 = «un caffè, per favore».",
+            "I classificatori dicono la forma della porzione: 잔 per i bicchieri, 그릇 per le ciotole, 개 per gli oggetti.",
+            "맛있어요 è «è buono», 맛없어요 «è cattivo»: la radice 맛 è il sapore.",
+            "매워요 è «è piccante»: in Corea è un complimento, non un avvertimento.",
+            "A tavola il riso non si chiede con il pane: 밥 è il pasto, e 함께 먹어요 è «mangiamo insieme»."
+          ],
+          "vocab": [
+            { "ko": "밥", "it": "riso, pasto", "rr": "bap" },
+            { "ko": "김치", "it": "kimchi", "rr": "kimchi" },
+            { "ko": "물", "it": "acqua", "rr": "mul" },
+            { "ko": "커피", "it": "caffè", "rr": "keopi" },
+            { "ko": "차", "it": "tè", "rr": "cha" },
+            { "ko": "빵", "it": "pane", "rr": "ppang" },
+            { "ko": "고기", "it": "carne", "rr": "gogi" },
+            { "ko": "맛있어요", "it": "è buono", "rr": "masisseoyo" },
+            { "ko": "매워요", "it": "è piccante", "rr": "maewoyo" },
+            { "ko": "주세요", "it": "mi dia, per favore", "rr": "juseyo" }
+          ],
+          "exercises": [
+            {
+              "id": "l03-e1",
+              "type": "reading_mcq",
+              "prompt": "«김치» è…",
+              "options": ["il kimchi, verdure fermentate piccanti", "una zuppa di pesce", "un dolce di riso", "una bevanda calda"],
+              "answer": "il kimchi, verdure fermentate piccanti",
+              "explain": "김치 si serve con quasi ogni pasto: è il banchan più famoso."
+            },
+            {
+              "id": "l03-e2",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 맛있어요?",
+              "answer": "è buono",
+              "accept": ["buono", "è buona", "delizioso", "è delizioso"],
+              "explain": "맛있다 → 맛있어요. La forma negativa è 맛없어요."
+            },
+            {
+              "id": "l03-e3",
+              "type": "type_hangul",
+              "prompt": "Scrivi «Un caffè, per favore».",
+              "hint": "커피 + 한 잔 + 주세요",
+              "answer": "커피 한 잔 주세요",
+              "accept": ["커피 한잔 주세요"],
+              "explain": "한 잔 è «un bicchiere»: il numero nativo si accorcia davanti al classificatore."
+            },
+            {
+              "id": "l03-e4",
+              "type": "reading_mcq",
+              "prompt": "«매워요» vuol dire…",
+              "options": ["È piccante.", "È dolce.", "È salato.", "È freddo."],
+              "answer": "È piccante.",
+              "explain": "맵다 → 매워요. In un ristorante coreano è la parola che sentirai più spesso."
+            },
+            {
+              "id": "l03-e5",
+              "type": "type_hangul",
+              "prompt": "Scrivi «acqua».",
+              "hint": "Una sillaba con il 받침 ㄹ.",
+              "answer": "물",
+              "explain": "물 è l'acqua. Al ristorante arriva gratis, spesso in una bottiglia comune."
+            },
+            {
+              "id": "l03-e6",
+              "type": "reading_mcq",
+              "prompt": "«빵» è…",
+              "options": ["il pane", "il riso", "la carne", "il tè"],
+              "answer": "il pane",
+              "explain": "빵 è il pane, parola entrata dal portoghese «pão» secoli fa."
+            },
+            {
+              "id": "l03-e7",
+              "type": "type_hangul",
+              "prompt": "Completa con la particella dell'oggetto: 밥___ 주세요.",
+              "hint": "밥 finisce con una consonante.",
+              "answer": "을",
+              "explain": "밥을 주세요: l'oggetto dell'ordine prende 을."
+            },
+            {
+              "id": "l03-e8",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 고기?",
+              "answer": "carne",
+              "accept": ["la carne"],
+              "explain": "고기 è la carne; 소고기 è il manzo, 돼지고기 il maiale."
+            }
+          ]
+        },
+        {
+          "id": "less-04",
+          "slug": "numeri-e-prezzi",
+          "title": "Numeri e prezzi: 숫자",
+          "titleKo": "숫자",
+          "kind": "vocab",
+          "goal": "Passare dalla serie sino-coreana a quella nativa e leggere un prezzo in won.",
+          "durationMin": 25,
+          "points": [
+            "Il coreano ha due serie di numeri. La sino-coreana (일 이 삼 사 오 육 칠 팔 구 십) serve per soldi, date e numeri di telefono.",
+            "La nativa (하나 둘 셋 넷 다섯…) serve per contare oggetti e persone, e per l'età.",
+            "I numeri si compongono come in italiano: 십일 è 11, 이십일 è 21, 백은 100.",
+            "La valuta è il won, 원. 천 원 è mille won; i prezzi si leggono con la serie sino-coreana.",
+            "얼마예요? chiede il prezzo; 비싸요 e 싸요 dicono se è caro o conveniente."
+          ],
+          "vocab": [
+            { "ko": "일", "it": "uno (sino-coreano)", "rr": "il" },
+            { "ko": "이", "it": "due (sino-coreano)", "rr": "i" },
+            { "ko": "삼", "it": "tre (sino-coreano)", "rr": "sam" },
+            { "ko": "사", "it": "quattro (sino-coreano)", "rr": "sa" },
+            { "ko": "오", "it": "cinque (sino-coreano)", "rr": "o" },
+            { "ko": "십", "it": "dieci (sino-coreano)", "rr": "sip" },
+            { "ko": "백", "it": "cento (sino-coreano)", "rr": "baek" },
+            { "ko": "천", "it": "mille (sino-coreano)", "rr": "cheon" },
+            { "ko": "원", "it": "won (valuta)", "rr": "won" },
+            { "ko": "얼마예요?", "it": "quanto costa?", "rr": "eolmayeyo" },
+            { "ko": "비싸요", "it": "è caro", "rr": "bissayo" },
+            { "ko": "싸요", "it": "è economico", "rr": "ssayo" }
+          ],
+          "exercises": [
+            {
+              "id": "l04-e1",
+              "type": "reading_mcq",
+              "prompt": "Che cosa chiede «얼마예요?»",
+              "options": ["Quanto costa?", "Dove è?", "Che cosa è?", "Quanti sono?"],
+              "answer": "Quanto costa?",
+              "explain": "얼마 è «quanto»; con 예요? diventa la domanda sul prezzo."
+            },
+            {
+              "id": "l04-e2",
+              "type": "type_hangul",
+              "prompt": "Scrivi 3 con i numeri sino-coreani.",
+              "hint": "La stessa sillaba di 삼겹살, il maiale arrosto.",
+              "answer": "삼",
+              "explain": "삼 è il tre sino-coreano: serve per soldi, date e minuti."
+            },
+            {
+              "id": "l04-e3",
+              "type": "reading_mcq",
+              "prompt": "«이천 원» è…",
+              "options": ["duemila won", "duecento won", "ventimila won", "due won"],
+              "answer": "duemila won",
+              "explain": "이 è due, 천 è mille: 이천 원 sono duemila won."
+            },
+            {
+              "id": "l04-e4",
+              "type": "type_hangul",
+              "prompt": "Scrivi 21 con i numeri sino-coreani.",
+              "hint": "이십 + 일",
+              "answer": "이십일",
+              "explain": "이십일: due decine e uno. Il coreano non usa una parola nuova per venti."
+            },
+            {
+              "id": "l04-e5",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 비싸요?",
+              "answer": "è caro",
+              "accept": ["caro", "costoso", "è costoso", "costa molto"],
+              "explain": "비싸다 → 비싸요. Il contrario è 싸요."
+            },
+            {
+              "id": "l04-e6",
+              "type": "reading_mcq",
+              "prompt": "«오백 원» sono…",
+              "options": ["cinquecento won", "cinquemila won", "cinquanta won", "cinque won"],
+              "answer": "cinquecento won",
+              "explain": "오 è cinque, 백 è cento: 오백 원 = 500 won."
+            },
+            {
+              "id": "l04-e7",
+              "type": "type_hangul",
+              "prompt": "Scrivi «mille won».",
+              "hint": "천 + 원",
+              "answer": "천 원",
+              "accept": ["천원"],
+              "explain": "천 원 è il prezzo base di un caffè o di una bottiglietta: mille won."
+            },
+            {
+              "id": "l04-e8",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 싸요?",
+              "answer": "è economico",
+              "accept": ["economico", "costa poco", "è a buon mercato", "conveniente"],
+              "explain": "싸다 → 싸요. Attenzione: 싸다 è anche «essere amaro», ma il contesto decide."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

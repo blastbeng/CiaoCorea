@@ -1,0 +1,11 @@
+.aider*
+node_modules/
+dist/
+# Solo il database di runtime: `data/` senza slash iniziale ignorava anche i
+# contenuti del curricolo in packages/curriculum/data.
+/data/
+.env
+.env.local
+*.log
+.DS_Store
+coverage/
