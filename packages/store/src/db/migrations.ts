@@ -205,6 +205,41 @@ export const MIGRATIONS: Migration[] = [
       ALTER TABLE users_next RENAME TO users;
     `,
   },
+  {
+    id: '008-tidy-legacy-usernames',
+    sql: `
+      -- La 007 è già passata su qualche browser tenendo l'email intera come
+      -- username. Qui si accorcia: la parte prima della chiocciola, ma solo se
+      -- è libera e se nessun altro profilo la rivendica. I fixup passano da una
+      -- tabella d'appoggio, così la UNIQUE fa da rete di sicurezza.
+      CREATE TABLE username_fixups (
+        id TEXT PRIMARY KEY,
+        username TEXT NOT NULL UNIQUE
+      );
+
+      INSERT INTO username_fixups (id, username)
+        SELECT u.id, substr(u.username, 1, instr(u.username, '@') - 1)
+        FROM users u
+        WHERE instr(u.username, '@') > 1
+          AND NOT EXISTS (
+            SELECT 1 FROM users taken
+            WHERE lower(taken.username) =
+                  lower(substr(u.username, 1, instr(u.username, '@') - 1))
+          )
+          AND (
+            SELECT COUNT(*) FROM users rivals
+            WHERE instr(rivals.username, '@') > 1
+              AND lower(substr(rivals.username, 1, instr(rivals.username, '@') - 1)) =
+                  lower(substr(u.username, 1, instr(u.username, '@') - 1))
+          ) = 1;
+
+      UPDATE users
+        SET username = (SELECT username FROM username_fixups f WHERE f.id = users.id)
+        WHERE id IN (SELECT id FROM username_fixups);
+
+      DROP TABLE username_fixups;
+    `,
+  },
 ];
 
 export function migrate(db: Db): void {

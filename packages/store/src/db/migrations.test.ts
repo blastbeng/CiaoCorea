@@ -91,6 +91,47 @@ describe('migrazione 007: dai profili con email ai profili locali', () => {
     ]);
   });
 
+  it('accorcia gli username rimasti con l’email quando il nome è libero', async () => {
+    const db = await legacyDb();
+    migrate(db);
+
+    // Come lasciava il database la prima versione della 007: email intere.
+    db.prepare("DELETE FROM schema_migrations WHERE id = '008-tidy-legacy-usernames'").run();
+    db.exec(`
+      UPDATE users SET username = CASE id
+        WHEN 'user-marco' THEN 'marco@example.com'
+        WHEN 'user-giulia' THEN 'giulia@example.com'
+        WHEN 'user-omonimo' THEN 'marco@other.com'
+        WHEN 'user-maiuscole' THEN 'Anna@Example.com'
+        WHEN 'user-anna' THEN 'anna@altro.it'
+      END;
+
+      INSERT INTO users (id, username, display_name, created_at, weekly_goal) VALUES
+        ('user-paolo', 'paolo', 'Paolo', '2025-02-01T00:00:00.000Z', 5),
+        ('user-paolo-email', 'paolo@example.com', 'Paolo Due', '2025-02-02T00:00:00.000Z', 5);
+    `);
+
+    migrate(db);
+
+    const usernames = db
+      .prepare('SELECT username FROM users ORDER BY created_at')
+      .all()
+      .map((row) => (row as { username: string }).username);
+
+    expect(usernames).toEqual([
+      // Due profili rivendicano "marco": l'email resta a entrambi.
+      'marco@example.com',
+      // Nessun conflitto: il nome si accorcia.
+      'giulia',
+      'marco@other.com',
+      'Anna@Example.com',
+      'anna@altro.it',
+      // "paolo" è già di qualcun altro: non glielo si porta via.
+      'paolo',
+      'paolo@example.com',
+    ]);
+  });
+
   it('riaccende i vincoli di chiave esterna quando ha finito', async () => {
     const db = await legacyDb();
     migrate(db);
