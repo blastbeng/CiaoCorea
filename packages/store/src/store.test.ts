@@ -84,7 +84,7 @@ describe('profili nel browser', () => {
 
     // Il nome è generato: aggettivo + animale + numero, come su Reddit.
     expect(user.username).toMatch(USERNAME_SHAPE);
-    expect(user.displayName).toBe(user.username);
+    expect(user.usernameChosen).toBe(false);
 
     expect((await store.session())?.id).toBe(user.id);
 
@@ -119,26 +119,14 @@ describe('profili nel browser', () => {
     expect((await store.session())?.id).toBe(blast.id);
   });
 
-  it('rinomina il profilo attivo', async () => {
-    const user = await store.bootstrap();
-
-    const renamed = await store.rename('Blast');
-    expect(renamed).toMatchObject({ id: user.id, username: user.username, displayName: 'Blast' });
-    expect((await store.session())?.displayName).toBe('Blast');
-    expect((await store.accounts()).accounts[0]?.displayName).toBe('Blast');
-
-    await expect(store.rename('x')).rejects.toMatchObject({ status: 400 });
-  });
-
   it('sostituisce il nome utente generato con uno scelto', async () => {
     const user = await store.bootstrap();
     expect(user.usernameChosen).toBe(false);
 
     const changed = await store.changeUsername('Blast');
+    // Un nome solo: lo stesso che il portale usa per parlarti e quello
+    // dell'elenco dei profili.
     expect(changed).toMatchObject({ id: user.id, username: 'Blast', usernameChosen: true });
-    // Il nome con cui è chiamato segue la prima scelta, invece di restare
-    // quello anonimo che il portale gli aveva dato.
-    expect(changed.displayName).toBe('Blast');
     expect(await store.session()).toMatchObject({ username: 'Blast', usernameChosen: true });
     expect((await store.accounts()).accounts[0]?.username).toBe('Blast');
   });

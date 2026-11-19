@@ -69,20 +69,22 @@ describe('migrazione 007: dai profili con email ai profili locali', () => {
       .prepare('SELECT id, username, display_name, weekly_goal FROM users ORDER BY created_at')
       .all() as Array<{ id: string; username: string; display_name: string; weekly_goal: number }>;
 
+    // Nome e nome utente sono la stessa cosa: la 010 riallinea la copia che i
+    // database con due campi separati si portavano dietro.
     expect(rows).toEqual([
-      { id: 'user-marco', username: 'marco', display_name: 'Marco', weekly_goal: 7 },
-      { id: 'user-giulia', username: 'giulia', display_name: 'Giulia', weekly_goal: 5 },
+      { id: 'user-marco', username: 'marco', display_name: 'marco', weekly_goal: 7 },
+      { id: 'user-giulia', username: 'giulia', display_name: 'giulia', weekly_goal: 5 },
       // Stessa parte prima della chiocciola: la tiene il profilo più vecchio,
       // l'altro si riprende l'email intera.
       {
         id: 'user-omonimo',
         username: 'marco@other.com',
-        display_name: 'Un altro Marco',
+        display_name: 'marco@other.com',
         weekly_goal: 5,
       },
       // Anche il confronto ignorando le maiuscole conta come omonimia.
       { id: 'user-maiuscole', username: 'Anna', display_name: 'Anna', weekly_goal: 5 },
-      { id: 'user-anna', username: 'anna@altro.it', display_name: 'Anna Due', weekly_goal: 5 },
+      { id: 'user-anna', username: 'anna@altro.it', display_name: 'anna@altro.it', weekly_goal: 5 },
     ]);
   });
 

@@ -27,9 +27,7 @@ interface AuthContextValue {
   addProfile: () => Promise<SessionUser>;
   /** Passa a un altro profilo: un clic, niente credenziali. */
   switchUser: (userId: string) => Promise<SessionUser | null>;
-  /** Il nome con cui lo studente vuole essere chiamato. */
-  rename: (displayName: string) => Promise<SessionUser>;
-  /** Il nome utente con la chiocciola, unico su questo computer. */
+  /** L'unico nome del profilo, unico su questo computer. */
   changeUsername: (username: string) => Promise<SessionUser>;
   refreshAccounts: () => Promise<void>;
 }
@@ -93,16 +91,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     [refreshAccounts],
   );
 
-  const rename = useCallback(
-    async (displayName: string) => {
-      const user = await api.rename(displayName);
-      setState({ status: 'ready', user });
-      await refreshAccounts();
-      return user;
-    },
-    [refreshAccounts],
-  );
-
   const changeUsername = useCallback(
     async (username: string) => {
       const user = await api.changeUsername(username);
@@ -121,11 +109,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       start,
       addProfile,
       switchUser,
-      rename,
       changeUsername,
       refreshAccounts,
     }),
-    [state, accounts, start, addProfile, switchUser, rename, changeUsername, refreshAccounts],
+    [state, accounts, start, addProfile, switchUser, changeUsername, refreshAccounts],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

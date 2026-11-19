@@ -13,7 +13,6 @@ const KEY = 'ciaocorea.sessions.v1';
 export interface StoredSession {
   token: string;
   username: string;
-  displayName: string;
 }
 
 export interface SessionState {
@@ -51,7 +50,6 @@ export function loadSessionState(): SessionState {
         sessions[userId] = {
           token: entry.token,
           username: entry.username ?? entry.email ?? '',
-          displayName: entry.displayName ?? '',
         };
       }
     }

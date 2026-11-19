@@ -25,10 +25,11 @@ avvio nasce da solo un profilo con un nome generato (stile Reddit,
 `VeloceTigre42`) e si entra subito dentro; alla visite successive il sito
 riprende l'ultimo profilo usato. La pagina dei profili (`/profili`) elenca chi
 studia su questo dispositivo, permette di passare da uno all'altro con un clic e
-di aggiungerne di nuovi. Finché il nome utente è quello generato, accanto al nome
-in alto resta il promemoria *cambia qui il tuo username*: cliccando il nome si
-apre il proprio profilo (`/profilo`), dove si scelgono sia il nome utente con la
-chiocciola sia il nome con cui si vuole essere chiamati. Non c'è invito da
+di aggiungerne di nuovi. Nome e nome utente sono la stessa cosa: quello che leggi
+in home è anche quello con la chiocciola nell'elenco dei profili. Finché il nome è
+quello generato, accanto ad esso in alto resta il promemoria *cambia qui il tuo
+username*: cliccando il nome si apre il proprio profilo (`/profilo`), dove un
+unico campo permette di sceglierne uno proprio. Non c'è invito da
 chiedere e non c'è nulla da confermare: il profilo esiste dal suo primo respiro,
 e resta finché non cancelli i dati del sito. Chi aveva già un profilo della vecchia versione (quella
 con email e password) se lo ritrova intatto, con il nome ricavato dall'indirizzo:
@@ -48,7 +49,7 @@ progressi, ripassi e tentativi non si perdono nel passaggio.
 | `/ripassi` | carte in scadenza, giudizio `ho saputo / quasi / non ricordo`; sotto, le parole fragili da riprovare subito |
 | `/errori` | gli esercizi che hai sbagliato, uno alla volta: azzeccarli li toglie dalla banca |
 | `/progressi` | totali, per corso, parole SRS, obiettivo della settimana, ritmo dei giorni |
-| `/profilo` | il proprio profilo: nome utente con la chiocciola e nome con cui essere chiamati |
+| `/profilo` | il proprio profilo: l'unico nome dello studente, con la sezione per cambiarlo |
 | `/profili` | i profili di questo browser: si sceglie chi sta studiando con un clic, o se ne aggiunge uno nuovo |
 
 ## Come è fatto
@@ -166,8 +167,7 @@ store dentro la scheda. Richiedono la sessione tutte tranne `bootstrap`,
 | GET | `/api/vocabulary` | dizionario: `q` (coreano/romanizzazione/italiano), `course`, `limit`, `offset` |
 | GET | `/api/profile` | progressi, totali, giorni attivi (con i ripassi), SRS, dialoghi, `weeklyGoal` |
 | POST | `/api/profile/goal` | obiettivo settimanale: da 1 a 7 giorni di studio |
-| POST | `/api/auth/rename` | il nome con cui lo studente vuole essere chiamato |
-| POST | `/api/auth/username` | il nome utente con la chiocciola: unico su questo browser, 409 se è già di un altro profilo |
+| POST | `/api/auth/username` | l'unico nome del profilo (nome e `@nome` insieme): unico su questo browser, 400 se non valido, 409 se è già di un altro profilo |
 | GET | `/api/courses/:slug` | dettaglio corso con stati delle lezioni |
 | GET | `/api/courses/:slug/lessons/:id` | teoria, brani, esercizi pubblici, test di salto |
 | POST | `/api/courses/:slug/lessons/:id/attempts` | consegna (`mode: lesson \| skip`) |

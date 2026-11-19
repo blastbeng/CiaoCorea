@@ -1,7 +1,5 @@
 import { z } from 'zod';
 import {
-  DISPLAY_NAME_MAX,
-  DISPLAY_NAME_MIN,
   USERNAME_MAX,
   USERNAME_MIN,
   USERNAME_PATTERN,
@@ -16,17 +14,12 @@ import {
   findUserById,
   listLocalAccounts,
   toSessionUser,
-  updateDisplayName,
   updateUsername,
   usernameTaken,
 } from '../repo/users';
 import { randomUsername } from '../auth/usernames';
 import { currentUser, requireAuth, type AuthedRequest } from '../auth/guard';
 import type { AccountsResponse } from '../types';
-
-const renameSchema = z.object({
-  displayName: z.string().trim().min(DISPLAY_NAME_MIN).max(DISPLAY_NAME_MAX),
-});
 
 const usernameSchema = z
   .string()
@@ -47,9 +40,9 @@ function openProfile(ctx: Ctx, reply: FastifyReply): SessionUser {
 
   ctx.db.exec('BEGIN');
   try {
-    // Al primo avvio il nome con cui si è chiamati è quello che il portale ha
-    // scelto per te: chi vuole, lo cambia nelle impostazioni.
-    const row = createUser(ctx.db, { username, displayName: username });
+    // Al primo avvio il nome è quello che il portale ha scelto per te: chi
+    // vuole, lo cambia dal proprio profilo.
+    const row = createUser(ctx.db, { username });
     ctx.db.exec('COMMIT');
 
     const session = createSession(ctx.db, row.id, ctx.config.sessionDays);
@@ -97,39 +90,12 @@ export async function registerAuthRoutes(app: FastifyInstance, ctx: Ctx): Promis
     return reply.code(201).send(body);
   });
 
-  /** Il nome con cui lo studente vuole essere chiamato. */
-  app.post(
-    '/api/auth/rename',
-    { preHandler: requireAuth(ctx) },
-    async (request: FastifyRequest, reply: FastifyReply) => {
-      const { user } = request as AuthedRequest;
-
-      const parsed = renameSchema.safeParse(request.body);
-      if (!parsed.success) {
-        return reply.code(400).send({
-          error: 'invalid_body',
-          message: `Il nome deve avere da ${DISPLAY_NAME_MIN} a ${DISPLAY_NAME_MAX} caratteri.`,
-        });
-      }
-
-      const row = findUserById(ctx.db, user.id);
-      if (!row) {
-        return reply.code(404).send({ error: 'not_found', message: 'Utente inesistente.' });
-      }
-
-      updateDisplayName(ctx.db, user.id, parsed.data.displayName);
-      const body: ProfileUserResponse = {
-        user: { ...toSessionUser(row), displayName: parsed.data.displayName },
-      };
-      return reply.send(body);
-    },
-  );
-
   /**
-   * Il nome utente, quello con la chiocciola: al primo avvio è generato, e
-   * questa rotta è la via per sostituirlo con un nome scelto. Resta unico su
-   * questo computer, altrimenti due profili si chiamerebbero uguale nell'elenco
-   * e non si capirebbe più chi è chi.
+   * L'unico nome del profilo, quello con la chiocciola: al primo avvio è
+   * generato, e questa rotta è la via per sostituirlo con un nome scelto.
+   * Nome e nome utente non sono due cose separate, quindi la stessa scelta
+   * muove entrambe. Resta unico su questo computer, altrimenti due profili si
+   * chiamerebbero uguale nell'elenco e non si capirebbe più chi è chi.
    */
   app.post(
     '/api/auth/username',
@@ -141,7 +107,7 @@ export async function registerAuthRoutes(app: FastifyInstance, ctx: Ctx): Promis
       if (!parsed.success) {
         return reply.code(400).send({
           error: 'invalid_username',
-          message: `Il nome utente va da ${USERNAME_MIN} a ${USERNAME_MAX} caratteri: lettere, numeri, punto, trattino e underscore, senza spazi.`,
+          message: `Il nome va da ${USERNAME_MIN} a ${USERNAME_MAX} caratteri: lettere, numeri, punto, trattino e underscore, senza spazi.`,
         });
       }
 
@@ -149,7 +115,7 @@ export async function registerAuthRoutes(app: FastifyInstance, ctx: Ctx): Promis
       if (usernameTaken(ctx.db, username, user.id)) {
         return reply.code(409).send({
           error: 'username_taken',
-          message: `Il nome utente «${username}» è già di un altro profilo di questo computer.`,
+          message: `Il nome «${username}» è già di un altro profilo di questo computer.`,
         });
       }
 
@@ -158,20 +124,10 @@ export async function registerAuthRoutes(app: FastifyInstance, ctx: Ctx): Promis
         return reply.code(404).send({ error: 'not_found', message: 'Utente inesistente.' });
       }
 
-      // Se il nome con cui è chiamato è ancora quello generato, cambia con lui:
-      // due nomi diversi per la stessa scelta confonderebbero, e in home
-      // resterebbe scritto il nome anonimo appena sostituito.
-      const stillGenerated = row.display_name === row.username;
       updateUsername(ctx.db, user.id, username);
-      if (stillGenerated) updateDisplayName(ctx.db, user.id, username);
 
       const body: ProfileUserResponse = {
-        user: {
-          ...toSessionUser(row),
-          username,
-          usernameChosen: true,
-          displayName: stillGenerated ? username : row.display_name,
-        },
+        user: { ...toSessionUser(row), username, usernameChosen: true },
       };
       return reply.send(body);
     },
@@ -220,7 +176,6 @@ export async function registerAuthRoutes(app: FastifyInstance, ctx: Ctx): Promis
       accounts: listLocalAccounts(ctx.db).map((row) => ({
         id: row.id,
         username: row.username,
-        displayName: row.display_name,
         createdAt: row.created_at,
         hasSession: Number(row.live_sessions) > 0,
       })),

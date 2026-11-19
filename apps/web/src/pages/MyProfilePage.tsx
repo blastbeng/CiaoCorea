@@ -1,10 +1,6 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  USERNAME_MAX,
-  USERNAME_MIN,
-  USERNAME_PATTERN,
-} from '@ciaocorea/shared';
+import { USERNAME_MAX, USERNAME_MIN, USERNAME_PATTERN } from '@ciaocorea/shared';
 import { errorMessage, hasGeneratedUsername, useAuth } from '../auth';
 
 function formatDay(value: string): string {
@@ -20,67 +16,10 @@ function initial(name: string): string {
 
 type Message = { kind: 'ok' | 'error'; text: string } | null;
 
-/** Il nome con cui lo studente vuole essere chiamato: quello della home. */
-function DisplayNameForm({ initial: start }: { initial: string }) {
-  const { rename } = useAuth();
-  const [name, setName] = useState(start);
-  const [busy, setBusy] = useState(false);
-  const [message, setMessage] = useState<Message>(null);
-
-  // Il nome salvato può cambiare anche dall'altro modulo (chi sceglie il nome
-  // utente si porta dietro il nome con cui è chiamato): il campo lo segue.
-  useEffect(() => {
-    setName(start);
-  }, [start]);
-
-  const submit = async (event: FormEvent) => {
-    event.preventDefault();
-    setBusy(true);
-    setMessage(null);
-    try {
-      const user = await rename(name.trim());
-      setName(user.displayName);
-      setMessage({ kind: 'ok', text: `Ciao ${user.displayName}: nome salvato.` });
-    } catch (problem) {
-      setMessage({ kind: 'error', text: errorMessage(problem) });
-    } finally {
-      setBusy(false);
-    }
-  };
-
-  return (
-    <form className="stack stack--tight" onSubmit={submit}>
-      <label className="field">
-        <span className="stat-label">Come vuoi essere chiamato</span>
-        <input
-          className="input"
-          type="text"
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          minLength={2}
-          maxLength={60}
-          required
-        />
-      </label>
-
-      <div className="row">
-        <button type="submit" className="btn btn--primary" disabled={busy || name.trim() === start}>
-          {busy ? 'Salvo…' : 'Salva il nome'}
-        </button>
-      </div>
-
-      {message ? (
-        <p className={message.kind === 'ok' ? 'alert alert--ok' : 'alert alert--error'}>
-          {message.text}
-        </p>
-      ) : null}
-    </form>
-  );
-}
-
 /**
- * Il nome utente con la chiocciola: quello che nasce generato (`VeloceTigre42`)
- * e che distingue i profili nell'elenco. Qui si sostituisce con un nome scelto.
+ * L'unico nome del profilo: nome e nome utente sono la stessa cosa, quindi c'è
+ * un solo campo da riempire e una sola scelta da ricordare. Nasce generato
+ * (`VeloceTigre42`), e qui si sostituisce con un nome scelto.
  */
 function UsernameForm({ initial: start }: { initial: string }) {
   const { changeUsername } = useAuth();
@@ -89,14 +28,16 @@ function UsernameForm({ initial: start }: { initial: string }) {
   const [message, setMessage] = useState<Message>(null);
 
   // Dopo un salvataggio il nome cambia: il campo deve mostrare quello nuovo,
-  // non il nome generato di prima.
+  // non quello generato di prima.
   useEffect(() => {
     setUsername(start);
   }, [start]);
 
   const trimmed = username.trim();
   const looksValid =
-    trimmed.length >= USERNAME_MIN && trimmed.length <= USERNAME_MAX && USERNAME_PATTERN.test(trimmed);
+    trimmed.length >= USERNAME_MIN &&
+    trimmed.length <= USERNAME_MAX &&
+    USERNAME_PATTERN.test(trimmed);
 
   const submit = async (event: FormEvent) => {
     event.preventDefault();
@@ -105,7 +46,7 @@ function UsernameForm({ initial: start }: { initial: string }) {
     try {
       const user = await changeUsername(trimmed);
       setUsername(user.username);
-      setMessage({ kind: 'ok', text: `Nome utente salvato: @${user.username}.` });
+      setMessage({ kind: 'ok', text: `Ciao ${user.username}: nome salvato.` });
     } catch (problem) {
       setMessage({ kind: 'error', text: errorMessage(problem) });
     } finally {
@@ -116,7 +57,7 @@ function UsernameForm({ initial: start }: { initial: string }) {
   return (
     <form className="stack stack--tight" onSubmit={submit}>
       <label className="field">
-        <span className="stat-label">Nome utente</span>
+        <span className="stat-label">Nome</span>
         <input
           className="input"
           type="text"
@@ -133,8 +74,8 @@ function UsernameForm({ initial: start }: { initial: string }) {
 
       <p className="hint">
         Da {USERNAME_MIN} a {USERNAME_MAX} caratteri: lettere, numeri, punto, trattino e
-        underscore, senza spazi. È il nome che vedi con la chiocciola, e deve restare unico fra i
-        profili di questo computer.
+        underscore, senza spazi. È l'unico nome che hai: quello che leggi nella home, quello in
+        alto e quello con la chiocciola fra i profili, e deve restare unico su questo computer.
       </p>
 
       <div className="row">
@@ -143,7 +84,7 @@ function UsernameForm({ initial: start }: { initial: string }) {
           className="btn btn--primary"
           disabled={busy || !looksValid || trimmed === start}
         >
-          {busy ? 'Salvo…' : 'Salva il nome utente'}
+          {busy ? 'Salvo…' : 'Salva il nome'}
         </button>
       </div>
 
@@ -158,9 +99,9 @@ function UsernameForm({ initial: start }: { initial: string }) {
 
 /**
  * La pagina del proprio profilo: ci si arriva cliccando il proprio nome in alto.
- * Due nomi, due mestieri: quello con cui si è chiamati (che si legge ovunque) e
- * il nome utente con la chiocciola (che distingue i profili sullo stesso
- * computer). Nessuno dei due è una credenziale: non c'è niente da proteggere.
+ * Un nome solo, per tutto: con quello il portale ti saluta, ti elenca fra i
+ * profili del computer e ti scrive con la chiocciola. Nessun nome è una
+ * credenziale: non c'è niente da proteggere.
  */
 export function MyProfilePage() {
   const { user, accounts } = useAuth();
@@ -175,19 +116,18 @@ export function MyProfilePage() {
       <header>
         <h1>Il tuo profilo</h1>
         <p className="muted">
-          Il nome con cui studi, e quello che ti distingue dagli altri profili di questo browser.
+          Il nome con cui studi: uno solo, e ti distingue dagli altri profili di questo browser.
         </p>
       </header>
 
       <section className="card profile-hero">
         <span className="avatar" aria-hidden="true">
-          {initial(user.displayName)}
+          {initial(user.username)}
         </span>
         <div className="profile-hero__text">
-          <strong className="profile-hero__name">{user.displayName}</strong>
+          <strong className="profile-hero__name">{user.username}</strong>
           <span className="faint small">
-            @{user.username}
-            {created ? ` · dal ${formatDay(created)}` : ''}
+            {created ? `dal ${formatDay(created)}` : 'profilo di questo browser'}
           </span>
         </div>
         <Link className="btn btn--sm btn--ghost" to="/profili">
@@ -197,24 +137,16 @@ export function MyProfilePage() {
 
       {fromGenerated ? (
         <p className="alert alert--warn">
-          Al primo avvio il portale ti ha dato un nome utente generato. Scegliti il tuo qui sotto:
+          Al primo avvio il portale ti ha dato un nome generato. Scegliti il tuo qui sotto:
           comparirà in alto, nella home e nell'elenco dei profili.
         </p>
       ) : null}
 
       <section className="card">
-        <h2>Come vuoi essere chiamato</h2>
+        <h2>Il tuo nome</h2>
         <p className="muted small">
-          È il nome che leggi nella home e nei progressi: quello che il portale usa per parlarti.
-        </p>
-        <DisplayNameForm initial={user.displayName} />
-      </section>
-
-      <section className="card">
-        <h2>Nome utente</h2>
-        <p className="muted small">
-          Quello con la chiocciola, nato generato al primo avvio. Serve a riconoscere i profili
-          quando sullo stesso computer studia più di una persona.
+          È l'unico nome del profilo: quello che il portale usa per parlarti, e lo stesso che
+          compare con la chiocciola accanto agli altri profili.
         </p>
         <UsernameForm initial={user.username} />
       </section>

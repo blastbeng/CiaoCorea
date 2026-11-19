@@ -117,9 +117,9 @@ export function AppShell({ children }: { children: ReactNode }) {
           <Link
             className="user-chip__name"
             to="/profilo"
-            title="Il tuo profilo: nome e nome utente"
+            title="Il tuo profilo: il tuo nome"
           >
-            <span className="user-chip__label">{user?.displayName ?? ''}</span>
+            <span className="user-chip__label">{user?.username ?? ''}</span>
             {nameIsGenerated ? (
               <span className="user-chip__hint">(cambia qui il tuo username)</span>
             ) : null}

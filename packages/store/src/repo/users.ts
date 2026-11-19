@@ -6,8 +6,9 @@ import { nowIso } from '../db/client';
 
 export interface UserRow {
   id: string;
-  /** Il nome generato al primo avvio: unico su questo computer. */
+  /** L'unico nome del profilo: unico su questo computer. */
   username: string;
+  /** Copia dello username, tenuta per i database e le query più vecchie. */
   display_name: string;
   created_at: string;
   /** 1 quando lo studente ha sostituito il nome generato con uno suo. */
@@ -42,15 +43,16 @@ export function usernameTaken(db: Db, username: string, exceptUserId?: string): 
 
 export interface NewUser {
   username: string;
-  displayName: string;
 }
 
 export function createUser(db: Db, user: NewUser): UserRow {
   // Nasce con il nome scelto dal portale, non da lui: `username_chosen` lo dice.
+  // Nome e nome utente sono la stessa cosa: la colonna `display_name` la tiene
+  // allineata per le query che la leggono ancora.
   const row: UserRow = {
     id: randomUuid(),
     username: user.username.trim(),
-    display_name: user.displayName.trim(),
+    display_name: user.username.trim(),
     created_at: nowIso(),
     username_chosen: 0,
   };
@@ -66,30 +68,21 @@ export function toSessionUser(row: UserRow): SessionUser {
   return {
     id: row.id,
     username: row.username,
-    displayName: row.display_name,
     usernameChosen: Number(row.username_chosen) === 1,
   };
 }
 
 /**
- * Rinominarsi: si tocca solo il nome con cui lo studente vuole essere chiamato.
- * Lo `username` generato resta, perché è quello che distingue i profili quando
- * due persone studiano sullo stesso computer.
- */
-export function updateDisplayName(db: Db, userId: string, displayName: string): void {
-  db.prepare('UPDATE users SET display_name = ? WHERE id = ?').run(displayName.trim(), userId);
-}
-
-/**
- * Scegliersi il nome utente. Chi ha aperto il sito la prima volta si è trovato
+ * Scegliersi il nome. Chi ha aperto il sito la prima volta si è trovato
  * `VeloceTigre42` senza averlo chiesto: qui può sostituirlo con qualcosa che
- * sente suo. L'unicità la controlla la rotta prima di arrivare qui.
+ * sente suo. Nome e nome utente si muovono insieme, perché sono lo stesso nome.
+ * L'unicità la controlla la rotta prima di arrivare qui.
  */
 export function updateUsername(db: Db, userId: string, username: string): void {
-  db.prepare('UPDATE users SET username = ?, username_chosen = 1 WHERE id = ?').run(
-    username.trim(),
-    userId,
-  );
+  const name = username.trim();
+  db.prepare(
+    'UPDATE users SET username = ?, display_name = ?, username_chosen = 1 WHERE id = ?',
+  ).run(name, name, userId);
 }
 
 /**
@@ -113,7 +106,6 @@ export function setWeeklyGoal(db: Db, userId: string, goal: number): number {
 export interface LocalAccountRow {
   id: string;
   username: string;
-  display_name: string;
   created_at: string;
   live_sessions: number;
 }
@@ -126,7 +118,7 @@ export interface LocalAccountRow {
 export function listLocalAccounts(db: Db): LocalAccountRow[] {
   return db
     .prepare(
-      `SELECT u.id, u.username, u.display_name, u.created_at,
+      `SELECT u.id, u.username, u.created_at,
               (SELECT COUNT(*) FROM sessions s
                 WHERE s.user_id = u.id AND s.expires_at > ?) AS live_sessions
          FROM users u

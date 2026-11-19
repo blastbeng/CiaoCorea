@@ -45,7 +45,6 @@ interface SessionJoinRow {
   last_seen_at: string;
   user_id: string;
   username: string;
-  display_name: string;
   username_chosen: number;
 }
 
@@ -63,7 +62,7 @@ export function resolveSession(
   const row = db
     .prepare(
       `SELECT s.id AS session_id, s.expires_at, s.last_seen_at,
-              u.id AS user_id, u.username, u.display_name, u.username_chosen
+              u.id AS user_id, u.username, u.username_chosen
        FROM sessions s JOIN users u ON u.id = s.user_id
        WHERE s.token_hash = ?`,
     )
@@ -91,7 +90,6 @@ export function resolveSession(
     user: {
       id: row.user_id,
       username: row.username,
-      displayName: row.display_name,
       usernameChosen: Number(row.username_chosen) === 1,
     },
     sessionId: row.session_id,

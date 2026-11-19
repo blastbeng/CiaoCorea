@@ -69,11 +69,7 @@ export const api = {
   /** Un profilo in più su questo browser, e diventa quello aperto. */
   addProfile: async (): Promise<SessionUser> => (await getStore()).addProfile(),
 
-  /** Il nome con cui lo studente vuole essere chiamato. */
-  rename: async (displayName: string): Promise<SessionUser> =>
-    (await getStore()).rename(displayName),
-
-  /** Il nome utente con la chiocciola: unico fra i profili di questo computer. */
+  /** L'unico nome del profilo: unico fra i profili di questo computer. */
   changeUsername: async (username: string): Promise<SessionUser> =>
     (await getStore()).changeUsername(username),
 

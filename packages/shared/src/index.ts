@@ -358,14 +358,11 @@ export interface ProfileUserResponse {
   user: SessionUser;
 }
 
-/** Il nome che lo studente si sceglie: 2 caratteri bastano, 60 avanzano. */
-export const DISPLAY_NAME_MIN = 2;
-export const DISPLAY_NAME_MAX = 60;
-
 /**
- * Il nome utente, quello con la chiocciola negli elenchi dei profili. Al primo
- * avvio è generato (`VeloceTigre42`); chi vuole se ne sceglie uno suo, corto e
- * senza spazi, che resta unico su questo computer.
+ * Il nome dello studente, uno solo: è quello che si legge in alto e nella home
+ * e quello che negli elenchi dei profili porta la chiocciola. Al primo avvio è
+ * generato (`VeloceTigre42`); chi vuole se ne sceglie uno suo, corto e senza
+ * spazi, che resta unico su questo computer.
  */
 export const USERNAME_MIN = 2;
 export const USERNAME_MAX = 24;
@@ -507,13 +504,14 @@ export interface CourseView extends Omit<Course, 'units'> {
 
 export interface SessionUser {
   id: string;
-  /** Il nome generato al primo avvio, stile Reddit: `VeloceTigre42`. */
-  username: string;
-  /** Come lo studente vuole essere chiamato: si cambia nelle impostazioni. */
-  displayName: string;
   /**
-   * `false` finché il nome utente è quello scelto dal portale: serve a
-   * ricordargli che può sostituirlo con uno suo.
+   * L'unico nome dello studente: quello che si legge in alto e nella home, e
+   * quello che negli elenchi dei profili si scrive con la chiocciola davanti.
+   */
+  username: string;
+  /**
+   * `false` finché il nome è quello scelto dal portale: serve a ricordargli che
+   * può sostituirlo con uno suo.
    */
   usernameChosen: boolean;
 }

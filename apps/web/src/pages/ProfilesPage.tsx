@@ -80,9 +80,9 @@ export function ProfilesPage() {
                     void choose(account.id);
                   }}
                 >
-                  <span className="account-pick__name">{account.displayName}</span>
+                  <span className="account-pick__name">@{account.username}</span>
                   <span className="faint small">
-                    @{account.username} · dal {formatDay(account.createdAt)}
+                    dal {formatDay(account.createdAt)}
                     {mine ? ' · profilo attivo' : ''}
                   </span>
                   {mine ? (
@@ -113,9 +113,9 @@ export function ProfilesPage() {
           </button>
         </div>
         <p className="hint">
-          Il nome utente (stile <span className="faint small">@VeloceTigre42</span>) nasce generato:
-          si cambia dal proprio profilo, insieme al nome con cui vuoi essere chiamato. Anche i
-          progressi restano qui: ogni profilo ha i suoi.
+          Il nome (stile <span className="faint small">@VeloceTigre42</span>) nasce generato e si
+          cambia dal proprio profilo: è uno solo, quello che leggi in home e quello con la
+          chiocciola. Anche i progressi restano qui: ogni profilo ha i suoi.
         </p>
       </section>
     </div>

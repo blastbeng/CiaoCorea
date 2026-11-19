@@ -38,9 +38,7 @@ export interface Store {
   bootstrap(): Promise<SessionUser>;
   /** Un profilo in più su questo computer, e diventa quello aperto. */
   addProfile(): Promise<SessionUser>;
-  /** Il nome con cui lo studente vuole essere chiamato. */
-  rename(displayName: string): Promise<SessionUser>;
-  /** Il nome utente, quello con la chiocciola: unico su questo computer. */
+  /** L'unico nome del profilo: si sceglie qui, e resta unico su questo computer. */
   changeUsername(username: string): Promise<SessionUser>;
   /** Passa a un altro profilo locale: un clic, niente credenziali. */
   switchUser(userId: string): Promise<SessionUser | null>;
@@ -110,7 +108,6 @@ export async function createStore(options: CreateStoreOptions = {}): Promise<Sto
         state.sessions[user.id] = {
           token: cookie,
           username: user.username,
-          displayName: user.displayName,
         };
         state.activeUserId = user.id;
         persist();
@@ -125,17 +122,13 @@ export async function createStore(options: CreateStoreOptions = {}): Promise<Sto
 
   /**
    * Il nome tenuto accanto al token deve restare quello del database: senza
-   * questo, dopo una rinomina la riapertura mostrerebbe il nome vecchio finché
-   * non arriva la risposta di `session`.
+   * questo, dopo un cambio di nome la riapertura mostrerebbe quello vecchio
+   * finché non arriva la risposta di `session`.
    */
   const remember = (user: SessionUser): void => {
     const stored = state.sessions[user.id];
     if (!stored) return;
-    state.sessions[user.id] = {
-      ...stored,
-      username: user.username,
-      displayName: user.displayName,
-    };
+    state.sessions[user.id] = { ...stored, username: user.username };
     persist();
   };
 
@@ -158,12 +151,6 @@ export async function createStore(options: CreateStoreOptions = {}): Promise<Sto
 
     addProfile: async () => {
       const body = await call<{ user: SessionUser }>('POST', '/api/auth/profiles');
-      return body.user;
-    },
-
-    rename: async (displayName: string) => {
-      const body = await call<{ user: SessionUser }>('POST', '/api/auth/rename', { displayName });
-      remember(body.user);
       return body.user;
     },
 

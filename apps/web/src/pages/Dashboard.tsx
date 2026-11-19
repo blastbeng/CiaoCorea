@@ -116,7 +116,7 @@ export function Dashboard() {
   return (
     <div className="stack">
       <header>
-        <h1>Ciao, {user?.displayName ?? 'studente'}</h1>
+        <h1>Ciao, {user?.username ?? 'studente'}</h1>
         <p className="muted">
           {summary.lessonsPassed > 0
             ? 'Continua da dove hai lasciato: la costanza vale più delle sessioni lunghe.'
@@ -128,9 +128,9 @@ export function Dashboard() {
           portale. Dirlo qui costa una riga e risparmia un profilo anonimo. */}
       {nameIsGenerated ? (
         <p className="alert alert--warn">
-          Il nome utente <strong>@{user?.username}</strong> l'ha scelto il portale.{' '}
-          <Link to="/profilo">Cambia qui il tuo username</Link> — o almeno il nome con cui vuoi
-          essere chiamato.
+          Il nome <strong>@{user?.username}</strong> l'ha scelto il portale.{' '}
+          <Link to="/profilo">Scegli qui il tuo nome</Link>: è uno solo, e comparirà qui, in alto e
+          fra i profili.
         </p>
       ) : null}
 

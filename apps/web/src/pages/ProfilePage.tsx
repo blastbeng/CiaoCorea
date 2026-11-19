@@ -257,7 +257,7 @@ export function ProfilePage() {
         </p>
         <div className="row">
           <Link className="btn btn--sm" to="/profilo">
-            Nome e nome utente
+            Il tuo nome
           </Link>
           <Link className="btn btn--sm btn--ghost" to="/profili">
             Cambia profilo

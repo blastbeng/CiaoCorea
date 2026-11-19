@@ -251,6 +251,17 @@ export const MIGRATIONS: Migration[] = [
       ALTER TABLE users ADD COLUMN username_chosen INTEGER NOT NULL DEFAULT 0;
     `,
   },
+  {
+    id: '010-one-name',
+    sql: `
+      -- Nome e nome utente sono la stessa cosa: chi si chiama Marco è @Marco
+      -- anche nell'elenco dei profili. I database vecchi tengono ancora la
+      -- copia di quando erano due campi separati, e questa migrazione la
+      -- riallinea. La colonna display_name resta per le installazioni più
+      -- vecchie, ma da qui in poi si scrive solo insieme allo username.
+      UPDATE users SET display_name = username WHERE display_name <> username;
+    `,
+  },
 ];
 
 export function migrate(db: Db): void {
