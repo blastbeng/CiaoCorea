@@ -691,7 +691,11 @@
             { "ko": "유리", "it": "vetro", "rr": "yuri" },
             { "ko": "박물관", "it": "museo", "rr": "bangmulgwan" },
             { "ko": "그렇지만", "it": "però, ma", "rr": "geureochiman" },
-            { "ko": "만들다", "it": "fare, creare", "rr": "mandeulda" }
+            { "ko": "만들다", "it": "fare, creare", "rr": "mandeulda" },
+            { "ko": "닫다", "it": "chiudere (contrario di 열다)", "rr": "datda" },
+            { "ko": "밖", "it": "fuori", "rr": "bak" },
+            { "ko": "조용히", "it": "silenziosamente, zitti: 조용히 하다 = stare zitti", "rr": "joyonghi" },
+            { "ko": "정말", "it": "davvero, proprio", "rr": "jeongmal" }
           ],
           "passages": [
             {

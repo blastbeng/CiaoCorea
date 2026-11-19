@@ -1018,5 +1018,100 @@
         "it": "Oggi alle tre è possibile: passi pure."
       }
     ]
+  },
+  {
+    "id": "dlg-mostra",
+    "slug": "alla-mostra",
+    "title": "Alla mostra: si può, si deve, non si tocca",
+    "level": "A2",
+    "setting": "Una mostra di fotografia a Seul. Sei con 지수, che conosce le regole del museo.",
+    "goal": "Chiedere il permesso, capire che cosa si deve fare e che cosa è vietato.",
+    "points": [
+      "-(으)ㄹ 수 있어요 dice «posso»: 찍을 수 있어요? «posso scattare?». Dopo vocale si usa -ㄹ, dopo consonante -을.",
+      "-아/어도 돼요 è il permesso: 찍어도 돼요? «posso scattare?». La risposta affermativa è 네, 돼요.",
+      "Per vietare qualcosa si usa -지 마세요: 만지지 마세요 «non toccare». «안 만지세요» non è un divieto.",
+      "L'obbligo è -아/어야 해요: 조용히 해야 해요 «bisogna stare zitti», 빨리 봐야 해요 «dobbiamo vederla in fretta»."
+    ],
+    "after": {
+      "courseSlug": "grammatica",
+      "lessonId": "gram-06"
+    },
+    "turns": [
+      {
+        "id": "m1",
+        "speaker": "지수",
+        "ko": "여기 사진이 정말 많아요.",
+        "it": "Qui ci sono davvero tante foto.",
+        "note": "많아요 viene da 많다 «essere molto, tanti»."
+      },
+      {
+        "id": "m2",
+        "speaker": "Tu",
+        "ko": "여기에서 사진을 찍을 수 있어요?",
+        "it": "Qui si possono scattare foto?",
+        "hint": "찍다 + -(으)ㄹ 수 있어요.",
+        "note": "La radice 찍 finisce in consonante, quindi prende -을: 찍을 수 있어요.",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "여기에서 사진을 찍을 수 있어요?",
+            "여기에서 사진을 찍지 마세요?",
+            "여기에서 사진을 찍어야 해요?"
+          ]
+        }
+      },
+      {
+        "id": "m3",
+        "speaker": "지수",
+        "ko": "네, 찍어도 돼요. 그렇지만 조용히 해야 해요.",
+        "it": "Sì, puoi scattare. Però bisogna stare zitti.",
+        "note": "-아/어도 돼요 dà il permesso, -아/어야 해요 mette l'obbligo."
+      },
+      {
+        "id": "m4",
+        "speaker": "Tu",
+        "ko": "알겠어요. 작품은 만질 수 있어요?",
+        "it": "Ho capito. Si possono toccare le opere?",
+        "hint": "만지다 finisce in vocale: -ㄹ 수 있어요.",
+        "note": "만지 + ㄹ = 만질: dopo vocale il 수 si attacca direttamente.",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "알겠어요. 작품은 만질 수 있어요?",
+            "알겠어요. 작품은 만져야 해요?",
+            "알겠어요. 작품은 만지지 마세요?"
+          ]
+        }
+      },
+      {
+        "id": "m5",
+        "speaker": "지수",
+        "ko": "아니요, 만지지 마세요. 유리 작품은 조심해야 해요.",
+        "it": "No, non toccare. Le opere di vetro vanno trattate con cura.",
+        "note": "-지 마세요 è l'ordine negativo: 만지지 마세요 «non toccare»."
+      },
+      {
+        "id": "m6",
+        "speaker": "Tu",
+        "ko": "그럼 밖에서 찍어도 돼요?",
+        "it": "Allora posso scattare fuori?",
+        "hint": "찍다 → 찍어 + 도 돼요.",
+        "note": "밖에서: 밖 «fuori» prende 에서 perché è il luogo dell'azione.",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "밖에서 찍어도 돼요",
+            "밖에서 찍어도 돼요?"
+          ]
+        }
+      },
+      {
+        "id": "m7",
+        "speaker": "지수",
+        "ko": "네, 밖에서는 찍어도 돼요. 그렇지만 오늘은 6시에 문을 닫아요. 우리 빨리 봐야 해요.",
+        "it": "Sì, fuori puoi scattare. Però oggi chiude alle 6. Dobbiamo fare in fretta.",
+        "note": "닫아요 «chiude» è il contrario di 열어요; 봐야 해요 = dobbiamo vedere."
+      }
+    ]
   }
 ]
