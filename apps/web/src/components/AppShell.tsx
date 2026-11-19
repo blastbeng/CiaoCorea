@@ -3,6 +3,8 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { api, PENDING_CHANGED } from '../api';
 import { hasGeneratedUsername, useAuth } from '../auth';
 import { ThemeToggle } from '../theme';
+import { CookieBanner } from './CookieBanner';
+import { WelcomeDialog } from './WelcomeDialog';
 
 export function AppShell({ children }: { children: ReactNode }) {
   const { user } = useAuth();
@@ -54,6 +56,44 @@ export function AppShell({ children }: { children: ReactNode }) {
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [navOpen]);
+
+  // Si cambia pagina e si riparte dall'alto: restare a metà di quella prima è
+  // disorientante. Se il link porta a una sezione (#dati, per esempio) si va
+  // lì, che è quello che il lettore ha chiesto.
+  useEffect(() => {
+    const deadline = performance.now() + 1500;
+    let frame = 0;
+
+    const scroll = () => {
+      if (!location.hash) {
+        window.scrollTo({ top: 0, behavior: 'auto' });
+        return;
+      }
+
+      let target: Element | null = null;
+      try {
+        target = document.querySelector(location.hash);
+      } catch {
+        // Un cancelletto che non è un selettore valido: si riparte dall'alto.
+      }
+
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
+
+      // La pagina può arrivare dopo il primo giro (database e sessione si
+      // aprono prima): si riprova per un attimo, poi si resta in cima.
+      if (performance.now() < deadline) {
+        frame = requestAnimationFrame(scroll);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      }
+    };
+
+    frame = requestAnimationFrame(scroll);
+    return () => cancelAnimationFrame(frame);
+  }, [location.pathname, location.hash]);
 
   return (
     <div className="app">
@@ -175,9 +215,15 @@ export function AppShell({ children }: { children: ReactNode }) {
             Fabio Valentino
           </a>
           {' · '}
-          <Link to="/about">Chi siamo</Link>
+          <Link to="/about">Chi sono</Link>
         </p>
       </footer>
+
+      {/* Il benvenuto del giorno e il riquadro dei cookie stanno fuori dal
+          flusso della pagina: compaiono sopra, una volta sola, e poi si
+          tolgono di mezzo da soli. */}
+      <WelcomeDialog />
+      <CookieBanner />
     </div>
   );
 }
