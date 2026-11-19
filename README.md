@@ -99,7 +99,7 @@ Serve Node 22.5 o successivo. **Nessun file `.env`, nessun servizio da avviare.*
 
 ```bash
 NODE_ENV=development npm install  # senza, NODE_ENV=production omette le devDeps
-npm run dev                       # Vite su http://localhost:5173/CiaoCorea/
+npm run dev                       # Vite su http://localhost:5173/
 ```
 
 Comandi utili:
@@ -109,7 +109,7 @@ npm test              # unit + integrazione dello store, in memoria
 npm run typecheck     # tutti i pacchetti, client compreso
 npm run content:check # validazione dei corsi
 npm run build         # sito statico in apps/web/dist
-npm run preview       # anteprima del build, stessa base /CiaoCorea/
+npm run preview       # anteprima del build, su http://localhost:4173/
 ```
 
 I test di `packages/store` aprono il database in memoria: girano senza browser e
@@ -134,11 +134,13 @@ Il sito è pubblicato da GitHub Pages con
 `.github/workflows/deploy-pages.yml`: ogni push su `main` installa le
 dipendenze, esegue `typecheck` e test, compila `apps/web/dist` e lo pubblica.
 
-- URL: <https://blastbeng.github.io/CiaoCorea/>
+- URL: <https://ciaocorea.fabiovalentino.it/> (custom domain delle Pages);
+  <https://blastbeng.github.io/CiaoCorea/> risponde con un redirect lì.
 - Sorgente Pages: **GitHub Actions** (non il branch `gh-pages`).
-- La base di Vite è `/CiaoCorea/` e il router è `HashRouter`: nessun rewrite
-  lato server, quindi il sito funziona identico anche aperto da `file://` dopo
-  un build.
+- La base di Vite è `./` e il router è `HashRouter`: gli asset si risolvono
+  rispetto al documento, quindi la stessa build vive sia sulla radice del
+  dominio sia sotto `/CiaoCorea/`, e nessun rewrite lato server è necessario.
+  Con una base assoluta una delle due copie resta senza CSS, cioè pagina vuota.
 - Nessun analytics, nessun cookie, nessuna chiamata di rete dopo il caricamento
   degli asset: l'unica cosa che si salva è nel browser.
 
