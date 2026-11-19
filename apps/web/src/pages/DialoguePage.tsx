@@ -9,6 +9,7 @@ import type {
 import { api } from '../api';
 import { errorMessage } from '../auth';
 import { HangulInput } from '../components/HangulInput';
+import { KoreanText } from '../components/KoreanText';
 import { PronounceButton } from '../components/PronounceButton';
 import { useAsync } from '../useAsync';
 
@@ -184,7 +185,8 @@ function DialogueRunner({ initial }: { initial: DialogueDetail }) {
                 <span className="chat__speaker">{turn.speaker}</span>
                 {turn.ko ? (
                   <p className="chat__ko">
-                    {turn.ko} <PronounceButton text={turn.ko} label={turn.ko} />
+                    <KoreanText text={turn.ko} />{' '}
+                    <PronounceButton text={turn.ko} label={turn.ko} />
                   </p>
                 ) : null}
                 <p className="chat__it">{turn.it}</p>
