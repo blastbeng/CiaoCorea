@@ -2,6 +2,7 @@ import { useEffect, useState, type ReactNode } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { api, PENDING_CHANGED } from '../api';
 import { useAuth } from '../auth';
+import { ThemeToggle } from '../theme';
 
 export function AppShell({ children }: { children: ReactNode }) {
   const { user, logout } = useAuth();
@@ -81,7 +82,8 @@ export function AppShell({ children }: { children: ReactNode }) {
         </nav>
 
         <div className="user-chip">
-          <span>{user?.displayName ?? ''}</span>
+          <ThemeToggle />
+          <span className="user-chip__name">{user?.displayName ?? ''}</span>
           {/* Il database è di questo browser: cambiare utente è scegliere un
               altro profilo, non rifare l'accesso. */}
           <Link className="btn btn--sm btn--ghost" to="/login">

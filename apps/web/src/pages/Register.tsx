@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { errorMessage, useAuth } from '../auth';
+import { ThemeToggle } from '../theme';
 
 /**
  * Creare un profilo su questo browser. Niente codici di invito e niente
@@ -37,6 +38,7 @@ export function Register() {
 
   return (
     <div className="login-wrap">
+      <ThemeToggle floating />
       <div className="login-card">
         <div className="login-brand">
           <div className="brand-mark" aria-hidden="true">

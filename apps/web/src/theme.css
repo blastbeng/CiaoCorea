@@ -1,35 +1,136 @@
 /*
- * Un solo foglio: l'app è piccola e i token qui sotto bastano a tenere
- * coerenti tutte le schermate. Carta calda, inchiostro scuro, rosso e blu
- * coreani come unici accenti.
+ * Un solo foglio e una sola scala di token: ogni colore del sito esce da qui,
+ * così cambiare tema è cambiare sedici righe. Il tema predefinito è il blu
+ * notte di VS Code, quello che stanca meno la sera; il chiaro è a un tocco di
+ * distanza (`data-theme="light"` sull'elemento radice, vedi src/theme.tsx).
  */
 
 :root {
-  --paper: #fbf6ee;
-  --paper-raised: #fffdf9;
-  --ink: #211d19;
-  --ink-soft: #6b6259;
-  --ink-faint: #9a9086;
-  --line: #e7dccd;
-  --line-strong: #d6c7b4;
-  --accent: #bf2f3d;
-  --accent-dark: #96222d;
-  --accent-soft: #f7e2e2;
-  --blue: #24557f;
-  --blue-soft: #e3edf6;
-  --ok: #2f7355;
-  --ok-soft: #e2f0e7;
-  --warn: #a86a1d;
-  --warn-soft: #f8ecd8;
+  /* superfici */
+  --paper: #0d1620;
+  --paper-raised: #15202b;
+  --surface: #1a2735;
+  --field: #0b131c;
+  --field-soft: #17232f;
+  --sunken: #101b25;
+  --track: #1d2b3a;
+  --card-locked: #121c26;
+  --chip: #1c2937;
+  --chip-muted: #17222d;
+  --chip-strong: #1e2c3b;
+  --btn-hover: #1d2b3a;
+
+  /* inchiostro */
+  --ink: #d7e3f0;
+  --ink-soft: #a2b4c6;
+  --ink-faint: #7d92a6;
+
+  /* linee */
+  --line: #223243;
+  --line-strong: #33475c;
+
+  /* accenti */
+  --accent: #d13b4c;
+  --accent-strong: #e15a68;
+  --accent-soft: #3a1e24;
+  --accent-ink: #ff9fab;
+  --accent-line: #5c2b34;
+  --accent-2: #e8694f;
+  --on-accent: #ffffff;
+
+  --blue: #6cb6ff;
+  --blue-soft: #14283b;
+  --blue-line: #2b4c6b;
+
+  --ok: #6ec48f;
+  --ok-soft: #122a20;
+  --ok-line: #27553e;
+  --ok-bg: #0f2018;
+  --bad-bg: #1e1218;
+
+  --warn: #e3b264;
+  --warn-soft: #2f2516;
+
+  /* interazione */
+  --hover: rgba(215, 227, 240, 0.07);
+  --hover-strong: rgba(215, 227, 240, 0.11);
+  --header-bg: rgba(13, 22, 32, 0.88);
+  --glow-a: #16222f;
+  --glow-b: #0f1d2a;
+  --focus-ring: rgba(108, 182, 255, 0.5);
+  --focus-soft: rgba(108, 182, 255, 0.18);
+  --nav-active-bg: #1f6feb;
+  --nav-active-ink: #ffffff;
+
   --radius: 14px;
   --radius-sm: 9px;
-  --shadow: 0 1px 2px rgba(33, 29, 25, 0.05), 0 8px 24px rgba(33, 29, 25, 0.05);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.45), 0 10px 28px rgba(0, 0, 0, 0.4);
   /* Il coreano chiede un font con le sillabe Hangul: su Linux si chiama
      «Noto Sans CJK KR», su Windows «Malgun Gothic», su macOS «Apple SD Gothic
      Neo». Senza questi ricadde i quadratini prendono il posto delle parole. */
   --font: 'Inter', 'Segoe UI', system-ui, -apple-system, 'Noto Sans CJK KR', sans-serif;
   --font-ko: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans CJK KR',
     var(--font);
+
+  color-scheme: dark;
+}
+
+/* Carta calda e inchiostro scuro: il tema di giorno, identico a prima. */
+:root[data-theme='light'] {
+  --paper: #fbf6ee;
+  --paper-raised: #fffdf9;
+  --surface: #ffffff;
+  --field: #ffffff;
+  --field-soft: #fffdf8;
+  --sunken: #f7f1e7;
+  --track: #ece2d5;
+  --card-locked: #fbf7f0;
+  --chip: #efe7dc;
+  --chip-muted: #f0ebe4;
+  --chip-strong: #f0e7db;
+  --btn-hover: #f6efe5;
+
+  --ink: #211d19;
+  --ink-soft: #6b6259;
+  --ink-faint: #9a9086;
+
+  --line: #e7dccd;
+  --line-strong: #d6c7b4;
+
+  --accent: #bf2f3d;
+  --accent-strong: #96222d;
+  --accent-soft: #f7e2e2;
+  --accent-ink: #96222d;
+  --accent-line: #eec9c9;
+  --accent-2: var(--accent-2);
+  --on-accent: #ffffff;
+
+  --blue: #24557f;
+  --blue-soft: #e3edf6;
+  --blue-line: #c9dced;
+
+  --ok: #2f7355;
+  --ok-soft: #e2f0e7;
+  --ok-line: #c6e2d2;
+  --ok-bg: #f7fbf8;
+  --bad-bg: #fdf7f7;
+
+  --warn: #a86a1d;
+  --warn-soft: #f8ecd8;
+
+  --hover: var(--hover);
+  --hover-strong: var(--hover-strong);
+  --header-bg: var(--header-bg);
+  --glow-a: var(--glow-a);
+  --glow-b: var(--glow-b);
+  --focus-ring: var(--focus-ring);
+  --focus-soft: var(--focus-soft);
+  --nav-active-bg: #211d19;
+  --nav-active-ink: #fffdf9;
+
+  --shadow: 0 1px 2px var(--hover), 0 8px 24px var(--hover);
+
+  color-scheme: light;
 }
 
 * {
@@ -51,8 +152,8 @@ body {
   margin: 0;
   font-family: var(--font);
   background:
-    radial-gradient(1200px 600px at 15% -10%, #fdf1e3 0%, transparent 60%),
-    radial-gradient(900px 500px at 95% 0%, #eef3f8 0%, transparent 55%),
+    radial-gradient(1200px 600px at 15% -10%, var(--glow-a) 0%, transparent 60%),
+    radial-gradient(900px 500px at 95% 0%, var(--glow-b) 0%, transparent 55%),
     var(--paper);
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
@@ -98,7 +199,7 @@ button {
 }
 
 :focus-visible {
-  outline: 3px solid rgba(36, 85, 127, 0.35);
+  outline: 3px solid var(--focus-ring);
   outline-offset: 2px;
 }
 
@@ -118,7 +219,7 @@ button {
   align-items: center;
   gap: 1.25rem;
   padding: 0.65rem clamp(1rem, 4vw, 2.5rem);
-  background: rgba(251, 246, 238, 0.88);
+  background: var(--header-bg);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
 }
@@ -143,7 +244,7 @@ button {
   height: 2rem;
   border-radius: 10px;
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
   font-family: var(--font-ko);
   font-size: 1.05rem;
   font-weight: 700;
@@ -165,13 +266,13 @@ button {
 }
 
 .app-nav a:hover {
-  background: rgba(33, 29, 25, 0.05);
+  background: var(--hover);
   text-decoration: none;
 }
 
 .app-nav a.active {
-  background: var(--ink);
-  color: var(--paper-raised);
+  background: var(--nav-active-bg);
+  color: var(--nav-active-ink);
 }
 
 /* Il conto dei ripassi in scadenza: un numero, non una scritta. */
@@ -182,7 +283,7 @@ button {
   padding: 0 0.35rem;
   border-radius: 999px;
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
   font-size: 0.72rem;
   font-weight: 700;
   line-height: 1.35rem;
@@ -191,8 +292,8 @@ button {
 }
 
 .app-nav a.active .nav-badge {
-  background: var(--paper-raised);
-  color: var(--ink);
+  background: var(--nav-active-ink);
+  color: var(--nav-active-bg);
 }
 
 /* Gli errori da rifare: un colore diverso dai ripassi, perché sono due cose
@@ -228,6 +329,33 @@ button {
   text-align: center;
   font-size: 0.8rem;
   color: var(--ink-faint);
+}
+
+/* ---------- tema ---------- */
+
+/* Un solo bottone, in alto a destra: mostra il tema in arrivo, non quello
+   attivo — così il tocco non ha bisogno di spiegazioni. */
+.btn.theme-toggle {
+  flex: none;
+  min-width: 2.3rem;
+  padding: 0.3rem 0.45rem;
+  border-color: var(--line);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* Nelle schermate d'ingresso non c'è header: il bottone si appoggia allo
+   schermo e resta raggiungibile anche quando la card scorre. */
+.btn.theme-toggle--floating {
+  position: fixed;
+  top: calc(0.9rem + env(safe-area-inset-top));
+  right: calc(0.9rem + env(safe-area-inset-right));
+  z-index: 30;
+  background: var(--paper-raised);
+}
+
+.btn.theme-toggle--floating:hover:not(:disabled) {
+  background: var(--btn-hover);
 }
 
 /* ---------- testo ---------- */
@@ -329,7 +457,7 @@ button {
 .progress {
   height: 8px;
   border-radius: 999px;
-  background: #ece2d5;
+  background: var(--track);
   overflow: hidden;
 }
 
@@ -337,7 +465,7 @@ button {
   display: block;
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, var(--accent), #d9634f);
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
   transition: width 0.35s ease;
 }
 
@@ -350,7 +478,7 @@ button {
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.01em;
-  background: #efe7dc;
+  background: var(--chip);
   color: var(--ink-soft);
   white-space: nowrap;
 }
@@ -378,11 +506,11 @@ button {
 
 .badge--available {
   background: var(--accent-soft);
-  color: var(--accent-dark);
+  color: var(--accent-ink);
 }
 
 .badge--locked {
-  background: #f0ebe4;
+  background: var(--chip-muted);
   color: var(--ink-faint);
 }
 
@@ -404,7 +532,7 @@ button {
 }
 
 .btn:hover:not(:disabled) {
-  background: #f6efe5;
+  background: var(--btn-hover);
 }
 
 .btn:active:not(:disabled) {
@@ -419,12 +547,12 @@ button {
 .btn--primary {
   background: var(--accent);
   border-color: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
 }
 
 .btn--primary:hover:not(:disabled) {
-  background: var(--accent-dark);
-  border-color: var(--accent-dark);
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
 }
 
 .btn--ghost {
@@ -434,7 +562,7 @@ button {
 }
 
 .btn--ghost:hover:not(:disabled) {
-  background: rgba(33, 29, 25, 0.06);
+  background: var(--hover-strong);
 }
 
 .btn--sm {
@@ -466,7 +594,7 @@ button {
   padding: 0.65rem 0.8rem;
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-sm);
-  background: #fff;
+  background: var(--field);
   font: inherit;
   color: var(--ink);
 }
@@ -474,7 +602,7 @@ button {
 .input:focus {
   outline: none;
   border-color: var(--blue);
-  box-shadow: 0 0 0 3px rgba(36, 85, 127, 0.15);
+  box-shadow: 0 0 0 3px var(--focus-soft);
 }
 
 .input--ko {
@@ -494,19 +622,19 @@ button {
 
 .alert--error {
   background: var(--accent-soft);
-  border-color: #eec9c9;
-  color: var(--accent-dark);
+  border-color: var(--accent-line);
+  color: var(--accent-ink);
 }
 
 .alert--ok {
   background: var(--ok-soft);
-  border-color: #c6e2d2;
+  border-color: var(--ok-line);
   color: var(--ok);
 }
 
 .alert--info {
   background: var(--blue-soft);
-  border-color: #c9dced;
+  border-color: var(--blue-line);
   color: var(--blue);
 }
 
@@ -541,7 +669,7 @@ button {
 
 a.lesson-row:hover {
   border-color: var(--line-strong);
-  background: #fff;
+  background: var(--surface);
   text-decoration: none;
 }
 
@@ -557,7 +685,7 @@ a.lesson-row:hover {
   height: 2rem;
   flex: none;
   border-radius: 50%;
-  background: #f0e7db;
+  background: var(--chip-strong);
   font-size: 0.8rem;
   font-weight: 700;
   color: var(--ink-soft);
@@ -601,7 +729,7 @@ a.lesson-row:hover {
   padding: 0.6rem 0.75rem;
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
-  background: #fff;
+  background: var(--surface);
 }
 
 .vocab .ko {
@@ -635,7 +763,7 @@ a.lesson-row:hover {
   padding: 0.85rem 1rem;
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-sm);
-  background: #fff;
+  background: var(--surface);
   font-size: 1.05rem;
   text-align: center;
   cursor: pointer;
@@ -667,7 +795,7 @@ a.lesson-row:hover {
   padding: 0.5rem 0.8rem;
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-sm);
-  background: #fff;
+  background: var(--surface);
   font-family: var(--font-ko);
   font-size: 1.25rem;
   cursor: pointer;
@@ -687,7 +815,7 @@ a.lesson-row:hover {
   margin-bottom: 0.9rem;
   border: 1px dashed var(--line-strong);
   border-radius: var(--radius-sm);
-  background: #fffdf8;
+  background: var(--field-soft);
   font-family: var(--font-ko);
   font-size: 1.6rem;
 }
@@ -710,7 +838,7 @@ a.lesson-row:hover {
   padding: 0.45rem 0.75rem;
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-sm);
-  background: #fff;
+  background: var(--surface);
   font-family: var(--font-ko);
   font-size: 1.3rem;
   cursor: pointer;
@@ -755,7 +883,7 @@ a.lesson-row:hover {
   padding: 0.6rem;
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
-  background: #f7f1e7;
+  background: var(--sunken);
 }
 
 .keyboard-row {
@@ -774,7 +902,7 @@ a.lesson-row:hover {
   padding: 0.45rem 0.55rem;
   border: 1px solid var(--line-strong);
   border-radius: 7px;
-  background: #fff;
+  background: var(--surface);
   font-family: var(--font-ko);
   font-size: 1.05rem;
   cursor: pointer;
@@ -819,18 +947,18 @@ a.lesson-row:hover {
   padding: 0.65rem 0.8rem;
   border-radius: var(--radius-sm);
   border: 1px solid var(--line);
-  background: #fff;
+  background: var(--surface);
   font-size: 0.9rem;
 }
 
 .result-item--ok {
-  border-color: #c9e2d4;
-  background: #f7fbf8;
+  border-color: var(--ok-line);
+  background: var(--ok-bg);
 }
 
 .result-item--wrong {
-  border-color: #eec9c9;
-  background: #fdf7f7;
+  border-color: var(--accent-line);
+  background: var(--bad-bg);
 }
 
 .result-mark {
@@ -968,7 +1096,7 @@ a.lesson-row:hover {
 /* Il profilo in cui sei già dentro si distingue anche senza leggere la riga. */
 .account-pick--mine {
   border-color: var(--line-strong);
-  background: #fffdf8;
+  background: var(--field-soft);
 }
 
 .account-pick__name {
@@ -1034,8 +1162,10 @@ a.lesson-row:hover {
     font-size: 0.95rem;
   }
 
-  /* Il nome per esteso non ci sta accanto ai due pulsanti: resta nel profilo. */
-  .user-chip span {
+  /* Il nome per esteso non ci sta accanto ai pulsanti: resta nel profilo.
+     Il bottone del tema tiene la sua icona: è uno span dentro il bottone, non
+     il nome, e nasconderlo lascerebbe un quadrato vuoto. */
+  .user-chip__name {
     display: none;
   }
 
@@ -1116,7 +1246,7 @@ a.lesson-row:hover {
 
 .chat__row--me .chat__bubble {
   background: var(--blue-soft);
-  border-color: #cddff0;
+  border-color: var(--blue-line);
   border-top-left-radius: var(--radius);
   border-top-right-radius: 4px;
 }
@@ -1192,9 +1322,9 @@ a.lesson-row:hover {
 }
 
 .filter--on {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--paper);
+  background: var(--nav-active-bg);
+  border-color: var(--nav-active-bg);
+  color: var(--nav-active-ink);
 }
 
 .vocab-list {
@@ -1273,7 +1403,7 @@ a.lesson-row:hover {
   width: 100%;
   min-height: 6px;
   border-radius: 5px 5px 0 0;
-  background: linear-gradient(180deg, var(--accent), #d9634f);
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
   opacity: 0.85;
 }
 
@@ -1286,7 +1416,7 @@ a.lesson-row:hover {
 }
 
 .dialogue-card--locked {
-  background: #fbf7f0;
+  background: var(--card-locked);
   opacity: 0.8;
 }
 
@@ -1459,7 +1589,7 @@ a.lesson-row:hover {
 /* Le parole della consegna sono un promemoria, non dei pulsanti. */
 .chip--hint {
   cursor: default;
-  background: #f7f2ea;
+  background: var(--sunken);
   border-style: dashed;
   font-size: 1.1rem;
   padding: 0.35rem 0.6rem;
@@ -1507,7 +1637,7 @@ textarea.input--ko {
   padding: 0.55rem 0.7rem;
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
-  background: #fff;
+  background: var(--surface);
 }
 
 .fragile__word {

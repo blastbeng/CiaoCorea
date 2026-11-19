@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { errorMessage, useAuth } from '../auth';
+import { ThemeToggle } from '../theme';
 
 interface LocationState {
   from?: string;
@@ -60,6 +61,7 @@ export function Login() {
 
   return (
     <div className="login-wrap">
+      <ThemeToggle floating />
       <div className="login-card">
         <div className="login-brand">
           <div className="brand-mark" aria-hidden="true">
