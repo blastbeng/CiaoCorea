@@ -22,7 +22,16 @@ import type {
   WritingCheckResponse,
   WritingResponse,
 } from '@ciaocorea/shared';
-import { ApiError, type AccountsResponse } from '@ciaocorea/store';
+import {
+  ApiError,
+  type AccountsResponse,
+  type CompactCode,
+  type ImportStrategy,
+  type SnapshotInfo,
+  type SyncImportResult,
+  type SyncPreview,
+  type TransferBundle,
+} from '@ciaocorea/store';
 import { getStore } from './db';
 
 /**
@@ -158,4 +167,29 @@ export const api = {
   /** Quanti giorni di studio lo studente vuole fare in una settimana. */
   setGoal: (goal: number) =>
     request<{ weeklyGoal: number }>('POST', '/api/profile/goal', { goal }),
+
+  /** Il profilo aperto — o tutti — in un file: è il trasferimento fra dispositivi. */
+  exportTransfer: async (scope: 'profile' | 'all'): Promise<TransferBundle> =>
+    (await getStore()).exportTransfer(scope),
+
+  /** Il codice veloce: lezioni, ripassi e giorni di studio in una riga. */
+  transferCode: async (): Promise<CompactCode> => (await getStore()).transferCode(),
+
+  /** Cosa cambierebbe il file, senza applicarlo: il merge gira e torna indietro. */
+  previewTransfer: async (bundle: unknown): Promise<SyncPreview> =>
+    (await getStore()).previewTransfer(bundle),
+
+  /** Applica il file, dopo aver messo da parte il database com'era. */
+  importTransfer: async (
+    bundle: unknown,
+    strategy: ImportStrategy,
+  ): Promise<SyncImportResult> => (await getStore()).importTransfer(bundle, strategy),
+
+  /** Fa una copia dei byte di adesso: è l'annulla dell'importazione. */
+  snapshot: async (): Promise<boolean> => (await getStore()).snapshot(),
+
+  /** Rimette i byte di prima dell'ultima importazione. Serve un reload. */
+  restoreSnapshot: async (): Promise<boolean> => (await getStore()).restoreSnapshot(),
+
+  snapshotInfo: async (): Promise<SnapshotInfo | null> => (await getStore()).snapshotInfo(),
 };

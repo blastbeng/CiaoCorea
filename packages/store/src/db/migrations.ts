@@ -262,6 +262,29 @@ export const MIGRATIONS: Migration[] = [
       UPDATE users SET display_name = username WHERE display_name <> username;
     `,
   },
+  {
+    id: '011-transfer',
+    sql: `
+      -- Il trasferimento fra dispositivi deve sapere quando è cambiata l'ultima
+      -- volta una riga che finora non aveva un orologio: il profilo (nome,
+      -- obiettivo settimanale). Senza, un nome cambiato su un dispositivo non
+      -- saprebbe se deve vincere su quello dell'altro.
+      ALTER TABLE users ADD COLUMN updated_at TEXT NOT NULL DEFAULT '';
+      UPDATE users SET updated_at = created_at;
+
+      -- Un errore corretto sparisce dalla banca. Questo segnaposto è ciò che
+      -- impedisce a un backup più vecchio di farlo tornare al prossimo import:
+      -- la data dice quando è stato corretto, e vince la più recente.
+      CREATE TABLE sync_tombstones (
+        user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+        kind TEXT NOT NULL,
+        key TEXT NOT NULL,
+        at TEXT NOT NULL,
+        PRIMARY KEY (user_id, kind, key)
+      );
+      CREATE INDEX sync_tombstones_user_idx ON sync_tombstones(user_id, at);
+    `,
+  },
 ];
 
 export function migrate(db: Db): void {

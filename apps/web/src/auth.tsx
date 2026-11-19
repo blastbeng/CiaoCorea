@@ -30,6 +30,11 @@ interface AuthContextValue {
   /** L'unico nome del profilo, unico su questo computer. */
   changeUsername: (username: string) => Promise<SessionUser>;
   refreshAccounts: () => Promise<void>;
+  /**
+   * Rilegge chi è aperto. Serve dopo un'importazione: lì la sessione cambia
+   * senza che nessuno abbia premuto "cambia profilo".
+   */
+  reload: () => Promise<void>;
 }
 
 /**
@@ -91,6 +96,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     [refreshAccounts],
   );
 
+  const reload = useCallback(async () => {
+    try {
+      const body = await api.session();
+      if (body.user) setState({ status: 'ready', user: body.user });
+      await refreshAccounts();
+    } catch {
+      // Un errore qui non deve buttare fuori nessuno: la pagina che ha chiesto
+      // il reload mostrerà il proprio messaggio.
+    }
+  }, [refreshAccounts]);
+
   const changeUsername = useCallback(
     async (username: string) => {
       const user = await api.changeUsername(username);
@@ -111,8 +127,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       switchUser,
       changeUsername,
       refreshAccounts,
+      reload,
     }),
-    [state, accounts, start, addProfile, switchUser, changeUsername, refreshAccounts],
+    [state, accounts, start, addProfile, switchUser, changeUsername, refreshAccounts, reload],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

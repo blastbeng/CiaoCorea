@@ -1,3 +1,5 @@
+import { DATABASE, readRecord, writeRecord } from './indexed';
+
 /**
  * Il database vive in memoria (sql.js) e viene scritto su IndexedDB ai margini
  * delle operazioni. IndexedDB e non localStorage: i byte di un database SQLite
@@ -5,53 +7,13 @@
  * salvataggio bloccherebbe il rendering.
  */
 
-const DB_NAME = 'ciaocorea';
-const STORE_NAME = 'database';
-const RECORD_KEY = 'sqlite';
-
-function open(): Promise<IDBDatabase> {
-  return new Promise((resolve, reject) => {
-    const request = indexedDB.open(DB_NAME, 1);
-
-    request.onupgradeneeded = () => {
-      const db = request.result;
-      if (!db.objectStoreNames.contains(STORE_NAME)) db.createObjectStore(STORE_NAME);
-    };
-    request.onsuccess = () => resolve(request.result);
-    request.onerror = () => reject(request.error ?? new Error('IndexedDB non disponibile'));
-    request.onblocked = () => reject(new Error('IndexedDB bloccato da un’altra scheda'));
-  });
-}
-
 export async function loadBytes(): Promise<Uint8Array | null> {
-  const db = await open();
-  try {
-    return await new Promise<Uint8Array | null>((resolve, reject) => {
-      const transaction = db.transaction(STORE_NAME, 'readonly');
-      const request = transaction.objectStore(STORE_NAME).get(RECORD_KEY);
-      request.onsuccess = () => {
-        const value: unknown = request.result;
-        resolve(value instanceof Uint8Array ? value : null);
-      };
-      request.onerror = () => reject(request.error ?? new Error('Lettura non riuscita'));
-    });
-  } finally {
-    db.close();
-  }
+  const value = await readRecord<unknown>(DATABASE.store, DATABASE.key);
+  return value instanceof Uint8Array ? value : null;
 }
 
 export async function saveBytes(bytes: Uint8Array): Promise<void> {
-  const db = await open();
-  try {
-    await new Promise<void>((resolve, reject) => {
-      const transaction = db.transaction(STORE_NAME, 'readwrite');
-      transaction.objectStore(STORE_NAME).put(bytes, RECORD_KEY);
-      transaction.oncomplete = () => resolve();
-      transaction.onerror = () => reject(transaction.error ?? new Error('Scrittura non riuscita'));
-    });
-  } finally {
-    db.close();
-  }
+  await writeRecord(DATABASE.store, DATABASE.key, bytes);
 }
 
 /**

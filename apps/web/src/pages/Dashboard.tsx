@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import type { CourseView, PlanTask, StudyPlan } from '@ciaocorea/shared';
 import { api } from '../api';
 import { hasGeneratedUsername, useAuth } from '../auth';
+import { BACKUP_REMINDER_DAYS, daysSince, loadBackupInfo } from '../backup';
 import { useAsync } from '../useAsync';
 
 function CourseCard({ course }: { course: CourseView }) {
@@ -113,6 +114,14 @@ export function Dashboard() {
   const { courses, summary, dueCards, plan } = state.data;
   const nameIsGenerated = hasGeneratedUsername(user);
 
+  // Promemoria del backup: solo quando c'è qualcosa da perdere. Il primo
+  // giorno non serve; dopo qualche lezione, e mai una copia scaricata, sì.
+  const backup = loadBackupInfo();
+  const backupDays = backup ? daysSince(backup.exportedAt) : null;
+  const closedLessons = summary.lessonsPassed + summary.lessonsSkipped;
+  const backupReminder =
+    backupDays === null ? closedLessons >= 3 : backupDays >= BACKUP_REMINDER_DAYS;
+
   return (
     <div className="stack">
       <header>
@@ -131,6 +140,17 @@ export function Dashboard() {
           Il nome <strong>@{user?.username}</strong> l'ha scelto il portale.{' '}
           <Link to="/profilo">Scegli qui il tuo nome</Link>: è uno solo, e comparirà qui, in alto e
           fra i profili.
+        </p>
+      ) : null}
+
+      {/* Il database è del browser, e il browser può svuotarlo: quando c'è
+          qualcosa da perdere vale la pena ricordare che una copia esiste. */}
+      {backupReminder ? (
+        <p className="alert alert--info">
+          {backupDays === null
+            ? 'I progressi restano in questo browser.'
+            : `L’ultimo backup è di ${backupDays} giorni fa.`}{' '}
+          <Link to="/sincronizza">Salva una copia o portala su un altro dispositivo</Link>.
         </p>
       ) : null}
 

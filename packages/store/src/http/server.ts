@@ -5,6 +5,7 @@ import { registerDialogueRoutes } from '../routes/dialogues';
 import { registerLessonRoutes } from '../routes/lessons';
 import { registerMistakeRoutes } from '../routes/mistakes';
 import { registerProfileRoutes } from '../routes/profile';
+import { registerSyncRoutes } from '../routes/sync';
 import { registerVocabularyRoutes } from '../routes/vocabulary';
 import { registerWritingRoutes } from '../routes/writing';
 
@@ -23,6 +24,7 @@ export async function buildStoreApp(ctx: Ctx): Promise<LocalApp> {
   await registerWritingRoutes(app, ctx);
   await registerMistakeRoutes(app, ctx);
   await registerProfileRoutes(app, ctx);
+  await registerSyncRoutes(app, ctx);
 
   return app;
 }

@@ -49,17 +49,21 @@ export function createUser(db: Db, user: NewUser): UserRow {
   // Nasce con il nome scelto dal portale, non da lui: `username_chosen` lo dice.
   // Nome e nome utente sono la stessa cosa: la colonna `display_name` la tiene
   // allineata per le query che la leggono ancora.
+  const createdAt = nowIso();
   const row: UserRow = {
     id: randomUuid(),
     username: user.username.trim(),
     display_name: user.username.trim(),
-    created_at: nowIso(),
+    created_at: createdAt,
     username_chosen: 0,
   };
 
+  // `updated_at` nasce insieme al profilo: è quello che il trasferimento fra
+  // dispositivi confronta per sapere quale nome ha vinto.
   db.prepare(
-    'INSERT INTO users(id, username, display_name, created_at, username_chosen) VALUES (?, ?, ?, ?, ?)',
-  ).run(row.id, row.username, row.display_name, row.created_at, row.username_chosen);
+    `INSERT INTO users(id, username, display_name, created_at, username_chosen, updated_at)
+     VALUES (?, ?, ?, ?, ?, ?)`,
+  ).run(row.id, row.username, row.display_name, row.created_at, row.username_chosen, createdAt);
 
   return row;
 }
@@ -81,8 +85,9 @@ export function toSessionUser(row: UserRow): SessionUser {
 export function updateUsername(db: Db, userId: string, username: string): void {
   const name = username.trim();
   db.prepare(
-    'UPDATE users SET username = ?, display_name = ?, username_chosen = 1 WHERE id = ?',
-  ).run(name, name, userId);
+    `UPDATE users SET username = ?, display_name = ?, username_chosen = 1, updated_at = ?
+      WHERE id = ?`,
+  ).run(name, name, nowIso(), userId);
 }
 
 /**
@@ -99,7 +104,11 @@ export function getWeeklyGoal(db: Db, userId: string): number {
 
 export function setWeeklyGoal(db: Db, userId: string, goal: number): number {
   const value = clampWeeklyGoal(goal);
-  db.prepare('UPDATE users SET weekly_goal = ? WHERE id = ?').run(value, userId);
+  db.prepare('UPDATE users SET weekly_goal = ?, updated_at = ? WHERE id = ?').run(
+    value,
+    nowIso(),
+    userId,
+  );
   return value;
 }
 

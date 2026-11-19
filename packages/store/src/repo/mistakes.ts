@@ -40,6 +40,38 @@ export function countMistakes(db: Db, userId: string): number {
 }
 
 /**
+ * Toglie un esercizio dalla banca e lascia un segnaposto con la data. Il
+ * segnaposto viaggia col profilo quando lo si porta su un altro dispositivo:
+ * senza, il backup di ieri farebbe tornare in banca un errore corretto oggi.
+ */
+const MISTAKE_TOMBSTONE = 'mistake';
+
+function clearMistake(db: Db, userId: string, exerciseId: string, at: string): number {
+  const result = db
+    .prepare('DELETE FROM exercise_mistakes WHERE user_id = ? AND exercise_id = ?')
+    .run(userId, exerciseId);
+
+  if (Number(result.changes ?? 0) > 0) {
+    db.prepare(
+      `INSERT INTO sync_tombstones(user_id, kind, key, at) VALUES (?, ?, ?, ?)
+       ON CONFLICT(user_id, kind, key) DO UPDATE SET at = excluded.at
+        WHERE excluded.at > sync_tombstones.at`,
+    ).run(userId, MISTAKE_TOMBSTONE, exerciseId, at);
+  }
+
+  return Number(result.changes ?? 0);
+}
+
+/** L'esercizio è tornato in banca: il segnaposto non ha più niente da dire. */
+function forgetCleared(db: Db, userId: string, exerciseId: string): void {
+  db.prepare('DELETE FROM sync_tombstones WHERE user_id = ? AND kind = ? AND key = ?').run(
+    userId,
+    MISTAKE_TOMBSTONE,
+    exerciseId,
+  );
+}
+
+/**
  * Aggiorna la banca con l'esito di un tentativo. Gira dentro la transazione di
  * `recordAttempt`: la lezione e la banca devono restare d'accordo, altrimenti
  * una lezione promossa potrebbe lasciare in banca esercizi che l'ha già
@@ -55,9 +87,6 @@ export function syncMistakes(
   results: readonly ExerciseResult[],
   timestamp: string,
 ): void {
-  const clear = db.prepare(
-    'DELETE FROM exercise_mistakes WHERE user_id = ? AND exercise_id = ?',
-  );
   const bump = db.prepare(
     `INSERT INTO exercise_mistakes(user_id, exercise_id, course_slug, lesson_id,
                                   wrong_count, created_at, last_wrong_at)
@@ -69,9 +98,12 @@ export function syncMistakes(
 
   for (const result of results) {
     if (result.correct) {
-      clear.run(userId, result.exerciseId);
+      clearMistake(db, userId, result.exerciseId, timestamp);
       continue;
     }
+    // Se l'aveva già corretto e ci è ricascato, il segnaposto va tolto: la
+    // riga in banca è più recente della correzione che raccontava.
+    forgetCleared(db, userId, result.exerciseId);
     bump.run(userId, result.exerciseId, courseSlug, lessonId, timestamp, timestamp);
   }
 }
@@ -104,11 +136,9 @@ export function recordMistakeAnswer(
 
     let wrongCount: number | null = null;
     if (correct) {
-      db.prepare('DELETE FROM exercise_mistakes WHERE user_id = ? AND exercise_id = ?').run(
-        userId,
-        exerciseId,
-      );
+      clearMistake(db, userId, exerciseId, timestamp);
     } else {
+      forgetCleared(db, userId, exerciseId);
       db.prepare(
         `UPDATE exercise_mistakes SET wrong_count = wrong_count + 1, last_wrong_at = ?
          WHERE user_id = ? AND exercise_id = ?`,

@@ -7,8 +7,22 @@ import {
 } from './accounts';
 import { SESSION_COOKIE } from './auth/sessions';
 import { openDb, type Db } from './db/client';
-import { createPersister, loadBytes, type Persister } from './db/persist';
+import {
+  clearSnapshot,
+  loadSnapshot,
+  saveSnapshot,
+  snapshotInfo,
+  type SnapshotInfo,
+} from './db/indexed';
+import { createPersister, loadBytes, saveBytes, type Persister } from './db/persist';
 import { ApiError, toApiError } from './errors';
+import type {
+  CompactCode,
+  ImportOutcome,
+  ImportStrategy,
+  ProfileImportSummary,
+  TransferBundle,
+} from './transfer';
 import { DEFAULT_CONFIG, type Ctx, type StoreConfig } from './http/context';
 import type { LocalApp } from './http/router';
 import { buildStoreApp } from './http/server';
@@ -24,6 +38,30 @@ export interface CreateStoreOptions {
   /** `indexeddb` sopravvive al reload, `memory` serve ai test. */
   storage?: 'indexeddb' | 'memory';
   config?: Partial<StoreConfig>;
+}
+
+/** Un profilo che il file porta con sé, come lo vede chi sta importando. */
+export interface SyncProfileInfo {
+  id: string;
+  username: string;
+  createdAt: string;
+  /** `true` quando è il profilo aperto in questo momento. */
+  isMe: boolean;
+}
+
+export interface SyncPreview {
+  exportedAt: string;
+  schema: string;
+  profiles: SyncProfileInfo[];
+  /** Quello che il merge cambierebbe davvero, profilo per profilo. */
+  outcome: ImportOutcome;
+  activeProfile: ProfileImportSummary | null;
+}
+
+export interface SyncImportResult {
+  /** Il profilo aperto dopo l'importazione (quello del file, se è uno solo). */
+  user: SessionUser;
+  outcome: ImportOutcome;
 }
 
 export interface Store {
@@ -42,6 +80,19 @@ export interface Store {
   changeUsername(username: string): Promise<SessionUser>;
   /** Passa a un altro profilo locale: un clic, niente credenziali. */
   switchUser(userId: string): Promise<SessionUser | null>;
+  /** Il profilo aperto, o tutti quelli del browser, in un file JSON. */
+  exportTransfer(scope: 'profile' | 'all'): Promise<TransferBundle>;
+  /** La versione corta: un codice (e un QR) con lezioni, ripassi e giorni. */
+  transferCode(): Promise<CompactCode>;
+  /** Cosa cambierebbe quel file: si esegue il merge e si torna indietro. */
+  previewTransfer(bundle: unknown): Promise<SyncPreview>;
+  /** Applica il file, dopo aver messo da parte i byte di adesso. */
+  importTransfer(bundle: unknown, strategy: ImportStrategy): Promise<SyncImportResult>;
+  /** Copia del database in questo istante: è l'annulla dell'importazione. */
+  snapshot(): Promise<boolean>;
+  /** Rimette i byte di prima dell'ultima importazione. Serve un reload. */
+  restoreSnapshot(): Promise<boolean>;
+  snapshotInfo(): Promise<SnapshotInfo | null>;
   close(): Promise<void>;
 }
 
@@ -132,6 +183,18 @@ export async function createStore(options: CreateStoreOptions = {}): Promise<Sto
     persist();
   };
 
+  /**
+   * Lo snapshot è la rete di sicurezza dell'importazione: si prende prima di
+   * toccare il database, e "annulla" rimette questi byte al posto dei nuovi.
+   * In memoria non c'è niente da salvare, e non c'è niente da perdere.
+   */
+  const takeSnapshot = async (label: string): Promise<boolean> => {
+    if (!persistent) return false;
+    await persister?.flush();
+    await saveSnapshot(db.exportBytes(), label);
+    return true;
+  };
+
   return {
     db,
 
@@ -182,6 +245,43 @@ export async function createStore(options: CreateStoreOptions = {}): Promise<Sto
       const reopened = await call<{ user: SessionUser }>('POST', '/api/auth/reactivate', { userId });
       return reopened.user;
     },
+
+    exportTransfer: async (scope) => {
+      const body = await call<{ bundle: TransferBundle }>(
+        'GET',
+        `/api/sync/export?scope=${scope}`,
+      );
+      return body.bundle;
+    },
+
+    transferCode: () => call<CompactCode>('GET', '/api/sync/code'),
+
+    previewTransfer: (bundle) => call<SyncPreview>('POST', '/api/sync/preview', { bundle }),
+
+    importTransfer: async (bundle, strategy) => {
+      // Il file può essere qualunque cosa: a validarlo è la rotta, ma lo
+      // snapshot si prende prima, così anche un errore a metà lascia una via
+      // d'uscita.
+      await takeSnapshot('prima dell’importazione');
+      return call<SyncImportResult>('POST', '/api/sync/import', { bundle, strategy });
+    },
+
+    snapshot: () => takeSnapshot('copia manuale'),
+
+    restoreSnapshot: async () => {
+      if (!persistent) return false;
+      const record = await loadSnapshot();
+      if (!record) return false;
+
+      // Prima si ferma il salvataggio ritardato: un flush dopo la scrittura
+      // rimetterebbe al suo posto il database che stiamo annullando.
+      await persister?.close();
+      await saveBytes(record.bytes);
+      await clearSnapshot();
+      return true;
+    },
+
+    snapshotInfo: () => (persistent ? snapshotInfo() : Promise.resolve(null)),
 
     close: async () => {
       await persister?.close();

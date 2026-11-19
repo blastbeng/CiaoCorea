@@ -15,6 +15,7 @@ import { ProfilePage } from './pages/ProfilePage';
 import { ProfilesPage } from './pages/ProfilesPage';
 import { ReviewPage } from './pages/ReviewPage';
 import { SkipCoursePage } from './pages/SkipCoursePage';
+import { SyncPage } from './pages/SyncPage';
 import { VocabularyPage } from './pages/VocabularyPage';
 import { WritingPage } from './pages/WritingPage';
 
@@ -72,6 +73,7 @@ export default function App() {
         <Route path="progressi" element={<ProfilePage />} />
         <Route path="profilo" element={<MyProfilePage />} />
         <Route path="profili" element={<ProfilesPage />} />
+        <Route path="sincronizza" element={<SyncPage />} />
         <Route path="about" element={<AboutPage />} />
         <Route path="*" element={<NotFound />} />
       </Route>

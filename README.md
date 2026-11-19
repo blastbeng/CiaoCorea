@@ -134,6 +134,31 @@ completo di salvataggio/riapertura.
 - Svuotare i dati del sito cancella profili e progressi. Non c'è copia altrove:
   è il prezzo (e il vantaggio) di un'app senza server.
 
+## Sincronizzare i dispositivi
+
+Il database vive nel browser, quindi un profilo non segue lo studente da solo.
+Ci sono due strade, e nessuna passa da un server:
+
+- **Il file** (`/sincronizza`): un JSON con il profilo aperto o con tutti quelli
+  del browser. Contiene tutto — lezioni, tentativi, ripassi, quaderno, errori.
+- **Il codice veloce**: lezioni, ripassi e giorni di studio compressi in una
+  riga (`CC1z…`) e in un QR statico. Tentativi, quaderno ed errori restano a
+  casa: per quelli c'è il file.
+
+L'importazione fonde, non sovrascrive. Una lezione promossa non torna indietro,
+il punteggio più alto vince, i tentativi non si sommano (sarebbero contati due
+volte) e i contatori giornalieri prendono il massimo. Chi vuole il profilo
+identico al file sceglie «sostituisci». Prima di ogni importazione i byte di
+prima finiscono in uno snapshot in IndexedDB, e «torna com'era prima» li rimette
+al loro posto.
+
+La banca degli errori ha una tabella di segnaposto (`sync_tombstones`): un
+errore corretto dopo la data del backup non rientra in banca all'importazione.
+Lo stesso orologio serve al nome del profilo (`users.updated_at`).
+
+Limite del QR: un QR statico tiene circa 1.800 caratteri di codice compresso.
+Oltre, la pagina lo dice: resta il codice da copiare, oppure il file.
+
 ## Deploy
 
 Il sito è pubblicato da GitHub Pages con
@@ -187,6 +212,10 @@ store dentro la scheda. Richiedono la sessione tutte tranne `bootstrap`,
 | POST | `/api/writing/:promptId` | confronta il testo con il modello: `verdict`, parole mancanti, modello e nota |
 | GET | `/api/mistakes` | banca degli errori: esercizi sbagliati (senza soluzione), lezione di origine, `wrongCount` |
 | POST | `/api/mistakes/:exerciseId` | rifà un esercizio della banca: correzione, `wrongCount` (`null` = uscito), conteggi |
+| GET | `/api/sync/export` | il profilo aperto (`scope=profile`) o tutti i profili (`scope=all`) in un file JSON |
+| GET | `/api/sync/code` | il codice veloce: lezioni, ripassi e giorni di studio, compressi in una riga |
+| POST | `/api/sync/preview` | cosa cambierebbe un file: esegue davvero il merge e torna indietro |
+| POST | `/api/sync/import` | applica un file (`strategy: merge \| replace`) e apre il profilo se è uno solo |
 
 ## Come è organizzato il percorso
 

@@ -63,6 +63,9 @@ describe('migrazione 007: dai profili con email ai profili locali', () => {
       'created_at',
       'weekly_goal',
       'username_chosen',
+      // Aggiunta dalla 011: è l'orologio che il trasferimento fra dispositivi
+      // confronta per il nome e per l'obiettivo settimanale.
+      'updated_at',
     ]);
 
     const rows = db

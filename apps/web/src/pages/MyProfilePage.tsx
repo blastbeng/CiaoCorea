@@ -166,6 +166,22 @@ export function MyProfilePage() {
           </Link>
         </div>
       </section>
+
+      <section className="card">
+        <h2>Su un altro dispositivo</h2>
+        <p className="muted small">
+          I progressi vivono in questo browser. Per portarli su un telefono o su un altro computer
+          si scarica un file e lo si apre là: si unisce a quello che c’è, senza perdere niente.
+        </p>
+        <div className="row">
+          <Link className="btn btn--sm" to="/sincronizza">
+            Sincronizza i dispositivi
+          </Link>
+          <Link className="btn btn--sm btn--ghost" to="/progressi">
+            Cosa c’è da salvare
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }
