@@ -4,7 +4,7 @@
   "title": "문법 — Frasi che stanno in piedi",
   "subtitle": "Dalla copula ai verbi al presente, con le particelle che servono",
   "level": "A1",
-  "description": "Quattro lezioni per costruire le prime frasi complete: identificare una persona, dire cosa c'è e cosa non c'è, coniugare i verbi al presente cortese e legare oggetto e luogo con le particelle. Niente elenchi da imparare a memoria: ogni regola arriva con esempi che si usano subito.",
+  "description": "Cinque lezioni per costruire le prime frasi complete: identificare una persona, dire cosa c'è e cosa non c'è, coniugare i verbi al presente cortese, legare oggetto e luogo con le particelle e dire dove si va e dove si fa con 에 e 에서. Niente elenchi da imparare a memoria: ogni regola arriva con esempi che si usano subito.",
   "units": [
     {
       "id": "g-u1",
@@ -454,6 +454,125 @@
               "answer": "에",
               "hint": "La scuola è dove si va, non dove si studia.",
               "explain": "에 segna la destinazione (학교에 가요), 에서 il luogo dove si agisce (학교에서 공부해요)."
+            }
+          ]
+        }
+,
+        {
+          "id": "gram-07",
+          "slug": "luoghi-e-e-dove",
+          "title": "Luoghi: 에 e 에서",
+          "titleKo": "장소: 에, 에서",
+          "kind": "grammar",
+          "goal": "Dire dove si va e dove si fa una cosa, senza scambiare le due particelle dei luoghi.",
+          "durationMin": 25,
+          "points": [
+            "에 segna la destinazione: si va verso un posto (학교에 가요 = vado a scuola).",
+            "에서 segna il luogo dell'azione: la cosa si fa lì (도서관에서 공부해요 = studio in biblioteca).",
+            "Con 가다 e 오다 vuole 에: 학교에서 가요 non si dice.",
+            "Stesso luogo, frasi diverse: 학교에 가요 (vado a scuola) e 학교에서 공부해요 (studio a scuola)."
+          ],
+          "vocab": [
+            { "ko": "학교", "it": "scuola", "rr": "hakkyo" },
+            { "ko": "도서관", "it": "biblioteca", "rr": "doseogwan" },
+            { "ko": "회사", "it": "azienda", "rr": "hoesa" },
+            { "ko": "카페", "it": "caffè", "rr": "kape" },
+            { "ko": "식당", "it": "mensa, ristorante", "rr": "sikdang" },
+            { "ko": "역", "it": "stazione", "rr": "yeok" },
+            { "ko": "가다", "it": "andare", "rr": "gada" },
+            { "ko": "오다", "it": "venire", "rr": "oda" }
+          ],
+          "exercises": [
+            {
+              "id": "ex-gram-07-1",
+              "type": "fill_blank",
+              "prompt": "Scegli la particella: «Vado a scuola».",
+              "text": "저는 학교___ 가요.",
+              "options": [
+                "에",
+                "를",
+                "에서",
+                "도"
+              ],
+              "answer": "에",
+              "explain": "에 segna la destinazione del movimento: verso la scuola. 에서 indicherebbe il luogo dove si compie l'azione, e con 가다 non si usa."
+            },
+            {
+              "id": "ex-gram-07-2",
+              "type": "fill_blank",
+              "prompt": "Scegli la particella: «Studio coreano in biblioteca».",
+              "text": "도서관___ 한국어를 공부해요.",
+              "options": [
+                "에서",
+                "에",
+                "를",
+                "이"
+              ],
+              "answer": "에서",
+              "explain": "Lo studio è un'azione che accade dentro la biblioteca:에서. 에 da sola darebbe solo la direzione."
+            },
+            {
+              "id": "ex-gram-07-3",
+              "type": "order_words",
+              "prompt": "Metti in ordine la frase.",
+              "words": [
+                "저는",
+                "도서관에서",
+                "한국어를",
+                "공부해요"
+              ],
+              "answer": "저는 도서관에서 한국어를 공부해요",
+              "explain": "Soggetto (저는), luogo dell'azione (도서관에서), oggetto (한국어를), verbo da ultimo: la struttura coreana è tutta qui."
+            },
+            {
+              "id": "ex-gram-07-4",
+              "type": "reading_mcq",
+              "prompt": "In «집에서 자요» (dormo a casa), che ruolo ha casa?",
+              "options": [
+                "il luogo dove si dorme",
+                "la direzione verso casa",
+                "l'oggetto del verbo",
+                "il soggetto della frase"
+              ],
+              "answer": "il luogo dove si dorme",
+              "explain": "Dormire è un'azione che si compie in un posto:에서 regge il luogo dell'azione, non una direzione."
+            },
+            {
+              "id": "ex-gram-07-5",
+              "type": "type_meaning",
+              "prompt": "Cosa vuol dire 학교?",
+              "answer": "scuola",
+              "accept": [
+                "scuola",
+                "la scuola"
+              ],
+              "explain": "학교 (hakkyo) = scuola: si riconosce dal suono sinizzato 학/교."
+            },
+            {
+              "id": "ex-gram-07-6",
+              "type": "fill_blank",
+              "prompt": "Scegli la particella: «Incontro un amico al caffè».",
+              "text": "카페___ 친구를 만나요.",
+              "options": [
+                "에서",
+                "에",
+                "을",
+                "는"
+              ],
+              "answer": "에서",
+              "explain": "L'incontro accade dentro il caffè: luogo dell'azione, quindi 에서."
+            },
+            {
+              "id": "ex-gram-07-7",
+              "type": "order_words",
+              "prompt": "Metti in ordine la frase.",
+              "words": [
+                "저는",
+                "학교에",
+                "가요"
+              ],
+              "answer": "저는 학교에 가요",
+              "explain": "저는 apre la frase, 학교에 dice la destinazione, 가요 chiude: verbo in fondo."
             }
           ]
         }

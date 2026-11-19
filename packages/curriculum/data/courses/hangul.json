@@ -4,7 +4,7 @@
   "title": "한글 — Leggere e scrivere",
   "subtitle": "L'alfabeto coreano dalle forme alla lettura reale",
   "level": "pre-A1",
-  "description": "Otto lezioni per passare da zero a leggere parole e insegne in Hangul. Si parte dalle forme delle lettere, si costruiscono i blocchi sillabici, si arriva alle regole di pronuncia che cambiano davvero come si legge una parola.",
+  "description": "Nove lezioni per passare da zero a leggere parole e insegne in Hangul. Si parte dalle forme delle lettere, si costruiscono i blocchi sillabici, si arriva alle regole di pronuncia che cambiano davvero come si legge una parola.",
   "units": [
     {
       "id": "h-u1",
@@ -827,6 +827,131 @@
               "answer": "불고기",
               "hint": "Tre sillabe: 불 + 고 + 기.",
               "explain": "불고기: la ㄹ finale di 불 si lega alla sillaba dopo, quindi si sente «bulgogi»."
+            }
+          ]
+        }
+,
+        {
+          "id": "hangul-09",
+          "slug": "tutto-lalfabeto-in-un-colpo",
+          "title": "Tutto l'alfabeto, in un colpo",
+          "titleKo": "모두 다시",
+          "kind": "review",
+          "goal": "Ripassare le lettere che si confondono e rimontare le sillabe dai jamo: è la prova che chiude l'alfabeto.",
+          "durationMin": 30,
+          "points": [
+            "I falsi amici ㅓ/ㅗ e ㅡ/ㅣ si distinguono per la forma dei trattini, non per il suono sentito a memoria.",
+            "Le coppie ㄱ/ㅋ, ㄷ/ㅌ, ㅂ/ㅍ: la versione aspirata esce con un soffio d'aria, l'altra no.",
+            "Una ㄹ finale chiude la sillaba: 달 e 잘 finiscono con la stessa consonante.",
+            "Rimontare una sillaba con i suoi jamo è il test che dice se l'alfabeto è davvero chiuso."
+          ],
+          "vocab": [
+            { "ko": "달", "it": "luna", "rr": "dal" },
+            { "ko": "책", "it": "libro", "rr": "chaek" },
+            { "ko": "눈", "it": "neve", "rr": "nun" },
+            { "ko": "길", "it": "strada", "rr": "gil" },
+            { "ko": "문", "it": "porta", "rr": "mun" },
+            { "ko": "불", "it": "fuoco", "rr": "bul" },
+            { "ko": "물", "it": "acqua", "rr": "mul" },
+            { "ko": "손", "it": "mano", "rr": "son" }
+          ],
+          "exercises": [
+            {
+              "id": "ex-hangul-09-1",
+              "type": "jamo_choice",
+              "prompt": "«달» (luna) comincia con questa consonante: quale jamo è?",
+              "options": [
+                "ㄷ",
+                "ㄱ",
+                "ㅂ",
+                "ㅌ"
+              ],
+              "answer": "ㄷ",
+              "explain": "달 = ㄷ + ㅏ + ㄹ: la consonante iniziale è ㄷ, che davanti a ㅏ si sente quasi «t»."
+            },
+            {
+              "id": "ex-hangul-09-2",
+              "type": "jamo_choice",
+              "prompt": "Quale vocale c'è in «눈» (neve)?",
+              "options": [
+                "ㅜ",
+                "ㅗ",
+                "ㅏ",
+                "ㅓ"
+              ],
+              "answer": "ㅜ",
+              "explain": "눈 si legge nun: ㅜ con i due trattini orizzontali, non ㅗ che ne ha uno solo rivolto in su."
+            },
+            {
+              "id": "ex-hangul-09-3",
+              "type": "block_build",
+              "prompt": "Monta la sillaba «바» con i suoi jamo.",
+              "parts": [
+                "ㅂ",
+                "ㅏ"
+              ],
+              "answer": "바",
+              "explain": "Consonante a sinistra, vocale a destra: ㅂ + ㅏ = 바."
+            },
+            {
+              "id": "ex-hangul-09-4",
+              "type": "block_build",
+              "prompt": "Componi «사람» (persona) con i suoi jamo.",
+              "parts": [
+                "ㅅ",
+                "ㅏ",
+                "ㄹ",
+                "ㅁ"
+              ],
+              "answer": "사람",
+              "explain": "사 = ㅅ + ㅏ, 람 = ㄹ + ㅏ + ㅁ: il 받침 ㅁ chiude la seconda sillaba."
+            },
+            {
+              "id": "ex-hangul-09-5",
+              "type": "type_hangul",
+              "prompt": "Scrivi la sillaba fatta da ㅁ + ㅜ.",
+              "answer": "무",
+              "accept": [
+                "무"
+              ],
+              "explain": "ㅁ a sinistra, ㅜ a destra: 무, come in 무 (ravanello)."
+            },
+            {
+              "id": "ex-hangul-09-6",
+              "type": "reading_mcq",
+              "prompt": "Quale sillaba nasce da ㅌ + ㅟ?",
+              "options": [
+                "튀",
+                "티",
+                "투",
+                "토"
+              ],
+              "answer": "튀",
+              "explain": "ㅟ è la vocale con due trattini verticali e i due punti: ㅌ + ㅟ = 튀 (wi dopo ㅌ suona vicino a «twi»)."
+            },
+            {
+              "id": "ex-hangul-09-7",
+              "type": "type_hangul",
+              "prompt": "Scrivi «acqua» in hangul.",
+              "answer": "물",
+              "accept": [
+                "물"
+              ],
+              "explain": "물 = ㅁ + ㅜ + ㄹ: la ㄹ finale è il 받침, si sente come una «l» lieve."
+            },
+            {
+              "id": "ex-hangul-09-8",
+              "type": "fill_blank",
+              "prompt": "Completa con la parola giusta: «un bicchiere d'…»",
+              "text": "목이 마를 때: ___ 을 마셔요.",
+              "options": [
+                "물",
+                "불",
+                "문",
+                "달"
+              ],
+              "answer": "물",
+              "explain": "물 = acqua: quando si ha sete (목이 마를 때) si beve acqua, non fuoco (불)."
             }
           ]
         }

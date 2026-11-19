@@ -4,7 +4,7 @@
   "title": "단어 — Parole di ogni giorno",
   "subtitle": "Famiglia, presentazioni, cibo e numeri: il lessico che si usa davvero",
   "level": "A1",
-  "description": "Quattro lezioni di vocabolario scelto per la vita quotidiana: come si chiamano i parenti (e perché cambiano con chi parla), come ci si presenta senza sembrare un libro di testo, come si ordina da mangiare e come si leggono i prezzi in won. Ogni parola arriva dentro una frase usabile, non in una lista da mandare a memoria.",
+  "description": "Sette lezioni di vocabolario scelto per la vita quotidiana: come si chiamano i parenti (e perché cambiano con chi parla), come ci si presenta senza sembrare un libro di testo, come si ordina da mangiare e come si leggono i prezzi in won e come si raggiunge un luogo della città. Ogni parola arriva dentro una frase usabile, non in una lista da mandare a memoria.",
   "units": [
     {
       "id": "l-u1",
@@ -451,6 +451,132 @@
               "answer": "è economico",
               "accept": ["economico", "costa poco", "è a buon mercato", "conveniente"],
               "explain": "싸다 → 싸요. Attenzione: 싸다 è anche «essere amaro», ma il contesto decide."
+            }
+          ]
+        }
+,
+        {
+          "id": "less-10",
+          "slug": "la-citta-luoghi-e-direzioni",
+          "title": "La città: luoghi e direzioni",
+          "titleKo": "도시와 방향",
+          "kind": "vocab",
+          "goal": "Nomina i luoghi della città e capire le indicazioni stradali per raggiungerli.",
+          "durationMin": 30,
+          "points": [
+            "I luoghi principali hanno quasi tutti nomi sinizzati: 은행, 우체국, 병원, 약국, 도서관, 시청.",
+            "오른쪽 e 왼쪽 sono i due lati; 직진 dice di andare dritto, è un'istruzione.",
+            "건너편 = il lato opposto della strada: 약국이 우체국 건너편에 있어요.",
+            "Per dire che un luogo esiste in un altro si usa 있다: 은행이 우체국 옆에 있어요 = la banca è accanto alle poste."
+          ],
+          "vocab": [
+            { "ko": "은행", "it": "banca", "rr": "eunhaeng" },
+            { "ko": "우체국", "it": "ufficio postale", "rr": "ucheguk" },
+            { "ko": "병원", "it": "ospedale", "rr": "byeongwon" },
+            { "ko": "약국", "it": "farmacia", "rr": "yakguk" },
+            { "ko": "도서관", "it": "biblioteca", "rr": "doseogwan" },
+            { "ko": "시청", "it": "comune, municipio", "rr": "sichang" },
+            { "ko": "지하철", "it": "metropolitana", "rr": "jihacheop" },
+            { "ko": "교차로", "it": "incrocio", "rr": "gyocharo" },
+            { "ko": "오른쪽", "it": "destra", "rr": "oreunjak" },
+            { "ko": "왼쪽", "it": "sinistra", "rr": "oenjak" },
+            { "ko": "직진", "it": "andare dritto", "rr": "jikjin" },
+            { "ko": "건너편", "it": "lato opposto", "rr": "geonneopyeon" }
+          ],
+          "passages": [
+            {
+              "title": "Trovare la farmacia",
+              "lines": [
+                "실례합니다, 우체국이 어디에 있어요?",
+                "시청 옆에 있어요. 교차로를 지나세요.",
+                "약국이 어디에 있어요?",
+                "약국은 우체국 건너편에 있어요. 왼쪽으로 가세요."
+              ],
+              "gloss": [
+                { "ko": "실례합니다", "it": "permesso?, scusi", "rr": "sillyehamnida" },
+                { "ko": "우체국", "it": "ufficio postale", "rr": "ucheguk" },
+                { "ko": "시청", "it": "municipio", "rr": "sichang" },
+                { "ko": "교차로", "it": "incrocio", "rr": "gyocharo" },
+                { "ko": "건너편", "it": "lato opposto", "rr": "geonneopyeon" },
+                { "ko": "왼쪽", "it": "sinistra", "rr": "oenjak" }
+              ],
+              "translation": "«Scusi, dov'è l'ufficio postale?» «È accanto al municipio. Superi l'incrocio.» «E la farmacia?» «La farmacia è sul lato opposto dell'ufficio postale: vada a sinistra.»"
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ex-less-10-1",
+              "type": "reading_mcq",
+              "prompt": "In coreano «destra» si dice:",
+              "options": [
+                "오른쪽",
+                "왼쪽",
+                "직진",
+                "건너편"
+              ],
+              "answer": "오른쪽",
+              "explain": "오른쪽 = destra; 왼쪽 (la ㅌ finale si sente ㄱ) = sinistra."
+            },
+            {
+              "id": "ex-less-10-2",
+              "type": "fill_blank",
+              "prompt": "In coreano la farmacia è:",
+              "text": "아프면 ___ 에 가요.",
+              "options": [
+                "약국",
+                "병원",
+                "은행",
+                "우체국"
+              ],
+              "answer": "약국",
+              "explain": "약국 (farmacia) da 약 (medicina); 병원 è l'ospedale, per i casi seri."
+            },
+            {
+              "id": "ex-less-10-3",
+              "type": "type_meaning",
+              "prompt": "Cosa vuol dire 은행?",
+              "answer": "banca",
+              "accept": [
+                "banca",
+                "la banca"
+              ],
+              "explain": "은행 (eunhaeng) = banca: attenzione, è anche «ginko», l'albero, dal contesto si capisce."
+            },
+            {
+              "id": "ex-less-10-4",
+              "type": "order_words",
+              "prompt": "Metti in ordine: «La farmacia è accanto all'ufficio postale».",
+              "words": [
+                "약국이",
+                "우체국",
+                "옆에",
+                "있어요"
+              ],
+              "answer": "약국이 우체국 옆에 있어요",
+              "explain": "Soggetto (약국이) + luogo di riferimento (우체국 옆에) + 있다: «sta accanto alle poste»."
+            },
+            {
+              "id": "ex-less-10-5",
+              "type": "reading_mcq",
+              "prompt": "«직진» significa:",
+              "options": [
+                "andare dritto",
+                "girare a destra",
+                "tornare indietro",
+                "fermarsi"
+              ],
+              "answer": "andare dritto",
+              "explain": "직진 (jikjin) = «avanzare dritto»: nelle indicazioni segue spesso 직진하세요, «vada dritto»."
+            },
+            {
+              "id": "ex-less-10-6",
+              "type": "type_hangul",
+              "prompt": "Scrivi «ospedale» in hangul.",
+              "answer": "병원",
+              "accept": [
+                "병원"
+              ],
+              "explain": "병원 (byeongwon): 병 (malattia) + 원 (luogo): il luogo delle malattie."
             }
           ]
         }

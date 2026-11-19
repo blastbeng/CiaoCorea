@@ -4,7 +4,7 @@
   "title": "메시지 — Messaggi che si mandano davvero",
   "subtitle": "Saluti, 반말, appuntamenti e risposte brevi: il coreano scritto di ogni giorno",
   "level": "A1",
-  "description": "Un corso pensato per la scrittura che si fa davvero: aprire una chat, capire quanto formale essere, fissare un appuntamento e chiudere un messaggio senza sembrare un libro di testo. Le lezioni partono dai saluti, passano dai due registri (해요체 e 반말) e finiscono con una chat completa da leggere e degli esercizi di scrittura.",
+  "description": "Un corso pensato per la scrittura che si fa davvero: aprire una chat, capire quanto formale essere, fissare un appuntamento, chiedere un favore con -아/어 주세요 e chiudere un messaggio senza sembrare un libro di testo. Le lezioni partono dai saluti, passano dai due registri (해요체 e 반말) e finiscono con una chat completa da leggere e degli esercizi di scrittura.",
   "units": [
     {
       "id": "me-u1",
@@ -596,6 +596,111 @@
               "answer": "안녕",
               "accept": ["안녕!", "잘 지내"],
               "explain": "Senza 요 resta il saluto fra coetanei: 안녕. Con un adulto sarebbe 안녕하세요."
+            }
+          ]
+        }
+,
+        {
+          "id": "msg-08",
+          "slug": "chiedere-un-favore",
+          "title": "Chiedere un favore: -아/어 주세요",
+          "titleKo": "부탁: -아/어 주세요",
+          "kind": "grammar",
+          "goal": "Chiedere a qualcuno di fare qualcosa per te, con il registro giusto nei messaggi scritti.",
+          "durationMin": 25,
+          "points": [
+            "-아/어 주세요 è una richiesta: «fammi la cortesia di…»",
+            "Si attacca al tema: 열다 → 열어 주세요, 보내다 → 보내 주세요 (la vocale del tema decide 아 o 어).",
+            "È cortese senza essere rigido: va bene nei messaggi a chi non è intimo, con gli amici si accorcia in 해 줘.",
+            "Stessa formula per mandare, comprare, aiutare: 보내 주세요, 사 주세요, 도와주세요."
+          ],
+          "vocab": [
+            { "ko": "창문", "it": "finestra", "rr": "changmun" },
+            { "ko": "문", "it": "porta", "rr": "mun" },
+            { "ko": "열다", "it": "aprire", "rr": "yeolda" },
+            { "ko": "보내다", "it": "mandare, inviare", "rr": "bonaeda" },
+            { "ko": "가져가다", "it": "portare via", "rr": "gjeogyogada" },
+            { "ko": "사다", "it": "comprare", "rr": "sada" },
+            { "ko": "도와주다", "it": "aiutare", "rr": "dowajuda" },
+            { "ko": "기다리다", "it": "aspettare", "rr": "gidarida" }
+          ],
+          "exercises": [
+            {
+              "id": "ex-msg-08-1",
+              "type": "fill_blank",
+              "prompt": "Completa la richiesta: «Per favore, apri la finestra».",
+              "text": "창문을 열어 ___ .",
+              "options": [
+                "주세요",
+                "해요",
+                "가요",
+                "세요"
+              ],
+              "answer": "주세요",
+              "explain": "열다 → 열어 + 주세요: la formula della richiesta gentile. 해요 da solo sarebbe un constatare, non un chiedere."
+            },
+            {
+              "id": "ex-msg-08-2",
+              "type": "order_words",
+              "prompt": "Metti in ordine la richiesta.",
+              "words": [
+                "창문을",
+                "열어",
+                "주세요"
+              ],
+              "answer": "창문을 열어 주세요",
+              "explain": "Oggetto (창문을) + tema+주세요: la richiesta è tutta in tre pezzi."
+            },
+            {
+              "id": "ex-msg-08-3",
+              "type": "type_hangul",
+              "prompt": "Scrivi «mandamelo per favore» (보내다 + 주세요).",
+              "answer": "보내 주세요",
+              "accept": [
+                "보내 주세요",
+                "보내주세요"
+              ],
+              "explain": "보내다 → 보내 + 주세요; nei messaggi si scrive anche attaccato: 보내주세요."
+            },
+            {
+              "id": "ex-msg-08-4",
+              "type": "reading_mcq",
+              "prompt": "Cosa esprime -아/어 주세요?",
+              "options": [
+                "una richiesta gentile di un favore",
+                "un divieto",
+                "un ordine secco",
+                "un desiderio per il futuro"
+              ],
+              "answer": "una richiesta gentile di un favore",
+              "explain": " 주세요 letteralmente è «date per me»: ammorbidisce la richiesta, non la rende un ordine."
+            },
+            {
+              "id": "ex-msg-08-5",
+              "type": "fill_blank",
+              "prompt": "Completa: «Per favore, comprami il biglietto».",
+              "text": "표를 사 ___ .",
+              "options": [
+                "주세요",
+                "세요",
+                "가요",
+                "봐요"
+              ],
+              "answer": "주세요",
+              "explain": "사다 → 사 + 주세요. Con i verbi irregolari (like sda) la formula resta identica."
+            },
+            {
+              "id": "ex-msg-08-6",
+              "type": "type_meaning",
+              "prompt": "Cosa vuol dire 도와주세요?",
+              "answer": "aiutami",
+              "accept": [
+                "aiutami",
+                "aiutatemi",
+                "per favore aiutami",
+                "per favore aiutatemi"
+              ],
+              "explain": "도와주다 (aiutare) + 주세요: la richiesta di aiuto più comune del coreano."
             }
           ]
         }

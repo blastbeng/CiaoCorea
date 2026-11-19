@@ -4,7 +4,7 @@
   "title": "B1 — Leggere il coreano vero",
   "subtitle": "Annunci, menu, messaggi di lavoro, notizie brevi",
   "level": "B1",
-  "description": "Quattro lezioni di lettura su testi che esistono per davvero: un annuncio di stanza, un menu appeso alla parete, un messaggio d'ufficio, una notizia in cinque righe. Ogni lezione parte dal brano, con il glossario delle parole difficili; le domande di comprensione lavorano su dettagli concreti — cifre, date, posti, conseguenze — perché a questo livello la lettura si gioca tutta lì. La traduzione del brano si apre solo dopo il primo tentativo.",
+  "description": "Sette lezioni di lettura e grammatica su testi che esistono per davvero: un annuncio di stanza, un menu appeso alla parete, un messaggio d'ufficio, una notizia in cinque righe, e come si riportano le notizie sentite da altri. Ogni lezione parte dal brano, con il glossario delle parole difficili; le domande di comprensione lavorano su dettagli concreti — cifre, date, posti, conseguenze — perché a questo livello la lettura si gioca tutta lì. La traduzione del brano si apre solo dopo il primo tentativo.",
   "units": [
     {
       "id": "b1-u1",
@@ -261,6 +261,132 @@
             {"id": "b1-04-e7", "type": "type_hangul", "prompt": "Scrivi in coreano «temperatura».", "hint": "Sta nella prima riga, con 평균.", "answer": "기온", "accept": ["기온이", "평균 기온"], "explain": "기온 (氣溫) = temperatura. 평균 기온 = temperatura media."},
             {"id": "b1-04-e8", "type": "type_hangul", "prompt": "Scrivi in coreano «neve».", "hint": "Una sola sillaba, nel verbo della seconda riga.", "answer": "눈", "accept": ["눈이", "눈이 올"], "explain": "눈 = neve (e anche «occhio»: il contesto decide, come in italiano «banco»)."},
             {"id": "b1-04-e9", "type": "reading_mcq", "prompt": "«눈이 올 수 있습니다» esprime…", "options": ["una possibilità, non una certezza", "una certezza assoluta", "un desiderio", "un rimpianto"], "answer": "una possibilità, non una certezza", "explain": "-(으)ㄹ 수 있다 = «può accadere». Per la certezza si userebbe -ㄹ 거예요: «nevicherà». Il bollettino lascia aperta la strada, come fa anche l'italiano in questa frase."}
+          ]
+        }
+,
+        {
+          "id": "b1-07",
+          "slug": "si-dice-che",
+          "title": "Si dice che…",
+          "titleKo": "-는다고 하다",
+          "kind": "grammar",
+          "goal": "Riportare notizie e voci sentite da altri, senza spacciarle per cose viste di persona.",
+          "durationMin": 30,
+          "points": [
+            "Presente: 오다 → 온다 → 온 + 다고 하다: 비가 온다고 해요 = dicono che pioverà.",
+            "Passato: 올랐다 → 올랐 + 다고: dopo una consonante finale la forma è -다고.",
+            "Con i nomi: 학생이라고 해요 = dicono che è uno studente.",
+            "Riportare prende le distanze: ciò che si dice è sentito, non visto. Nei messaggi di lavoro protegge da malintesi."
+          ],
+          "vocab": [
+            { "ko": "뉴스", "it": "notiziario, notizie", "rr": "nyuseu" },
+            { "ko": "소문", "it": "diceria", "rr": "somun" },
+            { "ko": "발표", "it": "annuncio, comunicato", "rr": "palpyo" },
+            { "ko": "발표하다", "it": "annunciare", "rr": "palpyohada" },
+            { "ko": "인상", "it": "aumento (di prezzi)", "rr": "insang" },
+            { "ko": "인상되다", "it": "subire un aumento", "rr": "insangdoeda" },
+            { "ko": "예보", "it": "bollettino meteo", "rr": "yebo" },
+            { "ko": "확인하다", "it": "verificare, controllare", "rr": "hwakhakhada" }
+          ],
+          "passages": [
+            {
+              "title": "Notiziario in tre righe",
+              "lines": [
+                "뉴스에서 내일 눈이 온다고 해요.",
+                "기상청에서 예보를 발표한대요.",
+                "전철 요금이 오른다고 해요.",
+                "출발하기 전에 예보를 한 번 확인하세요."
+              ],
+              "gloss": [
+                { "ko": "뉴스", "it": "notiziario", "rr": "nyuseu" },
+                { "ko": "기상청", "it": "ufficio meteorologico", "rr": "gisangcheong" },
+                { "ko": "예보", "it": "bollettino meteo", "rr": "yebo" },
+                { "ko": "요금", "it": "tariffa, prezzo", "rr": "yogeom" },
+                { "ko": "전철", "it": "metropolitana, treno", "rr": "jeolcheol" },
+                { "ko": "확인하다", "it": "verificare", "rr": "hwakhakhada" }
+              ],
+              "translation": "Il notiziario dice che domani nevicherà. Pare che l'ufficio meteorologico abbia pubblicato il bollettino. Dicono che le tariffe dei treni aumenteranno: verificate il bollettino prima di partire."
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ex-b1-07-1",
+              "type": "fill_blank",
+              "prompt": "Completa: «Dicono che domani pioverà».",
+              "text": "내일 비가 오___ 해요.",
+              "options": [
+                "ㄴ다고",
+                "는다고",
+                "였다고",
+                "고"
+              ],
+              "answer": "ㄴ다고",
+              "explain": "오다 → 온다, il tema è 온 (con ㄴ): dopo una consonante finale si usa -다고, non -는다고."
+            },
+            {
+              "id": "ex-b1-07-2",
+              "type": "order_words",
+              "prompt": "Metti in ordine: «Dicono che domani nevica».",
+              "words": [
+                "내일",
+                "눈이",
+                "온다고",
+                "해요"
+              ],
+              "answer": "내일 눈이 온다고 해요",
+              "explain": "내일 (tempo) + 눈이 (soggetto) + 온다고 해요 (la voce): la notizia riportata in quattro pezzi."
+            },
+            {
+              "id": "ex-b1-07-3",
+              "type": "reading_mcq",
+              "prompt": "Perché «온다고 해요» e non «와요»?",
+              "options": [
+                "riporta una notizia sentita da altri",
+                "descrive un fatto visto in prima persona",
+                "esprime un ordine",
+                "nega il fatto"
+              ],
+              "answer": "riporta una notizia sentita da altri",
+              "explain": "-다고 하다 marca la fonte: l'informazione viene da terzi. In un messaggio formale è la forma onesta di un'indiscrezione."
+            },
+            {
+              "id": "ex-b1-07-4",
+              "type": "fill_blank",
+              "prompt": "Completa al passato: «Dicono che l'affitto è aumentato».",
+              "text": "월세가 올랐___ 해요.",
+              "options": [
+                "다고",
+                "라고",
+                "는다고",
+                "ㄹ 것이라고"
+              ],
+              "answer": "다고",
+              "explain": "Tema passato 올랐 (con ㅂ finale): -다고 dopo consonante. -라고 servirebbe per i nomi."
+            },
+            {
+              "id": "ex-b1-07-5",
+              "type": "type_meaning",
+              "prompt": "Cosa riporta «표가 인상된다고 해요»?",
+              "answer": "dicono che il prezzo aumenta",
+              "accept": [
+                "dicono che il prezzo aumenta",
+                "che il prezzo aumenta, dicono",
+                "dicono che il biglietto aumenta",
+                "dicono che le tariffe aumentano"
+              ],
+              "explain": "인상되다 (subire un aumento) + ㄴ다고 해요: la voce sull'aumento del prezzo, sentita da altri."
+            },
+            {
+              "id": "ex-b1-07-6",
+              "type": "type_hangul",
+              "prompt": "Scrivi «dicono che nevica» (눈 + 오다 + -ㄴ다고 + 해요).",
+              "answer": "눈이 온다고 해요",
+              "accept": [
+                "눈이 온다고 해요",
+                "눈이 온다고해요"
+              ],
+              "explain": "눈이 온다고 해요: la forma esatta con la particella del soggetto 가."
+            }
           ]
         }
       ]

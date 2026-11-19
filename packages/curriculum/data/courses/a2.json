@@ -4,7 +4,7 @@
   "title": "A2 — Prima, dopo e con rispetto",
   "subtitle": "Passato, futuro, forma onorifica e frasi che si legano",
   "level": "A2",
-  "description": "Il passo successivo all'A1: raccontare quello che è successo, dire quello che succederà, parlare di qualcuno con la forma di rispetto e unire due idee in una frase sola. Le quattro lezioni lavorano sempre su frasi intere, perché a questo livello il rischio non è più la singola parola ma la frase che non sta in piedi.",
+  "description": "Il passo successivo all'A1: raccontare quello che è successo, dire quello che succederà, parlare di qualcuno con la forma di rispetto e unire due idee in una frase sola, mettendo in ordine le azioni con prima di e dopo aver fatto. Le otto lezioni lavorano sempre su frasi intere, perché a questo livello il rischio non è più la singola parola ma la frase che non sta in piedi.",
   "units": [
     {
       "id": "a2-u1",
@@ -473,6 +473,130 @@
               "options": ["서", "고", "지만", "도"],
               "answer": "서",
               "explain": "비가 와서 집에 있었어요: la pioggia è la causa, stare a casa la conseguenza."
+            }
+          ]
+        }
+,
+        {
+          "id": "a2-08",
+          "slug": "prima-di-dopo-aver-fatto",
+          "title": "Prima di, dopo aver fatto",
+          "titleKo": "하기 전에, 하고 나서",
+          "kind": "grammar",
+          "goal": "Collegare due azioni nel loro ordine: prima di uscire, dopo aver mangiato.",
+          "durationMin": 30,
+          "points": [
+            "-고 나서 si attacca al tema: 먹다 → 먹고 나서 = dopo aver mangiato.",
+            "-기 전에 nominalizza: 자다 → 자기 전에 = prima di dormire.",
+            "L'ordine delle azioni è nella forma: la prima nella frase è la prima nel tempo.",
+            "Con i verbi di moto basta -고: 밥을 먹고 학교에 가요; 나서 aggiunge il senso di «finito»."
+          ],
+          "vocab": [
+            { "ko": "아침", "it": "colazione, mattina", "rr": "achim" },
+            { "ko": "먹다", "it": "mangiare", "rr": "meokda" },
+            { "ko": "자다", "it": "dormire", "rr": "jada" },
+            { "ko": "나오다", "it": "uscire", "rr": "naoda" },
+            { "ko": "출발하다", "it": "partire", "rr": "chulbalhada" },
+            { "ko": "수업", "it": "lezione, lezione (scolastica)", "rr": "sugeom" },
+            { "ko": "시작하다", "it": "iniziare", "rr": "sijakhada" },
+            { "ko": "도착하다", "it": "arrivare", "rr": "dochakhada" }
+          ],
+          "passages": [
+            {
+              "title": "La giornata di Minji",
+              "lines": [
+                "아침을 먹고 나서 학교에 가요.",
+                "수업이 시작하기 전에 친구를 만나요.",
+                "학교에 도착하고 나서 점심을 먹어요.",
+                "자기 전에 한국어를 한 시간 공부해요."
+              ],
+              "gloss": [
+                { "ko": "수업", "it": "lezione", "rr": "sugeom" },
+                { "ko": "시작하다", "it": "iniziare", "rr": "sijakhada" },
+                { "ko": "도착하다", "it": "arrivare", "rr": "dochakhada" },
+                { "ko": "자다", "it": "dormire", "rr": "jada" },
+                { "ko": "한 시간", "it": "un'ora", "rr": "han sigan" }
+              ],
+              "translation": "Dopo aver fatto colazione, Minji va a scuola; prima che inizino le lezioni incontra gli amici; dopo essere arrivata pranza; e prima di dormire studia coreano per un'ora."
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ex-a2-08-1",
+              "type": "fill_blank",
+              "prompt": "Completa: «Dopo aver mangiato, vado a scuola».",
+              "text": "밥을 먹고___ 학교에 가요.",
+              "options": [
+                "나서",
+                "전에",
+                "거요",
+                "만"
+              ],
+              "answer": "나서",
+              "explain": "-고 나서 = «dopo aver fatto», con l'idea dell'azione conclusa. -기 전에 direbbe il prima."
+            },
+            {
+              "id": "ex-a2-08-2",
+              "type": "fill_blank",
+              "prompt": "Completa: «Prima di uscire, mangio».",
+              "text": "나가기___ 밥을 먹어요.",
+              "options": [
+                "전에",
+                "나서",
+                "면서",
+                "도"
+              ],
+              "answer": "전에",
+              "explain": "-기 전에 = prima di: la forma nominale (나가기) + 전에. L'ordine della frase segue l'ordine del tempo."
+            },
+            {
+              "id": "ex-a2-08-3",
+              "type": "order_words",
+              "prompt": "Metti in ordine la frase.",
+              "words": [
+                "아침을",
+                "먹고",
+                "나서",
+                "학교에",
+                "가요"
+              ],
+              "answer": "아침을 먹고 나서 학교에 가요",
+              "explain": "Prima azione (아침을 먹고 나서), poi destinazione (학교에), verbo (가요) in fondo."
+            },
+            {
+              "id": "ex-a2-08-4",
+              "type": "reading_mcq",
+              "prompt": "In «자기 전에 공부를 해요» cosa si fa per primo?",
+              "options": [
+                "studiare",
+                "dormire",
+                "mangiare",
+                "uscire"
+              ],
+              "answer": "studiare",
+              "explain": "-기 전에 mette prima ciò che segue: si studia, poi si dorme. La forma dice l'ordine reale."
+            },
+            {
+              "id": "ex-a2-08-5",
+              "type": "type_meaning",
+              "prompt": "Come si dice «dopo aver mangiato» (con 나서)?",
+              "answer": "밥을 먹고 나서",
+              "accept": [
+                "밥을 먹고 나서",
+                "먹고 나서"
+              ],
+              "explain": "먹다 → 먹고 + 나서: tema + 고 나서, senza spazi fra i pezzi."
+            },
+            {
+              "id": "ex-a2-08-6",
+              "type": "type_hangul",
+              "prompt": "Scrivi «prima di uscire» (나오다 + -기 전에).",
+              "answer": "나오기 전에",
+              "accept": [
+                "나오기 전에",
+                "나오기전에"
+              ],
+              "explain": "나오다 → 나오기 (tema + 기) + 전에: «prima di uscire»."
             }
           ]
         }

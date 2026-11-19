@@ -25,7 +25,11 @@
         "it": "Buongiorno.",
         "answer": {
           "kind": "choice",
-          "options": ["안녕하세요", "잘 먹겠습니다", "안녕히 계세요"]
+          "options": [
+            "안녕하세요",
+            "잘 먹겠습니다",
+            "안녕히 계세요"
+          ]
         },
         "note": "안녕하세요 è il saluto neutro, valido dalla mattina alla sera. 잘 먹겠습니다 si dice prima di mangiare; 안녕히 계세요 quando te ne vai e l'altro resta."
       },
@@ -42,7 +46,11 @@
         "it": "Mi chiamo Marco.",
         "answer": {
           "kind": "choice",
-          "options": ["저는 마르코예요", "마르코를 좋아해요", "마르코가 아니에요"]
+          "options": [
+            "저는 마르코예요",
+            "마르코를 좋아해요",
+            "마르코가 아니에요"
+          ]
         },
         "note": "이름이 뭐예요? letteralmente 'il nome che cosa è?'. 저는 introduce il tema: 'quanto a me'. 예요 va dopo una vocale, 이에요 dopo una consonante."
       },
@@ -59,7 +67,11 @@
         "it": "Piacere mio.",
         "answer": {
           "kind": "type",
-          "accept": ["반가워요", "저도 반갑습니다", "반갑습니다"],
+          "accept": [
+            "반가워요",
+            "저도 반갑습니다",
+            "반갑습니다"
+          ],
           "hint": "저도 = anche io; 반가워요 = sono contento di vederti."
         },
         "note": "도 si attacca al pronome e significa 'anche': 저도 = anche io. 반갑습니다 è la stessa cosa in registro più formale."
@@ -77,7 +89,10 @@
         "it": "Vengo dall'Italia.",
         "answer": {
           "kind": "type",
-          "accept": ["이탈리아에서 왔어요", "이탈리아 사람이에요"],
+          "accept": [
+            "이탈리아에서 왔어요",
+            "이탈리아 사람이에요"
+          ],
           "hint": "이탈리아 = Italia, 에서 = da, 왔어요 = sono venuto."
         },
         "note": "어디에서 왔어요? = 'da dove sei venuto?'. 사람이에요 = 'sono una persona (di lì)', quindi 이탈리아 사람이에요 = sono italiano."
@@ -102,7 +117,10 @@
       "로 indica il modo o la forma: 아이스로 주세요 = 'me lo dia freddo'.",
       "수 있어요 esprime possibilità: 카드로 결제할 수 있어요? = 'posso pagare con la carta?'."
     ],
-    "after": { "courseSlug": "lessico", "lessonId": "less-03" },
+    "after": {
+      "courseSlug": "lessico",
+      "lessonId": "less-03"
+    },
     "turns": [
       {
         "id": "b-1",
@@ -117,7 +135,11 @@
         "it": "Un americano, per favore.",
         "answer": {
           "kind": "choice",
-          "options": ["아메리카노 한 잔 주세요", "아메리카노를 마셨어요", "아메리카노가 없어요"]
+          "options": [
+            "아메리카노 한 잔 주세요",
+            "아메리카노를 마셨어요",
+            "아메리카노가 없어요"
+          ]
         },
         "note": "한 잔 = un bicchiere. 주세요 è la formula di cortesia che chiude ogni ordine: 'me lo dia, per favore'."
       },
@@ -134,7 +156,11 @@
         "it": "Freddo, per favore.",
         "answer": {
           "kind": "choice",
-          "options": ["아이스로 주세요", "따뜻해요", "아이스는 싫어요"]
+          "options": [
+            "아이스로 주세요",
+            "따뜻해요",
+            "아이스는 싫어요"
+          ]
         },
         "note": "로 qui vale 'in forma di': 아이스로 주세요 = 'me lo dia in versione ice'. Vale anche 따뜻한 걸로 주세요 per il caldo."
       },
@@ -151,7 +177,11 @@
         "it": "Posso pagare con la carta?",
         "answer": {
           "kind": "choice",
-          "options": ["카드로 결제할 수 있어요?", "카드가 맛있어요?", "카드를 주세요?"]
+          "options": [
+            "카드로 결제할 수 있어요?",
+            "카드가 맛있어요?",
+            "카드를 주세요?"
+          ]
         },
         "note": "결제하다 = pagare (alla cassa); 카드로 = con la carta; -(으)ㄹ 수 있어요 = posso. 사천오백 = 4.500: i numeri sino-coreani si usano per soldi e minuti."
       },
@@ -168,7 +198,11 @@
         "it": "Grazie. Stia bene.",
         "answer": {
           "kind": "type",
-          "accept": ["감사합니다", "고맙습니다", "감사합니다 안녕히 계세요"],
+          "accept": [
+            "감사합니다",
+            "고맙습니다",
+            "감사합니다 안녕히 계세요"
+          ],
           "hint": "감사합니다 = grazie. 안녕히 계세요 = stia bene, lo dice chi va via."
         },
         "note": "Chi resta riceve 안녕히 계세요 ('resti bene'), chi va via riceve 안녕히 가세요 ('vada bene'). Invertirli è l'errore più comune."
@@ -187,7 +221,10 @@
       "어디예요? = 'dov'è?'. Il luogo va prima, con la particella 이/가.",
       "실례지만 apre una richiesta educata: 'mi scusi se disturbo'."
     ],
-    "after": { "courseSlug": "grammatica", "lessonId": "gram-04" },
+    "after": {
+      "courseSlug": "grammatica",
+      "lessonId": "gram-04"
+    },
     "turns": [
       {
         "id": "s-1",
@@ -196,7 +233,11 @@
         "it": "Scusi, dov'è il bagno?",
         "answer": {
           "kind": "choice",
-          "options": ["저기요, 화장실이 어디예요?", "저기요, 화장실이 커요?", "저기요, 화장실을 마셔요?"]
+          "options": [
+            "저기요, 화장실이 어디예요?",
+            "저기요, 화장실이 커요?",
+            "저기요, 화장실을 마셔요?"
+          ]
         },
         "note": "저기요 ('laggiù, per favore') è il modo normale di rivolgersi a uno sconosciuto. 화장실 = bagno; 이 segna il soggetto della domanda."
       },
@@ -213,7 +254,10 @@
         "it": "Grazie.",
         "answer": {
           "kind": "type",
-          "accept": ["감사합니다", "고맙습니다"],
+          "accept": [
+            "감사합니다",
+            "고맙습니다"
+          ],
           "hint": "감사합니다 è il grazie formale che va bene con chiunque."
         },
         "note": "감사합니다 e 고맙습니다 sono intercambiabili; il primo è un po' più formale e più sicuro con gli sconosciuti."
@@ -231,7 +275,11 @@
         "it": "Mi scusi, la stazione della metropolitana è vicina?",
         "answer": {
           "kind": "choice",
-          "options": ["실례지만, 지하철역이 가까워요?", "실례지만, 지하철역이 맛있어요?", "실례지만, 지하철역을 주세요?"]
+          "options": [
+            "실례지만, 지하철역이 가까워요?",
+            "실례지만, 지하철역이 맛있어요?",
+            "실례지만, 지하철역을 주세요?"
+          ]
         },
         "note": "실례지만 = 'mi scusi se insisto'; 가까워요 = è vicino. 지하철역 = stazione della metropolitana."
       },
@@ -248,7 +296,10 @@
         "it": "Ah, che sollievo. Grazie!",
         "answer": {
           "kind": "type",
-          "accept": ["다행이에요", "아 다행이에요"],
+          "accept": [
+            "다행이에요",
+            "아 다행이에요"
+          ],
           "hint": "다행이다 = essere una fortuna; 다행이에요 è la forma cortese."
         },
         "note": "다행이에요 si usa quando una notizia risolve un problema: 'meno male'. 걸어서 = a piedi, 쯤 = circa, 걸려요 = ci vuole (tempo)."
@@ -269,7 +320,10 @@
       "카드로, 현금으로: 로/으로 dice con quale mezzo si paga.",
       "-ㄹ 수 있어요 dice «si può»: 카드로 계산할 수 있어요? = posso pagare con la carta?"
     ],
-    "after": { "courseSlug": "lessico", "lessonId": "less-04" },
+    "after": {
+      "courseSlug": "lessico",
+      "lessonId": "less-04"
+    },
     "turns": [
       {
         "id": "m-1",
@@ -305,7 +359,10 @@
         "it": "Ordina due mele.",
         "answer": {
           "kind": "type",
-          "accept": ["두 개 주세요", "그럼 두 개 주세요"],
+          "accept": [
+            "두 개 주세요",
+            "그럼 두 개 주세요"
+          ],
           "hint": "Due davanti al contatore 개 si dice 두, non 둘."
         },
         "note": "그럼 = «allora». 두 è la forma contratta di 둘 davanti al classificatore: la stessa regola di 한 잔."
@@ -344,7 +401,10 @@
         "it": "Ringrazia e dì che tornerai.",
         "answer": {
           "kind": "type",
-          "accept": ["감사합니다 또 올게요", "또 올게요"],
+          "accept": [
+            "감사합니다 또 올게요",
+            "또 올게요"
+          ],
           "hint": "또 = di nuovo; 올게요 = verrò (오다 + -ㄹ게요)."
         },
         "note": "또 올게요 è il congedo tipico verso un negoziante: promette di tornare, senza impegnarsi davvero."
@@ -371,7 +431,10 @@
       "드세요 è la forma di rispetto di 먹다, usata qui per un consiglio gentile.",
       "쾌차하세요 è l'augurio di pronta guarigione: si sente in farmacia o dal medico."
     ],
-    "after": { "courseSlug": "a2", "lessonId": "a2-01" },
+    "after": {
+      "courseSlug": "a2",
+      "lessonId": "a2-01"
+    },
     "turns": [
       {
         "id": "f-1",
@@ -386,7 +449,9 @@
         "it": "Rispondi che ti fa male la testa e che hai la febbre.",
         "answer": {
           "kind": "type",
-          "accept": ["머리가 아프고 열이나요"],
+          "accept": [
+            "머리가 아프고 열이나요"
+          ],
           "hint": "Unisci i due sintomi con -고: 아프고, poi 열이 나요."
         },
         "note": "머리가 아프다 = mal di testa; 열이 나다 = avere la febbre. -고 tiene insieme i due sintomi in una frase sola."
@@ -404,7 +469,10 @@
         "it": "Rispondi: da ieri sera.",
         "answer": {
           "kind": "type",
-          "accept": ["어제 저녁부터 아팠어요", "어제부터 아팠어요"],
+          "accept": [
+            "어제 저녁부터 아팠어요",
+            "어제부터 아팠어요"
+          ],
           "hint": "어제 저녁 = ieri sera; 부터 = da (a partire da)."
         },
         "note": "아팠어요 è il passato di 아프다; 부터 segna il punto in cui il disturbo è iniziato."
@@ -422,7 +490,10 @@
         "it": "Rispondi che hai capito e chiedi quanto costa.",
         "answer": {
           "kind": "type",
-          "accept": ["네 알겠습니다 얼마예요", "얼마예요"],
+          "accept": [
+            "네 알겠습니다 얼마예요",
+            "얼마예요"
+          ],
           "hint": "알겠습니다 = ho capito; 얼마예요? = quanto costa?"
         },
         "note": "알겠습니다 è la conferma cortese di aver capito un'istruzione; 얼마예요? chiude il giro con il prezzo."
@@ -440,7 +511,10 @@
         "it": "Porgi i soldi e ringrazia.",
         "answer": {
           "kind": "type",
-          "accept": ["여기 있습니다", "여기요"],
+          "accept": [
+            "여기 있습니다",
+            "여기요"
+          ],
           "hint": "여기 있습니다 = ecco (qui c'è); 감사합니다 = grazie."
         },
         "note": "여기 있습니다 è la formula di chi porge i soldi al banco; 감사합니다 chiude lo scambio."
@@ -580,7 +654,10 @@
       "Un orario si propone con 세 시에 만나요 e si accetta con 좋아요: due parole e l'appuntamento è fissato.",
       "La chiusura cortese è 내일 봐요: non vuol dire solo «a domani», ma «conto di rivederti»."
     ],
-    "after": { "courseSlug": "messaggi", "lessonId": "msg-04" },
+    "after": {
+      "courseSlug": "messaggi",
+      "lessonId": "msg-04"
+    },
     "turns": [
       {
         "id": "b-1",
@@ -638,7 +715,12 @@
         "answer": {
           "kind": "type",
           "hint": "앞 = davanti; 에서 = dove avviene l'incontro.",
-          "accept": ["학교 앞에서 만나요", "학교에서 만나요", "학교 앞이에요", "학교 앞에서 봐요"]
+          "accept": [
+            "학교 앞에서 만나요",
+            "학교에서 만나요",
+            "학교 앞이에요",
+            "학교 앞에서 봐요"
+          ]
         },
         "note": "앞 è «davanti»: 학교 앞 è lo spazio davanti all'edificio. 에서 dice dove succede l'incontro, non dove si va."
       },
@@ -656,7 +738,12 @@
         "answer": {
           "kind": "type",
           "hint": "Chiudi con 내일 봐요.",
-          "accept": ["네, 내일 봐요", "내일 봐요", "그럼 내일 봐요", "네, 내일 세 시에 봐요"]
+          "accept": [
+            "네, 내일 봐요",
+            "내일 봐요",
+            "그럼 내일 봐요",
+            "네, 내일 세 시에 봐요"
+          ]
         },
         "note": "La chiusura ripete il saluto dell'altro: è quello che si fa in chat, e conferma che l'accordo è chiaro."
       }
@@ -675,7 +762,10 @@
       "내가 …ㄹ게 annuncia ciò che fai tu: 내가 김치를 살게 è «compro io il kimchi».",
       "갈게 è «vengo, arrivo»: 일곱 시에 갈게 fissa l'ora senza formalità."
     ],
-    "after": { "courseSlug": "messaggi", "lessonId": "msg-05" },
+    "after": {
+      "courseSlug": "messaggi",
+      "lessonId": "msg-05"
+    },
     "turns": [
       {
         "id": "b-1",
@@ -733,7 +823,12 @@
         "answer": {
           "kind": "type",
           "hint": "일곱 시 = alle sette; 갈게 = ci sarò, vengo.",
-          "accept": ["일곱 시에 갈게", "7시에 갈게", "일곱시에 갈게", "일곱 시에 갈게요"]
+          "accept": [
+            "일곱 시에 갈게",
+            "7시에 갈게",
+            "일곱시에 갈게",
+            "일곱 시에 갈게요"
+          ]
         },
         "note": "올 수 있어? chiede se puoi venire (오다, «venire»); 갈게 risponde con 가다, «andare», perché il punto di vista è quello di chi parte."
       },
@@ -742,6 +837,184 @@
         "speaker": "민수",
         "ko": "좋아, 그럼 이따 봐!",
         "it": "Bene, allora a dopo!"
+      }
+    ]
+  },
+  {
+    "id": "stazione",
+    "slug": "stazione",
+    "title": "Alla biglietteria",
+    "level": "A2",
+    "setting": "Sei alla biglietteria della stazione di Seoul: vuoi un KTX per Busan e devi capire da quale binario parte.",
+    "goal": "Chiedere un biglietto, scegliere la classe,informarti sul prezzo e sul binario di partenza.",
+    "points": [
+      "에서 …까지 chiude il percorso: 서울에서 부산까지 = da Seul a Busan.",
+      "장 è il contatore dei biglietti: 표 한 장 = un biglietto.",
+      "으로 해 주세요 chiede una scelta: «mettetelo in questa modalità».",
+      "알려 주세요 è la richiesta di un'informazione; -는지 apre la domanda indiretta."
+    ],
+    "after": {
+      "courseSlug": "lessico",
+      "lessonId": "less-10"
+    },
+    "turns": [
+      {
+        "id": "st-1",
+        "speaker": "Impiegato",
+        "ko": "안녕하세요. 표로 무엇을 도와드릴까요?",
+        "it": "Buongiorno. Cosa le serve?"
+      },
+      {
+        "id": "st-2",
+        "speaker": "Tu",
+        "ko": "서울에서 부산까지 KTX 표 한 장 주세요.",
+        "it": "Chiedi un biglietto KTX da Seul a Busan.",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "서울에서 부산까지 KTX 표 한 장 주세요",
+            "KTX 표 한 장 주세요"
+          ],
+          "hint": "Il percorso si chiude con 에서 …까지; un biglietto si conta con 장: 한 장."
+        },
+        "note": "까지 chiude il tragitto: 서울에서 부산까지 = da Seul fino a Busan. 장 è il contatore dei fogli e dei biglietti: 표 한 장."
+      },
+      {
+        "id": "st-3",
+        "speaker": "Impiegato",
+        "ko": "내일 오전 열 시 이십 분 열차가 비어 있어요. 특실은 매진이요.",
+        "it": "C'è il treno delle 10:20 di domani mattina. La prima classe è esaurita."
+      },
+      {
+        "id": "st-4",
+        "speaker": "Tu",
+        "ko": "일반석으로 해 주세요.",
+        "it": "Chiedi la classe economica.",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "일반석으로 해 주세요",
+            "특실로 해 주세요",
+            "내일 해 주세요"
+          ]
+        },
+        "note": "으로 qui indica la scelta: 일반석으로 = «in classe economica»; 해 주세요 è la richiesta cortese della lezione sui favori. 특실 = prima classe."
+      },
+      {
+        "id": "st-5",
+        "speaker": "Impiegato",
+        "ko": "삼만 오천 원이에요. 네 번 선에서 출발합니다.",
+        "it": "Sono 35.000 won. Il treno parte dal binario quattro."
+      },
+      {
+        "id": "st-6",
+        "speaker": "Tu",
+        "ko": "네 번 선이 어디 있는지 알려 주세요.",
+        "it": "Chiedi dov'è il binario quattro.",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "네 번 선이 어디 있는지 알려 주세요",
+            "어디 있는지 알려 주세요"
+          ],
+          "hint": "알려 주다 = far sapere; -는지 apre la domanda indiretta («dove sia»)."
+        },
+        "note": "알려 주세요 è la formula standard per chiedere un'informazione; -는지 trasforma «dov'è?» in una frase dipendente."
+      },
+      {
+        "id": "st-7",
+        "speaker": "Impiegato",
+        "ko": "계단을 내려가면 오른쪽에 있어요. 좋은 여행 되세요!",
+        "it": "Scendendo le scale è sulla destra. Buon viaggio!"
+      }
+    ]
+  },
+  {
+    "id": "affitto-telefono",
+    "slug": "affitto-telefono",
+    "title": "Telefonata per un 원룸",
+    "level": "B1",
+    "setting": "Chiami un'agenzia immobiliare di Seoul dopo aver visto l'annuncio di un 원룸: devi capire le condizioni e fissare una visita.",
+    "goal": "Chiedere deposito e affitto, trattare le condizioni e fissare un appuntamento per vedere la casa.",
+    "points": [
+      "보증금 e 월세 sono la coppia di ogni annuncio: deposito fisso e affitto mensile.",
+      "올리다 / 내리다: alzare e abbassare, facili da scambiare al telefono.",
+      "-ㄹ 수 있어요 apre la domanda di fattibilità: «è possibile…?».",
+      "보고 전화했어요: si dice subito perché si chiama (la causa con -고)."
+    ],
+    "after": {
+      "courseSlug": "b1",
+      "lessonId": "b1-07"
+    },
+    "turns": [
+      {
+        "id": "rt-1",
+        "speaker": "Agenzia",
+        "ko": "여보세요, 한강 부동산입니다.",
+        "it": "Pronto, agenzia immobiliare Hangang."
+      },
+      {
+        "id": "rt-2",
+        "speaker": "Tu",
+        "ko": "안녕하세요, 인터넷 광고를 보고 전화했어요.",
+        "it": "Spiega che chiami dopo aver visto l'annuncio.",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "안녕하세요, 인터넷 광고를 보고 전화했어요",
+            "인터넷 광고를 보고 전화했어요"
+          ],
+          "hint": "La causa si lega con -고: 광고를 보고 전화했어요 = «ho chiamato dopo aver visto l'annuncio»."
+        },
+        "note": "여보세요 è la risposta standard al telefono (mai nei messaggi scritti). 보고 è il -고 di 보다: il gesto che precede la chiamata."
+      },
+      {
+        "id": "rt-3",
+        "speaker": "Agenzia",
+        "ko": "원룸 말씀이시죠? 보증금 천만 원에 월세 오십만 원입니다.",
+        "it": "Il monolocale, giusto? Deposito dieci milioni di won, affitto cinquecentomila."
+      },
+      {
+        "id": "rt-4",
+        "speaker": "Tu",
+        "ko": "보증금을 올리고 월세를 내릴 수 있나요?",
+        "it": "Chiedi se si può alzare il deposito e abbassare l'affitto.",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "보증금을 올리고 월세를 내릴 수 있나요?",
+            "보증금을 올리고 월세를 올릴 수 있나요?",
+            "월세를 내리고 보증금을 내릴 수 있나요?"
+          ]
+        },
+        "note": "La trattativa tipica: più deposito, meno affitto. 올리다 = alzare, 내리다 = abbassare: l'opzione sbagliata scambia i due verbi."
+      },
+      {
+        "id": "rt-5",
+        "speaker": "Agenzia",
+        "ko": "집주인과 상담해 볼게요. 방은 지금 비어 있어요.",
+        "it": "Ne parlo con il proprietario. L'alloggio è libero da subito."
+      },
+      {
+        "id": "rt-6",
+        "speaker": "Tu",
+        "ko": "언제 볼 수 있어요?",
+        "it": "Chiedi quando si può vedere la casa.",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "언제 볼 수 있어요",
+            "언제 볼 수 있나요"
+          ],
+          "hint": "보다 qui è «vedere la casa»: visitare; -ㄹ 수 있어요 = «si può»."
+        },
+        "note": "La richiesta che chiude ogni annuncio: vedere la casa (보기). 언제 = quando; -ㄹ 수 있어요 chiede la fattibilità."
+      },
+      {
+        "id": "rt-7",
+        "speaker": "Agenzia",
+        "ko": "오늘 오후 세 시에 가능해요. 오시면 돼요.",
+        "it": "Oggi alle tre è possibile: passi pure."
       }
     ]
   }
