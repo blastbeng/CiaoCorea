@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../api';
-import { errorMessage } from '../auth';
+import { errorMessage, useAuth } from '../auth';
 import { useAsync } from '../useAsync';
 
 function formatDay(day: string): string {
@@ -16,39 +16,21 @@ function formatDate(value: string): string {
   return date.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
 }
 
-/** Cambio password: chiede quella attuale, perché la sessione non è un login. */
-function PasswordForm() {
-  const [current, setCurrent] = useState('');
-  const [next, setNext] = useState('');
-  const [confirm, setConfirm] = useState('');
+/** Rinomina: il nome con cui lo studente vuole essere chiamato. */
+function RenameForm({ initial }: { initial: string }) {
+  const { rename } = useAuth();
+  const [name, setName] = useState(initial);
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<{ kind: 'ok' | 'error'; text: string } | null>(null);
 
   const submit = async (event: FormEvent) => {
     event.preventDefault();
-    if (next.length < 8) {
-      setMessage({ kind: 'error', text: 'La nuova password deve avere almeno 8 caratteri.' });
-      return;
-    }
-    if (next !== confirm) {
-      setMessage({ kind: 'error', text: 'La nuova password e la conferma non coincidono.' });
-      return;
-    }
-
     setBusy(true);
     setMessage(null);
     try {
-      const response = await api.changePassword(current, next);
-      setCurrent('');
-      setNext('');
-      setConfirm('');
-      setMessage({
-        kind: 'ok',
-        text:
-          response.sessionsClosed > 0
-            ? `Password cambiata: ${response.sessionsClosed} sessioni altre sono state chiuse.`
-            : 'Password cambiata.',
-      });
+      const user = await rename(name.trim());
+      setName(user.displayName);
+      setMessage({ kind: 'ok', text: `Ciao ${user.displayName}: nome salvato.` });
     } catch (problem) {
       setMessage({ kind: 'error', text: errorMessage(problem) });
     } finally {
@@ -59,55 +41,33 @@ function PasswordForm() {
   return (
     <form className="stack stack--tight" onSubmit={submit}>
       <p className="muted small">
-        Serve la password attuale. Le altre sessioni aperte vengono chiuse; questa resta in piedi.
+        È il nome che leggi nella home e nei progressi. Il nome utente con il numero, quello con
+        cui il profilo si riconosce tra gli altri, resta com'è.
       </p>
 
       <label className="field">
-        <span className="stat-label">Password attuale</span>
+        <span className="stat-label">Come vuoi essere chiamato</span>
         <input
           className="input"
-          type="password"
-          value={current}
-          onChange={(event) => setCurrent(event.target.value)}
-          autoComplete="current-password"
-          required
-        />
-      </label>
-
-      <label className="field">
-        <span className="stat-label">Nuova password</span>
-        <input
-          className="input"
-          type="password"
-          value={next}
-          onChange={(event) => setNext(event.target.value)}
-          autoComplete="new-password"
-          minLength={8}
-          required
-        />
-      </label>
-
-      <label className="field">
-        <span className="stat-label">Conferma la nuova password</span>
-        <input
-          className="input"
-          type="password"
-          value={confirm}
-          onChange={(event) => setConfirm(event.target.value)}
-          autoComplete="new-password"
-          minLength={8}
+          type="text"
+          value={name}
+          onChange={(event) => setName(event.target.value)}
+          minLength={2}
+          maxLength={60}
           required
         />
       </label>
 
       <div className="row">
-        <button type="submit" className="btn btn--primary" disabled={busy}>
-          {busy ? 'Salvo…' : 'Cambia password'}
+        <button type="submit" className="btn btn--primary" disabled={busy || name.trim() === initial}>
+          {busy ? 'Salvo…' : 'Salva il nome'}
         </button>
       </div>
 
       {message ? (
-        <p className={message.kind === 'ok' ? 'alert alert--ok' : 'alert alert--error'}>{message.text}</p>
+        <p className={message.kind === 'ok' ? 'alert alert--ok' : 'alert alert--error'}>
+          {message.text}
+        </p>
       ) : null}
     </form>
   );
@@ -346,9 +306,16 @@ export function ProfilePage() {
       </section>
 
       <section className="card">
-        <h2>Accesso</h2>
-        <p className="muted small">{profile.user.email}</p>
-        <PasswordForm />
+        <h2>Identità</h2>
+        <p className="muted small">
+          Profilo <strong>@{profile.user.username}</strong>, creato il{' '}
+          {formatDate(profile.memberSince)}. Non ci sono password: per cambiare studente si passa
+          a un altro profilo nella sezione Profili.
+        </p>
+        <Link className="btn btn--sm" to="/profili">
+          Cambia profilo
+        </Link>
+        <RenameForm initial={profile.user.displayName} />
       </section>
     </div>
   );

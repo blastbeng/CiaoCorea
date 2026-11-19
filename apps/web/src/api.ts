@@ -63,13 +63,15 @@ export const api = {
   switchUser: async (userId: string): Promise<SessionUser | null> =>
     (await getStore()).switchUser(userId),
 
-  login: (email: string, password: string) =>
-    request<{ user: SessionUser }>('POST', '/api/auth/login', { email, password }),
+  /** L'apertura del sito: riprende l'ultimo profilo, o apre il primo. */
+  bootstrap: async (): Promise<SessionUser> => (await getStore()).bootstrap(),
 
-  register: (input: { displayName: string; email: string; password: string }) =>
-    request<{ user: SessionUser }>('POST', '/api/auth/register', input),
+  /** Un profilo in più su questo browser, e diventa quello aperto. */
+  addProfile: async (): Promise<SessionUser> => (await getStore()).addProfile(),
 
-  logout: () => request<{ ok: boolean }>('POST', '/api/auth/logout'),
+  /** Il nome con cui lo studente vuole essere chiamato. */
+  rename: async (displayName: string): Promise<SessionUser> =>
+    (await getStore()).rename(displayName),
 
   dashboard: () => request<CourseListResponse>('GET', '/api/courses'),
 
@@ -151,10 +153,4 @@ export const api = {
   /** Quanti giorni di studio lo studente vuole fare in una settimana. */
   setGoal: (goal: number) =>
     request<{ weeklyGoal: number }>('POST', '/api/profile/goal', { goal }),
-
-  changePassword: (current: string, next: string) =>
-    request<{ ok: boolean; sessionsClosed: number }>('POST', '/api/auth/password', {
-      current,
-      next,
-    }),
 };

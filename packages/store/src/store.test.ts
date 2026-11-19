@@ -18,13 +18,11 @@ import type {
   ProfileResponse,
   ReviewCard,
   ReviewResponse,
-  SessionUser,
   VocabularyResponse,
   WritingCheckResponse,
   WritingResponse,
 } from '@ciaocorea/shared';
 import { openDb, todayIso } from './db/client';
-import { ApiError } from './errors';
 import { createStore, type Store } from './store';
 import type { AccountsResponse } from './types';
 
@@ -35,27 +33,13 @@ import type { AccountsResponse } from './types';
  * quella che girava dietro Fastify.
  */
 
-const EMAIL = 'blast@example.test';
-const PASSWORD = '2fa74lovz';
+import { USERNAME_SHAPE } from './auth/usernames';
 
 let store: Store;
 
 beforeEach(async () => {
-  store = await createStore({ storage: 'memory', config: { loginMaxAttempts: 4 } });
+  store = await createStore({ storage: 'memory' });
 });
-
-async function register(
-  displayName = 'Blast',
-  email = EMAIL,
-  password = PASSWORD,
-): Promise<SessionUser> {
-  const body = await store.call<{ user: SessionUser }>('POST', '/api/auth/register', {
-    displayName,
-    email,
-    password,
-  });
-  return body.user;
-}
 
 function lessonAnswers(
   slug: string,
@@ -94,123 +78,81 @@ async function makeWritable(cardId: string): Promise<ReviewCard> {
 }
 
 describe('profili nel browser', () => {
-  it('crea un account e lo lascia già dentro', async () => {
-    const user = await register();
-    expect(user).toMatchObject({ email: EMAIL, displayName: 'Blast' });
+  it('al primo avvio nasce un profilo e ci si entra dentro', async () => {
+    const user = await store.bootstrap();
+
+    // Il nome è generato: aggettivo + animale + numero, come su Reddit.
+    expect(user.username).toMatch(USERNAME_SHAPE);
+    expect(user.displayName).toBe(user.username);
 
     expect((await store.session())?.id).toBe(user.id);
 
     const body = await store.accounts();
     expect(body.currentUserId).toBe(user.id);
     expect(body.accounts).toHaveLength(1);
-    expect(body.accounts[0]).toMatchObject({ email: EMAIL, hasSession: true });
+    expect(body.accounts[0]).toMatchObject({ username: user.username, hasSession: true });
   });
 
-  it('tiene più profili e passa dall’uno all’altro senza password', async () => {
-    const blast = await register('Blast', EMAIL);
-    const mina = await register('Mina', 'mina', 'hangug-eo1');
+  it('riaprire il sito riprende lo stesso profilo', async () => {
+    const first = await store.bootstrap();
+    const again = await store.bootstrap();
 
-    // Registrarsi ha già cambiato il profilo attivo.
+    expect(again.id).toBe(first.id);
+    expect((await store.accounts()).accounts).toHaveLength(1);
+  });
+
+  it('tiene più profili e passa dall’uno all’altro con un clic', async () => {
+    const blast = await store.bootstrap();
+    const mina = await store.addProfile();
+
+    // Aggiungere un profilo ha già cambiato quello aperto.
     expect((await store.session())?.id).toBe(mina.id);
 
     const body: AccountsResponse = await store.accounts();
     expect(body.accounts).toHaveLength(2);
-    expect(body.accounts.map((account) => account.displayName)).toEqual(['Blast', 'Mina']);
+    expect(new Set(body.accounts.map((account) => account.username)).size).toBe(2);
     expect(body.currentUserId).toBe(mina.id);
 
     const back = await store.switchUser(blast.id);
     expect(back?.id).toBe(blast.id);
+    expect((await store.session())?.id).toBe(blast.id);
+  });
+
+  it('rinomina il profilo attivo', async () => {
+    const user = await store.bootstrap();
+
+    const renamed = await store.rename('Blast');
+    expect(renamed).toMatchObject({ id: user.id, username: user.username, displayName: 'Blast' });
     expect((await store.session())?.displayName).toBe('Blast');
+    expect((await store.accounts()).accounts[0]?.displayName).toBe('Blast');
+
+    await expect(store.rename('x')).rejects.toMatchObject({ status: 400 });
   });
 
-  it('rifiuta un nome già preso', async () => {
-    await register();
+  it('riapre un profilo la cui sessione è scaduta', async () => {
+    const blast = await store.bootstrap();
+    await store.addProfile();
+
+    // La sessione di blast è scaduta: la sua riga non c'è più nel database.
+    store.db.prepare('DELETE FROM sessions WHERE user_id = ?').run(blast.id);
+
+    // Non c'è una password da inserire: il profilo si riapre e basta.
+    const reopened = await store.switchUser(blast.id);
+    expect(reopened?.id).toBe(blast.id);
+    expect((await store.session())?.id).toBe(blast.id);
+  });
+
+  it('non riapre profili che non esistono', async () => {
     await expect(
-      store.call('POST', '/api/auth/register', {
-        displayName: 'Altro',
-        email: EMAIL,
-        password: PASSWORD,
-      }),
-    ).rejects.toMatchObject({ status: 409, code: 'email_taken' });
-  });
-
-  it('esce e rientra con la password', async () => {
-    const user = await register();
-    await store.logout();
-    expect(await store.session()).toBeNull();
-
-    const anonymous = await store.accounts();
-    expect(anonymous.currentUserId).toBeNull();
-    expect(anonymous.accounts[0]?.id).toBe(user.id);
-
-    // Il token è stato buttato: per tornare serve la password.
-    await expect(store.switchUser(user.id)).resolves.toBeNull();
-
-    const body = await store.call<{ user: SessionUser }>('POST', '/api/auth/login', {
-      email: EMAIL.toUpperCase(),
-      password: PASSWORD,
-    });
-    expect(body.user.id).toBe(user.id);
-    expect((await store.session())?.id).toBe(user.id);
-  });
-
-  it('non distingue la password sbagliata dal nome inesistente', async () => {
-    await register();
-
-    const wrong = await store
-      .call('POST', '/api/auth/login', { email: EMAIL, password: 'sbagliata' })
-      .catch((error: unknown) => error);
-    const unknown = await store
-      .call('POST', '/api/auth/login', { email: 'nessuno', password: 'sbagliata' })
-      .catch((error: unknown) => error);
-
-    expect(wrong).toBeInstanceOf(ApiError);
-    expect(unknown).toBeInstanceOf(ApiError);
-    expect((wrong as ApiError).status).toBe(401);
-    expect((unknown as ApiError).message).toBe((wrong as ApiError).message);
-    expect((unknown as ApiError).code).toBe((wrong as ApiError).code);
-  });
-
-  it('blocca dopo troppi tentativi', async () => {
-    await register();
-    for (let attempt = 0; attempt < 4; attempt += 1) {
-      await store
-        .call('POST', '/api/auth/login', { email: EMAIL, password: 'sbagliata' })
-        .catch(() => undefined);
-    }
-    await expect(
-      store.call('POST', '/api/auth/login', { email: EMAIL, password: PASSWORD }),
-    ).rejects.toMatchObject({ status: 429, code: 'rate_limited' });
-  });
-
-  it('cambia password chiudendo le altre sessioni', async () => {
-    const user = await register();
-    await store.logout();
-    await store.call('POST', '/api/auth/login', { email: EMAIL, password: PASSWORD });
-
-    const body = await store.call<{ ok: boolean; sessionsClosed: number }>(
-      'POST',
-      '/api/auth/password',
-      { current: PASSWORD, next: 'nuovapassword' },
-    );
-    expect(body.ok).toBe(true);
-    expect(typeof body.sessionsClosed).toBe('number');
-
-    await expect(
-      store.call('POST', '/api/auth/login', { email: EMAIL, password: PASSWORD }),
-    ).rejects.toMatchObject({ status: 401 });
-    const again = await store.call<{ user: SessionUser }>('POST', '/api/auth/login', {
-      email: EMAIL,
-      password: 'nuovapassword',
-    });
-    expect(again.user.id).toBe(user.id);
+      store.call('POST', '/api/auth/reactivate', { userId: 'inesistente-123' }),
+    ).rejects.toMatchObject({ status: 404 });
   });
 
   it('tiene separati i progressi di due studenti', async () => {
-    const blast = await register('Blast', EMAIL);
+    const blast = await store.bootstrap();
     await passLesson('hangul', 'hangul-01');
 
-    await register('Mina', 'mina');
+    await store.addProfile();
     const fresh = await store.call<CourseListResponse>('GET', '/api/courses');
     expect(fresh.courses[0]?.stats.passed).toBe(0);
     expect(fresh.summary.lessonsPassed).toBe(0);
@@ -231,7 +173,7 @@ describe('profili nel browser', () => {
 
 describe('curricolo e progresso', () => {
   beforeEach(async () => {
-    await register();
+    await store.bootstrap();
   });
 
   it('apre la prima lezione e non manda soluzioni al client', async () => {
@@ -382,7 +324,7 @@ describe('curricolo e progresso', () => {
     expect(after.plan.goal).toBe(3);
 
     const profile = await store.call<ProfileResponse>('GET', '/api/profile');
-    expect(profile.user.email).toBe(EMAIL);
+    expect(profile.user.username).toMatch(USERNAME_SHAPE);
     expect(profile.weeklyGoal).toBe(3);
     expect(profile.vocabulary.total).toBeGreaterThan(0);
   });
@@ -390,7 +332,7 @@ describe('curricolo e progresso', () => {
 
 describe('errori, quaderno e dizionario', () => {
   beforeEach(async () => {
-    await register();
+    await store.bootstrap();
   });
 
   it('un errore entra in banca e si cancella azzeccandolo', async () => {
@@ -477,16 +419,16 @@ describe('errori, quaderno e dizionario', () => {
 
 describe('persistenza', () => {
   it('riapre i byte esportati con dentro studenti e progressi', async () => {
-    const user = await register();
+    const user = await store.bootstrap();
     await passLesson('hangul', 'hangul-01');
 
     const bytes = store.db.exportBytes();
     expect(bytes.length).toBeGreaterThan(0);
 
     const reopened = await openDb({ bytes });
-    const row = reopened.prepare('SELECT COUNT(*) AS n FROM users WHERE email = ?').get(EMAIL) as {
-      n: number;
-    };
+    const row = reopened
+      .prepare('SELECT COUNT(*) AS n FROM users WHERE username = ?')
+      .get(user.username) as { n: number };
     expect(row.n).toBe(1);
 
     const progress = reopened

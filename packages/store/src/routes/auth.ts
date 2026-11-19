@@ -1,44 +1,28 @@
 import { z } from 'zod';
-import type { LoginResponse } from '@ciaocorea/shared';
+import {
+  DISPLAY_NAME_MAX,
+  DISPLAY_NAME_MIN,
+  type ProfileUserResponse,
+  type SessionUser,
+} from '@ciaocorea/shared';
 import type { Ctx } from '../http/context';
 import type { FastifyInstance, FastifyReply, FastifyRequest } from '../http/types';
-import { hashPassword, verifyPassword } from '../auth/password';
-import { createRateLimiter } from '../auth/rateLimit';
-import { SESSION_COOKIE, createSession, destroyOtherSessions, destroySession } from '../auth/sessions';
+import { SESSION_COOKIE, createSession } from '../auth/sessions';
 import {
   createUser,
-  findUserByEmail,
   findUserById,
   listLocalAccounts,
   toSessionUser,
-  updatePasswordHash,
+  updateDisplayName,
+  usernameTaken,
 } from '../repo/users';
-import { currentUser, readCookie, requireAuth, type AuthedRequest } from '../auth/guard';
+import { randomUsername } from '../auth/usernames';
+import { currentUser, requireAuth, type AuthedRequest } from '../auth/guard';
 import type { AccountsResponse } from '../types';
 
-const loginSchema = z.object({
-  email: z.string().trim().min(2).max(200),
-  password: z.string().min(1).max(200),
+const renameSchema = z.object({
+  displayName: z.string().trim().min(DISPLAY_NAME_MIN).max(DISPLAY_NAME_MAX),
 });
-
-const registerSchema = z.object({
-  displayName: z.string().trim().min(2).max(60),
-  email: z.string().trim().min(3).max(200),
-  password: z.string().min(8).max(200),
-});
-
-const passwordSchema = z.object({
-  current: z.string().min(1).max(200),
-  next: z.string().min(8).max(200),
-});
-
-/**
- * Il nome con cui si entra non deve per forza essere un'email: qui non c'è un
- * servizio pubblico da proteggere, c'è un profilo su un computer. Resta però un
- * identificatore unico e senza spazi, perché è quello che compare nella
- * schermata di scelta dell'utente.
- */
-const ACCOUNT_SHAPE = /^[^\s@]+@[^\s@]+\.[^\s@]+$|^[a-z0-9._-]{2,40}$/;
 
 function setSessionCookie(reply: FastifyReply, token: string): void {
   // Nel browser non c'è un header da scrivere: il cookie resta il nome del
@@ -46,141 +30,74 @@ function setSessionCookie(reply: FastifyReply, token: string): void {
   reply.setCookie(SESSION_COOKIE, token, { path: '/' });
 }
 
-function clearSessionCookie(reply: FastifyReply): void {
-  reply.clearCookie(SESSION_COOKIE, { path: '/' });
+/** Profilo nuovo: nome generato, sessione aperta sulla reply data. */
+function openProfile(ctx: Ctx, reply: FastifyReply): SessionUser {
+  const username = randomUsername((name) => usernameTaken(ctx.db, name));
+
+  ctx.db.exec('BEGIN');
+  try {
+    // Al primo avvio il nome con cui si è chiamati è quello che il portale ha
+    // scelto per te: chi vuole, lo cambia nelle impostazioni.
+    const row = createUser(ctx.db, { username, displayName: username });
+    ctx.db.exec('COMMIT');
+
+    const session = createSession(ctx.db, row.id, ctx.config.sessionDays);
+    setSessionCookie(reply, session.token);
+    return toSessionUser(row);
+  } catch (error) {
+    ctx.db.exec('ROLLBACK');
+    throw error;
+  }
 }
 
 /**
- * Accesso, iscrizione e cambio utente di un portale che vive nella scheda.
+ * I profili di un portale che vive nella scheda.
  *
- * Non c'è un invito da consumare e non c'è una modalità di registrazione da
- * rispettare: creare un account è una decisione locale, e la schermata di
- * accesso deve solo permettere di riprendere un profilo esistente o aprirne
- * uno nuovo. La password serve a non confondere due studenti sullo stesso
- * computer, non a difendere un server che qui non esiste.
+ * Non c'è un account da creare, una password da ricordare, un'email da
+ * confermare: il database è locale, quindi il primo avvio apre un profilo con
+ * un nome generato e ci si entra dentro. Da lì in poi si studierà e basta, e
+ * chi vuole più profili su questo computer ne aggiunge altri e ci passa con un
+ * clic.
  */
 export async function registerAuthRoutes(app: FastifyInstance, ctx: Ctx): Promise<void> {
-  const limiter = createRateLimiter(ctx.config.loginMaxAttempts, ctx.config.loginWindowMs);
-
-  app.post('/api/auth/login', async (request: FastifyRequest, reply: FastifyReply) => {
-    const parsed = loginSchema.safeParse(request.body);
-    if (!parsed.success) {
-      return reply.code(400).send({ error: 'invalid_body', message: 'Nome e password sono obbligatori.' });
+  /**
+   * L'ingresso: se c'è già un profilo aperto restituisce lui, altrimenti ne
+   * apre uno nuovo. È la rotta che il client chiama quando apre il sito, ed è
+   * l'unica che può creare un profilo senza che nessuno abbia chiesto niente.
+   */
+  app.post('/api/auth/bootstrap', async (request, reply) => {
+    const existing = currentUser(ctx, request);
+    if (existing) {
+      const body: ProfileUserResponse = { user: existing };
+      return reply.send(body);
     }
 
-    const email = parsed.data.email.toLowerCase();
-    const limit = limiter.hit(`login:${email}`);
-    if (!limit.allowed) {
-      return reply.code(429).send({
-        error: 'rate_limited',
-        message: `Troppi tentativi. Riprova fra ${Math.ceil(limit.retryAfterSeconds / 60)} minuti.`,
-      });
-    }
-
-    const user = findUserByEmail(ctx.db, email);
-    const valid = user ? await verifyPassword(parsed.data.password, user.password_hash) : false;
-    if (!user || !valid) {
-      return reply
-        .code(401)
-        .send({ error: 'invalid_credentials', message: 'Nome o password non corretti.' });
-    }
-
-    limiter.reset(`login:${email}`);
-
-    const session = createSession(ctx.db, user.id, ctx.config.sessionDays);
-    setSessionCookie(reply, session.token);
-
-    const body: LoginResponse = { user: toSessionUser(user) };
-    return reply.send(body);
+    const body: ProfileUserResponse = { user: openProfile(ctx, reply) };
+    return reply.code(201).send(body);
   });
 
   /**
-   * Creare un account e basta: nessun codice, nessuna email da confermare.
-   * Chi si iscrive è già dentro, perché la prima cosa da fare dopo aver scelto
-   * un nome è cominciare la prima lezione, non controllare una casella.
+   * Un profilo in più su questo computer, e diventa subito quello aperto.
+   * È "aggiungi studente" della sezione profili: due figli sullo stesso
+   * tablet, il profilo di studio e quello personale.
    */
-  app.post('/api/auth/register', async (request: FastifyRequest, reply: FastifyReply) => {
-    const parsed = registerSchema.safeParse(request.body);
-    if (!parsed.success) {
-      return reply.code(400).send({
-        error: 'invalid_body',
-        message: 'Controlla i dati: nome (2 caratteri) e password di almeno 8 caratteri.',
-      });
-    }
-
-    const limit = limiter.hit('register');
-    if (!limit.allowed) {
-      return reply.code(429).send({
-        error: 'rate_limited',
-        message: `Troppi tentativi. Riprova fra ${Math.ceil(limit.retryAfterSeconds / 60)} minuti.`,
-      });
-    }
-
-    const email = parsed.data.email.toLowerCase();
-    if (!ACCOUNT_SHAPE.test(email)) {
-      return reply.code(400).send({
-        error: 'invalid_email',
-        message: 'Usa un nome semplice (lettere, numeri, punto, trattino) oppure un’email.',
-      });
-    }
-
-    if (findUserByEmail(ctx.db, email)) {
-      return reply.code(409).send({
-        error: 'email_taken',
-        message: 'Questo nome è già usato su questo computer: scegline un altro o accedi.',
-      });
-    }
-
-    const passwordHash = await hashPassword(parsed.data.password);
-
-    ctx.db.exec('BEGIN');
-    try {
-      const row = createUser(ctx.db, {
-        email,
-        displayName: parsed.data.displayName,
-        passwordHash,
-      });
-      ctx.db.exec('COMMIT');
-
-      const session = createSession(ctx.db, row.id, ctx.config.sessionDays);
-      setSessionCookie(reply, session.token);
-
-      return reply.code(201).send({ user: toSessionUser(row) });
-    } catch (error) {
-      ctx.db.exec('ROLLBACK');
-      request.log.error(error);
-      return reply
-        .code(400)
-        .send({ error: 'registration_failed', message: 'Non è stato possibile creare l’account.' });
-    }
+  app.post('/api/auth/profiles', async (request, reply) => {
+    const body: ProfileUserResponse = { user: openProfile(ctx, reply) };
+    return reply.code(201).send(body);
   });
 
-  app.post('/api/auth/logout', async (request, reply) => {
-    const token = readCookie(request, SESSION_COOKIE);
-    if (token) destroySession(ctx.db, token);
-    clearSessionCookie(reply);
-    return reply.send({ ok: true });
-  });
-
+  /** Il nome con cui lo studente vuole essere chiamato. */
   app.post(
-    '/api/auth/password',
+    '/api/auth/rename',
     { preHandler: requireAuth(ctx) },
     async (request: FastifyRequest, reply: FastifyReply) => {
-      const { user, sessionToken } = request as AuthedRequest;
+      const { user } = request as AuthedRequest;
 
-      const parsed = passwordSchema.safeParse(request.body);
+      const parsed = renameSchema.safeParse(request.body);
       if (!parsed.success) {
         return reply.code(400).send({
           error: 'invalid_body',
-          message: 'La nuova password deve avere almeno 8 caratteri.',
-        });
-      }
-
-      const limit = limiter.hit(`pwd:${user.id}`);
-      if (!limit.allowed) {
-        return reply.code(429).send({
-          error: 'rate_limited',
-          message: `Troppi tentativi. Riprova fra ${Math.ceil(limit.retryAfterSeconds / 60)} minuti.`,
+          message: `Il nome deve avere da ${DISPLAY_NAME_MIN} a ${DISPLAY_NAME_MAX} caratteri.`,
         });
       }
 
@@ -189,21 +106,38 @@ export async function registerAuthRoutes(app: FastifyInstance, ctx: Ctx): Promis
         return reply.code(404).send({ error: 'not_found', message: 'Utente inesistente.' });
       }
 
-      const valid = await verifyPassword(parsed.data.current, row.password_hash);
-      if (!valid) {
-        return reply
-          .code(401)
-          .send({ error: 'wrong_password', message: 'La password attuale non è corretta.' });
-      }
-
-      limiter.reset(`pwd:${user.id}`);
-
-      updatePasswordHash(ctx.db, user.id, await hashPassword(parsed.data.next));
-      const closed = destroyOtherSessions(ctx.db, user.id, sessionToken);
-
-      return reply.send({ ok: true, sessionsClosed: closed });
+      updateDisplayName(ctx.db, user.id, parsed.data.displayName);
+      const body: ProfileUserResponse = {
+        user: { ...toSessionUser(row), displayName: parsed.data.displayName },
+      };
+      return reply.send(body);
     },
   );
+
+  /**
+   * Riaprire un profilo che ha perso il token: sessione scaduta dopo mesi, o
+   * localStorage svuotato. I progressi sono nel database di questo browser, e
+   * quello è tutta l'autorità che serve: non c'è una password da mostrare, e
+   * nessuno che possa pretendere di verificare chi sei.
+   */
+  app.post('/api/auth/reactivate', async (request, reply) => {
+    const parsed = z.object({ userId: z.string().min(8) }).safeParse(request.body);
+    if (!parsed.success) {
+      return reply.code(400).send({
+        error: 'invalid_body',
+        message: 'Profilo da riaprire non indicato.',
+      });
+    }
+
+    const row = findUserById(ctx.db, parsed.data.userId);
+    if (!row) {
+      return reply.code(404).send({ error: 'not_found', message: 'Profilo inesistente.' });
+    }
+
+    setSessionCookie(reply, createSession(ctx.db, row.id, ctx.config.sessionDays).token);
+    const body: ProfileUserResponse = { user: toSessionUser(row) };
+    return reply.send(body);
+  });
 
   // Rotta di comodo per il client: capire se c'è una sessione senza 401.
   app.get('/api/auth/session', async (request, reply) => {
@@ -212,9 +146,9 @@ export async function registerAuthRoutes(app: FastifyInstance, ctx: Ctx): Promis
   });
 
   /**
-   * I profili di questo browser: chi ha già studiato qui e se ha una sessione
-   * ancora aperta. È l'elenco che rende possibile "continua come Mina" senza
-   * riscrivere il nome a ogni cambio.
+   * I profili di questo browser: chi ci studia sopra. Non è un elenco di
+   * account remoti, è l'elenco delle persone sedute a questo computer, e la
+   * schermata dei profili lo mostra tutto.
    */
   app.get('/api/auth/accounts', async (request, reply) => {
     const current = currentUser(ctx, request);
@@ -222,7 +156,7 @@ export async function registerAuthRoutes(app: FastifyInstance, ctx: Ctx): Promis
       currentUserId: current?.id ?? null,
       accounts: listLocalAccounts(ctx.db).map((row) => ({
         id: row.id,
-        email: row.email,
+        username: row.username,
         displayName: row.display_name,
         createdAt: row.created_at,
         hasSession: Number(row.live_sessions) > 0,

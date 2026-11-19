@@ -1,19 +1,18 @@
 /**
  * Le sessioni di questo browser: un token per ogni profilo, più quello attivo.
  *
- * Nel server il token stava in un cookie httpOnly; qui il cookie non esiste più
- * e il token vive in localStorage. Non è una perdita di sicurezza rispetto a
- * quello che c'è intorno: il database con tutti i progressi sta nello stesso
- * spazio, quindi chi legge uno legge l'altro. Tenerli insieme è però ciò che
- * rende possibile il cambio utente: si passa da un profilo all'altro senza
- * riscrivere la password, e senza perdere la sessione di chi era prima.
+ * Il token vive in localStorage insieme ai progressi, nello stesso spazio, e
+ * qui non c'è nulla da proteggere: non è una password, è il segnaposto che
+ * dice quale dei profili locali è quello aperto. È tenerlo qui che rende
+ * possibile il cambio utente: si passa da un profilo all'altro con un clic, e
+ * il browser che si riapre il giorno dopo ritrova lo studente che c'era.
  */
 
 const KEY = 'ciaocorea.sessions.v1';
 
 export interface StoredSession {
   token: string;
-  email: string;
+  username: string;
   displayName: string;
 }
 
@@ -44,7 +43,17 @@ export function loadSessionState(): SessionState {
     const parsed = JSON.parse(raw) as Partial<SessionState>;
     const sessions: Record<string, StoredSession> = {};
     for (const [userId, value] of Object.entries(parsed.sessions ?? {})) {
-      if (value && typeof value.token === 'string') sessions[userId] = value;
+      // I browser che hanno iniziato con le password hanno la vecchia forma,
+      // con l'email al posto dello username: il token è la parte che conta, e
+      // la si conserva così com'è.
+      const entry = value as (Partial<StoredSession> & { email?: string }) | undefined;
+      if (entry && typeof entry.token === 'string') {
+        sessions[userId] = {
+          token: entry.token,
+          username: entry.username ?? entry.email ?? '',
+          displayName: entry.displayName ?? '',
+        };
+      }
     }
 
     const active = typeof parsed.activeUserId === 'string' ? parsed.activeUserId : null;

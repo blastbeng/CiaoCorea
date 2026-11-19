@@ -8,23 +8,28 @@ possibilità di saltare una lezione già conosciuta superando un test.
 L'app è **completamente statica**: nessun server, nessun account remoto. Gira su
 GitHub Pages e salva tutto nel browser dello studente (un database SQLite
 compilato in WebAssembly, tenuto in IndexedDB). Il computer che apre il sito
-tiene i propri dati: niente registrazione online, niente email, niente password
-da recuperare.
+tiene i propri dati: niente registrazione, niente email, niente password — né da
+creare, né da ricordare, né da recuperare.
 
 Oltre al percorso ci sono cinque stanze: il **dizionario** di tutte le parole
 del curricolo, la **coda di ripasso** (SRS) che dopo due passaggi chiede di
 scrivere la parola, il **quaderno** dove si scrivono
 frasi proprie confrontandole con un modello, la **banca degli errori** con gli
 esercizi sbagliati da rifare, e la pagina dei **progressi**, con le statistiche
-complessive e il cambio della password. In cima alla home c'è il **piano di
-oggi**: le poche cose da fare, in ordine, sopra all'obiettivo della settimana che
-si sceglie lo studente.
+complessive e il nome con cui essere chiamati. In cima alla home c'è il **piano
+di oggi**: le poche cose da fare, in ordine, sopra all'obiettivo della settimana
+che si sceglie lo studente.
 
-Il portale è **multi-profilo sullo stesso browser**: la pagina dei profili
-(`/login`) elenca chi studia su questo dispositivo e permette di passare da uno
-all'altro con un clic, oppure di crearne uno nuovo (nome, email o nome utente,
-password). Non c'è invito da chiedere e non c'è nulla da confermare: il profilo
-esiste appena lo crei, e resta finché non cancelli i dati del sito.
+Il portale è **multi-profilo sullo stesso browser, senza login**: al primo
+avvio nasce da solo un profilo con un nome generato (stile Reddit,
+`VeloceTigre42`) e si entra subito dentro; alla visite successive il sito
+riprende l'ultimo profilo usato. La pagina dei profili (`/profili`) elenca chi
+studia su questo dispositivo, permette di passare da uno all'altro con un clic e
+di aggiungerne di nuovi. Non c'è invito da chiedere e non c'è nulla da
+confermare: il profilo esiste dal suo primo respiro, e resta finché non
+cancelli i dati del sito. Chi aveva già un profilo della vecchia versione (quella
+con email e password) se lo ritrova intatto, con il nome ricavato dall'indirizzo:
+progressi, ripassi e tentativi non si perdono nel passaggio.
 
 ## Cosa si incontra
 
@@ -39,9 +44,8 @@ esiste appena lo crei, e resta finché non cancelli i dati del sito.
 | `/quaderno` | dodici consegne di scrittura: si scrive la frase, poi si confronta con il modello |
 | `/ripassi` | carte in scadenza, giudizio `ho saputo / quasi / non ricordo`; sotto, le parole fragili da riprovare subito |
 | `/errori` | gli esercizi che hai sbagliato, uno alla volta: azzeccarli li toglie dalla banca |
-| `/progressi` | totali, per corso, parole SRS, obiettivo della settimana, ritmo dei giorni, password |
-| `/login` | i profili di questo browser: si sceglie chi sta studiando, o si accede con password |
-| `/registrazione` | nuovo profilo locale: nome, email o nome utente, password |
+| `/progressi` | totali, per corso, parole SRS, obiettivo della settimana, ritmo dei giorni, rinomina del profilo |
+| `/profili` | i profili di questo browser: si sceglie chi sta studiando con un clic, o se ne aggiunge uno nuovo |
 
 ## Come è fatto
 
@@ -72,12 +76,14 @@ Scelte che vale la pena ricordare:
   browser, è stata spostata.
 - **Sessioni in `localStorage`.** Il token di sessione vive lì
   (`ciaocorea.sessions.v1`), non in un cookie; è quello che rende possibile
-  passare da un profilo all'altro senza rifare il login e senza un server che
-  ricordi chi sei.
-- **Password con WebCrypto**: PBKDF2-SHA256, 210 000 iterazioni, sale casuale.
-  Se il sito è aperto via `http://` su una rete locale il browser nasconde
-  `crypto.subtle`: lì il calcolo scende in TypeScript puro (stesso formato,
-  60 000 iterazioni, ~1 s), così anche quella copia resta usabile.
+  passare da un profilo all'altro con un clic e senza un server che ricordi
+  chi sei. Se il token è scaduto o `localStorage` è stato svuotato, il profilo
+  si riapre lo stesso (`/api/auth/reactivate`): i progressi nel database sono
+  tutta l'autorità che serve, non c'è una password da mostrare.
+- **Niente password, per scelta.** In un database locale una password non
+  protegge nulla: chi ha il browser ha già i dati. Il portale quindi non la
+  chiede: il primo avvio genera un nome stile Reddit (`VeloceTigre42`, aggettivo
+  + animale + numero, in italiano) e da lì si studia.
 - **Il piano della giornata lo calcola `packages/engine/src/plan.ts`** dentro il
   browser: prima la lezione che apre il percorso, poi le parole in scadenza, poi
   il quaderno, e la conversazione prende il posto che resta quando la giornata è
@@ -107,8 +113,10 @@ npm run preview       # anteprima del build, stessa base /CiaoCorea/
 ```
 
 I test di `packages/store` aprono il database in memoria: girano senza browser e
-senza IndexedDB, e coprono registrazione, multi-profilo, sblocco lezioni, ripassi,
-quaderno, dialoghi, errori e il giro completo di salvataggio/riapertura.
+senza IndexedDB, e coprono l'apertura del sito (primo profilo generato,
+riprese, rinomina, riapertura di sessioni scadute), il multi-profilo, lo
+sblocco lezioni, i ripassi, il quaderno, i dialoghi, gli errori e il giro
+completo di salvataggio/riapertura.
 
 ### Cosa c'è nel browser
 
@@ -138,21 +146,21 @@ dipendenze, esegue `typecheck` e test, compila `apps/web/dist` e lo pubblica.
 
 Non c'è più un'API di rete: `packages/store` espone le stesse rotte di prima a
 un mini-router che le chiama in processo. Restano utili come mappa di cosa fa lo
-store dentro la scheda. Richiedono la sessione tutte tranne `login`, `register`,
-`logout`, `session` e `accounts`.
+store dentro la scheda. Richiedono la sessione tutte tranne `bootstrap`,
+`profiles`, `reactivate`, `session` e `accounts`.
 
 | Metodo | Rotta | Uso |
 | --- | --- | --- |
-| POST | `/api/auth/register` | nuovo profilo locale e accesso immediato |
-| POST | `/api/auth/login` | accesso |
-| POST | `/api/auth/logout` | uscita |
+| POST | `/api/auth/bootstrap` | apre il sito: riprende il profilo attivo o ne genera uno nuovo |
+| POST | `/api/auth/profiles` | un profilo in più su questo browser, e diventa quello aperto |
+| POST | `/api/auth/reactivate` | riapre un profilo la cui sessione è scaduta |
 | GET | `/api/auth/session` | utente corrente o `null` |
 | GET | `/api/auth/accounts` | i profili presenti in questo browser, per la schermata di scelta |
 | GET | `/api/courses` | corsi, progressi, riepilogo, ripassi dovuti, piano di oggi (`plan`) |
 | GET | `/api/vocabulary` | dizionario: `q` (coreano/romanizzazione/italiano), `course`, `limit`, `offset` |
 | GET | `/api/profile` | progressi, totali, giorni attivi (con i ripassi), SRS, dialoghi, `weeklyGoal` |
 | POST | `/api/profile/goal` | obiettivo settimanale: da 1 a 7 giorni di studio |
-| POST | `/api/auth/password` | cambia password chiudendo le altre sessioni |
+| POST | `/api/auth/rename` | il nome con cui lo studente vuole essere chiamato |
 | GET | `/api/courses/:slug` | dettaglio corso con stati delle lezioni |
 | GET | `/api/courses/:slug/lessons/:id` | teoria, brani, esercizi pubblici, test di salto |
 | POST | `/api/courses/:slug/lessons/:id/attempts` | consegna (`mode: lesson \| skip`) |

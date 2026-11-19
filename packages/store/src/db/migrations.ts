@@ -157,6 +157,54 @@ export const MIGRATIONS: Migration[] = [
       CREATE INDEX exercise_mistakes_user_idx ON exercise_mistakes(user_id, last_wrong_at);
     `,
   },
+  {
+    id: '007-local-profiles',
+    sql: `
+      -- Niente più password: chi apre il sito è già dentro, e il nome che
+      -- distingue i profili sullo stesso computer è generato, non scelto.
+      -- L'email diventa username e password_hash se ne va. SQLite non sa
+      -- togliere una colonna, quindi la tabella si ricostruisce: le righe, e le
+      -- sessioni e i progressi che puntano a quegli id, restano al loro posto.
+      CREATE TABLE users_next (
+        id TEXT PRIMARY KEY,
+        username TEXT NOT NULL UNIQUE,
+        display_name TEXT NOT NULL,
+        created_at TEXT NOT NULL,
+        weekly_goal INTEGER NOT NULL DEFAULT 5
+      );
+
+      -- Chi si era registrato con un'email si ritrova un nome leggibile: la
+      -- parte prima della chiocciola, se nessun altro profilo la rivendica.
+      -- Quando due email condividono la stessa parte vince il profilo più
+      -- vecchio, perché è quello che l'utente ha aperto per primo; l'altro
+      -- tiene l'email intera, che è comunque unica.
+      INSERT INTO users_next (id, username, display_name, created_at, weekly_goal)
+        SELECT
+          u.id,
+          CASE
+            WHEN instr(u.email, '@') > 1
+             AND NOT EXISTS (
+               SELECT 1 FROM users u2
+               WHERE lower(substr(u2.email, 1, instr(u2.email, '@') - 1)) =
+                     lower(substr(u.email, 1, instr(u.email, '@') - 1))
+                 AND u2.id <> u.id
+                 AND (
+                   u2.created_at < u.created_at
+                   OR (u2.created_at = u.created_at AND u2.id < u.id)
+                 )
+             )
+            THEN substr(u.email, 1, instr(u.email, '@') - 1)
+            ELSE u.email
+          END,
+          u.display_name,
+          u.created_at,
+          u.weekly_goal
+        FROM users u;
+
+      DROP TABLE users;
+      ALTER TABLE users_next RENAME TO users;
+    `,
+  },
 ];
 
 export function migrate(db: Db): void {
@@ -174,19 +222,29 @@ export function migrate(db: Db): void {
       .map((row) => (row as { id: string }).id),
   );
 
-  for (const migration of MIGRATIONS) {
-    if (applied.has(migration.id)) continue;
-    db.exec('BEGIN');
-    try {
-      db.exec(migration.sql);
-      db.prepare('INSERT INTO schema_migrations(id, applied_at) VALUES (?, ?)').run(
-        migration.id,
-        new Date().toISOString(),
-      );
-      db.exec('COMMIT');
-    } catch (error) {
-      db.exec('ROLLBACK');
-      throw error;
+  // La 007 ricostruisce `users` con un DROP TABLE. Con i vincoli accesi SQLite
+  // tratta il drop come una DELETE e si porta via per cascata sessioni,
+  // progressi e tentativi: esattamente quello che una migrazione non deve fare.
+  // Le migrazioni girano a database fermo, quindi i vincoli restano spenti per
+  // la durata del lavoro e si riaccendono subito dopo.
+  db.exec('PRAGMA foreign_keys = OFF');
+  try {
+    for (const migration of MIGRATIONS) {
+      if (applied.has(migration.id)) continue;
+      db.exec('BEGIN');
+      try {
+        db.exec(migration.sql);
+        db.prepare('INSERT INTO schema_migrations(id, applied_at) VALUES (?, ?)').run(
+          migration.id,
+          new Date().toISOString(),
+        );
+        db.exec('COMMIT');
+      } catch (error) {
+        db.exec('ROLLBACK');
+        throw error;
+      }
     }
+  } finally {
+    db.exec('PRAGMA foreign_keys = ON');
   }
 }

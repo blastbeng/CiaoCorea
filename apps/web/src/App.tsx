@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom';
+import { Outlet, Route, Routes } from 'react-router-dom';
 import { useAuth } from './auth';
 import { AppShell } from './components/AppShell';
 import { CoursePage } from './pages/CoursePage';
@@ -7,26 +7,33 @@ import { Dashboard } from './pages/Dashboard';
 import { DialoguePage } from './pages/DialoguePage';
 import { DialoguesPage } from './pages/DialoguesPage';
 import { LessonPage } from './pages/LessonPage';
-import { Login } from './pages/Login';
 import { MistakesPage } from './pages/MistakesPage';
 import { NotFound } from './pages/NotFound';
 import { ProfilePage } from './pages/ProfilePage';
-import { Register } from './pages/Register';
+import { ProfilesPage } from './pages/ProfilesPage';
 import { ReviewPage } from './pages/ReviewPage';
 import { SkipCoursePage } from './pages/SkipCoursePage';
 import { VocabularyPage } from './pages/VocabularyPage';
 import { WritingPage } from './pages/WritingPage';
 
-function RequireAuth({ children }: { children: ReactNode }) {
-  const { state } = useAuth();
-  const location = useLocation();
+function Gate({ children }: { children: ReactNode }) {
+  const { state, start } = useAuth();
 
   if (state.status === 'loading') {
     return <div className="loading">Un momento…</div>;
   }
 
-  if (state.status === 'anonymous') {
-    return <Navigate to="/login" replace state={{ from: location.pathname }} />;
+  if (state.status === 'error') {
+    // Non c'è un login da mostrare: il database non si è aperto. L'unica via
+    // è riprovare, e spesso il reload basta.
+    return (
+      <div className="loading">
+        <p className="muted">{state.message}</p>
+        <button type="button" className="btn" onClick={() => void start()}>
+          Riprova
+        </button>
+      </div>
+    );
   }
 
   return <>{children}</>;
@@ -43,16 +50,11 @@ function Shell() {
 export default function App() {
   return (
     <Routes>
-      {/* Sempre raggiungibili: sono la schermata dei profili, non solo
-          l'accesso. Chi sta studiando può cambiare utente da qui. */}
-      <Route path="/login" element={<Login />} />
-      <Route path="/registrazione" element={<Register />} />
-
       <Route
         element={
-          <RequireAuth>
+          <Gate>
             <Shell />
-          </RequireAuth>
+          </Gate>
         }
       >
         <Route index element={<Dashboard />} />
@@ -66,6 +68,7 @@ export default function App() {
         <Route path="dizionario" element={<VocabularyPage />} />
         <Route path="quaderno" element={<WritingPage />} />
         <Route path="progressi" element={<ProfilePage />} />
+        <Route path="profili" element={<ProfilesPage />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

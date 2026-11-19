@@ -1,12 +1,11 @@
 import { useEffect, useState, type ReactNode } from 'react';
-import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { api, PENDING_CHANGED } from '../api';
 import { useAuth } from '../auth';
 import { ThemeToggle } from '../theme';
 
 export function AppShell({ children }: { children: ReactNode }) {
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
+  const { user } = useAuth();
   const location = useLocation();
   const [dueCards, setDueCards] = useState(0);
   const [mistakes, setMistakes] = useState(0);
@@ -53,11 +52,6 @@ export function AppShell({ children }: { children: ReactNode }) {
     return () => window.removeEventListener('keydown', onKey);
   }, [navOpen]);
 
-  const handleLogout = async () => {
-    await logout();
-    navigate('/login', { replace: true });
-  };
-
   return (
     <div className="app">
       <header className="app-header">
@@ -103,16 +97,9 @@ export function AppShell({ children }: { children: ReactNode }) {
           {/* Lo stesso paio di azioni dell'header, per quando l'header è
               stretto e le ha cedute al menu. */}
           <div className="nav-extra">
-            <Link className="btn btn--sm btn--ghost btn--block" to="/login">
-              Cambia profilo
+            <Link className="btn btn--sm btn--ghost btn--block" to="/profili">
+              Profili
             </Link>
-            <button
-              type="button"
-              className="btn btn--sm btn--ghost btn--block"
-              onClick={handleLogout}
-            >
-              Esci
-            </button>
           </div>
         </nav>
 
@@ -120,15 +107,12 @@ export function AppShell({ children }: { children: ReactNode }) {
           <ThemeToggle />
           <span className="user-chip__name">{user?.displayName ?? ''}</span>
           {/* Il database è di questo browser: cambiare utente è scegliere un
-              altro profilo, non rifare l'accesso. Su schermo stretto questi due
-              passano nel menu: nell'header non ci starebbero. */}
+              altro profilo, non rifare l'accesso. Su schermo stretto questo
+              passa nel menu: nell'header non ci starebbe. */}
           <div className="user-chip__actions">
-            <Link className="btn btn--sm btn--ghost" to="/login">
+            <Link className="btn btn--sm btn--ghost" to="/profili">
               Profili
             </Link>
-            <button type="button" className="btn btn--sm btn--ghost" onClick={handleLogout}>
-              Esci
-            </button>
           </div>
         </div>
 

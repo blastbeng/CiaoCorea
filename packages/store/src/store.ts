@@ -34,9 +34,14 @@ export interface Store {
   /** I profili di questo browser, con quello attivo. */
   accounts(): Promise<AccountsResponse>;
   session(): Promise<SessionUser | null>;
-  /** Passa a un profilo che ha già una sessione valida; null se serve la password. */
+  /** Il profilo aperto, o il primo che nasce: è la prima chiamata del sito. */
+  bootstrap(): Promise<SessionUser>;
+  /** Un profilo in più su questo computer, e diventa quello aperto. */
+  addProfile(): Promise<SessionUser>;
+  /** Il nome con cui lo studente vuole essere chiamato. */
+  rename(displayName: string): Promise<SessionUser>;
+  /** Passa a un altro profilo locale: un clic, niente credenziali. */
   switchUser(userId: string): Promise<SessionUser | null>;
-  logout(): Promise<void>;
   close(): Promise<void>;
 }
 
@@ -100,7 +105,11 @@ export async function createStore(options: CreateStoreOptions = {}): Promise<Sto
     } else {
       const user = storeUser(result.body);
       if (user) {
-        state.sessions[user.id] = { token: cookie, email: user.email, displayName: user.displayName };
+        state.sessions[user.id] = {
+          token: cookie,
+          username: user.username,
+          displayName: user.displayName,
+        };
         state.activeUserId = user.id;
         persist();
       }
@@ -124,30 +133,42 @@ export async function createStore(options: CreateStoreOptions = {}): Promise<Sto
       return body.user;
     },
 
-    switchUser: async (userId: string) => {
-      const stored: StoredSession | undefined = state.sessions[userId];
-      if (!stored) return null;
-
-      state.activeUserId = userId;
-      persist();
-
-      const body = await call<{ user: SessionUser | null }>('GET', '/api/auth/session');
-      if (!body.user) {
-        delete state.sessions[userId];
-        state.activeUserId = null;
-        persist();
-        return null;
-      }
+    bootstrap: async () => {
+      const body = await call<{ user: SessionUser }>('POST', '/api/auth/bootstrap');
       return body.user;
     },
 
-    logout: async () => {
-      try {
-        await call<{ ok: boolean }>('POST', '/api/auth/logout');
-      } catch (error) {
-        // Se la sessione era già scaduta, l'uscita è comunque riuscita.
-        if (!(error instanceof ApiError)) throw error;
+    addProfile: async () => {
+      const body = await call<{ user: SessionUser }>('POST', '/api/auth/profiles');
+      return body.user;
+    },
+
+    rename: async (displayName: string) => {
+      const body = await call<{ user: SessionUser }>('POST', '/api/auth/rename', { displayName });
+      return body.user;
+    },
+
+    switchUser: async (userId: string) => {
+      // Ogni profilo ha il suo token dal momento in cui è nato: passare da uno
+      // all'altro è già quello che serve, non c'è una credenziale da verificare.
+      const stored: StoredSession | undefined = state.sessions[userId];
+      if (stored) {
+        state.activeUserId = userId;
+        persist();
+
+        const body = await call<{ user: SessionUser | null }>('GET', '/api/auth/session');
+        if (body.user) return body.user;
+
+        // La sessione è scaduta: il token vecchio non serve più.
+        delete state.sessions[userId];
+        state.activeUserId = null;
+        persist();
       }
+
+      // Nessun token, ma il profilo è nel database (sessione scaduta, o
+      // localStorage svuotato): si riapre, perché qui non c'è niente da inserire.
+      const reopened = await call<{ user: SessionUser }>('POST', '/api/auth/reactivate', { userId });
+      return reopened.user;
     },
 
     close: async () => {

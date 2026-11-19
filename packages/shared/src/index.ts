@@ -353,9 +353,14 @@ export interface MistakeAnswerResponse {
   stats: MistakesStats;
 }
 
-export interface LoginResponse {
+/** Tutto quello che le rotte dei profili restituiscono: chi c'è dentro. */
+export interface ProfileUserResponse {
   user: SessionUser;
 }
+
+/** Il nome che lo studente si sceglie: 2 caratteri bastano, 60 avanzano. */
+export const DISPLAY_NAME_MIN = 2;
+export const DISPLAY_NAME_MAX = 60;
 
 /* ------------------------------------------------------------------------- *
  * Conversazione guidata: il dialogo è un copione, non un modello linguistico.
@@ -493,7 +498,9 @@ export interface CourseView extends Omit<Course, 'units'> {
 
 export interface SessionUser {
   id: string;
-  email: string;
+  /** Il nome generato al primo avvio, stile Reddit: `VeloceTigre42`. */
+  username: string;
+  /** Come lo studente vuole essere chiamato: si cambia nelle impostazioni. */
   displayName: string;
 }
 

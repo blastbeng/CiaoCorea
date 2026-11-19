@@ -2,15 +2,12 @@ import type { Db } from '../db/client';
 
 /**
  * Quello che il server leggeva dalla configurazione d'ambiente e che qui è
- * semplicemente una scelta del portale: non ci sono container da configurare,
- * e i valori che restano sono quelli che decidono il comportamento visibile
- * (quanto dura una sessione, quanti tentativi di password prima di fermarsi).
+ * semplicemente una scelta del portale. Con le password andate via è rimasto
+ * un solo numero: quanto deve vivere il token che dice quale profilo è aperto.
  */
 export interface StoreConfig {
-  /** Giorni di validità di una sessione, rinnovati a ogni uso. */
+  /** Giorni di validità della sessione, rinnovati a ogni uso. */
   sessionDays: number;
-  loginMaxAttempts: number;
-  loginWindowMs: number;
 }
 
 export interface Ctx {
@@ -19,7 +16,8 @@ export interface Ctx {
 }
 
 export const DEFAULT_CONFIG: StoreConfig = {
+  // Un profilo locale non ha niente da difendere da un intruso: la sessione
+  // lunga è una comodità, non un rischio, e un browser che si riapre dopo un
+  // mese deve ritrovare il proprio studente dentro.
   sessionDays: 365,
-  loginMaxAttempts: 8,
-  loginWindowMs: 15 * 60_000,
 };

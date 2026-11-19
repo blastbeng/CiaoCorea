@@ -44,14 +44,14 @@ interface SessionJoinRow {
   expires_at: string;
   last_seen_at: string;
   user_id: string;
-  email: string;
+  username: string;
   display_name: string;
 }
 
 /**
  * Scadenza scorrevole: chi studia ogni giorno non viene buttato fuori, chi
- * sparisce per trenta giorni deve rifare il login. L'aggiornamento avviene al
- * massimo una volta all'ora per non scrivere a ogni singola richiesta.
+ * sparisce per mesi riprende da dove era: il token non è una password, e la
+ * sessione serve solo a dire quale dei profili locali è quello aperto.
  */
 export function resolveSession(
   db: Db,
@@ -62,7 +62,7 @@ export function resolveSession(
   const row = db
     .prepare(
       `SELECT s.id AS session_id, s.expires_at, s.last_seen_at,
-              u.id AS user_id, u.email, u.display_name
+              u.id AS user_id, u.username, u.display_name
        FROM sessions s JOIN users u ON u.id = s.user_id
        WHERE s.token_hash = ?`,
     )
@@ -87,7 +87,7 @@ export function resolveSession(
   }
 
   return {
-    user: { id: row.user_id, email: row.email, displayName: row.display_name },
+    user: { id: row.user_id, username: row.username, displayName: row.display_name },
     sessionId: row.session_id,
   };
 }
@@ -97,14 +97,12 @@ export function destroySession(db: Db, token: string): void {
 }
 
 /**
- * Cambio di password: le sessioni aperte altrove cadono, quella che ha chiesto
- * il cambio resta in piedi. Un accesso vecchio non deve sopravvivere alla
- * password che lo studente ha appena chiuso.
+ * Un profilo che sparisce dal browser (cancellato dai dati del sito, o rimosso
+ * a mano) non deve lasciare sessioni vive: sono porte aperte su progressi che
+ * non esistono più.
  */
-export function destroyOtherSessions(db: Db, userId: string, keepToken: string): number {
-  const result = db
-    .prepare('DELETE FROM sessions WHERE user_id = ? AND token_hash <> ?')
-    .run(userId, hashToken(keepToken));
+export function destroyUserSessions(db: Db, userId: string): number {
+  const result = db.prepare('DELETE FROM sessions WHERE user_id = ?').run(userId);
   return Number(result.changes ?? 0);
 }
 

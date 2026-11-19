@@ -13,25 +13,22 @@ import { api, ApiError } from './api';
 
 type AuthState =
   | { status: 'loading' }
-  | { status: 'anonymous' }
-  | { status: 'authenticated'; user: SessionUser };
-
-export interface RegisterInput {
-  displayName: string;
-  email: string;
-  password: string;
-}
+  | { status: 'ready'; user: SessionUser }
+  | { status: 'error'; message: string };
 
 interface AuthContextValue {
   state: AuthState;
   user: SessionUser | null;
-  /** I profili creati su questo browser: è la schermata di scelta dell'utente. */
+  /** I profili creati su questo browser: è la sezione utenti. */
   accounts: LocalAccount[];
-  login: (email: string, password: string) => Promise<void>;
-  register: (input: RegisterInput) => Promise<void>;
-  /** Passa a un altro profilo; null se la sua sessione è scaduta. */
+  /** L'apertura del sito: riprende chi c'era, o apre il primo profilo. */
+  start: () => Promise<void>;
+  /** Un profilo in più su questo computer, e ci si entra dentro. */
+  addProfile: () => Promise<SessionUser>;
+  /** Passa a un altro profilo: un clic, niente credenziali. */
   switchUser: (userId: string) => Promise<SessionUser | null>;
-  logout: () => Promise<void>;
+  /** Il nome con cui lo studente vuole essere chiamato. */
+  rename: (displayName: string) => Promise<SessionUser>;
   refreshAccounts: () => Promise<void>;
 }
 
@@ -46,84 +43,68 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const body = await api.accounts();
       setAccounts(body.accounts);
     } catch {
-      // L'elenco dei profili è comodità: se non si legge, si entra con la
-      // password e basta.
+      // L'elenco dei profili è comodità: la sezione utenti lo leggerà di nuovo
+      // al prossimo ingresso, e studiare non si ferma qui.
       setAccounts([]);
     }
   }, []);
 
-  useEffect(() => {
-    let active = true;
-    api
-      .session()
-      .then(({ user }) => {
-        if (!active) return;
-        setState(user ? { status: 'authenticated', user } : { status: 'anonymous' });
-      })
-      .catch(() => {
-        // Database appena creato o wasm non ancora pronto: meglio la schermata
-        // di accesso che un errore bloccante.
-        if (active) setState({ status: 'anonymous' });
-      })
-      .finally(() => {
-        if (active) void refreshAccounts();
-      });
-    return () => {
-      active = false;
-    };
+  const start = useCallback(async () => {
+    setState({ status: 'loading' });
+    try {
+      const user = await api.bootstrap();
+      setState({ status: 'ready', user });
+      await refreshAccounts();
+    } catch (problem) {
+      // Database che non si apre, wasm che non arriva: qui non c'è un login da
+      // mostrare, c'è solo da ricaricare.
+      setState({ status: 'error', message: errorMessage(problem) });
+    }
   }, [refreshAccounts]);
 
-  const login = useCallback(
-    async (email: string, password: string) => {
-      const { user } = await api.login(email, password);
-      setState({ status: 'authenticated', user });
-      await refreshAccounts();
-    },
-    [refreshAccounts],
-  );
+  useEffect(() => {
+    void start();
+  }, [start]);
 
-  // Creare un profilo e entrare sono la stessa cosa: il database è locale, non
-  // c'è nessuna email da confermare.
-  const register = useCallback(
-    async (input: RegisterInput) => {
-      const { user } = await api.register(input);
-      setState({ status: 'authenticated', user });
-      await refreshAccounts();
-    },
-    [refreshAccounts],
-  );
+  const addProfile = useCallback(async () => {
+    const user = await api.addProfile();
+    setState({ status: 'ready', user });
+    await refreshAccounts();
+    return user;
+  }, [refreshAccounts]);
 
   const switchUser = useCallback(
     async (userId: string) => {
       const user = await api.switchUser(userId);
-      setState(user ? { status: 'authenticated', user } : { status: 'anonymous' });
+      if (user) setState({ status: 'ready', user });
       await refreshAccounts();
       return user;
     },
     [refreshAccounts],
   );
 
-  const logout = useCallback(async () => {
-    try {
-      await api.logout();
-    } finally {
-      setState({ status: 'anonymous' });
+  const rename = useCallback(
+    async (displayName: string) => {
+      const user = await api.rename(displayName);
+      setState({ status: 'ready', user });
       await refreshAccounts();
-    }
-  }, [refreshAccounts]);
+      return user;
+    },
+    [refreshAccounts],
+  );
 
   const value = useMemo<AuthContextValue>(
     () => ({
       state,
-      user: state.status === 'authenticated' ? state.user : null,
+      user: state.status === 'ready' ? state.user : null,
       accounts,
-      login,
-      register,
+      start,
+      addProfile,
       switchUser,
-      logout,
+      rename,
       refreshAccounts,
     }),
-    [state, accounts, login, register, switchUser, logout, refreshAccounts],
+    [state, accounts, start, addProfile, switchUser, rename, refreshAccounts],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
