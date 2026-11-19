@@ -594,7 +594,17 @@ export interface VocabularyResponse {
 export interface WordLookupResponse {
   /** La parola cliccata, come compare nel brano. */
   word: string;
-  match: (VocabEntry & { via: 'exact' | 'particle' | 'stem' }) | null;
+  match:
+    | (VocabEntry & {
+        via: 'exact' | 'particle' | 'stem';
+        /** La particella tolta dalla forma del brano, quando `via` è 'particle'. */
+        particle?: string;
+        /** A che cosa serve quella particella, in italiano. */
+        particleHint?: string;
+        /** La desinenza riconosciuta, quando `via` è 'stem'. */
+        ending?: string;
+      })
+    | null;
 }
 
 /* ------------------------------------------------------------------------- *

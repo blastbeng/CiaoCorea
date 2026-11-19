@@ -40,7 +40,15 @@ export async function registerVocabularyRoutes(app: FastifyInstance, ctx: Ctx): 
       const found = lookupWord(getVocabulary(), parsed.data.w);
       const body: WordLookupResponse = {
         word: parsed.data.w,
-        match: found ? { ...found.entry, via: found.via } : null,
+        match: found
+          ? {
+              ...found.entry,
+              via: found.via,
+              particle: found.particle,
+              particleHint: found.particleHint,
+              ending: found.ending,
+            }
+          : null,
       };
       return reply.send(body);
     },

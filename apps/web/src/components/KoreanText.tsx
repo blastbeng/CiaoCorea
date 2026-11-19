@@ -74,9 +74,20 @@ export function WordToken({ token }: { token: string }) {
             <>
               <span>{match.it}</span>
               <span className="faint small">{match.rr}</span>
-              {match.via !== 'exact' ? (
+              {match.via === 'particle' && match.particle ? (
+                <>
+                  <span className="faint small">
+                    nel testo: {word} = {match.ko} + {match.particle}
+                  </span>
+                  {match.particleHint ? (
+                    <span className="faint small">{match.particleHint}</span>
+                  ) : null}
+                </>
+              ) : null}
+              {match.via === 'stem' ? (
                 <span className="faint small">
-                  nel testo: {word} → voce: {match.ko}
+                  forma di {match.ko}
+                  {match.ending ? ` (desinenza -${match.ending})` : ''}
                 </span>
               ) : null}
             </>

@@ -25,10 +25,29 @@ describe('lookupWord', () => {
     expect(lookupWord(entries, '학교에서는')?.entry.ko).toBe('학교');
   });
 
+  it('dice quale particella ha tolto e a che cosa serve', () => {
+    const oggetto = lookupWord(entries, '물을');
+    expect(oggetto?.particle).toBe('을');
+    expect(oggetto?.particleHint).toContain('oggetto');
+
+    const luogo = lookupWord(entries, '학교에서');
+    expect(luogo?.particle).toBe('에서');
+    expect(luogo?.particleHint).toContain('luogo');
+
+    // 에서 non va letto come 에 seguito da una parola che finisce per 서.
+    expect(lookupWord(entries, '학교에서는')?.particle).toBe('에서는');
+    expect(lookupWord(entries, '학교')?.particle).toBeUndefined();
+  });
+
   it('riconosce la forma coniugata dalla radice', () => {
     expect(lookupWord(entries, '먹었어요')?.entry.ko).toBe('먹다');
     expect(lookupWord(entries, '만나요')?.entry.ko).toBe('만나다');
     expect(lookupWord(entries, '좋아요')?.entry.ko).toBe('좋다');
+  });
+
+  it('dice quale desinenza ha riconosciuto', () => {
+    expect(lookupWord(entries, '먹었어요')?.ending).toBe('었');
+    expect(lookupWord(entries, '먹었어요')?.particle).toBeUndefined();
   });
 
   it('non inventa un match quando la parola non c’è', () => {
