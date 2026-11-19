@@ -10,6 +10,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   const location = useLocation();
   const [dueCards, setDueCards] = useState(0);
   const [mistakes, setMistakes] = useState(0);
+  const [navOpen, setNavOpen] = useState(false);
 
   // I badge sono promemoria, non dati critici: se la richiesta fallisce si
   // tengono i numeri di prima invece di mostrare un errore nella shell.
@@ -37,6 +38,21 @@ export function AppShell({ children }: { children: ReactNode }) {
     };
   }, [location.pathname]);
 
+  // Il menu si chiude da solo quando cambia pagina: aperto sopra il contenuto
+  // nuovo sarebbe solo un ostacolo da togliere.
+  useEffect(() => {
+    setNavOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (!navOpen) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setNavOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [navOpen]);
+
   const handleLogout = async () => {
     await logout();
     navigate('/login', { replace: true });
@@ -52,7 +68,11 @@ export function AppShell({ children }: { children: ReactNode }) {
           CiaoCorea
         </Link>
 
-        <nav className="app-nav">
+        <nav
+          id="app-nav"
+          className={navOpen ? 'app-nav app-nav--open' : 'app-nav'}
+          onClick={() => setNavOpen(false)}
+        >
           <NavLink to="/" end>
             Percorso
           </NavLink>
@@ -79,21 +99,63 @@ export function AppShell({ children }: { children: ReactNode }) {
             ) : null}
           </NavLink>
           <NavLink to="/progressi">Progressi</NavLink>
+
+          {/* Lo stesso paio di azioni dell'header, per quando l'header è
+              stretto e le ha cedute al menu. */}
+          <div className="nav-extra">
+            <Link className="btn btn--sm btn--ghost btn--block" to="/login">
+              Cambia profilo
+            </Link>
+            <button
+              type="button"
+              className="btn btn--sm btn--ghost btn--block"
+              onClick={handleLogout}
+            >
+              Esci
+            </button>
+          </div>
         </nav>
 
         <div className="user-chip">
           <ThemeToggle />
           <span className="user-chip__name">{user?.displayName ?? ''}</span>
           {/* Il database è di questo browser: cambiare utente è scegliere un
-              altro profilo, non rifare l'accesso. */}
-          <Link className="btn btn--sm btn--ghost" to="/login">
-            Profili
-          </Link>
-          <button type="button" className="btn btn--sm btn--ghost" onClick={handleLogout}>
-            Esci
-          </button>
+              altro profilo, non rifare l'accesso. Su schermo stretto questi due
+              passano nel menu: nell'header non ci starebbero. */}
+          <div className="user-chip__actions">
+            <Link className="btn btn--sm btn--ghost" to="/login">
+              Profili
+            </Link>
+            <button type="button" className="btn btn--sm btn--ghost" onClick={handleLogout}>
+              Esci
+            </button>
+          </div>
         </div>
+
+        {/* Su schermo stretto le sette voci non stanno in una riga: il menu si
+            apre da qui, e il pannello sotto l'header le mostra in colonna. */}
+        <button
+          type="button"
+          className="btn btn--sm btn--ghost nav-toggle"
+          onClick={() => setNavOpen((open) => !open)}
+          aria-expanded={navOpen}
+          aria-controls="app-nav"
+          aria-label={navOpen ? 'Chiudi il menu' : 'Apri il menu'}
+          title={navOpen ? 'Chiudi il menu' : 'Apri il menu'}
+        >
+          <span aria-hidden="true">{navOpen ? '✕' : '☰'}</span>
+        </button>
       </header>
+
+      {navOpen ? (
+        <button
+          type="button"
+          className="nav-scrim"
+          onClick={() => setNavOpen(false)}
+          aria-label="Chiudi il menu"
+          tabIndex={-1}
+        />
+      ) : null}
 
       <main className="app-main">
         <div className="app-body">{children}</div>

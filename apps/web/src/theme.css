@@ -65,6 +65,8 @@
   --radius: 14px;
   --radius-sm: 9px;
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.45), 0 10px 28px rgba(0, 0, 0, 0.4);
+  /* Velo dietro il menu aperto: scurisce la pagina invece di nasconderla. */
+  --scrim: rgba(3, 8, 13, 0.6);
   /* Il coreano chiede un font con le sillabe Hangul: su Linux si chiama
      «Noto Sans CJK KR», su Windows «Malgun Gothic», su macOS «Apple SD Gothic
      Neo». Senza questi ricadde i quadratini prendono il posto delle parole. */
@@ -129,6 +131,7 @@
   --nav-active-ink: #fffdf9;
 
   --shadow: 0 1px 2px var(--hover), 0 8px 24px var(--hover);
+  --scrim: rgba(33, 29, 25, 0.32);
 
   color-scheme: light;
 }
@@ -313,6 +316,38 @@ button {
   gap: 0.6rem;
   font-size: 0.88rem;
   color: var(--ink-soft);
+}
+
+.user-chip__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Le azioni di profilo dentro il menu: si vedono solo quando il menu esiste. */
+.nav-extra {
+  display: none;
+}
+
+/* Da qui in su le voci stanno nell'header: il bottone non serve. Serve la
+   doppia classe perché `.btn` è definito più sotto e riaccenderebbe il display. */
+.btn.nav-toggle {
+  display: none;
+  flex: none;
+  min-width: 2.3rem;
+  padding: 0.3rem 0.45rem;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.nav-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 19;
+  padding: 0;
+  border: 0;
+  background: var(--scrim);
+  cursor: pointer;
 }
 
 .app-main {
@@ -1165,21 +1200,70 @@ a.lesson-row:hover {
   /* Il nome per esteso non ci sta accanto ai pulsanti: resta nel profilo.
      Il bottone del tema tiene la sua icona: è uno span dentro il bottone, non
      il nome, e nasconderlo lascerebbe un quadrato vuoto. */
-  .user-chip__name {
+  .user-chip__name,
+  .user-chip__actions {
     display: none;
   }
 
-  /* Sette voci non stanno in una riga: qui vanno a capo invece di scorrere di
-     lato, così si vedono tutte e non serve indovinare che ce ne sono altre. */
+  /* Sette voci su una riga non ci stanno, e a capo mangerebbero un quarto dello
+     schermo prima ancora del contenuto: si apre un pannello dal bottone. */
   .app-nav {
-    flex-wrap: wrap;
-    overflow-x: visible;
-    gap: 0.1rem 0.15rem;
+    display: none;
   }
 
-  .app-nav a {
-    padding: 0.35rem 0.5rem;
-    font-size: 0.85rem;
+  .app-nav--open {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    max-height: calc(100dvh - 3.5rem);
+    padding: 0.4rem 0.9rem 0.7rem;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: var(--paper-raised);
+    border-bottom: 1px solid var(--line);
+    border-radius: 0 0 var(--radius) var(--radius);
+    box-shadow: var(--shadow);
+    gap: 0.1rem;
+  }
+
+  .app-nav--open a {
+    padding: 0.6rem 0.7rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+  }
+
+  /* Profilo e uscita: qui non c'è spazio per loro nell'header, e nel menu
+     stanno meglio di due icone da indovinare. */
+  .app-nav--open .nav-extra {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    margin-top: 0.45rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid var(--line);
+  }
+
+  /* Come le voci sopra: sono righe del menu, non pulsanti da premere. */
+  .app-nav--open .nav-extra .btn {
+    justify-content: flex-start;
+    padding: 0.6rem 0.7rem;
+    border-color: transparent;
+    background: transparent;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+
+  .app-nav--open .nav-extra .btn:hover:not(:disabled) {
+    background: var(--hover);
+  }
+
+  .btn.nav-toggle {
+    display: inline-flex;
   }
 }
 
