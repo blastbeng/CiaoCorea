@@ -73,23 +73,39 @@ export function Login() {
           <div className="card">
             <span className="label">Chi sta studiando?</span>
             <ul className="account-list">
-              {accounts.map((account) => (
-                <li key={account.id}>
-                  <button
-                    type="button"
-                    className="account-pick"
-                    disabled={busy !== null || account.id === user?.id}
-                    onClick={() => void choose(account.id, account.email)}
-                  >
-                    <span className="account-pick__name">{account.displayName}</span>
-                    <span className="faint small">
-                      {account.email}
-                      {account.id === user?.id ? ' · profilo attivo' : ''}
-                      {account.id !== user?.id && !account.hasSession ? ' · serve la password' : ''}
-                    </span>
-                  </button>
-                </li>
-              ))}
+              {accounts.map((account) => {
+                const mine = account.id === user?.id;
+                return (
+                  <li key={account.id}>
+                    <button
+                      type="button"
+                      className={mine ? 'account-pick account-pick--mine' : 'account-pick'}
+                      disabled={busy !== null}
+                      onClick={() => {
+                        // Il profilo già aperto non ha niente da chiedere: si
+                        // torna alla sua home, dove stava studiando.
+                        if (mine) {
+                          navigate('/', { replace: true });
+                          return;
+                        }
+                        void choose(account.id, account.email);
+                      }}
+                    >
+                      <span className="account-pick__name">{account.displayName}</span>
+                      <span className="faint small">
+                        {account.email}
+                        {mine ? ' · profilo attivo' : ''}
+                        {!mine && !account.hasSession ? ' · serve la password' : ''}
+                      </span>
+                      {mine ? (
+                        <span className="account-pick__go" aria-hidden="true">
+                          →
+                        </span>
+                      ) : null}
+                    </button>
+                  </li>
+                );
+              })}
             </ul>
             <Link className="btn btn--block" to="/registrazione">
               Crea un nuovo profilo

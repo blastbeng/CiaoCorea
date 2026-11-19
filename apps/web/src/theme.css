@@ -36,7 +36,12 @@
   box-sizing: border-box;
 }
 
-html,
+html {
+  height: 100%;
+  /* Su iOS il testo in orizzontale si gonfia da solo: qui il corpo decide. */
+  -webkit-text-size-adjust: 100%;
+}
+
 body,
 #root {
   height: 100%;
@@ -214,7 +219,8 @@ button {
   width: 100%;
   max-width: 980px;
   margin: 0 auto;
-  padding: clamp(1.25rem, 3vw, 2.25rem) clamp(1rem, 4vw, 2.5rem) 3rem;
+  padding: clamp(1.25rem, 3vw, 2.25rem) clamp(1rem, 4vw, 2.5rem)
+    calc(3rem + env(safe-area-inset-bottom));
 }
 
 .app-footer {
@@ -288,12 +294,14 @@ button {
   gap: 1rem;
 }
 
+/* Ogni griglia parte con `min(100%, …)`: su un telefono stretto la colonna
+   minima è lo schermo, non la misura del desktop, così non esce di lato. */
 .grid--2 {
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
 }
 
 .grid--3 {
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
 }
 
 .stat {
@@ -345,6 +353,12 @@ button {
   background: #efe7dc;
   color: var(--ink-soft);
   white-space: nowrap;
+}
+
+/* Quando il titolo è lungo il badge va a capo: da solo resterebbe a sinistra,
+   sotto il titolo, e sembrerebbe parte di un'altra riga. */
+.row--between > .badge {
+  margin-left: auto;
 }
 
 .badge--passed {
@@ -576,7 +590,7 @@ a.lesson-row:hover {
 
 .vocab {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 180px), 1fr));
   gap: 0.6rem;
   margin: 0;
   padding: 0;
@@ -613,7 +627,7 @@ a.lesson-row:hover {
 
 .options {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 130px), 1fr));
   gap: 0.6rem;
 }
 
@@ -869,7 +883,7 @@ a.lesson-row:hover {
 
 .grade-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 120px), 1fr));
   gap: 0.6rem;
   margin-top: 1.5rem;
 }
@@ -927,11 +941,13 @@ a.lesson-row:hover {
 }
 
 .account-pick {
+  position: relative;
   width: 100%;
   display: grid;
   gap: 0.15rem;
   text-align: left;
-  padding: 0.7rem 0.9rem;
+  /* Lo spazio a destra è per la freccia del profilo già aperto. */
+  padding: 0.7rem 2.2rem 0.7rem 0.9rem;
   border: 1px solid var(--line);
   border-radius: 12px;
   background: var(--paper-raised);
@@ -949,29 +965,91 @@ a.lesson-row:hover {
   cursor: default;
 }
 
+/* Il profilo in cui sei già dentro si distingue anche senza leggere la riga. */
+.account-pick--mine {
+  border-color: var(--line-strong);
+  background: #fffdf8;
+}
+
 .account-pick__name {
   font-weight: 600;
 }
 
-@media (max-width: 640px) {
+/* Il profilo in cui sei già dentro non si risceglie: la freccia dice che il
+   tocco riporta alla home. */
+.account-pick__go {
+  position: absolute;
+  top: 50%;
+  right: 0.8rem;
+  transform: translateY(-50%);
+  color: var(--accent);
+  font-size: 1.1rem;
+}
+
+/* Sette voci più il marchio non stanno in una riga sotto i ~1100px: la barra
+   va a capo una volta sola, e le voci scorrono di lato invece di stringersi
+   fino a spezzare le parole. */
+@media (max-width: 1080px) {
   .app-header {
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.5rem 1rem;
   }
 
-  .user-chip span {
-    display: none;
+  .user-chip {
+    margin-left: auto;
   }
 
   .app-nav {
     order: 3;
     width: 100%;
     margin-left: 0;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+
+  .app-nav::-webkit-scrollbar {
+    display: none;
   }
 
   .app-nav a {
-    flex: 1;
-    text-align: center;
+    flex: none;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-header {
+    padding: 0.5rem 0.9rem;
+  }
+
+  .brand {
+    font-size: 0.95rem;
+  }
+
+  .brand-mark {
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+  }
+
+  /* Il nome per esteso non ci sta accanto ai due pulsanti: resta nel profilo. */
+  .user-chip span {
+    display: none;
+  }
+
+  /* Sette voci non stanno in una riga: qui vanno a capo invece di scorrere di
+     lato, così si vedono tutte e non serve indovinare che ce ne sono altre. */
+  .app-nav {
+    flex-wrap: wrap;
+    overflow-x: visible;
+    gap: 0.1rem 0.15rem;
+  }
+
+  .app-nav a {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.85rem;
   }
 }
 
@@ -979,7 +1057,7 @@ a.lesson-row:hover {
 
 .dialogue-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
   gap: 1rem;
 }
 
@@ -1087,16 +1165,6 @@ a.lesson-row:hover {
   margin-top: 0.5rem;
 }
 
-@media (max-width: 640px) {
-  .dialogue-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .chat__bubble {
-    max-width: 100%;
-  }
-}
-
 /* ---------- dizionario ---------- */
 
 .stack--tight > * + * {
@@ -1131,7 +1199,7 @@ a.lesson-row:hover {
 
 .vocab-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
   gap: 0.75rem;
 }
 
@@ -1245,7 +1313,7 @@ a.lesson-row:hover {
 
 .gloss {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 190px), 1fr));
   gap: 0.4rem 0.9rem;
   margin: 0;
   padding: 0;
@@ -1351,7 +1419,7 @@ a.lesson-row:hover {
 
 .writing-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
   gap: 1rem;
   align-items: start;
 }
@@ -1405,7 +1473,7 @@ textarea.input--ko {
 
 .compare {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
   gap: 0.75rem;
 }
 
@@ -1452,4 +1520,138 @@ textarea.input--ko {
 .fragile__word .hangul {
   font-size: 1.2rem;
   font-weight: 600;
+}
+
+/* ---------- schermi piccoli ---------- */
+
+/*
+ * Il telefono è il modo più frequente di aprire il quaderno: qui si stringono
+ * i margini, si allargano i bersagli del dito e si lascia respirare il testo.
+ */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 1.45rem;
+  }
+
+  h2 {
+    font-size: 1.15rem;
+  }
+
+  .app-main {
+    padding: 1.1rem 0.9rem calc(2.5rem + env(safe-area-inset-bottom));
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .stat {
+    padding: 0.75rem 0.65rem;
+  }
+
+  /* Sei numeri in colonna sono una pagina intera di scorrimento: su un
+     telefono ci stanno tre per riga, con l'etichetta sotto. */
+  .grid--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  .stat-value {
+    font-size: 1.3rem;
+  }
+
+  .stat .stat-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.03em;
+  }
+
+  /* Sotto i 44px il dito sbaglia tasto: i pulsanti crescono in altezza. */
+  .btn {
+    min-height: 2.75rem;
+  }
+
+  .btn--sm {
+    min-height: 2.4rem;
+  }
+
+  .lesson-row {
+    gap: 0.6rem;
+    padding: 0.75rem 0.8rem;
+  }
+
+  /* Titolo e numeri uno sotto l'altro: affiancati si mangerebbero il nome. */
+  .course-row {
+    grid-template-columns: 1fr;
+  }
+
+  .exercise-head {
+    flex-wrap: wrap;
+  }
+
+  .assembly {
+    font-size: 1.4rem;
+  }
+
+  /* I jamo restano jamo, ma il tasto deve essere alto abbastanza per il dito. */
+  .key {
+    min-width: 2.5rem;
+    min-height: 2.6rem;
+  }
+
+  .result-item {
+    gap: 0.55rem;
+    padding: 0.6rem 0.7rem;
+  }
+
+  .score-value {
+    font-size: 2rem;
+  }
+
+  .flash {
+    padding: 1.75rem 0.5rem;
+  }
+
+  .chat__bubble {
+    max-width: 100%;
+  }
+
+  .chat__ko {
+    font-size: 1.2rem;
+  }
+
+  /* Le risposte del dialogo sono frasi intere: affiancate si spezzano a metà
+     parola, una per riga si leggono e si toccano meglio. */
+  .chat__task .options {
+    grid-template-columns: 1fr;
+  }
+
+  .dialogue-card__foot,
+  .writing-card__foot {
+    flex-wrap: wrap;
+  }
+
+  .plan__task {
+    padding: 0.6rem 0.7rem;
+  }
+
+  /* Il compito si legge, poi il pulsante: a metà riga non ci sta. */
+  .plan__task .btn {
+    width: 100%;
+  }
+
+  .heat {
+    height: 7rem;
+  }
+
+  .heat-day {
+    font-size: 0.68rem;
+  }
+
+  .login-wrap {
+    padding: 1.25rem 0.9rem;
+  }
+
+  .login-card {
+    max-width: 100%;
+  }
 }
