@@ -27,6 +27,9 @@ function readTheme(): Theme {
 /** Scrive il tema sull'elemento radice: il resto lo fanno i token in theme.css. */
 export function applyTheme(theme: Theme) {
   document.documentElement.dataset.theme = theme;
+  // Anche la barra del browser (Android, Safari) segue la coppia di temi.
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute('content', theme === 'light' ? '#f3f3f3' : '#0d1620');
 }
 
 export function ThemeToggle({ floating = false }: { floating?: boolean }) {

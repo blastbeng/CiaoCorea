@@ -1,8 +1,9 @@
 /*
  * Un solo foglio e una sola scala di token: ogni colore del sito esce da qui,
- * così cambiare tema è cambiare sedici righe. Il tema predefinito è il blu
- * notte di VS Code, quello che stanca meno la sera; il chiaro è a un tocco di
- * distanza (`data-theme="light"` sull'elemento radice, vedi src/theme.tsx).
+ * così cambiare tema è cambiare un blocco di variabili. La coppia è quella di
+ * VS Code: blu notte di notte, grigi neutri di giorno (`data-theme="light"`
+ * sull'elemento radice, vedi src/theme.tsx). Le azioni sono blu in entrambi i
+ * temi; il rosso esiste solo per segnalare un errore.
  */
 
 :root {
@@ -29,24 +30,31 @@
   --line: #223243;
   --line-strong: #33475c;
 
-  /* accenti */
-  --accent: #d13b4c;
-  --accent-strong: #e15a68;
-  --accent-soft: #3a1e24;
-  --accent-ink: #ff9fab;
-  --accent-line: #5c2b34;
-  --accent-2: #e8694f;
+  /* accenti — il blu dei pulsanti di VS Code: le azioni sono blu, e il rosso
+     resta soltanto a chi segnala un errore. */
+  --accent: #1f6feb;
+  --accent-strong: #1a5fd0;
+  --accent-soft: #16304d;
+  --accent-ink: #79b8ff;
+  --accent-line: #234a77;
+  --accent-2: #56a3ff;
   --on-accent: #ffffff;
 
-  --blue: #6cb6ff;
+  --blue: #79b8ff;
   --blue-soft: #14283b;
-  --blue-line: #2b4c6b;
+  --blue-line: #234a77;
 
   --ok: #6ec48f;
   --ok-soft: #122a20;
   --ok-line: #27553e;
   --ok-bg: #0f2018;
-  --bad-bg: #1e1218;
+
+  /* L'unico rosso che resta: l'errore. */
+  --danger: #f14c4c;
+  --danger-soft: #2d1a1c;
+  --danger-line: #613032;
+  --danger-ink: #ff8b8b;
+  --bad-bg: #221517;
 
   --warn: #e3b264;
   --warn-soft: #2f2516;
@@ -77,61 +85,68 @@
   color-scheme: dark;
 }
 
-/* Carta calda e inchiostro scuro: il tema di giorno, identico a prima. */
+/* Grigi neutri, superfici bianche e blu d'azione: il tema chiaro di VS Code.
+   Nessun token riprende sé stesso: ognuno ha un valore esplicito, altrimenti
+   la custom property risulta invalida e ricade sul colore ereditato. */
 :root[data-theme='light'] {
-  --paper: #fbf6ee;
-  --paper-raised: #fffdf9;
+  --paper: #f3f3f3;
+  --paper-raised: #ffffff;
   --surface: #ffffff;
   --field: #ffffff;
-  --field-soft: #fffdf8;
-  --sunken: #f7f1e7;
-  --track: #ece2d5;
-  --card-locked: #fbf7f0;
-  --chip: #efe7dc;
-  --chip-muted: #f0ebe4;
-  --chip-strong: #f0e7db;
-  --btn-hover: #f6efe5;
+  --field-soft: #f8f8f8;
+  --sunken: #f3f3f3;
+  --track: #e5e5e5;
+  --card-locked: #f8f8f8;
+  --chip: #ececec;
+  --chip-muted: #f3f3f3;
+  --chip-strong: #e4e4e4;
+  --btn-hover: #eaeaea;
 
-  --ink: #211d19;
-  --ink-soft: #6b6259;
-  --ink-faint: #9a9086;
+  --ink: #1f1f1f;
+  --ink-soft: #5f5f5f;
+  --ink-faint: #6c6c6c;
 
-  --line: #e7dccd;
-  --line-strong: #d6c7b4;
+  --line: #e0e0e0;
+  --line-strong: #c9c9c9;
 
-  --accent: #bf2f3d;
-  --accent-strong: #96222d;
-  --accent-soft: #f7e2e2;
-  --accent-ink: #96222d;
-  --accent-line: #eec9c9;
-  --accent-2: var(--accent-2);
+  --accent: #005fb8;
+  --accent-strong: #0258a8;
+  --accent-soft: #e7f1fb;
+  --accent-ink: #0b4f8f;
+  --accent-line: #b9d7f2;
+  --accent-2: #1a85ff;
   --on-accent: #ffffff;
 
-  --blue: #24557f;
-  --blue-soft: #e3edf6;
-  --blue-line: #c9dced;
+  --blue: #005fb8;
+  --blue-soft: #e7f1fb;
+  --blue-line: #b9d7f2;
 
-  --ok: #2f7355;
-  --ok-soft: #e2f0e7;
-  --ok-line: #c6e2d2;
-  --ok-bg: #f7fbf8;
-  --bad-bg: #fdf7f7;
+  --ok: #107c10;
+  --ok-soft: #e9f5e9;
+  --ok-line: #c2e3c2;
+  --ok-bg: #f6fbf6;
 
-  --warn: #a86a1d;
-  --warn-soft: #f8ecd8;
+  --danger: #c72e2e;
+  --danger-soft: #fdeaea;
+  --danger-line: #f2c2c2;
+  --danger-ink: #b32020;
+  --bad-bg: #fdf6f6;
 
-  --hover: var(--hover);
-  --hover-strong: var(--hover-strong);
-  --header-bg: var(--header-bg);
-  --glow-a: var(--glow-a);
-  --glow-b: var(--glow-b);
-  --focus-ring: var(--focus-ring);
-  --focus-soft: var(--focus-soft);
-  --nav-active-bg: #211d19;
-  --nav-active-ink: #fffdf9;
+  --warn: #8a6100;
+  --warn-soft: #fdf3df;
 
-  --shadow: 0 1px 2px var(--hover), 0 8px 24px var(--hover);
-  --scrim: rgba(33, 29, 25, 0.32);
+  --hover: rgba(0, 0, 0, 0.05);
+  --hover-strong: rgba(0, 0, 0, 0.08);
+  --header-bg: rgba(243, 243, 243, 0.9);
+  --glow-a: #eaf2fb;
+  --glow-b: #e6eff9;
+  --focus-ring: rgba(0, 120, 212, 0.45);
+  --focus-soft: rgba(0, 120, 212, 0.14);
+  --nav-active-bg: #005fb8;
+  --nav-active-ink: #ffffff;
+
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.08);
+  --scrim: rgba(0, 0, 0, 0.3);
 
   color-scheme: light;
 }
@@ -656,9 +671,9 @@ button {
 }
 
 .alert--error {
-  background: var(--accent-soft);
-  border-color: var(--accent-line);
-  color: var(--accent-ink);
+  background: var(--danger-soft);
+  border-color: var(--danger-line);
+  color: var(--danger-ink);
 }
 
 .alert--ok {
@@ -992,7 +1007,7 @@ a.lesson-row:hover {
 }
 
 .result-item--wrong {
-  border-color: var(--accent-line);
+  border-color: var(--danger-line);
   background: var(--bad-bg);
 }
 
@@ -1007,7 +1022,7 @@ a.lesson-row:hover {
 }
 
 .result-mark--wrong {
-  color: var(--accent);
+  color: var(--danger);
 }
 
 /* ---------- ripassi ---------- */
