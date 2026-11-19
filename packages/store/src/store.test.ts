@@ -6,6 +6,7 @@ import {
   getVocabulary,
   getWritingPrompts,
 } from '@ciaocorea/curriculum';
+import { USERNAME_MAX } from '@ciaocorea/shared';
 import type {
   AttemptResponse,
   CourseListResponse,
@@ -127,6 +128,47 @@ describe('profili nel browser', () => {
     expect((await store.accounts()).accounts[0]?.displayName).toBe('Blast');
 
     await expect(store.rename('x')).rejects.toMatchObject({ status: 400 });
+  });
+
+  it('sostituisce il nome utente generato con uno scelto', async () => {
+    const user = await store.bootstrap();
+    expect(user.usernameChosen).toBe(false);
+
+    const changed = await store.changeUsername('Blast');
+    expect(changed).toMatchObject({ id: user.id, username: 'Blast', usernameChosen: true });
+    // Il nome con cui è chiamato segue la prima scelta, invece di restare
+    // quello anonimo che il portale gli aveva dato.
+    expect(changed.displayName).toBe('Blast');
+    expect(await store.session()).toMatchObject({ username: 'Blast', usernameChosen: true });
+    expect((await store.accounts()).accounts[0]?.username).toBe('Blast');
+  });
+
+  it('un nome utente scelto non si porta via quello di un altro profilo', async () => {
+    const first = await store.bootstrap();
+    const second = await store.addProfile();
+
+    // `Marco` e `marco` si leggono uguali nell'elenco dei profili.
+    await expect(store.changeUsername(first.username.toUpperCase())).rejects.toMatchObject({
+      status: 409,
+      code: 'username_taken',
+    });
+
+    expect((await store.session())?.username).toBe(second.username);
+  });
+
+  it('rifiuta i nomi utente fuori forma', async () => {
+    await store.bootstrap();
+
+    for (const bad of ['x', 'con spazio', '-inizio', 'a'.repeat(USERNAME_MAX + 1)]) {
+      await expect(store.changeUsername(bad)).rejects.toMatchObject({
+        status: 400,
+        code: 'invalid_username',
+      });
+    }
+  });
+
+  it('senza sessione non si cambia nome utente', async () => {
+    await expect(store.changeUsername('Blast')).rejects.toMatchObject({ status: 401 });
   });
 
   it('riapre un profilo la cui sessione è scaduta', async () => {

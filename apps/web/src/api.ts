@@ -73,6 +73,10 @@ export const api = {
   rename: async (displayName: string): Promise<SessionUser> =>
     (await getStore()).rename(displayName),
 
+  /** Il nome utente con la chiocciola: unico fra i profili di questo computer. */
+  changeUsername: async (username: string): Promise<SessionUser> =>
+    (await getStore()).changeUsername(username),
+
   dashboard: () => request<CourseListResponse>('GET', '/api/courses'),
 
   course: (slug: string) => request<{ course: CourseView }>('GET', `/api/courses/${slug}`),

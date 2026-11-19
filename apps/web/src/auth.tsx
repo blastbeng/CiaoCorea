@@ -29,7 +29,17 @@ interface AuthContextValue {
   switchUser: (userId: string) => Promise<SessionUser | null>;
   /** Il nome con cui lo studente vuole essere chiamato. */
   rename: (displayName: string) => Promise<SessionUser>;
+  /** Il nome utente con la chiocciola, unico su questo computer. */
+  changeUsername: (username: string) => Promise<SessionUser>;
   refreshAccounts: () => Promise<void>;
+}
+
+/**
+ * `true` finché lo studente non ha scelto un nome suo: al primo avvio il nome
+ * utente è quello generato dal portale, e vale la pena dirgli che può cambiarlo.
+ */
+export function hasGeneratedUsername(user: SessionUser | null): boolean {
+  return user !== null && !user.usernameChosen;
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null);
@@ -93,6 +103,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     [refreshAccounts],
   );
 
+  const changeUsername = useCallback(
+    async (username: string) => {
+      const user = await api.changeUsername(username);
+      setState({ status: 'ready', user });
+      await refreshAccounts();
+      return user;
+    },
+    [refreshAccounts],
+  );
+
   const value = useMemo<AuthContextValue>(
     () => ({
       state,
@@ -102,9 +122,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       addProfile,
       switchUser,
       rename,
+      changeUsername,
       refreshAccounts,
     }),
-    [state, accounts, start, addProfile, switchUser, rename, refreshAccounts],
+    [state, accounts, start, addProfile, switchUser, rename, changeUsername, refreshAccounts],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

@@ -1,12 +1,15 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { api, PENDING_CHANGED } from '../api';
-import { useAuth } from '../auth';
+import { hasGeneratedUsername, useAuth } from '../auth';
 import { ThemeToggle } from '../theme';
 
 export function AppShell({ children }: { children: ReactNode }) {
   const { user } = useAuth();
   const location = useLocation();
+  // Il nome non è ancora suo: è quello che il portale gli ha dato al primo
+  // avvio. Finché è così lo diciamo, accanto al nome.
+  const nameIsGenerated = hasGeneratedUsername(user);
   const [dueCards, setDueCards] = useState(0);
   const [mistakes, setMistakes] = useState(0);
   const [navOpen, setNavOpen] = useState(false);
@@ -97,6 +100,9 @@ export function AppShell({ children }: { children: ReactNode }) {
           {/* Lo stesso paio di azioni dell'header, per quando l'header è
               stretto e le ha cedute al menu. */}
           <div className="nav-extra">
+            <Link className="btn btn--sm btn--ghost btn--block" to="/profilo">
+              {nameIsGenerated ? 'Il tuo profilo · cambia il nome' : 'Il tuo profilo'}
+            </Link>
             <Link className="btn btn--sm btn--ghost btn--block" to="/profili">
               Profili
             </Link>
@@ -105,7 +111,19 @@ export function AppShell({ children }: { children: ReactNode }) {
 
         <div className="user-chip">
           <ThemeToggle />
-          <span className="user-chip__name">{user?.displayName ?? ''}</span>
+          {/* Il nome è la porta del profilo: da lì si sceglie come farsi
+              chiamare. Se è ancora quello generato, lo diciamo qui: è il
+              momento in cui lo studente sta guardando. */}
+          <Link
+            className="user-chip__name"
+            to="/profilo"
+            title="Il tuo profilo: nome e nome utente"
+          >
+            <span className="user-chip__label">{user?.displayName ?? ''}</span>
+            {nameIsGenerated ? (
+              <span className="user-chip__hint">(cambia qui il tuo username)</span>
+            ) : null}
+          </Link>
           {/* Il database è di questo browser: cambiare utente è scegliere un
               altro profilo, non rifare l'accesso. Su schermo stretto questo
               passa nel menu: nell'header non ci starebbe. */}

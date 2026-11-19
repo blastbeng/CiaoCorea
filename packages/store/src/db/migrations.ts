@@ -240,6 +240,17 @@ export const MIGRATIONS: Migration[] = [
       DROP TABLE username_fixups;
     `,
   },
+  {
+    id: '009-username-chosen',
+    sql: `
+      -- Al primo avvio il nome utente lo sceglie il portale. Da lì in poi è lo
+      -- studente a poterlo sostituire, e questa colonna ricorda se l'ha già
+      -- fatto: senza, il promemoria "cambia qui il tuo username" resterebbe
+      -- appeso al nome anche dopo. I profili che c'erano prima della colonna
+      -- risultano non ancora scelti, ed è vero: nessuno ha mai deciso quel nome.
+      ALTER TABLE users ADD COLUMN username_chosen INTEGER NOT NULL DEFAULT 0;
+    `,
+  },
 ];
 
 export function migrate(db: Db): void {

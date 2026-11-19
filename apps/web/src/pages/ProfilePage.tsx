@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../api';
-import { errorMessage, useAuth } from '../auth';
+import { errorMessage } from '../auth';
 import { useAsync } from '../useAsync';
 
 function formatDay(day: string): string {
@@ -14,63 +14,6 @@ function formatDate(value: string): string {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return value;
   return date.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
-}
-
-/** Rinomina: il nome con cui lo studente vuole essere chiamato. */
-function RenameForm({ initial }: { initial: string }) {
-  const { rename } = useAuth();
-  const [name, setName] = useState(initial);
-  const [busy, setBusy] = useState(false);
-  const [message, setMessage] = useState<{ kind: 'ok' | 'error'; text: string } | null>(null);
-
-  const submit = async (event: FormEvent) => {
-    event.preventDefault();
-    setBusy(true);
-    setMessage(null);
-    try {
-      const user = await rename(name.trim());
-      setName(user.displayName);
-      setMessage({ kind: 'ok', text: `Ciao ${user.displayName}: nome salvato.` });
-    } catch (problem) {
-      setMessage({ kind: 'error', text: errorMessage(problem) });
-    } finally {
-      setBusy(false);
-    }
-  };
-
-  return (
-    <form className="stack stack--tight" onSubmit={submit}>
-      <p className="muted small">
-        È il nome che leggi nella home e nei progressi. Il nome utente con il numero, quello con
-        cui il profilo si riconosce tra gli altri, resta com'è.
-      </p>
-
-      <label className="field">
-        <span className="stat-label">Come vuoi essere chiamato</span>
-        <input
-          className="input"
-          type="text"
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          minLength={2}
-          maxLength={60}
-          required
-        />
-      </label>
-
-      <div className="row">
-        <button type="submit" className="btn btn--primary" disabled={busy || name.trim() === initial}>
-          {busy ? 'Salvo…' : 'Salva il nome'}
-        </button>
-      </div>
-
-      {message ? (
-        <p className={message.kind === 'ok' ? 'alert alert--ok' : 'alert alert--error'}>
-          {message.text}
-        </p>
-      ) : null}
-    </form>
-  );
 }
 
 const GOAL_DAYS = [1, 2, 3, 4, 5, 6, 7];
@@ -312,10 +255,14 @@ export function ProfilePage() {
           {formatDate(profile.memberSince)}. Non ci sono password: per cambiare studente si passa
           a un altro profilo nella sezione Profili.
         </p>
-        <Link className="btn btn--sm" to="/profili">
-          Cambia profilo
-        </Link>
-        <RenameForm initial={profile.user.displayName} />
+        <div className="row">
+          <Link className="btn btn--sm" to="/profilo">
+            Nome e nome utente
+          </Link>
+          <Link className="btn btn--sm btn--ghost" to="/profili">
+            Cambia profilo
+          </Link>
+        </div>
       </section>
     </div>
   );

@@ -40,6 +40,8 @@ export interface Store {
   addProfile(): Promise<SessionUser>;
   /** Il nome con cui lo studente vuole essere chiamato. */
   rename(displayName: string): Promise<SessionUser>;
+  /** Il nome utente, quello con la chiocciola: unico su questo computer. */
+  changeUsername(username: string): Promise<SessionUser>;
   /** Passa a un altro profilo locale: un clic, niente credenziali. */
   switchUser(userId: string): Promise<SessionUser | null>;
   close(): Promise<void>;
@@ -121,6 +123,22 @@ export async function createStore(options: CreateStoreOptions = {}): Promise<Sto
     return result.body as T;
   };
 
+  /**
+   * Il nome tenuto accanto al token deve restare quello del database: senza
+   * questo, dopo una rinomina la riapertura mostrerebbe il nome vecchio finché
+   * non arriva la risposta di `session`.
+   */
+  const remember = (user: SessionUser): void => {
+    const stored = state.sessions[user.id];
+    if (!stored) return;
+    state.sessions[user.id] = {
+      ...stored,
+      username: user.username,
+      displayName: user.displayName,
+    };
+    persist();
+  };
+
   return {
     db,
 
@@ -145,6 +163,13 @@ export async function createStore(options: CreateStoreOptions = {}): Promise<Sto
 
     rename: async (displayName: string) => {
       const body = await call<{ user: SessionUser }>('POST', '/api/auth/rename', { displayName });
+      remember(body.user);
+      return body.user;
+    },
+
+    changeUsername: async (username: string) => {
+      const body = await call<{ user: SessionUser }>('POST', '/api/auth/username', { username });
+      remember(body.user);
       return body.user;
     },
 

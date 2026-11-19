@@ -10,6 +10,8 @@ export interface UserRow {
   username: string;
   display_name: string;
   created_at: string;
+  /** 1 quando lo studente ha sostituito il nome generato con uno suo. */
+  username_chosen: number;
 }
 
 export function findUserByUsername(db: Db, username: string): UserRow | undefined {
@@ -25,9 +27,17 @@ export function findUserById(db: Db, id: string): UserRow | undefined {
   return db.prepare('SELECT * FROM users WHERE id = ?').get(id) as UserRow | undefined;
 }
 
-/** `true` se il nome è già di un profilo: è la domanda del generatore. */
-export function usernameTaken(db: Db, username: string): boolean {
-  return findUserByUsername(db, username) !== undefined;
+/**
+ * `true` se il nome è già di un profilo: è la domanda del generatore, e la
+ * stessa che si fa quando lo studente se ne sceglie uno. Il confronto ignora
+ * maiuscole e minuscole: `Marco` e `marco` sarebbero due righe che si leggono
+ * uguali nell'elenco dei profili.
+ */
+export function usernameTaken(db: Db, username: string, exceptUserId?: string): boolean {
+  const row = db
+    .prepare('SELECT id FROM users WHERE lower(username) = lower(?)')
+    .get(username.trim()) as { id: string } | undefined;
+  return row !== undefined && row.id !== exceptUserId;
 }
 
 export interface NewUser {
@@ -36,25 +46,29 @@ export interface NewUser {
 }
 
 export function createUser(db: Db, user: NewUser): UserRow {
+  // Nasce con il nome scelto dal portale, non da lui: `username_chosen` lo dice.
   const row: UserRow = {
     id: randomUuid(),
     username: user.username.trim(),
     display_name: user.displayName.trim(),
     created_at: nowIso(),
+    username_chosen: 0,
   };
 
-  db.prepare('INSERT INTO users(id, username, display_name, created_at) VALUES (?, ?, ?, ?)').run(
-    row.id,
-    row.username,
-    row.display_name,
-    row.created_at,
-  );
+  db.prepare(
+    'INSERT INTO users(id, username, display_name, created_at, username_chosen) VALUES (?, ?, ?, ?, ?)',
+  ).run(row.id, row.username, row.display_name, row.created_at, row.username_chosen);
 
   return row;
 }
 
 export function toSessionUser(row: UserRow): SessionUser {
-  return { id: row.id, username: row.username, displayName: row.display_name };
+  return {
+    id: row.id,
+    username: row.username,
+    displayName: row.display_name,
+    usernameChosen: Number(row.username_chosen) === 1,
+  };
 }
 
 /**
@@ -64,6 +78,18 @@ export function toSessionUser(row: UserRow): SessionUser {
  */
 export function updateDisplayName(db: Db, userId: string, displayName: string): void {
   db.prepare('UPDATE users SET display_name = ? WHERE id = ?').run(displayName.trim(), userId);
+}
+
+/**
+ * Scegliersi il nome utente. Chi ha aperto il sito la prima volta si è trovato
+ * `VeloceTigre42` senza averlo chiesto: qui può sostituirlo con qualcosa che
+ * sente suo. L'unicità la controlla la rotta prima di arrivare qui.
+ */
+export function updateUsername(db: Db, userId: string, username: string): void {
+  db.prepare('UPDATE users SET username = ?, username_chosen = 1 WHERE id = ?').run(
+    username.trim(),
+    userId,
+  );
 }
 
 /**

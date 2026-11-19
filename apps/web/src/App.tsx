@@ -8,6 +8,7 @@ import { DialoguePage } from './pages/DialoguePage';
 import { DialoguesPage } from './pages/DialoguesPage';
 import { LessonPage } from './pages/LessonPage';
 import { MistakesPage } from './pages/MistakesPage';
+import { MyProfilePage } from './pages/MyProfilePage';
 import { NotFound } from './pages/NotFound';
 import { ProfilePage } from './pages/ProfilePage';
 import { ProfilesPage } from './pages/ProfilesPage';
@@ -68,6 +69,7 @@ export default function App() {
         <Route path="dizionario" element={<VocabularyPage />} />
         <Route path="quaderno" element={<WritingPage />} />
         <Route path="progressi" element={<ProfilePage />} />
+        <Route path="profilo" element={<MyProfilePage />} />
         <Route path="profili" element={<ProfilesPage />} />
         <Route path="*" element={<NotFound />} />
       </Route>

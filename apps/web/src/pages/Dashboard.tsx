@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import type { CourseView, PlanTask, StudyPlan } from '@ciaocorea/shared';
 import { api } from '../api';
-import { useAuth } from '../auth';
+import { hasGeneratedUsername, useAuth } from '../auth';
 import { useAsync } from '../useAsync';
 
 function CourseCard({ course }: { course: CourseView }) {
@@ -111,6 +111,7 @@ export function Dashboard() {
   }
 
   const { courses, summary, dueCards, plan } = state.data;
+  const nameIsGenerated = hasGeneratedUsername(user);
 
   return (
     <div className="stack">
@@ -122,6 +123,16 @@ export function Dashboard() {
             : 'Si parte dalle lettere: poche cose al giorno, ripetute, si fissano.'}
         </p>
       </header>
+
+      {/* Il primo giorno nessuno ha scelto il proprio nome: lo ha fatto il
+          portale. Dirlo qui costa una riga e risparmia un profilo anonimo. */}
+      {nameIsGenerated ? (
+        <p className="alert alert--warn">
+          Il nome utente <strong>@{user?.username}</strong> l'ha scelto il portale.{' '}
+          <Link to="/profilo">Cambia qui il tuo username</Link> — o almeno il nome con cui vuoi
+          essere chiamato.
+        </p>
+      ) : null}
 
       <PlanCard plan={plan} />
 

@@ -339,6 +339,34 @@ button {
   gap: 0.6rem;
 }
 
+/* Il nome è anche la porta del profilo: da qui si sceglie come farsi
+   chiamare. Due righe, perché sotto ci sta il promemoria. */
+.user-chip__name {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.05rem;
+  color: inherit;
+  text-decoration: none;
+  line-height: 1.25;
+}
+
+.user-chip__name:hover .user-chip__label {
+  text-decoration: underline;
+}
+
+.user-chip__label {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* Il nome è ancora quello generato dal portale: dillo, e dì dove si cambia. */
+.user-chip__hint {
+  font-size: 0.72rem;
+  color: var(--warn);
+  white-space: nowrap;
+}
+
 /* Le azioni di profilo dentro il menu: si vedono solo quando il menu esiste. */
 .nav-extra {
   display: none;
@@ -686,6 +714,53 @@ button {
   background: var(--blue-soft);
   border-color: var(--blue-line);
   color: var(--blue);
+}
+
+/* Le cose da sistemare, non gli errori: il nome ancora generato, per esempio. */
+.alert--warn {
+  background: var(--warn-soft);
+  border-color: var(--warn);
+  color: var(--warn);
+}
+
+.alert--warn a {
+  color: inherit;
+  font-weight: 600;
+}
+
+/* ---------- profilo ---------- */
+
+.profile-hero {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+.avatar {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.profile-hero__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  /* Spinge il pulsante a destra, e va a capo da solo su schermo stretto. */
+  margin-right: auto;
+}
+
+.profile-hero__name {
+  font-size: 1.15rem;
 }
 
 /* ---------- corsi ---------- */

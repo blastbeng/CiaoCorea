@@ -362,6 +362,15 @@ export interface ProfileUserResponse {
 export const DISPLAY_NAME_MIN = 2;
 export const DISPLAY_NAME_MAX = 60;
 
+/**
+ * Il nome utente, quello con la chiocciola negli elenchi dei profili. Al primo
+ * avvio è generato (`VeloceTigre42`); chi vuole se ne sceglie uno suo, corto e
+ * senza spazi, che resta unico su questo computer.
+ */
+export const USERNAME_MIN = 2;
+export const USERNAME_MAX = 24;
+export const USERNAME_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
+
 /* ------------------------------------------------------------------------- *
  * Conversazione guidata: il dialogo è un copione, non un modello linguistico.
  * Ogni battuta dello studente ha una forma attesa e un insieme di varianti
@@ -502,6 +511,11 @@ export interface SessionUser {
   username: string;
   /** Come lo studente vuole essere chiamato: si cambia nelle impostazioni. */
   displayName: string;
+  /**
+   * `false` finché il nome utente è quello scelto dal portale: serve a
+   * ricordargli che può sostituirlo con uno suo.
+   */
+  usernameChosen: boolean;
 }
 
 export interface ProgressSummary {

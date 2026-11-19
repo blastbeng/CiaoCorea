@@ -113,9 +113,9 @@ export function ProfilesPage() {
           </button>
         </div>
         <p className="hint">
-          Il nome utente (stile <span className="faint small">@VeloceTigre42</span>) viene dato da
-          solo alla creazione; nelle impostazioni di ogni profilo si può cambiare il nome con cui
-          essere chiamati.
+          Il nome utente (stile <span className="faint small">@VeloceTigre42</span>) nasce generato:
+          si cambia dal proprio profilo, insieme al nome con cui vuoi essere chiamato. Anche i
+          progressi restano qui: ogni profilo ha i suoi.
         </p>
       </section>
     </div>

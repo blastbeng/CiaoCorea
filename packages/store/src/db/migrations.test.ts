@@ -56,7 +56,14 @@ describe('migrazione 007: dai profili con email ai profili locali', () => {
     const columns = (db.prepare('PRAGMA table_info(users)').all() as Array<{ name: string }>).map(
       (column) => column.name,
     );
-    expect(columns).toEqual(['id', 'username', 'display_name', 'created_at', 'weekly_goal']);
+    expect(columns).toEqual([
+      'id',
+      'username',
+      'display_name',
+      'created_at',
+      'weekly_goal',
+      'username_chosen',
+    ]);
 
     const rows = db
       .prepare('SELECT id, username, display_name, weekly_goal FROM users ORDER BY created_at')
@@ -77,6 +84,17 @@ describe('migrazione 007: dai profili con email ai profili locali', () => {
       { id: 'user-maiuscole', username: 'Anna', display_name: 'Anna', weekly_goal: 5 },
       { id: 'user-anna', username: 'anna@altro.it', display_name: 'Anna Due', weekly_goal: 5 },
     ]);
+  });
+
+  it('lascia i profili migrati come nomi mai scelti', async () => {
+    const db = await legacyDb();
+    migrate(db);
+
+    // Nessuno di loro ha mai deciso uno username: il promemoria ha senso.
+    const rows = db.prepare('SELECT username_chosen FROM users').all() as Array<{
+      username_chosen: number;
+    }>;
+    expect(rows.every((row) => row.username_chosen === 0)).toBe(true);
   });
 
   it('non si porta dietro progressi e sessioni', async () => {
