@@ -4,7 +4,7 @@
   "title": "문법 — Frasi che stanno in piedi",
   "subtitle": "Dalla copula ai verbi al presente, con le particelle che servono",
   "level": "A1",
-  "description": "Cinque lezioni per costruire le prime frasi complete: identificare una persona, dire cosa c'è e cosa non c'è, coniugare i verbi al presente cortese, legare oggetto e luogo con le particelle e dire dove si va e dove si fa con 에 e 에서. Niente elenchi da imparare a memoria: ogni regola arriva con esempi che si usano subito.",
+  "description": "Sette lezioni per costruire frasi complete: identificare una persona, dire cosa c'è e cosa non c'è, coniugare i verbi al presente cortese, legare oggetto e luogo con le particelle, negare un'azione con 안 e -지 않다, e dire che cosa si può, si deve o non si può fare. Niente elenchi da imparare a memoria: ogni regola arriva con esempi che si usano subito.",
   "units": [
     {
       "id": "g-u1",
@@ -471,6 +471,367 @@
               "answer": "에",
               "hint": "La scuola è dove si va, non dove si studia.",
               "explain": "에 segna la destinazione (학교에 가요), 에서 il luogo dove si agisce (학교에서 공부해요)."
+            }
+          ]
+        }
+,
+        {
+          "id": "gram-05",
+          "slug": "negare",
+          "title": "Dire di no: 안, -지 않다, 못",
+          "titleKo": "부정: 안, -지 않다, 못",
+          "kind": "grammar",
+          "goal": "Negare una frase in tre modi e scegliere quello giusto: 안 davanti al verbo, -지 않다 in fondo, 못 quando manca la possibilità.",
+          "durationMin": 30,
+          "points": [
+            "안 sta davanti al verbo, non davanti all'oggetto: 밥을 안 먹어요 «non mangio», mai 안 밥을 먹어요.",
+            "Con i verbi in 하다 la negazione entra dentro la parola: 공부 안 해요, 일 안 해요. «안 공부해요» si capisce, ma suona meno naturale.",
+            "La forma lunga -지 않다 dice lo stesso con più calma: 가지 않아요, 먹지 않아요, 공부하지 않아요. Al passato diventa -지 않았어요.",
+            "못 dice che non si può, non che non si vuole: 못 가요 «non posso andare». La forma lunga è -지 못해요.",
+            "Gli aggettivi prendono 안, mai 못: 안 예뻐요 va bene, 못 예뻐요 non esiste.",
+            "못하다 tutto attaccato vuol dire «essere scarso»: 한국어를 잘 못해요 «non sono bravo in coreano». 못 해요 con lo spazio è invece «non posso fare».",
+            "Per dire «non farlo» non si usa 안: serve -지 마세요 (가지 마세요). «안 가세요» vuol dire «non va?», non «non vada»."
+          ],
+          "vocab": [
+            { "ko": "안", "it": "non (negazione, davanti al verbo)", "rr": "an" },
+            { "ko": "못", "it": "non potere: 못 가요 = non posso andare", "rr": "mot" },
+            { "ko": "없다", "it": "non esserci, non avere", "rr": "eopda" },
+            { "ko": "모르다", "it": "non sapere, non conoscere", "rr": "moreuda" },
+            { "ko": "예쁘다", "it": "essere bello, carino", "rr": "yeppeuda" },
+            { "ko": "피곤하다", "it": "essere stanco", "rr": "pigonhada" },
+            { "ko": "일하다", "it": "lavorare", "rr": "ilhada" },
+            { "ko": "전혀", "it": "per niente, affatto (con la negazione)", "rr": "jeonhyeo" },
+            { "ko": "아직", "it": "ancora (in frasi negative: non ancora)", "rr": "ajik" },
+            { "ko": "아무것도", "it": "niente, nulla (con la negazione)", "rr": "amugeotdo" },
+            { "ko": "마시다", "it": "bere", "rr": "masida" },
+            { "ko": "재미있다", "it": "essere divertente, interessante", "rr": "jaemiitda" },
+            { "ko": "그래도", "it": "comunque, eppure", "rr": "geuraedo" },
+            { "ko": "잘", "it": "bene (잘 못해요 = non sono bravo)", "rr": "jal" },
+            { "ko": "않다", "it": "non: la negazione lunga -지 않다", "rr": "anta" },
+            { "ko": "못하다", "it": "essere scarso, non saper fare bene: 잘 못해요", "rr": "motada" },
+            { "ko": "공부", "it": "studio (공부하다 = studiare)", "rr": "gongbu" }
+          ],
+          "passages": [
+            {
+              "title": "Una giornata storta",
+              "lines": [
+                "오늘은 너무 피곤해서 아무것도 안 했어요.",
+                "아침에도 커피를 마시지 않았어요.",
+                "한국어는 재미있지만 아직 잘 못해요.",
+                "그래도 내일은 학교에 안 가고 집에서 공부할 거예요."
+              ],
+              "gloss": [
+                { "ko": "오늘", "it": "oggi", "rr": "oneul" },
+                { "ko": "너무", "it": "troppo, moltissimo", "rr": "neomu" },
+                { "ko": "피곤하다", "it": "essere stanco", "rr": "pigonhada" },
+                { "ko": "아무것도", "it": "niente (con la negazione)", "rr": "amugeotdo" },
+                { "ko": "아침", "it": "mattina", "rr": "achim" },
+                { "ko": "커피", "it": "caffè", "rr": "keopi" },
+                { "ko": "마시다", "it": "bere", "rr": "masida" },
+                { "ko": "한국어", "it": "lingua coreana", "rr": "hangugeo" },
+                { "ko": "재미있다", "it": "essere divertente", "rr": "jaemiitda" },
+                { "ko": "아직", "it": "ancora", "rr": "ajik" },
+                { "ko": "잘", "it": "bene", "rr": "jal" },
+                { "ko": "그래도", "it": "comunque", "rr": "geuraedo" },
+                { "ko": "내일", "it": "domani", "rr": "naeil" },
+                { "ko": "집", "it": "casa", "rr": "jip" }
+              ],
+              "translation": "Oggi ero così stanco che non ho fatto niente. Nemmeno stamattina ho bevuto il caffè. Il coreano mi diverte, ma non sono ancora bravo. Comunque domani non vado a scuola e studierò a casa."
+            }
+          ],
+          "exercises": [
+            {
+              "id": "g05-e1",
+              "type": "type_hangul",
+              "prompt": "Completa con la negazione: 밥을 ___ 먹어요.",
+              "hint": "Sta subito prima del verbo.",
+              "answer": "안",
+              "explain": "안 si mette davanti al verbo, dopo l'oggetto: 밥을 안 먹어요."
+            },
+            {
+              "id": "g05-e2",
+              "type": "fill_blank",
+              "prompt": "Completa la negazione lunga.",
+              "text": "가___ 않아요.",
+              "answer": "지",
+              "hint": "Radice del verbo + la particella della negazione lunga.",
+              "explain": "-지 않다: 가다 → 가지 않아요. Al passato: 가지 않았어요."
+            },
+            {
+              "id": "g05-e3",
+              "type": "reading_mcq",
+              "prompt": "«공부 안 해요» vuol dire…",
+              "options": [
+                "Non studio.",
+                "Non posso studiare.",
+                "Non voglio studiare.",
+                "Studio poco."
+              ],
+              "answer": "Non studio.",
+              "explain": "Con i verbi in 하다 la negazione entra dentro: 공부 안 해요. Per «non posso» servirebbe 못."
+            },
+            {
+              "id": "g05-e4",
+              "type": "reading_mcq",
+              "prompt": "«못 가요» vuol dire…",
+              "options": [
+                "Non posso andare.",
+                "Non vado mai.",
+                "Non voglio andare.",
+                "Non so andare."
+              ],
+              "answer": "Non posso andare.",
+              "explain": "못 dice che manca la possibilità, non la voglia: la voglia si negherebbe con 안."
+            },
+            {
+              "id": "g05-e5",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 모르다?",
+              "answer": "non sapere",
+              "accept": [
+                "non conoscere",
+                "non so",
+                "non conosco"
+              ],
+              "explain": "모르다 è il contrario di 알다: non sapere, non conoscere."
+            },
+            {
+              "id": "g05-e6",
+              "type": "reading_mcq",
+              "prompt": "Quale frase è sbagliata?",
+              "options": [
+                "못 예뻐요",
+                "안 예뻐요",
+                "예쁘지 않아요",
+                "안 피곤해요"
+              ],
+              "answer": "못 예뻐요",
+              "explain": "못 nega solo i verbi d'azione: gli aggettivi prendono 안 oppure -지 않다."
+            },
+            {
+              "id": "g05-e7",
+              "type": "order_words",
+              "prompt": "Rimetti in ordine: «Oggi non ho bevuto il caffè».",
+              "words": [
+                "커피를",
+                "오늘은",
+                "않았어요",
+                "마시지"
+              ],
+              "answer": "오늘은 커피를 마시지 않았어요",
+              "explain": "-지 않았어요 è il passato della negazione lunga; il verbo resta in fondo."
+            },
+            {
+              "id": "g05-e8",
+              "type": "fill_blank",
+              "prompt": "Completa: sono occupato, quindi non posso andare.",
+              "text": "바빠서 학교에 ___ 가요.",
+              "answer": "못",
+              "hint": "Non è mancanza di voglia: è mancanza di tempo.",
+              "explain": "La mancanza di tempo toglie la possibilità: 못 가요."
+            },
+            {
+              "id": "g05-e9",
+              "type": "reading_mcq",
+              "prompt": "«안 가세요» detto a qualcuno vuol dire…",
+              "options": [
+                "«Non va?»: non è un ordine.",
+                "«Non vada»: è un ordine.",
+                "«Vada piano».",
+                "«Non può andare»."
+              ],
+              "answer": "«Non va?»: non è un ordine.",
+              "explain": "Per l'ordine negativo serve -지 마세요: 가지 마세요."
+            },
+            {
+              "id": "g05-e10",
+              "type": "type_hangul",
+              "prompt": "Scrivi «non so».",
+              "hint": "모르다 è irregolare in 르.",
+              "answer": "몰라요",
+              "accept": [
+                "저는 몰라요",
+                "나는 몰라요"
+              ],
+              "explain": "모르 + 어요 → 몰라요: la 르 irregolare raddoppia la ㄹ."
+            }
+          ]
+        }
+,
+        {
+          "id": "gram-06",
+          "slug": "potere-dovere",
+          "title": "Potere e dovere: -ㄹ 수 있다, -아/어야 해요",
+          "titleKo": "-(으)ㄹ 수 있다, -아/어야 해요",
+          "kind": "grammar",
+          "goal": "Dire che cosa si può fare, che cosa si deve fare e che cosa è vietato, senza scambiare un divieto per una frase negativa.",
+          "durationMin": 32,
+          "points": [
+            "-(으)ㄹ 수 있다 dice «potere»: dopo vocale -ㄹ 수 있어요 (갈 수 있어요), dopo consonante -을 수 있어요 (먹을 수 있어요).",
+            "Se la radice finisce già in ㄹ, la ㄹ resta una sola: 살 수 있어요, 만들 수 있어요.",
+            "Il contrario è -(으)ㄹ 수 없어요: 못 가요 e 갈 수 없어요 dicono la stessa cosa, ma la seconda è più neutra, la prima più netta.",
+            "-아/어야 해요 (o 돼요) dice «devo»: 가야 해요, 먹어야 해요, 공부해야 해요. Al passato: 가야 했어요 «dovevo andare».",
+            "-아/어도 돼요 chiede o dà il permesso: 가도 돼요? «posso andare?». Con 안 davanti toglie l'obbligo: 안 가도 돼요 «non devi andare».",
+            "-(으)면 안 돼요 dice che una cosa non si può fare, come regola: 여기에서 담배를 피우면 안 돼요.",
+            "Per vietare qualcosa a qualcuno si usa -지 마세요: 가지 마세요 «non vada». «안 가세요» non è un divieto: è una domanda o una constatazione."
+          ],
+          "vocab": [
+            { "ko": "해야 해요", "it": "devo fare: radice + -아/어야 해요", "rr": "haeya haeyo" },
+            { "ko": "지 마세요", "it": "non farlo: radice + -지 마세요", "rr": "ji maseyo" },
+            { "ko": "시험", "it": "esame", "rr": "siheom" },
+            { "ko": "준비하다", "it": "preparare", "rr": "junbihada" },
+            { "ko": "기다리다", "it": "aspettare", "rr": "gidarida" },
+            { "ko": "만지다", "it": "toccare", "rr": "manjida" },
+            { "ko": "들어가다", "it": "entrare", "rr": "deureogada" },
+            { "ko": "빨리", "it": "presto, velocemente", "rr": "ppalli" },
+            { "ko": "천천히", "it": "lentamente", "rr": "cheoncheonhi" },
+            { "ko": "사진", "it": "foto", "rr": "sajin" },
+            { "ko": "찍다", "it": "scattare (una foto)", "rr": "jjikda" },
+            { "ko": "작품", "it": "opera (d'arte)", "rr": "jakpum" },
+            { "ko": "유리", "it": "vetro", "rr": "yuri" },
+            { "ko": "박물관", "it": "museo", "rr": "bangmulgwan" },
+            { "ko": "그렇지만", "it": "però, ma", "rr": "geureochiman" },
+            { "ko": "만들다", "it": "fare, creare", "rr": "mandeulda" }
+          ],
+          "passages": [
+            {
+              "title": "Al museo",
+              "lines": [
+                "박물관에서는 사진을 찍어도 돼요.",
+                "그렇지만 유리 작품은 만지면 안 돼요.",
+                "작품은 만지지 마세요.",
+                "내일 시험이 있어서 오늘은 집에서 공부해야 해요."
+              ],
+              "gloss": [
+                { "ko": "박물관", "it": "museo", "rr": "bangmulgwan" },
+                { "ko": "사진", "it": "foto", "rr": "sajin" },
+                { "ko": "찍다", "it": "scattare (una foto)", "rr": "jjikda" },
+                { "ko": "그렇지만", "it": "però, ma", "rr": "geureochiman" },
+                { "ko": "유리", "it": "vetro", "rr": "yuri" },
+                { "ko": "작품", "it": "opera (d'arte)", "rr": "jakpum" },
+                { "ko": "만지다", "it": "toccare", "rr": "manjida" },
+                { "ko": "시험", "it": "esame", "rr": "siheom" },
+                { "ko": "오늘", "it": "oggi", "rr": "oneul" },
+                { "ko": "내일", "it": "domani", "rr": "naeil" },
+                { "ko": "집", "it": "casa", "rr": "jip" },
+                { "ko": "공부하다", "it": "studiare", "rr": "gongbuhada" }
+              ],
+              "translation": "Al museo si possono fare le foto. Però le opere di vetro non si toccano. Le opere non si toccano. Domani ho un esame, quindi oggi devo studiare a casa."
+            }
+          ],
+          "exercises": [
+            {
+              "id": "g06-e1",
+              "type": "type_hangul",
+              "prompt": "Scrivi «posso andare».",
+              "hint": "가다 + -(으)ㄹ 수 있다.",
+              "answer": "갈 수 있어요",
+              "accept": [
+                "저는 갈 수 있어요",
+                "나는 갈 수 있어요"
+              ],
+              "explain": "Dopo vocale si usa -ㄹ 수 있다: 가 → 갈 수 있어요."
+            },
+            {
+              "id": "g06-e2",
+              "type": "fill_blank",
+              "prompt": "Completa: posso mangiare.",
+              "text": "먹___ 수 있어요.",
+              "answer": "을",
+              "hint": "먹다 finisce in consonante.",
+              "explain": "Dopo consonante si usa -을 수 있다: 먹을 수 있어요."
+            },
+            {
+              "id": "g06-e3",
+              "type": "reading_mcq",
+              "prompt": "«만들 수 있어요» vuol dire…",
+              "options": [
+                "Posso farlo.",
+                "Devo farlo.",
+                "Non posso farlo.",
+                "L'ho già fatto."
+              ],
+              "answer": "Posso farlo.",
+              "explain": "만들다 finisce in ㄹ: davanti a 수 la ㄹ resta una sola, 만들 수 있어요."
+            },
+            {
+              "id": "g06-e4",
+              "type": "reading_mcq",
+              "prompt": "«공부해야 해요» vuol dire…",
+              "options": [
+                "Devo studiare.",
+                "Posso studiare.",
+                "Ho studiato.",
+                "Non studio."
+              ],
+              "answer": "Devo studiare.",
+              "explain": "-아/어야 해요 dice obbligo: 공부하다 → 공부해야 해요."
+            },
+            {
+              "id": "g06-e5",
+              "type": "fill_blank",
+              "prompt": "Chiedi il permesso: posso fare le foto?",
+              "text": "사진을 찍어___ 돼요?",
+              "answer": "도",
+              "hint": "-아/어 + la particella del permesso + 돼요.",
+              "explain": "-아/어도 돼요 chiede o dà il permesso: 찍어도 돼요?"
+            },
+            {
+              "id": "g06-e6",
+              "type": "reading_mcq",
+              "prompt": "«안 가도 돼요» vuol dire…",
+              "options": [
+                "Non devi andare.",
+                "Non puoi andare.",
+                "Non andare.",
+                "Devi andare."
+              ],
+              "answer": "Non devi andare.",
+              "explain": "안 + -아/어도 돼요 toglie l'obbligo: non serve andare."
+            },
+            {
+              "id": "g06-e7",
+              "type": "reading_mcq",
+              "prompt": "Quale frase è un divieto?",
+              "options": [
+                "만지지 마세요.",
+                "안 만지세요.",
+                "못 만지세요.",
+                "만져야 해요."
+              ],
+              "answer": "만지지 마세요.",
+              "explain": "-지 마세요 è l'ordine negativo; «안 만지세요» non è un divieto."
+            },
+            {
+              "id": "g06-e8",
+              "type": "order_words",
+              "prompt": "Rimetti in ordine: «Devo studiare a casa».",
+              "words": [
+                "공부해야",
+                "해요",
+                "집에서"
+              ],
+              "answer": "집에서 공부해야 해요",
+              "explain": "Il luogo con 에서, poi il verbo con l'obbligo in fondo: -아/어야 해요."
+            },
+            {
+              "id": "g06-e9",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 기다리다?",
+              "answer": "aspettare",
+              "accept": [
+                "attendere",
+                "aspettare qualcuno"
+              ],
+              "explain": "기다리다 = aspettare. 기다리세요 = aspetti pure."
+            },
+            {
+              "id": "g06-e10",
+              "type": "listen_type",
+              "prompt": "Ascolta e scrivi il divieto che senti.",
+              "speak": "만지지 마세요",
+              "answer": "만지지 마세요",
+              "explain": "Radice 만지 + -지 마세요: l'ordine di non toccare."
             }
           ]
         }
