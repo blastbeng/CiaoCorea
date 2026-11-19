@@ -51,6 +51,7 @@ progressi, ripassi e tentativi non si perdono nel passaggio.
 | `/progressi` | totali, per corso, parole SRS, obiettivo della settimana, ritmo dei giorni |
 | `/profilo` | il proprio profilo: l'unico nome dello studente, con la sezione per cambiarlo |
 | `/profili` | i profili di questo browser: si sceglie chi sta studiando con un clic, o se ne aggiunge uno nuovo |
+| `/about` | chi ha fatto il portale (`Fabio Valentino`), perché esiste e dove restano i dati |
 
 ## Come è fatto
 

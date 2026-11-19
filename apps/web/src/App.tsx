@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { Outlet, Route, Routes } from 'react-router-dom';
 import { useAuth } from './auth';
 import { AppShell } from './components/AppShell';
+import { AboutPage } from './pages/AboutPage';
 import { CoursePage } from './pages/CoursePage';
 import { Dashboard } from './pages/Dashboard';
 import { DialoguePage } from './pages/DialoguePage';
@@ -71,6 +72,7 @@ export default function App() {
         <Route path="progressi" element={<ProfilePage />} />
         <Route path="profilo" element={<MyProfilePage />} />
         <Route path="profili" element={<ProfilesPage />} />
+        <Route path="about" element={<AboutPage />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

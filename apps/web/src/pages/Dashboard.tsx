@@ -120,7 +120,7 @@ export function Dashboard() {
         <p className="muted">
           {summary.lessonsPassed > 0
             ? 'Continua da dove hai lasciato: la costanza vale più delle sessioni lunghe.'
-            : 'Si parte dalle lettere: poche cose al giorno, ripetute, si fissano.'}
+            : 'Cominciamo dalle lettere: l\'alfabeto coreano si impara in un pomeriggio, il resto arriva una lezione alla volta.'}
         </p>
       </header>
 

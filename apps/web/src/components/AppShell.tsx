@@ -163,8 +163,20 @@ export function AppShell({ children }: { children: ReactNode }) {
         <div className="app-body">{children}</div>
       </main>
 
+      {/* Il fondo pagina è il posto della firma: chi arriva in fondo ha studiato
+          abbastanza per voler sapere di chi è questo posto. */}
       <footer className="app-footer">
-        CiaoCorea – Impara il Coreano · esercizi e lettura, un giorno alla volta
+        <p className="app-footer__project">
+          CiaoCorea – Impara il Coreano · esercizi e lettura, un giorno alla volta
+        </p>
+        <p className="app-footer__credit">
+          Fatto da{' '}
+          <a href="https://fabiovalentino.it" target="_blank" rel="noreferrer noopener">
+            Fabio Valentino
+          </a>
+          {' · '}
+          <Link to="/about">About us</Link>
+        </p>
       </footer>
     </div>
   );
