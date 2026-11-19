@@ -596,13 +596,20 @@ export interface WordLookupResponse {
   word: string;
   match:
     | (VocabEntry & {
-        via: 'exact' | 'particle' | 'stem';
+        /** Come si è arrivati alla voce: parola uguale, particella tolta, radice, copula, numero o nome proprio. */
+        via: 'exact' | 'particle' | 'stem' | 'copula' | 'number' | 'name';
         /** La particella tolta dalla forma del brano, quando `via` è 'particle'. */
         particle?: string;
         /** A che cosa serve quella particella, in italiano. */
         particleHint?: string;
         /** La desinenza riconosciuta, quando `via` è 'stem'. */
         ending?: string;
+        /** Il suffisso tolto dal testo, quando `via` è 'copula' (입니다, 예요…). */
+        suffix?: string;
+        /** Altre voci scritte allo stesso modo: 배 è una pera, una pancia e una barca. */
+        senses?: VocabEntry[];
+        /** Una riga di spiegazione: la copula tolta, la serie del numero, il 요 finale. */
+        note?: string;
       })
     | null;
 }

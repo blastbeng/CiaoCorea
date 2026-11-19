@@ -37,7 +37,14 @@
             {"ko": "지하철", "it": "metropolitana", "rr": "jihacheol"},
             {"ko": "포함", "it": "inclusione, compreso", "rr": "poham"},
             {"ko": "가능", "it": "possibile, si può", "rr": "ganeung"},
-            {"ko": "연락처", "it": "recapito telefonico", "rr": "yeonrakcheo"}
+            {"ko": "연락처", "it": "recapito telefonico", "rr": "yeonrakcheo"},
+            { "ko": "원룸", "it": "monolocale", "rr": "wonnum" },
+            { "ko": "평", "it": "pyeong (unità di superficie, circa 3,3 m²)", "rr": "pyeong" },
+            { "ko": "호선", "it": "linea (della metropolitana)", "rr": "hoseon" },
+            { "ko": "가능하다", "it": "essere possibile", "rr": "ganeunghada" },
+            { "ko": "올리다", "it": "alzare, caricare; pubblicare un annuncio", "rr": "ollida" },
+            { "ko": "내리다", "it": "scendere, far scendere", "rr": "naerida" },
+            { "ko": "물론", "it": "certo, naturalmente", "rr": "mullon" }
           ],
           "passages": [
             {
@@ -100,7 +107,17 @@
             {"ko": "현금", "it": "contante, denaro contante", "rr": "hyeongeum"},
             {"ko": "계산서", "it": "conto, scontrino", "rr": "gyesanseo"},
             {"ko": "수저", "it": "posate (cucchiaio e bacchette)", "rr": "sujeo"},
-            {"ko": "특선", "it": "selezione speciale", "rr": "teokseon"}
+            {"ko": "특선", "it": "selezione speciale", "rr": "teokseon"},
+            { "ko": "김치찌개", "it": "stufato di kimchi", "rr": "gimchijjigae" },
+            { "ko": "된장찌개", "it": "stufato di pasta di soia", "rr": "doenjangjjigae" },
+            { "ko": "청국장", "it": "zuppa di soia fermentata", "rr": "cheonggukjang" },
+            { "ko": "냉면", "it": "noodles freddi", "rr": "naengmyeon" },
+            { "ko": "계절", "it": "stagione", "rr": "gyejeol" },
+            { "ko": "결제하다", "it": "pagare", "rr": "gyeoljehada" },
+            { "ko": "포함되다", "it": "essere incluso", "rr": "pohamdoeda" },
+            { "ko": "내다", "it": "pagare, tirare fuori", "rr": "naeda" },
+            { "ko": "계산하다", "it": "fare il conto, pagare", "rr": "gyesanhada" },
+            { "ko": "단말기", "it": "terminale, apparecchio (il lettore di carte)", "rr": "danmalgi" }
           ],
           "passages": [
             {
@@ -168,7 +185,16 @@
             {"ko": "층", "it": "piano (di edificio)", "rr": "cheung"},
             {"ko": "미리", "it": "in anticipo, per tempo", "rr": "miri"},
             {"ko": "요청", "it": "richiesta", "rr": "yucheong"},
-            {"ko": "불편하다", "it": "essere scomodo, avere un problema", "rr": "bulpyeonhada"}
+            {"ko": "불편하다", "it": "essere scomodo, avere un problema", "rr": "bulpyeonhada"},
+            { "ko": "이번", "it": "questa volta", "rr": "ibeon" },
+            { "ko": "회의실", "it": "sala riunioni", "rr": "hoeuisil" },
+            { "ko": "알리다", "it": "avvisare, far sapere", "rr": "allida" },
+            { "ko": "보내다", "it": "mandare", "rr": "bonaeda" },
+            { "ko": "주", "it": "settimana", "rr": "ju" },
+            { "ko": "괜찮다", "it": "stare bene; andare bene", "rr": "gwaenchanta" },
+            { "ko": "알다", "it": "sapere", "rr": "alda" },
+            { "ko": "일", "it": "cosa, faccenda, lavoro; anche uno", "rr": "il" },
+            { "ko": "타다", "it": "prendere (un mezzo), salire: 4번 타는 곳 = la banchina del 4", "rr": "tada" }
           ],
           "passages": [
             {
@@ -230,7 +256,10 @@
             {"ko": "운전", "it": "guida, guidare", "rr": "unjeon"},
             {"ko": "등교", "it": "andare a scuola, ingresso a scuola", "rr": "deunggyo"},
             {"ko": "늦추다", "it": "posticipare, ritardare", "rr": "neutjuda"},
-            {"ko": "밝히다", "it": "dichiarare, rendere noto", "rr": "balhida"}
+            {"ko": "밝히다", "it": "dichiarare, rendere noto", "rr": "balhida"},
+            { "ko": "오르다", "it": "salire, aumentare", "rr": "oreuda" },
+            { "ko": "운전하다", "it": "guidare", "rr": "unjeonhada" },
+            { "ko": "조심하다", "it": "fare attenzione", "rr": "josimhada" }
           ],
           "passages": [
             {
@@ -286,7 +315,16 @@
             { "ko": "인상", "it": "aumento (di prezzi)", "rr": "insang" },
             { "ko": "인상되다", "it": "subire un aumento", "rr": "insangdoeda" },
             { "ko": "예보", "it": "bollettino meteo", "rr": "yebo" },
-            { "ko": "확인하다", "it": "verificare, controllare", "rr": "hwakhakhada" }
+            { "ko": "확인하다", "it": "verificare, controllare", "rr": "hwakhakhada" },
+            { "ko": "여보세요", "it": "pronto (al telefono)", "rr": "yeoboseyo" },
+            { "ko": "부동산", "it": "agenzia immobiliare", "rr": "budongsan" },
+            { "ko": "인터넷", "it": "internet", "rr": "inteonet" },
+            { "ko": "광고", "it": "pubblicità", "rr": "gwanggo" },
+            { "ko": "집주인", "it": "padrone di casa", "rr": "jipjuin" },
+            { "ko": "상담하다", "it": "consultare, parlare con", "rr": "sangdamhada" },
+            { "ko": "비다", "it": "essere vuoto, essere libero", "rr": "bida" },
+            { "ko": "방", "it": "stanza, camera", "rr": "bang" },
+            { "ko": "전화하다", "it": "telefonare", "rr": "jeonhwahada" }
           ],
           "passages": [
             {

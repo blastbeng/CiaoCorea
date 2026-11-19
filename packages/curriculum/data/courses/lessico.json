@@ -287,7 +287,16 @@
             { "ko": "고기", "it": "carne", "rr": "gogi" },
             { "ko": "맛있어요", "it": "è buono", "rr": "masisseoyo" },
             { "ko": "매워요", "it": "è piccante", "rr": "maewoyo" },
-            { "ko": "주세요", "it": "mi dia, per favore", "rr": "juseyo" }
+            { "ko": "주세요", "it": "mi dia, per favore", "rr": "juseyo" },
+            { "ko": "아메리카노", "it": "caffè americano", "rr": "amerikano" },
+            { "ko": "잔", "it": "bicchiere (un bicchiere, contatore)", "rr": "jan" },
+            { "ko": "카드", "it": "carta (di credito)", "rr": "kadeu" },
+            { "ko": "따뜻하다", "it": "essere caldo, tiepido", "rr": "ttatteutada" },
+            { "ko": "아이스", "it": "ghiaccio (prestito dall'inglese ice)", "rr": "aiseu" },
+            { "ko": "한", "it": "uno (numero nativo, davanti a un contatore)", "rr": "han" },
+            { "ko": "어서 오세요", "it": "benvenuto, venga avanti", "rr": "eoseo oseyo" },
+            { "ko": "저녁", "it": "sera; cena", "rr": "jeonyeok" },
+            { "ko": "넣다", "it": "mettere dentro, aggiungere", "rr": "neota" }
           ],
           "exercises": [
             {
@@ -384,7 +393,15 @@
             { "ko": "원", "it": "won (valuta)", "rr": "won" },
             { "ko": "얼마예요?", "it": "quanto costa?", "rr": "eolmayeyo" },
             { "ko": "비싸요", "it": "è caro", "rr": "bissayo" },
-            { "ko": "싸요", "it": "è economico", "rr": "ssayo" }
+            { "ko": "싸요", "it": "è economico", "rr": "ssayo" },
+            { "ko": "다섯", "it": "cinque (nativo)", "rr": "daseot" },
+            { "ko": "여섯", "it": "sei (nativo)", "rr": "yeoseot" },
+            { "ko": "일곱", "it": "sette (nativo)", "rr": "ilgop" },
+            { "ko": "여덟", "it": "otto (nativo)", "rr": "yeodeol" },
+            { "ko": "아홉", "it": "nove (nativo)", "rr": "ahop" },
+            { "ko": "열", "it": "dieci (nativo); anche febbre", "rr": "yeol" },
+            { "ko": "개", "it": "oggetto (contatore); anche cane", "rr": "gae" },
+            { "ko": "사과", "it": "mela", "rr": "sagwa" }
           ],
           "exercises": [
             {
@@ -481,7 +498,15 @@
             { "ko": "오른쪽", "it": "destra", "rr": "oreunjak" },
             { "ko": "왼쪽", "it": "sinistra", "rr": "oenjak" },
             { "ko": "직진", "it": "andare dritto", "rr": "jikjin" },
-            { "ko": "건너편", "it": "lato opposto", "rr": "geonneopyeon" }
+            { "ko": "건너편", "it": "lato opposto", "rr": "geonneopyeon" },
+            { "ko": "표", "it": "biglietto", "rr": "pyo" },
+            { "ko": "열차", "it": "treno", "rr": "yeolcha" },
+            { "ko": "특실", "it": "prima classe (sul treno)", "rr": "teuksil" },
+            { "ko": "일반석", "it": "posto di seconda classe", "rr": "ilbanseok" },
+            { "ko": "매진", "it": "tutto esaurito", "rr": "maejin" },
+            { "ko": "계단", "it": "scale", "rr": "gyedan" },
+            { "ko": "오전", "it": "mattina, prima di mezzogiorno", "rr": "ojeon" },
+            { "ko": "도와드리다", "it": "aiutare (forma di rispetto)", "rr": "dowadeurida" }
           ],
           "passages": [
             {

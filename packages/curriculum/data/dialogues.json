@@ -903,18 +903,19 @@
       {
         "id": "st-5",
         "speaker": "Impiegato",
-        "ko": "삼만 오천 원이에요. 네 번 선에서 출발합니다.",
+        "ko": "삼만 오천 원이에요. 4번 타는 곳에서 출발합니다.",
         "it": "Sono 35.000 won. Il treno parte dal binario quattro."
       },
       {
         "id": "st-6",
         "speaker": "Tu",
-        "ko": "네 번 선이 어디 있는지 알려 주세요.",
+        "ko": "4번 타는 곳이 어디 있는지 알려 주세요.",
         "it": "Chiedi dov'è il binario quattro.",
         "answer": {
           "kind": "type",
           "accept": [
-            "네 번 선이 어디 있는지 알려 주세요",
+            "4번 타는 곳이 어디 있는지 알려 주세요",
+            "타는 곳이 어디 있는지 알려 주세요",
             "어디 있는지 알려 주세요"
           ],
           "hint": "알려 주다 = far sapere; -는지 apre la domanda indiretta («dove sia»)."

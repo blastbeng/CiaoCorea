@@ -33,7 +33,10 @@
             { "ko": "선생님", "it": "insegnante", "rr": "seonsaengnim" },
             { "ko": "이탈리아", "it": "Italia", "rr": "itallia" },
             { "ko": "사람", "it": "persona", "rr": "saram" },
-            { "ko": "이름", "it": "nome", "rr": "ireum" }
+            { "ko": "이름", "it": "nome", "rr": "ireum" },
+            { "ko": "아무것", "it": "qualunque cosa; 아무것도 = niente (con la negazione)", "rr": "amugeot" },
+            { "ko": "수", "it": "modo, possibilità: -(으)ㄹ 수 있다 = poter fare", "rr": "su" },
+            { "ko": "것", "it": "cosa, fatto (nel parlato si dice 거)", "rr": "geot" }
           ],
           "exercises": [
             {
@@ -142,7 +145,8 @@
             { "ko": "친구", "it": "amico", "rr": "chingu" },
             { "ko": "여기", "it": "qui", "rr": "yeogi" },
             { "ko": "있어요", "it": "c'è, ho", "rr": "isseoyo" },
-            { "ko": "없어요", "it": "non c'è, non ho", "rr": "eopseoyo" }
+            { "ko": "없어요", "it": "non c'è, non ho", "rr": "eopseoyo" },
+            { "ko": "있다", "it": "esserci, esistere; avere: 있어요 = c'è / ho", "rr": "itda" }
           ],
           "exercises": [
             {
@@ -261,7 +265,11 @@
             { "ko": "공부해요", "it": "studio", "rr": "gongbuhaeyo" },
             { "ko": "사요", "it": "compro", "rr": "sayo" },
             { "ko": "좋아해요", "it": "mi piace", "rr": "joahaeyo" },
-            { "ko": "밥", "it": "riso, pasto", "rr": "bap" }
+            { "ko": "밥", "it": "riso, pasto", "rr": "bap" },
+            { "ko": "되다", "it": "diventare, riuscire; 어떻게 되세요? = come si chiama?", "rr": "doeda" },
+            { "ko": "하다", "it": "fare", "rr": "hada" },
+            { "ko": "보다", "it": "vedere, guardare", "rr": "boda" },
+            { "ko": "안", "it": "non (negazione davanti al verbo): 안 가요 = non vado", "rr": "an" }
           ],
           "exercises": [
             {
@@ -370,7 +378,16 @@
             { "ko": "영화", "it": "film", "rr": "yeonghwa" },
             { "ko": "을/를", "it": "particella dell'oggetto", "rr": "eul/reul" },
             { "ko": "에", "it": "a, in (destinazione)", "rr": "e" },
-            { "ko": "에서", "it": "in, da (dove si agisce)", "rr": "eseo" }
+            { "ko": "에서", "it": "in, da (dove si agisce)", "rr": "eseo" },
+            { "ko": "쪽", "it": "lato, direzione: 저쪽 = da quella parte", "rr": "jjok" },
+            { "ko": "앞", "it": "davanti: 앞에 = davanti a", "rr": "ap" },
+            { "ko": "옆", "it": "fianco, accanto: 옆에 = accanto a", "rr": "yeop" },
+            { "ko": "곳", "it": "luogo, posto", "rr": "got" },
+            { "ko": "장", "it": "foglio, biglietto (contatore: 한 장)", "rr": "jang" },
+            { "ko": "화장실", "it": "bagno, toilette", "rr": "hwajangsil" },
+            { "ko": "지하철역", "it": "stazione della metropolitana", "rr": "jihacheollyeok" },
+            { "ko": "저쪽", "it": "da quella parte, laggiù", "rr": "jeojjok" },
+            { "ko": "저기", "it": "laggiù, là (più lontano di 거기)", "rr": "jeogi" }
           ],
           "exercises": [
             {
@@ -480,7 +497,8 @@
             { "ko": "식당", "it": "mensa, ristorante", "rr": "sikdang" },
             { "ko": "역", "it": "stazione", "rr": "yeok" },
             { "ko": "가다", "it": "andare", "rr": "gada" },
-            { "ko": "오다", "it": "venire", "rr": "oda" }
+            { "ko": "오다", "it": "venire", "rr": "oda" },
+            { "ko": "지나다", "it": "passare (da un luogo), trascorrere", "rr": "jinada" }
           ],
           "exercises": [
             {

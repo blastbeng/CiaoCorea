@@ -33,7 +33,13 @@
             { "ko": "네", "it": "sì", "rr": "ne" },
             { "ko": "아니요", "it": "no", "rr": "aniyo" },
             { "ko": "이름", "it": "nome", "rr": "ireum" },
-            { "ko": "잘 지내요?", "it": "come stai?", "rr": "jal jinaeyo" }
+            { "ko": "잘 지내요?", "it": "come stai?", "rr": "jal jinaeyo" },
+            { "ko": "안녕히 계세요", "it": "arrivederci (a chi resta)", "rr": "annyeonghi gyeseyo" },
+            { "ko": "안녕히 가세요", "it": "arrivederci (a chi va)", "rr": "annyeonghi gaseyo" },
+            { "ko": "안녕히", "it": "in pace, serenamente (안녕히 계세요 = stia bene)", "rr": "annyeonghi" },
+            { "ko": "어서", "it": "presto, svelto; 어서 오세요 = benvenuto", "rr": "eoseo" },
+            { "ko": "아", "it": "ah! (esclamazione)", "rr": "a" },
+            { "ko": "저기요", "it": "scusi! (per chiamare qualcuno)", "rr": "jeogiyo" }
           ],
           "exercises": [
             {
@@ -265,7 +271,12 @@
             { "ko": "그럼", "it": "allora", "rr": "geureom" },
             { "ko": "내일", "it": "domani", "rr": "naeil" },
             { "ko": "공부해요", "it": "studio", "rr": "gongbuhaeyo" },
-            { "ko": "한국어", "it": "lingua coreana", "rr": "hangugeo" }
+            { "ko": "한국어", "it": "lingua coreana", "rr": "hangugeo" },
+            { "ko": "씨", "it": "signor, signora (dopo il nome)", "rr": "ssi" },
+            { "ko": "잘", "it": "bene", "rr": "jal" },
+            { "ko": "지내다", "it": "stare, passarsela", "rr": "jinaeda" },
+            { "ko": "좋다", "it": "essere buono, piacere", "rr": "jota" },
+            { "ko": "또", "it": "di nuovo", "rr": "tto" }
           ],
           "passages": [
             {
@@ -385,7 +396,20 @@
             { "ko": "몇 시", "it": "che ora", "rr": "myeot si" },
             { "ko": "약속", "it": "appuntamento, impegno", "rr": "yaksok" },
             { "ko": "만나요", "it": "ci vediamo, incontriamoci", "rr": "mannayo" },
-            { "ko": "시간", "it": "tempo, ora", "rr": "sigan" }
+            { "ko": "시간", "it": "tempo, ora", "rr": "sigan" },
+            { "ko": "언제", "it": "quando", "rr": "eonje" },
+            { "ko": "어디", "it": "dove", "rr": "eodi" },
+            { "ko": "누구", "it": "chi", "rr": "nugu" },
+            { "ko": "무엇", "it": "che cosa (nel parlato: 뭐)", "rr": "mueot" },
+            { "ko": "왜", "it": "perché", "rr": "wae" },
+            { "ko": "어떻게", "it": "come", "rr": "eotteoke" },
+            { "ko": "몇", "it": "quanti (몇 시 = che ora)", "rr": "myeot" },
+            { "ko": "시", "it": "ora (del giorno): 세 시 = le tre", "rr": "si" },
+            { "ko": "분", "it": "minuti (dopo un numero sino-coreano)", "rr": "bun" },
+            { "ko": "번", "it": "volta (몇 번 = quante volte); numero di telefono", "rr": "beon" },
+            { "ko": "월", "it": "mese nel calendario: 3월 = marzo", "rr": "wol" },
+            { "ko": "때", "it": "quando, il momento in cui", "rr": "ttae" },
+            { "ko": "쯤", "it": "circa, all'incirca (-쯤)", "rr": "jjeum" }
           ],
           "exercises": [
             {
@@ -498,7 +522,11 @@
             { "ko": "보내요", "it": "mando", "rr": "bonaeyo" },
             { "ko": "읽어요", "it": "leggo", "rr": "ilgeoyo" },
             { "ko": "기다려요", "it": "aspetto", "rr": "gidaryeoyo" },
-            { "ko": "고마워요", "it": "grazie", "rr": "gomawoyo" }
+            { "ko": "고마워요", "it": "grazie", "rr": "gomawoyo" },
+            { "ko": "우리", "it": "noi", "rr": "uri" },
+            { "ko": "이따", "it": "più tardi (parlato)", "rr": "itta" },
+            { "ko": "야", "it": "ehi (informale, tra amici)", "rr": "ya" },
+            { "ko": "별말씀을요", "it": "prego, non c'è di che", "rr": "byeolmalsseumyeoyo" }
           ],
           "exercises": [
             {
@@ -622,7 +650,8 @@
             { "ko": "가져가다", "it": "portare via", "rr": "gjeogyogada" },
             { "ko": "사다", "it": "comprare", "rr": "sada" },
             { "ko": "도와주다", "it": "aiutare", "rr": "dowajuda" },
-            { "ko": "기다리다", "it": "aspettare", "rr": "gidarida" }
+            { "ko": "기다리다", "it": "aspettare", "rr": "gidarida" },
+            { "ko": "실례지만", "it": "mi scusi, ma… (per iniziare una richiesta)", "rr": "sillyejiman" }
           ],
           "exercises": [
             {

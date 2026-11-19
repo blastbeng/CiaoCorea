@@ -47,6 +47,9 @@ export async function registerVocabularyRoutes(app: FastifyInstance, ctx: Ctx): 
               particle: found.particle,
               particleHint: found.particleHint,
               ending: found.ending,
+              suffix: found.suffix,
+              senses: found.senses,
+              note: found.note,
             }
           : null,
       };

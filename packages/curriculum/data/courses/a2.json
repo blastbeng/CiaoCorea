@@ -35,7 +35,19 @@
             { "ko": "만나다", "it": "incontrare", "rr": "mannada" },
             { "ko": "사다", "it": "comprare", "rr": "sada" },
             { "ko": "재미있다", "it": "essere divertente", "rr": "jaemiitda" },
-            { "ko": "바쁘다", "it": "essere occupato", "rr": "bappeuda" }
+            { "ko": "바쁘다", "it": "essere occupato", "rr": "bappeuda" },
+            { "ko": "아프다", "it": "essere malato, fare male", "rr": "apeuda" },
+            { "ko": "머리", "it": "testa", "rr": "meori" },
+            { "ko": "열", "it": "febbre; anche dieci", "rr": "yeol" },
+            { "ko": "약", "it": "medicina", "rr": "yak" },
+            { "ko": "식사", "it": "pasto", "rr": "siksa" },
+            { "ko": "후", "it": "dopo", "rr": "hu" },
+            { "ko": "드시다", "it": "mangiare, prendere (forma di rispetto)", "rr": "deusida" },
+            { "ko": "쾌차하세요", "it": "guarisci presto", "rr": "kwaechahaseyo" },
+            { "ko": "하루", "it": "una giornata, un giorno", "rr": "haru" },
+            { "ko": "고맙다", "it": "essere grato: 고마워요 = grazie", "rr": "gomapda" },
+            { "ko": "다행", "it": "fortuna: 다행이에요 = per fortuna", "rr": "dahaeng" },
+            { "ko": "나다", "it": "venire fuori, sorgere: 열이 나다 = avere la febbre", "rr": "nada" }
           ],
           "exercises": [
             {
@@ -269,7 +281,9 @@
             { "ko": "댁", "it": "casa (forma di rispetto)", "rr": "daek" },
             { "ko": "말씀", "it": "parole (forma di rispetto)", "rr": "malsseum" },
             { "ko": "드시다", "it": "mangiare (forma di rispetto)", "rr": "deusida" },
-            { "ko": "계시다", "it": "esserci, stare (forma di rispetto)", "rr": "gyesida" }
+            { "ko": "계시다", "it": "esserci, stare (forma di rispetto)", "rr": "gyesida" },
+            { "ko": "되시다", "it": "essere (cortesia di 되다): 어떻게 되세요? = come si chiama?", "rr": "doesida" },
+            { "ko": "드리다", "it": "dare (a chi è più grande): 드릴까요? = posso offrirle?", "rr": "deurida" }
           ],
           "exercises": [
             {
@@ -499,7 +513,8 @@
             { "ko": "출발하다", "it": "partire", "rr": "chulbalhada" },
             { "ko": "수업", "it": "lezione, lezione (scolastica)", "rr": "sugeom" },
             { "ko": "시작하다", "it": "iniziare", "rr": "sijakhada" },
-            { "ko": "도착하다", "it": "arrivare", "rr": "dochakhada" }
+            { "ko": "도착하다", "it": "arrivare", "rr": "dochakhada" },
+            { "ko": "나서", "it": "-고 나서: dopo aver fatto", "rr": "naseo" }
           ],
           "passages": [
             {
@@ -633,7 +648,12 @@
             { "ko": "먹다", "it": "mangiare", "rr": "meokda" },
             { "ko": "국어", "it": "la lingua coreana", "rr": "gugeo" },
             { "ko": "책", "it": "libro", "rr": "chaek" },
-            { "ko": "읽다", "it": "leggere", "rr": "ikda" }
+            { "ko": "읽다", "it": "leggere", "rr": "ikda" },
+            { "ko": "걷다", "it": "camminare", "rr": "geotda" },
+            { "ko": "비비다", "it": "sfregare, strofinare", "rr": "bibida" },
+            { "ko": "움직이다", "it": "muovere, muoversi", "rr": "umjigida" },
+            { "ko": "인사하다", "it": "salutare (con un inchino)", "rr": "insahada" },
+            { "ko": "주다", "it": "dare", "rr": "juda" }
           ],
           "passages": [
             {
@@ -771,7 +791,13 @@
             { "ko": "학력", "it": "titolo di studio", "rr": "haknyeok" },
             { "ko": "국민", "it": "cittadino", "rr": "gumin" },
             { "ko": "믿다", "it": "credere", "rr": "mitda" },
-            { "ko": "속내", "it": "l'intimo, ciò che si sente dentro", "rr": "songnae" }
+            { "ko": "속내", "it": "l'intimo, ciò che si sente dentro", "rr": "songnae" },
+            { "ko": "시키다", "it": "ordinare (al ristorante), far fare", "rr": "sikida" },
+            { "ko": "말하다", "it": "parlare, dire", "rr": "malhada" },
+            { "ko": "많다", "it": "essere molto, essere tanti", "rr": "manta" },
+            { "ko": "말", "it": "parole, discorso", "rr": "mal" },
+            { "ko": "부르다", "it": "chiamare; cantare", "rr": "bureuda" },
+            { "ko": "배", "it": "pancia; pera; barca (lo dice il contesto)", "rr": "bae" }
           ],
           "passages": [
             {
@@ -902,7 +928,12 @@
             { "ko": "발전", "it": "sviluppo", "rr": "baljeon" },
             { "ko": "말살", "it": "sterminio, cancellazione", "rr": "malsal" },
             { "ko": "값", "it": "prezzo, valore", "rr": "gap" },
-            { "ko": "낯설다", "it": "essere sconosciuto, strano", "rr": "natseolda" }
+            { "ko": "낯설다", "it": "essere sconosciuto, strano", "rr": "natseolda" },
+            { "ko": "식다", "it": "raffreddarsi (di cibo o bevanda)", "rr": "sikda" },
+            { "ko": "생기다", "it": "nascere, comparire, spuntare", "rr": "saenggida" },
+            { "ko": "더디다", "it": "essere lento, andare a rilento", "rr": "deodida" },
+            { "ko": "켜다", "it": "accendere (la luce, il motore)", "rr": "kyeoda" },
+            { "ko": "두다", "it": "mettere, lasciare", "rr": "duda" }
           ],
           "passages": [
             {
@@ -1046,7 +1077,9 @@
             { "ko": "열두", "it": "dodici", "rr": "yeoldu" },
             { "ko": "라면", "it": "ramen (spaghetti coreani)", "rr": "ramyeon" },
             { "ko": "신년", "it": "anno nuovo", "rr": "sinnyeon" },
-            { "ko": "계획", "it": "piano, progetto", "rr": "gyehoek" }
+            { "ko": "계획", "it": "piano, progetto", "rr": "gyehoek" },
+            { "ko": "찾다", "it": "cercare, trovare", "rr": "chatda" },
+            { "ko": "적다", "it": "scrivere, annotare", "rr": "jeokda" }
           ],
           "passages": [
             {

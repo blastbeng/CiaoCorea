@@ -25,6 +25,10 @@ export function WordToken({ token }: { token: string }) {
   const parts = token.match(/^([^가-힣]*)([가-힣]+)([^가-힣]*)$/);
   if (!parts) return <>{token}</>;
   const [, before, word, after] = parts;
+  // La cifra fa parte della parola: 5층 è "il quinto piano", non "층" da solo,
+  // e 1만 è diecimila, non la particella 만 ("solo").
+  const digits = before.match(/(\d[\d,]*)$/);
+  const query = digits ? `${digits[1]}${word}` : word;
 
   async function toggle() {
     const me = (selfRef.current ??= {});
@@ -39,7 +43,7 @@ export function WordToken({ token }: { token: string }) {
     if (asked || loading) return;
     setLoading(true);
     try {
-      const result = await api.lookupWord(word);
+      const result = await api.lookupWord(query);
       setMatch(result.match);
     } catch {
       setMatch(null);
@@ -74,6 +78,11 @@ export function WordToken({ token }: { token: string }) {
             <>
               <span>{match.it}</span>
               <span className="faint small">{match.rr}</span>
+              {match.senses && match.senses.length > 0 ? (
+                <span className="faint small">
+                  anche: {match.senses.map((sense) => sense.it).join(' · ')}
+                </span>
+              ) : null}
               {match.via === 'particle' && match.particle ? (
                 <>
                   <span className="faint small">
@@ -84,12 +93,18 @@ export function WordToken({ token }: { token: string }) {
                   ) : null}
                 </>
               ) : null}
+              {match.via === 'copula' && match.suffix ? (
+                <span className="faint small">
+                  nel testo: {word} = {match.ko} + {match.suffix}
+                </span>
+              ) : null}
               {match.via === 'stem' ? (
                 <span className="faint small">
                   forma di {match.ko}
                   {match.ending ? ` (desinenza -${match.ending})` : ''}
                 </span>
               ) : null}
+              {match.note ? <span className="faint small">{match.note}</span> : null}
             </>
           ) : null}
           {!loading && !match ? (
