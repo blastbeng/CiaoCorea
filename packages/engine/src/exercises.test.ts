@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { Exercise, FillBlankExercise, OrderWordsExercise } from '@ciaocorea/shared';
+import type { Exercise, FillBlankExercise, ListenTypeExercise, OrderWordsExercise } from '@ciaocorea/shared';
 import {
   PASS_THRESHOLD,
   gradeAttempt,
@@ -67,6 +67,15 @@ const blankChoice: FillBlankExercise = {
   answer: '이',
 };
 
+const dictation: ListenTypeExercise = {
+  id: 'e-listen',
+  type: 'listen_type',
+  prompt: 'Ascolta e scrivi in coreano.',
+  speak: '학교에 가요.',
+  answer: '학교에 가요',
+  accept: ['학교에가요'],
+};
+
 describe('correzione', () => {
   it('accetta la scelta esatta e rifiuta quella sbagliata', () => {
     expect(isCorrect(choice, 'ㅏ')).toBe(true);
@@ -105,6 +114,22 @@ describe('correzione', () => {
       response: '간',
     });
   });
+
+  it('corregge il dettato come una risposta scritta in coreano', () => {
+    expect(isCorrect(dictation, '학교에 가요')).toBe(true);
+    // Senza spazi è la stessa frase: lo spazio in coreano non è la punteggiatura.
+    expect(isCorrect(dictation, '학교에가요')).toBe(true);
+    expect(isCorrect(dictation, '학교에 가')).toBe(false);
+    expect(isCorrect(dictation, '')).toBe(false);
+  });
+
+  it('manda al dettato la frase da ascoltare, non la soluzione', () => {
+    const pub = stripExercise(dictation) as Record<string, unknown>;
+    expect(pub.answer).toBeUndefined();
+    expect(pub.accept).toBeUndefined();
+    // Senza la frase da riprodurre l'esercizio non si può fare: resta pubblica.
+    expect(pub.speak).toBe(dictation.speak);
+  });
 });
 
 describe('frasi da rimettere in ordine e buchi', () => {
@@ -141,6 +166,7 @@ describe('frasi da rimettere in ordine e buchi', () => {
     expect(isWrittenExercise(blank)).toBe(true);
     expect(isWrittenExercise(blankChoice)).toBe(false);
     expect(isWrittenExercise(choice)).toBe(false);
+    expect(isWrittenExercise(dictation)).toBe(true);
   });
 });
 

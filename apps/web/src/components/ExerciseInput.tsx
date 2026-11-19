@@ -2,6 +2,7 @@ import type { KeyboardEvent } from 'react';
 import { CLOZE_MARKER, type PublicExercise } from '@ciaocorea/shared';
 import { remainingTiles, splitCloze } from '../exercises';
 import { composeHangul } from '../hangul';
+import { speakKorean, ttsSupported } from '../pronounce';
 import { HangulInput } from './HangulInput';
 
 const KOREAN = /[\u3131-\u318e\uac00-\ud7a3]/;
@@ -212,6 +213,50 @@ export function ExerciseInput({ exercise, value, onChange, onSubmit, disabled }:
         autoFocus
         placeholder="Scrivi in coreano"
       />
+    );
+  }
+
+  if (exercise.type === 'listen_type') {
+    // Il testo coreano non si mostra: è un dettato, si ascolta e si scrive.
+    // La voce è quella del browser, quindi si può premere quante volte serve.
+    return (
+      <div>
+        {ttsSupported() ? (
+          <div className="row" style={{ marginBottom: '0.9rem' }}>
+            <button
+              type="button"
+              className="btn btn--primary"
+              disabled={disabled}
+              onClick={() => speakKorean(exercise.speak)}
+              aria-label="Ascolta la frase da scrivere"
+            >
+              🔊 Ascolta
+            </button>
+            <button
+              type="button"
+              className="btn btn--sm"
+              disabled={disabled}
+              onClick={() => speakKorean(exercise.speak, 0.55)}
+              aria-label="Ascolta la frase lentamente"
+            >
+              🐢 Piano
+            </button>
+          </div>
+        ) : (
+          <p className="alert alert--warn" role="alert">
+            Questo browser non riproduce l&rsquo;audio: l&rsquo;ascolto funziona su Chrome, Edge e Safari.
+          </p>
+        )}
+
+        <HangulInput
+          value={value}
+          onChange={onChange}
+          onSubmit={onSubmit}
+          disabled={disabled}
+          autoFocus
+          placeholder="Scrivi quello che hai sentito"
+        />
+      </div>
     );
   }
 

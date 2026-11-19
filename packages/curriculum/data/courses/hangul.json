@@ -952,6 +952,14 @@
               ],
               "answer": "물",
               "explain": "물 = acqua: quando si ha sete (목이 마를 때) si beve acqua, non fuoco (불)."
+            },
+            {
+              "id": "ex-hangul-09-9",
+              "type": "listen_type",
+              "prompt": "Ascolta e scrivi in coreano la parola.",
+              "speak": "학교",
+              "answer": "학교",
+              "explain": "학교 si pronuncia [학꾜]: la ㄱ finale della prima sillaba, incontrando la ㄱ della seconda, diventa un suono doppio. Si scrive ㄱ, però: l'hangul si scrive come si scrive, non come si legge."
             }
           ]
         }

@@ -601,6 +601,566 @@
           ]
         }
       ]
+    },
+    {
+      "id": "a2-u3",
+      "title": "La pronuncia vera",
+      "purpose": "Ascoltare ciò che la scrittura produce: le assimilazioni che cambiano il suono e non la grafia.",
+      "lessons": [
+        {
+          "id": "a2-05",
+          "slug": "liaison",
+          "title": "La sillaba che passa alla successiva: 연음",
+          "titleKo": "연음",
+          "kind": "reading",
+          "goal": "Riconoscere quando la consonante finale si sposta sulla sillaba che comincia per vocale, e scrivere sempre la forma originale.",
+          "durationMin": 25,
+          "points": [
+            "Se una sillaba finisce in consonante e la successiva comincia per vocale, quel suono si sposta: 눈이 si legge [누니].",
+            "La scrittura non cambia: si scrive 눈이 e si legge [누니]. L'hangul si scrive come si scrive, non come si sente.",
+            "Se la sillaba dopo comincia per consonante non succede niente: 안녕 resta [안녕], con la ㄴ finale al suo posto.",
+            "La consonante finale passa alla sillaba dopo con il suo suono: 꽃이 [꼬치], 낯이 [나치], 옷이 [오시], 꽃을 [꼬츨].",
+            "La ㄱ finale che si sposta davanti a vocale si sente più morbida, come una g italiana: 국어 [구거], 먹어요 [머거요].",
+            "Caso speciale, la 구개음화: una ㄷ o ㅌ finale davanti alla vocale 이 di un suffisso diventa 지 o 치: 굳이 [구지], 같이 [가치], 밭이 [바치], 끝이 [끄치].",
+            "있는 si legge [인는], 없는 [엄는]: qui la consonante finale incontra una nasale e cambia regola, come vedrai nella lezione dopo.",
+            "Con l'audio si ascolta l'assimilazione e si scrive la forma vera: è un dettato, non una trascrizione."
+          ],
+          "vocab": [
+            { "ko": "눈", "it": "occhio; neve", "rr": "nun" },
+            { "ko": "몸", "it": "corpo", "rr": "mom" },
+            { "ko": "꽃", "it": "fiore", "rr": "kkot" },
+            { "ko": "밭", "it": "campo, orto", "rr": "bat" },
+            { "ko": "먹다", "it": "mangiare", "rr": "meokda" },
+            { "ko": "국어", "it": "la lingua coreana", "rr": "gugeo" },
+            { "ko": "책", "it": "libro", "rr": "chaek" },
+            { "ko": "읽다", "it": "leggere", "rr": "ikda" }
+          ],
+          "passages": [
+            {
+              "title": "La mia mattinata",
+              "lines": [
+                "아침에 눈을 비비고 몸을 움직여요.",
+                "책상을 닦고 책을 읽어요.",
+                "꽃에 물을 주면 기분이 좋아요.",
+                "선생님이 오시면 인사하고 앉아요.",
+                "오늘은 날씨가 좋아서 걸어서 와요."
+              ],
+              "gloss": [
+                { "ko": "아침", "it": "il mattino", "rr": "achin" },
+                { "ko": "눈을 비비다", "it": "strofinarsi gli occhi", "rr": "nuneul bibida" },
+                { "ko": "몸", "it": "corpo", "rr": "mom" },
+                { "ko": "책상", "it": "scrivania", "rr": "chaeksang" },
+                { "ko": "닦다", "it": "pulire, strofinare", "rr": "ttakda" },
+                { "ko": "꽃", "it": "fiore", "rr": "kkot" },
+                { "ko": "기분", "it": "umore", "rr": "gibun" },
+                { "ko": "날씨", "it": "il tempo (meteorologia)", "rr": "nalssi" }
+              ],
+              "translation": "Al mattino mi strofino gli occhi e muovo il corpo. Pulisco la scrivania e leggo dei libri. Quando do l'acqua ai fiori sono di buon umore. Se arriva l'insegnante saluto e mi siedo. Oggi fa bel tempo, quindi vengo a piedi."
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ex-a2-05-1",
+              "type": "reading_mcq",
+              "prompt": "Come si legge 눈이?",
+              "options": ["[누니]", "[눈이]", "[누이]", "[노니]"],
+              "answer": "[누니]",
+              "explain": "La ㄴ finale di 눈 passa alla sillaba che comincia per vocale: 눈 + 이 → [누니]. Si scrive sempre 눈이."
+            },
+            {
+              "id": "ex-a2-05-2",
+              "type": "reading_mcq",
+              "prompt": "Perché 꽃이 si legge [꼬치]?",
+              "options": [
+                "la ㅊ finale passa alla sillaba dopo",
+                "la ㄱ finale si raddoppia",
+                "la ㄴ finale si sposta",
+                "la ㅅ finale sparisce"
+              ],
+              "answer": "la ㅊ finale passa alla sillaba dopo",
+              "explain": "꽃 finisce in ㅊ: davanti alla vocale 이 la ㅊ diventa l'inizio della sillaba dopo, [꼬치], e resta aspirata. Nessuna lettera cambia."
+            },
+            {
+              "id": "ex-a2-05-3",
+              "type": "listen_type",
+              "prompt": "Ascolta e scrivi la forma coreana come si scrive.",
+              "speak": "먹어요",
+              "answer": "먹어요",
+              "explain": "Ascolti [머거요]: la ㄱ finale di 먹 scivola sulla vocale di 어 e si sente più morbida. La scrittura resta 먹어요."
+            },
+            {
+              "id": "ex-a2-05-4",
+              "type": "listen_type",
+              "prompt": "Ascolta e scrivi la forma coreana come si scrive.",
+              "speak": "꽃이",
+              "answer": "꽃이",
+              "explain": "Si sente [꼬치], ma la ㅊ di 꽃 resta scritta com'è: nella pronuncia si sposta sulla vocale dopo, nella scrittura non si tocca."
+            },
+            {
+              "id": "ex-a2-05-5",
+              "type": "type_hangul",
+              "prompt": "Scrivi la parola coreana che si legge [구거].",
+              "hint": "È il nome della lingua coreana.",
+              "answer": "국어",
+              "explain": "국어: la ㄱ finale di 국 passa alla sillaba dopo e si legge più morbida, [구거]."
+            },
+            {
+              "id": "ex-a2-05-6",
+              "type": "type_hangul",
+              "prompt": "Scrivi la parola coreana che si legge [인는].",
+              "answer": "있는",
+              "explain": "있는: la ㅆ finale si sente ㄷ e davanti alla ㄴ di 는 diventa ㄴ, quindi [인는]. La grafia resta 있는."
+            },
+            {
+              "id": "ex-a2-05-7",
+              "type": "reading_mcq",
+              "prompt": "Come si legge 밭이, il campo con la particella 이?",
+              "options": ["[바치]", "[바티]", "[받이]", "[바지]"],
+              "answer": "[바치]",
+              "explain": "밭 finisce in ㅌ: davanti alla particella 이 diventa 치, [바치]. È la 구개음화, la stessa regola di 굳이 [구지] e 같이 [가치]."
+            },
+            {
+              "id": "ex-a2-05-8",
+              "type": "order_words",
+              "prompt": "Metti in ordine la frase.",
+              "words": ["눈이", "하늘에", "내려요"],
+              "answer": "눈이 하늘에 내려요",
+              "explain": "눈 (neve) + 이 soggetto, 하늘에 (nel cielo), 내려요 (scende) in fondo. Si legge [누니 하늘에 내려요]."
+            },
+            {
+              "id": "ex-a2-05-9",
+              "type": "fill_blank",
+              "prompt": "Completa il brano.",
+              "text": "꽃에 ___ 주면 기분이 좋아요.",
+              "options": ["물을", "물", "물를"],
+              "answer": "물을",
+              "explain": "물을: l'oggetto con 을. La ㄹ di 물 si sposta sulla vocale e resta una sola, [무를]. La scrittura resta 물을."
+            },
+            {
+              "id": "ex-a2-05-10",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 닦다?",
+              "answer": "pulire",
+              "accept": ["pulire", "pulizia", "strofinare", "detergere"],
+              "explain": "닦다 è pulire strofinando: 책상을 닦고 = pulisco la scrivania e poi…"
+            }
+          ]
+        },
+        {
+          "id": "a2-06",
+          "slug": "nasalizzazione",
+          "title": "Le nasali che si contaminano: 비음화",
+          "titleKo": "비음화",
+          "kind": "reading",
+          "goal": "Riconoscere quando una ㄱ, ㄷ, ㅂ o ㅅ finale diventa nasale davanti a ㄴ, ㅁ, ㄹ, e scrivere sempre la forma vera.",
+          "durationMin": 25,
+          "points": [
+            "Una ㄱ finale davanti a ㄴ o ㅁ si sente come ㅇ: 속내 [송내], 국민 [궁민].",
+            "Una ㄷ finale davanti a ㄴ o ㅁ diventa ㄴ: 있는 [인는], 믿는 [민는].",
+            "Una ㅂ finale davanti a ㄴ o ㅁ diventa ㅁ: 없는 [엄는], 밥물 [밤물].",
+            "Una ㅅ finale davanti a ㄴ diventa ㄴ: 뒷날 [뒨날].",
+            "Davanti a ㄹ la ㄱ finale diventa ㄴ: 학력 [항녁].",
+            "Dopo una nasale la consonante non si raddoppia: 국민 [궁민], non [궁빔]; per questo 국밥 [국빱] suona diverso.",
+            "La grafia non cambia mai: 비음화 si ascolta, non si scrive."
+          ],
+          "vocab": [
+            { "ko": "밥", "it": "riso, pasto", "rr": "bap" },
+            { "ko": "물", "it": "acqua", "rr": "mul" },
+            { "ko": "국물", "it": "brodo", "rr": "gukmul" },
+            { "ko": "뒷날", "it": "il giorno dopo", "rr": "dwitnal" },
+            { "ko": "학력", "it": "titolo di studio", "rr": "haknyeok" },
+            { "ko": "국민", "it": "cittadino", "rr": "gumin" },
+            { "ko": "믿다", "it": "credere", "rr": "mitda" },
+            { "ko": "속내", "it": "l'intimo, ciò che si sente dentro", "rr": "songnae" }
+          ],
+          "passages": [
+            {
+              "title": "In mensa",
+              "lines": [
+                "국밥을 시키면 국물 맛이 좋아요.",
+                "밥을 먹으면 배가 불러요.",
+                "선생님의 말씀을 믿어요.",
+                "있는 말만 골라서 말해요.",
+                "학력을 묻는 사람이 많아요."
+              ],
+              "gloss": [
+                { "ko": "국밥", "it": "zuppa di riso (gukbap)", "rr": "gukbap" },
+                { "ko": "국물", "it": "brodo", "rr": "gukmul" },
+                { "ko": "맛", "it": "sapore", "rr": "mat" },
+                { "ko": "말씀", "it": "parole (forma di rispetto)", "rr": "malsseum" },
+                { "ko": "있는", "it": "che c'è", "rr": "inneun" },
+                { "ko": "골라서", "it": "scegliendo", "rr": "gollaseo" },
+                { "ko": "학력", "it": "titolo di studio", "rr": "haknyeok" },
+                { "ko": "묻다", "it": "chiedere", "rr": "mutda" }
+              ],
+              "translation": "Se ordino una zuppa di riso, il brodo è buono. Quando mangio, lo stomaco si riempie. Credo alle parole dell'insegnante. Dico solo le parole che ci sono, scegliendole. Ci sono molte persone che chiedono il titolo di studio."
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ex-a2-06-1",
+              "type": "reading_mcq",
+              "prompt": "Come si legge 국물?",
+              "options": ["[궁물]", "[국물]", "[굼물]", "[궁물르]"],
+              "answer": "[궁물]",
+              "explain": "La ㄱ finale di 국 davanti alla ㅁ di 물 diventa nasale velare, che si scrive ㅇ: [궁물]."
+            },
+            {
+              "id": "ex-a2-06-2",
+              "type": "reading_mcq",
+              "prompt": "In 뒷날 [뒨날] quale suono prende il posto della ㅅ finale?",
+              "options": ["ㄴ", "ㅁ", "ㅇ", "ㄹ"],
+              "answer": "ㄴ",
+              "explain": "La ㅅ (e anche ㅈ, ㅊ) finale davanti a ㄴ diventa ㄴ: 뒷 + 날 → [뒨날]."
+            },
+            {
+              "id": "ex-a2-06-3",
+              "type": "listen_type",
+              "prompt": "Ascolta e scrivi la forma coreana come si scrive.",
+              "speak": "없는",
+              "answer": "없는",
+              "explain": "Si sente [엄는]: la ㅂ finale di 없 davanti alla ㄴ di 는 diventa ㅁ. Si scrive 없는."
+            },
+            {
+              "id": "ex-a2-06-4",
+              "type": "listen_type",
+              "prompt": "Ascolta e scrivi la forma coreana come si scrive.",
+              "speak": "믿어요",
+              "answer": "믿어요",
+              "explain": "Ascolti [미더요]: la ㄷ finale di 믿 passa alla sillaba che comincia per vocale. È 연음 della lezione prima, non 비음화: si scrive 믿어요."
+            },
+            {
+              "id": "ex-a2-06-5",
+              "type": "type_hangul",
+              "prompt": "Scrivi la parola coreana che si legge [밤물].",
+              "hint": "Riso e acqua, due parole vicine.",
+              "answer": "밥물",
+              "explain": "밥물: la ㅂ finale di 밥 davanti alla ㅁ di 물 diventa ㅁ, [밤물]."
+            },
+            {
+              "id": "ex-a2-06-6",
+              "type": "type_hangul",
+              "prompt": "Scrivi la parola coreana che si legge [항녁].",
+              "hint": "È il titolo di studio.",
+              "answer": "학력",
+              "explain": "학력: la ㄱ finale davanti alla ㄹ di 력 diventa ㄴ, [항녁]; la ㄹ di 력 resta ㄹ."
+            },
+            {
+              "id": "ex-a2-06-7",
+              "type": "reading_mcq",
+              "prompt": "Perché 국민 si legge [궁민]?",
+              "options": [
+                "la ㄱ finale davanti a ㅁ diventa ㅇ",
+                "la ㄴ finale raddoppia",
+                "la ㅁ finale diventa ㅂ",
+                "la ㄱ sparisce"
+              ],
+              "answer": "la ㄱ finale davanti a ㅁ diventa ㅇ",
+              "explain": "민 comincia per ㅁ: la ㄱ finale di 국 diventa nasale velare ㅇ. Dopo una nasale niente suono doppio."
+            },
+            {
+              "id": "ex-a2-06-8",
+              "type": "fill_blank",
+              "prompt": "Completa il brano.",
+              "text": "국밥을 시키면 ___ 맛이 좋아요.",
+              "options": ["국물", "국물을", "국"],
+              "answer": "국물",
+              "explain": "국물 (brodo): si legge [궁물]. Nel brano regge 마시 — «il sapore del brodo» — quindi resta senza 를."
+            },
+            {
+              "id": "ex-a2-06-9",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 맛?",
+              "answer": "sapore",
+              "accept": ["sapore", "il sapore", "gusto", "il gusto"],
+              "explain": "맛 è il sapore. 맛 있어요 = è saporito, 맛이 좋아요 = il sapore è buono."
+            }
+          ]
+        },
+        {
+          "id": "a2-07",
+          "slug": "suoni-raddoppiati",
+          "title": "I suoni che si raddoppiano: 된소리되기",
+          "titleKo": "된소리되기",
+          "kind": "reading",
+          "goal": "Riconoscere il suono doppio (된소리) che nasce dopo una consonante finale occlusiva e distinguere le coppie di parole che cambiano senso.",
+          "durationMin": 30,
+          "points": [
+            "Dopo una consonante finale occlusiva la consonante tenue della sillaba dopo diventa doppia: 국밥 si legge [국빱].",
+            "Una consonante finale occlusiva raddoppia quella che segue: 낯설다 [낟썰다], 값지다 [갑찌다], 깎다 [깍따].",
+            "Nelle parole di origine cinese la ㄹ finale davanti a ㄷ, ㅅ, ㅈ fa lo stesso: 갈등 [갈뜽], 발전 [발쩐], 말살 [말쌀].",
+            "Il raddoppio non si scrive: 국밥 si scrive con ㅂ e si sente [국빱].",
+            "Il suono doppio può cambiare parola: 불 [bul] è fuoco, 뿔 [ppul] è corno.",
+            "Dopo una nasale non c'è raddoppio: 국민 [궁민]. Confronta 국밥 [국빱] e 국민 [궁민] con l'audio: la differenza è tutta lì.",
+            "L'audio dice come si legge, la dettatura chiede come si scrive: non trascrivere il suono doppio."
+          ],
+          "vocab": [
+            { "ko": "국밥", "it": "zuppa di riso (gukbap)", "rr": "gukbap" },
+            { "ko": "불", "it": "fuoco", "rr": "bul" },
+            { "ko": "뿔", "it": "corno", "rr": "ppul" },
+            { "ko": "갈등", "it": "disaccordo, conflitto", "rr": "galdung" },
+            { "ko": "발전", "it": "sviluppo", "rr": "baljeon" },
+            { "ko": "말살", "it": "sterminio, cancellazione", "rr": "malsal" },
+            { "ko": "값", "it": "prezzo, valore", "rr": "gap" },
+            { "ko": "낯설다", "it": "essere sconosciuto, strano", "rr": "natseolda" }
+          ],
+          "passages": [
+            {
+              "title": "Al mercato",
+              "lines": [
+                "밥이 식어서 국밥을 데워요.",
+                "값을 내는 손님이 많아요.",
+                "물건을 고를 때 갈등이 생겼어요.",
+                "길이 막혀서 발전이 더뎌요.",
+                "벽에 불을 켜 두었어요."
+              ],
+              "gloss": [
+                { "ko": "밥", "it": "riso, pasto", "rr": "bap" },
+                { "ko": "데우다", "it": "scaldare", "rr": "deuda" },
+                { "ko": "값", "it": "prezzo", "rr": "gap" },
+                { "ko": "손님", "it": "cliente, ospite", "rr": "sonnim" },
+                { "ko": "물건", "it": "merce, oggetto", "rr": "mulgeon" },
+                { "ko": "고르다", "it": "scegliere", "rr": "goreuda" },
+                { "ko": "막히다", "it": "essere bloccato", "rr": "makhida" },
+                { "ko": "벽", "it": "muro, parete", "rr": "byeok" }
+              ],
+              "translation": "Il riso è freddo, quindi scaldo la zuppa di riso. Ci sono molti clienti che pagano il prezzo. Quando scelgo la merce nasce un disaccordo. La strada è bloccata, quindi lo sviluppo è lento. Ho acceso una luce sul muro."
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ex-a2-07-1",
+              "type": "reading_mcq",
+              "prompt": "Come si legge 국밥?",
+              "options": ["[국빱]", "[국밥]", "[굽빱]", "[국팥]"],
+              "answer": "[국빱]",
+              "explain": "La ㄱ finale di 국 è occlusiva: la ㅂ tenue di 밥 diventa doppia, [국빱]. La ㄱ finale si sente chiusa, senza vocale dopo."
+            },
+            {
+              "id": "ex-a2-07-2",
+              "type": "reading_mcq",
+              "prompt": "Quale parola si sente [갈뜽]?",
+              "options": ["갈등", "갈든", "갈뜸", "갈뚱"],
+              "answer": "갈등",
+              "explain": "갈등: la ㄹ finale di 갈 davanti alla ㄷ iniziale di 등 fa il suono doppio, [갈뜽]. Significa disaccordo."
+            },
+            {
+              "id": "ex-a2-07-3",
+              "type": "listen_type",
+              "prompt": "Ascolta e scrivi la forma coreana come si scrive.",
+              "speak": "발전",
+              "answer": "발전",
+              "explain": "Si sente [발쩐]: la ㄹ finale di 발 davanti a ㅈ di 전 raddoppia il suono. Si scrive 발전, senza ㅆ."
+            },
+            {
+              "id": "ex-a2-07-4",
+              "type": "listen_type",
+              "prompt": "Ascolta e scrivi la forma coreana come si scrive.",
+              "speak": "말살",
+              "answer": "말살",
+              "explain": "Si sente [말쌀]: dopo la ㄹ finale la ㅅ di 살 diventa doppia. La scrittura resta 말 + 살."
+            },
+            {
+              "id": "ex-a2-07-5",
+              "type": "reading_mcq",
+              "prompt": "Qual è la differenza fra 불 e 뿔?",
+              "options": [
+                "뿔 ha il suono doppio e significa corno",
+                "불 significa corno",
+                "뿔 significa fuoco",
+                "Non c'è nessuna differenza"
+              ],
+              "answer": "뿔 ha il suono doppio e significa corno",
+              "explain": "불 [bul] è fuoco, 뿔 [ppul] è corno: il suono iniziale doppio cambia la parola."
+            },
+            {
+              "id": "ex-a2-07-6",
+              "type": "type_hangul",
+              "prompt": "Scrivi la parola coreana che si legge [말쌀].",
+              "hint": "Significa cancellare, sterminare.",
+              "answer": "말살",
+              "explain": "말살: ㄹ finale + ㅅ iniziale = [쌀], un suono doppio che non si scrive."
+            },
+            {
+              "id": "ex-a2-07-7",
+              "type": "type_hangul",
+              "prompt": "Scrivi la parola che significa corno e si pronuncia con il suono doppio.",
+              "answer": "뿔",
+              "explain": "뿔 [ppul]: il corno. Non confonderlo con 불 [bul], il fuoco."
+            },
+            {
+              "id": "ex-a2-07-8",
+              "type": "fill_blank",
+              "prompt": "Completa il brano.",
+              "text": "물건을 ___ 때 갈등이 생겼어요.",
+              "options": ["고를", "고르는", "골라"],
+              "answer": "고를",
+              "explain": "고를 때 = quando (si) sceglie. 고르다 + 을 때, la forma che serve con 때 nel brano."
+            },
+            {
+              "id": "ex-a2-07-9",
+              "type": "reading_mcq",
+              "prompt": "In 값지다 [갑찌다] che cosa succede alla ㅈ?",
+              "options": [
+                "diventa doppia dopo la ㄱ finale",
+                "sparisce",
+                "diventa ㅊ",
+                "resta identica"
+              ],
+              "answer": "diventa doppia dopo la ㄱ finale",
+              "explain": "값 finisce in ㄱ: la ㅈ tenue di 지 diventa [ㅈ] doppia, [갑찌다]. Nel dettato si scrive 값지다."
+            },
+            {
+              "id": "ex-a2-07-10",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 갈등?",
+              "answer": "disaccordo",
+              "accept": ["disaccordo", "il disaccordo", "conflitto", "contrasto"],
+              "explain": "갈등 è il disaccordo che cresce: due idee che non si mettono d'accordo."
+            }
+          ]
+        },
+        {
+          "id": "a2-09",
+          "slug": "suoni-aggiunti",
+          "title": "ㄴ e ㄹ, e i suoni che si aggiungono",
+          "titleKo": "유음화",
+          "kind": "reading",
+          "goal": "Riconoscere l'assimilazione fra ㄴ e ㄹ, il ㄴ che si aggiunge nelle parole composte e la ㄹ iniziale che cambia nelle parole cinesi.",
+          "durationMin": 30,
+          "points": [
+            "Quando una ㄴ e una ㄹ si toccano, si sente ㄹ due volte: 신라 [실라], 전라 [절라], 난로 [날로].",
+            "Vale anche quando la ㄹ viene prima: è la ㄴ a diventare ㄹ. 칼날 [칼랄], 물난리 [물랄리].",
+            "ㄴ davanti a ㄴ non diventa ㄹ: 신년 resta [신년], con due ㄴ distinte, e non [실련].",
+            "Nelle parole composte, se la seconda parte comincia per 이, 야, 여, 요, 유, si sente un ㄴ che non si scrive: 꽃잎 [꼰닙], 솜이불 [솜ː니불], 색연필 [생년필].",
+            "Quel ㄴ può poi trasformarsi per 비음화: 내복약 [내ː봄냑], 백분율 [백뿐뉼], 식용유 [시굥뉴]. La grafia non cambia.",
+            "I numeri invece non prendono il ㄴ: 3·1 si legge [사밀] (3·1절 [사밀쩔]) e 12 si legge [시비]. La consonante finale si sposta e basta.",
+            "Nelle parole di origine cinese la ㄹ iniziale davanti a ㅣ, ㅑ, ㅕ, ㅛ, ㅠ cade del tutto: 림 → 임 (foresta), 량 → 양 (quantità), 려 → 여.",
+            "Davanti alle altre vocali la ㄹ cinese diventa ㄴ (락원 → 낙원, 로동 → 노동); nelle parole non cinesi resta ㄹ (라면, 라디오)."
+          ],
+          "vocab": [
+            { "ko": "신문", "it": "il giornale", "rr": "sinmun" },
+            { "ko": "신라", "it": "Silla (regno coreano antico)", "rr": "silla" },
+            { "ko": "월간", "it": "mensile", "rr": "wolgan" },
+            { "ko": "잡지", "it": "rivista", "rr": "japji" },
+            { "ko": "열두", "it": "dodici", "rr": "yeoldu" },
+            { "ko": "라면", "it": "ramen (spaghetti coreani)", "rr": "ramyeon" },
+            { "ko": "신년", "it": "anno nuovo", "rr": "sinnyeon" },
+            { "ko": "계획", "it": "piano, progetto", "rr": "gyehoek" }
+          ],
+          "passages": [
+            {
+              "title": "In biblioteca",
+              "lines": [
+                "이달 신문을 읽어요.",
+                "신라 이야기책이 있어요.",
+                "월간 잡지를 찾아서 읽어요.",
+                "열두 시에 도서관에 가요.",
+                "친구와 라면을 먹기로 했어요.",
+                "내일 신년 계획을 적어요."
+              ],
+              "gloss": [
+                { "ko": "이달", "it": "questo mese", "rr": "idal" },
+                { "ko": "신문", "it": "il giornale", "rr": "sinmun" },
+                { "ko": "이야기책", "it": "libro di racconti", "rr": "iyagichaek" },
+                { "ko": "월간", "it": "mensile", "rr": "wolgan" },
+                { "ko": "잡지", "it": "rivista", "rr": "japji" },
+                { "ko": "열두", "it": "dodici", "rr": "yeoldu" },
+                { "ko": "신년", "it": "anno nuovo", "rr": "sinnyeon" },
+                { "ko": "계획", "it": "piano, progetto", "rr": "gyehoek" }
+              ],
+              "translation": "Leggo il giornale di questo mese. C'è un libro di racconti su Silla. Cerco la rivista mensile e la leggo. Vado in biblioteca alle dodici. Con una mia amica ho deciso di mangiare il ramen. Domani scrivo i progetti per l'anno nuovo."
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ex-a2-09-1",
+              "type": "reading_mcq",
+              "prompt": "Come si legge 신라?",
+              "options": ["[실라]", "[신라]", "[신나]", "[씬라]"],
+              "answer": "[실라]",
+              "explain": "La ㄴ finale di 신 tocca la ㄹ iniziale di 라: entrambe diventano ㄹ, [실라]. Il nome del regno antico Silla."
+            },
+            {
+              "id": "ex-a2-09-2",
+              "type": "reading_mcq",
+              "prompt": "Come si legge 신년?",
+              "options": ["[신년], con due ㄴ distinte", "[실련]", "[실ː련]", "[신나]"],
+              "answer": "[신년], con due ㄴ distinte",
+              "explain": "ㄴ davanti a ㄴ non diventa ㄹ: 신년 resta [신년]. La differenza con 신라 [실라] è tutta nella seconda consonante."
+            },
+            {
+              "id": "ex-a2-09-3",
+              "type": "listen_type",
+              "prompt": "Ascolta e scrivi la forma coreana come si scrive.",
+              "speak": "열두",
+              "answer": "열두",
+              "explain": "Si sente [열두]: la ㄹ di 열 resta com'è e la ㄷ di 두 resta ㄷ. Qui non c'è assimilazione, perché 두 comincia per ㄷ e non per ㄹ: confronta 신라 [실라]."
+            },
+            {
+              "id": "ex-a2-09-4",
+              "type": "listen_type",
+              "prompt": "Ascolta e scrivi la forma coreana come si scrive.",
+              "speak": "월간",
+              "answer": "월간",
+              "explain": "Si sente [월간]: la ㄴ di 간 diventa ㄹ e si fonde con la ㄹ di 월, così si sente una ㄹ sola, ma lunga. La scrittura conserva 월 e 간."
+            },
+            {
+              "id": "ex-a2-09-5",
+              "type": "type_hangul",
+              "prompt": "Scrivi la parola che significa «petalo di fiore» e si legge [꼰닙].",
+              "hint": "Fiore + foglia: 꽃 + 잎.",
+              "answer": "꽃잎",
+              "explain": "꽃잎: si scrive 꽃 + 잎, ma si sente [꼰닙]. Fra le due parti si aggiunge un ㄴ e la ㅊ finale diventa ㄴ. La scrittura non mostra nessuno dei due."
+            },
+            {
+              "id": "ex-a2-09-6",
+              "type": "type_hangul",
+              "prompt": "Il 3·1 coreano: scrivi in Hangul la data come si scrive.",
+              "hint": "Tre e uno, letti in coreano.",
+              "answer": "삼일",
+              "explain": "3·1 = 삼일 e si legge [사밀]: qui non si aggiunge nessun ㄴ, al contrario di 꽃잎. La ㅁ di 삼 si sposta sulla vocale di 일, e 3·1절 si legge [사밀쩔]."
+            },
+            {
+              "id": "ex-a2-09-7",
+              "type": "reading_mcq",
+              "prompt": "Quale parola comincia per ㄴ per la regola delle parole cinesi?",
+              "options": ["락원 → 낙원", "라면", "라디오", "리을"],
+              "answer": "락원 → 낙원",
+              "explain": "樂園 si scrive 낙원: all'inizio di parola la ㄹ cinese diventa ㄴ davanti a ㅏ. 라면, 라디오 e 리을 non sono parole cinesi, e la ㄹ resta."
+            },
+            {
+              "id": "ex-a2-09-8",
+              "type": "order_words",
+              "prompt": "Metti in ordine la frase.",
+              "words": ["친구가", "라면을", "먹어요"],
+              "answer": "친구가 라면을 먹어요",
+              "explain": "Soggetto (친구가), oggetto (라면을), verbo (먹어요) in fondo. 라면 ha la ㄹ iniziale che resta tale."
+            },
+            {
+              "id": "ex-a2-09-9",
+              "type": "type_meaning",
+              "prompt": "Che cosa vuol dire 잡지?",
+              "answer": "rivista",
+              "accept": ["rivista", "la rivista", "periodico"],
+              "explain": "잡지 è la rivista (un mensile, un settimanale). Il giornale di notizie è 신문."
+            },
+            {
+              "id": "ex-a2-09-10",
+              "type": "reading_mcq",
+              "prompt": "In 눈길 [눈낄] che cosa succede?",
+              "options": [
+                "la ㄱ si sente doppia dopo la ㄴ",
+                "la ㄴ finale sparisce",
+                "la ㄱ iniziale sparisce",
+                "la ㄴ diventa ㄹ"
+              ],
+              "answer": "la ㄱ si sente doppia dopo la ㄴ",
+              "explain": "눈길: dopo la ㄴ nasale di 눈 la ㄱ di 길 si sente doppia, [눈낄]. È 된소리되기, non un suono aggiunto: la scrittura resta 눈길."
+            }
+          ]
+        }
+      ]
     }
   ]
 }

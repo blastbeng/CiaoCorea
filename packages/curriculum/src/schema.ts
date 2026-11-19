@@ -41,6 +41,13 @@ export const exerciseSchema = z.discriminatedUnion('type', [
   }),
   z.object({
     ...exerciseBase,
+    type: z.literal('listen_type'),
+    speak: z.string().min(1),
+    answer: z.string().min(1),
+    accept: z.array(z.string().min(1)).optional(),
+  }),
+  z.object({
+    ...exerciseBase,
     type: z.literal('reading_mcq'),
     options: z.array(z.string().min(1)).min(2).max(6),
     answer: z.string().min(1),
@@ -244,6 +251,21 @@ export function validateCourse(raw: unknown, source: string): CurriculumProblem[
             where: `${source}:${exercise.id}`,
             message: 'la soluzione attesa deve essere in Hangul',
           });
+        }
+
+        if (exercise.type === 'listen_type') {
+          if (!/\p{Script=Hangul}/u.test(exercise.speak)) {
+            problems.push({
+              where: `${source}:${exercise.id}.speak`,
+              message: 'il testo da ascoltare deve contenere Hangul',
+            });
+          }
+          if (!/\p{Script=Hangul}/u.test(exercise.answer)) {
+            problems.push({
+              where: `${source}:${exercise.id}.answer`,
+              message: 'la soluzione attesa deve essere in Hangul',
+            });
+          }
         }
 
         if (exercise.type === 'order_words') {

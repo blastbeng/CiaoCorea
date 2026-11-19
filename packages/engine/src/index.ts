@@ -4,5 +4,6 @@ export * from './exercises';
 export * from './srs';
 export * from './dialogue';
 export * from './vocabulary';
+export * from './lookup';
 export * from './plan';
 export * from './writing';

@@ -18,6 +18,7 @@ import type {
   ReviewResponse,
   SessionUser,
   VocabularyResponse,
+  WordLookupResponse,
   WritingCheckResponse,
   WritingResponse,
 } from '@ciaocorea/shared';
@@ -135,6 +136,10 @@ export const api = {
     params.set('limit', String(limit));
     return request<VocabularyResponse>('GET', `/api/vocabulary?${params.toString()}`);
   },
+
+  /** La scheda di una parola cliccata dentro un brano. */
+  lookupWord: (word: string) =>
+    request<WordLookupResponse>('GET', `/api/vocabulary/lookup?w=${encodeURIComponent(word)}`),
 
   /** Le consegne del quaderno: il modello arriva solo dopo aver scritto. */
   writing: () => request<WritingResponse>('GET', '/api/writing'),

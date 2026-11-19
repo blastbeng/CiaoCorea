@@ -1609,6 +1609,74 @@ a.lesson-row:hover {
   margin-bottom: 0;
 }
 
+/* una parola cliccabile: sembra testo, si comporta come un pulsante */
+.word-wrap {
+  position: relative;
+  display: inline;
+}
+
+.word {
+  display: inline;
+  padding: 0.05em 0.12em;
+  border: 0;
+  border-bottom: 1px dashed color-mix(in srgb, var(--accent) 45%, transparent);
+  background: none;
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.word:hover,
+.word:focus-visible,
+.word--open {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  outline: none;
+}
+
+.wordcard {
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  left: 0;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 11rem;
+  max-width: min(20rem, 80vw);
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.45;
+  box-shadow: 0 10px 28px rgb(0 0 0 / 14%);
+}
+
+.wordcard .ko {
+  font-family: var(--font-ko);
+  font-size: 1.15rem;
+}
+
+/*
+ * Su telefono la scheda non sta sotto la parola: diventa un foglietto in fondo
+ * allo schermo, dove non esce mai dal bordo e il pollice la trova subito.
+ */
+@media (max-width: 640px) {
+  .wordcard {
+    position: fixed;
+    top: auto;
+    right: 0.7rem;
+    bottom: 0.7rem;
+    left: 0.7rem;
+    max-width: none;
+    box-shadow: 0 -6px 24px rgb(0 0 0 / 18%);
+  }
+}
+
 .gloss {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 190px), 1fr));

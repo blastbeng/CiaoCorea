@@ -20,6 +20,7 @@ import type {
   ReviewCard,
   ReviewResponse,
   VocabularyResponse,
+  WordLookupResponse,
   WritingCheckResponse,
   WritingResponse,
 } from '@ciaocorea/shared';
@@ -438,6 +439,28 @@ describe('errori, quaderno e dizionario', () => {
     const empty = await store.call<VocabularyResponse>('GET', '/api/vocabulary?q=zzzzzz');
     expect(empty.entries).toEqual([]);
     expect(empty.total).toBe(0);
+  });
+
+  it('risolve la parola cliccata in un brano, anche con la particella', async () => {
+    const entry = getVocabulary().find((item) => item.ko.length > 1);
+    expect(entry).toBeDefined();
+
+    const exact = await store.call<WordLookupResponse>(
+      'GET',
+      `/api/vocabulary/lookup?w=${encodeURIComponent(entry?.ko ?? '')}`,
+    );
+    expect(exact.match?.ko).toBe(entry?.ko);
+    expect(exact.match?.via).toBe('exact');
+
+    // La stessa voce con una particella attaccata: il dizionario la ritrova.
+    const glued = await store.call<WordLookupResponse>(
+      'GET',
+      `/api/vocabulary/lookup?w=${encodeURIComponent(`${entry?.ko ?? ''}에`)}`,
+    );
+    expect(glued.match?.ko).toBe(entry?.ko);
+
+    const unknown = await store.call<WordLookupResponse>('GET', '/api/vocabulary/lookup?w=zzzz');
+    expect(unknown.match).toBeNull();
   });
 
   it('elenca i dialoghi con le battute', async () => {

@@ -1,8 +1,8 @@
 import type { FastifyInstance, FastifyReply, FastifyRequest } from '../http/types';
 import { z } from 'zod';
-import type { VocabularyResponse } from '@ciaocorea/shared';
+import type { VocabularyResponse, WordLookupResponse } from '@ciaocorea/shared';
 import { getVocabulary } from '@ciaocorea/curriculum';
-import { searchVocabulary, vocabFacets } from '@ciaocorea/engine';
+import { lookupWord, searchVocabulary, vocabFacets } from '@ciaocorea/engine';
 import type { Ctx } from '../http/context';
 import { requireAuth } from '../auth/guard';
 
@@ -18,8 +18,33 @@ const querySchema = z.object({
   offset: z.coerce.number().int().min(0).max(5000).optional().default(0),
 });
 
+const lookupSchema = z.object({
+  w: z.string().min(1).max(40),
+});
+
 export async function registerVocabularyRoutes(app: FastifyInstance, ctx: Ctx): Promise<void> {
   const auth = requireAuth(ctx);
+
+  // Click su una parola del brano: si torna alla voce del dizionario, se c'è.
+  // La rotta sta prima di /api/vocabulary solo per leggibilità: i percorsi
+  // sono distinti e non si sovrappongono.
+  app.get(
+    '/api/vocabulary/lookup',
+    { preHandler: auth },
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      const parsed = lookupSchema.safeParse(request.query);
+      if (!parsed.success) {
+        return reply.code(400).send({ error: 'invalid_query', message: 'Parola non valida.' });
+      }
+
+      const found = lookupWord(getVocabulary(), parsed.data.w);
+      const body: WordLookupResponse = {
+        word: parsed.data.w,
+        match: found ? { ...found.entry, via: found.via } : null,
+      };
+      return reply.send(body);
+    },
+  );
 
   app.get(
     '/api/vocabulary',

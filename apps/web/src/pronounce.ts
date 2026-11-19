@@ -21,7 +21,7 @@ function koreanVoice(): SpeechSynthesisVoice | null {
  * quindi la si cerca a ogni pressione: se nel frattempo sono arrivate, si usa
  * quella giusta.
  */
-export function speakKorean(text: string): void {
+export function speakKorean(text: string, rate: number = 0.85): void {
   if (!ttsSupported()) return;
   const clean = text.trim();
   if (clean === '') return;
@@ -36,6 +36,6 @@ export function speakKorean(text: string): void {
   const voice = koreanVoice();
   if (voice) utterance.voice = voice;
   // Un poco più lento del naturale: chi studia sta anche leggendo.
-  utterance.rate = 0.85;
+  utterance.rate = rate;
   synth.speak(utterance);
 }

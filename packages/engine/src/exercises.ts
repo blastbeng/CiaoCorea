@@ -33,7 +33,12 @@ function checkChoice(exercise: Exercise, response: string): boolean {
 }
 
 function checkHangul(exercise: Exercise, response: string): boolean {
-  if (exercise.type !== 'type_hangul' && exercise.type !== 'block_build') return false;
+  if (
+    exercise.type !== 'type_hangul' &&
+    exercise.type !== 'block_build' &&
+    exercise.type !== 'listen_type'
+  )
+    return false;
   const accepted = [exercise.answer, ...((exercise as { accept?: string[] }).accept ?? [])];
   // compact = normalizzazione Hangul + niente spazi: "강 ." e "강" sono la
   // stessa risposta, e i jamo di compatibilità restano equivalenti.
@@ -74,6 +79,7 @@ export function isCorrect(exercise: Exercise, response: string): boolean {
       return checkChoice(exercise, response);
     case 'block_build':
     case 'type_hangul':
+    case 'listen_type':
       return checkHangul(exercise, response);
     case 'type_meaning':
       return checkMeaning(exercise, response);
@@ -147,6 +153,7 @@ export function isWrittenExercise(exercise: Exercise): boolean {
     case 'type_hangul':
     case 'type_meaning':
     case 'order_words':
+    case 'listen_type':
       return true;
     case 'fill_blank':
       return exercise.options === undefined;

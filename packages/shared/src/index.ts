@@ -64,6 +64,20 @@ export interface OrderWordsExercise extends ExerciseBase {
   answer: string;
 }
 
+/**
+ * Ascolta una frase coreana e scrivi in coreano quello che hai sentito.
+ * La frase si riproduce con la sintesi vocale del browser: lo studente
+ * ascolta e scrive, così si allena la comprensione in parallelo con la
+ * produzione.
+ */
+export interface ListenTypeExercise extends ExerciseBase {
+  type: 'listen_type';
+  /** La frase coreana da ascoltare. */
+  speak: string;
+  answer: string;
+  accept?: string[];
+}
+
 /** Il buco di un `fill_blank`: scritto così nel testo dell'esercizio. */
 export const CLOZE_MARKER = '___';
 
@@ -87,6 +101,7 @@ export type Exercise =
   | ReadingMcqExercise
   | TypeMeaningExercise
   | OrderWordsExercise
+  | ListenTypeExercise
   | FillBlankExercise;
 
 /**
@@ -569,6 +584,17 @@ export interface VocabularyResponse {
   curriculum: number;
   courses: VocabFilterOption[];
   query: string;
+}
+
+/**
+ * La scheda che si apre cliccando una parola dentro un brano. `via` dice come
+ * ci si è arrivati: la parola era già quella del dizionario, oppure è stata
+ * riconosciuta togliendo una particella o una desinenza.
+ */
+export interface WordLookupResponse {
+  /** La parola cliccata, come compare nel brano. */
+  word: string;
+  match: (VocabEntry & { via: 'exact' | 'particle' | 'stem' }) | null;
 }
 
 /* ------------------------------------------------------------------------- *
