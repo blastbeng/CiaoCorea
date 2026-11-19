@@ -19,7 +19,6 @@ export const MIGRATIONS: Migration[] = [
         email TEXT NOT NULL UNIQUE,
         display_name TEXT NOT NULL,
         password_hash TEXT NOT NULL,
-        role TEXT NOT NULL DEFAULT 'student',
         created_at TEXT NOT NULL
       );
 
@@ -29,8 +28,7 @@ export const MIGRATIONS: Migration[] = [
         token_hash TEXT NOT NULL UNIQUE,
         created_at TEXT NOT NULL,
         last_seen_at TEXT NOT NULL,
-        expires_at TEXT NOT NULL,
-        user_agent TEXT
+        expires_at TEXT NOT NULL
       );
       CREATE INDEX sessions_user_idx ON sessions(user_id);
 
@@ -56,7 +54,6 @@ export const MIGRATIONS: Migration[] = [
         correct INTEGER NOT NULL,
         total INTEGER NOT NULL,
         duration_ms INTEGER,
-        detail_json TEXT,
         created_at TEXT NOT NULL
       );
       CREATE INDEX attempts_user_idx ON attempts(user_id, created_at);
@@ -106,23 +103,6 @@ export const MIGRATIONS: Migration[] = [
         updated_at TEXT NOT NULL,
         PRIMARY KEY (user_id, dialogue_slug)
       );
-    `,
-  },
-  {
-    id: '003-invites',
-    sql: `
-      CREATE TABLE invites (
-        id TEXT PRIMARY KEY,
-        code_hash TEXT NOT NULL UNIQUE,
-        label TEXT NOT NULL,
-        max_uses INTEGER NOT NULL DEFAULT 1,
-        uses INTEGER NOT NULL DEFAULT 0,
-        created_at TEXT NOT NULL,
-        expires_at TEXT,
-        last_used_at TEXT,
-        revoked_at TEXT
-      );
-      CREATE INDEX invites_hash_idx ON invites(code_hash);
     `,
   },
   {

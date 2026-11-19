@@ -154,10 +154,6 @@ export async function registerLessonRoutes(app: FastifyInstance, ctx: Ctx): Prom
 
   app.get('/api/courses', { preHandler: auth }, listCourses);
 
-  // La dashboard usa lo stesso payload della lista corsi: una sola forma da
-  // tenere allineata fra server e client.
-  app.get('/api/dashboard', { preHandler: auth }, listCourses);
-
   app.get('/api/courses/:slug', { preHandler: auth }, async (request, reply) => {
     const { user } = request as AuthedRequest;
     const { slug } = request.params as { slug: string };
@@ -353,12 +349,6 @@ export async function registerLessonRoutes(app: FastifyInstance, ctx: Ctx): Prom
       reviewsCreated: outcome.reviewsCreated,
     };
     return reply.send(body);
-  });
-
-  app.get('/api/progress/summary', { preHandler: auth }, async (request, reply) => {
-    const { user } = request as AuthedRequest;
-    const views = courseViews(ctx, user.id);
-    return reply.send(summaryOf(ctx, user.id, views));
   });
 
   // Il badge della shell chiede solo il numero: la lista completa delle carte

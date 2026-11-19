@@ -3,8 +3,8 @@ import { CLOZE_MARKER } from '@ciaocorea/shared';
 
 /**
  * Il curricolo è un dato, non codice: qui sta il contratto che ogni corso
- * deve rispettare. Se un file JSON non passa questa validazione il server non
- * parte, così un contenuto rotto non arriva mai agli studenti.
+ * deve rispettare. Se un file JSON non passa questa validazione l'app non parte,
+ * così un contenuto rotto non arriva mai agli studenti.
  */
 
 export const vocabItemSchema = z.object({

@@ -2,7 +2,6 @@ import { sha256Hex } from '../crypto/sha256';
 import { randomToken, randomUuid } from '../crypto/random';
 import type { SessionUser } from '@ciaocorea/shared';
 import type { Db } from '../db/client';
-import { nowIso } from '../db/client';
 
 export const SESSION_COOKIE = 'cc_session';
 
@@ -13,22 +12,16 @@ function hashToken(token: string): string {
 
 export interface CreatedSession {
   token: string;
-  expiresAt: string;
 }
 
-export function createSession(
-  db: Db,
-  userId: string,
-  days: number,
-  userAgent?: string,
-): CreatedSession {
+export function createSession(db: Db, userId: string, days: number): CreatedSession {
   const token = randomToken(32);
   const now = new Date();
   const expires = new Date(now.getTime() + days * 24 * 60 * 60 * 1000);
 
   db.prepare(
-    `INSERT INTO sessions(id, user_id, token_hash, created_at, last_seen_at, expires_at, user_agent)
-     VALUES (?, ?, ?, ?, ?, ?, ?)`,
+    `INSERT INTO sessions(id, user_id, token_hash, created_at, last_seen_at, expires_at)
+     VALUES (?, ?, ?, ?, ?, ?)`,
   ).run(
     randomUuid(),
     userId,
@@ -36,16 +29,14 @@ export function createSession(
     now.toISOString(),
     now.toISOString(),
     expires.toISOString(),
-    userAgent ?? null,
   );
 
-  return { token, expiresAt: expires.toISOString() };
+  return { token };
 }
 
 export interface ResolvedSession {
   user: SessionUser;
   sessionId: string;
-  expiresAt: string;
 }
 
 interface SessionJoinRow {
@@ -98,7 +89,6 @@ export function resolveSession(
   return {
     user: { id: row.user_id, email: row.email, displayName: row.display_name },
     sessionId: row.session_id,
-    expiresAt: expiresAt.toISOString(),
   };
 }
 
@@ -118,7 +108,3 @@ export function destroyOtherSessions(db: Db, userId: string, keepToken: string):
   return Number(result.changes ?? 0);
 }
 
-export function purgeExpiredSessions(db: Db): number {
-  const result = db.prepare('DELETE FROM sessions WHERE expires_at <= ?').run(nowIso());
-  return Number(result.changes ?? 0);
-}

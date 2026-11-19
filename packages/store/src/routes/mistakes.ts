@@ -18,9 +18,9 @@ const answerSchema = z.object({
 
 /**
  * La banca degli errori: gli esercizi che lo studente ha sbagliato, com'erano
- * nella lezione. Qui si rifanno uno alla volta e la correzione avviene sul
- * server, con la stessa funzione che corregge la lezione — non con una copia,
- * che col tempo correggerebbe in modo diverso.
+ * nella lezione. Qui si rifanno uno alla volta e la correzione passa dalla
+ * stessa funzione che corregge la lezione — non da una copia, che col tempo
+ * correggerebbe in modo diverso.
  */
 export async function registerMistakeRoutes(app: FastifyInstance, ctx: Ctx): Promise<void> {
   const auth = requireAuth(ctx);

@@ -5,7 +5,7 @@ import { useAsync } from '../useAsync';
 /**
  * Elenco dei dialoghi. Alcuni sono legati a una lezione del percorso: finché
  * quella lezione non è passata o saltata la scheda resta chiusa e il pulsante
- * porta alla lezione che serve, non al dialogo. Il server ripete lo stesso
+ * porta alla lezione che serve, non al dialogo. Lo store ripete lo stesso
  * controllo, quindi qui il blocco è una cortesia, non una sicurezza.
  */
 export function DialoguesPage() {

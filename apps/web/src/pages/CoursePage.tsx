@@ -76,6 +76,13 @@ export function CoursePage() {
         <p className="faint small" style={{ marginTop: '0.35rem' }}>
           {stats.percent}% · {stats.passed} completate · {stats.skipped} saltate su {stats.lessons}
         </p>
+
+        {stats.lessons - stats.passed - stats.skipped > 0 ? (
+          <p className="small" style={{ marginTop: '0.6rem' }}>
+            Conosci già questa parte?{' '}
+            <Link to={`/corso/${course.slug}/salta`}>Salta il corso con una prova</Link>
+          </p>
+        ) : null}
       </header>
 
       {course.units.map((unit) => (

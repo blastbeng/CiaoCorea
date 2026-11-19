@@ -22,7 +22,7 @@ export interface SessionState {
   sessions: Record<string, StoredSession>;
 }
 
-export const EMPTY_STATE: SessionState = { activeUserId: null, sessions: {} };
+const EMPTY_STATE: SessionState = { activeUserId: null, sessions: {} };
 
 function area(): Storage | null {
   try {

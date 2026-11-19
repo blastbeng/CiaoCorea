@@ -54,20 +54,6 @@ export async function saveBytes(bytes: Uint8Array): Promise<void> {
   }
 }
 
-export async function clearBytes(): Promise<void> {
-  const db = await open();
-  try {
-    await new Promise<void>((resolve, reject) => {
-      const transaction = db.transaction(STORE_NAME, 'readwrite');
-      transaction.objectStore(STORE_NAME).delete(RECORD_KEY);
-      transaction.oncomplete = () => resolve();
-      transaction.onerror = () => reject(transaction.error ?? new Error('Cancellazione non riuscita'));
-    });
-  } finally {
-    db.close();
-  }
-}
-
 /**
  * Salvataggio ritardato: una lezione produce una decina di scritture in pochi
  * secondi, e ognuna esporta il database intero. Un timer solo tiene il costo

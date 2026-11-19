@@ -8,7 +8,7 @@ import {
 
 /**
  * Validazione del curricolo a freddo: `npm run content:check`.
- * Il server fa la stessa validazione all'avvio, questo comando serve per
+ * Lo store fa la stessa validazione all'avvio, questo comando serve per
  * accorgersene prima di costruire l'immagine.
  */
 try {

@@ -38,7 +38,7 @@ jobs:
         run: npm test
 
       - name: Compila il sito
-        run: npm run build:web
+        run: npm run build
 
       - uses: actions/configure-pages@v5
 

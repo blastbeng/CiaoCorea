@@ -12,9 +12,7 @@
   },
   "scripts": {
     "dev": "npm run dev --workspace @ciaocorea/web",
-    "dev:web": "npm run dev --workspace @ciaocorea/web",
-    "build": "npm run build:web",
-    "build:web": "npm run build --workspace @ciaocorea/web",
+    "build": "npm run build --workspace @ciaocorea/web",
     "preview": "npm run preview --workspace @ciaocorea/web",
     "typecheck": "tsc -p packages/shared --noEmit && tsc -p packages/engine --noEmit && tsc -p packages/curriculum --noEmit && tsc -p packages/store --noEmit && tsc -p apps/web --noEmit",
     "test": "vitest run",

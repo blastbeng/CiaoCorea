@@ -4,8 +4,8 @@ export type LessonKind = 'letters' | 'syllables' | 'reading' | 'grammar' | 'voca
 
 /**
  * Esercizi: il contenuto vive nel curricolo, la correzione vive nel motore.
- * Le risposte corrette non lasciano mai il server: al client si invia la
- * versione "public" (senza answer/accept) e la correzione avviene lì dove i
+ * Le risposte corrette non arrivano mai alla pagina: si invia la versione
+ * "public" (senza answer/accept) e la correzione avviene nello store, dove i
  * dati sono già presenti.
  */
 export interface ExerciseBase {
@@ -88,8 +88,6 @@ export type Exercise =
   | TypeMeaningExercise
   | OrderWordsExercise
   | FillBlankExercise;
-
-export type ExerciseType = Exercise['type'];
 
 /**
  * Esercizio senza soluzione: è ciò che il client riceve.
@@ -213,7 +211,7 @@ export interface AttemptResponse {
 /**
  * Il test per saltare un corso intero: dodici domande campionate da tutte le
  * lezioni, una per lezione quando ci sta. Come per gli esercizi di lezione, le
- * soluzioni non viaggiano: la correzione è del server.
+ * soluzioni non viaggiano: la correzione resta nello store.
  */
 export interface CourseSkipTest {
   course: { slug: string; title: string; level: string };
@@ -248,7 +246,7 @@ export interface ReviewCard {
   direction: ReviewDirection;
   /** Quello che si vede: la parola coreana da leggere, o l'italiano da scrivere. */
   prompt: string;
-  /** Solo per `read`: il significato. Per `write` la risposta resta sul server. */
+  /** Solo per `read`: il significato. Per `write` la risposta non arriva alla pagina. */
   answer: string | null;
   /**
    * La romanizzazione, che aiuta a leggere e rovinerebbe la scrittura: per le
@@ -602,8 +600,8 @@ export interface WritingEntry {
 
 /**
  * La consegna come la vede il client: il modello e la lista delle forme
- * obbligatorie restano sul server finché lo studente non ha scritto, altrimenti
- * il quaderno diventerebbe un esercizio di copia.
+ * obbligatorie restano fuori finché lo studente non ha scritto, altrimenti il
+ * quaderno diventerebbe un esercizio di copia.
  */
 export interface WritingPromptView {
   id: string;

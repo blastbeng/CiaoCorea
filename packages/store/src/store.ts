@@ -37,8 +37,6 @@ export interface Store {
   /** Passa a un profilo che ha già una sessione valida; null se serve la password. */
   switchUser(userId: string): Promise<SessionUser | null>;
   logout(): Promise<void>;
-  /** Scrive subito su IndexedDB. */
-  flush(): Promise<void>;
   close(): Promise<void>;
 }
 
@@ -150,10 +148,6 @@ export async function createStore(options: CreateStoreOptions = {}): Promise<Sto
         // Se la sessione era già scaduta, l'uscita è comunque riuscita.
         if (!(error instanceof ApiError)) throw error;
       }
-    },
-
-    flush: async () => {
-      await persister?.flush();
     },
 
     close: async () => {

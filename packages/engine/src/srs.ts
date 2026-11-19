@@ -81,10 +81,6 @@ export function scheduleCard(state: SrsState, grade: SrsGrade, now: Date = new D
   };
 }
 
-export function isDue(dueAt: string, now: Date = new Date()): boolean {
-  return dueAt <= now.toISOString().slice(0, 10);
-}
-
 /**
  * Due errori sulla stessa parola non sono distrazione: sono il segnale che il
  * calendario sta allungando i passi su una parola che non c'è. Da lì la parola

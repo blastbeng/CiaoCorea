@@ -99,12 +99,3 @@ export async function verifyPassword(password: string, stored: string): Promise<
   const hash = await derive(password, salt, iterations);
   return equal(hash, expected);
 }
-
-/**
- * Brucia lo stesso tempo di una verifica vera quando l'email non esiste. Senza,
- * chi prova account a caso capisce dal ritardo quali nomi sono già presi.
- */
-export async function simulateVerify(): Promise<void> {
-  const iterations = hasSubtle() ? ITERATIONS : PBKDF2_JS_ITERATIONS;
-  await derive('password-finta-per-tempi-costanti', new Uint8Array(SALT_BYTES), iterations);
-}

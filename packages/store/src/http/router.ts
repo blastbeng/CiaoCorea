@@ -24,24 +24,16 @@ export interface RouteResult {
 
 const NO_LOG = {
   error: () => undefined,
-  warn: () => undefined,
-  info: () => undefined,
 };
 
 class StoreReply implements FastifyReply {
   status = 200;
   body: unknown = undefined;
   sent = false;
-  readonly headers = new Map<string, string>();
   readonly cookies = new Map<string, string | null>();
 
   code(status: number): FastifyReply {
     this.status = status;
-    return this;
-  }
-
-  header(name: string, value: string): FastifyReply {
-    this.headers.set(name.toLowerCase(), value);
     return this;
   }
 
@@ -145,13 +137,10 @@ export class LocalApp implements FastifyInstance {
     const reply = new StoreReply();
 
     const request: FastifyRequest = {
-      method,
-      url: input.url,
       params: {},
       query: queryOf(input.url),
       body: input.body ?? null,
       headers: input.headers ?? {},
-      ip: 'browser',
       log: NO_LOG,
     };
 

@@ -113,8 +113,8 @@ export function recordAttempt(db: Db, input: AttemptInput): AttemptOutcome {
   try {
     db.prepare(
       `INSERT INTO attempts(id, user_id, course_slug, lesson_id, mode, score, correct, total,
-                            duration_ms, detail_json, created_at)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                            duration_ms, created_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     ).run(
       randomUuid(),
       input.userId,
@@ -125,7 +125,6 @@ export function recordAttempt(db: Db, input: AttemptInput): AttemptOutcome {
       input.correct,
       input.total,
       input.durationMs,
-      JSON.stringify(input.results.map((result) => ({ id: result.exerciseId, ok: result.correct }))),
       timestamp,
     );
 
@@ -539,14 +538,6 @@ export function srsStats(db: Db, userId: string, now: Date = new Date()): SrsSum
   };
 }
 
-/** Lezioni chiuse in tutti i corsi: serve per dire quante parole ha visto. */
-export function closedLessonCount(db: Db, userId: string): number {
-  const row = db
-    .prepare(`SELECT COUNT(*) AS total FROM lesson_progress WHERE user_id = ? AND state IN ('passed', 'skipped')`)
-    .get(userId) as { total: number };
-  return Number(row.total);
-}
-
 /**
  * true se la lezione è già stata chiusa (superata o saltata). Usato per lo
  * sblocco dei dialoghi collegati al percorso.
@@ -632,8 +623,8 @@ export function skipCourse(db: Db, input: CourseSkipInput): CourseSkipOutcome {
   try {
     db.prepare(
       `INSERT INTO attempts(id, user_id, course_slug, lesson_id, mode, score, correct, total,
-                            duration_ms, detail_json, created_at)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, NULL, ?, ?)`,
+                            duration_ms, created_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, NULL, ?)`,
     ).run(
       randomUuid(),
       input.userId,
@@ -643,7 +634,6 @@ export function skipCourse(db: Db, input: CourseSkipInput): CourseSkipOutcome {
       input.score,
       input.correct,
       input.total,
-      JSON.stringify([]),
       timestamp,
     );
 

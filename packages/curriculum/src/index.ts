@@ -17,8 +17,8 @@ interface RawCourse {
 }
 
 /**
- * I corsi sono importati staticamente: finiscono dentro il bundle del server e
- * non dipendono da percorsi su disco (che in container cambiano sempre).
+ * I corsi sono importati staticamente: finiscono dentro il bundle del sito e
+ * non dipendono da percorsi su disco (che sotto GitHub Pages non esistono).
  * Aggiungere un corso = aggiungere un JSON qui e ri-eseguire i test.
  */
 const RAW_COURSES: RawCourse[] = [

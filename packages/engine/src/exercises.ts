@@ -12,8 +12,8 @@ import { compact, foldItalian, matchesAny, normalizeAnswer } from './normalize';
 export const PASS_THRESHOLD = 0.8;
 
 /**
- * Quello che il client può vedere. La soluzione non lascia il server: se
- * arrivasse al browser, "studiare" diventerebbe "leggere la risposta giusta".
+ * Quello che la pagina può vedere. La soluzione non esce dallo store: se
+ * arrivasse alla pagina, "studiare" diventerebbe "leggere la risposta giusta".
  */
 export function stripExercise(exercise: Exercise): PublicExercise {
   const { answer: _answer, accept: _accept, ...rest } = exercise as Exercise & {
@@ -106,7 +106,7 @@ export interface GradeOptions {
 }
 
 /**
- * Corregge una prova sul server. Le risposte che non corrispondono a nessun
+ * Corregge una prova. Le risposte che non corrispondono a nessun
  * esercizio della lezione vengono ignorate: un client vecchio non deve poter
  * abbassare (né alzare) il punteggio inventando id.
  */

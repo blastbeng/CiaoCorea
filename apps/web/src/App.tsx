@@ -13,6 +13,7 @@ import { NotFound } from './pages/NotFound';
 import { ProfilePage } from './pages/ProfilePage';
 import { Register } from './pages/Register';
 import { ReviewPage } from './pages/ReviewPage';
+import { SkipCoursePage } from './pages/SkipCoursePage';
 import { VocabularyPage } from './pages/VocabularyPage';
 import { WritingPage } from './pages/WritingPage';
 
@@ -57,6 +58,7 @@ export default function App() {
         <Route index element={<Dashboard />} />
         <Route path="corso/:slug" element={<CoursePage />} />
         <Route path="corso/:slug/lezione/:lessonId" element={<LessonPage />} />
+        <Route path="corso/:slug/salta" element={<SkipCoursePage />} />
         <Route path="dialoghi" element={<DialoguesPage />} />
         <Route path="dialoghi/:slug" element={<DialoguePage />} />
         <Route path="ripassi" element={<ReviewPage />} />

@@ -31,7 +31,8 @@ esiste appena lo crei, e resta finché non cancelli i dati del sito.
 | Pagina | Cosa c'è |
 | --- | --- |
 | `/` Percorso | il piano di oggi (lezione, ripassi, quaderno, dialogo), corsi, avanzamento |
-| `/corso/:slug` | unità e lezioni con lo stato di ciascuna |
+| `/corso/:slug` | unità e lezioni con lo stato di ciascuna, e la prova per saltare il corso |
+| `/corso/:slug/salta` | la prova che chiude un corso intero, per chi lo conosce già |
 | `/corso/:slug/lezione/:lessonId` | teoria, brani di lettura, lessico, esercizi, test di salto |
 | `/dialoghi` e `/dialoghi/:slug` | conversazione scritta a copione |
 | `/dizionario` | ricerca nelle parole del curricolo, con filtri per corso |
@@ -136,21 +137,18 @@ dipendenze, esegue `typecheck` e test, compila `apps/web/dist` e lo pubblica.
 ## Rotte interne
 
 Non c'è più un'API di rete: `packages/store` espone le stesse rotte di prima a
-un mini-router che le chiama in processo. Restano utili come mappa di cosa fa il
-«server» del browser. Tutte richiedono la sessione, tranne `health`, `login` e
-`register`.
+un mini-router che le chiama in processo. Restano utili come mappa di cosa fa lo
+store dentro la scheda. Richiedono la sessione tutte tranne `login`, `register`,
+`logout`, `session` e `accounts`.
 
 | Metodo | Rotta | Uso |
 | --- | --- | --- |
-| GET | `/api/health` | stato dello store |
 | POST | `/api/auth/register` | nuovo profilo locale e accesso immediato |
 | POST | `/api/auth/login` | accesso |
 | POST | `/api/auth/logout` | uscita |
 | GET | `/api/auth/session` | utente corrente o `null` |
-| GET | `/api/auth/me` | richiede la sessione: 401 se manca |
 | GET | `/api/auth/accounts` | i profili presenti in questo browser, per la schermata di scelta |
 | GET | `/api/courses` | corsi, progressi, riepilogo, ripassi dovuti, piano di oggi (`plan`) |
-| GET | `/api/progress/summary` | i numeri della home: lezioni, percentuale, streak, prossima lezione |
 | GET | `/api/vocabulary` | dizionario: `q` (coreano/romanizzazione/italiano), `course`, `limit`, `offset` |
 | GET | `/api/profile` | progressi, totali, giorni attivi (con i ripassi), SRS, dialoghi, `weeklyGoal` |
 | POST | `/api/profile/goal` | obiettivo settimanale: da 1 a 7 giorni di studio |

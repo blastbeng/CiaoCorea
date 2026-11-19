@@ -52,22 +52,3 @@ export function randomToken(size = 32): string {
   }
   return out;
 }
-
-/**
- * Intero uniforme in [0, maxExclusive). Il resto di un modulo su 2^32 non è
- * uniforme, e con un alfabeto di 32 simboli quel bias deciderebbe quali lettere
- * escono più spesso: si scarta e si ripesca, come faceva `randomInt`.
- */
-export function randomInt(maxExclusive: number): number {
-  if (!Number.isInteger(maxExclusive) || maxExclusive <= 0) {
-    throw new Error('randomInt vuole un intero positivo');
-  }
-
-  const limit = Math.floor(0x100000000 / maxExclusive) * maxExclusive;
-  const buffer = new Uint32Array(1);
-  for (;;) {
-    crypto.getRandomValues(buffer);
-    const value = buffer[0]!;
-    if (value < limit) return value % maxExclusive;
-  }
-}

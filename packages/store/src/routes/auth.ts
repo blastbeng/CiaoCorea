@@ -2,7 +2,7 @@ import { z } from 'zod';
 import type { LoginResponse } from '@ciaocorea/shared';
 import type { Ctx } from '../http/context';
 import type { FastifyInstance, FastifyReply, FastifyRequest } from '../http/types';
-import { hashPassword, simulateVerify, verifyPassword } from '../auth/password';
+import { hashPassword, verifyPassword } from '../auth/password';
 import { createRateLimiter } from '../auth/rateLimit';
 import { SESSION_COOKIE, createSession, destroyOtherSessions, destroySession } from '../auth/sessions';
 import {
@@ -40,18 +40,13 @@ const passwordSchema = z.object({
  */
 const ACCOUNT_SHAPE = /^[^\s@]+@[^\s@]+\.[^\s@]+$|^[a-z0-9._-]{2,40}$/;
 
-export function setSessionCookie(
-  ctx: Ctx,
-  reply: FastifyReply,
-  token: string,
-  _expiresAt: string,
-): void {
+function setSessionCookie(reply: FastifyReply, token: string): void {
   // Nel browser non c'è un header da scrivere: il cookie resta il nome del
   // canale, e il client lo traduce nel token che tiene in localStorage.
   reply.setCookie(SESSION_COOKIE, token, { path: '/' });
 }
 
-export function clearSessionCookie(_ctx: Ctx, reply: FastifyReply): void {
+function clearSessionCookie(reply: FastifyReply): void {
   reply.clearCookie(SESSION_COOKIE, { path: '/' });
 }
 
@@ -76,25 +71,15 @@ export async function registerAuthRoutes(app: FastifyInstance, ctx: Ctx): Promis
     const email = parsed.data.email.toLowerCase();
     const limit = limiter.hit(`login:${email}`);
     if (!limit.allowed) {
-      return reply
-        .code(429)
-        .header('retry-after', String(limit.retryAfterSeconds))
-        .send({
-          error: 'rate_limited',
-          message: `Troppi tentativi. Riprova fra ${Math.ceil(limit.retryAfterSeconds / 60)} minuti.`,
-        });
+      return reply.code(429).send({
+        error: 'rate_limited',
+        message: `Troppi tentativi. Riprova fra ${Math.ceil(limit.retryAfterSeconds / 60)} minuti.`,
+      });
     }
 
     const user = findUserByEmail(ctx.db, email);
-    if (!user) {
-      await simulateVerify();
-      return reply
-        .code(401)
-        .send({ error: 'invalid_credentials', message: 'Nome o password non corretti.' });
-    }
-
-    const valid = await verifyPassword(parsed.data.password, user.password_hash);
-    if (!valid) {
+    const valid = user ? await verifyPassword(parsed.data.password, user.password_hash) : false;
+    if (!user || !valid) {
       return reply
         .code(401)
         .send({ error: 'invalid_credentials', message: 'Nome o password non corretti.' });
@@ -102,8 +87,8 @@ export async function registerAuthRoutes(app: FastifyInstance, ctx: Ctx): Promis
 
     limiter.reset(`login:${email}`);
 
-    const session = createSession(ctx.db, user.id, ctx.config.sessionDays, request.headers['user-agent']);
-    setSessionCookie(ctx, reply, session.token, session.expiresAt);
+    const session = createSession(ctx.db, user.id, ctx.config.sessionDays);
+    setSessionCookie(reply, session.token);
 
     const body: LoginResponse = { user: toSessionUser(user) };
     return reply.send(body);
@@ -125,13 +110,10 @@ export async function registerAuthRoutes(app: FastifyInstance, ctx: Ctx): Promis
 
     const limit = limiter.hit('register');
     if (!limit.allowed) {
-      return reply
-        .code(429)
-        .header('retry-after', String(limit.retryAfterSeconds))
-        .send({
-          error: 'rate_limited',
-          message: `Troppi tentativi. Riprova fra ${Math.ceil(limit.retryAfterSeconds / 60)} minuti.`,
-        });
+      return reply.code(429).send({
+        error: 'rate_limited',
+        message: `Troppi tentativi. Riprova fra ${Math.ceil(limit.retryAfterSeconds / 60)} minuti.`,
+      });
     }
 
     const email = parsed.data.email.toLowerCase();
@@ -160,8 +142,8 @@ export async function registerAuthRoutes(app: FastifyInstance, ctx: Ctx): Promis
       });
       ctx.db.exec('COMMIT');
 
-      const session = createSession(ctx.db, row.id, ctx.config.sessionDays, request.headers['user-agent']);
-      setSessionCookie(ctx, reply, session.token, session.expiresAt);
+      const session = createSession(ctx.db, row.id, ctx.config.sessionDays);
+      setSessionCookie(reply, session.token);
 
       return reply.code(201).send({ user: toSessionUser(row) });
     } catch (error) {
@@ -176,7 +158,7 @@ export async function registerAuthRoutes(app: FastifyInstance, ctx: Ctx): Promis
   app.post('/api/auth/logout', async (request, reply) => {
     const token = readCookie(request, SESSION_COOKIE);
     if (token) destroySession(ctx.db, token);
-    clearSessionCookie(ctx, reply);
+    clearSessionCookie(reply);
     return reply.send({ ok: true });
   });
 
@@ -196,13 +178,10 @@ export async function registerAuthRoutes(app: FastifyInstance, ctx: Ctx): Promis
 
       const limit = limiter.hit(`pwd:${user.id}`);
       if (!limit.allowed) {
-        return reply
-          .code(429)
-          .header('retry-after', String(limit.retryAfterSeconds))
-          .send({
-            error: 'rate_limited',
-            message: `Troppi tentativi. Riprova fra ${Math.ceil(limit.retryAfterSeconds / 60)} minuti.`,
-          });
+        return reply.code(429).send({
+          error: 'rate_limited',
+          message: `Troppi tentativi. Riprova fra ${Math.ceil(limit.retryAfterSeconds / 60)} minuti.`,
+        });
       }
 
       const row = findUserById(ctx.db, user.id);
@@ -225,11 +204,6 @@ export async function registerAuthRoutes(app: FastifyInstance, ctx: Ctx): Promis
       return reply.send({ ok: true, sessionsClosed: closed });
     },
   );
-
-  app.get('/api/auth/me', { preHandler: requireAuth(ctx) }, async (request, reply) => {
-    const { user } = request as AuthedRequest;
-    return reply.send({ user });
-  });
 
   // Rotta di comodo per il client: capire se c'è una sessione senza 401.
   app.get('/api/auth/session', async (request, reply) => {

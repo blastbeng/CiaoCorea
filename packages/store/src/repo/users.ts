@@ -9,7 +9,6 @@ export interface UserRow {
   email: string;
   display_name: string;
   password_hash: string;
-  role: string;
   created_at: string;
 }
 
@@ -35,13 +34,12 @@ export function createUser(db: Db, user: NewUser): UserRow {
     email: user.email.trim().toLowerCase(),
     display_name: user.displayName.trim(),
     password_hash: user.passwordHash,
-    role: 'student',
     created_at: nowIso(),
   };
 
   db.prepare(
-    'INSERT INTO users(id, email, display_name, password_hash, role, created_at) VALUES (?, ?, ?, ?, ?, ?)',
-  ).run(row.id, row.email, row.display_name, row.password_hash, row.role, row.created_at);
+    'INSERT INTO users(id, email, display_name, password_hash, created_at) VALUES (?, ?, ?, ?, ?)',
+  ).run(row.id, row.email, row.display_name, row.password_hash, row.created_at);
 
   return row;
 }
@@ -74,43 +72,6 @@ export function setWeeklyGoal(db: Db, userId: string, goal: number): number {
  */
 export function updatePasswordHash(db: Db, userId: string, passwordHash: string): void {
   db.prepare('UPDATE users SET password_hash = ? WHERE id = ?').run(passwordHash, userId);
-}
-
-export interface AccountRow {
-  id: string;
-  email: string;
-  display_name: string;
-  role: string;
-  created_at: string;
-  sessions: number;
-  attempts: number;
-}
-
-/**
- * Elenco per chi gestisce il corso: chi c'è, da quanto, quante prove ha fatto.
- * Le sessioni attive contano perché la prima cosa che si chiede, cancellato un
- * account, è "e le sue aperture di sessione?".
- */
-export function listAccounts(db: Db): AccountRow[] {
-  return db
-    .prepare(
-      `SELECT u.id, u.email, u.display_name, u.role, u.created_at,
-              (SELECT COUNT(*) FROM sessions s WHERE s.user_id = u.id) AS sessions,
-              (SELECT COUNT(*) FROM attempts a WHERE a.user_id = u.id) AS attempts
-         FROM users u
-        ORDER BY u.created_at`,
-    )
-    .all() as unknown as AccountRow[];
-}
-
-/**
- * Cancella un account. Vanno via anche i suoi progressi (ON DELETE CASCADE):
- * è la richiesta "cancella me e la mia storia", non "disattiva", e per questo
- * la CLI la chiede due volte.
- */
-export function deleteAccountByEmail(db: Db, email: string): boolean {
-  const result = db.prepare('DELETE FROM users WHERE email = ?').run(email.trim().toLowerCase());
-  return Number(result.changes) > 0;
 }
 
 export interface LocalAccountRow {

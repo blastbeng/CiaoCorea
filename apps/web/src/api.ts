@@ -1,6 +1,8 @@
 import type {
   AttemptResponse,
   CourseListResponse,
+  CourseSkipResponse,
+  CourseSkipTest,
   CourseView,
   DialogueAnswerResponse,
   DueCountResponse,
@@ -10,7 +12,6 @@ import type {
   FragileRetryResponse,
   LessonDetail,
   ProfileResponse,
-  ProgressSummary,
   MistakeAnswerResponse,
   MistakesResponse,
   ReviewCheckResponse,
@@ -47,7 +48,7 @@ export function announcePending(): void {
   window.dispatchEvent(new Event(PENDING_CHANGED));
 }
 
-export interface SubmitAnswer {
+interface SubmitAnswer {
   exerciseId: string;
   response: string;
 }
@@ -70,12 +71,15 @@ export const api = {
 
   logout: () => request<{ ok: boolean }>('POST', '/api/auth/logout'),
 
-  /** Scrive subito il database su IndexedDB: serve prima di chiudere la scheda. */
-  flush: async (): Promise<void> => (await getStore()).flush(),
-
   dashboard: () => request<CourseListResponse>('GET', '/api/courses'),
 
   course: (slug: string) => request<{ course: CourseView }>('GET', `/api/courses/${slug}`),
+
+  /** La prova che chiude un corso intero: una domanda per lezione, sempre le stesse. */
+  skipTest: (slug: string) => request<CourseSkipTest>('GET', `/api/courses/${slug}/skip-test`),
+
+  skipCourse: (slug: string, answers: SubmitAnswer[], durationMs: number) =>
+    request<CourseSkipResponse>('POST', `/api/courses/${slug}/skip`, { answers, durationMs }),
 
   lesson: (courseSlug: string, lessonId: string) =>
     request<LessonDetail>('GET', `/api/courses/${courseSlug}/lessons/${lessonId}`),
@@ -92,8 +96,6 @@ export const api = {
       answers,
       durationMs,
     }),
-
-  summary: () => request<ProgressSummary>('GET', '/api/progress/summary'),
 
   /** Solo il numero dei ripassi in scadenza, per il badge nella shell. */
   due: () => request<DueCountResponse>('GET', '/api/progress/due'),

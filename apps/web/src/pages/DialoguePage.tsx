@@ -120,7 +120,7 @@ function DialogueRunner({ initial }: { initial: DialogueDetail }) {
             correct: result.correctCount,
             completed: result.completed,
           },
-          // Il server non manda il coreano della battuta prima che sia
+          // L'API interna non manda il coreano della battuta prima che sia
           // superata: appena lo è, lo si scrive nel transcript locale.
           turns: previous.turns.map((turn, index) =>
             index === currentIndex ? { ...turn, ko: result.expected ?? turn.ko } : turn,
