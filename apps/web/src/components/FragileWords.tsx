@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { announcePending, api } from '../api';
 import { errorMessage } from '../auth';
+import { PronounceButton } from './PronounceButton';
 import { useAsync } from '../useAsync';
 
 /**
@@ -53,7 +54,9 @@ export function FragileWords({ onRetried }: { onRetried?: () => void }) {
         {words.map((word) => (
           <li className="fragile" key={word.id}>
             <span className="fragile__word">
-              <span className="hangul">{word.korean}</span>
+              <span className="hangul">
+                {word.korean} <PronounceButton text={word.korean} label={word.korean} />
+              </span>
               <span className="faint small">
                 {word.italian}
                 {word.hint ? ` · ${word.hint}` : ''}

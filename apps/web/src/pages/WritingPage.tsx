@@ -4,6 +4,7 @@ import type { WritingCheck, WritingEntry, WritingPromptView, WritingVerdict } fr
 import { api } from '../api';
 import { errorMessage } from '../auth';
 import { HangulInput } from '../components/HangulInput';
+import { PronounceButton } from '../components/PronounceButton';
 import { useAsync } from '../useAsync';
 
 const VERDICT_BADGE: Record<WritingVerdict, string> = {
@@ -57,7 +58,7 @@ function PromptCard({
       <article className="card writing-card writing-card--locked">
         <div className="writing-card__head">
           <h2>{prompt.title}</h2>
-          <span className="badge badge--locked">in chiusura</span>
+          <span className="badge badge--locked">Bloccata</span>
         </div>
         <p className="muted small">{prompt.task}</p>
         <p className="faint small">
@@ -111,7 +112,7 @@ function PromptCard({
         <div className="chips">
           {prompt.words.map((word) => (
             <span className="chip chip--hint" key={word} lang="ko">
-              {word}
+              {word} <PronounceButton text={word} label={word} />
             </span>
           ))}
         </div>
@@ -125,13 +126,14 @@ function PromptCard({
             <div>
               <span className="stat-label">Il tuo testo</span>
               <p className="compare__ko" lang="ko">
-                {result.text}
+                {result.text} <PronounceButton text={result.text} label="il tuo testo" />
               </p>
             </div>
             <div>
               <span className="stat-label">Modello</span>
               <p className="compare__ko" lang="ko">
-                {result.check.model}
+                {result.check.model}{' '}
+                <PronounceButton text={result.check.model} label="il modello" />
               </p>
             </div>
           </div>
@@ -193,9 +195,17 @@ function PromptCard({
                 })}`
               : 'Non ancora provata'}
           </span>
-          <button type="button" className="btn btn--primary btn--sm" onClick={() => setOpen(true)}>
-            Scrivi
-          </button>
+          <div className="row">
+            <Link
+              className="faint small"
+              to={`/corso/${prompt.courseSlug}/lezione/${prompt.lessonId}`}
+            >
+              Rivedi la lezione
+            </Link>
+            <button type="button" className="btn btn--primary btn--sm" onClick={() => setOpen(true)}>
+              Scrivi
+            </button>
+          </div>
         </div>
       )}
 

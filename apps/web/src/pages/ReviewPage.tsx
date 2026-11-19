@@ -4,6 +4,7 @@ import { announcePending, api } from '../api';
 import { errorMessage } from '../auth';
 import { FragileWords } from '../components/FragileWords';
 import { HangulInput } from '../components/HangulInput';
+import { PronounceButton } from '../components/PronounceButton';
 import { useAsync } from '../useAsync';
 
 export function ReviewPage() {
@@ -137,6 +138,7 @@ export function ReviewPage() {
         <p className="stat-label">{isWrite ? 'Scrivila in coreano' : 'Leggi e ricorda'}</p>
         <div className={isWrite ? 'flash-front flash-front--it' : 'flash-front hangul'}>
           {card.prompt}
+          {!isWrite ? <PronounceButton text={card.prompt} label={card.prompt} /> : null}
         </div>
         {card.hint ? <p className="hint">{card.hint}</p> : null}
 
@@ -146,7 +148,9 @@ export function ReviewPage() {
               <p className={checked.correct ? 'flash-back' : 'flash-back muted'}>
                 {checked.correct ? 'Giusto.' : 'Non ancora.'}
               </p>
-              <p className="flash-answer hangul">{checked.answer}</p>
+              <p className="flash-answer hangul">
+                {checked.answer} <PronounceButton text={checked.answer} label={checked.answer} />
+              </p>
               <div style={{ marginTop: '1.5rem' }}>
                 <button type="button" className="btn btn--primary" onClick={advance}>
                   {index + 1 >= cards.length ? 'Chiudi i ripassi' : 'Avanti'}

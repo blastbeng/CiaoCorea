@@ -1,4 +1,3 @@
-import { PronounceButtonProps } from 'react';
 import { speakKorean, ttsSupported } from '../pronounce';
 
 interface Props {

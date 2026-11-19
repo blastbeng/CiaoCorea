@@ -4,6 +4,7 @@ import type { ExerciseResult, MistakeItem, MistakesStats } from '@ciaocorea/shar
 import { announcePending, api } from '../api';
 import { errorMessage } from '../auth';
 import { ExerciseInput, isKorean } from '../components/ExerciseInput';
+import { PronounceButton } from '../components/PronounceButton';
 import { useAsync } from '../useAsync';
 
 /** "Sbagliato una volta" e "sbagliato quattro volte" non sono lo stesso problema. */
@@ -182,6 +183,9 @@ export function MistakesPage() {
             <p className="small">
               Risposta attesa:{' '}
               <strong className={isKorean(result.expected) ? 'hangul' : ''}>{result.expected}</strong>
+              {isKorean(result.expected) ? (
+                <PronounceButton text={result.expected} label={result.expected} />
+              ) : null}
             </p>
             {result.correct && wrongCount === null ? (
               <p className="faint small">Fuori dalla banca: non lo rivedrai qui.</p>

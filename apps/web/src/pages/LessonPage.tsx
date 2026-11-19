@@ -10,6 +10,7 @@ import {
 import { api } from '../api';
 import { errorMessage } from '../auth';
 import { ExerciseInput, isKorean } from '../components/ExerciseInput';
+import { PronounceButton } from '../components/PronounceButton';
 import { useAsync } from '../useAsync';
 
 type Mode = 'lesson' | 'skip';
@@ -30,7 +31,10 @@ type Mode = 'lesson' | 'skip';
 function PassageCard({ passage }: { passage: ReadingPassage }) {
   return (
     <section className="card passage">
-      <h2>{passage.title}</h2>
+      <div className="row row--between" style={{ alignItems: 'center' }}>
+        <h2 style={{ margin: 0 }}>{passage.title}</h2>
+        <PronounceButton text={passage.lines.join(' ')} label={passage.title} />
+      </div>
 
       <div className="passage__ko">
         {passage.lines.map((line, index) => (
@@ -44,7 +48,9 @@ function PassageCard({ passage }: { passage: ReadingPassage }) {
       <ul className="gloss">
         {passage.gloss.map((item) => (
           <li key={`${item.ko}-${item.it}`}>
-            <span className="ko">{item.ko}</span>
+            <span className="ko">
+              {item.ko} <PronounceButton text={item.ko} label={item.ko} />
+            </span>
             <span className="gloss__it">{item.it}</span>
             <span className="faint small">{item.rr}</span>
           </li>
@@ -92,7 +98,9 @@ function StudyView({ detail, onStart }: { detail: LessonDetail; onStart: (mode: 
           <ul className="vocab">
             {lesson.vocab.map((item) => (
               <li key={`${item.ko}-${item.it}`}>
-                <div className="ko">{item.ko}</div>
+                <div className="ko">
+                  {item.ko} <PronounceButton text={item.ko} label={item.ko} />
+                </div>
                 <div>{item.it}</div>
                 <div className="faint small">{item.rr}</div>
               </li>
@@ -115,7 +123,7 @@ function StudyView({ detail, onStart }: { detail: LessonDetail; onStart: (mode: 
         <section className="card">
           <h3>Conosci già questi contenuti?</h3>
           <p className="muted small">
-            Affronta un test rapido di {detail.skipTest.length} domande. Se lo superi la lezione
+            Affronta un test rapido di {detail.skipTest.length} domande. Se lo superi, la lezione
             risulta saltata e passi avanti; se no, ti restano gli esercizi completi.
           </p>
           <button type="button" className="btn" onClick={() => onStart('skip')}>

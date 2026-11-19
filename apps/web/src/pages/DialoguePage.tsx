@@ -9,6 +9,7 @@ import type {
 import { api } from '../api';
 import { errorMessage } from '../auth';
 import { HangulInput } from '../components/HangulInput';
+import { PronounceButton } from '../components/PronounceButton';
 import { useAsync } from '../useAsync';
 
 /**
@@ -60,7 +61,7 @@ function DialogueGate({ dialogue }: { dialogue: DialogueSummary }) {
         <p className="muted small">{dialogue.setting}</p>
       </header>
       <div className="card stack">
-        <span className="badge badge--locked">non ancora disponibile</span>
+        <span className="badge badge--locked">Bloccato</span>
         <p>
           {after ? (
             <>
@@ -181,7 +182,11 @@ function DialogueRunner({ initial }: { initial: DialogueDetail }) {
             <div key={turn.id} className={`chat__row${mine ? ' chat__row--me' : ''}`}>
               <div className="chat__bubble">
                 <span className="chat__speaker">{turn.speaker}</span>
-                {turn.ko ? <p className="chat__ko">{turn.ko}</p> : null}
+                {turn.ko ? (
+                  <p className="chat__ko">
+                    {turn.ko} <PronounceButton text={turn.ko} label={turn.ko} />
+                  </p>
+                ) : null}
                 <p className="chat__it">{turn.it}</p>
                 {turn.note ? <p className="chat__note">{turn.note}</p> : null}
               </div>
@@ -245,6 +250,9 @@ function DialogueRunner({ initial }: { initial: DialogueDetail }) {
         feedback.correct ? (
           <div className="alert alert--info">
             <strong>Giusto.</strong> {feedback.expected}
+            {feedback.expected ? (
+              <PronounceButton text={feedback.expected} label={feedback.expected} />
+            ) : null}
             {feedback.note ? <p className="small">{feedback.note}</p> : null}
           </div>
         ) : (
@@ -252,7 +260,8 @@ function DialogueRunner({ initial }: { initial: DialogueDetail }) {
             <strong>Non ancora.</strong>{' '}
             {feedback.expected ? (
               <>
-                La forma è <span className="hangul">{feedback.expected}</span>.
+                La forma è <span className="hangul">{feedback.expected}</span>
+                <PronounceButton text={feedback.expected} label={feedback.expected} />.
                 {feedback.note ? <p className="small">{feedback.note}</p> : null}
                 <button
                   type="button"

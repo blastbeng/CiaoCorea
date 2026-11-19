@@ -60,7 +60,7 @@ export function DialoguesPage() {
                 <div className="dialogue-card__head">
                   <h2>{dialogue.title}</h2>
                   <span className={locked ? 'badge badge--locked' : 'badge badge--available'}>
-                    {locked ? 'in chiusura' : dialogue.level}
+                    {locked ? 'Bloccato' : dialogue.level}
                   </span>
                 </div>
 

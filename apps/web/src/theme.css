@@ -1945,3 +1945,38 @@ textarea.input--ko {
     font-size: 0.68rem;
   }
 }
+
+/* ------------------------------------------------------------------ */
+/* Pronuncia — l'altoparlante che sta accanto al coreano                    */
+/* ------------------------------------------------------------------ */
+
+.pronounce {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 1.7rem;
+  height: 1.7rem;
+  padding: 0;
+  font-size: 0.8rem;
+  line-height: 1;
+  color: var(--ink-soft);
+  background: var(--chip-muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+  vertical-align: middle;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.pronounce:hover {
+  color: var(--ink);
+  background: var(--chip);
+  border-color: var(--line-strong);
+}
+
+.pronounce:active {
+  transform: scale(0.93);
+}

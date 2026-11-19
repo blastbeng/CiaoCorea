@@ -4,6 +4,7 @@ import type { VocabEntry, VocabFilterOption } from '@ciaocorea/shared';
 import { api } from '../api';
 import { errorMessage } from '../auth';
 import { HangulInput } from '../components/HangulInput';
+import { PronounceButton } from '../components/PronounceButton';
 
 const PAGE = 40;
 
@@ -185,7 +186,9 @@ export function VocabularyPage() {
             <section className="vocab-list">
               {entries.map((entry) => (
                 <article className="card vocab-entry" key={`${entry.courseSlug}-${entry.ko}`}>
-                  <div className="vocab-entry__ko hangul">{entry.ko}</div>
+                  <div className="vocab-entry__ko hangul">
+                    {entry.ko} <PronounceButton text={entry.ko} label={entry.ko} />
+                  </div>
                   <div className="vocab-entry__rr">{entry.rr}</div>
                   <div className="vocab-entry__it">{entry.it}</div>
                   <Link

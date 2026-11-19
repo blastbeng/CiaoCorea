@@ -18,7 +18,7 @@ export function AboutPage() {
   return (
     <div className="stack">
       <header>
-        <h1>About us</h1>
+        <h1>Chi siamo</h1>
         <p className="muted">
           CiaoCorea è un progetto indipendente, senza pubblicità e senza account: un modo per
           imparare il coreano in italiano, partendo dall'alfabeto.

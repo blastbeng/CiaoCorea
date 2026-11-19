@@ -121,7 +121,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           >
             <span className="user-chip__label">{user?.username ?? ''}</span>
             {nameIsGenerated ? (
-              <span className="user-chip__hint">(cambia qui il tuo username)</span>
+              <span className="user-chip__hint">(cambia qui il tuo nome)</span>
             ) : null}
           </Link>
           {/* Il database è di questo browser: cambiare utente è scegliere un
@@ -175,7 +175,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             Fabio Valentino
           </a>
           {' · '}
-          <Link to="/about">About us</Link>
+          <Link to="/about">Chi siamo</Link>
         </p>
       </footer>
     </div>
