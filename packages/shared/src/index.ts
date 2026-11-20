@@ -587,6 +587,35 @@ export interface VocabularyResponse {
 }
 
 /**
+ * Una voce del repertorio grammaticale: il singolo punto di una lezione, con
+ * la lezione che lo spiega. È il rovescio del dizionario — là si cerca una
+ * parola, qui si cerca una regola: «dove era -지만?».
+ */
+export interface GrammarEntry {
+  id: string;
+  /** La spiegazione, così com'è scritta nella lezione. */
+  point: string;
+  courseSlug: string;
+  courseTitle: string;
+  level: string;
+  lessonId: string;
+  lessonTitle: string;
+  lessonTitleKo: string;
+  /** Le forme coreane citate nel punto, su cui si può cercare. */
+  keywords: string[];
+}
+
+export interface GrammarResponse {
+  entries: GrammarEntry[];
+  /** Voci che matchano, prima del limite di pagina. */
+  total: number;
+  /** Quante voci ha il repertorio in tutto. */
+  curriculum: number;
+  courses: VocabFilterOption[];
+  query: string;
+}
+
+/**
  * La scheda che si apre cliccando una parola dentro un brano. `via` dice come
  * ci si è arrivati: la parola era già quella del dizionario, oppure è stata
  * riconosciuta togliendo una particella o una desinenza.

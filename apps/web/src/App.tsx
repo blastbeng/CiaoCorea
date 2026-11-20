@@ -17,6 +17,7 @@ import { ReviewPage } from './pages/ReviewPage';
 import { SkipCoursePage } from './pages/SkipCoursePage';
 import { SyncPage } from './pages/SyncPage';
 import { VocabularyPage } from './pages/VocabularyPage';
+import { GrammarPage } from './pages/GrammarPage';
 import { WritingPage } from './pages/WritingPage';
 
 function Gate({ children }: { children: ReactNode }) {
@@ -69,6 +70,7 @@ export default function App() {
         <Route path="ripassi" element={<ReviewPage />} />
         <Route path="errori" element={<MistakesPage />} />
         <Route path="dizionario" element={<VocabularyPage />} />
+        <Route path="repertorio" element={<GrammarPage />} />
         <Route path="quaderno" element={<WritingPage />} />
         <Route path="progressi" element={<ProfilePage />} />
         <Route path="profilo" element={<MyProfilePage />} />

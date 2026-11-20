@@ -1532,6 +1532,16 @@ a.lesson-row:hover {
   align-self: flex-start;
 }
 
+/* Il repertorio legge frasi intere: una colonna sola, non una griglia. */
+.vocab-list--wide {
+  grid-template-columns: 1fr;
+}
+
+.grammar-entry__point {
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
 /* ---------- progressi ---------- */
 
 .course-row {

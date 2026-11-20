@@ -5,6 +5,7 @@ export * from './srs';
 export * from './dialogue';
 export * from './romanize';
 export * from './vocabulary';
+export * from './grammar';
 export * from './lookup';
 export * from './plan';
 export * from './writing';

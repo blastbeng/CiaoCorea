@@ -10,6 +10,7 @@ import type {
   DialogueListResponse,
   FragileResponse,
   FragileRetryResponse,
+  GrammarResponse,
   LessonDetail,
   ProfileResponse,
   MistakeAnswerResponse,
@@ -144,6 +145,16 @@ export const api = {
     if (offset > 0) params.set('offset', String(offset));
     params.set('limit', String(limit));
     return request<VocabularyResponse>('GET', `/api/vocabulary?${params.toString()}`);
+  },
+
+  /** Il repertorio grammaticale: le spiegazioni delle lezioni, cercabili. */
+  grammar: (query: string, course: string, offset = 0, limit = 40) => {
+    const params = new URLSearchParams();
+    if (query) params.set('q', query);
+    if (course) params.set('course', course);
+    if (offset > 0) params.set('offset', String(offset));
+    params.set('limit', String(limit));
+    return request<GrammarResponse>('GET', `/api/grammar?${params.toString()}`);
   },
 
   /** La scheda di una parola cliccata dentro un brano. */
