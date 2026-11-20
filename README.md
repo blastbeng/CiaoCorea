@@ -11,9 +11,10 @@ compilato in WebAssembly, tenuto in IndexedDB). Il computer che apre il sito
 tiene i propri dati: niente registrazione, niente email, niente password — né da
 creare, né da ricordare, né da recuperare.
 
-Oltre al percorso ci sono cinque stanze: il **dizionario** di tutte le parole
-del curricolo, la **coda di ripasso** (SRS) che dopo due passaggi chiede di
-scrivere la parola, il **quaderno** dove si scrivono
+Oltre al percorso ci sono sei stanze: il **dizionario** di tutte le parole
+del curricolo, il **repertorio** che raccoglie le spiegazioni delle lezioni come
+un indice cercabile («dove era -지만?»), la **coda di ripasso** (SRS) che dopo
+due passaggi chiede di scrivere la parola, il **quaderno** dove si scrivono
 frasi proprie confrontandole con un modello, la **banca degli errori** con gli
 esercizi sbagliati da rifare, e la pagina dei **progressi**, con le statistiche
 complessive e il nome con cui essere chiamati. In cima alla home c'è il **piano
@@ -45,7 +46,8 @@ progressi, ripassi e tentativi non si perdono nel passaggio.
 | `/corso/:slug/lezione/:lessonId` | teoria, brani di lettura, lessico, esercizi, test di salto |
 | `/dialoghi` e `/dialoghi/:slug` | conversazione scritta a copione |
 | `/dizionario` | ricerca nelle parole del curricolo, con filtri per corso |
-| `/quaderno` | dodici consegne di scrittura: si scrive la frase, poi si confronta con il modello |
+| `/repertorio` | le spiegazioni delle lezioni in indice: si cerca una forma e si torna alla lezione |
+| `/quaderno` | le consegne di scrittura: si scrive la frase, poi si confronta con il modello |
 | `/ripassi` | carte in scadenza, giudizio `ho saputo / quasi / non ricordo`; sotto, le parole fragili da riprovare subito |
 | `/errori` | gli esercizi che hai sbagliato, uno alla volta: azzeccarli li toglie dalla banca |
 | `/progressi` | totali, per corso, parole SRS, obiettivo della settimana, ritmo dei giorni |
@@ -191,6 +193,7 @@ store dentro la scheda. Richiedono la sessione tutte tranne `bootstrap`,
 | GET | `/api/auth/accounts` | i profili presenti in questo browser, per la schermata di scelta |
 | GET | `/api/courses` | corsi, progressi, riepilogo, ripassi dovuti, piano di oggi (`plan`) |
 | GET | `/api/vocabulary` | dizionario: `q` (coreano/romanizzazione/italiano), `course`, `limit`, `offset` |
+| GET | `/api/grammar` | repertorio: `q`, `course`, `limit`, `offset` sulle spiegazioni del curricolo |
 | GET | `/api/profile` | progressi, totali, giorni attivi (con i ripassi), SRS, dialoghi, `weeklyGoal` |
 | POST | `/api/profile/goal` | obiettivo settimanale: da 1 a 7 giorni di studio |
 | POST | `/api/auth/username` | l'unico nome del profilo (nome e `@nome` insieme): unico su questo browser, 400 se non valido, 409 se è già di un altro profilo |
