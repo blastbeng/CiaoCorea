@@ -7,6 +7,7 @@ import {
   TABLE_VOWELS,
   VOWELS,
   composeSyllable,
+  decomposeSyllable,
   jamoInfo,
   romanizeSyllable,
   type ConsonantLetter,
@@ -35,11 +36,7 @@ export function AlphabetPage() {
   const composed = useMemo(() => composeSyllable(lead, vowel, tail) ?? '', [lead, vowel, tail]);
   const consonant = CONSONANTS.find((letter) => letter.char === openConsonant) ?? CONSONANTS[0];
   const vowelLetter = VOWELS.find((letter) => letter.char === openVowel) ?? VOWELS[0];
-  const cellParts = useMemo(() => {
-    const first = cell.charAt(0);
-    const second = cell.charAt(1);
-    return { lead: first, vowel: second };
-  }, [cell]);
+  const cellParts = useMemo(() => decomposeSyllable(cell), [cell]);
 
   return (
     <div className="stack alpha">
@@ -264,11 +261,16 @@ export function AlphabetPage() {
           <span lang="ko">{cell}</span>
           <div>
             <p>
-              {romanizeSyllable(cell)} · {nameOf(cellParts.lead)} + {nameOf(cellParts.vowel)}
+              {romanizeSyllable(cell)} · {cellParts ? nameOf(cellParts.lead) : ''} +{' '}
+              {cellParts ? nameOf(cellParts.vowel) : ''}
+              {cellParts?.tail ? ` + ${nameOf(cellParts.tail)}` : ''}
             </p>
-            <p className="muted">
-              {cellParts.lead} suona [{jamoInfo(cellParts.lead)?.ipa ?? '—'}] davanti alla vocale.
-            </p>
+            {cellParts ? (
+              <p className="muted">
+                {cellParts.lead} suona [{jamoInfo(cellParts.lead)?.ipa ?? '—'}] davanti alla
+                vocale.
+              </p>
+            ) : null}
           </div>
           <PronounceButton text={cell} label={cell} />
         </div>

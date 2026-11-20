@@ -27,7 +27,7 @@
             "Il passato nella parte con -면 serve per una condizione già realizzata: 약속을 잊었으면 미안하다고 해야죠.",
             "Con -면 si dà anche un consiglio o un invito: 피곤하면 쉬세요; 시간이 없으면 택시를 타세요.",
             "Per il «quando» di un fatto passato non si usa -면: 어렸을 때 부산에 살았어요, non 살았으면.",
-            "Il verbo della condizione resta alla forma base: il tempo sta nella frase che segue, 비가 오면 집에 있었어요."
+            "Il verbo della condizione resta alla forma base: 비가 오면 집에 있어요, 비가 오면 집에 있을 거예요. Il tempo si mette nella frase che segue."
           ],
           "vocab": [
             {
@@ -202,7 +202,7 @@
                 "이번 주말에 날씨가 좋으면 한강에 갈 거예요.",
                 "비가 오면 집에서 드라마를 볼 거예요.",
                 "시간이 있으면 친구도 만나고 싶어요.",
-                "피곤하면 아침에 늦게 일어나도 괜찮아요.",
+                "피곤하면 집에서 푹 쉬어요.",
                 "준비가 끝나면 문자를 보내 주세요."
               ],
               "gloss": [
@@ -235,9 +235,14 @@
                   "ko": "괜찮다",
                   "it": "andare bene, essere ok",
                   "rr": "gwaenchanta"
+                },
+                {
+                  "ko": "푹",
+                  "it": "a fondo, bene",
+                  "rr": "puk"
                 }
               ],
-              "translation": "Questo fine settimana, se il tempo è bello andrò al fiume Han. Se piove, guarderò un drama a casa. Se ho tempo, vorrei vedere anche un amico. Se sono stanco, va bene alzarmi tardi la mattina. Quando hai finito di prepararti, mandami un messaggio."
+              "translation": "Questo fine settimana, se il tempo è bello andrò al fiume Han. Se piove, guarderò un drama a casa. Se ho tempo, vorrei vedere anche un amico. Se sono stanco, mi riposo a casa. Quando hai finito di prepararti, mandami un messaggio."
             }
           ]
         },
@@ -254,9 +259,9 @@
             "Contrazioni da conoscere: 보다 → 봐도, 주다 → 줘도, 마시다 → 마셔도, 바쁘다 → 바빠도.",
             "-아/어도 non è -지만: -지만 è un «ma» fra due fatti, -아/어도 è una concessione, la seconda parte vale comunque (비가 와도 갈 거예요).",
             "Con i nomi si usa -이라도/라도: 학생이라도, 커피라도 마실래요? («vuoi prendere almeno un caffè?»).",
-            "Radici in ㄹ: 모르다 → 몰라도, 살다 → 살아도. Il ㄹ non sparisce.",
+            "Radici in ㄹ: 살다 → 살아도, 알다 → 알아도: la ㄹ resta. I verbi in 르 raddoppiano: 모르다 → 몰라도, 흐르다 → 흘러도.",
             "아무리 … -아/어도 = «per quanto…»: 아무리 바빠도 아침은 먹어요.",
-            "Per un'ipotesi forte si preferisce -더라도 (늦더라도 괜찮아요); -았/었어도 esiste ma è raro nel parlato."
+            "-았/었어도 si usa quando la concessione riguarda un fatto già concluso: 시험이 끝났어도 아직 긴장돼요. Nello scritto si preferisce spesso -더라도."
           ],
           "vocab": [
             {

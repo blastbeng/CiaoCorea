@@ -184,6 +184,10 @@ export function VocabularyPage() {
                 Questa parola non è ancora nel percorso. Le lezioni che la introducono sono il posto
                 giusto per incontrarla.
               </p>
+              <p className="muted">
+                Se invece è la scrittura a fermarti, <Link to="/alfabeto">guarda come è fatta ogni
+                sillaba</Link>: il dizionario si legge a sillabe, non a parole intere.
+              </p>
             </div>
           ) : (
             <section className="vocab-list">
