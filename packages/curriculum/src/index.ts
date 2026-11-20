@@ -6,6 +6,7 @@ import messaggiRaw from '../data/courses/messaggi.json';
 import a2Raw from '../data/courses/a2.json';
 import capacitaRaw from '../data/courses/capacita.json';
 import b1Raw from '../data/courses/b1.json';
+import discorsiRaw from '../data/courses/discorsi.json';
 import dialoguesRaw from '../data/dialogues.json';
 import writingRaw from '../data/writing.json';
 import { courseSchema, validateCourse, type CurriculumProblem } from './schema';
@@ -30,6 +31,7 @@ const RAW_COURSES: RawCourse[] = [
   { source: 'a2.json', raw: a2Raw },
   { source: 'capacita.json', raw: capacitaRaw },
   { source: 'b1.json', raw: b1Raw },
+  { source: 'discorsi.json', raw: discorsiRaw },
 ];
 
 export class CurriculumError extends Error {

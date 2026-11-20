@@ -421,5 +421,58 @@
     ],
     "model": "하늘에 구름이 많아요. 오늘은 조금 추운 것 같아요. 어제는 비가 온 것 같아요. 내일은 날씨가 좋을 것 같아요.",
     "notes": "Aggettivo presente → -(으)ㄴ 것 같다 (추운). Verbo passato → -(으)ㄴ 것 같다 (온). Futuro → -(으)ㄹ 것 같다 (좋을)."
+  },
+  {
+    "id": "w-dsc-03",
+    "courseSlug": "discorsi",
+    "lessonId": "dsc-03",
+    "title": "Perché oggi è andata così",
+    "task": "Racconta perché oggi sei arrivato in ritardo o perché hai cambiato programma: due frasi con -기 때문에 e una con un nome + 때문에.",
+    "words": [
+      "지하철",
+      "사고",
+      "아침"
+    ],
+    "must": [
+      "때문에"
+    ],
+    "model": "오늘 아침에 지하철이 멈췄어요. 비가 많이 왔기 때문에 지하철이 아주 느렸어요. 그리고 교통 사고 때문에 길도 막혔어요. 그래서 수업에 이십 분 늦었어요.",
+    "notes": "-기 때문에 segue la radice e prende il passato prima di 기 (왔기 때문에). Con un nome basta 때문에 (교통 사고 때문에)."
+  },
+  {
+    "id": "w-dsc-05",
+    "courseSlug": "discorsi",
+    "lessonId": "dsc-05",
+    "title": "La mia mattina, mentre…",
+    "task": "Descrivi la tua mattina con tre o quattro frasi: usa -는 동안 almeno due volte e una volta 동안 dopo un nome.",
+    "words": [
+      "아침",
+      "커피",
+      "음악"
+    ],
+    "must": [
+      "는 동안",
+      "동안"
+    ],
+    "model": "아침에 제가 커피를 만드는 동안 아이들은 자요. 그동안 저는 오늘 할 일을 생각해요. 음악을 듣는 동안 기분이 좋아져요. 방학 동안에는 아침이 아주 조용해요.",
+    "notes": "Con un verbo si usa -는 동안 (만드는 동안, 듣는 동안); con un nome si usa 동안 da solo (방학 동안)."
+  },
+  {
+    "id": "w-dsc-09",
+    "courseSlug": "discorsi",
+    "lessonId": "dsc-09",
+    "title": "Un favore fatto e uno ricevuto",
+    "task": "Racconta un favore che hai fatto o ricevuto: usa -아/어 주다 due volte e una volta 드리다 con una persona più importante.",
+    "words": [
+      "도와주다",
+      "선물",
+      "빌려주다"
+    ],
+    "must": [
+      "도와줬어요",
+      "드렸어요"
+    ],
+    "model": "지난주에 친구가 이사를 도와줬어요. 그래서 저는 친구에게 선물을 사 줬어요. 그리고 어제는 선생님께 책을 갖다 드렸어요. 선생님이 아주 고마워하셨어요.",
+    "notes": "도와주다 → 도와줬어요; 사다 + 주다 → 사 줬어요 (la cosa si compra per l'altro); 드리다 quando il favore è per una persona più importante."
   }
 ]

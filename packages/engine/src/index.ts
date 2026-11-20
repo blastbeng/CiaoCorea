@@ -9,3 +9,4 @@ export * from './grammar';
 export * from './lookup';
 export * from './plan';
 export * from './writing';
+export * from './jamo';

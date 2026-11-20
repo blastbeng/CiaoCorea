@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import type { WordLookupResponse } from '@ciaocorea/shared';
 import { api } from '../api';
+import { JamoBreakdown } from './JamoBreakdown';
 import { PronounceButton } from './PronounceButton';
 
 /**
@@ -20,6 +21,7 @@ export function WordToken({ token }: { token: string }) {
   const [loading, setLoading] = useState(false);
   const [asked, setAsked] = useState(false);
   const [match, setMatch] = useState<WordLookupResponse['match']>(null);
+  const [letters, setLetters] = useState(false);
   const selfRef = useRef<object | null>(null);
 
   const parts = token.match(/^([^가-힣]*)([가-힣]+)([^가-힣]*)$/);
@@ -73,6 +75,15 @@ export function WordToken({ token }: { token: string }) {
             <strong className="ko">{head}</strong>
             <PronounceButton text={head} label={word} />
           </span>
+          <button
+            type="button"
+            className="btn btn--ghost btn--sm"
+            aria-expanded={letters}
+            onClick={() => setLetters((value) => !value)}
+          >
+            {letters ? 'nascondi le lettere' : 'lettera per lettera'}
+          </button>
+          {letters ? <JamoBreakdown text={head} /> : null}
           {loading ? <span className="faint small">Cerco nel dizionario…</span> : null}
           {!loading && match ? (
             <>

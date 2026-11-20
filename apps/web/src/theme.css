@@ -2334,3 +2334,358 @@ textarea.input--ko {
   border-radius: 10px;
   background: #000;
 }
+
+/* ---------------------------------------------------------------- alfabeto */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.alpha {
+  gap: 1.6rem;
+}
+
+.alpha h1 {
+  margin: 0;
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+}
+
+.alpha h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.alpha h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.alpha-composer-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 0.8rem;
+}
+
+.alpha-composer-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.alpha-composer-controls select {
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--field);
+  color: var(--ink);
+  font-family: var(--font-ko);
+}
+
+.alpha-result {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--accent-line);
+  border-radius: var(--radius);
+  background: var(--accent-soft);
+}
+
+.alpha-result-char {
+  font-family: var(--font-ko);
+  font-size: clamp(3rem, 2rem + 6vw, 5rem);
+  line-height: 1;
+  color: var(--ink);
+}
+
+.alpha-result-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.alpha-result-rr {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--accent-ink);
+}
+
+.alpha-result-parts {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.alpha-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+  gap: 0.55rem;
+}
+
+.alpha-grid--vowels {
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+}
+
+.alpha-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.55rem 0.3rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, transform 0.1s;
+}
+
+.alpha-tile:hover {
+  border-color: var(--line-strong);
+  background: var(--btn-hover);
+}
+
+.alpha-tile--on {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.alpha-tile-char {
+  font-family: var(--font-ko);
+  font-size: 1.7rem;
+  line-height: 1.15;
+}
+
+.alpha-tile-rr {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+}
+
+.alpha-tile-kind {
+  font-size: 0.64rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-faint);
+}
+
+.alpha-tile-kind--tense {
+  color: var(--warn);
+}
+
+.alpha-tile-kind--aspirated {
+  color: var(--blue);
+}
+
+.alpha-detail-head {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.alpha-detail-char {
+  font-family: var(--font-ko);
+  font-size: 2.6rem;
+  line-height: 1;
+}
+
+.alpha-detail-head > div {
+  flex: 1;
+}
+
+.alpha-detail-head p {
+  margin: 0.15rem 0 0;
+  font-size: 0.85rem;
+}
+
+.alpha-example {
+  margin: 0.6rem 0 0;
+  font-size: 0.9rem;
+}
+
+.alpha-example strong {
+  font-family: var(--font-ko);
+  font-size: 1.2rem;
+}
+
+.alpha-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.alpha-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.alpha-table th {
+  padding: 0.35rem 0.2rem;
+  font-family: var(--font-ko);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  background: var(--sunken);
+  border-bottom: 1px solid var(--line);
+}
+
+.alpha-table tbody th {
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.alpha-table td {
+  padding: 0;
+  border-bottom: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+}
+
+.alpha-cell {
+  width: 100%;
+  padding: 0.3rem 0.15rem;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-ko);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.alpha-cell:hover {
+  background: var(--btn-hover);
+}
+
+.alpha-cell--on {
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+
+.alpha-cell-detail {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+
+.alpha-cell-detail > span {
+  font-family: var(--font-ko);
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+.alpha-cell-detail p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.alpha-finals {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.8rem;
+}
+
+.alpha-final-ipa {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--accent-ink);
+}
+
+.alpha-final-letters {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-ko);
+  font-size: 1.3rem;
+  letter-spacing: 0.1em;
+}
+
+.alpha-final p {
+  font-size: 0.9rem;
+}
+
+.alpha-final-examples {
+  margin: 0.5rem 0 0;
+  padding-left: 1rem;
+  font-size: 0.9rem;
+}
+
+.alpha-final-examples li {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.25rem;
+}
+
+.alpha-final-examples strong {
+  font-family: var(--font-ko);
+  font-size: 1.05rem;
+}
+
+.alpha-steps {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+}
+
+/* ------------------------------------------------------- scomposizione jamo */
+
+.jamo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.45rem 0.55rem;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--sunken);
+}
+
+.jamo-syllable {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.jamo-char {
+  font-family: var(--font-ko);
+  font-size: 1.25rem;
+  color: var(--ink);
+}
+
+.jamo-parts {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.jamo-part {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.05;
+}
+
+.jamo-letter {
+  font-family: var(--font-ko);
+  font-size: 0.9rem;
+  color: var(--accent-ink);
+}
+
+.jamo-name {
+  font-size: 0.58rem;
+  color: var(--ink-faint);
+}

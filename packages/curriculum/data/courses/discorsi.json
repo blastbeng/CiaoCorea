@@ -1,0 +1,1930 @@
+{
+  "id": "discorsi",
+  "slug": "discorsi",
+  "title": "말을 잇다 — Collegare le frasi",
+  "titleKo": "말을 잇다",
+  "level": "B1",
+  "subtitle": "Se, perché, appena, mentre, per… e le domande dentro la frase",
+  "description": "Nove lezioni per non fermarsi alla prima frase: la condizione con -(으)면, la concessione con -아/어도, la causa con -기 때문에, l'immediatezza di -자마자, la contemporaneità di -는 동안, lo scopo di -(으)러 가다, le domande indirette con -(으)ㄴ/는지, gli stati con -아/어 있다 e il favore con -아/어 주다. Ogni regola ha esempi, esercizi di completamento, riordino, ascolto e un brano da leggere.",
+  "units": [
+    {
+      "id": "dsc-u1",
+      "title": "Se e anche se",
+      "purpose": "Mettere una condizione davanti alla frase: cosa succede se, e cosa resta vero anche se.",
+      "lessons": [
+        {
+          "id": "dsc-01",
+          "slug": "se-la-condizione",
+          "title": "Se…: la condizione",
+          "titleKo": "조건: -(으)면",
+          "kind": "grammar",
+          "goal": "Dire cosa succede se una condizione si avvera, con -(으)면, e non confonderlo con il «quando» del passato.",
+          "durationMin": 16,
+          "points": [
+            "-(으)면 si attacca alla radice: dopo vocale -면 (가면, 오면), dopo consonante -으면 (먹으면, 있으면). 하다 → 하면, 좋다 → 좋으면.",
+            "La ㄹ non cade davanti a -면: 살면, 알면, 모르면. Cade invece davanti a ㅂ, come in 삽니다.",
+            "Vale per il «se» e per il «quando» di una cosa che si ripete o è futura: 비가 오면 우산을 써요; 주말에 시간이 있으면 같이 가요.",
+            "Il passato nella parte con -면 serve per una condizione già realizzata: 약속을 잊었으면 미안하다고 해야죠.",
+            "Con -면 si dà anche un consiglio o un invito: 피곤하면 쉬세요; 시간이 없으면 택시를 타세요.",
+            "Per il «quando» di un fatto passato non si usa -면: 어렸을 때 부산에 살았어요, non 살았으면.",
+            "Il verbo della condizione resta alla forma base: il tempo sta nella frase che segue, 비가 오면 집에 있었어요."
+          ],
+          "vocab": [
+            {
+              "ko": "우산",
+              "it": "ombrello",
+              "rr": "usan"
+            },
+            {
+              "ko": "비",
+              "it": "pioggia",
+              "rr": "bi"
+            },
+            {
+              "ko": "피곤하다",
+              "it": "essere stanco",
+              "rr": "pigonhada"
+            },
+            {
+              "ko": "쉬다",
+              "it": "riposare",
+              "rr": "swida"
+            },
+            {
+              "ko": "준비하다",
+              "it": "preparare, prepararsi",
+              "rr": "junbihada"
+            },
+            {
+              "ko": "늦다",
+              "it": "essere in ritardo",
+              "rr": "neutda"
+            },
+            {
+              "ko": "주말",
+              "it": "fine settimana",
+              "rr": "jumal"
+            },
+            {
+              "ko": "날씨",
+              "it": "tempo (meteo)",
+              "rr": "nalssi"
+            }
+          ],
+          "exercises": [
+            {
+              "id": "dsc-01-e1",
+              "type": "fill_blank",
+              "text": "비가 ___ 우산을 쓰세요.",
+              "answer": "오면",
+              "explain": "오다 → 오면: radice 오 + 면, perché finisce per vocale.",
+              "prompt": "Completa con -(으)면, la forma della condizione."
+            },
+            {
+              "id": "dsc-01-e2",
+              "type": "fill_blank",
+              "text": "시간이 ___ 같이 갈까요?",
+              "answer": "있으면",
+              "explain": "있다 → 있으면: dopo una consonante si aggiunge 으면.",
+              "prompt": "Completa con -(으)면, la forma della condizione."
+            },
+            {
+              "id": "dsc-01-e3",
+              "type": "fill_blank",
+              "text": "피곤___ 조금 쉬세요.",
+              "answer": "하면",
+              "explain": "피곤하다 → 피곤하면: ogni 하다 diventa 하면.",
+              "prompt": "Completa con -(으)면, la forma della condizione."
+            },
+            {
+              "id": "dsc-01-e4",
+              "type": "fill_blank",
+              "text": "내일 날씨가 ___ 소풍을 갑시다.",
+              "answer": "좋으면",
+              "explain": "좋다 → 좋으면: la ㅎ finale resta e si aggiunge 으면.",
+              "prompt": "Completa con -(으)면, la forma della condizione."
+            },
+            {
+              "id": "dsc-01-e5",
+              "type": "order_words",
+              "prompt": "Metti le parole nell'ordine giusto.",
+              "words": [
+                "비가",
+                "오면",
+                "집에",
+                "있을",
+                "거예요"
+              ],
+              "answer": "비가 오면 집에 있을 거예요",
+              "explain": "Condizione prima, conseguenza dopo: 비가 오면 / 집에 있을 거예요."
+            },
+            {
+              "id": "dsc-01-e6",
+              "type": "order_words",
+              "prompt": "Metti le parole nell'ordine giusto.",
+              "words": [
+                "시간이",
+                "없으면",
+                "택시를",
+                "타세요"
+              ],
+              "answer": "시간이 없으면 택시를 타세요",
+              "explain": "없으면 è la condizione negativa: «se non hai tempo»."
+            },
+            {
+              "id": "dsc-01-e7",
+              "type": "type_meaning",
+              "prompt": "Che cosa significa «우산»?",
+              "answer": "ombrello",
+              "accept": [
+                "l'ombrello"
+              ],
+              "explain": "우산 è l'ombrello; 비 è la pioggia."
+            },
+            {
+              "id": "dsc-01-e8",
+              "type": "type_meaning",
+              "prompt": "Che cosa significa «피곤하다»?",
+              "answer": "essere stanco",
+              "accept": [
+                "essere stanca",
+                "stanco",
+                "stanca"
+              ],
+              "explain": "피곤하다 è «essere stanco»: 피곤해요 «sono stanco»."
+            },
+            {
+              "id": "dsc-01-e9",
+              "type": "reading_mcq",
+              "prompt": "«주말에 시간이 있으면 같이 영화를 봐요.» Che cosa dice?",
+              "options": [
+                "Se nel fine settimana hai tempo, guardiamo un film insieme.",
+                "Nel fine settimana ho guardato un film da solo.",
+                "Non ho tempo nel fine settimana.",
+                "Nel fine settimana lavoro."
+              ],
+              "answer": "Se nel fine settimana hai tempo, guardiamo un film insieme.",
+              "explain": "시간이 있으면 è la condizione, 같이 영화를 봐요 la conseguenza: la frase non racconta il passato."
+            },
+            {
+              "id": "dsc-01-e10",
+              "type": "reading_mcq",
+              "prompt": "«늦으면 전화해 주세요.» Che cosa dice?",
+              "options": [
+                "Se sei in ritardo, chiamami.",
+                "Non chiamare se sei in ritardo.",
+                "Chiamami quando arrivi a casa.",
+                "Sei arrivato in ritardo."
+              ],
+              "answer": "Se sei in ritardo, chiamami.",
+              "explain": "늦으면 = se sei in ritardo; 전화해 주세요 = chiama (per me). La richiesta vive nella seconda parte."
+            },
+            {
+              "id": "dsc-01-e11",
+              "type": "listen_type",
+              "prompt": "Ascolta e scrivi la frase come si scrive.",
+              "speak": "비가 오면 우산을 쓰세요.",
+              "answer": "비가 오면 우산을 쓰세요.",
+              "explain": "Ascolti 오면, non 오면: la radice 오 prende direttamente -면."
+            },
+            {
+              "id": "dsc-01-e12",
+              "type": "type_hangul",
+              "prompt": "Scrivi in hangul: «pioggia».",
+              "answer": "비",
+              "explain": "비: ㅂ + ㅣ, due lettere, una sillaba. Si legge «bi»."
+            }
+          ],
+          "passages": [
+            {
+              "title": "주말 계획",
+              "lines": [
+                "이번 주말에 날씨가 좋으면 한강에 갈 거예요.",
+                "비가 오면 집에서 드라마를 볼 거예요.",
+                "시간이 있으면 친구도 만나고 싶어요.",
+                "피곤하면 아침에 늦게 일어나도 괜찮아요.",
+                "준비가 끝나면 문자를 보내 주세요."
+              ],
+              "gloss": [
+                {
+                  "ko": "한강",
+                  "it": "il fiume Han",
+                  "rr": "Hangang"
+                },
+                {
+                  "ko": "드라마",
+                  "it": "drama televisivo",
+                  "rr": "deurama"
+                },
+                {
+                  "ko": "문자",
+                  "it": "messaggio (sms)",
+                  "rr": "munja"
+                },
+                {
+                  "ko": "준비",
+                  "it": "preparazione",
+                  "rr": "junbi"
+                },
+                {
+                  "ko": "늦게",
+                  "it": "tardi",
+                  "rr": "neutge"
+                },
+                {
+                  "ko": "괜찮다",
+                  "it": "andare bene, essere ok",
+                  "rr": "gwaenchanta"
+                }
+              ],
+              "translation": "Questo fine settimana, se il tempo è bello andrò al fiume Han. Se piove, guarderò un drama a casa. Se ho tempo, vorrei vedere anche un amico. Se sono stanco, va bene alzarmi tardi la mattina. Quando hai finito di prepararti, mandami un messaggio."
+            }
+          ]
+        },
+        {
+          "id": "dsc-02",
+          "slug": "anche-se",
+          "title": "Anche se: la concessione",
+          "titleKo": "양보: -아/어도",
+          "kind": "grammar",
+          "goal": "Dire che una cosa vale comunque, anche se l'altra è vera, con -아/어도.",
+          "durationMin": 16,
+          "points": [
+            "-아/어도 significa «anche se». Radice in ㅏ o ㅗ → -아도 (가도, 오다 → 와도); le altre → -어도 (먹어도, 쉬어도); 하다 → 해도.",
+            "Contrazioni da conoscere: 보다 → 봐도, 주다 → 줘도, 마시다 → 마셔도, 바쁘다 → 바빠도.",
+            "-아/어도 non è -지만: -지만 è un «ma» fra due fatti, -아/어도 è una concessione, la seconda parte vale comunque (비가 와도 갈 거예요).",
+            "Con i nomi si usa -이라도/라도: 학생이라도, 커피라도 마실래요? («vuoi prendere almeno un caffè?»).",
+            "Radici in ㄹ: 모르다 → 몰라도, 살다 → 살아도. Il ㄹ non sparisce.",
+            "아무리 … -아/어도 = «per quanto…»: 아무리 바빠도 아침은 먹어요.",
+            "Per un'ipotesi forte si preferisce -더라도 (늦더라도 괜찮아요); -았/었어도 esiste ma è raro nel parlato."
+          ],
+          "vocab": [
+            {
+              "ko": "아무리",
+              "it": "per quanto",
+              "rr": "amuri"
+            },
+            {
+              "ko": "그래도",
+              "it": "comunque, eppure",
+              "rr": "geuraedo"
+            },
+            {
+              "ko": "바쁘다",
+              "it": "essere occupato",
+              "rr": "bappeuda"
+            },
+            {
+              "ko": "힘들다",
+              "it": "essere faticoso",
+              "rr": "himdeulda"
+            },
+            {
+              "ko": "포기하다",
+              "it": "rinunciare",
+              "rr": "pogihada"
+            },
+            {
+              "ko": "계속",
+              "it": "continuare, di continuo",
+              "rr": "gyesok"
+            },
+            {
+              "ko": "늦잠",
+              "it": "dormita fino a tardi",
+              "rr": "neutjam"
+            },
+            {
+              "ko": "출근하다",
+              "it": "andare al lavoro",
+              "rr": "chulgeunhada"
+            }
+          ],
+          "exercises": [
+            {
+              "id": "dsc-02-e1",
+              "type": "fill_blank",
+              "text": "비가 ___ 우산을 안 써요.",
+              "answer": "와도",
+              "explain": "오다 + 아도 → 와도: ㅗ + ㅏ si contrae in ㅘ.",
+              "prompt": "Completa con -아/어도, la forma della concessione."
+            },
+            {
+              "id": "dsc-02-e2",
+              "type": "fill_blank",
+              "text": "아무리 ___ 아침은 먹어요.",
+              "answer": "바빠도",
+              "explain": "바쁘다 → 바빠도: la ㅡ cade e la ㅂ si raddoppia in 바빠.",
+              "prompt": "Completa con -아/어도, la forma della concessione."
+            },
+            {
+              "id": "dsc-02-e3",
+              "type": "fill_blank",
+              "text": "일이 ___ 포기하지 마세요.",
+              "answer": "힘들어도",
+              "explain": "힘들다 → 힘들어도: radice 힘들 + 어도.",
+              "prompt": "Completa con -아/어도, la forma della concessione."
+            },
+            {
+              "id": "dsc-02-e4",
+              "type": "fill_blank",
+              "text": "주말에는 늦잠을 ___ 괜찮아요.",
+              "answer": "자도",
+              "explain": "자다 → 자도: radice in ㅏ, quindi -아도.",
+              "prompt": "Completa con -아/어도, la forma della concessione."
+            },
+            {
+              "id": "dsc-02-e5",
+              "type": "order_words",
+              "prompt": "Metti le parole nell'ordine giusto.",
+              "words": [
+                "비가",
+                "와도",
+                "우산을",
+                "안",
+                "써요"
+              ],
+              "answer": "비가 와도 우산을 안 써요",
+              "explain": "La concessione apre la frase, il fatto che resta vero la chiude."
+            },
+            {
+              "id": "dsc-02-e6",
+              "type": "order_words",
+              "prompt": "Metti le parole nell'ordine giusto.",
+              "words": [
+                "아무리",
+                "바빠도",
+                "아침은",
+                "먹어요"
+              ],
+              "answer": "아무리 바빠도 아침은 먹어요",
+              "explain": "아무리 rafforza la concessione: «per quanto sia occupato»."
+            },
+            {
+              "id": "dsc-02-e7",
+              "type": "type_meaning",
+              "prompt": "Che cosa significa «그래도»?",
+              "answer": "comunque",
+              "accept": [
+                "eppure",
+                "lo stesso",
+                "comunque sia",
+                "anche così"
+              ],
+              "explain": "그래도 è il «comunque» che riapre la frase dopo una concessione."
+            },
+            {
+              "id": "dsc-02-e8",
+              "type": "type_meaning",
+              "prompt": "Che cosa significa «포기하다»?",
+              "answer": "rinunciare",
+              "accept": [
+                "arrendersi",
+                "lasciare perdere",
+                "mollare"
+              ],
+              "explain": "포기하다 è «rinunciare»; 포기하지 마세요 «non arrenderti»."
+            },
+            {
+              "id": "dsc-02-e9",
+              "type": "reading_mcq",
+              "prompt": "«비가 와도 갈 거예요.» Che cosa dice?",
+              "options": [
+                "Ci andrò anche se piove.",
+                "Se piove non ci vado.",
+                "Ci sono andato nonostante la pioggia.",
+                "Ci andrò perché piove."
+              ],
+              "answer": "Ci andrò anche se piove.",
+              "explain": "-아/어도 + futuro: la pioggia non cambia la decisione."
+            },
+            {
+              "id": "dsc-02-e10",
+              "type": "reading_mcq",
+              "prompt": "«늦잠을 자도 괜찮아요.» Che cosa dice?",
+              "options": [
+                "Va bene anche se dormo fino a tardi.",
+                "Non va bene dormire fino a tardi.",
+                "Ho dormito fino a tardi.",
+                "Devo alzarmi presto."
+              ],
+              "answer": "Va bene anche se dormo fino a tardi.",
+              "explain": "자도 è la concessione, 괜찮아요 il permesso: «anche se…, va bene»."
+            },
+            {
+              "id": "dsc-02-e11",
+              "type": "listen_type",
+              "prompt": "Ascolta e scrivi la frase come si scrive.",
+              "speak": "아무리 바빠도 아침은 먹어요.",
+              "answer": "아무리 바빠도 아침은 먹어요.",
+              "explain": "Ascolti 바빠도: la seconda sillaba è 빠, non 바. Il ㅂ raddoppia nella coniugazione."
+            },
+            {
+              "id": "dsc-02-e12",
+              "type": "type_hangul",
+              "prompt": "Scrivi in hangul: «essere occupato».",
+              "answer": "바쁘다",
+              "explain": "바쁘다: 바 + 쁘 + 다. La ㅃ è tesa, senza soffio."
+            }
+          ],
+          "passages": [
+            {
+              "title": "아무리 바빠도",
+              "lines": [
+                "저는 아무리 바빠도 아침을 꼭 먹어요.",
+                "비가 와도 우산을 안 써요. 그래서 자주 젖어요.",
+                "일이 힘들어도 포기하지 않아요.",
+                "주말에는 늦잠을 자도 괜찮아요.",
+                "그래도 월요일에는 일찍 일어나야 해요."
+              ],
+              "gloss": [
+                {
+                  "ko": "꼭",
+                  "it": "assolutamente, per forza",
+                  "rr": "kkok"
+                },
+                {
+                  "ko": "자주",
+                  "it": "spesso",
+                  "rr": "jaju"
+                },
+                {
+                  "ko": "젖다",
+                  "it": "bagnarsi",
+                  "rr": "jeotda"
+                },
+                {
+                  "ko": "일찍",
+                  "it": "presto",
+                  "rr": "iljjik"
+                },
+                {
+                  "ko": "일어나다",
+                  "it": "alzarsi",
+                  "rr": "ireonada"
+                }
+              ],
+              "translation": "Per quanto sia occupato, io faccio sempre colazione. Anche se piove non uso l'ombrello, e così mi bagno spesso. Anche se il lavoro è faticoso, non rinuncio. Nel fine settimana va bene dormire fino a tardi. Comunque il lunedì devo alzarmi presto."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dsc-u2",
+      "title": "Cause e tempi",
+      "purpose": "Dire perché succede, dire appena succede, dire mentre succede e dire a fare che cosa si va.",
+      "lessons": [
+        {
+          "id": "dsc-03",
+          "slug": "perche-gi-temune",
+          "title": "Perché: -기 때문에",
+          "titleKo": "이유: -기 때문에",
+          "kind": "grammar",
+          "goal": "Spiegare la causa con -기 때문에, mettere il passato prima di 기 e non farci mai seguire un ordine.",
+          "durationMin": 16,
+          "points": [
+            "-기 때문에 si attacca alla radice: 비가 오기 때문에, 일이 많기 때문에, 피곤하기 때문에. 하다 → 하기 때문에.",
+            "Con un nome si usa 때문이다 da solo o 이기 때문에: 비 때문에 «per la pioggia», 학생이기 때문에 «siccome sono studente».",
+            "Il passato sta prima di 기: 늦게 잤기 때문에, 비가 왔기 때문에. Con -아/어서 il passato non si può mettere, con -기 때문에 sì.",
+            "Dopo -기 때문에 non si mettono ordini né inviti: 비가 오기 때문에 우산을 챙겨요, non 챙기세요.",
+            "-기 때문에 è più formale di -아/어서: bene in un racconto o in una spiegazione, pesante in un messaggio fra amici.",
+            "La causa può stare anche all'inizio: 교통 사고 때문에 길이 막혀요 «per l'incidente la strada è bloccata».",
+            "-기 때문에 e -아/어서 non si attaccano allo stesso verbo: la causa si esprime con uno dei due, non con tutti e due."
+          ],
+          "vocab": [
+            {
+              "ko": "때문에",
+              "it": "a causa di, perché",
+              "rr": "ttaemune"
+            },
+            {
+              "ko": "교통",
+              "it": "traffico",
+              "rr": "gyotong"
+            },
+            {
+              "ko": "사고",
+              "it": "incidente",
+              "rr": "sago"
+            },
+            {
+              "ko": "지각하다",
+              "it": "arrivare in ritardo",
+              "rr": "jigakhada"
+            },
+            {
+              "ko": "시험",
+              "it": "esame",
+              "rr": "siheom"
+            },
+            {
+              "ko": "결과",
+              "it": "risultato",
+              "rr": "gyeolgwa"
+            },
+            {
+              "ko": "건강",
+              "it": "salute",
+              "rr": "geongang"
+            },
+            {
+              "ko": "규칙",
+              "it": "regola",
+              "rr": "gyuchik"
+            }
+          ],
+          "exercises": [
+            {
+              "id": "dsc-03-e1",
+              "type": "fill_blank",
+              "text": "비가 ___ 우산을 챙겼어요.",
+              "answer": "오기 때문에",
+              "explain": "오다 → 오기 때문에: radice 오 + 기 때문에, perché finisce per vocale.",
+              "prompt": "Completa con -기 때문에, oppure 때문에 dopo un nome."
+            },
+            {
+              "id": "dsc-03-e2",
+              "type": "fill_blank",
+              "text": "어제 늦게 ___ 오늘 피곤해요.",
+              "answer": "잤기 때문에",
+              "explain": "자다 → 잤기 때문에: il passato sta prima di 기, non dopo.",
+              "prompt": "Completa con -기 때문에, oppure 때문에 dopo un nome."
+            },
+            {
+              "id": "dsc-03-e3",
+              "type": "fill_blank",
+              "text": "교통 사고 ___ 길이 막혀요.",
+              "answer": "때문에",
+              "explain": "Con un nome basta 때문에: 교통 사고 때문에 «a causa dell'incidente». 이기 때문에 sarebbe sbagliato qui.",
+              "prompt": "Completa con -기 때문에, oppure 때문에 dopo un nome."
+            },
+            {
+              "id": "dsc-03-e4",
+              "type": "fill_blank",
+              "text": "그는 학생___ 할인을 받아요.",
+              "answer": "이기 때문에",
+              "explain": "Con un nome che è la causa si usa 이기 때문에: 학생이기 때문에 «siccome è studente».",
+              "prompt": "Completa con -기 때문에, oppure 때문에 dopo un nome."
+            },
+            {
+              "id": "dsc-03-e5",
+              "type": "order_words",
+              "prompt": "Metti le parole nell'ordine giusto.",
+              "words": [
+                "오늘은",
+                "일이",
+                "많기",
+                "때문에",
+                "늦게",
+                "갑니다"
+              ],
+              "answer": "오늘은 일이 많기 때문에 늦게 갑니다",
+              "explain": "Prima la causa (일이 많기 때문에), poi la conseguenza (늦게 갑니다)."
+            },
+            {
+              "id": "dsc-03-e6",
+              "type": "order_words",
+              "prompt": "Metti le parole nell'ordine giusto.",
+              "words": [
+                "비가",
+                "오기",
+                "때문에",
+                "경기가",
+                "취소됐어요"
+              ],
+              "answer": "비가 오기 때문에 경기가 취소됐어요",
+              "explain": "취소됐어요 è «è stato annullato»: la causa con -기 때문에 regge anche un fatto già avvenuto."
+            },
+            {
+              "id": "dsc-03-e7",
+              "type": "type_meaning",
+              "prompt": "Che cosa significa «지각하다»?",
+              "answer": "arrivare in ritardo",
+              "accept": [
+                "arrivare tardi",
+                "essere in ritardo",
+                "fare tardi"
+              ],
+              "explain": "지각하다 è «arrivare in ritardo»: 지각했어요 «sono arrivato in ritardo»."
+            },
+            {
+              "id": "dsc-03-e8",
+              "type": "type_meaning",
+              "prompt": "Che cosa significa «결과»?",
+              "answer": "risultato",
+              "accept": [
+                "l'esito",
+                "esito"
+              ],
+              "explain": "결과 è il risultato: 시험 결과 «il risultato dell'esame»."
+            },
+            {
+              "id": "dsc-03-e9",
+              "type": "reading_mcq",
+              "prompt": "«비가 오기 때문에 오늘은 집에 있어요.» Che cosa dice?",
+              "options": [
+                "Siccome piove, oggi resto a casa.",
+                "Anche se piove, oggi esco di casa.",
+                "Oggi pioverà, quindi esco.",
+                "Oggi non piove e resto a casa."
+              ],
+              "answer": "Siccome piove, oggi resto a casa.",
+              "explain": "오기 때문에 è la causa: «siccome piove». 집에 있어요 è la conseguenza."
+            },
+            {
+              "id": "dsc-03-e10",
+              "type": "reading_mcq",
+              "prompt": "«어제 늦게 잤기 때문에 오늘 피곤해요.» Che cosa dice?",
+              "options": [
+                "Siccome ieri sono andato a letto tardi, oggi sono stanco.",
+                "Ieri ero stanco perché sono andato a letto tardi.",
+                "Oggi vado a letto tardi perché sono stanco.",
+                "Ieri ho dormito presto e oggi non sono stanco."
+              ],
+              "answer": "Siccome ieri sono andato a letto tardi, oggi sono stanco.",
+              "explain": "잤기 때문에 tiene il passato prima di 기: il sonno è di ieri, la stanchezza di oggi."
+            },
+            {
+              "id": "dsc-03-e11",
+              "type": "listen_type",
+              "prompt": "Ascolta e scrivi la frase come si scrive.",
+              "speak": "비가 오기 때문에 소풍이 취소됐어요.",
+              "answer": "비가 오기 때문에 소풍이 취소됐어요.",
+              "explain": "Scriva 기 perché è la radice di 오다 più la particella 기: 오기."
+            },
+            {
+              "id": "dsc-03-e12",
+              "type": "type_hangul",
+              "prompt": "Scrivi in hangul: «a causa di, perché».",
+              "answer": "때문에",
+              "explain": "때문에: 때 + 문 + 에. La ㅆ di 때 è tesa, la 문 è la stessa parola di «porta»."
+            }
+          ],
+          "passages": [
+            {
+              "title": "왜 늦었어요?",
+              "lines": [
+                "오늘 아침에 지하철이 갑자기 멈췄어요.",
+                "교통 사고 때문에 지하철이 아주 느렸어요.",
+                "그래서 수업에 이십 분 늦었어요.",
+                "선생님이 제게 이유를 물어보셨어요.",
+                "저는 사고 때문에 늦었어요. 정말 죄송해요."
+              ],
+              "gloss": [
+                {
+                  "ko": "갑자기",
+                  "it": "all'improvviso",
+                  "rr": "gapjagi"
+                },
+                {
+                  "ko": "느리다",
+                  "it": "essere lento",
+                  "rr": "neurida"
+                },
+                {
+                  "ko": "이십",
+                  "it": "venti",
+                  "rr": "isip"
+                },
+                {
+                  "ko": "죄송하다",
+                  "it": "dispiacersi, scusarsi",
+                  "rr": "joesonghada"
+                },
+                {
+                  "ko": "지하철",
+                  "it": "metropolitana",
+                  "rr": "jihacheol"
+                },
+                {
+                  "ko": "수업",
+                  "it": "lezione",
+                  "rr": "sueop"
+                }
+              ],
+              "translation": "Questa mattina la metropolitana si è fermata all'improvviso. A causa di un incidente stradale era molto lenta. Così sono arrivato a lezione con venti minuti di ritardo. L'insegnante mi ha chiesto il motivo. Ho risposto che ero in ritardo per l'incidente e mi sono scusato."
+            }
+          ]
+        },
+        {
+          "id": "dsc-04",
+          "slug": "appena-ja-maja",
+          "title": "Appena: -자마자",
+          "titleKo": "즉시: -자마자",
+          "kind": "grammar",
+          "goal": "Dire che una cosa è successa subito dopo un'altra, con -자마자, senza mettere il passato sul primo verbo.",
+          "durationMin": 16,
+          "points": [
+            "-자마자 si attacca alla radice e non prende il passato: 집에 도착하자마자, non 도착했자마자.",
+            "La seconda frase può essere al passato o al presente: 도착하자마자 비가 왔어요; 일어나자마자 커피를 마셔요.",
+            "I verbi in ㄷ restano tali davanti a 자: 듣다 → 듣자마자, perché 자 comincia per consonante.",
+            "Dopo -자마자 non si danno ordini o inviti: si racconta quello che è successo, non si chiede di farlo.",
+            "Il soggetto della seconda frase può essere diverso: 제가 문을 열자마자 바람이 들어왔어요 «appena ho aperto la porta, è entrata l'aria».",
+            "«Non appena» in italiano è -자마자; «prima di» è -기 전에, e non vanno confusi.",
+            "Il soggetto può cambiare, ma è più naturale quando è lo stesso: 제가 들어가자마자 문이 닫혔어요."
+          ],
+          "vocab": [
+            {
+              "ko": "도착하다",
+              "it": "arrivare",
+              "rr": "dochakhada"
+            },
+            {
+              "ko": "출발하다",
+              "it": "partire",
+              "rr": "chulbalhada"
+            },
+            {
+              "ko": "바로",
+              "it": "subito, proprio",
+              "rr": "baro"
+            },
+            {
+              "ko": "잠들다",
+              "it": "addormentarsi",
+              "rr": "jamdeulda"
+            },
+            {
+              "ko": "열리다",
+              "it": "aprirsi",
+              "rr": "yeollida"
+            },
+            {
+              "ko": "끝나다",
+              "it": "finire",
+              "rr": "kkeunnada"
+            },
+            {
+              "ko": "들어가다",
+              "it": "entrare",
+              "rr": "deureogada"
+            },
+            {
+              "ko": "알다",
+              "it": "sapere",
+              "rr": "alda"
+            }
+          ],
+          "exercises": [
+            {
+              "id": "dsc-04-e1",
+              "type": "fill_blank",
+              "text": "집에 ___ 비가 오기 시작했어요.",
+              "answer": "도착하자마자",
+              "explain": "도착하다 → 도착하자마자: la radice resta al presente, il passato sta solo nella frase dopo.",
+              "prompt": "Completa con -자마자, senza mettere il passato sul primo verbo."
+            },
+            {
+              "id": "dsc-04-e2",
+              "type": "fill_blank",
+              "text": "수업이 ___ 교실을 나갔어요.",
+              "answer": "끝나자마자",
+              "explain": "끝나다 → 끝나자마자: «non appena è finita la lezione».",
+              "prompt": "Completa con -자마자, senza mettere il passato sul primo verbo."
+            },
+            {
+              "id": "dsc-04-e3",
+              "type": "fill_blank",
+              "text": "그 소식을 ___ 바로 전화했어요.",
+              "answer": "듣자마자",
+              "explain": "듣다 → 듣자마자: davanti a 자 la ㄷ resta, non diventa ㄹ.",
+              "prompt": "Completa con -자마자, senza mettere il passato sul primo verbo."
+            },
+            {
+              "id": "dsc-04-e4",
+              "type": "fill_blank",
+              "text": "아침에 ___ 바로 커피를 마셔요.",
+              "answer": "일어나자마자",
+              "explain": "일어나다 → 일어나자마자: abitudine al presente, quindi anche la seconda frase è al presente.",
+              "prompt": "Completa con -자마자, senza mettere il passato sul primo verbo."
+            },
+            {
+              "id": "dsc-04-e5",
+              "type": "order_words",
+              "prompt": "Metti le parole nell'ordine giusto.",
+              "words": [
+                "집에",
+                "도착하자마자",
+                "비가",
+                "왔어요"
+              ],
+              "answer": "집에 도착하자마자 비가 왔어요",
+              "explain": "Prima l'evento immediato (도착하자마자), poi quello che è successo subito dopo."
+            },
+            {
+              "id": "dsc-04-e6",
+              "type": "order_words",
+              "prompt": "Metti le parole nell'ordine giusto.",
+              "words": [
+                "그",
+                "영화를",
+                "보자마자",
+                "잠들었어요"
+              ],
+              "answer": "그 영화를 보자마자 잠들었어요",
+              "explain": "보자마자 da 보다: «appena l'ho visto»."
+            },
+            {
+              "id": "dsc-04-e7",
+              "type": "type_meaning",
+              "prompt": "Che cosa significa «도착하다»?",
+              "answer": "arrivare",
+              "accept": [
+                "giungere"
+              ],
+              "explain": "도착하다 è «arrivare»: 도착했어요 «sono arrivato»."
+            },
+            {
+              "id": "dsc-04-e8",
+              "type": "type_meaning",
+              "prompt": "Che cosa significa «바로»?",
+              "answer": "subito",
+              "accept": [
+                "proprio",
+                "immediatamente"
+              ],
+              "explain": "바로 è «subito, proprio»: 바로 전화했어요 «ho telefonato subito»."
+            },
+            {
+              "id": "dsc-04-e9",
+              "type": "reading_mcq",
+              "prompt": "«수업이 끝나자마자 친구를 만났어요.» Che cosa dice?",
+              "options": [
+                "Appena è finita la lezione, ho incontrato un amico.",
+                "Prima che finisse la lezione ho incontrato un amico.",
+                "Mentre la lezione finiva ho incontrato un amico.",
+                "Dopo molte ore dalla lezione ho incontrato un amico."
+              ],
+              "answer": "Appena è finita la lezione, ho incontrato un amico.",
+              "explain": "끝나자마자 è «appena è finita»: due cose una dietro l'altra, senza attesa."
+            },
+            {
+              "id": "dsc-04-e10",
+              "type": "reading_mcq",
+              "prompt": "«그 말을 듣자마자 웃었어요.» Che cosa dice?",
+              "options": [
+                "Appena ho sentito quelle parole, ho riso.",
+                "Ho riso prima di sentire quelle parole.",
+                "Non ho sentito quelle parole e non ho riso.",
+                "Ho riso perché non avevo sentito nulla."
+              ],
+              "answer": "Appena ho sentito quelle parole, ho riso.",
+              "explain": "듣자마자: la ㄷ resta davanti a 자. Il riso è arrivato subito dopo le parole."
+            },
+            {
+              "id": "dsc-04-e11",
+              "type": "listen_type",
+              "prompt": "Ascolta e scrivi la frase come si scrive.",
+              "speak": "집에 도착하자마자 비가 왔어요.",
+              "answer": "집에 도착하자마자 비가 왔어요.",
+              "explain": "Scriva 도착하자마자 tutto attaccato: 도착하다 perde 다 e prende 자마자."
+            },
+            {
+              "id": "dsc-04-e12",
+              "type": "type_hangul",
+              "prompt": "Scrivi in hangul: «subito».",
+              "answer": "바로",
+              "explain": "바로: 바 + 로. La ㄹ finale di 바로 è leggera, quasi una r italiana."
+            }
+          ]
+        },
+        {
+          "id": "dsc-05",
+          "slug": "mentre-neun-dongan",
+          "title": "Mentre: -는 동안",
+          "titleKo": "동시: -는 동안",
+          "kind": "grammar",
+          "goal": "Dire che due cose accadono nello stesso periodo, con -는 동안, e usare 동안 anche dopo un nome.",
+          "durationMin": 16,
+          "points": [
+            "Con un verbo si usa -는 동안: 제가 공부하는 동안, 비가 오는 동안. Il verbo resta al presente.",
+            "Con un nome si usa 동안 da solo: 방학 동안 «durante le vacanze», 이십 분 동안 «per venti minuti».",
+            "I due soggetti possono essere diversi: 제가 자는 동안 동생이 청소했어요.",
+            "-는 동안 vuole un'azione che dura. Con un verbo puntuale come 도착하다 suona strano: per «quando arrivo» si usa 도착할 때.",
+            "«Nel frattempo» è 그동안, e si usa da solo: 그동안 잘 지냈어요?",
+            "Non si confonde con -면서, che vuole lo stesso soggetto: 제가 공부하면서 음악을 들어요.",
+            "Per un'azione già finita che fa da sfondo si può usare -는 동안에: 기다리는 동안에 책을 읽었어요."
+          ],
+          "vocab": [
+            {
+              "ko": "동안",
+              "it": "durante, mentre",
+              "rr": "dongan"
+            },
+            {
+              "ko": "방학",
+              "it": "vacanze scolastiche",
+              "rr": "banghak"
+            },
+            {
+              "ko": "조용하다",
+              "it": "essere silenzioso",
+              "rr": "joyonghada"
+            },
+            {
+              "ko": "시끄럽다",
+              "it": "essere rumoroso",
+              "rr": "sikkeureopda"
+            },
+            {
+              "ko": "기다리다",
+              "it": "aspettare",
+              "rr": "gidarida"
+            },
+            {
+              "ko": "움직이다",
+              "it": "muoversi",
+              "rr": "umjigida"
+            },
+            {
+              "ko": "그동안",
+              "it": "nel frattempo",
+              "rr": "geudongan"
+            },
+            {
+              "ko": "오래",
+              "it": "a lungo",
+              "rr": "orae"
+            }
+          ],
+          "exercises": [
+            {
+              "id": "dsc-05-e1",
+              "type": "fill_blank",
+              "text": "제가 ___ 동안 동생이 요리를 했어요.",
+              "answer": "공부하는",
+              "explain": "공부하다 → 공부하는 동안: con un verbo la forma è -는 동안, al presente.",
+              "prompt": "Completa con -는 동안, oppure 동안 dopo un nome."
+            },
+            {
+              "id": "dsc-05-e2",
+              "type": "fill_blank",
+              "text": "방학 ___ 여행을 했어요.",
+              "answer": "동안",
+              "explain": "Dopo un nome basta 동안: 방학 동안 «durante le vacanze».",
+              "prompt": "Completa con -는 동안, oppure 동안 dopo un nome."
+            },
+            {
+              "id": "dsc-05-e3",
+              "type": "fill_blank",
+              "text": "비가 ___ 동안 집에 있었어요.",
+              "answer": "오는",
+              "explain": "오다 → 오는 동안: la pioggia durava, io restavo in casa.",
+              "prompt": "Completa con -는 동안, oppure 동안 dopo un nome."
+            },
+            {
+              "id": "dsc-05-e4",
+              "type": "fill_blank",
+              "text": "오래 ___ 동안 책을 읽었어요.",
+              "answer": "기다리는",
+              "explain": "기다리다 → 기다리는 동안: i due verbi hanno lo stesso soggetto e lo stesso periodo.",
+              "prompt": "Completa con -는 동안, oppure 동안 dopo un nome."
+            },
+            {
+              "id": "dsc-05-e5",
+              "type": "order_words",
+              "prompt": "Metti le parole nell'ordine giusto.",
+              "words": [
+                "제가",
+                "자는",
+                "동안",
+                "동생이",
+                "청소했어요"
+              ],
+              "answer": "제가 자는 동안 동생이 청소했어요",
+              "explain": "I due soggetti sono diversi: io dormivo, mio fratello puliva."
+            },
+            {
+              "id": "dsc-05-e6",
+              "type": "order_words",
+              "prompt": "Metti le parole nell'ordine giusto.",
+              "words": [
+                "방학",
+                "동안",
+                "한국어를",
+                "공부했어요"
+              ],
+              "answer": "방학 동안 한국어를 공부했어요",
+              "explain": "Qui 동안 segue un nome (방학), non un verbo."
+            },
+            {
+              "id": "dsc-05-e7",
+              "type": "type_meaning",
+              "prompt": "Che cosa significa «동안»?",
+              "answer": "durante",
+              "accept": [
+                "mentre",
+                "per (un periodo)"
+              ],
+              "explain": "동안 indica il periodo in cui succede qualcosa: 이틀 동안 «per due giorni»."
+            },
+            {
+              "id": "dsc-05-e8",
+              "type": "type_meaning",
+              "prompt": "Che cosa significa «그동안»?",
+              "answer": "nel frattempo",
+              "accept": [
+                "in quel periodo",
+                "intanto"
+              ],
+              "explain": "그동안 è «nel frattempo, in quel periodo»: si usa da solo, senza un verbo davanti."
+            },
+            {
+              "id": "dsc-05-e9",
+              "type": "reading_mcq",
+              "prompt": "«제가 요리하는 동안 남편이 설거지를 했어요.» Che cosa dice?",
+              "options": [
+                "Mentre cucinavo, mio marito ha lavato i piatti.",
+                "Dopo che ho cucinato, mio marito ha lavato i piatti.",
+                "Mio marito ha cucinato e io ho lavato i piatti.",
+                "Prima di cucinare, mio marito ha lavato i piatti."
+              ],
+              "answer": "Mentre cucinavo, mio marito ha lavato i piatti.",
+              "explain": "요리하는 동안 è il periodo; 설거지를 했어요 è ciò che accadeva dentro quel periodo."
+            },
+            {
+              "id": "dsc-05-e10",
+              "type": "reading_mcq",
+              "prompt": "«오래 기다리는 동안 책을 읽었어요.» Che cosa dice?",
+              "options": [
+                "Mentre aspettavo a lungo, ho letto un libro.",
+                "Ho aspettato a lungo e poi ho comprato un libro.",
+                "Leggevo un libro mentre aspettavo qualcuno che non è arrivato.",
+                "Non ho aspettato e ho letto un libro."
+              ],
+              "answer": "Mentre aspettavo a lungo, ho letto un libro.",
+              "explain": "기다리는 동안 è il tempo dell'attesa: la lettura riempie quello stesso tempo."
+            },
+            {
+              "id": "dsc-05-e11",
+              "type": "listen_type",
+              "prompt": "Ascolta e scrivi la frase come si scrive.",
+              "speak": "제가 자는 동안 동생이 청소했어요.",
+              "answer": "제가 자는 동안 동생이 청소했어요.",
+              "explain": "Scriva 자는: 자다 → 자 + 는, poi 동안."
+            },
+            {
+              "id": "dsc-05-e12",
+              "type": "type_hangul",
+              "prompt": "Scrivi in hangul: «durante, mentre».",
+              "answer": "동안",
+              "explain": "동안: 동 + 안. 안 è la stessa parola di «dentro», e aiuta a ricordare il senso di «periodo»."
+            }
+          ],
+          "passages": [
+            {
+              "title": "조용한 아침",
+              "lines": [
+                "아침에 제가 커피를 만드는 동안 아이들은 아직 자고 있어요.",
+                "그동안 저는 오늘 할 일을 생각해요.",
+                "아이들이 일어나는 동안 저는 아침을 준비해요.",
+                "학교에 가는 동안 우리는 음악을 들어요.",
+                "방학 동안에는 아침이 아주 조용해요."
+              ],
+              "gloss": [
+                {
+                  "ko": "만들다",
+                  "it": "fare, preparare",
+                  "rr": "mandeulda"
+                },
+                {
+                  "ko": "아이",
+                  "it": "bambino",
+                  "rr": "ai"
+                },
+                {
+                  "ko": "아직",
+                  "it": "ancora",
+                  "rr": "ajik"
+                },
+                {
+                  "ko": "음악",
+                  "it": "musica",
+                  "rr": "eumak"
+                },
+                {
+                  "ko": "할 일",
+                  "it": "cose da fare",
+                  "rr": "hal il"
+                }
+              ],
+              "translation": "La mattina, mentre preparo il caffè, i bambini dormono ancora. Nel frattempo penso alle cose da fare oggi. Mentre i bambini si alzano, io preparo la colazione. Mentre andiamo a scuola, ascoltiamo musica. Durante le vacanze le mattine sono davvero tranquille."
+            }
+          ]
+        },
+        {
+          "id": "dsc-06",
+          "slug": "andare-a-fare-reo-gada",
+          "title": "Andare a…: -(으)러 가다",
+          "titleKo": "목적: -(으)러 가다",
+          "kind": "grammar",
+          "goal": "Dire per quale scopo si va o si viene, con -(으)러 e un verbo di movimento.",
+          "durationMin": 16,
+          "points": [
+            "-(으)러 si attacca alla radice e vuole un verbo di movimento dopo: 가다, 오다, 올라가다, 다니다.",
+            "Dopo vocale o ㄹ si usa -러: 사러, 놀러, 만들러. Dopo consonante -으러: 먹으러, 읽으러, 찾으러.",
+            "Non si mette il passato prima di 러: 어제 친구를 만나러 갔어요, non 만났러.",
+            "Il verbo dopo porta il tempo: 빌리러 갔어요 «sono andato a prendere in prestito», 빌리러 갈 거예요.",
+            "Non si usa con verbi che non implicano movimento: 먹으러 먹다 è sbagliato, si dice 먹으러 가다.",
+            "«Venire a…» si dice -(으)러 오다: 우리 집에 놀러 오세요 «venga a casa nostra a trovarci».",
+            "Quando lo scopo non è un movimento si usa -(으)려고: 돈을 모으려고 아껴요 «risparmio per mettere da parte dei soldi»."
+          ],
+          "vocab": [
+            {
+              "ko": "도서관",
+              "it": "biblioteca",
+              "rr": "doseogwan"
+            },
+            {
+              "ko": "극장",
+              "it": "cinema, teatro",
+              "rr": "geukjang"
+            },
+            {
+              "ko": "빌리다",
+              "it": "prendere in prestito",
+              "rr": "billida"
+            },
+            {
+              "ko": "구경하다",
+              "it": "andare a vedere, girare",
+              "rr": "gugyeonghada"
+            },
+            {
+              "ko": "산책하다",
+              "it": "fare una passeggiata",
+              "rr": "sanchaekhada"
+            },
+            {
+              "ko": "찾아가다",
+              "it": "andare a cercare",
+              "rr": "chajagada"
+            },
+            {
+              "ko": "수영",
+              "it": "nuoto",
+              "rr": "suyeong"
+            },
+            {
+              "ko": "등산",
+              "it": "escursione in montagna",
+              "rr": "deungsan"
+            }
+          ],
+          "exercises": [
+            {
+              "id": "dsc-06-e1",
+              "type": "fill_blank",
+              "text": "책을 ___ 도서관에 갔어요.",
+              "answer": "빌리러",
+              "explain": "빌리다 → 빌리러: radice in vocale, quindi -러 senza 으.",
+              "prompt": "Completa con -(으)러, la forma che dice lo scopo."
+            },
+            {
+              "id": "dsc-06-e2",
+              "type": "fill_blank",
+              "text": "친구를 ___ 공항에 갔어요.",
+              "answer": "만나러",
+              "explain": "만나다 → 만나러: vocale finale, quindi -러.",
+              "prompt": "Completa con -(으)러, la forma che dice lo scopo."
+            },
+            {
+              "id": "dsc-06-e3",
+              "type": "fill_blank",
+              "text": "점심을 ___ 식당에 갔어요.",
+              "answer": "먹으러",
+              "explain": "먹다 → 먹으러: la radice finisce per consonante, quindi -으러.",
+              "prompt": "Completa con -(으)러, la forma che dice lo scopo."
+            },
+            {
+              "id": "dsc-06-e4",
+              "type": "fill_blank",
+              "text": "주말에 영화를 ___ 극장에 갈까요?",
+              "answer": "보러",
+              "explain": "보다 → 보러: «andiamo al cinema a vedere un film?».",
+              "prompt": "Completa con -(으)러, la forma che dice lo scopo."
+            },
+            {
+              "id": "dsc-06-e5",
+              "type": "order_words",
+              "prompt": "Metti le parole nell'ordine giusto.",
+              "words": [
+                "책을",
+                "빌리러",
+                "도서관에",
+                "갔어요"
+              ],
+              "answer": "책을 빌리러 도서관에 갔어요",
+              "explain": "Prima lo scopo (빌리러), poi il movimento (도서관에 갔어요)."
+            },
+            {
+              "id": "dsc-06-e6",
+              "type": "order_words",
+              "prompt": "Metti le parole nell'ordine giusto.",
+              "words": [
+                "친구를",
+                "만나러",
+                "공항에",
+                "갔어요"
+              ],
+              "answer": "친구를 만나러 공항에 갔어요",
+              "explain": "만나러 공항에 갔어요: lo scopo è incontrare l'amico, il movimento è andare in aeroporto."
+            },
+            {
+              "id": "dsc-06-e7",
+              "type": "type_meaning",
+              "prompt": "Che cosa significa «빌리다»?",
+              "answer": "prendere in prestito",
+              "accept": [
+                "prendere a prestito"
+              ],
+              "explain": "빌리다 è «prendere in prestito»; per «prestare» si usa 빌려주다."
+            },
+            {
+              "id": "dsc-06-e8",
+              "type": "type_meaning",
+              "prompt": "Che cosa significa «구경하다»?",
+              "answer": "andare a vedere",
+              "accept": [
+                "fare un giro a vedere",
+                "visitare"
+              ],
+              "explain": "구경하다 è «guardarsi intorno, andare a vedere»: 시장을 구경했어요."
+            },
+            {
+              "id": "dsc-06-e9",
+              "type": "reading_mcq",
+              "prompt": "«주말에 등산하러 갈 거예요.» Che cosa dice?",
+              "options": [
+                "Nel fine settimana andrò a fare un'escursione.",
+                "Nel fine settimana sono andato a fare un'escursione.",
+                "Nel fine settimana torno dall'escursione.",
+                "Nel fine settimana non andrò in montagna."
+              ],
+              "answer": "Nel fine settimana andrò a fare un'escursione.",
+              "explain": "등산하러 갈 거예요: lo scopo è 등산하다, il futuro sta su 가다."
+            },
+            {
+              "id": "dsc-06-e10",
+              "type": "reading_mcq",
+              "prompt": "«친구가 우리 집에 놀러 왔어요.» Che cosa dice?",
+              "options": [
+                "Un amico è venuto a casa nostra a passare del tempo insieme.",
+                "Un amico è andato a casa nostra a lavorare.",
+                "Un amico è venuto a casa nostra a studiare coreano.",
+                "Un amico ha invitato noi a casa sua."
+              ],
+              "answer": "Un amico è venuto a casa nostra a passare del tempo insieme.",
+              "explain": "놀러 왔어요: 놀다 «divertirsi, passare il tempo» + 러 + 오다 «venire»."
+            },
+            {
+              "id": "dsc-06-e11",
+              "type": "listen_type",
+              "prompt": "Ascolta e scrivi la frase come si scrive.",
+              "speak": "책을 빌리러 도서관에 갔어요.",
+              "answer": "책을 빌리러 도서관에 갔어요.",
+              "explain": "Scriva 빌리러 con una sola ㄹ dopo 리: 빌리다 + 러."
+            },
+            {
+              "id": "dsc-06-e12",
+              "type": "type_hangul",
+              "prompt": "Scrivi in hangul: «biblioteca».",
+              "answer": "도서관",
+              "explain": "도서관: 도 + 서 + 관. 관 è la stessa sillaba di «edificio» in 박물관 «museo»."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dsc-u3",
+      "title": "Dire, stare, chiedere",
+      "purpose": "Riportare una domanda dentro una frase, descrivere lo stato delle cose e fare qualcosa per qualcuno.",
+      "lessons": [
+        {
+          "id": "dsc-07",
+          "slug": "domande-indirette-nunji",
+          "title": "Chiedere dentro la frase: -(으)ㄴ/는지",
+          "titleKo": "간접 의문: -(으)ㄴ/는지",
+          "kind": "grammar",
+          "goal": "Riportare una domanda dentro un'altra frase: so, non so, mi chiedo se…, con -(으)ㄴ/는지.",
+          "durationMin": 16,
+          "points": [
+            "Con un verbo si usa -는지: 어디에 사는지, 무엇을 먹는지, 어떻게 가는지.",
+            "Con un aggettivo si usa -(으)ㄴ지: 얼마나 큰지, 바쁜지, 좋은지.",
+            "Con un nome si usa 인지: 학생인지, 선생님인지.",
+            "Il passato si forma con -았/었는지: 갔는지, 먹었는지, 어려웠는지. Il futuro con -(으)ㄹ지: 올지.",
+            "Le parole interrogative restano dentro: 누군지, 뭔지, 어딘지, 왜인지, 언제인지.",
+            "I verbi tipici dopo sono 알다, 모르다, 궁금하다, 물어보다, 확인하다, 기억하다.",
+            "Non è una domanda diretta: «그 사람이 누군지 아세요?» chiede «sa chi è?», non «chi è?»."
+          ],
+          "vocab": [
+            {
+              "ko": "궁금하다",
+              "it": "essere curioso, chiedersi",
+              "rr": "gunggeumhada"
+            },
+            {
+              "ko": "물어보다",
+              "it": "chiedere, domandare",
+              "rr": "mureoboda"
+            },
+            {
+              "ko": "주소",
+              "it": "indirizzo",
+              "rr": "juso"
+            },
+            {
+              "ko": "이유",
+              "it": "motivo, ragione",
+              "rr": "iyu"
+            },
+            {
+              "ko": "방법",
+              "it": "modo, metodo",
+              "rr": "bangbeop"
+            },
+            {
+              "ko": "확실하다",
+              "it": "essere certo",
+              "rr": "hwaksilhada"
+            },
+            {
+              "ko": "기억하다",
+              "it": "ricordare",
+              "rr": "gieokhada"
+            },
+            {
+              "ko": "대답",
+              "it": "risposta",
+              "rr": "daedap"
+            }
+          ],
+          "exercises": [
+            {
+              "id": "dsc-07-e1",
+              "type": "fill_blank",
+              "text": "그 사람이 ___ 모르겠어요.",
+              "answer": "누군지",
+              "explain": "누구 + 인지 diventa 누군지: «non so chi sia».",
+              "prompt": "Completa con -(으)ㄴ/는지, la domanda dentro la frase."
+            },
+            {
+              "id": "dsc-07-e2",
+              "type": "fill_blank",
+              "text": "여기에서 어떻게 ___ 물어봤어요.",
+              "answer": "가는지",
+              "explain": "가다 è un verbo, quindi -는지: 어떻게 가는지 «come si va».",
+              "prompt": "Completa con -(으)ㄴ/는지, la domanda dentro la frase."
+            },
+            {
+              "id": "dsc-07-e3",
+              "type": "fill_blank",
+              "text": "약속 시간이 ___ 기억나지 않아요.",
+              "answer": "언제였는지",
+              "explain": "였는지 è il passato di 이다: «non ricordo quando fosse l'appuntamento».",
+              "prompt": "Completa con -(으)ㄴ/는지, la domanda dentro la frase."
+            },
+            {
+              "id": "dsc-07-e4",
+              "type": "fill_blank",
+              "text": "그가 ___ 궁금해요.",
+              "answer": "올지",
+              "explain": "오다 + -(으)ㄹ지 → 올지: «mi chiedo se verrà».",
+              "prompt": "Completa con -(으)ㄴ/는지, la domanda dentro la frase."
+            },
+            {
+              "id": "dsc-07-e5",
+              "type": "order_words",
+              "prompt": "Metti le parole nell'ordine giusto.",
+              "words": [
+                "그가",
+                "어디에",
+                "사는지",
+                "알고",
+                "있어요"
+              ],
+              "answer": "그가 어디에 사는지 알고 있어요",
+              "explain": "살다 → 사는지: il verbo resta al presente, la domanda è dentro la frase."
+            },
+            {
+              "id": "dsc-07-e6",
+              "type": "order_words",
+              "prompt": "Metti le parole nell'ordine giusto.",
+              "words": [
+                "왜",
+                "늦었는지",
+                "물어봤어요"
+              ],
+              "answer": "왜 늦었는지 물어봤어요",
+              "explain": "늦다 al passato → 늦었는지: il ritardo è già avvenuto."
+            },
+            {
+              "id": "dsc-07-e7",
+              "type": "type_meaning",
+              "prompt": "Che cosa significa «궁금하다»?",
+              "answer": "essere curioso",
+              "accept": [
+                "chiedersi",
+                "domandarsi"
+              ],
+              "explain": "궁금하다 è «essere curioso, chiedersi»: 정말 궁금해요 «sono davvero curioso»."
+            },
+            {
+              "id": "dsc-07-e8",
+              "type": "type_meaning",
+              "prompt": "Che cosa significa «방법»?",
+              "answer": "modo",
+              "accept": [
+                "metodo",
+                "maniera"
+              ],
+              "explain": "방법 è «modo, metodo»: 좋은 방법 «un buon modo»."
+            },
+            {
+              "id": "dsc-07-e9",
+              "type": "reading_mcq",
+              "prompt": "«그분이 누군지 아세요?» Che cosa chiede?",
+              "options": [
+                "Sa chi è quella persona?",
+                "Chi è quella persona? (domanda diretta)",
+                "Quella persona sa chi sei?",
+                "Conosce quella persona?"
+              ],
+              "answer": "Sa chi è quella persona?",
+              "explain": "누군지 아세요: la domanda «chi è?» diventa l'oggetto di «sa». Per la domanda diretta si dice 그분이 누구예요?"
+            },
+            {
+              "id": "dsc-07-e10",
+              "type": "reading_mcq",
+              "prompt": "«시험이 어려웠는지 물어봤어요.» Che cosa dice?",
+              "options": [
+                "Ho chiesto se l'esame era stato difficile.",
+                "Ho chiesto se l'esame sarà difficile.",
+                "L'esame era difficile e l'ho chiesto.",
+                "Ho chiesto un esame difficile."
+              ],
+              "answer": "Ho chiesto se l'esame era stato difficile.",
+              "explain": "어려웠는지: aggettivo al passato + 는지, dentro il verbo 물어봤어요."
+            },
+            {
+              "id": "dsc-07-e11",
+              "type": "listen_type",
+              "prompt": "Ascolta e scrivi la frase come si scrive.",
+              "speak": "그 사람이 누군지 모르겠어요.",
+              "answer": "그 사람이 누군지 모르겠어요.",
+              "explain": "Scriva 누군지: 누구 + 인지 si contrae in 누군지."
+            },
+            {
+              "id": "dsc-07-e12",
+              "type": "type_hangul",
+              "prompt": "Scrivi in hangul: «indirizzo».",
+              "answer": "주소",
+              "explain": "주소: 주 + 소. 소 è la stessa sillaba di «luogo» in 장소."
+            }
+          ],
+          "passages": [
+            {
+              "title": "궁금한 것들",
+              "lines": [
+                "저는 그 사람이 누군지 정말 궁금해요.",
+                "어디에서 왔는지, 무슨 일을 하는지 알고 싶어요.",
+                "어제 친구에게 물어봤어요.",
+                "친구도 잘 모르는 것 같았어요.",
+                "그래서 우리는 내일 다시 만나요."
+              ],
+              "gloss": [
+                {
+                  "ko": "무슨",
+                  "it": "quale, che",
+                  "rr": "museun"
+                },
+                {
+                  "ko": "다시",
+                  "it": "di nuovo",
+                  "rr": "dasi"
+                },
+                {
+                  "ko": "정말",
+                  "it": "davvero",
+                  "rr": "jeongmal"
+                },
+                {
+                  "ko": "같다",
+                  "it": "sembrare, essere come",
+                  "rr": "gatda"
+                },
+                {
+                  "ko": "싶다",
+                  "it": "volere",
+                  "rr": "sipda"
+                }
+              ],
+              "translation": "Mi chiedo davvero chi sia quella persona. Vorrei sapere da dove viene e che lavoro fa. Ieri l'ho chiesto a un amico. Anche lui non sembrava saperlo bene. Così domani ci rivediamo."
+            }
+          ]
+        },
+        {
+          "id": "dsc-08",
+          "slug": "stato-ah-eo-itda",
+          "title": "Lo stato delle cose: -아/어 있다",
+          "titleKo": "상태: -아/어 있다",
+          "kind": "grammar",
+          "goal": "Descrivere lo stato che resta dopo un cambiamento — aperto, chiuso, acceso, spento — con -아/어 있다.",
+          "durationMin": 16,
+          "points": [
+            "-아/어 있다 descrive lo stato che dura dopo un cambiamento: 문이 열려 있어요 «la porta è aperta».",
+            "Si usa con verbi che esprimono un cambiamento: 열리다, 닫히다, 켜지다, 꺼지다, 앉다, 서다, 눕다.",
+            "Con i verbi transitivi -고 있다 è l'azione in corso: 지금 문을 열고 있어요 «sto aprendo la porta».",
+            "I vestiti vogliono -고 있다: 안경을 쓰고 있어요, 신발을 신고 있어요, non 써 있어요.",
+            "Il passato descrive lo stato di allora: 불이 켜져 있었어요 «le luci erano accese».",
+            "Non si usa con gli aggettivi: 예뻐 있어요 è sbagliato, si dice 예뻐요.",
+            "Per la posizione vale la stessa forma: 의자에 앉아 있어요 «è seduto», 벽 앞에 서 있어요 «sta in piedi»."
+          ],
+          "vocab": [
+            {
+              "ko": "닫히다",
+              "it": "chiudersi",
+              "rr": "dadida"
+            },
+            {
+              "ko": "켜지다",
+              "it": "accendersi",
+              "rr": "kyeojida"
+            },
+            {
+              "ko": "꺼지다",
+              "it": "spegnersi",
+              "rr": "kkeojida"
+            },
+            {
+              "ko": "앉다",
+              "it": "sedersi",
+              "rr": "anda"
+            },
+            {
+              "ko": "서다",
+              "it": "stare in piedi",
+              "rr": "seoda"
+            },
+            {
+              "ko": "불",
+              "it": "luce, fuoco",
+              "rr": "bul"
+            },
+            {
+              "ko": "창문",
+              "it": "finestra",
+              "rr": "changmun"
+            },
+            {
+              "ko": "어둡다",
+              "it": "essere buio",
+              "rr": "eodupda"
+            }
+          ],
+          "exercises": [
+            {
+              "id": "dsc-08-e1",
+              "type": "fill_blank",
+              "text": "창문이 ___ 있어요.",
+              "answer": "열려",
+              "explain": "열리다 + 어 → 열려: «la finestra è aperta».",
+              "prompt": "Completa con -아/어 있다, la forma che descrive lo stato."
+            },
+            {
+              "id": "dsc-08-e2",
+              "type": "fill_blank",
+              "text": "불이 ___ 있어요.",
+              "answer": "켜져",
+              "explain": "켜지다 + 어 → 켜져: «la luce è accesa».",
+              "prompt": "Completa con -아/어 있다, la forma che descrive lo stato."
+            },
+            {
+              "id": "dsc-08-e3",
+              "type": "fill_blank",
+              "text": "가게가 ___ 있어요.",
+              "answer": "닫혀",
+              "explain": "닫히다 + 어 → 닫혀: «il negozio è chiuso».",
+              "prompt": "Completa con -아/어 있다, la forma che descrive lo stato."
+            },
+            {
+              "id": "dsc-08-e4",
+              "type": "fill_blank",
+              "text": "의자에 ___ 있어요.",
+              "answer": "앉아",
+              "explain": "앉다 + 아 → 앉아: «è seduto», non «si sta sedendo».",
+              "prompt": "Completa con -아/어 있다, la forma che descrive lo stato."
+            },
+            {
+              "id": "dsc-08-e5",
+              "type": "order_words",
+              "prompt": "Metti le parole nell'ordine giusto.",
+              "words": [
+                "문이",
+                "열려",
+                "있어요"
+              ],
+              "answer": "문이 열려 있어요",
+              "explain": "Soggetto + stato: 문이 열려 있어요 «la porta è aperta»."
+            },
+            {
+              "id": "dsc-08-e6",
+              "type": "order_words",
+              "prompt": "Metti le parole nell'ordine giusto.",
+              "words": [
+                "불이",
+                "켜져",
+                "있었어요"
+              ],
+              "answer": "불이 켜져 있었어요",
+              "explain": "있었어요 porta il passato: lo stato di allora."
+            },
+            {
+              "id": "dsc-08-e7",
+              "type": "type_meaning",
+              "prompt": "Che cosa significa «닫히다»?",
+              "answer": "chiudersi",
+              "accept": [
+                "essere chiuso"
+              ],
+              "explain": "닫히다 è «chiudersi»: 문이 닫혔어요 «la porta si è chiusa»."
+            },
+            {
+              "id": "dsc-08-e8",
+              "type": "type_meaning",
+              "prompt": "Che cosa significa «어둡다»?",
+              "answer": "essere buio",
+              "accept": [
+                "scuro"
+              ],
+              "explain": "어둡다 è «essere buio»: 방이 어두워요 «la stanza è buia»."
+            },
+            {
+              "id": "dsc-08-e9",
+              "type": "reading_mcq",
+              "prompt": "«가게 문이 닫혀 있어요.» Che cosa dice?",
+              "options": [
+                "La porta del negozio è chiusa.",
+                "La porta del negozio si sta chiudendo.",
+                "Qualcuno sta chiudendo la porta del negozio.",
+                "La porta del negozio si è chiusa ieri."
+              ],
+              "answer": "La porta del negozio è chiusa.",
+              "explain": "닫혀 있어요 è lo stato: la porta è chiusa adesso. «Si sta chiudendo» sarebbe 닫히고 있어요."
+            },
+            {
+              "id": "dsc-08-e10",
+              "type": "reading_mcq",
+              "prompt": "«불이 꺼져 있어서 집이 어두웠어요.» Che cosa dice?",
+              "options": [
+                "Siccome le luci erano spente, la casa era buia.",
+                "Ho spento le luci perché la casa era buia.",
+                "Le luci si spensero e la casa diventò buia.",
+                "Accendo le luci perché la casa è buia."
+              ],
+              "answer": "Siccome le luci erano spente, la casa era buia.",
+              "explain": "꺼져 있어서: stato + -아/어서, quindi la causa è lo stato, non l'azione di spegnere."
+            },
+            {
+              "id": "dsc-08-e11",
+              "type": "listen_type",
+              "prompt": "Ascolta e scrivi la frase come si scrive.",
+              "speak": "창문이 열려 있어요.",
+              "answer": "창문이 열려 있어요.",
+              "explain": "Scriva 열려: 열리다 perde 리 e prende 려, con la ㅕ."
+            },
+            {
+              "id": "dsc-08-e12",
+              "type": "type_hangul",
+              "prompt": "Scrivi in hangul: «finestra».",
+              "answer": "창문",
+              "explain": "창문: 창 + 문. 문 è «porta», quindi 창문 è «la porta della luce»."
+            }
+          ],
+          "passages": [
+            {
+              "title": "아침의 교실",
+              "lines": [
+                "아침 여덟 시에 교실 문이 열려 있어요.",
+                "창문도 활짝 열려 있어요.",
+                "그런데 불은 아직 꺼져 있어요.",
+                "의자 위에 가방 하나가 놓여 있어요.",
+                "누군가 일찍 와서 기다리고 있어요."
+              ],
+              "gloss": [
+                {
+                  "ko": "활짝",
+                  "it": "spalancato",
+                  "rr": "hwaljjak"
+                },
+                {
+                  "ko": "위",
+                  "it": "sopra",
+                  "rr": "wi"
+                },
+                {
+                  "ko": "하나",
+                  "it": "uno",
+                  "rr": "hana"
+                },
+                {
+                  "ko": "놓이다",
+                  "it": "essere appoggiato",
+                  "rr": "noida"
+                },
+                {
+                  "ko": "여덟",
+                  "it": "otto",
+                  "rr": "yeodeol"
+                }
+              ],
+              "translation": "Alle otto del mattino la porta dell'aula è aperta. Anche la finestra è spalancata. Però le luci sono ancora spente. Su una sedia c'è appoggiata una borsa. Qualcuno è arrivato presto e sta aspettando."
+            }
+          ]
+        },
+        {
+          "id": "dsc-09",
+          "slug": "fare-per-qualcuno-a-eo-juda",
+          "title": "Fare per qualcuno: -아/어 주다",
+          "titleKo": "혜택: -아/어 주다",
+          "kind": "grammar",
+          "goal": "Dire che si fa qualcosa per un altro, chiederlo con gentilezza e offrirlo: -아/어 주다, 주세요, 드리다.",
+          "durationMin": 16,
+          "points": [
+            "-아/어 주다 si attacca alla radice: 도와주다, 빌려주다, 읽어 주다, 가르쳐 주다.",
+            "La cosa che si fa è per un altro: 친구가 저를 도와줬어요 «l'amico mi ha aiutato».",
+            "-아/어 주세요 è la richiesta gentile: 이것 좀 들어 주세요 «me lo tiene un momento?».",
+            "-아/어 줄래요? è più morbido e un po' informale; -아/어 줄게요 è l'offerta: 제가 도와줄게요.",
+            "Con una persona più importante si usa -아/어 드리다: 제가 가방을 들어 드릴게요.",
+            "가져다 주다 è «portare (qualcosa a qualcuno)»: 물을 가져다 주세요 «mi porti dell'acqua?».",
+            "Se l'azione non è un favore per qualcuno, -아/어 주다 non si usa: 한국어를 공부해 줬어요 «ho studiato coreano per te» non ha senso."
+          ],
+          "vocab": [
+            {
+              "ko": "도와주다",
+              "it": "aiutare (qualcuno)",
+              "rr": "dowajuda"
+            },
+            {
+              "ko": "빌려주다",
+              "it": "prestare",
+              "rr": "billyeojuda"
+            },
+            {
+              "ko": "선물",
+              "it": "regalo",
+              "rr": "seonmul"
+            },
+            {
+              "ko": "부탁하다",
+              "it": "chiedere un favore",
+              "rr": "butakhada"
+            },
+            {
+              "ko": "소개하다",
+              "it": "presentare",
+              "rr": "sogaehada"
+            },
+            {
+              "ko": "설명하다",
+              "it": "spiegare",
+              "rr": "seolmyeonghada"
+            },
+            {
+              "ko": "고맙다",
+              "it": "essere grato",
+              "rr": "gomapda"
+            },
+            {
+              "ko": "가르치다",
+              "it": "insegnare",
+              "rr": "gareuchida"
+            }
+          ],
+          "exercises": [
+            {
+              "id": "dsc-09-e1",
+              "type": "fill_blank",
+              "text": "친구가 이사를 ___ 줬어요.",
+              "answer": "도와",
+              "explain": "도와주다 → 도와줬어요: la radice 도와 resta, 주다 porta il passato.",
+              "prompt": "Completa con -아/어 주다, oppure 드리다 con una persona importante."
+            },
+            {
+              "id": "dsc-09-e2",
+              "type": "fill_blank",
+              "text": "선생님이 천천히 ___ 주셨어요.",
+              "answer": "설명해",
+              "explain": "설명하다 + 해 주다 → 설명해 주셨어요: 주셨어요 è l'onorifico di 주다.",
+              "prompt": "Completa con -아/어 주다, oppure 드리다 con una persona importante."
+            },
+            {
+              "id": "dsc-09-e3",
+              "type": "fill_blank",
+              "text": "책을 ___ 줄래요?",
+              "answer": "빌려",
+              "explain": "빌리다 + 어 주다 → 빌려 주다: «me lo presti?».",
+              "prompt": "Completa con -아/어 주다, oppure 드리다 con una persona importante."
+            },
+            {
+              "id": "dsc-09-e4",
+              "type": "fill_blank",
+              "text": "이것 좀 ___ 주세요.",
+              "answer": "들어",
+              "explain": "들다 + 어 주다 → 들어 주다: «me lo tiene un attimo?».",
+              "prompt": "Completa con -아/어 주다, oppure 드리다 con una persona importante."
+            },
+            {
+              "id": "dsc-09-e5",
+              "type": "order_words",
+              "prompt": "Metti le parole nell'ordine giusto.",
+              "words": [
+                "선생님이",
+                "한국어를",
+                "가르쳐",
+                "주셨어요"
+              ],
+              "answer": "선생님이 한국어를 가르쳐 주셨어요",
+              "explain": "가르치다 + 어 주다 → 가르쳐 주다, con 주셨어요 perché il maestro è più importante."
+            },
+            {
+              "id": "dsc-09-e6",
+              "type": "order_words",
+              "prompt": "Metti le parole nell'ordine giusto.",
+              "words": [
+                "책을",
+                "빌려",
+                "줄래요"
+              ],
+              "answer": "책을 빌려 줄래요",
+              "explain": "La richiesta è nel verbo finale: 줄래요? «me lo presti?»."
+            },
+            {
+              "id": "dsc-09-e7",
+              "type": "type_meaning",
+              "prompt": "Che cosa significa «도와주다»?",
+              "answer": "aiutare",
+              "accept": [
+                "dare una mano"
+              ],
+              "explain": "도와주다 è «aiutare qualcuno»: 도와주세요 «mi aiuti, per favore»."
+            },
+            {
+              "id": "dsc-09-e8",
+              "type": "type_meaning",
+              "prompt": "Che cosa significa «부탁하다»?",
+              "answer": "chiedere un favore",
+              "accept": [
+                "pregare (di fare)"
+              ],
+              "explain": "부탁하다 è «chiedere un favore»: 한 가지 부탁해도 돼요? «posso chiedere un favore?»."
+            },
+            {
+              "id": "dsc-09-e9",
+              "type": "reading_mcq",
+              "prompt": "«제가 가방을 들어 드릴게요.» Che cosa dice?",
+              "options": [
+                "Le tengo io la borsa.",
+                "Mi tiene la borsa, per favore.",
+                "Ho tenuto la borsa a lungo.",
+                "Tenga lei la borsa."
+              ],
+              "answer": "Le tengo io la borsa.",
+              "explain": "들어 드릴게요: 드리다 è l'onorifico di 주다, quindi l'offerta è rivolta a una persona più importante."
+            },
+            {
+              "id": "dsc-09-e10",
+              "type": "reading_mcq",
+              "prompt": "«친구가 숙제를 도와줬어요.» Che cosa dice?",
+              "options": [
+                "Un amico mi ha aiutato con i compiti.",
+                "Ho aiutato un amico con i compiti.",
+                "Un amico mi ha chiesto i compiti.",
+                "Ho fatto i compiti per un amico."
+              ],
+              "answer": "Un amico mi ha aiutato con i compiti.",
+              "explain": "도와줬어요: il soggetto è l'amico, il beneficio è per chi parla."
+            },
+            {
+              "id": "dsc-09-e11",
+              "type": "listen_type",
+              "prompt": "Ascolta e scrivi la frase come si scrive.",
+              "speak": "친구가 이사를 도와줬어요.",
+              "answer": "친구가 이사를 도와줬어요.",
+              "explain": "Scriva 도와줬어요 con la ㅆ: 도와 + 주 + 었 + 어요."
+            },
+            {
+              "id": "dsc-09-e12",
+              "type": "type_hangul",
+              "prompt": "Scrivi in hangul: «regalo».",
+              "answer": "선물",
+              "explain": "선물: 선 + 물. 물 è «acqua», ma qui è solo la seconda sillaba di «regalo»."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

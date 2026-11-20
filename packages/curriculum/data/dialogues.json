@@ -1439,5 +1439,402 @@
         }
       }
     ]
+  },
+  {
+    "id": "perche-in-ritardo",
+    "slug": "perche-in-ritardo",
+    "title": "Perché sei in ritardo?",
+    "level": "B1",
+    "setting": "In ufficio, poco prima di una riunione: un collega è appena arrivato e deve spiegare il ritardo.",
+    "goal": "Spiegare una causa con -기 때문에, usare 때문에 dopo un nome e scusarsi con -아/어서.",
+    "points": [
+      "멈췄기 때문에: il passato sta prima di 기.",
+      "교통 사고 때문에: un nome + 때문에, senza 이기.",
+      "늦어서 죄송해요: -아/어서 è la forma naturale per scusarsi."
+    ],
+    "after": {
+      "courseSlug": "discorsi",
+      "lessonId": "dsc-03"
+    },
+    "turns": [
+      {
+        "id": "rit-1",
+        "speaker": "지훈",
+        "ko": "왜 이렇게 늦었어요?",
+        "it": "Perché sei così in ritardo?",
+        "note": "이렇게 «così, in questo modo»: accompagna spesso un aggettivo o un avverbio."
+      },
+      {
+        "id": "rit-2",
+        "speaker": "Tu",
+        "ko": "지하철이 멈췄기 때문에 늦었어요.",
+        "it": "Sono in ritardo perché la metropolitana si è fermata.",
+        "hint": "지하철이 + 멈추다 al passato + 기 때문에 + 늦었어요",
+        "note": "멈추다 → 멈췄기 때문에: il passato si mette prima di 기, non sulla frase dopo.",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "지하철이 멈췄기 때문에 늦었어요",
+            "지하철이 멈췄기 때문에 늦었습니다"
+          ]
+        }
+      },
+      {
+        "id": "rit-3",
+        "speaker": "지훈",
+        "ko": "오늘 아침에 무슨 일이 있었어요?",
+        "it": "Che cosa è successo stamattina?",
+        "note": "무슨 «quale, che» si usa davanti a un nome: 무슨 일 «che cosa, che fatto»."
+      },
+      {
+        "id": "rit-4",
+        "speaker": "Tu",
+        "ko": "교통 사고 때문에 길이 아주 막혔어요.",
+        "it": "A causa di un incidente stradale la strada era molto bloccata.",
+        "hint": "교통 사고 + 때문에 + 길이 아주 막혔어요",
+        "note": "Un nome + 때문에: 교통 사고 때문에. Con 이기 때문에 sarebbe «siccome è un incidente», che qui non ha senso.",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "교통 사고 때문에 길이 아주 막혔어요",
+            "교통 사고 때문에 길이 많이 막혔어요"
+          ]
+        }
+      },
+      {
+        "id": "rit-5",
+        "speaker": "지훈",
+        "ko": "아이고, 힘들었겠네요. 그런데 왜 이렇게 피곤해 보여요?",
+        "it": "Accidenti, deve essere stato faticoso. Ma perché sembri così stanco?",
+        "note": "-았/었겠네요 esprime una supposizione su ciò che l'altro ha passato: «deve essere stato…»."
+      },
+      {
+        "id": "rit-6",
+        "speaker": "Tu",
+        "ko": "어제 늦게 잤기 때문에 오늘 정신이 없어요.",
+        "it": "Siccome ieri sono andato a letto tardi, oggi sono frastornato.",
+        "hint": "어제 늦게 + 자다 al passato + 기 때문에 + 오늘 정신이 없어요",
+        "note": "정신이 없다 è un modo comune per dire «essere frastornato, non avere la testa a posto».",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "어제 늦게 잤기 때문에 오늘 정신이 없어요",
+            "어제 늦게 잤기 때문에 정신이 없어요"
+          ]
+        }
+      },
+      {
+        "id": "rit-7",
+        "speaker": "지훈",
+        "ko": "회의는 십 분 뒤에 시작해요. 커피부터 마셔요.",
+        "it": "La riunione comincia fra dieci minuti. Prendiamo prima un caffè.",
+        "note": "부터 qui non è «da»: N부터 마셔요 significa «prima il caffè»."
+      },
+      {
+        "id": "rit-8",
+        "speaker": "Tu",
+        "ko": "좋아요. 제가 커피를 가져올게요.",
+        "it": "Va bene. Porto io il caffè.",
+        "hint": "좋아요 + 제가 커피를 가져올게요",
+        "note": "가져오다 è «portare qui»: 가져 + 오다. -ㄹ게요 annuncia un impegno preso.",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "좋아요. 제가 커피를 가져올게요",
+            "제가 커피를 가져올게요"
+          ]
+        }
+      },
+      {
+        "id": "rit-9",
+        "speaker": "지훈",
+        "ko": "고마워요. 그럼 회의실에서 만나요.",
+        "it": "Grazie. Allora ci vediamo in sala riunioni.",
+        "note": "에서 segna il luogo in cui avviene l'incontro, non la destinazione."
+      },
+      {
+        "id": "rit-10",
+        "speaker": "Tu",
+        "ko": "네, 늦어서 정말 죄송해요.",
+        "it": "Sì, mi dispiace davvero per il ritardo.",
+        "hint": "네 + 늦다 + 어서 + 정말 죄송해요",
+        "note": "Per scusarsi si usa -아/어서: 늦어서 죄송해요 «mi dispiace di essere in ritardo». Con -기 때문에 sarebbe innaturale.",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "네, 늦어서 정말 죄송해요",
+            "늦어서 정말 죄송해요",
+            "늦어서 죄송해요"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "venuto-a-comprare",
+    "slug": "venuto-a-comprare",
+    "title": "Sono venuto a comprare la frutta",
+    "level": "B1",
+    "setting": "Al mercato di quartiere due vicine si incontrano fra i banchi e raccontano che cosa sono venute a fare e che cosa faranno.",
+    "goal": "Dire lo scopo di un movimento con -(으)러 가다/오다 e raccontare ciò che succede subito dopo con -자마자.",
+    "points": [
+      "사러 왔어요: scopo + 오다, perché il movimento è verso chi parla.",
+      "만나러 가요: scopo + 가다, movimento verso un altro posto.",
+      "도착하자마자: il primo verbo resta al presente."
+    ],
+    "after": {
+      "courseSlug": "discorsi",
+      "lessonId": "dsc-06"
+    },
+    "turns": [
+      {
+        "id": "mkt-1",
+        "speaker": "미영",
+        "ko": "어머, 여기서 뭐 해요?",
+        "it": "Oh, che cosa fai qui?",
+        "note": "여기서 «qui»: 서 indica il luogo in cui si sta svolgendo l'azione."
+      },
+      {
+        "id": "mkt-2",
+        "speaker": "Tu",
+        "ko": "과일을 사러 왔어요.",
+        "it": "Sono venuto a comprare la frutta.",
+        "hint": "과일을 + 사다 + 러 + 왔어요",
+        "note": "사다 ha la radice in vocale: si usa -러, non -으러. 왔어요 perché il movimento è verso il mercato.",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "과일을 사러 왔어요",
+            "과일 사러 왔어요"
+          ]
+        }
+      },
+      {
+        "id": "mkt-3",
+        "speaker": "미영",
+        "ko": "저도 딸기를 사러 왔어요.",
+        "it": "Anch'io sono venuta a comprare le fragole.",
+        "note": "저도 «anch'io»: la particella 도 sostituisce 이/가 e 을/를."
+      },
+      {
+        "id": "mkt-4",
+        "speaker": "Tu",
+        "ko": "마침 잘 왔네요. 같이 구경해요.",
+        "it": "Sei arrivata proprio al momento giusto. Diamo un'occhiata insieme.",
+        "hint": "마침 잘 왔네요 + 같이 구경해요",
+        "note": "마침 «proprio, per caso»; -네요 constata quello che si ha davanti.",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "마침 잘 왔네요. 같이 구경해요.",
+            "마침 잘 갔네요. 같이 구경해요.",
+            "마침 잘 오네요. 같이 구경해요."
+          ],
+          "accept": [
+            "마침 잘 왔네요. 같이 구경해요."
+          ]
+        }
+      },
+      {
+        "id": "mkt-5",
+        "speaker": "미영",
+        "ko": "좋아요. 저는 내일 친구를 만나러 서울에 가요.",
+        "it": "Va bene. Io domani vado a Seoul a incontrare un amico.",
+        "note": "만나다 + 러 + 가다. Il verbo dello scopo non prende il tempo: 만나러, non 만났러."
+      },
+      {
+        "id": "mkt-6",
+        "speaker": "Tu",
+        "ko": "아, 그래요? 저도 다음 주에 부산에 놀러 갈 거예요.",
+        "it": "Ah sì? Anch'io la settimana prossima andrò a Busan a divertirmi.",
+        "hint": "저도 다음 주에 부산에 + 놀다 + 러 + 갈 거예요",
+        "note": "놀다 «divertirsi, passare il tempo»: 놀러 가다 è «andare a svagarsi», non «andare a giocare».",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "저도 다음 주에 부산에 놀러 갈 거예요",
+            "다음 주에 부산에 놀러 갈 거예요"
+          ]
+        }
+      },
+      {
+        "id": "mkt-7",
+        "speaker": "미영",
+        "ko": "부산에 도착하자마자 뭐 할 거예요?",
+        "it": "Che cosa farai appena arrivi a Busan?",
+        "note": "도착하자마자: il primo verbo resta al presente anche se il fatto è futuro; il futuro sta su 할 거예요."
+      },
+      {
+        "id": "mkt-8",
+        "speaker": "Tu",
+        "ko": "도착하자마자 해운대에 가 볼 거예요.",
+        "it": "Appena arrivo, andrò a vedere Haeundae.",
+        "hint": "도착하자마자 + 해운대에 + 가 볼 거예요",
+        "note": "해운대 si legge Haeundae. 가 보다 è «andare a vedere, provare ad andare».",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "도착하자마자 해운대에 가 볼 거예요",
+            "해운대에 도착하자마자 가 볼 거예요"
+          ]
+        }
+      },
+      {
+        "id": "mkt-9",
+        "speaker": "미영",
+        "ko": "좋겠다! 사진 많이 찍어 주세요.",
+        "it": "Che bello! Mi faccia tante foto.",
+        "note": "-아/어 주세요 chiede un favore a chi ascolta: 찍어 주세요 «me le scatti»."
+      },
+      {
+        "id": "mkt-10",
+        "speaker": "Tu",
+        "ko": "네, 꼭 보내 드릴게요.",
+        "it": "Sì, gliele manderò di sicuro.",
+        "hint": "네 + 꼭 + 보내다 + 어 + 드릴게요",
+        "note": "Con una persona più grande si usa 드리다 invece di 주다: 보내 드릴게요 «gliele mando».",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "네, 꼭 보내 드릴게요",
+            "꼭 보내 드릴게요"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "un-favore",
+    "slug": "un-favore",
+    "title": "Mi presti il libro?",
+    "level": "B1",
+    "setting": "In classe, prima della lezione: uno studente ha dimenticato il libro e chiede aiuto a una compagna.",
+    "goal": "Chiedere un favore con -아/어 줄래요?, offrire aiuto con -아/어 줄게요 e usare 드리다 con l'insegnante.",
+    "points": [
+      "빌려 줄래요?: -아/어 주다 al posto della richiesta.",
+      "설명해 줄게요: l'offerta con -ㄹ게요.",
+      "선생님께: 께 per il destinatario più importante."
+    ],
+    "after": {
+      "courseSlug": "discorsi",
+      "lessonId": "dsc-09"
+    },
+    "turns": [
+      {
+        "id": "fav-1",
+        "speaker": "수진",
+        "ko": "왜 책이 없어요?",
+        "it": "Perché non hai il libro?",
+        "note": "없어요 è «non c'è / non ho»: non serve un altro verbo per «non avere»."
+      },
+      {
+        "id": "fav-2",
+        "speaker": "Tu",
+        "ko": "집에 두고 왔어요. 책을 빌려 줄래요?",
+        "it": "L'ho lasciato a casa. Me lo presti?",
+        "hint": "집에 두고 왔어요 + 책을 + 빌리다 + 어 주다 + ㄹ래요?",
+        "note": "빌리다 + 어 주다 → 빌려 주다. 줄래요? è una richiesta morbida, fra pari.",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "집에 두고 왔어요. 책을 빌려 줄래요?",
+            "집에 두고 왔어요 책을 빌려 줄래요",
+            "책을 빌려 줄래요?"
+          ]
+        }
+      },
+      {
+        "id": "fav-3",
+        "speaker": "수진",
+        "ko": "네, 잠깐만요. 여기 있어요.",
+        "it": "Sì, un attimo. Eccolo.",
+        "note": "여기 있어요 «eccolo qui»: si usa anche per consegnare qualcosa."
+      },
+      {
+        "id": "fav-4",
+        "speaker": "Tu",
+        "ko": "고마워요. 내일 꼭 돌려줄게요.",
+        "it": "Grazie. Domani te lo restituisco di sicuro.",
+        "hint": "고마워요 + 내일 꼭 + 돌리다 + 어 주다 + ㄹ게요",
+        "note": "돌려주다 è «restituire a qualcuno»: 돌리다 «girare» + 주다. -ㄹ게요 qui è una promessa.",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "고마워요. 내일 꼭 돌려줄게요",
+            "내일 꼭 돌려줄게요"
+          ]
+        }
+      },
+      {
+        "id": "fav-5",
+        "speaker": "수진",
+        "ko": "그런데 이 부분은 이해가 안 돼요. 저도 잘 모르겠어요.",
+        "it": "Però questa parte non la capisco. Neanch'io ci arrivo.",
+        "note": "이해가 안 돼요 è più naturale di 이해하지 않아요 quando manca la comprensione, non l'impegno."
+      },
+      {
+        "id": "fav-6",
+        "speaker": "Tu",
+        "ko": "선생님은 지금 회의 중이세요. 제가 설명해 줄게요.",
+        "it": "L'insegnante adesso è in riunione. Le spiego io.",
+        "hint": "선생님은 지금 회의 중이세요 + 제가 + 설명하다 + 해 주다 + ㄹ게요",
+        "note": "설명하다 + 해 주다 → 설명해 주다. -ㄹ게요 è l'offerta: «lo faccio io per te». 중이세요 «è in mezzo a…».",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "선생님은 지금 회의 중이세요. 제가 설명해 줄게요",
+            "제가 설명해 줄게요"
+          ]
+        }
+      },
+      {
+        "id": "fav-7",
+        "speaker": "수진",
+        "ko": "정말요? 고마워요. 그런데 내일 시험이 있어요.",
+        "it": "Davvero? Grazie. Però domani ho un esame.",
+        "note": "그런데 introduce un ostacolo o un cambio: «però, a proposito»."
+      },
+      {
+        "id": "fav-8",
+        "speaker": "Tu",
+        "ko": "그럼 제가 같이 공부해 줄게요.",
+        "it": "Allora studio con te.",
+        "hint": "그럼 + 제가 + 같이 공부하다 + 해 주다 + ㄹ게요",
+        "note": "같이 공부해 주다 è «studiare insieme a te, per aiutarti»: il favore è per l'altro.",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "그럼 제가 같이 공부해 줄게요.",
+            "그럼 제가 같이 공부할게요.",
+            "그럼 제가 같이 공부해 주세요."
+          ],
+          "accept": [
+            "그럼 제가 같이 공부해 줄게요."
+          ]
+        }
+      },
+      {
+        "id": "fav-9",
+        "speaker": "수진",
+        "ko": "좋아요. 그럼 이 책은 내일 돌려줘요.",
+        "it": "Va bene. Allora questo libro me lo restituisci domani.",
+        "note": "Fra pari si usa 돌려줘요; 돌려주세요 sarebbe rivolto a una persona più importante."
+      },
+      {
+        "id": "fav-10",
+        "speaker": "Tu",
+        "ko": "네, 내일 꼭 가져다 줄게요.",
+        "it": "Sì, domani te lo porto di sicuro.",
+        "hint": "네 + 내일 꼭 + 가져다 + 주다 + ㄹ게요",
+        "note": "가져다 주다 è «portare qualcosa a qualcuno»: 가져다 줄게요 «te lo porto io». 드리다 si usa solo quando la persona è più importante di chi parla.",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "네, 내일 꼭 가져다 줄게요",
+            "내일 꼭 가져다 줄게요"
+          ]
+        }
+      }
+    ]
   }
 ]

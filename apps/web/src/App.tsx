@@ -3,6 +3,7 @@ import { Outlet, Route, Routes } from 'react-router-dom';
 import { useAuth } from './auth';
 import { AppShell } from './components/AppShell';
 import { AboutPage } from './pages/AboutPage';
+import { AlphabetPage } from './pages/AlphabetPage';
 import { CoursePage } from './pages/CoursePage';
 import { Dashboard } from './pages/Dashboard';
 import { DialoguePage } from './pages/DialoguePage';
@@ -69,6 +70,7 @@ export default function App() {
         <Route path="dialoghi/:slug" element={<DialoguePage />} />
         <Route path="ripassi" element={<ReviewPage />} />
         <Route path="errori" element={<MistakesPage />} />
+        <Route path="alfabeto" element={<AlphabetPage />} />
         <Route path="dizionario" element={<VocabularyPage />} />
         <Route path="repertorio" element={<GrammarPage />} />
         <Route path="quaderno" element={<WritingPage />} />

@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ciaocorea/engine": "*",
     "@ciaocorea/shared": "*",
     "@ciaocorea/store": "*",
     "jsqr": "^1.4.0",
