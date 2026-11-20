@@ -45,6 +45,7 @@ progressi, ripassi e tentativi non si perdono nel passaggio.
 | `/corso/:slug/salta` | la prova che chiude un corso intero, per chi lo conosce già |
 | `/corso/:slug/lezione/:lessonId` | teoria, brani di lettura, lessico, esercizi, test di salto |
 | `/dialoghi` e `/dialoghi/:slug` | conversazione scritta a copione |
+| `/alfabeto` | le lettere dell'hangul: consonanti e vocali con nome e suono, il compositore di sillabe, la tabella delle sillabe e i sette suoni finali |
 | `/dizionario` | ricerca nelle parole del curricolo, con filtri per corso |
 | `/repertorio` | le spiegazioni delle lezioni in indice: si cerca una forma e si torna alla lezione |
 | `/quaderno` | le consegne di scrittura: si scrive la frase, poi si confronta con il modello |
@@ -54,6 +55,13 @@ progressi, ripassi e tentativi non si perdono nel passaggio.
 | `/profilo` | il proprio profilo: l'unico nome dello studente, con la sezione per cambiarlo |
 | `/profili` | i profili di questo browser: si sceglie chi sta studiando con un clic, o se ne aggiunge uno nuovo |
 | `/about` | chi ha fatto il portale (`Fabio Valentino`), perché esiste e dove restano i dati |
+
+Nel testo coreano ogni parola si può toccare: la scheda dice come si legge e che
+cosa vuol dire, e con «lettera per lettera» mostra da quali jamo è fatto il
+blocco (한 = ㅎ 히읗 + ㅏ 아 + ㄴ 니은). I nomi delle lettere sono quelli
+ufficiali sudcoreani (기역, 디귿, 시옷), raccolti in `packages/engine/src/jamo.ts`
+e verificati dai test: nessuna scheda può mostrare una lettera e pronunciarne
+un'altra.
 
 ## Come è fatto
 
@@ -65,7 +73,7 @@ Monorepo npm workspaces, nessun servizio esterno e nessuna dipendenza da AI.
 | `packages/store` | il «server» dentro il browser: SQLite via `sql.js`, repo, rotte, sessioni |
 | `packages/shared` | Tipi condivisi fra store e UI |
 | `packages/curriculum` | Schema zod e contenuti dei corsi (JSON) |
-| `packages/engine` | Correzione esercizi, sblocco lezioni, ripasso SRS, piano |
+| `packages/engine` | Correzione esercizi, sblocco lezioni, ripasso SRS, piano, romanizzazione e lettere dell'hangul |
 
 Scelte che vale la pena ricordare:
 
@@ -280,11 +288,19 @@ in ufficio, una notizia breve. Ogni lezione porta il brano in coreano con il
 glossario delle parole difficili, e sotto gli esercizi di comprensione; la
 traduzione italiana del brano arriva solo quando la lezione risulta chiusa.
 
+L'ottavo, `discorsi`, è il corso che insegna a non fermarsi alla prima frase:
+condizione con -(으)면, concessione con -아/어도, causa con -기 때문에, immediatezza
+con -자마자, contemporaneità con -는 동안, scopo con -(으)러 가다, domande
+indirette con -(으)ㄴ/는지, stati con -아/어 있다 e favore con -아/어 주다. Ogni
+lezione ha un brano, il lessico e dodici esercizi; il corso porta anche tre
+dialoghi (un ritardo da spiegare, il mercato, un favore in classe) e tre consegne
+del quaderno.
+
 La prima lezione di ogni corso è sempre aperta, così chi ha già basi può entrare
 da lì; le successive seguono l'ordine del corso.
 
-In tutto: sette corsi, 48 lezioni, 556 voci di lessico, 19 brani di lettura, 14
-dialoghi e 21 consegne di scrittura. Il dizionario consultabile arriva a 602
+In tutto: otto corsi, 57 lezioni, 628 voci di lessico, 25 brani di lettura, 17
+dialoghi e 24 consegne di scrittura. Il dizionario consultabile arriva a 707
 voci perché comprende anche le parole dei gloss, che sono quelle che si
 incontrano leggendo.
 
