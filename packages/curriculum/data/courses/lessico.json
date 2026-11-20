@@ -606,6 +606,152 @@
           ]
         }
       ]
+    },
+    {
+      "id": "l-u3",
+      "title": "Muoversi in città",
+      "purpose": "Dire come ci si sposta: il mezzo che si usa, il tragitto da dove a dove, le fermate e la linea.",
+      "lessons": [
+        {
+          "id": "less-11",
+          "slug": "muoversi-in-citta",
+          "title": "Muoversi in città: autobus e metropolitana",
+          "titleKo": "지하철과 버스",
+          "kind": "vocab",
+          "goal": "Dire come ti muovi: quale mezzo usi, da dove a dove, quante fermate ci sono.",
+          "durationMin": 10,
+          "points": [
+            "Mezzo: nome + 로/으로 — 버스로, 택시로. Dopo vocale o dopo ㄹ finale si usa 로 (지하철로); dopo le altre consonanti si usa 으로.",
+            "A piedi: 걸어서, «camminando», dal verbo 걷다 — non è la particella del mezzo.",
+            "Tragitto: 에서 …까지, da dove si parte a dove si arriva.",
+            "Destinazione: luogo + 에 가다.",
+            "Fermate e linea: 몇 정거장이에요?, 몇 호선이에요?",
+            "Pagare la corsa: 교통카드, 요금."
+          ],
+          "vocab": [
+            { "ko": "지하철", "it": "metropolitana", "rr": "jiha-cheol" },
+            { "ko": "버스", "it": "autobus", "rr": "beoseu" },
+            { "ko": "택시", "it": "taxi", "rr": "taeksi" },
+            { "ko": "기차", "it": "treno", "rr": "gicha" },
+            { "ko": "역", "it": "stazione", "rr": "yeok" },
+            { "ko": "버스 정류장", "it": "fermata dell'autobus", "rr": "beoseu jeongnyujang" },
+            { "ko": "정거장", "it": "fermata, stazione lungo il tragitto", "rr": "jeonggeojang" },
+            { "ko": "호선", "it": "linea della metropolitana", "rr": "ho-seon" },
+            { "ko": "환승", "it": "corrispondenza, cambiare mezzo", "rr": "hwan-seung" },
+            { "ko": "교통카드", "it": "carta dei trasporti", "rr": "gyo-tong-kadeu" },
+            { "ko": "요금", "it": "tariffa, prezzo della corsa", "rr": "yo-geum" },
+            { "ko": "출구", "it": "uscita", "rr": "chul-gu" },
+            { "ko": "타다", "it": "prendere, salire su (un mezzo)", "rr": "ta-da" },
+            { "ko": "가다", "it": "andare", "rr": "ga-da" },
+            { "ko": "걷다", "it": "camminare, andare a piedi", "rr": "geot-da" },
+            { "ko": "갈아타다", "it": "cambiare mezzo, fare corrispondenza", "rr": "gal-a-ta-da" }
+          ],
+          "passages": [
+            {
+              "title": "지하철로 출근하기",
+              "lines": [
+                "저는 매일 지하철로 출근해요.",
+                "집에서 회사까지 두 정거장이에요.",
+                "환승역에서 2호선으로 갈아타요.",
+                "교통카드를 사용해요.",
+                "역에서 나와서 회사까지 걸어서 십 분 걸려요."
+              ],
+              "gloss": [
+                { "ko": "출근하다", "it": "andare al lavoro", "rr": "chul-geun-ha-da" },
+                { "ko": "정거장", "it": "fermata", "rr": "jeonggeojang" },
+                { "ko": "환승역", "it": "stazione di corrispondenza", "rr": "hwan-seung-yeok" },
+                { "ko": "갈아타다", "it": "cambiare mezzo", "rr": "gal-a-ta-da" },
+                { "ko": "사용하다", "it": "usare", "rr": "sa-yong-ha-da" },
+                { "ko": "나오다", "it": "uscire", "rr": "na-o-da" },
+                { "ko": "걸리다", "it": "volerci, richiedere (tempo)", "rr": "geol-li-da" }
+              ],
+              "translation": "Ogni giorno vado al lavoro con la metropolitana. Da casa alla ditta sono due fermate. Alla stazione di corrispondenza cambio, prendendo la linea 2. Uso la carta dei trasporti. Esco dalla stazione e fino all'ufficio, a piedi, ci vogliono dieci minuti."
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ex-less-11-1",
+              "type": "fill_blank",
+              "text": "학교에 ___ 가요.",
+              "prompt": "Completa: «vado a scuola con l'autobus».",
+              "options": ["버스로", "버스의", "버스에서", "버스를"],
+              "answer": "버스로",
+              "explain": "Mezzo: nome + 로/으로. 버스 finisce senza batchim → 로. Dopo un ㄹ finale si usa comunque 로: 지하철로."
+            },
+            {
+              "id": "ex-less-11-2",
+              "type": "fill_blank",
+              "text": "집 ___ 회사까지 가요.",
+              "prompt": "Completa: «da casa fino all'ufficio».",
+              "options": ["에서", "로", "에", "을"],
+              "answer": "에서",
+              "explain": "Punto di partenza: 에서. Punto di arrivo: 까지."
+            },
+            {
+              "id": "ex-less-11-3",
+              "type": "fill_blank",
+              "text": "박물관 ___ 가요.",
+              "prompt": "Completa: «vado al museo» (destinazione).",
+              "options": ["에", "에서", "까지", "의"],
+              "answer": "에",
+              "explain": "Destinazione: luogo + 에 가다."
+            },
+            {
+              "id": "ex-less-11-4",
+              "type": "order_words",
+              "words": ["집에서", "지하철로", "회사까지", "가요"],
+              "answer": "집에서 지하철로 회사까지 가요",
+              "prompt": "Metti in ordine: «da casa, con la metropolitana, fino all'ufficio»."
+            },
+            {
+              "id": "ex-less-11-5",
+              "type": "listen_type",
+              "speak": "버스 정류장",
+              "answer": "버스 정류장",
+              "prompt": "Ascolta e scrivi ciò che senti.",
+              "hint": "Il posto dove l'autobus si ferma."
+            },
+            {
+              "id": "ex-less-11-6",
+              "type": "listen_type",
+              "speak": "몇 호선이에요?",
+              "answer": "몇 호선이에요?",
+              "prompt": "Ascolta e scrivi ciò che senti.",
+              "hint": "Chiedi quale linea della metropolitana."
+            },
+            {
+              "id": "ex-less-11-7",
+              "type": "reading_mcq",
+              "prompt": "Nel brano: che cosa usa per pagare la corsa?",
+              "options": ["교통카드", "요금", "호선", "출구"],
+              "answer": "교통카드"
+            },
+            {
+              "id": "ex-less-11-8",
+              "type": "type_meaning",
+              "prompt": "Che cosa significa 정거장?",
+              "answer": "fermata",
+              "accept": ["stazione", "fermata della metropolitana"]
+            },
+            {
+              "id": "ex-less-11-9",
+              "type": "type_hangul",
+              "prompt": "Scrivi: «prendere la metropolitana» (지하철 + 타다, con la particella dell'oggetto).",
+              "answer": "지하철을 타다",
+              "hint": "지하철 finisce per consonante (batchim ㄹ) → oggetto + 을.",
+              "explain": "지하철을 타다: prendere la metropolitana. Dopo ㄹ finale si usa 을."
+            },
+            {
+              "id": "ex-less-11-10",
+              "type": "type_meaning",
+              "prompt": "Che cosa significa 걷다?",
+              "answer": "camminare",
+              "accept": ["andare a piedi", "andare camminando"],
+              "explain": "걷다 è irregolare (ㄷ): davanti a una vocale la ㄷ finale diventa ㄹ → 걸어요, 걸어서."
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -1113,5 +1113,111 @@
         "note": "닫아요 «chiude» è il contrario di 열어요; 봐야 해요 = dobbiamo vedere."
       }
     ]
+  },
+  {
+    "id": "metro",
+    "slug": "metro",
+    "title": "In metropolitana",
+    "level": "A1",
+    "setting": "In stazione, un visitatore chiede all'addetto come arrivare alla stazione del museo.",
+    "goal": "Chiedere come si arriva, quante fermate ci sono e quale uscita prendere.",
+    "points": [
+      "Chiedere il modo: 어떻게 가요?",
+      "Chiedere il numero: 몇 정거장?, 출구가 몇 개예요?",
+      "Capire l'indicazione: 갈아타세요, 출구로 나오세요."
+    ],
+    "after": {
+      "courseSlug": "lessico",
+      "lessonId": "less-11"
+    },
+    "turns": [
+      {
+        "id": "metro-1",
+        "speaker": "Addetto",
+        "ko": "안녕하세요. 무엇을 도와드릴까요?",
+        "it": "Salve. Cosa posso fare per lei?",
+        "note": "무엇을 도와드릴까요? è la formula di cortesia standard dei servizi: «come posso aiutarla»."
+      },
+      {
+        "id": "metro-2",
+        "speaker": "Tu",
+        "ko": "박물관역에 어떻게 가요?",
+        "it": "Come si arriva alla stazione del museo?",
+        "hint": "박물관역 + 에 + 어떻게 가요?",
+        "note": "가다 vuole 에 per la destinazione: 박물관역에 가요.",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "박물관역에 어떻게 가요",
+            "박물관역에 어떻게 가요?"
+          ]
+        }
+      },
+      {
+        "id": "metro-3",
+        "speaker": "Addetto",
+        "ko": "2호선을 타세요. 이 역에서 타서 다음 역에서 3호선으로 갈아타면 돼요.",
+        "it": "Prenda la linea 2. Sali da questa stazione e alla stazione successiva cambi sulla linea 3.",
+        "note": "갈아타다 = cambiare mezzo (갈아 «ruotando» + 타다). -(으)면 돼요: «va bene se…»."
+      },
+      {
+        "id": "metro-4",
+        "speaker": "Tu",
+        "ko": "몇 정거장 가야 해요?",
+        "it": "Quante fermate ci sono?",
+        "hint": "몇 + 정거장 + 가야 해요?",
+        "note": "몇 정거장: quante fermate. 가야 해요: «si deve andare».",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "몇 정거장 가야 해요",
+            "몇 정거장 가야 해요?"
+          ]
+        }
+      },
+      {
+        "id": "metro-5",
+        "speaker": "Addetto",
+        "ko": "다섯 정거장이에요. 요금은 교통카드로 내면 천오백 원이에요.",
+        "it": "Sono cinque fermate. Se paghi con la carta dei trasporti sono millecinquecento won.",
+        "note": "카드로 내다: pagare con la carta (로 = mezzo). 천오백 = 1000 + 500, cifre in coreano."
+      },
+      {
+        "id": "metro-6",
+        "speaker": "Tu",
+        "ko": "출구가 몇 개예요?",
+        "it": "Quante uscite ci sono?",
+        "hint": "출구 + 가 + 몇 개예요?",
+        "note": "개 è il classificatore generale: 몇 개 = «quanti».",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "출구가 몇 개예요",
+            "출구가 몇 개예요?"
+          ]
+        }
+      },
+      {
+        "id": "metro-7",
+        "speaker": "Addetto",
+        "ko": "네 개 있어요. 3번 출구로 나오세요.",
+        "it": "Ce ne sono quattro. Esca dall'uscita 3.",
+        "note": "3번: numero 3 + 번 (progressivo). 나오세요: «esca» (나오다 + 세요)."
+      },
+      {
+        "id": "metro-8",
+        "speaker": "Tu",
+        "ko": "감사합니다.",
+        "it": "Grazie.",
+        "hint": "La forma di ringraziamento che conosci già.",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "감사합니다",
+            "감사합니다."
+          ]
+        }
+      }
+    ]
   }
 ]

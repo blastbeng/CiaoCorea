@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import type { VocabEntry, VocabFilterOption } from '@ciaocorea/shared';
 import { api } from '../api';
 import { errorMessage } from '../auth';
@@ -20,7 +20,10 @@ interface Meta {
  * lezione e non ha stato: è lo strumento che sta fra una lezione e l'altra.
  */
 export function VocabularyPage() {
-  const [query, setQuery] = useState('');
+  // Un link con ?q= arriva già con la ricerca dentro: dal "Parola del giorno"
+  // o da un condivisore, la pagina si apre sulla voce cercata.
+  const [params] = useSearchParams();
+  const [query, setQuery] = useState(params.get('q') ?? '');
   const [course, setCourse] = useState('');
   const [keyboard, setKeyboard] = useState(false);
   const [entries, setEntries] = useState<VocabEntry[]>([]);

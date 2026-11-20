@@ -1,9 +1,56 @@
 import { Link } from 'react-router-dom';
-import type { CourseView, PlanTask, StudyPlan } from '@ciaocorea/shared';
+import type { CourseView, PlanTask, StudyPlan, VocabEntry } from '@ciaocorea/shared';
 import { api } from '../api';
 import { hasGeneratedUsername, useAuth } from '../auth';
 import { BACKUP_REMINDER_DAYS, daysSince, loadBackupInfo } from '../backup';
+import { PronounceButton } from '../components/PronounceButton';
 import { useAsync } from '../useAsync';
+
+/**
+ * Una parola del curricolo al giorno, la stessa per tutto il giorno e diversa
+ * domani: l'indice è il numero di giorni dal 1970, modulo le voci del
+ * dizionario. Serve a incontrare lessico che il percorso non ha ancora toccato,
+ * o a rincontrarne uno già studiato nel momento giusto per ripassarlo.
+ */
+function WordOfDay() {
+  const { data } = useAsync(async (): Promise<VocabEntry | null> => {
+    const meta = await api.vocabulary('', '', 0, 1);
+    if (meta.total === 0) return null;
+    const dayIndex = Math.floor(Date.now() / 86_400_000);
+    const page = await api.vocabulary('', '', dayIndex % meta.total, 1);
+    return page.entries[0] ?? null;
+  }, []);
+
+  if (!data) return null;
+
+  return (
+    <section className="card" aria-label="Parola del giorno">
+      <div
+        className="row row--between"
+        style={{ alignItems: 'center', marginBottom: '0.4rem' }}
+      >
+        <p className="stat-label" style={{ margin: 0 }}>
+          Parola del giorno
+        </p>
+        <PronounceButton text={data.ko} label={data.ko} />
+      </div>
+      <div className="row" style={{ gap: '0.7rem', alignItems: 'baseline', flexWrap: 'wrap' }}>
+        <strong className="ko" style={{ fontSize: '1.35rem' }}>
+          {data.ko}
+        </strong>
+        <span className="faint small">{data.rr}</span>
+        <span>{data.it}</span>
+      </div>
+      <p className="faint small" style={{ margin: '0.55rem 0 0' }}>
+        Da «{data.courseTitle}» ·{' '}
+        <Link to={`/corso/${data.courseSlug}/lezione/${data.lessonId}`}>
+          la lezione dove si trova
+        </Link>{' '}
+        · <Link to={`/dizionario?q=${encodeURIComponent(data.ko)}`}>nel dizionario</Link>
+      </p>
+    </section>
+  );
+}
 
 function CourseCard({ course }: { course: CourseView }) {
   const { stats } = course;
@@ -197,6 +244,8 @@ export function Dashboard() {
           </p>
         </div>
       </section>
+
+      <WordOfDay />
 
       <section className="stack">
         <h2>I tuoi corsi</h2>

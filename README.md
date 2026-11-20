@@ -39,7 +39,7 @@ progressi, ripassi e tentativi non si perdono nel passaggio.
 
 | Pagina | Cosa c'è |
 | --- | --- |
-| `/` Percorso | il piano di oggi (lezione, ripassi, quaderno, dialogo), corsi, avanzamento |
+| `/` Percorso | il piano di oggi (lezione, ripassi, quaderno, dialogo), la parola del giorno, corsi, avanzamento |
 | `/corso/:slug` | unità e lezioni con lo stato di ciascuna, e la prova per saltare il corso |
 | `/corso/:slug/salta` | la prova che chiude un corso intero, per chi lo conosce già |
 | `/corso/:slug/lezione/:lessonId` | teoria, brani di lettura, lessico, esercizi, test di salto |
@@ -260,7 +260,10 @@ presentazioni (nome, età, provenienza), cibo e bevande, numeri sino-coreani e
 prezzi in won. Il quarto, `messaggi`, è il corso della scrittura di ogni giorno:
 saluti in chat, i due registri (해요체 e 반말), una conversazione completa da
 leggere, appuntamenti con 오늘/내일/몇 시 e una lezione finale che rimette tutto
-insieme. È lì che si impara quando dare del tu e quando no.
+insieme. È lì che si impara quando dare del tu e quando no. Il corso `lessico` si
+è aperto con una unità nuova, *Muoversi in città*: mezzo con 로/으로 (버스로,
+지하철로), tragitto con 에서 …까지, fermate e linee (정거장, 호선) e il pagamento
+con 교통카드.
 
 Il quinto, `a2`, alza il livello: passato in -았어요/-었어요, futuro in -(으)ㄹ
 거예요, forma di rispetto 높임말 (-(으)시-, 께서, 드시다/계시다) e frasi legate con
@@ -273,8 +276,8 @@ traduzione italiana del brano arriva solo quando la lezione risulta chiusa.
 La prima lezione di ogni corso è sempre aperta, così chi ha già basi può entrare
 da lì; le successive seguono l'ordine del corso.
 
-In tutto: sei corsi, 29 lezioni, 228 voci di lessico, otto brani di lettura, otto
-dialoghi e dodici consegne di scrittura. Il dizionario consultabile arriva a 255
+In tutto: sei corsi, 42 lezioni, 508 voci di lessico, 18 brani di lettura, 12
+dialoghi e 18 consegne di scrittura. Il dizionario consultabile arriva a 552
 voci perché comprende anche le parole dei gloss, che sono quelle che si
 incontrano leggendo.
 
