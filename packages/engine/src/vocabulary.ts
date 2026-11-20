@@ -1,5 +1,6 @@
 import type { VocabEntry, VocabFilterOption } from '@ciaocorea/shared';
 import { foldItalian, foldRomanization, normalizeHangul } from './normalize';
+import { romanizationVariants } from './romanize';
 
 /**
  * Ricerca nel dizionario del curricolo.
@@ -31,13 +32,22 @@ interface Haystack {
   ko: string;
   it: string;
   rr: string;
+  /**
+   * Le altre grafie della stessa parola: trascrizione, forma della pronuncia,
+   * McCune–Reischauer. Sono un canale a peso più basso perché la forma che il
+   * curricolo mostra è una sola — ma chi copia `hakkyo` o `kimchi` da un libro
+   * deve ottenere la stessa scheda di chi copia `hakgyo` o `gimchi`.
+   */
+  alt: string[];
 }
 
 function haystackOf(entry: VocabEntry): Haystack {
+  const rr = foldRomanization(entry.rr);
   return {
     ko: normalizeHangul(entry.ko),
     it: foldItalian(entry.it),
-    rr: foldRomanization(entry.rr),
+    rr,
+    alt: [...romanizationVariants(entry.ko)].filter((form) => form !== rr),
   };
 }
 
@@ -60,6 +70,10 @@ function tokenScore(haystack: Haystack, token: string): number | null {
   if (haystack.rr === rr) best = Math.max(best, 12);
   else if (haystack.rr.startsWith(rr)) best = Math.max(best, 8);
   else if (haystack.rr.includes(rr)) best = Math.max(best, 5);
+
+  // Canale delle grafie alternative: solo match esatti, e mai sopra il peso
+  // della forma canonica.
+  if (haystack.alt.includes(rr)) best = Math.max(best, 6);
 
   if (haystack.it === it) best = Math.max(best, 12);
   else if (haystack.it.startsWith(it)) best = Math.max(best, 7);

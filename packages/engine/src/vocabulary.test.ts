@@ -103,6 +103,37 @@ describe('dizionario: ricerca', () => {
     expect(first).toEqual(second);
   });
 
+  // Chi studia da un libro porta con sé un'altra grafia: la McCune–Reischauer o
+  // la forma della pronuncia. Deve trovare la stessa scheda.
+  it('trova una parola anche con le grafie dei manuali', () => {
+    const withAlt: VocabEntry[] = [
+      {
+        ko: '학교',
+        it: 'scuola',
+        rr: 'hakgyo',
+        courseSlug: 'lessico',
+        courseTitle: 'Parole di ogni giorno',
+        lessonId: 'less-01',
+        lessonTitle: 'La scuola',
+      },
+      {
+        ko: '김치',
+        it: 'kimchi',
+        rr: 'gimchi',
+        courseSlug: 'lessico',
+        courseTitle: 'Parole di ogni giorno',
+        lessonId: 'less-03',
+        lessonTitle: 'Cibo e bevande',
+      },
+    ];
+    expect(koOf(searchVocabulary(withAlt, { query: 'hakkyo' }))).toEqual(['학교']);
+    expect(koOf(searchVocabulary(withAlt, { query: 'kimchi' }))).toEqual(['김치']);
+    expect(koOf(searchVocabulary(withAlt, { query: 'hakgyo' }))).toEqual(['학교']);
+    // Una grafia che non è nessuna delle forme riconosciute non deve inventare
+    // un risultato.
+    expect(koOf(searchVocabulary(withAlt, { query: 'hagyo' }))).toEqual([]);
+  });
+
   it('taglia la pagina senza cambiare il totale', () => {
     const page = searchVocabulary(entries, { limit: 2, offset: 2 });
     expect(page.entries).toHaveLength(2);

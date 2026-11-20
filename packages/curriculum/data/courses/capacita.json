@@ -29,7 +29,7 @@
           ],
           "vocab": [
             { "ko": "잘하다", "it": "essere bravo a, fare bene", "rr": "jalhada" },
-            { "ko": "못하다", "it": "non essere capace di", "rr": "motada" },
+            { "ko": "못하다", "it": "non essere capace di", "rr": "mothada" },
             { "ko": "수영하다", "it": "nuotare", "rr": "suyeonghada" },
             { "ko": "요리하다", "it": "cucinare", "rr": "yorihada" },
             { "ko": "운전하다", "it": "guidare", "rr": "unjeonhada" },
@@ -141,7 +141,7 @@
             { "ko": "처음", "it": "la prima volta, all'inizio", "rr": "cheoeum" },
             { "ko": "벌써", "it": "già", "rr": "beolsseo" },
             { "ko": "아직", "it": "ancora", "rr": "ajik" },
-            { "ko": "김치", "it": "kimchi", "rr": "kimchi" },
+            { "ko": "김치", "it": "kimchi", "rr": "gimchi" },
             { "ko": "매운 음식", "it": "cibo piccante", "rr": "maeun eumsik" },
             { "ko": "여행", "it": "viaggio", "rr": "yeohaeng" },
             { "ko": "제주도", "it": "isola di Jeju", "rr": "jejudo" },

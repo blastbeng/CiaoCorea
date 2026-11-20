@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs';
+
 import {
   courseLessons,
   getCourses,
@@ -5,6 +7,46 @@ import {
   getVocabulary,
   getWritingPrompts,
 } from '../src/index';
+
+/** La romanizzazione della pronuncia standard, verificata parola per parola. */
+const ROMANIZATION_REFERENCE: Record<string, string> = JSON.parse(
+  readFileSync(new URL('../data/reference/romanization.json', import.meta.url), 'utf-8'),
+).words;
+
+/** Come `foldRomanization` del motore, senza importarlo: qui si confronta solo. */
+function foldRoman(value: string): string {
+  return value.toLowerCase().replace(/['’]/g, '').replace(/[-\s]+/g, '');
+}
+
+/**
+ * La romanizzazione è l'unica cosa che dice allo studente come si pronuncia una
+ * parola: una parola deve avere una romanizzazione sola, e deve essere quella
+ * verificata. Un trattino dentro una parola sola non fa parte della Revised
+ * Romanization; è ammesso solo nei nomi propri composti (신촌역 → Sinchon-yeok).
+ */
+function checkRomanization(vocabulary: { ko: string; rr: string }[]): string[] {
+  const problems: string[] = [];
+  const seen = new Map<string, Set<string>>();
+  for (const entry of vocabulary) {
+    const forms = seen.get(entry.ko) ?? new Set<string>();
+    forms.add(entry.rr);
+    seen.set(entry.ko, forms);
+  }
+  for (const [ko, forms] of [...seen].sort()) {
+    if (forms.size > 1) {
+      problems.push(`romanizzazione: «${ko}» ha più forme (${[...forms].sort().join(', ')})`);
+    }
+    const reference = ROMANIZATION_REFERENCE[ko];
+    const rr = [...forms][0] ?? '';
+    if (reference && foldRoman(rr) !== foldRoman(reference)) {
+      problems.push(`romanizzazione: «${ko}» è «${rr}», il riferimento verificato dice «${reference}»`);
+    }
+    if (rr.includes('-') && !/[역도]$/.test(ko)) {
+      problems.push(`romanizzazione: «${ko}» è «${rr}», i trattini non fanno parte della RR`);
+    }
+  }
+  return problems;
+}
 
 /**
  * Validazione del curricolo a freddo: `npm run content:check`.
@@ -56,6 +98,19 @@ try {
   // Il dizionario è ciò che lo studente può cercare: più delle voci elencate
   // nelle lezioni, perché include i gloss dei brani.
   const dictionary = getVocabulary();
+
+  const romanizationProblems = checkRomanization(dictionary);
+  if (romanizationProblems.length > 0) {
+    console.error('\n✗ Romanizzazione');
+    for (const problem of romanizationProblems) console.error(`   ${problem}`);
+    process.exit(1);
+  }
+  const words = new Set(dictionary.map((entry) => entry.ko)).size;
+  const verified = new Set(dictionary.filter((entry) => ROMANIZATION_REFERENCE[entry.ko]).map((entry) => entry.ko)).size;
+  console.log(
+    `\n✓ Romanizzazione: ${words} parole con una sola forma, ` +
+      `${verified} già confrontate con il riferimento verificato.`,
+  );
 
   console.log(
     `\nTotale: ${courses.length} corsi, ${lessons} lezioni, ${vocab} voci di lessico, ` +

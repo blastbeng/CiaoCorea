@@ -670,7 +670,7 @@
                 { "ko": "눈을 비비다", "it": "strofinarsi gli occhi", "rr": "nuneul bibida" },
                 { "ko": "몸", "it": "corpo", "rr": "mom" },
                 { "ko": "책상", "it": "scrivania", "rr": "chaeksang" },
-                { "ko": "닦다", "it": "pulire, strofinare", "rr": "dakka" },
+                { "ko": "닦다", "it": "pulire, strofinare", "rr": "dakda" },
                 { "ko": "꽃", "it": "fiore", "rr": "kkot" },
                 { "ko": "기분", "it": "umore", "rr": "gibun" },
                 { "ko": "날씨", "it": "il tempo (meteorologia)", "rr": "nalssi" }
@@ -786,7 +786,7 @@
           "vocab": [
             { "ko": "밥", "it": "riso, pasto", "rr": "bap" },
             { "ko": "물", "it": "acqua", "rr": "mul" },
-            { "ko": "국물", "it": "brodo", "rr": "gukmul" },
+            { "ko": "국물", "it": "brodo", "rr": "gungmul" },
             { "ko": "뒷날", "it": "il giorno dopo", "rr": "dwitnal" },
             { "ko": "학력", "it": "titolo di studio", "rr": "hangnyeok" },
             { "ko": "국민", "it": "cittadino", "rr": "gungmin" },
@@ -811,7 +811,7 @@
               ],
               "gloss": [
                 { "ko": "국밥", "it": "zuppa di riso (gukbap)", "rr": "gukbap" },
-                { "ko": "국물", "it": "brodo", "rr": "gukmul" },
+                { "ko": "국물", "it": "brodo", "rr": "gungmul" },
                 { "ko": "맛", "it": "sapore", "rr": "mat" },
                 { "ko": "말씀", "it": "parole (forma di rispetto)", "rr": "malsseum" },
                 { "ko": "있는", "it": "che c'è", "rr": "inneun" },
@@ -924,7 +924,7 @@
             { "ko": "국밥", "it": "zuppa di riso (gukbap)", "rr": "gukbap" },
             { "ko": "불", "it": "fuoco", "rr": "bul" },
             { "ko": "뿔", "it": "corno", "rr": "ppul" },
-            { "ko": "갈등", "it": "disaccordo, conflitto", "rr": "galtteung" },
+            { "ko": "갈등", "it": "disaccordo, conflitto", "rr": "galdeung" },
             { "ko": "발전", "it": "sviluppo", "rr": "baljeon" },
             { "ko": "말살", "it": "sterminio, cancellazione", "rr": "malsal" },
             { "ko": "값", "it": "prezzo, valore", "rr": "gap" },

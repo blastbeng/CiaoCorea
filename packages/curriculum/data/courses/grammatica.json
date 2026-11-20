@@ -31,7 +31,7 @@
             { "ko": "학생", "it": "studente", "rr": "haksaeng" },
             { "ko": "의사", "it": "medico", "rr": "uisa" },
             { "ko": "선생님", "it": "insegnante", "rr": "seonsaengnim" },
-            { "ko": "이탈리아", "it": "Italia", "rr": "italia" },
+            { "ko": "이탈리아", "it": "Italia", "rr": "itallia" },
             { "ko": "사람", "it": "persona", "rr": "saram" },
             { "ko": "이름", "it": "nome", "rr": "ireum" },
             { "ko": "아무것", "it": "qualunque cosa; 아무것도 = niente (con la negazione)", "rr": "amugeot" },
@@ -508,7 +508,7 @@
             { "ko": "그래도", "it": "comunque, eppure", "rr": "geuraedo" },
             { "ko": "잘", "it": "bene (잘 못해요 = non sono bravo)", "rr": "jal" },
             { "ko": "않다", "it": "non: la negazione lunga -지 않다", "rr": "anta" },
-            { "ko": "못하다", "it": "essere scarso, non saper fare bene: 잘 못해요", "rr": "motada" },
+            { "ko": "못하다", "it": "essere scarso, non saper fare bene: 잘 못해요", "rr": "mothada" },
             { "ko": "공부", "it": "studio (공부하다 = studiare)", "rr": "gongbu" }
           ],
           "passages": [
@@ -855,7 +855,7 @@
             "Stesso luogo, frasi diverse: 학교에 가요 (vado a scuola) e 학교에서 공부해요 (studio a scuola)."
           ],
           "vocab": [
-            { "ko": "학교", "it": "scuola", "rr": "hakkyo" },
+            { "ko": "학교", "it": "scuola", "rr": "hakgyo" },
             { "ko": "도서관", "it": "biblioteca", "rr": "doseogwan" },
             { "ko": "회사", "it": "azienda", "rr": "hoesa" },
             { "ko": "카페", "it": "caffè", "rr": "kape" },

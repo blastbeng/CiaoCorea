@@ -279,7 +279,7 @@
           ],
           "vocab": [
             { "ko": "밥", "it": "riso, pasto", "rr": "bap" },
-            { "ko": "김치", "it": "kimchi", "rr": "kimchi" },
+            { "ko": "김치", "it": "kimchi", "rr": "gimchi" },
             { "ko": "물", "it": "acqua", "rr": "mul" },
             { "ko": "커피", "it": "caffè", "rr": "keopi" },
             { "ko": "차", "it": "tè", "rr": "cha" },
@@ -291,7 +291,7 @@
             { "ko": "아메리카노", "it": "caffè americano", "rr": "amerikano" },
             { "ko": "잔", "it": "bicchiere (un bicchiere, contatore)", "rr": "jan" },
             { "ko": "카드", "it": "carta (di credito)", "rr": "kadeu" },
-            { "ko": "따뜻하다", "it": "essere caldo, tiepido", "rr": "ttatteutada" },
+            { "ko": "따뜻하다", "it": "essere caldo, tiepido", "rr": "ttatteuthada" },
             { "ko": "아이스", "it": "ghiaccio (prestito dall'inglese ice)", "rr": "aiseu" },
             { "ko": "한", "it": "uno (numero nativo, davanti a un contatore)", "rr": "han" },
             { "ko": "어서 오세요", "it": "benvenuto, venga avanti", "rr": "eoseo oseyo" },
@@ -492,10 +492,10 @@
             { "ko": "병원", "it": "ospedale", "rr": "byeongwon" },
             { "ko": "약국", "it": "farmacia", "rr": "yakguk" },
             { "ko": "도서관", "it": "biblioteca", "rr": "doseogwan" },
-            { "ko": "시청", "it": "comune, municipio", "rr": "sichang" },
+            { "ko": "시청", "it": "comune, municipio", "rr": "sicheong" },
             { "ko": "지하철", "it": "metropolitana", "rr": "jihacheol" },
             { "ko": "교차로", "it": "incrocio", "rr": "gyocharo" },
-            { "ko": "오른쪽", "it": "destra", "rr": "oreunjok" },
+            { "ko": "오른쪽", "it": "destra", "rr": "oreunjjok" },
             { "ko": "왼쪽", "it": "sinistra", "rr": "wenjok" },
             { "ko": "직진", "it": "andare dritto", "rr": "jikjin" },
             { "ko": "건너편", "it": "lato opposto", "rr": "geonneopyeon" },
@@ -520,7 +520,7 @@
               "gloss": [
                 { "ko": "실례합니다", "it": "permesso?, scusi", "rr": "sillyehamnida" },
                 { "ko": "우체국", "it": "ufficio postale", "rr": "ucheguk" },
-                { "ko": "시청", "it": "municipio", "rr": "sichang" },
+                { "ko": "시청", "it": "municipio", "rr": "sicheong" },
                 { "ko": "교차로", "it": "incrocio", "rr": "gyocharo" },
                 { "ko": "건너편", "it": "lato opposto", "rr": "geonneopyeon" },
                 { "ko": "왼쪽", "it": "sinistra", "rr": "wenjok" }
@@ -629,22 +629,22 @@
             "Pagare la corsa: 교통카드, 요금."
           ],
           "vocab": [
-            { "ko": "지하철", "it": "metropolitana", "rr": "jiha-cheol" },
+            { "ko": "지하철", "it": "metropolitana", "rr": "jihacheol" },
             { "ko": "버스", "it": "autobus", "rr": "beoseu" },
             { "ko": "택시", "it": "taxi", "rr": "taeksi" },
             { "ko": "기차", "it": "treno", "rr": "gicha" },
             { "ko": "역", "it": "stazione", "rr": "yeok" },
             { "ko": "버스 정류장", "it": "fermata dell'autobus", "rr": "beoseu jeongnyujang" },
             { "ko": "정거장", "it": "fermata, stazione lungo il tragitto", "rr": "jeonggeojang" },
-            { "ko": "호선", "it": "linea della metropolitana", "rr": "ho-seon" },
-            { "ko": "환승", "it": "corrispondenza, cambiare mezzo", "rr": "hwan-seung" },
-            { "ko": "교통카드", "it": "carta dei trasporti", "rr": "gyo-tong-kadeu" },
-            { "ko": "요금", "it": "tariffa, prezzo della corsa", "rr": "yo-geum" },
-            { "ko": "출구", "it": "uscita", "rr": "chul-gu" },
-            { "ko": "타다", "it": "prendere, salire su (un mezzo)", "rr": "ta-da" },
-            { "ko": "가다", "it": "andare", "rr": "ga-da" },
-            { "ko": "걷다", "it": "camminare, andare a piedi", "rr": "geot-da" },
-            { "ko": "갈아타다", "it": "cambiare mezzo, fare corrispondenza", "rr": "gal-a-ta-da" }
+            { "ko": "호선", "it": "linea della metropolitana", "rr": "hoseon" },
+            { "ko": "환승", "it": "corrispondenza, cambiare mezzo", "rr": "hwanseung" },
+            { "ko": "교통카드", "it": "carta dei trasporti", "rr": "gyotongkadeu" },
+            { "ko": "요금", "it": "tariffa, prezzo della corsa", "rr": "yogeum" },
+            { "ko": "출구", "it": "uscita", "rr": "chulgu" },
+            { "ko": "타다", "it": "prendere, salire su (un mezzo)", "rr": "tada" },
+            { "ko": "가다", "it": "andare", "rr": "gada" },
+            { "ko": "걷다", "it": "camminare, andare a piedi", "rr": "geotda" },
+            { "ko": "갈아타다", "it": "cambiare mezzo, fare corrispondenza", "rr": "garatada" }
           ],
           "passages": [
             {
@@ -657,12 +657,12 @@
                 "역에서 나와서 회사까지 걸어서 십 분 걸려요."
               ],
               "gloss": [
-                { "ko": "출근하다", "it": "andare al lavoro", "rr": "chul-geun-ha-da" },
+                { "ko": "출근하다", "it": "andare al lavoro", "rr": "chulgeunhada" },
                 { "ko": "정거장", "it": "fermata", "rr": "jeonggeojang" },
-                { "ko": "환승역", "it": "stazione di corrispondenza", "rr": "hwan-seung-yeok" },
-                { "ko": "갈아타다", "it": "cambiare mezzo", "rr": "gal-a-ta-da" },
-                { "ko": "사용하다", "it": "usare", "rr": "sa-yong-ha-da" },
-                { "ko": "나오다", "it": "uscire", "rr": "na-o-da" },
+                { "ko": "환승역", "it": "stazione di corrispondenza", "rr": "hwanseungyeok" },
+                { "ko": "갈아타다", "it": "cambiare mezzo", "rr": "garatada" },
+                { "ko": "사용하다", "it": "usare", "rr": "sayonghada" },
+                { "ko": "나오다", "it": "uscire", "rr": "naoda" },
                 { "ko": "걸리다", "it": "volerci, richiedere (tempo)", "rr": "geollida" }
               ],
               "translation": "Ogni giorno vado al lavoro con la metropolitana. Da casa alla ditta sono due fermate. Alla stazione di corrispondenza cambio, prendendo la linea 2. Uso la carta dei trasporti. Esco dalla stazione e fino all'ufficio, a piedi, ci vogliono dieci minuti."
