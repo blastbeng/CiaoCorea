@@ -434,7 +434,7 @@ export const FINALS: FinalSound[] = [
   },
   {
     ipa: 'l',
-    sound: 'La l di «luna», con la lingua ferma sul palato.',
+    sound: 'La l di «luna»: la punta della lingua tocca gli incisivi superiori e resta lì.',
     letters: ['ㄹ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㅀ'],
     examples: [
       { ko: '물', rr: 'mul', it: 'acqua' },

@@ -189,7 +189,7 @@ export function AlphabetPage() {
               <h3>
                 {vowelLetter.name} · {vowelLetter.rr}
               </h3>
-              <p className="muted">Suono {vowelLetter.ipa}</p>
+              <p className="muted">IPA [{vowelLetter.ipa}]</p>
             </div>
             <PronounceButton text={vowelLetter.name} label={vowelLetter.name} />
           </div>
