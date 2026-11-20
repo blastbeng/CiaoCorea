@@ -508,7 +508,7 @@
               "prompt": "Rendi nome l'azione «책을 읽다» al presente: 책을 읽___ 것.",
               "hint": "Il verbo al presente davanti a 것 prende una consonante nasale.",
               "answer": "는",
-              "explain": "읽다 → 읽는 것 «il leggere». 읽는 si legge [잉는], ma si scrive con il 받침 ㄱ."
+              "explain": "읽다 → 읽는 것 «il leggere». 읽 ha il 받침 doppio ㄺ: si legge [잉는], ma la scrittura resta 읽는."
             },
             {
               "id": "a3-05-e4",
