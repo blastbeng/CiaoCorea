@@ -1219,5 +1219,225 @@
         }
       }
     ]
+  },
+  {
+    "id": "provare-cucina",
+    "slug": "provare-cucina",
+    "title": "Provare un piatto nuovo",
+    "level": "A2",
+    "setting": "In un ristorante coreano il cameriere consiglia un piatto e lo studente racconta cosa ha già assaggiato.",
+    "goal": "Proporre di provare un piatto, dire cosa si è già assaggiato e cosa manca ancora.",
+    "points": [
+      "먹어 보고 싶어요: esprimere il desiderio di provare.",
+      "먹어 봤어요: raccontare un'esperienza già vissuta.",
+      "아직 … 보지 않았어요: dire che l'esperienza manca ancora."
+    ],
+    "after": {
+      "courseSlug": "capacita",
+      "lessonId": "a3-02"
+    },
+    "turns": [
+      {
+        "id": "provare-1",
+        "speaker": "Cameriere",
+        "ko": "어서 오세요. 뭐 드실 거예요?",
+        "it": "Benvenuto. Che cosa mangia?",
+        "note": "뭐 드실 거예요? è la domanda cortese all'ingresso: 드시다 è la forma onorifica di 먹다."
+      },
+      {
+        "id": "provare-2",
+        "speaker": "Tu",
+        "ko": "김치찌개를 먹어 보고 싶어요.",
+        "it": "Vorrei provare il kimchi-jjigae.",
+        "hint": "김치찌개 + 를 + 먹어 보고 싶어요",
+        "note": "-아/어 보고 싶어요: «vorrei provare a…». 싶어요 da solo esprime desiderio, 보고 aggiunge il tentativo.",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "김치찌개를 먹어 보고 싶어요",
+            "김치찌개를 먹어 보고 싶어요.",
+            "김치찌개 먹어 보고 싶어요"
+          ]
+        }
+      },
+      {
+        "id": "provare-3",
+        "speaker": "Cameriere",
+        "ko": "좋아요. 매운 음식은 잘 드세요?",
+        "it": "Bene. Le pietanze piccanti vanno giù?",
+        "note": "잘 드세요? chiede se mangia senza problemi: 잘 qui non è «bene» ma «senza difficoltà»."
+      },
+      {
+        "id": "provare-4",
+        "speaker": "Tu",
+        "ko": "네, 매운 음식은 자주 먹어 봤어요.",
+        "it": "Sì, ho già assaggiato spesso cibo piccante.",
+        "hint": "네 + 매운 음식은 + 자주 + 먹어 봤어요",
+        "note": "먹어 봤어요 è il passato di -아/어 보다: l'esperienza c'è già stata.",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "네, 매운 음식은 자주 먹어 봤어요",
+            "매운 음식은 자주 먹어 봤어요",
+            "네 매운 음식은 자주 먹어 봤어요"
+          ]
+        }
+      },
+      {
+        "id": "provare-5",
+        "speaker": "Cameriere",
+        "ko": "그럼 떡볶이는 먹어 봤어요?",
+        "it": "Allora il tteokbokki l'ha mai assaggiato?",
+        "note": "La domanda usa il passato di esperienza: «c'è stata una volta in cui…?»."
+      },
+      {
+        "id": "provare-6",
+        "speaker": "Tu",
+        "ko": "아니요, 아직 먹어 보지 않았어요.",
+        "it": "No, non l'ho ancora assaggiato.",
+        "hint": "아니요 + 아직 + 먹어 보지 않았어요",
+        "note": "아직 + forma negativa: «non ancora». 보지 않았어요 nega l'esperienza, non vieta di mangiare.",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "아니요, 아직 먹어 보지 않았어요",
+            "아직 먹어 보지 않았어요",
+            "아니요 아직 먹어 보지 않았어요"
+          ]
+        }
+      },
+      {
+        "id": "provare-7",
+        "speaker": "Cameriere",
+        "ko": "그럼 오늘 한번 먹어 보세요. 아주 맛있어요.",
+        "it": "Allora oggi lo provi. È buonissimo.",
+        "note": "한번 … 보세요 è l'invito a tentare: «provalo una volta»."
+      },
+      {
+        "id": "provare-8",
+        "speaker": "Tu",
+        "ko": "좋아요, 그렇게 해 주세요.",
+        "it": "Va bene, faccia così per favore.",
+        "hint": "좋아요 + 그렇게 해 주세요",
+        "note": "그렇게 해 주세요: «me lo faccia così». 해 주다 è fare qualcosa per qualcuno.",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "좋아요, 그렇게 해 주세요",
+            "그렇게 해 주세요",
+            "좋아요 그렇게 해 주세요"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "chi-manca",
+    "slug": "chi-manca",
+    "title": "Perché non è arrivata?",
+    "level": "A2",
+    "setting": "In ufficio due colleghi si chiedono perché una collega non sia ancora arrivata e fanno supposizioni.",
+    "goal": "Fare supposizioni su presente, passato e futuro con 것 같다, e proporre di provare a fare qualcosa.",
+    "points": [
+      "있는 것 같아요: supposizione su un verbo al presente.",
+      "아픈 것 같아요: supposizione su un aggettivo.",
+      "올 것 같아요: previsione sul futuro."
+    ],
+    "after": {
+      "courseSlug": "capacita",
+      "lessonId": "a3-06"
+    },
+    "turns": [
+      {
+        "id": "manca-1",
+        "speaker": "민수",
+        "ko": "지수 씨가 아직 안 왔네요.",
+        "it": "Jisu non è ancora arrivata.",
+        "note": "-네요 constata ciò che si ha davanti: «vedo che…». 안 왔네요 è un fatto osservato, non un'ipotesi."
+      },
+      {
+        "id": "manca-2",
+        "speaker": "Tu",
+        "ko": "네, 뭔가 문제가 있는 것 같아요.",
+        "it": "Sì, sembra che ci sia un problema.",
+        "hint": "네 + 뭔가 문제가 + 있는 것 같아요",
+        "note": "있다 è un verbo: al presente davanti a 것 같다 prende -는 → 있는 것 같아요.",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "네, 뭔가 문제가 있는 것 같아요",
+            "뭔가 문제가 있는 것 같아요",
+            "네 뭔가 문제가 있는 것 같아요"
+          ]
+        }
+      },
+      {
+        "id": "manca-3",
+        "speaker": "민수",
+        "ko": "아마 아픈 것 같아요.",
+        "it": "Forse sembra stia male.",
+        "note": "아프다 è un aggettivo: il presente davanti a 것 같다 è 아픈, non 아프."
+      },
+      {
+        "id": "manca-4",
+        "speaker": "Tu",
+        "ko": "어제도 피곤했던 것 같아요.",
+        "it": "Anche ieri sembra che fosse stanca.",
+        "hint": "어제도 + 피곤했던 것 같아요",
+        "note": "Per un aggettivo al passato si usa -았/었던 것 같다: 피곤했던 것 같아요 «sembra che fosse stanca».",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "어제도 피곤했던 것 같아요",
+            "피곤했던 것 같아요"
+          ]
+        }
+      },
+      {
+        "id": "manca-5",
+        "speaker": "민수",
+        "ko": "연락해 볼까요?",
+        "it": "Proviamo a contattarla?",
+        "note": "-아/어 볼까요? propone un tentativo: «proviamo a…?»."
+      },
+      {
+        "id": "manca-6",
+        "speaker": "Tu",
+        "ko": "네, 전화해 보세요. 저는 메시지를 보낼게요.",
+        "it": "Sì, provi a chiamare. Io mando un messaggio.",
+        "hint": "네 + 전화해 보세요 + 저는 메시지를 보낼게요",
+        "note": "전화해 보세요 invita a provare; -ㄹ게요 annuncia un impegno: «lo faccio io».",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "네, 전화해 보세요. 저는 메시지를 보낼게요",
+            "전화해 보세요. 저는 메시지를 보낼게요",
+            "네 전화해 보세요 저는 메시지를 보낼게요"
+          ]
+        }
+      },
+      {
+        "id": "manca-7",
+        "speaker": "민수",
+        "ko": "좋아요. 아마 오후에는 올 것 같아요.",
+        "it": "Bene. Probabilmente nel pomeriggio arriverà.",
+        "note": "올 것 같아요: -(으)ㄹ 것 같다 esprime previsione su ciò che non è ancora accaduto."
+      },
+      {
+        "id": "manca-8",
+        "speaker": "Tu",
+        "ko": "그럼 시험 준비를 도와줄 수 있어요.",
+        "it": "Allora posso aiutarla a preparare l'esame.",
+        "hint": "그럼 + 시험 준비를 + 도와줄 수 있어요",
+        "note": "도와주다 + -(으)ㄹ 수 있다: «posso aiutarla». 주다 aggiunge «per lei».",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "그럼 시험 준비를 도와줄 수 있어요",
+            "시험 준비를 도와줄 수 있어요"
+          ]
+        }
+      }
+    ]
   }
 ]

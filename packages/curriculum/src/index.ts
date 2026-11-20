@@ -4,6 +4,7 @@ import grammaticaRaw from '../data/courses/grammatica.json';
 import lessicoRaw from '../data/courses/lessico.json';
 import messaggiRaw from '../data/courses/messaggi.json';
 import a2Raw from '../data/courses/a2.json';
+import capacitaRaw from '../data/courses/capacita.json';
 import b1Raw from '../data/courses/b1.json';
 import dialoguesRaw from '../data/dialogues.json';
 import writingRaw from '../data/writing.json';
@@ -27,6 +28,7 @@ const RAW_COURSES: RawCourse[] = [
   { source: 'lessico.json', raw: lessicoRaw },
   { source: 'messaggi.json', raw: messaggiRaw },
   { source: 'a2.json', raw: a2Raw },
+  { source: 'capacita.json', raw: capacitaRaw },
   { source: 'b1.json', raw: b1Raw },
 ];
 

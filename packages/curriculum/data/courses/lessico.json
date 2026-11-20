@@ -493,10 +493,10 @@
             { "ko": "약국", "it": "farmacia", "rr": "yakguk" },
             { "ko": "도서관", "it": "biblioteca", "rr": "doseogwan" },
             { "ko": "시청", "it": "comune, municipio", "rr": "sichang" },
-            { "ko": "지하철", "it": "metropolitana", "rr": "jihacheop" },
+            { "ko": "지하철", "it": "metropolitana", "rr": "jihacheol" },
             { "ko": "교차로", "it": "incrocio", "rr": "gyocharo" },
-            { "ko": "오른쪽", "it": "destra", "rr": "oreunjak" },
-            { "ko": "왼쪽", "it": "sinistra", "rr": "oenjak" },
+            { "ko": "오른쪽", "it": "destra", "rr": "oreunjok" },
+            { "ko": "왼쪽", "it": "sinistra", "rr": "wenjok" },
             { "ko": "직진", "it": "andare dritto", "rr": "jikjin" },
             { "ko": "건너편", "it": "lato opposto", "rr": "geonneopyeon" },
             { "ko": "표", "it": "biglietto", "rr": "pyo" },
@@ -523,7 +523,7 @@
                 { "ko": "시청", "it": "municipio", "rr": "sichang" },
                 { "ko": "교차로", "it": "incrocio", "rr": "gyocharo" },
                 { "ko": "건너편", "it": "lato opposto", "rr": "geonneopyeon" },
-                { "ko": "왼쪽", "it": "sinistra", "rr": "oenjak" }
+                { "ko": "왼쪽", "it": "sinistra", "rr": "wenjok" }
               ],
               "translation": "«Scusi, dov'è l'ufficio postale?» «È accanto al municipio. Superi l'incrocio.» «E la farmacia?» «La farmacia è sul lato opposto dell'ufficio postale: vada a sinistra.»"
             }
@@ -663,7 +663,7 @@
                 { "ko": "갈아타다", "it": "cambiare mezzo", "rr": "gal-a-ta-da" },
                 { "ko": "사용하다", "it": "usare", "rr": "sa-yong-ha-da" },
                 { "ko": "나오다", "it": "uscire", "rr": "na-o-da" },
-                { "ko": "걸리다", "it": "volerci, richiedere (tempo)", "rr": "geol-li-da" }
+                { "ko": "걸리다", "it": "volerci, richiedere (tempo)", "rr": "geollida" }
               ],
               "translation": "Ogni giorno vado al lavoro con la metropolitana. Da casa alla ditta sono due fermate. Alla stazione di corrispondenza cambio, prendendo la linea 2. Uso la carta dei trasporti. Esco dalla stazione e fino all'ufficio, a piedi, ci vogliono dieci minuti."
             }

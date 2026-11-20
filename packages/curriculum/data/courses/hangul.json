@@ -426,7 +426,7 @@
               "prompt": "Scrivi in Hangul «won» (la moneta).",
               "answer": "원",
               "hint": "ㅇ + ㅝ + ㄴ.",
-              "explain": "원 è anche l'unità di base degli indirizzi coreani: 서울시 … 원."
+              "explain": "원 è il won, la moneta: 1.000원 è mille won. Ricorda la forma: ㅇ + ㅝ + ㄴ, con ㅝ che è ㅜ + ㅓ."
             },
             {
               "id": "h05-e5",
@@ -659,7 +659,7 @@
                   {
                     "ko": "삶",
                     "it": "vita",
-                    "rr": "salmm"
+                    "rr": "sam"
                   },
                   {
                     "ko": "합니다",
@@ -669,7 +669,7 @@
                   {
                     "ko": "앉다",
                     "it": "sedersi",
-                    "rr": "anjda"
+                    "rr": "anta"
                   },
                   {
                     "ko": "와",
@@ -914,7 +914,7 @@
               "accept": [
                 "무"
               ],
-              "explain": "ㅁ a sinistra, ㅜ a destra: 무, come in 무 (ravanello)."
+              "explain": "ㅜ è una vocale orizzontale: la consonante le sta sopra, non a fianco. ㅁ + ㅜ = 무, come in 무 (ravanello)."
             },
             {
               "id": "ex-hangul-09-6",

@@ -511,7 +511,7 @@
             { "ko": "자다", "it": "dormire", "rr": "jada" },
             { "ko": "나오다", "it": "uscire", "rr": "naoda" },
             { "ko": "출발하다", "it": "partire", "rr": "chulbalhada" },
-            { "ko": "수업", "it": "lezione, lezione (scolastica)", "rr": "sugeom" },
+            { "ko": "수업", "it": "lezione, lezione (scolastica)", "rr": "sueop" },
             { "ko": "시작하다", "it": "iniziare", "rr": "sijakhada" },
             { "ko": "도착하다", "it": "arrivare", "rr": "dochakhada" },
             { "ko": "나서", "it": "-고 나서: dopo aver fatto", "rr": "naseo" }
@@ -526,7 +526,7 @@
                 "자기 전에 한국어를 한 시간 공부해요."
               ],
               "gloss": [
-                { "ko": "수업", "it": "lezione", "rr": "sugeom" },
+                { "ko": "수업", "it": "lezione", "rr": "sueop" },
                 { "ko": "시작하다", "it": "iniziare", "rr": "sijakhada" },
                 { "ko": "도착하다", "it": "arrivare", "rr": "dochakhada" },
                 { "ko": "자다", "it": "dormire", "rr": "jada" },
@@ -648,7 +648,7 @@
             { "ko": "먹다", "it": "mangiare", "rr": "meokda" },
             { "ko": "국어", "it": "la lingua coreana", "rr": "gugeo" },
             { "ko": "책", "it": "libro", "rr": "chaek" },
-            { "ko": "읽다", "it": "leggere", "rr": "ikda" },
+            { "ko": "읽다", "it": "leggere", "rr": "ilkda" },
             { "ko": "걷다", "it": "camminare", "rr": "geotda" },
             { "ko": "비비다", "it": "sfregare, strofinare", "rr": "bibida" },
             { "ko": "움직이다", "it": "muovere, muoversi", "rr": "umjigida" },
@@ -666,11 +666,11 @@
                 "오늘은 날씨가 좋아서 걸어서 와요."
               ],
               "gloss": [
-                { "ko": "아침", "it": "il mattino", "rr": "achin" },
+                { "ko": "아침", "it": "il mattino", "rr": "achim" },
                 { "ko": "눈을 비비다", "it": "strofinarsi gli occhi", "rr": "nuneul bibida" },
                 { "ko": "몸", "it": "corpo", "rr": "mom" },
                 { "ko": "책상", "it": "scrivania", "rr": "chaeksang" },
-                { "ko": "닦다", "it": "pulire, strofinare", "rr": "ttakda" },
+                { "ko": "닦다", "it": "pulire, strofinare", "rr": "dakka" },
                 { "ko": "꽃", "it": "fiore", "rr": "kkot" },
                 { "ko": "기분", "it": "umore", "rr": "gibun" },
                 { "ko": "날씨", "it": "il tempo (meteorologia)", "rr": "nalssi" }
@@ -788,8 +788,8 @@
             { "ko": "물", "it": "acqua", "rr": "mul" },
             { "ko": "국물", "it": "brodo", "rr": "gukmul" },
             { "ko": "뒷날", "it": "il giorno dopo", "rr": "dwitnal" },
-            { "ko": "학력", "it": "titolo di studio", "rr": "haknyeok" },
-            { "ko": "국민", "it": "cittadino", "rr": "gumin" },
+            { "ko": "학력", "it": "titolo di studio", "rr": "hangnyeok" },
+            { "ko": "국민", "it": "cittadino", "rr": "gungmin" },
             { "ko": "믿다", "it": "credere", "rr": "mitda" },
             { "ko": "속내", "it": "l'intimo, ciò che si sente dentro", "rr": "songnae" },
             { "ko": "시키다", "it": "ordinare (al ristorante), far fare", "rr": "sikida" },
@@ -816,7 +816,7 @@
                 { "ko": "말씀", "it": "parole (forma di rispetto)", "rr": "malsseum" },
                 { "ko": "있는", "it": "che c'è", "rr": "inneun" },
                 { "ko": "골라서", "it": "scegliendo", "rr": "gollaseo" },
-                { "ko": "학력", "it": "titolo di studio", "rr": "haknyeok" },
+                { "ko": "학력", "it": "titolo di studio", "rr": "hangnyeok" },
                 { "ko": "묻다", "it": "chiedere", "rr": "mutda" }
               ],
               "translation": "Se ordino una zuppa di riso, il brodo è buono. Quando mangio, lo stomaco si riempie. Credo alle parole dell'insegnante. Dico solo le parole che ci sono, scegliendole. Ci sono molte persone che chiedono il titolo di studio."
@@ -891,7 +891,7 @@
               "text": "국밥을 시키면 ___ 맛이 좋아요.",
               "options": ["국물", "국물을", "국"],
               "answer": "국물",
-              "explain": "국물 (brodo): si legge [궁물]. Nel brano regge 마시 — «il sapore del brodo» — quindi resta senza 를."
+              "explain": "국물 (brodo): si legge [궁물]. Nel brano 국물 è il complemento di 맛이 — «il sapore del brodo» — quindi resta senza 를."
             },
             {
               "id": "ex-a2-06-9",
@@ -924,7 +924,7 @@
             { "ko": "국밥", "it": "zuppa di riso (gukbap)", "rr": "gukbap" },
             { "ko": "불", "it": "fuoco", "rr": "bul" },
             { "ko": "뿔", "it": "corno", "rr": "ppul" },
-            { "ko": "갈등", "it": "disaccordo, conflitto", "rr": "galdung" },
+            { "ko": "갈등", "it": "disaccordo, conflitto", "rr": "galtteung" },
             { "ko": "발전", "it": "sviluppo", "rr": "baljeon" },
             { "ko": "말살", "it": "sterminio, cancellazione", "rr": "malsal" },
             { "ko": "값", "it": "prezzo, valore", "rr": "gap" },

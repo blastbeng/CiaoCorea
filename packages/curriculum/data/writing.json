@@ -362,5 +362,64 @@
     ],
     "model": "내일 눈이 온다고 해요.",
     "notes": "오다 → 온다 → 온 + 다고 하다: la forma che dice «l'ho sentito dire», non «l'ho visto». In un messaggio di lavoro è la forma prudente."
+  },
+  {
+    "id": "w-cap-01",
+    "courseSlug": "capacita",
+    "lessonId": "a3-01",
+    "title": "Cosa so fare",
+    "task": "Scrivi tre cose che sai fare e una che non puoi fare, usando -(으)ㄹ 수 있다 e -(으)ㄹ 수 없다.",
+    "words": [
+      "수영하다",
+      "요리하다",
+      "운전하다"
+    ],
+    "must": [
+      "수 있어요",
+      "수 없어요"
+    ],
+    "model": "저는 수영할 수 있어요. 요리는 조금 할 수 있어요. 한국어를 조금 할 수 있어요. 하지만 운전은 할 수 없어요.",
+    "alt": [
+      "저는 수영할 수 있어요. 요리도 할 수 있어요. 피아노를 칠 수 있어요. 그런데 운전은 할 수 없어요."
+    ],
+    "notes": "Il 받침 decide la forma: 수영하(다) → 수영할, 하(다) → 할, 먹(다) → 먹을. 수 resta staccato dal verbo."
+  },
+  {
+    "id": "w-cap-02",
+    "courseSlug": "capacita",
+    "lessonId": "a3-03",
+    "title": "Una volta, almeno",
+    "task": "Racconta due esperienze che hai già fatto e una che non hai mai fatto, usando -(으)ㄴ 적이 있다 / 없다.",
+    "words": [
+      "제주도",
+      "김치",
+      "외국"
+    ],
+    "must": [
+      "적이 있어요",
+      "적이 없어요"
+    ],
+    "model": "저는 제주도에 가 본 적이 있어요. 김치를 먹어 본 적이 있어요. 하지만 외국에는 가 본 적이 없어요.",
+    "alt": [
+      "저는 한국 영화를 본 적이 있어요. 매운 음식을 먹은 적이 있어요. 그런데 외국에 산 적은 없어요."
+    ],
+    "notes": "Per «mai» basta 적이 없다: non si aggiunge 안. Con i verbi in ㄹ il ㄹ sparisce davanti a -ㄴ: 살다 → 산 적이."
+  },
+  {
+    "id": "w-cap-03",
+    "courseSlug": "capacita",
+    "lessonId": "a3-06",
+    "title": "Sembra che…",
+    "task": "Guarda fuori dalla finestra e scrivi tre supposizioni: una sul tempo di oggi, una su ieri e una su domani. Usa 것 같다.",
+    "words": [
+      "구름",
+      "비",
+      "날씨"
+    ],
+    "must": [
+      "것 같아요"
+    ],
+    "model": "하늘에 구름이 많아요. 오늘은 조금 추운 것 같아요. 어제는 비가 온 것 같아요. 내일은 날씨가 좋을 것 같아요.",
+    "notes": "Aggettivo presente → -(으)ㄴ 것 같다 (추운). Verbo passato → -(으)ㄴ 것 같다 (온). Futuro → -(으)ㄹ 것 같다 (좋을)."
   }
 ]

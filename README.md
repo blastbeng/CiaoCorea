@@ -267,7 +267,11 @@ con 교통카드.
 
 Il quinto, `a2`, alza il livello: passato in -았어요/-었어요, futuro in -(으)ㄹ
 거예요, forma di rispetto 높임말 (-(으)시-, 께서, 드시다/계시다) e frasi legate con
--고, -지만 e -아서/어서. Il sesto, `b1`, è fatto solo di testi da leggere:
+-고, -지만 e -아서/어서. Il sesto, `capacita`, continua l'A2 con le forme che
+dicono cosa si sa fare e cosa si è vissuto: -(으)ㄹ 수 있다/없다 (con la differenza
+fra capacità, permesso e abilità imparata), -아/어 보다, -(으)ㄴ 적이 있다/없다,
+-(으)ㄹ 때, la nominalizzazione con -(으)ㄴ/는 것 e le supposizioni con 것 같다.
+Il settimo, `b1`, è fatto solo di testi da leggere:
 l'annuncio di una stanza, il menu con le note in fondo, il messaggio di servizio
 in ufficio, una notizia breve. Ogni lezione porta il brano in coreano con il
 glossario delle parole difficili, e sotto gli esercizi di comprensione; la
@@ -276,8 +280,8 @@ traduzione italiana del brano arriva solo quando la lezione risulta chiusa.
 La prima lezione di ogni corso è sempre aperta, così chi ha già basi può entrare
 da lì; le successive seguono l'ordine del corso.
 
-In tutto: sei corsi, 42 lezioni, 508 voci di lessico, 18 brani di lettura, 12
-dialoghi e 18 consegne di scrittura. Il dizionario consultabile arriva a 552
+In tutto: sette corsi, 48 lezioni, 556 voci di lessico, 19 brani di lettura, 14
+dialoghi e 21 consegne di scrittura. Il dizionario consultabile arriva a 602
 voci perché comprende anche le parole dei gloss, che sono quelle che si
 incontrano leggendo.
 

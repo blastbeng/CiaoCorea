@@ -3,6 +3,7 @@ export * from './progress';
 export * from './exercises';
 export * from './srs';
 export * from './dialogue';
+export * from './romanize';
 export * from './vocabulary';
 export * from './lookup';
 export * from './plan';
