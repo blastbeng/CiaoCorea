@@ -634,7 +634,7 @@
             "Se una sillaba finisce in consonante e la successiva comincia per vocale, quel suono si sposta: 눈이 si legge [누니].",
             "La scrittura non cambia: si scrive 눈이 e si legge [누니]. L'hangul si scrive come si scrive, non come si sente.",
             "Se la sillaba dopo comincia per consonante non succede niente: 안녕 resta [안녕], con la ㄴ finale al suo posto.",
-            "La consonante finale passa alla sillaba dopo con il suo suono: 꽃이 [꼬치], 낯이 [나치], 옷이 [오시], 꽃을 [꼬츨].",
+            "La consonante finale passa alla sillaba dopo con il suo suono: 꽃이 [꼬치], 낯이 [나치], 밭에 [바테], 꽃을 [꼬츨]. Attenzione: molti dicono [꼬시] per 꽃이, ma la norma vuole [꼬치].",
             "La ㄱ finale che si sposta davanti a vocale si sente più morbida, come una g italiana: 국어 [구거], 먹어요 [머거요].",
             "Caso speciale, la 구개음화: una ㄷ o ㅌ finale davanti alla vocale 이 di un suffisso diventa 지 o 치: 굳이 [구지], 같이 [가치], 밭이 [바치], 끝이 [끄치].",
             "있는 si legge [인는], 없는 [엄는]: qui la consonante finale incontra una nasale e cambia regola, come vedrai nella lezione dopo.",
@@ -780,7 +780,7 @@
             "Una ㅂ finale davanti a ㄴ o ㅁ diventa ㅁ: 없는 [엄는], 밥물 [밤물].",
             "Una ㅅ finale davanti a ㄴ diventa ㄴ: 뒷날 [뒨날].",
             "Davanti a ㄹ la ㄱ finale diventa ㄴ: 학력 [항녁].",
-            "Dopo una nasale la consonante non si raddoppia: 국민 [궁민], non [궁빔]; per questo 국밥 [국빱] suona diverso.",
+            "Dopo una nasale la consonante non si raddoppia: 국민 [궁민], non [궁빔], e 국밥 [국빱] suona diverso. Un'eccezione sono le desinenze dei verbi, che dopo una radice in ㄴ o ㅁ si induriscono: 신고 [신ː꼬], 삼고 [삼ː꼬].",
             "La grafia non cambia mai: 비음화 si ascolta, non si scrive."
           ],
           "vocab": [
@@ -1064,7 +1064,7 @@
             "Vale anche quando la ㄹ viene prima: è la ㄴ a diventare ㄹ. 칼날 [칼랄], 물난리 [물랄리].",
             "ㄴ davanti a ㄴ non diventa ㄹ: 신년 resta [신년], con due ㄴ distinte, e non [실련].",
             "Nelle parole composte, se la seconda parte comincia per 이, 야, 여, 요, 유, si sente un ㄴ che non si scrive: 꽃잎 [꼰닙], 솜이불 [솜ː니불], 색연필 [생년필].",
-            "Quel ㄴ può poi trasformarsi per 비음화: 내복약 [내ː봄냑], 백분율 [백뿐뉼], 식용유 [시굥뉴]. La grafia non cambia.",
+            "Quel ㄴ può poi trasformarsi per 비음화: 내복약 [내ː봉냑] (la ㄱ di 복 davanti alla ㄴ si sente ㅇ), 백분율 [백뿐뉼], 식용유 [시굥뉴]. La grafia non cambia.",
             "I numeri invece non prendono il ㄴ: 3·1 si legge [사밀] (3·1절 [사밀쩔]) e 12 si legge [시비]. La consonante finale si sposta e basta.",
             "Nelle parole di origine cinese la ㄹ iniziale davanti a ㅣ, ㅑ, ㅕ, ㅛ, ㅠ cade del tutto: 림 → 임 (foresta), 량 → 양 (quantità), 려 → 여.",
             "Davanti alle altre vocali la ㄹ cinese diventa ㄴ (락원 → 낙원, 로동 → 노동); nelle parole non cinesi resta ㄹ (라면, 라디오)."

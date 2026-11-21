@@ -474,5 +474,58 @@
     ],
     "model": "지난주에 친구가 이사를 도와줬어요. 그래서 저는 친구에게 선물을 사 줬어요. 그리고 어제는 선생님께 책을 갖다 드렸어요. 선생님이 아주 고마워하셨어요.",
     "notes": "도와주다 → 도와줬어요; 사다 + 주다 → 사 줬어요 (la cosa si compra per l'altro); 드리다 quando il favore è per una persona più importante."
+  },
+  {
+    "id": "w-rad-03",
+    "courseSlug": "radici",
+    "lessonId": "rad-03",
+    "title": "Che tempo fa",
+    "task": "Descrivi il tempo di oggi con una frase e aggiungi se quel tempo ti piace.",
+    "words": [
+      "날씨",
+      "좋아해요"
+    ],
+    "must": [
+      "날씨"
+    ],
+    "model": "오늘은 추워요. 하지만 저는 추운 날씨를 좋아해요.",
+    "alt": [
+      "오늘은 더워요. 그래도 저는 더운 날씨를 좋아해요."
+    ],
+    "notes": "좋아해요 = 'mi piace' (좋다 + 해요). Davanti a un nome l'aggettivo prende -ㄴ/은: 추운 날씨 = 'il tempo freddo'. La radice ㅂ di 춥다 cambia: 추워요, non 춥어요."
+  },
+  {
+    "id": "w-rad-05",
+    "courseSlug": "radici",
+    "lessonId": "rad-05",
+    "title": "Non lo so, sono diversi",
+    "task": "Scrivi due frasi: una in cui dici che non sai una parola (모르다), una in cui dici che due cose sono diverse (다르다).",
+    "words": [
+      "몰라요",
+      "달라요"
+    ],
+    "must": [
+      "몰라요",
+      "달라요"
+    ],
+    "model": "저는 그 단어를 몰라요. 그리고 이 두 책은 달라요.",
+    "notes": "Le radici in 르 raddoppiano il suono: 모르다 → 몰라요, 다르다 → 달라요. Si scrivono con due ㄹ, una finale (몰-) e una iniziale (-라-). 모라요 e 다라요 sono sbagliati."
+  },
+  {
+    "id": "w-rad-06",
+    "courseSlug": "radici",
+    "lessonId": "rad-06",
+    "title": "Presentarsi in registro formale",
+    "task": "Presentati in registro formale: saluta, di' il tuo nome e di' che studi il coreano.",
+    "words": [
+      "입니다",
+      "공부합니다"
+    ],
+    "must": [
+      "입니다",
+      "합니다"
+    ],
+    "model": "안녕하십니까? 저는 마르코입니다. 저는 한국어를 공부합니다.",
+    "notes": "Dopo un nome si usa 입니다 (저는 마르코입니다). Per i verbi: 공부하다 → 공부합니다, 읽다 → 읽습니다. 안녕하십니까? è il saluto formale, più cerimonioso di 안녕하세요."
   }
 ]

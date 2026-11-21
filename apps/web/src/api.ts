@@ -18,6 +18,7 @@ import type {
   ReviewCheckResponse,
   ReviewResponse,
   SessionUser,
+  TextAnalysisResponse,
   VocabularyResponse,
   WordLookupResponse,
   WritingCheckResponse,
@@ -160,6 +161,9 @@ export const api = {
   /** La scheda di una parola cliccata dentro un brano. */
   lookupWord: (word: string) =>
     request<WordLookupResponse>('GET', `/api/vocabulary/lookup?w=${encodeURIComponent(word)}`),
+
+  /** Un testo incollato, parola per parola: che cosa il corso conosce già. */
+  analyzeText: (text: string) => request<TextAnalysisResponse>('POST', '/api/text/analyze', { text }),
 
   /** Le consegne del quaderno: il modello arriva solo dopo aver scritto. */
   writing: () => request<WritingResponse>('GET', '/api/writing'),

@@ -216,6 +216,35 @@ export function ExerciseInput({ exercise, value, onChange, onSubmit, disabled }:
     );
   }
 
+  if (exercise.type === 'type_reading') {
+    // La parola si vede, il suono no: l'audio arriverebbe prima della risposta
+    // e detterebbe la romanizzazione. Si legge con gli occhi, come su un menu.
+    return (
+      <div>
+        <p className="reading-target ko" lang="ko" style={{ fontSize: '1.7rem', margin: '0 0 0.9rem' }}>
+          {exercise.text}
+        </p>
+        <input
+          className="input"
+          value={value}
+          onChange={(event) => onChange(event.target.value)}
+          onKeyDown={(event: KeyboardEvent<HTMLInputElement>) => {
+            if (event.key === 'Enter') {
+              event.preventDefault();
+              onSubmit();
+            }
+          }}
+          placeholder="Come si legge (romanizzazione)"
+          disabled={disabled}
+          autoFocus
+          autoComplete="off"
+          autoCapitalize="off"
+          spellCheck={false}
+        />
+      </div>
+    );
+  }
+
   if (exercise.type === 'listen_type') {
     // Il testo coreano non si mostra: è un dettato, si ascolta e si scrive.
     // La voce è quella del browser, quindi si può premere quante volte serve.

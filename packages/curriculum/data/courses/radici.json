@@ -1,0 +1,1360 @@
+{
+  "id": "radici",
+  "slug": "radici",
+  "title": "어간 — Radici che cambiano",
+  "subtitle": "듣다 → 들어요: le radici irregolari e il registro formale",
+  "level": "A2",
+  "description": "Sei lezioni sulle radici che cambiano davanti a una desinenza che comincia per vocale — ㄷ, ㄹ, ㅂ, ㅅ, ㅎ, 르 — e una sul registro scritto in -ㅂ니다, quello degli avvisi e delle lettere.",
+  "units": [
+    {
+      "id": "r-u1",
+      "title": "Radici che cambiano",
+      "purpose": "La desinenza comincia per vocale e la radice si adatta: la stessa parola prende due forme, e vanno riconosciute entrambe.",
+      "lessons": [
+        {
+          "id": "rad-01",
+          "slug": "radici-in-digeut",
+          "title": "Radici in ㄷ: 듣다 → 들어요",
+          "titleKo": "ㄷ 불규칙: 듣다, 걷다",
+          "kind": "grammar",
+          "goal": "Riconoscere i verbi in ㄷ e coniugarli al presente e al passato.",
+          "durationMin": 12,
+          "points": [
+            "Un piccolo gruppo di verbi finisce in ㄷ: 듣다 (ascoltare), 걷다 (camminare), 싣다 (caricare), 깨닫다 (rendersi conto).",
+            "Davanti a una desinenza che comincia per vocale la ㄷ diventa ㄹ: 듣다 → 들어요, 걷다 → 걸어요, 싣다 → 실어요.",
+            "Il passato fa lo stesso: 들었어요 (ho ascoltato), 걸었어요 (ho camminato), 실었어요 (ho caricato).",
+            "Davanti a una desinenza che comincia per consonante la ㄷ resta: 듣습니다, 듣고, 듣는, 듣지만.",
+            "Non tutti i verbi in ㄷ sono irregolari: 닫다 (chiudere) e 믿다 (credere) tengono la ㄷ, quindi 닫아요 e 믿어요. La lista è corta, e 듣다 è il primo da ricordare.",
+            "La contrazione cambia anche il suono: 들어요 si legge [드러요], con una ㄹ morbida fra due vocali."
+          ],
+          "vocab": [
+            {
+              "ko": "듣다",
+              "it": "ascoltare",
+              "rr": "deutda"
+            },
+            {
+              "ko": "걷다",
+              "it": "camminare",
+              "rr": "geotda"
+            },
+            {
+              "ko": "싣다",
+              "it": "caricare",
+              "rr": "sitda"
+            },
+            {
+              "ko": "닫다",
+              "it": "chiudere",
+              "rr": "datda"
+            },
+            {
+              "ko": "믿다",
+              "it": "credere",
+              "rr": "mitda"
+            },
+            {
+              "ko": "음악",
+              "it": "musica",
+              "rr": "eumak"
+            },
+            {
+              "ko": "매일",
+              "it": "ogni giorno",
+              "rr": "maeil"
+            },
+            {
+              "ko": "짐",
+              "it": "bagaglio",
+              "rr": "jim"
+            },
+            {
+              "ko": "도서관",
+              "it": "biblioteca",
+              "rr": "doseogwan"
+            },
+            {
+              "ko": "천천히",
+              "it": "piano, adagio",
+              "rr": "cheoncheonhi"
+            },
+            {
+              "ko": "기차",
+              "it": "treno",
+              "rr": "gicha"
+            },
+            {
+              "ko": "역",
+              "it": "stazione",
+              "rr": "yeok"
+            }
+          ],
+          "exercises": [
+            {
+              "id": "rad01-e1",
+              "type": "type_hangul",
+              "prompt": "Scrivi in coreano il presente cortese di 듣다: «ascolto».",
+              "hint": "Radice 듣 + 어요: la ㄷ diventa ㄹ.",
+              "answer": "들어요",
+              "explain": "듣 + 어요 → 들어요: davanti alla vocale la ㄷ diventa ㄹ. 듣어요 non esiste."
+            },
+            {
+              "id": "rad01-e2",
+              "type": "type_reading",
+              "prompt": "Trascrivi in romanizzazione.",
+              "text": "들어요",
+              "answer": "deureoyo",
+              "hint": "La ㄷ di 듣 si è trasformata in ㄹ.",
+              "explain": "들어요 si legge [드러요]: la ㄹ resta morbida fra due vocali."
+            },
+            {
+              "id": "rad01-e3",
+              "type": "reading_mcq",
+              "prompt": "Che cosa vuol dire 걸어요?",
+              "options": [
+                "cammino",
+                "ascolto",
+                "chiudo",
+                "credo"
+              ],
+              "answer": "cammino",
+              "explain": "걸어요 viene da 걷다: la ㄷ è diventata ㄹ davanti alla vocale."
+            },
+            {
+              "id": "rad01-e4",
+              "type": "fill_blank",
+              "prompt": "Completa: «carico il bagaglio».",
+              "text": "짐을 ___.",
+              "options": [
+                "실어요",
+                "싣어요",
+                "실었어요"
+              ],
+              "answer": "실어요",
+              "explain": "싣 + 어요 → 실어요: 싣어요 non si dice. 실었어요 è il passato."
+            },
+            {
+              "id": "rad01-e5",
+              "type": "type_meaning",
+              "prompt": "Traduci in italiano: 들었어요",
+              "answer": "ho ascoltato",
+              "accept": [
+                "ho ascoltato",
+                "ascoltai",
+                "l'ho ascoltato"
+              ]
+            },
+            {
+              "id": "rad01-e6",
+              "type": "order_words",
+              "prompt": "Rimetti in ordine: «Ogni giorno ascolto musica.»",
+              "words": [
+                "음악을",
+                "매일",
+                "들어요"
+              ],
+              "answer": "매일 음악을 들어요"
+            },
+            {
+              "id": "rad01-e7",
+              "type": "fill_blank",
+              "prompt": "Completa: «vado a scuola a piedi» (letteralmente: fino a scuola cammino).",
+              "text": "학교까지 ___.",
+              "answer": "걸어요",
+              "hint": "걷 + 어요 → 걸어요."
+            },
+            {
+              "id": "rad01-e8",
+              "type": "reading_mcq",
+              "prompt": "Che cosa vuol dire 닫아요?",
+              "options": [
+                "chiudo",
+                "ascolto",
+                "cammino",
+                "credo"
+              ],
+              "answer": "chiudo",
+              "explain": "닫다 è regolare: davanti alla vocale la ㄷ resta."
+            },
+            {
+              "id": "rad01-e9",
+              "type": "type_hangul",
+              "prompt": "Scrivi in coreano «ho camminato», al passato cortese di 걷다.",
+              "hint": "Radice 걸 + 었어요.",
+              "answer": "걸었어요",
+              "explain": "La ㄷ diventa ㄹ anche al passato: 걷 + 었어요 → 걸었어요."
+            },
+            {
+              "id": "rad01-e10",
+              "type": "listen_type",
+              "prompt": "Ascolta e scrivi quello che senti.",
+              "speak": "음악을 들어요",
+              "answer": "음악을 들어요"
+            }
+          ]
+        },
+        {
+          "id": "rad-02",
+          "slug": "radici-in-rieul",
+          "title": "Radici in ㄹ: 살다, 알다, 읽다",
+          "titleKo": "ㄹ 받침: 살다, 알다, 읽다",
+          "kind": "grammar",
+          "goal": "Coniugare le radici in ㄹ e distinguerle da quelle in ㄺ come 읽다.",
+          "durationMin": 12,
+          "points": [
+            "Davanti a una desinenza che comincia per vocale la ㄹ resta: 살다 → 살아요, 알다 → 알아요, 만들다 → 만들어요.",
+            "Il passato è regolare: 살았어요 (ho vissuto), 알았어요 (ho saputo), 만들었어요 (ho fatto).",
+            "Davanti a una desinenza che comincia per ㄴ, ㅂ o ㅅ la ㄹ cade: 살다 → 사는, 삽니다; 알다 → 아는, 압니다.",
+            "Le altre consonanti la lasciano stare: 살고, 살지만, 알면, 알게.",
+            "읽다 (leggere) non è una radice in ㄹ: la sua finale è ㄺ, e resta intera: 읽어요, 읽는, 읽습니다.",
+            "Al futuro la radice resta: 살 거예요, 알 거예요; davanti al nome la ㄹ cade: 산 집 (la casa dove abito)."
+          ],
+          "vocab": [
+            {
+              "ko": "살다",
+              "it": "vivere, abitare",
+              "rr": "salda"
+            },
+            {
+              "ko": "알다",
+              "it": "sapere",
+              "rr": "alda"
+            },
+            {
+              "ko": "만들다",
+              "it": "fare, creare",
+              "rr": "mandeulda"
+            },
+            {
+              "ko": "읽다",
+              "it": "leggere",
+              "rr": "ilkda"
+            },
+            {
+              "ko": "놀다",
+              "it": "giocare",
+              "rr": "nolda"
+            },
+            {
+              "ko": "울다",
+              "it": "piangere",
+              "rr": "ulda"
+            },
+            {
+              "ko": "책",
+              "it": "libro",
+              "rr": "chaek"
+            },
+            {
+              "ko": "신문",
+              "it": "giornale",
+              "rr": "sinmun"
+            },
+            {
+              "ko": "집",
+              "it": "casa",
+              "rr": "jip"
+            },
+            {
+              "ko": "로마",
+              "it": "Roma",
+              "rr": "roma"
+            },
+            {
+              "ko": "한국어",
+              "it": "lingua coreana",
+              "rr": "hangugeo"
+            },
+            {
+              "ko": "이야기",
+              "it": "racconto, storia",
+              "rr": "iyagi"
+            }
+          ],
+          "exercises": [
+            {
+              "id": "rad02-e1",
+              "type": "type_hangul",
+              "prompt": "Scrivi in coreano «vivo a Roma».",
+              "hint": "로마 + 에 (a) + 살아요.",
+              "answer": "로마에 살아요"
+            },
+            {
+              "id": "rad02-e2",
+              "type": "type_meaning",
+              "prompt": "Traduci in italiano: 알았어요",
+              "answer": "ho saputo",
+              "accept": [
+                "ho saputo",
+                "ho capito",
+                "l'ho saputo",
+                "capii"
+              ]
+            },
+            {
+              "id": "rad02-e3",
+              "type": "fill_blank",
+              "prompt": "Completa: «leggo il giornale».",
+              "text": "신문을 ___.",
+              "options": [
+                "읽어요",
+                "읽아요",
+                "익어요"
+              ],
+              "answer": "읽어요",
+              "explain": "읽 ha la finale ㄺ, quindi resta: 읽어요. 읽아요 non esiste."
+            },
+            {
+              "id": "rad02-e4",
+              "type": "order_words",
+              "prompt": "Rimetti in ordine: «Io vivo a Roma.»",
+              "words": [
+                "로마에",
+                "저는",
+                "살아요"
+              ],
+              "answer": "저는 로마에 살아요"
+            },
+            {
+              "id": "rad02-e5",
+              "type": "type_reading",
+              "prompt": "Trascrivi in romanizzazione.",
+              "text": "삽니다",
+              "answer": "samnida",
+              "hint": "È 살다 al registro formale.",
+              "explain": "살 + ㅂ니다 → 삽니다: la ㄹ cade davanti alla desinenza che comincia per ㅂ."
+            },
+            {
+              "id": "rad02-e6",
+              "type": "reading_mcq",
+              "prompt": "Che cosa vuol dire 만들어요?",
+              "options": [
+                "faccio",
+                "leggo",
+                "piango",
+                "vivo"
+              ],
+              "answer": "faccio"
+            },
+            {
+              "id": "rad02-e7",
+              "type": "type_hangul",
+              "prompt": "Scrivi in coreano «ho vissuto in Corea».",
+              "hint": "한국 + 에서 (in) + 살았어요.",
+              "answer": "한국에서 살았어요"
+            },
+            {
+              "id": "rad02-e8",
+              "type": "listen_type",
+              "prompt": "Ascolta e scrivi quello che senti.",
+              "speak": "매일 책을 읽어요",
+              "answer": "매일 책을 읽어요"
+            },
+            {
+              "id": "rad02-e9",
+              "type": "reading_mcq",
+              "prompt": "압니다: che cosa vuol dire?",
+              "options": [
+                "so (formale)",
+                "vivo (formale)",
+                "leggo (formale)",
+                "piango (formale)"
+              ],
+              "answer": "so (formale)",
+              "explain": "알 + ㅂ니다 → 압니다: la ㄹ cade, come in 삽니다."
+            },
+            {
+              "id": "rad02-e10",
+              "type": "fill_blank",
+              "prompt": "Completa al presente: «piango» (울다).",
+              "text": "저는 자주 ___.",
+              "answer": "울어요",
+              "hint": "울 + 어요: la ㄹ resta."
+            }
+          ]
+        },
+        {
+          "id": "rad-03",
+          "slug": "radici-in-bieup",
+          "title": "Radici in ㅂ: 춥다 → 추워요",
+          "titleKo": "ㅂ 불규칙: 춥다, 덥다, 쉽다",
+          "kind": "grammar",
+          "goal": "Coniugare le radici in ㅂ e riconoscere quelle che non cambiano.",
+          "durationMin": 12,
+          "points": [
+            "Molte radici in ㅂ davanti a vocale si aprono in 우: 춥다 → 추워요, 덥다 → 더워요, 쉽다 → 쉬워요, 어렵다 → 어려워요.",
+            "Il passato: 추웠어요, 더웠어요, 쉬웠어요, 어려웠어요.",
+            "Davanti a una consonante la ㅂ resta: 춥고, 춥지만, 춥습니다; e davanti a -(으)ㄴ resta pure: 추운 날 (un giorno freddo), 더운 여름 (un'estate calda).",
+            "돕다 (aiutare) e 곱다 (essere bello) prendono 와, non 워: 도와요, 고와요.",
+            "Non tutte le radici in ㅂ cambiano: 잡다 (afferrare) fa 잡아요, 입다 (indossare) fa 입어요.",
+            "Il futuro resta sulla ㅂ: 추울 거예요 (farà freddo), 쉬울 거예요 (sarà facile)."
+          ],
+          "vocab": [
+            {
+              "ko": "춥다",
+              "it": "fare freddo, essere freddo",
+              "rr": "chupda"
+            },
+            {
+              "ko": "덥다",
+              "it": "fare caldo, essere caldo",
+              "rr": "deopda"
+            },
+            {
+              "ko": "쉽다",
+              "it": "essere facile",
+              "rr": "swipda"
+            },
+            {
+              "ko": "어렵다",
+              "it": "essere difficile",
+              "rr": "eoryeopda"
+            },
+            {
+              "ko": "맵다",
+              "it": "essere piccante",
+              "rr": "maepda"
+            },
+            {
+              "ko": "돕다",
+              "it": "aiutare",
+              "rr": "dopda"
+            },
+            {
+              "ko": "날씨",
+              "it": "tempo, meteo",
+              "rr": "nalssi"
+            },
+            {
+              "ko": "겨울",
+              "it": "inverno",
+              "rr": "gyeoul"
+            },
+            {
+              "ko": "여름",
+              "it": "estate",
+              "rr": "yeoreum"
+            },
+            {
+              "ko": "시험",
+              "it": "esame",
+              "rr": "siheom"
+            },
+            {
+              "ko": "김치",
+              "it": "kimchi",
+              "rr": "gimchi"
+            },
+            {
+              "ko": "도와주다",
+              "it": "aiutare (qualcuno)",
+              "rr": "dowajuda"
+            }
+          ],
+          "exercises": [
+            {
+              "id": "rad03-e1",
+              "type": "fill_blank",
+              "prompt": "Completa: «d'inverno fa freddo».",
+              "text": "겨울에는 날씨가 ___.",
+              "options": [
+                "추워요",
+                "춥어요",
+                "추워"
+              ],
+              "answer": "추워요",
+              "explain": "춥 + 어요 → 추워요: la ㅂ si apre in 우 e si fonde con 어."
+            },
+            {
+              "id": "rad03-e2",
+              "type": "type_hangul",
+              "prompt": "Scrivi in coreano «è difficile» (어렵다).",
+              "hint": "어렵 + 어요 → 어려워요.",
+              "answer": "어려워요"
+            },
+            {
+              "id": "rad03-e3",
+              "type": "type_reading",
+              "prompt": "Trascrivi in romanizzazione.",
+              "text": "추운",
+              "answer": "chuun",
+              "hint": "È 춥다 davanti a un nome.",
+              "explain": "춥 + 은 → 추운: davanti alla ㄴ la ㅂ resta. 추운 날 = un giorno freddo."
+            },
+            {
+              "id": "rad03-e4",
+              "type": "reading_mcq",
+              "prompt": "Che cosa vuol dire 더워요?",
+              "options": [
+                "fa caldo",
+                "fa freddo",
+                "è facile",
+                "è difficile"
+              ],
+              "answer": "fa caldo"
+            },
+            {
+              "id": "rad03-e5",
+              "type": "type_meaning",
+              "prompt": "Traduci in italiano: 쉬웠어요",
+              "answer": "è stato facile",
+              "accept": [
+                "è stato facile",
+                "era facile",
+                "è stato semplice",
+                "era semplice"
+              ]
+            },
+            {
+              "id": "rad03-e6",
+              "type": "order_words",
+              "prompt": "Rimetti in ordine: «Oggi il tempo è freddo.»",
+              "words": [
+                "날씨가",
+                "오늘은",
+                "추워요"
+              ],
+              "answer": "오늘은 날씨가 추워요"
+            },
+            {
+              "id": "rad03-e7",
+              "type": "fill_blank",
+              "prompt": "Completa: «aiuto un amico».",
+              "text": "친구를 ___.",
+              "answer": "도와요",
+              "hint": "돕 + 아요 → 도와요."
+            },
+            {
+              "id": "rad03-e8",
+              "type": "reading_mcq",
+              "prompt": "Che cosa vuol dire 매워요?",
+              "options": [
+                "è piccante",
+                "è facile",
+                "fa freddo",
+                "è difficile"
+              ],
+              "answer": "è piccante"
+            },
+            {
+              "id": "rad03-e9",
+              "type": "listen_type",
+              "prompt": "Ascolta e scrivi quello che senti.",
+              "speak": "한국어는 어렵지만 재미있어요",
+              "answer": "한국어는 어렵지만 재미있어요"
+            },
+            {
+              "id": "rad03-e10",
+              "type": "type_hangul",
+              "prompt": "Scrivi in coreano «l'esame è stato facile».",
+              "hint": "시험 + 이 + 쉬웠어요.",
+              "answer": "시험이 쉬웠어요"
+            }
+          ]
+        },
+        {
+          "id": "rad-04",
+          "slug": "radici-in-siot-e-hieut",
+          "title": "Radici in ㅅ e ㅎ: 붓다, 좋다, 파랗다",
+          "titleKo": "ㅅ·ㅎ 불규칙: 붓다, 좋다, 파랗다",
+          "kind": "grammar",
+          "goal": "Riconoscere le radici in ㅅ e in ㅎ, comprese le eccezioni 있다 e 없다.",
+          "durationMin": 13,
+          "points": [
+            "Alcune radici in ㅅ perdono la ㅅ davanti a vocale: 낫다 → 나아요, 붓다 → 부어요, 잇다 → 이어요.",
+            "Il passato: 나았어요 (sono guarito), 부었어요 (ho versato), 이었어요 (ho collegato).",
+            "있다 e 없다 sono l'eccezione: tengono la ㅅ, e 없어 si legge [업써].",
+            "Le radici in ㅎ davanti a vocale perdono la ㅎ: 좋다 → 좋아요, che si legge [조아].",
+            "Nei colori e negli aggettivi in ㅎ la vocale si stringe: 파랗다 → 파래요, 빨갛다 → 빨개요, 그렇다 → 그래요.",
+            "Davanti a una consonante la ㅎ resta scritta e cambia suono: 파란 하늘 (cielo azzurro), 빨간 색 (colore rosso), 좋습니다 [조씀니다].",
+            "싫다 (non piacere) ha la finale ㄿ: 싫어요 si legge [시러요]."
+          ],
+          "vocab": [
+            {
+              "ko": "낫다",
+              "it": "guarire, essere meglio",
+              "rr": "natda"
+            },
+            {
+              "ko": "붓다",
+              "it": "versare",
+              "rr": "butda"
+            },
+            {
+              "ko": "잇다",
+              "it": "collegare",
+              "rr": "itda"
+            },
+            {
+              "ko": "있다",
+              "it": "esserci, avere",
+              "rr": "itda"
+            },
+            {
+              "ko": "없다",
+              "it": "non esserci, non avere",
+              "rr": "eopda"
+            },
+            {
+              "ko": "좋다",
+              "it": "essere buono, piacere",
+              "rr": "jota"
+            },
+            {
+              "ko": "싫다",
+              "it": "non piacere, odiare",
+              "rr": "silpda"
+            },
+            {
+              "ko": "파랗다",
+              "it": "essere azzurro",
+              "rr": "paratda"
+            },
+            {
+              "ko": "빨갛다",
+              "it": "essere rosso",
+              "rr": "ppalgatda"
+            },
+            {
+              "ko": "하늘",
+              "it": "cielo",
+              "rr": "haneul"
+            },
+            {
+              "ko": "색",
+              "it": "colore",
+              "rr": "saek"
+            },
+            {
+              "ko": "기분",
+              "it": "umore",
+              "rr": "gibun"
+            }
+          ],
+          "exercises": [
+            {
+              "id": "rad04-e1",
+              "type": "fill_blank",
+              "prompt": "Completa: «c'è una penna».",
+              "text": "펜이 ___.",
+              "options": [
+                "있어요",
+                "이써요",
+                "있아요"
+              ],
+              "answer": "있어요",
+              "explain": "있다 tiene la ㅅ: 있어요. La pronuncia è [이써요], ma la grafia non cambia."
+            },
+            {
+              "id": "rad04-e2",
+              "type": "type_meaning",
+              "prompt": "Traduci in italiano: 없어요",
+              "answer": "non c'è",
+              "accept": [
+                "non c'è",
+                "manca",
+                "non ci sono",
+                "non ho"
+              ]
+            },
+            {
+              "id": "rad04-e3",
+              "type": "type_reading",
+              "prompt": "Trascrivi in romanizzazione.",
+              "text": "좋아요",
+              "answer": "joayo",
+              "hint": "La ㅎ davanti alla vocale non si sente.",
+              "explain": "좋아요 si legge [조아요]: la ㅎ è muta davanti alla vocale."
+            },
+            {
+              "id": "rad04-e4",
+              "type": "reading_mcq",
+              "prompt": "Che cosa vuol dire 파래요?",
+              "options": [
+                "è azzurro",
+                "è rosso",
+                "è buono",
+                "è brutto"
+              ],
+              "answer": "è azzurro",
+              "explain": "파랗 + 어요 → 파래요: la ㅎ cade e la vocale si stringe."
+            },
+            {
+              "id": "rad04-e5",
+              "type": "fill_blank",
+              "prompt": "Completa: «non c'è caffè».",
+              "text": "커피가 ___.",
+              "answer": "없어요"
+            },
+            {
+              "id": "rad04-e6",
+              "type": "order_words",
+              "prompt": "Rimetti in ordine: «Oggi il cielo è molto azzurro.»",
+              "words": [
+                "하늘이",
+                "오늘",
+                "아주",
+                "파래요"
+              ],
+              "answer": "오늘 하늘이 아주 파래요"
+            },
+            {
+              "id": "rad04-e7",
+              "type": "type_hangul",
+              "prompt": "Scrivi in coreano «il tempo è bello».",
+              "hint": "날씨 + 가 + 좋아요.",
+              "answer": "날씨가 좋아요"
+            },
+            {
+              "id": "rad04-e8",
+              "type": "reading_mcq",
+              "prompt": "부어요: che cosa vuol dire?",
+              "options": [
+                "verso",
+                "guarisco",
+                "collego",
+                "c'è"
+              ],
+              "answer": "verso",
+              "explain": "붓 + 어요 → 부어요: la ㅅ cade davanti alla vocale."
+            },
+            {
+              "id": "rad04-e9",
+              "type": "type_reading",
+              "prompt": "Trascrivi in romanizzazione.",
+              "text": "빨간",
+              "answer": "ppalgan",
+              "hint": "È 빨갛다 davanti a un nome.",
+              "explain": "빨갛 + ㄴ → 빨간: la ㅎ resta nella scrittura e la vocale non si stringe."
+            },
+            {
+              "id": "rad04-e10",
+              "type": "listen_type",
+              "prompt": "Ascolta e scrivi quello che senti.",
+              "speak": "기분이 좋아요",
+              "answer": "기분이 좋아요"
+            }
+          ]
+        },
+        {
+          "id": "rad-05",
+          "slug": "radici-in-reu",
+          "title": "Radici in 르: 모르다 → 몰라요",
+          "titleKo": "르 불규칙: 모르다, 다르다, 빠르다",
+          "kind": "grammar",
+          "goal": "Coniugare le radici in 르, con il raddoppio della ㄹ.",
+          "durationMin": 12,
+          "points": [
+            "Davanti a una desinenza che comincia per 아 o 어, la sillaba 르 raddoppia la ㄹ e la vocale si fonde: 모르다 → 몰라요, 다르다 → 달라요, 빠르다 → 빨라요.",
+            "Il passato: 몰랐어요, 달랐어요, 빨랐어요.",
+            "부르다 (chiamare, cantare) fa 불러요: la sillaba prima si chiude con la ㄹ (부 → 불).",
+            "마르다 (asciugarsi) fa 말라요, 자르다 (tagliare) fa 잘라요: la regola è sempre la stessa.",
+            "Davanti a una consonante la radice resta intera: 모르고, 모르면, 다르지만.",
+            "Alcune radici in 르 sono regolari: 치르다 → 치러요, 들르다 → 들러요."
+          ],
+          "vocab": [
+            {
+              "ko": "모르다",
+              "it": "non sapere",
+              "rr": "moreuda"
+            },
+            {
+              "ko": "다르다",
+              "it": "essere diverso",
+              "rr": "dareuda"
+            },
+            {
+              "ko": "빠르다",
+              "it": "essere veloce",
+              "rr": "ppareuda"
+            },
+            {
+              "ko": "부르다",
+              "it": "chiamare, cantare",
+              "rr": "bureuda"
+            },
+            {
+              "ko": "마르다",
+              "it": "asciugarsi, seccarsi",
+              "rr": "mareuda"
+            },
+            {
+              "ko": "자르다",
+              "it": "tagliare",
+              "rr": "jareuda"
+            },
+            {
+              "ko": "치르다",
+              "it": "pagare (un conto, un esame)",
+              "rr": "chireuda"
+            },
+            {
+              "ko": "노래",
+              "it": "canzone",
+              "rr": "norae"
+            },
+            {
+              "ko": "이름",
+              "it": "nome",
+              "rr": "ireum"
+            },
+            {
+              "ko": "요리",
+              "it": "cucina, piatto",
+              "rr": "yori"
+            },
+            {
+              "ko": "사람",
+              "it": "persona",
+              "rr": "saram"
+            },
+            {
+              "ko": "아주",
+              "it": "molto",
+              "rr": "aju"
+            }
+          ],
+          "exercises": [
+            {
+              "id": "rad05-e1",
+              "type": "fill_blank",
+              "prompt": "Completa: «non conosco quella persona».",
+              "text": "저는 그 사람을 ___.",
+              "options": [
+                "몰라요",
+                "모르어요",
+                "몰아요"
+              ],
+              "answer": "몰라요",
+              "explain": "모르 + 아요 → 몰라요: la ㄹ raddoppia e la vocale si fonde."
+            },
+            {
+              "id": "rad05-e2",
+              "type": "type_hangul",
+              "prompt": "Scrivi in coreano «è diverso» (다르다).",
+              "hint": "다르 + 어요 → 달라요.",
+              "answer": "달라요"
+            },
+            {
+              "id": "rad05-e3",
+              "type": "type_reading",
+              "prompt": "Trascrivi in romanizzazione.",
+              "text": "빨라요",
+              "answer": "ppallayo",
+              "hint": "È 빠르다: la ㅂ resta e la ㄹ raddoppia.",
+              "explain": "빠르 + 아요 → 빨라요: la ㄹ raddoppia, e la ㅂ resta sorda."
+            },
+            {
+              "id": "rad05-e4",
+              "type": "reading_mcq",
+              "prompt": "불러요: che cosa vuol dire?",
+              "options": [
+                "chiamo, canto",
+                "taglio",
+                "pago",
+                "asciugo"
+              ],
+              "answer": "chiamo, canto",
+              "explain": "부르 + 어요 → 불러요: la sillaba 부 si chiude con la ㄹ."
+            },
+            {
+              "id": "rad05-e5",
+              "type": "type_meaning",
+              "prompt": "Traduci in italiano: 몰랐어요",
+              "answer": "non sapevo",
+              "accept": [
+                "non sapevo",
+                "non ho saputo",
+                "non capivo"
+              ]
+            },
+            {
+              "id": "rad05-e6",
+              "type": "order_words",
+              "prompt": "Rimetti in ordine: «Canta molto bene.»",
+              "words": [
+                "잘",
+                "노래를",
+                "불러요",
+                "아주"
+              ],
+              "answer": "노래를 아주 잘 불러요"
+            },
+            {
+              "id": "rad05-e7",
+              "type": "fill_blank",
+              "prompt": "Completa: «il bucato si asciuga».",
+              "text": "빨래가 ___.",
+              "answer": "말라요",
+              "hint": "마르 + 아요 → 말라요."
+            },
+            {
+              "id": "rad05-e8",
+              "type": "reading_mcq",
+              "prompt": "치러요: che cosa vuol dire?",
+              "options": [
+                "pago",
+                "canto",
+                "taglio",
+                "conosco"
+              ],
+              "answer": "pago",
+              "explain": "치르다 è regolare: 치르 + 어요 → 치러요, senza raddoppio."
+            },
+            {
+              "id": "rad05-e9",
+              "type": "type_hangul",
+              "prompt": "Scrivi in coreano «il treno è veloce».",
+              "hint": "기차 + 가 + 빨라요.",
+              "answer": "기차가 빨라요"
+            },
+            {
+              "id": "rad05-e10",
+              "type": "listen_type",
+              "prompt": "Ascolta e scrivi quello che senti.",
+              "speak": "이름이 달라요",
+              "answer": "이름이 달라요"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "r-u2",
+      "title": "Il registro scritto",
+      "purpose": "Avvisi, lettere e notiziari non usano -아요: usano -ㅂ니다, e le radici irregolari cambiano allo stesso modo.",
+      "lessons": [
+        {
+          "id": "rad-06",
+          "slug": "registro-formale",
+          "title": "Il registro formale: -ㅂ니다",
+          "titleKo": "격식체: -ㅂ니다, -습니다",
+          "kind": "grammar",
+          "goal": "Leggere e usare il registro formale di avvisi, notiziari e lettere.",
+          "durationMin": 13,
+          "points": [
+            "Nel parlato gentile si usa -아요/어요; negli avvisi, nei notiziari e nelle lettere ufficiali si usa -ㅂ니다.",
+            "Dopo una vocale la desinenza è -ㅂ니다: 가다 → 갑니다, 하다 → 합니다, 보다 → 봅니다.",
+            "Dopo una consonante è -습니다: 먹다 → 먹습니다, 있다 → 있습니다, 좋다 → 좋습니다.",
+            "La domanda è -ㅂ니까?: 갑니까? 먹습니까? La risposta resta -ㅂ니다: 네, 갑니다.",
+            "Il passato è -았/었습니다: 갔습니다, 먹었습니다. Le radici irregolari cambiano come sempre: 듣다 → 들었습니다, 춥다 → 추웠습니다.",
+            "Davanti a -ㅂ니다 le radici in ㄹ perdono la ㄹ: 살다 → 삽니다, 알다 → 압니다; 읽다 resta 읽습니다, perché la sua finale è ㄺ.",
+            "안 e 못 si mettono davanti al verbo: 안 갑니다, 못 먹습니다.",
+            "Sui cartelli: 영업 중입니다 (siamo aperti), 출입 금지입니다 (vietato entrare), 주차 가능합니다 (si può parcheggiare)."
+          ],
+          "vocab": [
+            {
+              "ko": "영업",
+              "it": "attività, esercizio",
+              "rr": "yeongeop"
+            },
+            {
+              "ko": "중",
+              "it": "in corso, durante",
+              "rr": "jung"
+            },
+            {
+              "ko": "출입",
+              "it": "entrata e uscita",
+              "rr": "churip"
+            },
+            {
+              "ko": "금지",
+              "it": "divieto",
+              "rr": "geumji"
+            },
+            {
+              "ko": "안내",
+              "it": "avviso, informazioni",
+              "rr": "annae"
+            },
+            {
+              "ko": "주차",
+              "it": "parcheggio",
+              "rr": "jucha"
+            },
+            {
+              "ko": "가능",
+              "it": "possibile",
+              "rr": "ganeung"
+            },
+            {
+              "ko": "불가능",
+              "it": "impossibile",
+              "rr": "bulganeung"
+            },
+            {
+              "ko": "무료",
+              "it": "gratuito",
+              "rr": "muryo"
+            },
+            {
+              "ko": "유료",
+              "it": "a pagamento",
+              "rr": "yuryo"
+            },
+            {
+              "ko": "전화",
+              "it": "telefono",
+              "rr": "jeonhwa"
+            },
+            {
+              "ko": "예약",
+              "it": "prenotazione",
+              "rr": "yeyak"
+            },
+            {
+              "ko": "문의",
+              "it": "richiesta di informazioni",
+              "rr": "munui"
+            }
+          ],
+          "exercises": [
+            {
+              "id": "rad06-e1",
+              "type": "fill_blank",
+              "prompt": "Completa al registro formale: «ogni giorno vado a scuola».",
+              "text": "매일 학교에 ___.",
+              "options": [
+                "갑니다",
+                "가요",
+                "갔습니다"
+              ],
+              "answer": "갑니다",
+              "explain": "가 + ㅂ니다 → 갑니다. 가요 è il registro cortese, 갔습니다 il passato."
+            },
+            {
+              "id": "rad06-e2",
+              "type": "type_hangul",
+              "prompt": "Scrivi «mangio» al registro formale (먹다).",
+              "hint": "먹 + 습니다.",
+              "answer": "먹습니다"
+            },
+            {
+              "id": "rad06-e3",
+              "type": "type_reading",
+              "prompt": "Trascrivi in romanizzazione.",
+              "text": "합니다",
+              "answer": "hamnida",
+              "hint": "È 하다 al registro formale.",
+              "explain": "하 + ㅂ니다 → 합니다: dopo una vocale la desinenza è -ㅂ니다."
+            },
+            {
+              "id": "rad06-e4",
+              "type": "reading_mcq",
+              "prompt": "출입 금지입니다: che cosa dice il cartello?",
+              "options": [
+                "vietato entrare",
+                "siamo aperti",
+                "si può parcheggiare",
+                "ingresso gratuito"
+              ],
+              "answer": "vietato entrare"
+            },
+            {
+              "id": "rad06-e5",
+              "type": "type_meaning",
+              "prompt": "Traduci in italiano: 주차 가능합니다",
+              "answer": "si può parcheggiare",
+              "accept": [
+                "si può parcheggiare",
+                "il parcheggio è possibile",
+                "parcheggio possibile"
+              ]
+            },
+            {
+              "id": "rad06-e6",
+              "type": "fill_blank",
+              "prompt": "Completa la domanda formale: «va adesso?»",
+              "text": "지금 ___?",
+              "answer": "갑니까",
+              "hint": "La domanda formale finisce in -ㅂ니까."
+            },
+            {
+              "id": "rad06-e7",
+              "type": "order_words",
+              "prompt": "Rimetti in ordine: «L'orario di apertura è alle nove.»",
+              "words": [
+                "시간은",
+                "영업",
+                "아홉",
+                "시입니다"
+              ],
+              "answer": "영업 시간은 아홉 시입니다"
+            },
+            {
+              "id": "rad06-e8",
+              "type": "reading_mcq",
+              "prompt": "무료입니다: che cosa vuol dire?",
+              "options": [
+                "è gratuito",
+                "è a pagamento",
+                "è chiuso",
+                "è vietato"
+              ],
+              "answer": "è gratuito"
+            },
+            {
+              "id": "rad06-e9",
+              "type": "type_hangul",
+              "prompt": "Scrivi «ho ascoltato» al registro formale (듣다).",
+              "hint": "La radice diventa 들, poi -었습니다.",
+              "answer": "들었습니다"
+            },
+            {
+              "id": "rad06-e10",
+              "type": "listen_type",
+              "prompt": "Ascolta e scrivi quello che senti.",
+              "speak": "예약은 전화로 합니다",
+              "answer": "예약은 전화로 합니다"
+            }
+          ]
+        },
+        {
+          "id": "rad-07",
+          "slug": "leggere-un-avviso",
+          "title": "Leggere un avviso: 센터 안내",
+          "titleKo": "센터 안내문",
+          "kind": "reading",
+          "goal": "Leggere un avviso formale e ricavarne orari, luoghi e regole.",
+          "durationMin": 15,
+          "points": [
+            "Un avviso comincia con il nome del luogo e finisce con 감사합니다: è la cornice, non il contenuto.",
+            "Cerca prima i numeri e gli orari — 아홉 시, 지하 일 층, 오후 일곱 시: sono le informazioni che servono davvero.",
+            "Le forme in -ㅂ니다 dicono che cosa fa il centro; quelle in -지 않습니다 dicono che cosa non fa.",
+            "Le parole dei cartelli tornano uguali ovunque: 출입 (entrata e uscita), 금지 (divieto), 무료 (gratuito)."
+          ],
+          "vocab": [
+            {
+              "ko": "안내",
+              "it": "avviso, informazioni",
+              "rr": "annae"
+            },
+            {
+              "ko": "저희",
+              "it": "noi (umile)",
+              "rr": "jeohui"
+            },
+            {
+              "ko": "지하",
+              "it": "seminterrato",
+              "rr": "jiha"
+            },
+            {
+              "ko": "층",
+              "it": "piano (di un edificio)",
+              "rr": "cheung"
+            },
+            {
+              "ko": "수업",
+              "it": "lezione",
+              "rr": "sueop"
+            },
+            {
+              "ko": "시작하다",
+              "it": "cominciare",
+              "rr": "sijakhada"
+            },
+            {
+              "ko": "주차장",
+              "it": "parcheggio",
+              "rr": "juchajang"
+            },
+            {
+              "ko": "좁다",
+              "it": "essere stretto",
+              "rr": "jopda"
+            },
+            {
+              "ko": "일요일",
+              "it": "domenica",
+              "rr": "iryoil"
+            },
+            {
+              "ko": "음식",
+              "it": "cibo",
+              "rr": "eumsik"
+            },
+            {
+              "ko": "환영",
+              "it": "benvenuto",
+              "rr": "hwanyeong"
+            },
+            {
+              "ko": "문",
+              "it": "porta",
+              "rr": "mun"
+            }
+          ],
+          "passages": [
+            {
+              "title": "문화 센터 안내",
+              "lines": [
+                "문화 센터를 안내합니다.",
+                "저희 센터는 매일 아홉 시에 문을 엽니다.",
+                "도서관은 지하 일 층에 있습니다.",
+                "한국어 수업은 오후 일곱 시에 시작합니다.",
+                "주차장은 좁지만 무료입니다.",
+                "수업은 일요일에는 하지 않습니다.",
+                "도서관에서는 음식을 먹을 수 없습니다."
+              ],
+              "gloss": [
+                {
+                  "ko": "안내합니다",
+                  "it": "diamo informazioni (formale)",
+                  "rr": "annaehamnida"
+                },
+                {
+                  "ko": "저희",
+                  "it": "noi (umile)",
+                  "rr": "jeohui"
+                },
+                {
+                  "ko": "문을 엽니다",
+                  "it": "apriamo (la porta)",
+                  "rr": "muneul yeomnida"
+                },
+                {
+                  "ko": "지하",
+                  "it": "seminterrato",
+                  "rr": "jiha"
+                },
+                {
+                  "ko": "층",
+                  "it": "piano",
+                  "rr": "cheung"
+                },
+                {
+                  "ko": "좁지만",
+                  "it": "è stretto, ma",
+                  "rr": "jopjiman"
+                },
+                {
+                  "ko": "무료",
+                  "it": "gratuito",
+                  "rr": "muryo"
+                },
+                {
+                  "ko": "먹을 수 없습니다",
+                  "it": "non si può mangiare",
+                  "rr": "meogeul su eopseumnida"
+                }
+              ],
+              "translation": "Informazioni sul centro culturale. Il nostro centro apre ogni giorno alle nove. La biblioteca è al piano interrato. Le lezioni di coreano cominciano alle sette di sera. Il parcheggio è piccolo ma gratuito. La domenica non ci sono lezioni. In biblioteca non si può mangiare."
+            }
+          ],
+          "exercises": [
+            {
+              "id": "rad07-e1",
+              "type": "reading_mcq",
+              "prompt": "A che ora apre il centro?",
+              "options": [
+                "Alle nove",
+                "Alle sette di sera",
+                "A mezzogiorno",
+                "Alle dieci"
+              ],
+              "answer": "Alle nove"
+            },
+            {
+              "id": "rad07-e2",
+              "type": "reading_mcq",
+              "prompt": "Dov'è la biblioteca?",
+              "options": [
+                "Al piano interrato",
+                "Al primo piano",
+                "Al secondo piano",
+                "Fuori dal centro"
+              ],
+              "answer": "Al piano interrato"
+            },
+            {
+              "id": "rad07-e3",
+              "type": "reading_mcq",
+              "prompt": "Il parcheggio è a pagamento?",
+              "options": [
+                "No, è gratuito",
+                "Sì, è a pagamento",
+                "C'è solo il sabato",
+                "Non c'è"
+              ],
+              "answer": "No, è gratuito"
+            },
+            {
+              "id": "rad07-e4",
+              "type": "reading_mcq",
+              "prompt": "Quando non ci sono lezioni?",
+              "options": [
+                "La domenica",
+                "Il sabato",
+                "Di mattina",
+                "D'estate"
+              ],
+              "answer": "La domenica"
+            },
+            {
+              "id": "rad07-e5",
+              "type": "fill_blank",
+              "prompt": "Completa con la forma dell'avviso: «il nostro centro apre alle nove».",
+              "text": "저희 센터는 아홉 시에 문을 ___.",
+              "options": [
+                "엽니다",
+                "열습니다",
+                "열어요"
+              ],
+              "answer": "엽니다",
+              "explain": "열 + ㅂ니다 → 엽니다: la ㄹ cade davanti a -ㅂ니다."
+            },
+            {
+              "id": "rad07-e6",
+              "type": "type_hangul",
+              "prompt": "Scrivi in coreano «il parcheggio è gratuito».",
+              "hint": "주차장 + 은 + 무료입니다.",
+              "answer": "주차장은 무료입니다"
+            },
+            {
+              "id": "rad07-e7",
+              "type": "type_reading",
+              "prompt": "Trascrivi in romanizzazione.",
+              "text": "엽니다",
+              "answer": "yeomnida",
+              "hint": "È 열다: la ㄹ cade.",
+              "explain": "열 + ㅂ니다 → 엽니다, e si legge [여ㅂ니다]."
+            },
+            {
+              "id": "rad07-e8",
+              "type": "type_meaning",
+              "prompt": "Traduci in italiano: 수업은 일요일에는 하지 않습니다.",
+              "answer": "la domenica non ci sono lezioni",
+              "accept": [
+                "la domenica non ci sono lezioni",
+                "di domenica non si fanno lezioni",
+                "la domenica non si fa lezione"
+              ]
+            },
+            {
+              "id": "rad07-e9",
+              "type": "order_words",
+              "prompt": "Rimetti in ordine: «La biblioteca è al piano interrato.»",
+              "words": [
+                "지하",
+                "도서관은",
+                "일",
+                "층에",
+                "있습니다"
+              ],
+              "answer": "도서관은 지하 일 층에 있습니다"
+            },
+            {
+              "id": "rad07-e10",
+              "type": "listen_type",
+              "prompt": "Ascolta e scrivi quello che senti.",
+              "speak": "수업은 오후 일곱 시에 시작합니다",
+              "answer": "수업은 오후 일곱 시에 시작합니다"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

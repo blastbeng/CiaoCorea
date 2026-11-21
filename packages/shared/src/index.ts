@@ -53,6 +53,20 @@ export interface TypeMeaningExercise extends ExerciseBase {
 }
 
 /**
+ * Leggi la parola coreana e scrivi come si legge, in romanizzazione. È
+ * l'esercizio che allena la lettura ad alta voce: non chiede il significato,
+ * chiede di trasformare i blocchi in suoni.
+ */
+export interface TypeReadingExercise extends ExerciseBase {
+  type: 'type_reading';
+  /** La parola o la frase coreana da leggere. */
+  text: string;
+  /** La romanizzazione attesa (Revised Romanization). */
+  answer: string;
+  accept?: string[];
+}
+
+/**
  * Rimetti in ordine le parole della frase. Le tessere arrivano già mescolate
  * nel curricolo: la risposta che lo studente costruisce è le parole toccate,
  * unite da uno spazio.
@@ -100,6 +114,7 @@ export type Exercise =
   | TypeHangulExercise
   | ReadingMcqExercise
   | TypeMeaningExercise
+  | TypeReadingExercise
   | OrderWordsExercise
   | ListenTypeExercise
   | FillBlankExercise;
@@ -584,6 +599,46 @@ export interface VocabularyResponse {
   curriculum: number;
   courses: VocabFilterOption[];
   query: string;
+}
+
+/** La voce del dizionario che spiega una parola trovata in un testo. */
+export interface TextTokenMatch {
+  ko: string;
+  it: string;
+  rr: string;
+  courseSlug: string;
+  courseTitle: string;
+  lessonId: string;
+  /** Come la parola è stata riconosciuta: intera, con particella, radice… */
+  via: string;
+  particle?: string;
+  ending?: string;
+  suffix?: string;
+  note?: string;
+}
+
+/**
+ * Un pezzo di testo analizzato: le parole hangul si cercano nel dizionario, il
+ * resto (spazi, punteggiatura, numeri, latino) resta com'è per poter ridisegnare
+ * il testo senza cuciture.
+ */
+export interface TextToken {
+  text: string;
+  /** True se il pezzo è fatto di sillabe hangul: solo queste si cercano. */
+  hangul: boolean;
+  /** Come si legge, anche quando il dizionario non conosce la parola. */
+  reading: string | null;
+  match: TextTokenMatch | null;
+}
+
+export interface TextAnalysisResponse {
+  tokens: TextToken[];
+  /** Parole hangul in tutto, comprese le ripetizioni. */
+  words: number;
+  /** Quante di quelle parole il corso le conosce già. */
+  known: number;
+  /** Le parole distinte che il corso non ha ancora insegnato. */
+  unknown: string[];
 }
 
 /**

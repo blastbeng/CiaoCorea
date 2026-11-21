@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   isHangulSyllable,
+  pronunciationRomanize,
   romanizeSyllable,
   romanizeText,
   romanizeWord,
@@ -75,6 +76,69 @@ describe('parole reali', () => {
 
   it('mantiene gli spazi di un testo', () => {
     expect(romanizeText('할머니가 보고 싶어요')).toBe('halmeoniga bogo sipeoyo');
+  });
+});
+
+/**
+ * La romanizzazione della pronuncia serve a far trovare una parola a chi la
+ * cerca come la sente: qui la ㅅ, la ㅆ, la ㅈ e la ㅊ passano alla sillaba
+ * dopo con il loro suono (제13항), quindi 꽃이 è «kkochi» e non «kkoci».
+ */
+describe('romanizzazione della pronuncia', () => {
+  it('porta alla sillaba dopo le finali che la norma lascia passare', () => {
+    expect(pronunciationRomanize('꽃이')).toBe('kkochi');
+    expect(pronunciationRomanize('낮이')).toBe('naji');
+    expect(pronunciationRomanize('셋이')).toBe('sesi');
+    expect(pronunciationRomanize('꽃을')).toBe('kkocheul');
+  });
+
+  it('applica 비음화 e 유음화 quando la sillaba dopo comincia per consonante', () => {
+    expect(pronunciationRomanize('국민')).toBe('gungmin');
+    expect(pronunciationRomanize('신라')).toBe('silla');
+    // 설날 [설랄] e 종로 [종노]: anche ㄹ+ㄴ e 비음+ㄹ cambiano.
+    expect(pronunciationRomanize('설날')).toBe('seollal');
+    expect(pronunciationRomanize('종로')).toBe('jongno');
+    expect(pronunciationRomanize('왕십리')).toBe('wangsimni');
+    expect(pronunciationRomanize('담력')).toBe('damnyeok');
+  });
+
+  it('chiude i finali doppi su un suono solo', () => {
+    expect(pronunciationRomanize('닭')).toBe('dak');
+    expect(pronunciationRomanize('값')).toBe('gap');
+    expect(pronunciationRomanize('삶')).toBe('sam');
+    expect(pronunciationRomanize('여덟')).toBe('yeodeol');
+    expect(pronunciationRomanize('없다')).toBe('eopda');
+  });
+
+  it('divide il finale doppio davanti a vocale', () => {
+    expect(pronunciationRomanize('값이')).toBe('gapsi');
+    expect(pronunciationRomanize('몫이')).toBe('moksi');
+    expect(pronunciationRomanize('닭이')).toBe('dalgi');
+    expect(pronunciationRomanize('앉아')).toBe('anja');
+    expect(pronunciationRomanize('삶이')).toBe('salmi');
+    expect(pronunciationRomanize('여덟이')).toBe('yeodeolbi');
+    expect(pronunciationRomanize('싫어')).toBe('sireo');
+  });
+
+  it('aspira la consonante dopo la ㅎ finale', () => {
+    expect(pronunciationRomanize('좋고')).toBe('joko');
+    expect(pronunciationRomanize('놓다')).toBe('nota');
+    expect(pronunciationRomanize('낳지')).toBe('nachi');
+    expect(pronunciationRomanize('많다')).toBe('manta');
+    expect(pronunciationRomanize('싫다')).toBe('silta');
+    expect(pronunciationRomanize('좋습니다')).toBe('joseumnida');
+  });
+
+  it('non segna le consonanti tese, come vuole la RR', () => {
+    // 학교 si sente [학꾜], ma la romanizzazione ufficiale è hakgyo.
+    expect(pronunciationRomanize('학교')).toBe('hakgyo');
+    expect(pronunciationRomanize('압구정')).toBe('apgujeong');
+  });
+
+  it('tiene 밟- chiuso davanti a consonante e aperto davanti a vocale', () => {
+    expect(pronunciationRomanize('밟다')).toBe('bapda');
+    expect(pronunciationRomanize('밟고')).toBe('bapgo');
+    expect(pronunciationRomanize('밟아')).toBe('balba');
   });
 });
 

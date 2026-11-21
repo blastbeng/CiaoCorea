@@ -118,11 +118,27 @@ function indexOf(entries: readonly VocabEntry[]): Map<string, VocabEntry[]> {
   return byKo;
 }
 
+/**
+ * Le altre voci con la stessa parola. La stessa parola ricompare in più corsi —
+ * 피곤하다 è in tre lezioni — e con lo stesso significato: ripeterlo tre volte
+ * nella scheda non aggiunge nulla, mentre 배 (pera, pancia, barca) sì.
+ */
+function otherSenses(hits: VocabEntry[], primary: VocabEntry): VocabEntry[] | undefined {
+  const seen = new Set([primary.it]);
+  const rest: VocabEntry[] = [];
+  for (const entry of hits) {
+    if (entry === primary || seen.has(entry.it)) continue;
+    seen.add(entry.it);
+    rest.push(entry);
+  }
+  return rest.length > 0 ? rest : undefined;
+}
+
 function build(byKo: Map<string, VocabEntry[]>, key: string, via: WordMatchVia, extra: Partial<WordMatch> = {}): WordMatch | null {
   const hits = byKo.get(key);
   if (!hits || hits.length === 0) return null;
-  const [first, ...rest] = hits;
-  return { entry: first, via, ...(rest.length > 0 ? { senses: rest } : {}), ...extra };
+  const senses = otherSenses(hits, hits[0]);
+  return { entry: hits[0], via, ...(senses ? { senses } : {}), ...extra };
 }
 
 /**
@@ -230,7 +246,7 @@ function matchOne(byKo: Map<string, VocabEntry[]>, word: string): WordMatch | nu
     const found = readForm(stem, word) ?? readForm(withHonorific(stem), word);
     if (found === null) continue;
     best = hits[0];
-    bestSenses = hits.length > 1 ? hits.slice(1) : undefined;
+    bestSenses = otherSenses(hits, hits[0]);
     bestLength = stem.length;
     bestEnding = found;
   }

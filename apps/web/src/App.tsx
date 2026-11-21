@@ -3,6 +3,7 @@ import { Outlet, Route, Routes } from 'react-router-dom';
 import { useAuth } from './auth';
 import { AppShell } from './components/AppShell';
 import { AboutPage } from './pages/AboutPage';
+import { AnalysisPage } from './pages/AnalysisPage';
 import { AlphabetPage } from './pages/AlphabetPage';
 import { CoursePage } from './pages/CoursePage';
 import { Dashboard } from './pages/Dashboard';
@@ -13,6 +14,7 @@ import { MistakesPage } from './pages/MistakesPage';
 import { MyProfilePage } from './pages/MyProfilePage';
 import { NotFound } from './pages/NotFound';
 import { ProfilePage } from './pages/ProfilePage';
+import { PronunciationPage } from './pages/PronunciationPage';
 import { ProfilesPage } from './pages/ProfilesPage';
 import { ReviewPage } from './pages/ReviewPage';
 import { SkipCoursePage } from './pages/SkipCoursePage';
@@ -71,7 +73,9 @@ export default function App() {
         <Route path="ripassi" element={<ReviewPage />} />
         <Route path="errori" element={<MistakesPage />} />
         <Route path="alfabeto" element={<AlphabetPage />} />
+        <Route path="pronuncia" element={<PronunciationPage />} />
         <Route path="dizionario" element={<VocabularyPage />} />
+        <Route path="analisi" element={<AnalysisPage />} />
         <Route path="repertorio" element={<GrammarPage />} />
         <Route path="quaderno" element={<WritingPage />} />
         <Route path="progressi" element={<ProfilePage />} />

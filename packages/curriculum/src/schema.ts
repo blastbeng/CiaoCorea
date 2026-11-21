@@ -60,6 +60,14 @@ export const exerciseSchema = z.discriminatedUnion('type', [
   }),
   z.object({
     ...exerciseBase,
+    type: z.literal('type_reading'),
+    /** Il testo coreano da leggere: è la consegna, non la soluzione. */
+    text: z.string().min(1),
+    answer: z.string().min(1),
+    accept: z.array(z.string().min(1)).optional(),
+  }),
+  z.object({
+    ...exerciseBase,
     type: z.literal('order_words'),
     words: z.array(z.string().min(1)).min(2).max(8),
     answer: z.string().min(3),

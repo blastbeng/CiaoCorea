@@ -46,7 +46,9 @@ progressi, ripassi e tentativi non si perdono nel passaggio.
 | `/corso/:slug/lezione/:lessonId` | teoria, brani di lettura, lessico, esercizi, test di salto |
 | `/dialoghi` e `/dialoghi/:slug` | conversazione scritta a copione |
 | `/alfabeto` | le lettere dell'hangul: consonanti e vocali con nome e suono, il compositore di sillabe, la tabella delle sillabe e i sette suoni finali |
+| `/pronuncia` | il laboratorio della pronuncia: si scrive una parola e si vede la lettura ricostruita, le sillabe scomposte e le regole che l'hanno cambiata |
 | `/dizionario` | ricerca nelle parole del curricolo, con filtri per corso |
+| `/analisi` | un testo incollato, parola per parola: quali parole il corso conosce già, quali restano da scoprire e come si legge ognuna |
 | `/repertorio` | le spiegazioni delle lezioni in indice: si cerca una forma e si torna alla lezione |
 | `/quaderno` | le consegne di scrittura: si scrive la frase, poi si confronta con il modello |
 | `/ripassi` | carte in scadenza, giudizio `ho saputo / quasi / non ricordo`; sotto, le parole fragili da riprovare subito |
@@ -282,14 +284,21 @@ Il quinto, `a2`, alza il livello: passato in -았어요/-었어요, futuro in -(
 dicono cosa si sa fare e cosa si è vissuto: -(으)ㄹ 수 있다/없다 (con la differenza
 fra capacità, permesso e abilità imparata), -아/어 보다, -(으)ㄴ 적이 있다/없다,
 -(으)ㄹ 때, la nominalizzazione con -(으)ㄴ/는 것 e le supposizioni con 것 같다.
-Il settimo, `b1`, è fatto solo di testi da leggere:
+Il settimo, `radici`, è il corso delle radici che cambiano: ㄷ irregolare
+(듣다 → 들어요), ㄹ (살다 → 사세요), ㅂ (춥다 → 추워요), ㅅ e ㅎ (낫다, 파랗다),
+르 (모르다 → 몰라요), il registro formale -ㅂ니다/-습니다 e una lezione finale di
+lettura su un avviso del centro culturale. Ogni lezione insegna la regola con le
+forme vere, non con paradigmi astratti, e la chiude con esercizi di scrittura e
+di romanizzazione.
+
+L'ottavo, `b1`, è fatto solo di testi da leggere:
 l'annuncio di una stanza, il menu con le note in fondo, l'orario di un centro
 culturale, il messaggio di servizio in ufficio, una recensione con la risposta
 del locale, una notizia breve. Ogni lezione porta il brano in coreano con il
 glossario delle parole difficili, e sotto gli esercizi di comprensione; la
 traduzione italiana del brano arriva solo quando la lezione risulta chiusa.
 
-L'ottavo, `discorsi`, è il corso che insegna a non fermarsi alla prima frase:
+Il nono, `discorsi`, è il corso che insegna a non fermarsi alla prima frase:
 condizione con -(으)면, concessione con -아/어도, causa con -기 때문에, immediatezza
 con -자마자, contemporaneità con -는 동안, scopo con -(으)러 가다, domande
 indirette con -(으)ㄴ/는지, stati con -아/어 있다 e favore con -아/어 주다. Ogni
@@ -300,8 +309,8 @@ del quaderno.
 La prima lezione di ogni corso è sempre aperta, così chi ha già basi può entrare
 da lì; le successive seguono l'ordine del corso.
 
-In tutto: otto corsi, 59 lezioni, 663 voci di lessico, 27 brani di lettura, 17
-dialoghi e 24 consegne di scrittura. Il dizionario consultabile arriva a 744
+In tutto: nove corsi, 66 lezioni, 748 voci di lessico, 28 brani di lettura, 19
+dialoghi e 27 consegne di scrittura. Il dizionario consultabile arriva a 832
 voci perché comprende anche le parole dei gloss, che sono quelle che si
 incontrano leggendo.
 

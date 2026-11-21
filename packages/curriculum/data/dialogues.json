@@ -1836,5 +1836,262 @@
         }
       }
     ]
+  },
+  {
+    "id": "biblioteca",
+    "slug": "biblioteca",
+    "title": "In biblioteca: la tessera",
+    "level": "A2",
+    "setting": "Sei in una biblioteca di quartiere a Seul. Cerchi un libro di grammatica coreana per stranieri e parli con la bibliotecaria al banco.",
+    "goal": "Chiedere un libro, dire che cosa ti serve, capire come ottenere la tessera e per quanto tempo si prendono in prestito i libri.",
+    "points": [
+      "찾다 significa sia 'cercare' sia 'trovare': 책을 찾아요 può voler dire 'cerco un libro' o 'ho trovato un libro', e lo decide il contesto.",
+      "있어요 copre sia 'c'è / ci sono' sia 'ho': 카드가 있어요 = 'ho la tessera', 책이 있어요 = 'c'è il libro'.",
+      "-ㄹ 수 있어요 esprime la possibilità: 빌릴 수 있어요 = 'si può prendere in prestito'.",
+      "동안 indica la durata: 두 주 동안 = 'per due settimane'."
+    ],
+    "after": {
+      "courseSlug": "radici",
+      "lessonId": "rad-02"
+    },
+    "turns": [
+      {
+        "id": "b-1",
+        "speaker": "Bibliotecaria",
+        "ko": "어서 오세요. 무엇을 찾으세요?",
+        "it": "Benvenuto. Che cosa cerca?"
+      },
+      {
+        "id": "s-1",
+        "speaker": "Tu",
+        "ko": "한국어 문법 책을 찾아요.",
+        "it": "Cerco un libro di grammatica coreana.",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "한국어 문법 책을 찾아요",
+            "한국어 문법 책을 좋아해요",
+            "한국어 문법 책이 없어요"
+          ]
+        },
+        "note": "찾아요 è la forma in -아요 di 찾다, 'cercare'. 책을 è l'oggetto: il libro. 좋아해요 direbbe 'amo il libro', che qui non è la richiesta."
+      },
+      {
+        "id": "b-2",
+        "speaker": "Bibliotecaria",
+        "ko": "초급 책도 있고 중급 책도 있어요. 어떤 책을 원하세요?",
+        "it": "Ci sono libri per principianti e anche libri intermedi. Quale vuole?"
+      },
+      {
+        "id": "s-2",
+        "speaker": "Tu",
+        "ko": "초급 책을 주세요.",
+        "it": "Mi dia un libro per principianti.",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "초급 책을 주세요",
+            "초급 책이 커요",
+            "초급 책을 읽었어요"
+          ]
+        },
+        "note": "주세요 = 'me lo dia, per favore': si attacca al verbo 주다. 초급 = livello principianti, 중급 = livello intermedio."
+      },
+      {
+        "id": "b-3",
+        "speaker": "Bibliotecaria",
+        "ko": "여기 있어요. 도서관 카드가 있어요?",
+        "it": "Eccolo. Ha la tessera della biblioteca?",
+        "note": "여기 있어요 = 'eccolo qui'. 카드가 있어요? = letteralmente 'c'è una tessera?' ma in pratica 'ce l'hai?'."
+      },
+      {
+        "id": "s-3",
+        "speaker": "Tu",
+        "ko": "아니요, 없어요. 카드를 어떻게 만들어요?",
+        "it": "No, non ce l'ho. Come si fa la tessera?",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "카드를 어떻게 만들어요",
+            "카드 어떻게 만들어요",
+            "어떻게 만들어요"
+          ],
+          "hint": "만들다 = fare, creare; 어떻게 = come."
+        },
+        "note": "없어요 è il contrario di 있어요: 'non c'è / non ce l'ho'. 어떻게 만들어요? è il modo normale di chiedere 'come si fa?'."
+      },
+      {
+        "id": "b-4",
+        "speaker": "Bibliotecaria",
+        "ko": "신분증이 필요해요. 잠깐만 기다려 주세요.",
+        "it": "Serve un documento d'identità. Aspetti un momento."
+      },
+      {
+        "id": "s-4",
+        "speaker": "Tu",
+        "ko": "네, 여기 있어요.",
+        "it": "Sì, eccolo.",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "여기 있어요",
+            "여기 있습니다"
+          ],
+          "hint": "여기 = qui; 있어요 = c'è / ce l'ho."
+        },
+        "note": "필요해요 = 'serve, è necessario'. -아/어 주세요 chiede un favore: 기다려 주세요 = 'aspetti, per favore'."
+      },
+      {
+        "id": "b-5",
+        "speaker": "Bibliotecaria",
+        "ko": "이제 카드가 있어요. 책은 두 주 동안 빌릴 수 있어요.",
+        "it": "Adesso ha la tessera. I libri si possono prendere in prestito per due settimane.",
+        "note": "이제 = 'ora, adesso'. 빌리다 = prendere in prestito; -ㄹ 수 있어요 dice che è possibile."
+      },
+      {
+        "id": "s-5",
+        "speaker": "Tu",
+        "ko": "네, 알겠습니다. 감사합니다.",
+        "it": "Sì, ho capito. Grazie.",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "네, 알겠습니다. 감사합니다",
+            "네, 모르겠습니다. 감사합니다",
+            "아니요, 싫습니다. 감사합니다"
+          ]
+        },
+        "note": "알겠습니다 = 'ho capito' (da 알다). 모르겠습니다 vorrebbe dire 'non ho capito': qui sarebbe una risposta strana dopo una spiegazione chiara."
+      }
+    ]
+  },
+  {
+    "id": "centro-culturale",
+    "slug": "centro-culturale",
+    "title": "Iscriversi a un corso al centro culturale",
+    "level": "B1",
+    "setting": "Al banco informazioni di un centro culturale di Seul chiedi se ci sono corsi di coreano per stranieri, quanto costano e come iscriversi.",
+    "goal": "Usare il registro formale per informarsi su un corso, chiedere il prezzo e capire dove e come iscriversi.",
+    "points": [
+      "-ㅂ니다/-습니다 e -ㅂ니까/-습니까 sono il registro formale: si usano al banco, negli annunci e nelle presentazioni pubbliche.",
+      "듣다 è irregolare e significa anche 'seguire un corso': 수업을 듣습니다, ma 수업을 들어요.",
+      "따로 = 'a parte, separatamente': 교재비는 따로입니다 = 'il costo del libro è a parte'.",
+      "-면 됩니다 = 'basta che…, si fa così': 저 창구에서 하시면 됩니다."
+    ],
+    "after": {
+      "courseSlug": "radici",
+      "lessonId": "rad-07"
+    },
+    "turns": [
+      {
+        "id": "c-1",
+        "speaker": "Impiegato",
+        "ko": "안녕하세요. 무엇을 도와드릴까요?",
+        "it": "Buongiorno. Come posso aiutarla?",
+        "note": "도와드릴까요? è la forma cortese di 돕다, 'aiutare': 'posso aiutarla?'."
+      },
+      {
+        "id": "s-1",
+        "speaker": "Tu",
+        "ko": "한국어 수업이 있습니까?",
+        "it": "Ci sono corsi di coreano?",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "한국어 수업이 있습니까?",
+            "한국어 수업이 있습니까요?",
+            "한국어 수업이 있어요까?"
+          ]
+        },
+        "note": "Nel registro formale la domanda finisce in -ㅂ니까/-습니까: 있습니까? Non si aggiunge 또 요 alla forma formale."
+      },
+      {
+        "id": "c-2",
+        "speaker": "Impiegato",
+        "ko": "네, 초급 수업과 중급 수업이 있습니다. 어느 쪽을 들으시겠습니까?",
+        "it": "Sì, ci sono corsi per principianti e corsi intermedi. Quale vorrebbe seguire?"
+      },
+      {
+        "id": "s-2",
+        "speaker": "Tu",
+        "ko": "초급 수업을 듣고 싶습니다.",
+        "it": "Vorrei seguire il corso per principianti.",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "초급 수업을 듣고 싶습니다",
+            "초급 수업을 듣고 싶어요"
+          ],
+          "hint": "듣다 = ascoltare, seguire; -고 싶습니다 = vorrei."
+        },
+        "note": "-고 싶습니다 esprime un desiderio in registro formale. Con 듣다 il tema cambia: 듣습니다 ma 들어요."
+      },
+      {
+        "id": "c-3",
+        "speaker": "Impiegato",
+        "ko": "수업은 화요일과 목요일 저녁 일곱 시에 시작합니다.",
+        "it": "Le lezioni iniziano martedì e giovedì alle sette di sera."
+      },
+      {
+        "id": "s-3",
+        "speaker": "Tu",
+        "ko": "수업료는 얼마입니까?",
+        "it": "Quanto costa la quota del corso?",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "수업료는 얼마입니까",
+            "수업료가 얼마입니까",
+            "수업료는 얼마예요"
+          ],
+          "hint": "수업료 = quota del corso; 얼마 = quanto."
+        },
+        "note": "얼마입니까? è la domanda formale sul prezzo. In -아요/어요 si direbbe 얼마예요?."
+      },
+      {
+        "id": "c-4",
+        "speaker": "Impiegato",
+        "ko": "한 달에 팔만 원입니다. 교재비는 따로입니다.",
+        "it": "Ottantamila won al mese. Il costo del libro è a parte.",
+        "note": "팔만 원 = 80.000 won: 팔 (8) + 만 (10.000). 교재비 = costo del materiale didattico."
+      },
+      {
+        "id": "s-4",
+        "speaker": "Tu",
+        "ko": "등록은 어디에서 합니까?",
+        "it": "Dove ci si iscrive?",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "등록은 어디에서 합니까?",
+            "등록은 어디에서 해요까?",
+            "등록은 어디에서 입니까?"
+          ]
+        },
+        "note": "등록하다 = iscriversi; 등록은 어디에서 합니까? = 'l'iscrizione dove si fa?'. Il tema 등록은 resta in evidenza, il verbo va in fondo."
+      },
+      {
+        "id": "c-5",
+        "speaker": "Impiegato",
+        "ko": "저 창구에서 하시면 됩니다. 신청서를 작성해 주세요.",
+        "it": "Si fa a quella finestra. Compili la domanda, per favore.",
+        "note": "창구 = sportello; 신청서 = modulo di richiesta; 작성하다 = compilare. -시- è l'onorifico del soggetto: 하시면 됩니다."
+      },
+      {
+        "id": "s-5",
+        "speaker": "Tu",
+        "ko": "네, 알겠습니다. 내일 다시 오겠습니다.",
+        "it": "Sì, ho capito. Tornerò domani.",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "네, 알겠습니다. 내일 다시 오겠습니다",
+            "네, 알겠습니다. 내일 다시 왔습니다",
+            "네, 모르겠습니다. 내일 다시 오겠습니다"
+          ]
+        },
+        "note": "-겠습니다 indica intenzione o promessa: 오겠습니다 = 'verrò, tornerò'. 왔습니다 è il passato ('sono venuto') e qui non funziona."
+      }
+    ]
   }
 ]

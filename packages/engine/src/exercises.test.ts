@@ -42,6 +42,15 @@ const meaning: Exercise = {
   accept: ['riso', 'pasto'],
 };
 
+const reading: Exercise = {
+  id: 'e-reading',
+  type: 'type_reading',
+  prompt: 'Come si legge?',
+  text: '들어요',
+  answer: 'deureoyo',
+  accept: ['turoyo'],
+};
+
 const ordering: OrderWordsExercise = {
   id: 'e-order',
   type: 'order_words',
@@ -121,6 +130,19 @@ describe('correzione', () => {
     expect(isCorrect(dictation, '학교에가요')).toBe(true);
     expect(isCorrect(dictation, '학교에 가')).toBe(false);
     expect(isCorrect(dictation, '')).toBe(false);
+  });
+
+  it('corregge la romanizzazione senza badare a maiuscole, apostrofi e trattini', () => {
+    expect(isCorrect(reading, 'deureoyo')).toBe(true);
+    expect(isCorrect(reading, 'Deureo-yo')).toBe(true);
+    expect(isCorrect(reading, 'turoyo')).toBe(true);
+    // Anche la romanizzazione che non applica la pronuncia è una risposta giusta.
+    expect(isCorrect(reading, 'deuleoyo')).toBe(true);
+    expect(isCorrect(reading, 'deuroyo')).toBe(false);
+    // La parola coreana è la consegna, quindi resta visibile al client.
+    const pub = stripExercise(reading) as Record<string, unknown>;
+    expect(pub.text).toBe('들어요');
+    expect(pub.answer).toBeUndefined();
   });
 
   it('manda al dettato la frase da ascoltare, non la soluzione', () => {

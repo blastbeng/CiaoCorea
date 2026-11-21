@@ -6,7 +6,8 @@ import type {
   LessonState,
   PublicExercise,
 } from '@ciaocorea/shared';
-import { compact, foldItalian, matchesAny, normalizeAnswer } from './normalize';
+import { compact, foldItalian, foldRomanization, matchesAny, normalizeAnswer } from './normalize';
+import { pronunciationRomanize, romanizeWord } from './romanize';
 
 /** Soglia di superamento di una lezione: sotto l'80% si torna a studiare. */
 export const PASS_THRESHOLD = 0.8;
@@ -52,6 +53,26 @@ function checkMeaning(exercise: Exercise, response: string): boolean {
 }
 
 /**
+ * Leggere e trascrivere: la romanizzazione si confronta senza maiuscole, senza
+ * apostrofi e senza trattini, che sono convenzioni e non suoni. `kkochi`,
+ * `Kkochi` e `kko-chi` sono la stessa risposta.
+ *
+ * Il motore accetta anche la romanizzazione che non applica le regole di
+ * pronuncia (들어요 → deuleoyo accanto a deureoyo): sono due modi onesti di
+ * trascrivere le stesse lettere, e nessuno dei due va trattato da errore.
+ */
+function checkReading(exercise: Exercise, response: string): boolean {
+  if (exercise.type !== 'type_reading') return false;
+  const accepted = [
+    exercise.answer,
+    ...(exercise.accept ?? []),
+    romanizeWord(exercise.text),
+    pronunciationRomanize(exercise.text),
+  ];
+  return matchesAny(response, accepted, foldRomanization).matched;
+}
+
+/**
  * Frase da rimettere in ordine: la risposta è la sequenza di tessere toccate,
  * `compact` toglie gli spazi così "나는 학교에" e "나는학교에" sono la stessa
  * risposta, mentre l'ordine delle parole resta quello che conta.
@@ -83,6 +104,8 @@ export function isCorrect(exercise: Exercise, response: string): boolean {
       return checkHangul(exercise, response);
     case 'type_meaning':
       return checkMeaning(exercise, response);
+    case 'type_reading':
+      return checkReading(exercise, response);
     case 'order_words':
       return checkOrder(exercise, response);
     case 'fill_blank':
@@ -152,6 +175,7 @@ export function isWrittenExercise(exercise: Exercise): boolean {
   switch (exercise.type) {
     case 'type_hangul':
     case 'type_meaning':
+    case 'type_reading':
     case 'order_words':
     case 'listen_type':
       return true;

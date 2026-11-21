@@ -103,9 +103,35 @@ const LABIAL = new Set([10, 11, 14, 15, 16, 17, 18, 26]); // ㄻ ㄼ ㄿ ㅀ ㅁ
 const ALVEOLAR_N = new Set([4, 5, 6]); // ㄴ ㄵ ㄶ
 
 /**
+ * Un finale doppio (겹받침) che resta chiuso — a fine parola o davanti a
+ * consonante — si pronuncia con uno solo dei due suoni: 닭 [닥] `dak`, 삶 [삼]
+ * `sam`, 값 [갑] `gap`, 여덟 [여덜] `yeodeol`, 없다 [업따] `eopda`. La tabella
+ * `FINAL` resta la trascrizione lettera per lettera; questa è la coda.
+ */
+const REDUCED_CODA: Record<number, string> = {
+  3: 'k', // ㄳ
+  5: 'n', // ㄵ
+  6: 'n', // ㄶ
+  9: 'k', // ㄺ
+  10: 'm', // ㄻ
+  11: 'l', // ㄼ
+  12: 'l', // ㄽ
+  13: 'l', // ㄾ
+  14: 'p', // ㄿ
+  15: 'l', // ㅀ
+  18: 'p', // ㅄ
+};
+
+/** La coda di un finale che resta chiuso. */
+function closedCoda(final: number): string {
+  return REDUCED_CODA[final] ?? FINAL[final];
+}
+
+/**
  * Cosa diventa una finale quando la sillaba seguente inizia per vocale muta
- * (연음): passa lì e fra due vocali si addolcisce. Le finali che non passano
- * (ㅅ ㅆ ㅈ ㅊ ㅎ e i loro gruppi) restano come la scrittura le scrive.
+ * (연음): passa lì e fra due vocali si addolcisce. Le ㅅ, ㅆ, ㅈ e ㅊ passano
+ * con il proprio suono (꽃이 `kkochi`, 낮이 `naji`, 셋이 `sesi`), come vuole la
+ * norma; la ㅎ invece cade (좋아 `joa`), e i gruppi con ㅎ restano come sono.
  */
 const CARRIED: Record<number, string> = {
   1: 'g', 2: 'g', 9: 'g', 24: 'g',
@@ -114,7 +140,29 @@ const CARRIED: Record<number, string> = {
   10: 'm', 16: 'm',
   4: 'n', 5: 'n', 6: 'n',
   8: 'r', 11: 'r', 12: 'l', 13: 'r',
+  19: 's', 20: 'ss', 22: 'j', 23: 'ch',
+  27: '',
   21: 'ng',
+};
+
+/**
+ * I finali doppi davanti a una vocale non passano interi: si dividono, uno dei
+ * due suoni resta a chiudere la sillaba e l'altro diventa l'iniziale della
+ * seguente — 값이 [갑씨] `gapsi`, 앉아 [안자] `anja`, 닭이 [달기] `dalgi`,
+ * 싫어 [시러] `sireo`. `CARRIED` vale per i finali semplici.
+ */
+const SPLIT_CARRIED: Record<number, { coda: string; onset: string }> = {
+  3: { coda: 'k', onset: 's' }, // ㄳ
+  5: { coda: 'n', onset: 'j' }, // ㄵ
+  6: { coda: '', onset: 'n' }, // ㄶ
+  9: { coda: 'l', onset: 'g' }, // ㄺ
+  10: { coda: 'l', onset: 'm' }, // ㄻ
+  11: { coda: 'l', onset: 'b' }, // ㄼ
+  12: { coda: 'l', onset: 's' }, // ㄽ
+  13: { coda: 'l', onset: 't' }, // ㄾ
+  14: { coda: 'l', onset: 'p' }, // ㄿ
+  15: { coda: '', onset: 'r' }, // ㅀ — 싫어 [시러]: la ㄹ passa e la ㅎ cade
+  18: { coda: 'p', onset: 's' }, // ㅄ
 };
 
 interface Junction {
@@ -138,9 +186,35 @@ const SIL = {
 /** ㅟ: la ㅟ non si lascia trasportare (학위 resta `hagwi`, non `hagwi` con 연음). */
 const WI = 16;
 
+/**
+ * 격음화 dopo la ㅎ: la ㅎ finale si fonde con l'iniziale che segue e ne fa
+ * un'aspirata — 좋고 [조코] `joko`, 놓다 [노타] `nota`, 낳지 [나치] `nachi`.
+ * Con la ㅅ la ㅎ cade e resta una ㅅ semplice (좋습니다 `joseumnida`): la
+ * ㅆ che si sente non si scrive in RR, come tutte le consonanti tese.
+ */
+/** Dopo 밟-, solo davanti a ㄱ/ㄷ/ㅅ/ㅈ la ㅂ si chiude: 밟다, 밟고, 밟지. */
+const BALP_CLOSED = new Set([0, 3, 9, 12]);
+
+const ASPIRATED_AFTER_H: Record<number, string> = {
+  0: 'k', // ㄱ → ㅋ
+  3: 't', // ㄷ → ㅌ
+  7: 'p', // ㅂ → ㅍ
+  9: 's', // ㅅ → ㅆ
+  12: 'ch', // ㅈ → ㅊ
+};
+
 function junction(prev: SyllableParts, next: SyllableParts): Junction {
   const final = prev.final;
   if (final === 0) return { coda: '', onset: null };
+
+  // 격음화: la ㅎ finale aspira l'iniziale seguente. Vale anche per ㄶ, che
+  // prima di ㅎ si riduce a ㄴ (많다 [만타] `manta`).
+  const aspirated = ASPIRATED_AFTER_H[next.lead];
+  if (final === 27 && aspirated !== undefined) return { coda: '', onset: aspirated };
+  // ㄶ e ㅀ: la ㅎ aspira, la nasale o la laterale restano a chiudere.
+  if ((final === 6 || final === 15) && aspirated !== undefined) {
+    return { coda: closedCoda(final), onset: aspirated };
+  }
 
   // 연음: la finale passa alla sillaba vuota e diventa l'iniziale di quella.
   if (next.lead === SIL.silent && next.medial !== WI) {
@@ -148,13 +222,27 @@ function junction(prev: SyllableParts, next: SyllableParts): Junction {
     if ((next.medial === WI || next.medial === 20) && (final === 7 || final === 25)) {
       return { coda: '', onset: 'ch' };
     }
+    const split = SPLIT_CARRIED[final];
+    if (split) return split;
     const carried = CARRIED[final];
     if (carried !== undefined) return { coda: '', onset: carried };
   }
 
-  // 유음화: ㄴ davanti a ㄹ, e ㄹ davanti a ㄹ, diventano entrambe ㄹ.
+  // 유음화: ㄴ davanti a ㄹ, e ㄹ davanti a ㄹ o ㄴ, diventano entrambe ㄹ
+  // (신라 [실라] `silla`, 설날 [설랄] `seollal`).
   if (next.lead === SIL.r && (ALVEOLAR_N.has(final) || final === 8)) {
     return { coda: 'l', onset: 'l' };
+  }
+  if (next.lead === SIL.n && final === 8) {
+    return { coda: 'l', onset: 'l' };
+  }
+
+  // 비음 + ㄹ: la ㄹ diventa ㄴ e la nasale resta — 종로 [종노] `jongno`,
+  // 왕십리 [왕심니] `wangsimni`, 담력 [담녁] `damnyeok`.
+  if (next.lead === SIL.r) {
+    const coda = closedCoda(final);
+    if (coda === 'k' || coda === 'ng') return { coda: 'ng', onset: 'n' };
+    if (coda === 'p' || coda === 'm') return { coda: 'm', onset: 'n' };
   }
 
   // 비음화: davanti a ㄴ e a ㅁ le finali non nasali diventano nasale.
@@ -165,18 +253,18 @@ function junction(prev: SyllableParts, next: SyllableParts): Junction {
     return { coda: next.lead === SIL.n ? 'n' : 'm', onset: null };
   }
 
-  return { coda: FINAL[final], onset: null };
+  return { coda: closedCoda(final), onset: null };
 }
 
 /**
- * La romanizzazione *della pronuncia*: 연음, 비음화, 유음화 e 구개음화 delle
- * regole più stabili. 신라 → `silla`, 국민 → `gungmin`, 없는 → `eomneun`,
- * 발음 → `bareum`, 몰라 → `molla`.
+ * La romanizzazione *della pronuncia* secondo le regole stabili del 표준 발음법:
+ * 연음, 격음화 (좋고 `joko`), 비음화 (국민 `gungmin`), 유음화 (신라 `silla`),
+ * 구개음화 (같이 `gachi`) e riduzione dei finali doppi (닭 `dak`, 값이 `gapsi`).
  *
- * Serve a riconoscere, non a insegnare: è il confronto della ricerca, non un
- * dizionario. Le regole eccezionali (두음 법칙, 탈락 delle vocali, gruppi come ㅀ
- * in 싫다) non sono applicate: dove il curricolo ha una voce, la sua `rr`
- * verificata è la forma giusta.
+ * Serve a riconoscere e a leggere, non a sostituire il dizionario: le regole
+ * eccezionali (두음 법칙, ㄴ 첨가 come 꽃잎 [꼰닙], allungamenti vocalici) non
+ * sono applicate. Dove il curricolo ha una voce, la sua `rr` verificata è la
+ * forma giusta.
  */
 export function pronunciationRomanize(word: string): string {
   const chars = Array.from(word);
@@ -205,7 +293,16 @@ export function pronunciationRomanize(word: string): string {
       const before = junction(previous, current);
       if (before.onset !== null) onset = before.onset;
     }
-    if (next) coda = current.final === 0 ? '' : junction(current, next).coda;
+    if (next) {
+      coda = current.final === 0 ? '' : junction(current, next).coda;
+      // L'unica eccezione vera ai finali doppi: 밟- davanti a consonante si
+      // chiude sulla ㅂ — 밟다 [밥따] `bapda`, 밟고 `bapgo` — mentre davanti a
+      // vocale segue la regola (밟아 [발바] `balba`).
+      if (chars[i] === '밟' && BALP_CLOSED.has(next.lead)) coda = 'p';
+    } else if (current.final !== 0) {
+      // A fine parola il finale doppio si chiude su un suono solo: 닭 `dak`.
+      coda = closedCoda(current.final);
+    }
 
     out += onset + medial + coda;
   }

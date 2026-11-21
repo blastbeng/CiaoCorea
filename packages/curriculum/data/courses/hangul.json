@@ -111,7 +111,7 @@
           "durationMin": 25,
           "points": [
             "ㅂ tra due vocali è una b morbida; a fine sillaba diventa una p chiusa, senza esplosione.",
-            "ㅅ davanti a i diventa sh (시 = shi), altrove resta una s.",
+            "ㅅ davanti a ㅣ si sente come la «sc» di «sci»: 시 suona «sci». Nella romanizzazione riveduta, però, si scrive si: è la grafia che trovi nel dizionario dell'app.",
             "ㅎ è un'aspirazione leggera: si sente in 하다, quasi sparisce tra vocali.",
             "Le vocali con la i (ㅑ ㅕ ㅛ ㅠ) nascono aggiungendo un secondo trattino alla vocale base.",
             "ㄹ è tra r e l: la lingua tocca una volta sola il palato, come in una r italiana morbida."
@@ -161,10 +161,10 @@
             {
               "id": "h02-e5",
               "type": "type_hangul",
-              "prompt": "Scrivi in Hangul la sillaba «si» (attenzione: si legge «shi»).",
+              "prompt": "Scrivi in Hangul la sillaba «si» (si legge «sci», con la ㅅ davanti a ㅣ).",
               "answer": "시",
               "hint": "ㅅ + ㅣ.",
-              "explain": "시 si pronuncia shi: davanti a ㅣ la ㅅ diventa sc."
+              "explain": "시 si legge «sci»: davanti a ㅣ la ㅅ si addolcisce. La romanizzazione riveduta la scrive si."
             },
             {
               "id": "h02-e6",

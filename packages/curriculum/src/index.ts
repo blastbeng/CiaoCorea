@@ -5,6 +5,7 @@ import lessicoRaw from '../data/courses/lessico.json';
 import messaggiRaw from '../data/courses/messaggi.json';
 import a2Raw from '../data/courses/a2.json';
 import capacitaRaw from '../data/courses/capacita.json';
+import radiciRaw from '../data/courses/radici.json';
 import b1Raw from '../data/courses/b1.json';
 import discorsiRaw from '../data/courses/discorsi.json';
 import dialoguesRaw from '../data/dialogues.json';
@@ -30,6 +31,7 @@ const RAW_COURSES: RawCourse[] = [
   { source: 'messaggi.json', raw: messaggiRaw },
   { source: 'a2.json', raw: a2Raw },
   { source: 'capacita.json', raw: capacitaRaw },
+  { source: 'radici.json', raw: radiciRaw },
   { source: 'b1.json', raw: b1Raw },
   { source: 'discorsi.json', raw: discorsiRaw },
 ];

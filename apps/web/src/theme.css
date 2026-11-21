@@ -2689,3 +2689,157 @@ textarea.input--ko {
   font-size: 0.58rem;
   color: var(--ink-faint);
 }
+
+/* Laboratorio di pronuncia: la parola grande, le sillabe e le regole. */
+.sample-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.sample-row .chip {
+  font-size: 1.05rem;
+  padding: 0.35rem 0.65rem;
+}
+
+.chip--on {
+  border-color: var(--accent);
+  background: var(--accent-soft, var(--surface));
+  color: var(--accent-ink);
+}
+
+.reading-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.reading-big {
+  font-size: clamp(2.2rem, 8vw, 3.2rem);
+  line-height: 1.1;
+  color: var(--accent-ink);
+}
+
+.syllable-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.syllable-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+
+.syllable-char {
+  font-size: 1.8rem;
+  line-height: 1.1;
+}
+
+.syllable-parts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.rule-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.rule-examples {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.rule-example {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.3rem 0.4rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.rule-example:hover,
+.rule-example:focus-visible {
+  border-color: var(--line-strong);
+  background: var(--surface);
+}
+
+.rule-example-rr {
+  margin-left: auto;
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+}
+
+/* Il testo incollato dallo studente: leggibile, e ogni parola toccabile. */
+.analysis-input {
+  width: 100%;
+  min-height: 5rem;
+  resize: vertical;
+  font-family: var(--font-ko);
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.chip--sample {
+  font-family: inherit;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.7rem;
+}
+
+.analysis-head {
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.analysis-text {
+  font-family: var(--font-ko);
+  font-size: 1.35rem;
+  line-height: 2.1;
+  margin: 0;
+}
+
+.unknown-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.unknown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.7rem;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+
+.unknown-item .ko {
+  font-size: 1.2rem;
+}
