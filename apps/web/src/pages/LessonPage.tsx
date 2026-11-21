@@ -9,6 +9,7 @@ import {
 } from '@ciaocorea/shared';
 import { api } from '../api';
 import { errorMessage } from '../auth';
+import { Dictation } from '../components/Dictation';
 import { ExerciseInput, isKorean } from '../components/ExerciseInput';
 import { KoreanText } from '../components/KoreanText';
 import { PronounceButton } from '../components/PronounceButton';
@@ -109,6 +110,8 @@ function StudyView({ detail, onStart }: { detail: LessonDetail; onStart: (mode: 
           </ul>
         </section>
       ) : null}
+
+      <Dictation key={lesson.id} items={lesson.vocab} lessonId={lesson.id} />
 
       {(lesson.passages ?? []).map((passage, index) => (
         <PassageCard key={`${lesson.id}-passage-${index}`} passage={passage} />

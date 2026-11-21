@@ -4,7 +4,7 @@
   "title": "단어 — Parole di ogni giorno",
   "subtitle": "Famiglia, presentazioni, cibo e numeri: il lessico che si usa davvero",
   "level": "A1",
-  "description": "Sette lezioni di vocabolario scelto per la vita quotidiana: come si chiamano i parenti (e perché cambiano con chi parla), come ci si presenta senza sembrare un libro di testo, come si ordina da mangiare e come si leggono i prezzi in won e come si raggiunge un luogo della città. Ogni parola arriva dentro una frase usabile, non in una lista da mandare a memoria.",
+  "description": "Sei lezioni di vocabolario scelto per la vita quotidiana: come si chiamano i parenti (e perché cambiano con chi parla), come ci si presenta senza sembrare un libro di testo, come si ordina da mangiare e come si leggono i prezzi in won e come si raggiunge un luogo della città. Ogni parola arriva dentro una frase usabile, non in una lista da mandare a memoria.",
   "units": [
     {
       "id": "l-u1",
@@ -471,7 +471,14 @@
             }
           ]
         }
-,
+
+      ]
+    },
+    {
+      "id": "l-u3",
+      "title": "Muoversi in città",
+      "purpose": "Dire come ci si sposta: il mezzo che si usa, il tragitto da dove a dove, le fermate e la linea.",
+      "lessons": [
         {
           "id": "less-10",
           "slug": "la-citta-luoghi-e-direzioni",
@@ -604,14 +611,7 @@
               "explain": "병원 (byeongwon): 병 (malattia) + 원 (luogo): il luogo delle malattie."
             }
           ]
-        }
-      ]
-    },
-    {
-      "id": "l-u3",
-      "title": "Muoversi in città",
-      "purpose": "Dire come ci si sposta: il mezzo che si usa, il tragitto da dove a dove, le fermate e la linea.",
-      "lessons": [
+        },
         {
           "id": "less-11",
           "slug": "muoversi-in-citta",

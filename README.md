@@ -283,8 +283,9 @@ dicono cosa si sa fare e cosa si è vissuto: -(으)ㄹ 수 있다/없다 (con la
 fra capacità, permesso e abilità imparata), -아/어 보다, -(으)ㄴ 적이 있다/없다,
 -(으)ㄹ 때, la nominalizzazione con -(으)ㄴ/는 것 e le supposizioni con 것 같다.
 Il settimo, `b1`, è fatto solo di testi da leggere:
-l'annuncio di una stanza, il menu con le note in fondo, il messaggio di servizio
-in ufficio, una notizia breve. Ogni lezione porta il brano in coreano con il
+l'annuncio di una stanza, il menu con le note in fondo, l'orario di un centro
+culturale, il messaggio di servizio in ufficio, una recensione con la risposta
+del locale, una notizia breve. Ogni lezione porta il brano in coreano con il
 glossario delle parole difficili, e sotto gli esercizi di comprensione; la
 traduzione italiana del brano arriva solo quando la lezione risulta chiusa.
 
@@ -299,8 +300,8 @@ del quaderno.
 La prima lezione di ogni corso è sempre aperta, così chi ha già basi può entrare
 da lì; le successive seguono l'ordine del corso.
 
-In tutto: otto corsi, 57 lezioni, 628 voci di lessico, 25 brani di lettura, 17
-dialoghi e 24 consegne di scrittura. Il dizionario consultabile arriva a 707
+In tutto: otto corsi, 59 lezioni, 663 voci di lessico, 27 brani di lettura, 17
+dialoghi e 24 consegne di scrittura. Il dizionario consultabile arriva a 744
 voci perché comprende anche le parole dei gloss, che sono quelle che si
 incontrano leggendo.
 

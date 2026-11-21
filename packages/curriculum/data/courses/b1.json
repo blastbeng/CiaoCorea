@@ -2,14 +2,14 @@
   "id": "b1",
   "slug": "b1",
   "title": "실제 글 — Leggere il coreano vero",
-  "subtitle": "Annunci, menu, messaggi di lavoro, notizie brevi",
+  "subtitle": "Annunci, orari, menu, messaggi di lavoro, recensioni, notizie brevi",
   "level": "B1",
-  "description": "Sette lezioni di lettura e grammatica su testi che esistono per davvero: un annuncio di stanza, un menu appeso alla parete, un messaggio d'ufficio, una notizia in cinque righe, e come si riportano le notizie sentite da altri. Ogni lezione parte dal brano, con il glossario delle parole difficili; le domande di comprensione lavorano su dettagli concreti — cifre, date, posti, conseguenze — perché a questo livello la lettura si gioca tutta lì. La traduzione del brano si apre solo dopo il primo tentativo.",
+  "description": "Sette lezioni di lettura e grammatica su testi che esistono per davvero: un annuncio di stanza, l'orario di un centro culturale, un menu appeso alla parete, un messaggio d'ufficio, una recensione con la risposta del locale, una notizia in cinque righe, e come si riportano le notizie sentite da altri. Ogni lezione parte dal brano, con il glossario delle parole difficili; le domande di comprensione lavorano su dettagli concreti — cifre, date, posti, conseguenze — perché a questo livello la lettura si gioca tutta lì. La traduzione del brano si apre solo dopo il primo tentativo.",
   "units": [
     {
       "id": "b1-u1",
       "title": "Testi appesi al muro",
-      "purpose": "Leggere ciò che si incontra per strada: un annuncio e un menu, dove le cifre dicono più delle frasi.",
+      "purpose": "Leggere ciò che si incontra per strada: un annuncio, un menu e un orario, dove le cifre dicono più delle frasi.",
       "lessons": [
         {
           "id": "b1-01",
@@ -150,6 +150,79 @@
             {"id": "b1-02-e7", "type": "type_hangul", "prompt": "Scrivi in coreano «pagamento» (la parola della nota in fondo).", "hint": "Appare in 결제할 수 있습니다.", "answer": "결제", "accept": ["결제하다", "결제를"], "explain": "결제 = pagamento. 결제할 수 있습니다 = «si può pagare / è possibile pagare»."},
             {"id": "b1-02-e8", "type": "type_hangul", "prompt": "Scrivi in coreano «contanti».", "hint": "La nota dice che da 1만 원 in su si accettano.", "answer": "현금", "accept": ["현금은", "현금으로"], "explain": "현금 (現金) = denaro contante, opposto a 카드 (carta)."},
             {"id": "b1-02-e9", "type": "reading_mcq", "prompt": "Quanto costa il 김치?", "options": ["Niente: è 무료", "1.000 won", "8.000 won", "Non è in menu"], "answer": "Niente: è 무료", "explain": "김치 무료 = gratis. È il contorno che arriva sempre, senza chiederlo."}
+          ]
+        },
+        {
+          "id": "b1-05",
+          "slug": "orario-centro-culturale",
+          "title": "L'orario del centro",
+          "titleKo": "문화센터 시간표",
+          "kind": "reading",
+          "goal": "Leggere un orario affisso: incrociare giorni, ore, piani e aule, e distinguere le regole dalle eccezioni.",
+          "durationMin": 20,
+          "points": [
+            "월·수 si legge «lunedì e mercoledì»: il punto mediano · elenca due giorni, non separa due frasi.",
+            "층 è il piano e 호 il numero dell'aula: 3층 302호 = terzo piano, aula 302, non «aula 3 al piano 302».",
+            "까지 è «entro, fino a»; 부터 è «da». 신청은 20일까지 = le iscrizioni chiudono il 20, non iniziano il 20.",
+            "휴관 è la chiusura di un edificio pubblico; 휴일 è un giorno festivo: sono due cose diverse.",
+            "따로 significa «a parte»: 재료비는 따로 냅니다 = il costo dei materiali non è compreso nella quota.",
+            "※ introduce una nota da leggere prima di tutto il resto: in un orario è lì che stanno i cambiamenti."
+          ],
+          "vocab": [
+            {"ko": "시간표", "it": "orario, tabella degli orari", "rr": "siganpyo"},
+            {"ko": "학기", "it": "semestre", "rr": "hakgi"},
+            {"ko": "회화", "it": "conversazione", "rr": "hwihwa"},
+            {"ko": "요리", "it": "cucina; cucinare", "rr": "yori"},
+            {"ko": "서예", "it": "calligrafia", "rr": "seoye"},
+            {"ko": "조리실", "it": "laboratorio di cucina", "rr": "jorisil"},
+            {"ko": "예술실", "it": "aula d'arte", "rr": "yesulsil"},
+            {"ko": "휴관", "it": "chiusura (di un edificio pubblico)", "rr": "hyugwan"},
+            {"ko": "신청", "it": "iscrizione, domanda", "rr": "sincheong"},
+            {"ko": "재료비", "it": "costo dei materiali", "rr": "jaeryobi"},
+            {"ko": "첫날", "it": "primo giorno", "rr": "cheonnal"},
+            {"ko": "따로", "it": "a parte, separatamente", "rr": "ttaro"},
+            {"ko": "홈페이지", "it": "sito web", "rr": "hompeiji"},
+            {"ko": "정원", "it": "numero massimo di posti", "rr": "jeongwon"},
+            {"ko": "수업", "it": "lezione, corso", "rr": "sueop"}
+          ],
+          "passages": [
+            {
+              "title": "문화센터 봄학기 시간표",
+              "lines": [
+                "2026년 봄학기 문화센터 시간표",
+                "한국어 회화 — 월·수 19:00~20:30 (3층 302호)",
+                "한국 요리 — 화·목 11:00~12:30 (1층 조리실)",
+                "서예 — 토 10:00~12:00 (2층 예술실)",
+                "※ 3월 1일(일)은 휴관입니다.",
+                "※ 신청은 2월 20일까지 홈페이지에서 하세요.",
+                "※ 정원은 반마다 12명이고, 재료비는 수업 첫날에 따로 냅니다."
+              ],
+              "gloss": [
+                {"ko": "학기", "it": "semestre", "rr": "hakgi"},
+                {"ko": "회화", "it": "conversazione", "rr": "hwihwa"},
+                {"ko": "조리실", "it": "laboratorio di cucina", "rr": "jorisil"},
+                {"ko": "서예", "it": "calligrafia", "rr": "seoye"},
+                {"ko": "휴관", "it": "chiusura del centro", "rr": "hyugwan"},
+                {"ko": "정원", "it": "posti disponibili", "rr": "jeongwon"},
+                {"ko": "재료비", "it": "costo dei materiali", "rr": "jaeryobi"},
+                {"ko": "따로", "it": "a parte", "rr": "ttaro"}
+              ],
+              "translation": "Orario del semestre di primavera 2026 del centro culturale. Conversazione coreana: lunedì e mercoledì, 19:00–20:30 (terzo piano, aula 302). Cucina coreana: martedì e giovedì, 11:00–12:30 (laboratorio di cucina, primo piano). Calligrafia: sabato, 10:00–12:00 (aula d'arte, secondo piano). Il 1° marzo (domenica) il centro è chiuso. Le iscrizioni si fanno sul sito entro il 20 febbraio. Ogni classe ha 12 posti e il costo dei materiali si paga a parte il primo giorno di lezione."
+            }
+          ],
+          "exercises": [
+            {"id": "b105-e1", "type": "reading_mcq", "prompt": "In quali giorni si tiene il corso di conversazione coreana?", "options": ["Lunedì e mercoledì", "Martedì e giovedì", "Sabato mattina", "Tutti i giorni"], "answer": "Lunedì e mercoledì", "explain": "월·수 sono le iniziali di 월요일 (lunedì) e 수요일 (mercoledì); l'orario 19:00~20:30 è la sera."},
+            {"id": "b105-e2", "type": "reading_mcq", "prompt": "Dove si tiene il corso di cucina coreana?", "options": ["Al primo piano, nel laboratorio di cucina", "Al terzo piano, in aula 302", "Al secondo piano, nell'aula d'arte", "Fuori, nel cortile"], "answer": "Al primo piano, nel laboratorio di cucina", "explain": "1층 조리실 = laboratorio di cucina al primo piano: prima il piano, poi il locale."},
+            {"id": "b105-e3", "type": "reading_mcq", "prompt": "Entro quando bisogna iscriversi?", "options": ["Entro il 20 febbraio", "Entro il 1° marzo", "Entro il 12 marzo", "Entro il 30 dicembre"], "answer": "Entro il 20 febbraio", "explain": "까지 fissa l'ultimo giorno utile: 신청은 2월 20일까지 = iscrizioni entro il 20 febbraio."},
+            {"id": "b105-e4", "type": "reading_mcq", "prompt": "Che cosa significa 휴관?", "options": ["Che il centro è chiuso", "Che il corso è gratuito", "Che l'aula è piena", "Che l'iscrizione è aperta"], "answer": "Che il centro è chiuso", "explain": "휴관 è la chiusura di un edificio pubblico; 휴일 sarebbe un giorno festivo, che non è la stessa cosa."},
+            {"id": "b105-e5", "type": "type_meaning", "prompt": "Che cosa vuol dire 재료비?", "answer": "costo dei materiali", "accept": ["il costo dei materiali", "spesa per i materiali", "costo del materiale", "spesa dei materiali"], "explain": "재료 è il materiale (o gli ingredienti), 비 è la spesa: 재료비 è la quota che si paga a parte."},
+            {"id": "b105-e6", "type": "type_meaning", "prompt": "Che cosa vuol dire 정원 in questo orario?", "answer": "numero massimo di posti", "accept": ["posti disponibili", "capienza", "numero di posti", "posti", "massimo dei posti"], "explain": "Qui 정원 è il numero massimo di iscritti. In altri testi la stessa parola può voler dire «giardino»: conta il contesto."},
+            {"id": "b105-e7", "type": "type_hangul", "prompt": "Scrivi «orario» (il foglio con gli orari).", "hint": "시간 è il tempo, 표 è la tabella.", "answer": "시간표", "explain": "시간표 si legge siganpyo: 시간 (tempo) + 표 (tabella, foglio)."},
+            {"id": "b105-e8", "type": "type_hangul", "prompt": "Scrivi «iscrizione, domanda».", "hint": "La parola che compare nella nota con 까지.", "answer": "신청", "explain": "신청 è la richiesta; 신청서 è il modulo scritto che si compila."},
+            {"id": "b105-e9", "type": "reading_mcq", "prompt": "Quando si paga il costo dei materiali?", "options": ["Il primo giorno di lezione", "Al momento dell'iscrizione", "L'ultimo giorno di lezione", "Non si paga"], "answer": "Il primo giorno di lezione", "explain": "첫날 = il primo giorno; 따로 = a parte, quindi la quota non lo comprende."},
+            {"id": "b105-e10", "type": "fill_blank", "prompt": "Completa la nota sulle iscrizioni.", "text": "신청은 2월 20일___ 하세요.", "options": ["까지", "부터", "만", "에"], "answer": "까지", "explain": "까지 chiude l'intervallo («entro»); 부터 lo aprirebbe («a partire da») e cambierebbe il senso della frase."},
+            {"id": "b105-e11", "type": "order_words", "prompt": "Ricostruisci: «Il costo dei materiali si paga a parte il primo giorno di lezione.»", "words": ["재료비는", "수업", "첫날에", "따로", "냅니다"], "answer": "재료비는 수업 첫날에 따로 냅니다", "explain": "Il tema apre la frase (재료비는), il verbo la chiude (냅니다); 따로 sta prima del verbo."},
+            {"id": "b105-e12", "type": "reading_mcq", "prompt": "3층 302호 significa…", "options": ["terzo piano, aula 302", "aula 3, piano 302", "302 persone al terzo piano", "tre ore e 302 minuti"], "answer": "terzo piano, aula 302", "explain": "층 è il piano e 호 il numero del locale: si legge nell'ordine in cui è scritto."}
           ]
         }
       ]
@@ -293,6 +366,88 @@
           ]
         }
 ,
+        {
+          "id": "b1-06",
+          "slug": "recensione-e-risposta",
+          "title": "Una recensione con risposta",
+          "titleKo": "후기와 답글",
+          "kind": "reading",
+          "goal": "Leggere una recensione e la risposta del locale: distinguere i fatti dalle opinioni, il rimprovero dalle scuse, e capire che cosa viene offerto.",
+          "durationMin": 22,
+          "points": [
+            "별점 sono le stelle: ★★☆☆☆ = due su cinque, una recensione negativa ma non furiosa.",
+            "-지만 contrappone: 음식은 맛있었지만… = il cibo era buono, ma…; la parte dopo 지만 è quella che pesa.",
+            "-아서/어서 dà la causa: 손님이 많아서 = siccome ci sono molti clienti. Serve a giustificare, non solo a spiegare.",
+            "-(으)ㄴ 편이다 dice una tendenza, non un estremo: 비싼 편이에요 = tende a essere caro, è piuttosto caro.",
+            "-(으)려고 해요 esprime intenzione: 가 보려고 해요 = penso di andarci, proverò ad andarci.",
+            "Nella risposta del locale il registro sale: 드리다, 오시다 e -ㅂ니다 sono forme di rispetto verso il cliente.",
+            "만에 indica il tempo impiegato: 40분 만에 나왔어요 = è arrivato dopo 40 minuti."
+          ],
+          "vocab": [
+            {"ko": "후기", "it": "recensione", "rr": "hugi"},
+            {"ko": "별점", "it": "valutazione a stelle", "rr": "byeoljeom"},
+            {"ko": "직원", "it": "dipendente, personale", "rr": "jigwon"},
+            {"ko": "주문하다", "it": "ordinare", "rr": "jumunhada"},
+            {"ko": "사과하다", "it": "scusarsi", "rr": "sagwahada"},
+            {"ko": "가격", "it": "prezzo", "rr": "gagyeok"},
+            {"ko": "비싸다", "it": "essere caro", "rr": "bissada"},
+            {"ko": "편", "it": "parte, tendenza (in -(으)ㄴ 편이다)", "rr": "pyeon"},
+            {"ko": "손님", "it": "cliente", "rr": "sonnim"},
+            {"ko": "답글", "it": "risposta a un commento", "rr": "dapgeul"},
+            {"ko": "불편", "it": "disagio, inconveniente", "rr": "bulpyeon"},
+            {"ko": "죄송하다", "it": "essere spiacente", "rr": "joesonghada"},
+            {"ko": "서비스", "it": "omaggio, servizio gratuito (in Corea: qualcosa in regalo)", "rr": "seobiseu"},
+            {"ko": "음료", "it": "bevanda", "rr": "eumnyo"},
+            {"ko": "늦다", "it": "essere tardi; essere lento", "rr": "neutda"},
+            {"ko": "기다리다", "it": "aspettare", "rr": "gidarida"},
+            {"ko": "맛있다", "it": "essere buono (di cibo)", "rr": "masitda"},
+            {"ko": "길다", "it": "essere lungo", "rr": "gilda"},
+            {"ko": "적다", "it": "essere poco (di numero)", "rr": "jeokda"},
+            {"ko": "드리다", "it": "dare (forma umile)", "rr": "deurida"}
+          ],
+          "passages": [
+            {
+              "title": "화요일 저녁, 별점 두 개",
+              "lines": [
+                "★★☆☆☆ 화요일 저녁에 갔어요.",
+                "음식은 맛있었지만 기다리는 시간이 너무 길었어요.",
+                "주문한 음식이 40분 만에 나왔고, 직원은 사과하지 않았어요.",
+                "가격도 조금 비싼 편이라고 생각해요.",
+                "다음에는 사람이 적은 시간에 가 보려고 해요.",
+                "↳ 사장님: 불편을 드려 죄송합니다.",
+                "손님이 많아서 음식이 늦게 나올 수 있습니다.",
+                "다음에 오시면 서비스로 음료를 드리겠습니다."
+              ],
+              "gloss": [
+                {"ko": "후기", "it": "recensione", "rr": "hugi"},
+                {"ko": "별점", "it": "valutazione a stelle", "rr": "byeoljeom"},
+                {"ko": "직원", "it": "personale", "rr": "jigwon"},
+                {"ko": "사과하다", "it": "scusarsi", "rr": "sagwahada"},
+                {"ko": "비싼 편", "it": "piuttosto caro", "rr": "bissan pyeon"},
+                {"ko": "손님", "it": "cliente", "rr": "sonnim"},
+                {"ko": "불편", "it": "disagio", "rr": "bulpyeon"},
+                {"ko": "죄송합니다", "it": "mi dispiace (formale)", "rr": "joesonghamnida"},
+                {"ko": "서비스", "it": "omaggio", "rr": "seobiseu"},
+                {"ko": "음료", "it": "bevanda", "rr": "eumnyo"}
+              ],
+              "translation": "Due stelle su cinque. Sono andato martedì sera. Il cibo era buono, ma l'attesa è stata troppo lunga. Il piatto ordinato è arrivato dopo 40 minuti e il personale non si è scusato. Penso anche che il prezzo sia un po' alto. La prossima volta proverò ad andarci in un orario con meno gente. — Risposta del titolare: mi dispiace per il disagio. Quando i clienti sono molti, il cibo può uscire in ritardo. Se tornerà, le offriremo una bevanda in omaggio."
+            }
+          ],
+          "exercises": [
+            {"id": "b106-e1", "type": "reading_mcq", "prompt": "Quante stelle ha dato il cliente?", "options": ["Due su cinque", "Tre su cinque", "Una su cinque", "Cinque su cinque"], "answer": "Due su cinque", "explain": "★★☆☆☆ sono due stelle piene su cinque: la recensione è negativa, ma non è un attacco."},
+            {"id": "b106-e2", "type": "reading_mcq", "prompt": "Che cosa è andato bene, secondo il cliente?", "options": ["Il cibo", "L'attesa", "Il prezzo", "Il servizio"], "answer": "Il cibo", "explain": "맛있었지만: la parte positiva sta prima di 지만, quella negativa dopo, ed è quella che guida il giudizio."},
+            {"id": "b106-e3", "type": "reading_mcq", "prompt": "Quanto ha aspettato il cliente?", "options": ["40 minuti", "14 minuti", "Due ore", "Non ha aspettato"], "answer": "40 minuti", "explain": "40분 만에 = dopo 40 minuti: 만에 dice il tempo impiegato per arrivare a quel punto."},
+            {"id": "b106-e4", "type": "reading_mcq", "prompt": "Che cosa non ha fatto il personale?", "options": ["Non si è scusato", "Non ha portato il cibo", "Non ha fatto pagare", "Non ha risposto alla recensione"], "answer": "Non si è scusato", "explain": "사과하지 않았어요 = non si è scusato. La risposta del titolare arriva dopo, ed è un altro momento."},
+            {"id": "b106-e5", "type": "reading_mcq", "prompt": "Che cosa offre il locale al cliente la prossima volta?", "options": ["Una bevanda in omaggio", "Uno sconto del 40%", "Un dolce", "Un posto riservato"], "answer": "Una bevanda in omaggio", "explain": "서비스로 음료를 드리겠습니다 = offriremo una bevanda come omaggio; in Corea 서비스 indica spesso qualcosa in regalo."},
+            {"id": "b106-e6", "type": "type_meaning", "prompt": "Che cosa vuol dire 후기?", "answer": "recensione", "accept": ["la recensione", "commento", "giudizio", "opinione"], "explain": "후기 è il resoconto di chi ha provato un posto o un servizio: una recensione."},
+            {"id": "b106-e7", "type": "type_meaning", "prompt": "Che cosa vuol dire 불편?", "answer": "disagio", "accept": ["il disagio", "scomodità", "inconveniente", "fastidio"], "explain": "불 (non) + 편 (comodo): 불편 è il disagio, ciò che non è comodo."},
+            {"id": "b106-e8", "type": "type_hangul", "prompt": "Scrivi «scusarsi» (verbo).", "hint": "La radice è 사과, come la parola per «mela».", "answer": "사과하다", "accept": ["사과"], "explain": "사과하다 = scusarsi. 사과 da sola è anche «mela»: il verbo chiarisce il senso."},
+            {"id": "b106-e9", "type": "fill_blank", "prompt": "Completa la risposta del titolare.", "text": "손님이 많___ 음식이 늦게 나올 수 있습니다.", "options": ["아서", "지만", "고", "면"], "answer": "아서", "explain": "많다 + 아서 → 많아서: la causa («siccome ci sono molti clienti») regge la frase che segue."},
+            {"id": "b106-e10", "type": "order_words", "prompt": "Ricostruisci: «Il cibo era buono, ma l'attesa è stata lunga.»", "words": ["음식은", "맛있었지만", "기다리는", "시간이", "길었어요"], "answer": "음식은 맛있었지만 기다리는 시간이 길었어요", "explain": "지만 unisce le due frasi in una sola: prima il fatto positivo, poi quello negativo."},
+            {"id": "b106-e11", "type": "reading_mcq", "prompt": "Che tono ha la risposta del titolare?", "options": ["Si scusa e offre qualcosa", "Nega tutto e accusa il cliente", "Chiede altri soldi", "Non risponde alla recensione"], "answer": "Si scusa e offre qualcosa", "explain": "불편을 드려 죄송합니다 + 음료를 드리겠습니다: scuse e offerta, nel registro formale del servizio clienti."},
+            {"id": "b106-e12", "type": "reading_mcq", "prompt": "40분 만에 significa…", "options": ["dopo 40 minuti", "per 40 minuti", "40 minuti prima", "ogni 40 minuti"], "answer": "dopo 40 minuti", "explain": "만에 indica il tempo che passa prima che succeda qualcosa: è arrivato dopo 40 minuti."}
+          ]
+        },
         {
           "id": "b1-07",
           "slug": "si-dice-che",
