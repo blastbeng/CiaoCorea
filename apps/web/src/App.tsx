@@ -5,6 +5,7 @@ import { AppShell } from './components/AppShell';
 import { AboutPage } from './pages/AboutPage';
 import { AnalysisPage } from './pages/AnalysisPage';
 import { AlphabetPage } from './pages/AlphabetPage';
+import { ConiugaPage } from './pages/ConiugaPage';
 import { CoursePage } from './pages/CoursePage';
 import { Dashboard } from './pages/Dashboard';
 import { DialoguePage } from './pages/DialoguePage';
@@ -75,6 +76,7 @@ export default function App() {
         <Route path="alfabeto" element={<AlphabetPage />} />
         <Route path="pronuncia" element={<PronunciationPage />} />
         <Route path="dizionario" element={<VocabularyPage />} />
+        <Route path="coniuga" element={<ConiugaPage />} />
         <Route path="analisi" element={<AnalysisPage />} />
         <Route path="repertorio" element={<GrammarPage />} />
         <Route path="quaderno" element={<WritingPage />} />

@@ -1,0 +1,1742 @@
+{
+  "id": "semi",
+  "slug": "semi",
+  "title": "셈 — Contare: cose, persone, tempo",
+  "subtitle": "I contatori, le ore, l’età e i numeri che cambiano forma",
+  "level": "A2",
+  "description": "Contare non è solo sapere i numeri: in coreano ogni cosa vuole il suo contatore, e il numero cambia forma secondo il contatore che segue. Dieci lezioni prendono in ordine le cose (개), le persone (명, 분), gli animali (마리), i libri e i fogli (권, 장, 대), la tavola (잔, 병, 그릇, 인분), poi le ore (시, 분), l’età e le etichette di piani e stanze (살, 층, 호), le volte e gli ordinali (번, 번째, 씩). Chiudono due letture vere: uno scontrino e una prenotazione.",
+  "units": [
+    {
+      "id": "semi-1",
+      "title": "사물 — Le cose e le persone",
+      "purpose": "Imparare che il contatore non è un dettaglio: sceglie il numero (nativo o Sino) e cambia il senso della frase.",
+      "lessons": [
+        {
+          "id": "cnt-01",
+          "slug": "cnt-01",
+          "title": "개 — Una cosa per volta",
+          "titleKo": "개 — 하나, 둘, 셋",
+          "kind": "vocab",
+          "goal": "Contare gli oggetti con i numeri nativi e il contatore 개, e chiedere «quanti sono?».",
+          "durationMin": 12,
+          "points": [
+            "개 è il contatore generico: sta dopo il numero e conta oggetti interi (사과 한 개).",
+            "Davanti al contatore i numeri nativi si accorciano: 하나→한, 둘→두, 셋→세, 넷→네, 스물→스무.",
+            "L’ordine è fisso: nome + numero + contatore; il verbo resta in fondo (사과가 세 개 있어요).",
+            "La domanda è 몇 개예요? «quanti sono?»: 몇 prende il posto del numero.",
+            "Il contatore non si traduce: 한 개 è «una cosa», non «un 개»."
+          ],
+          "vocab": [
+            {
+              "ko": "개",
+              "it": "contatore per le cose",
+              "rr": "gae"
+            },
+            {
+              "ko": "한 개",
+              "it": "una cosa",
+              "rr": "han gae"
+            },
+            {
+              "ko": "두 개",
+              "it": "due cose",
+              "rr": "du gae"
+            },
+            {
+              "ko": "세 개",
+              "it": "tre cose",
+              "rr": "se gae"
+            },
+            {
+              "ko": "네 개",
+              "it": "quattro cose",
+              "rr": "ne gae"
+            },
+            {
+              "ko": "다섯 개",
+              "it": "cinque cose",
+              "rr": "daseot gae"
+            },
+            {
+              "ko": "열 개",
+              "it": "dieci cose",
+              "rr": "yeol gae"
+            },
+            {
+              "ko": "스무 개",
+              "it": "venti cose",
+              "rr": "seumu gae"
+            },
+            {
+              "ko": "사과",
+              "it": "mela",
+              "rr": "sagwa"
+            },
+            {
+              "ko": "연필",
+              "it": "matita",
+              "rr": "yeonpil"
+            },
+            {
+              "ko": "의자",
+              "it": "sedia",
+              "rr": "uija"
+            },
+            {
+              "ko": "봉투",
+              "it": "busta",
+              "rr": "bongtu"
+            },
+            {
+              "ko": "몇 개",
+              "it": "quante cose",
+              "rr": "myeot gae"
+            },
+            {
+              "ko": "있어요",
+              "it": "c’è, ci sono",
+              "rr": "isseoyo"
+            },
+            {
+              "ko": "주세요",
+              "it": "per favore, mi dia",
+              "rr": "juseyo"
+            }
+          ],
+          "exercises": [
+            {
+              "id": "cnt-01-e1",
+              "type": "reading_mcq",
+              "prompt": "「사과가 세 개 있어요.」 Quante mele ci sono?",
+              "options": [
+                "Due",
+                "Tre",
+                "Quattro",
+                "Cinque"
+              ],
+              "answer": "Tre",
+              "explain": "세 è «tre»: 세 개 = tre cose."
+            },
+            {
+              "id": "cnt-01-e2",
+              "type": "fill_blank",
+              "prompt": "Completa con il contatore giusto.",
+              "text": "의자가 네 ___ 있어요.",
+              "options": [
+                "개",
+                "명",
+                "마리",
+                "권"
+              ],
+              "answer": "개",
+              "explain": "Le sedie sono cose: il contatore è 개."
+            },
+            {
+              "id": "cnt-01-e3",
+              "type": "order_words",
+              "prompt": "Metti in ordine: «Ci sono cinque buste.»",
+              "words": [
+                "봉투가",
+                "다섯",
+                "개",
+                "있어요"
+              ],
+              "answer": "봉투가 다섯 개 있어요",
+              "explain": "Nome + numero + contatore, poi il verbo: 봉투가 다섯 개 있어요."
+            },
+            {
+              "id": "cnt-01-e4",
+              "type": "reading_mcq",
+              "prompt": "Quale frase dice «venti mele»?",
+              "options": [
+                "사과 스무 개",
+                "사과 스물 개",
+                "사과 이십 개",
+                "사과 열 개"
+              ],
+              "answer": "사과 스무 개",
+              "explain": "Davanti al contatore 스물 diventa 스무: 스무 개."
+            },
+            {
+              "id": "cnt-01-e5",
+              "type": "type_meaning",
+              "prompt": "Che cosa chiede questa frase?",
+              "text": "연필 두 개 주세요.",
+              "answer": "due matite per favore",
+              "accept": [
+                "mi dia due matite",
+                "due matite",
+                "per favore due matite"
+              ]
+            },
+            {
+              "id": "cnt-01-e6",
+              "type": "order_words",
+              "prompt": "Metti in ordine: «Quante sedie sono?»",
+              "words": [
+                "의자가",
+                "몇",
+                "개예요?"
+              ],
+              "answer": "의자가 몇 개예요?"
+            }
+          ]
+        },
+        {
+          "id": "cnt-02",
+          "slug": "cnt-02",
+          "title": "명 · 분 · 사람 — Le persone",
+          "titleKo": "명 — 몇 명이에요?",
+          "kind": "vocab",
+          "goal": "Contare le persone con 명, usare 분 quando si parla con rispetto e scegliere la forma giusta del verbo.",
+          "durationMin": 13,
+          "points": [
+            "명 conta le persone con i numeri nativi: 한 명, 두 명, 세 명.",
+            "분 è il contatore di rispetto: 선생님이 두 분 계세요 «ci sono due professori».",
+            "사람 è la parola «persona»: può stare da sola o dopo il numero (두 사람).",
+            "Con 분 il verbo è 계시다, non 있다: 선생님이 두 분 계세요.",
+            "La domanda: 모두 몇 명이에요? «quanti sono in tutto?»."
+          ],
+          "vocab": [
+            {
+              "ko": "명",
+              "it": "contatore per le persone",
+              "rr": "myeong"
+            },
+            {
+              "ko": "분",
+              "it": "contatore di rispetto per le persone",
+              "rr": "bun"
+            },
+            {
+              "ko": "한 명",
+              "it": "una persona",
+              "rr": "han myeong"
+            },
+            {
+              "ko": "두 명",
+              "it": "due persone",
+              "rr": "du myeong"
+            },
+            {
+              "ko": "세 명",
+              "it": "tre persone",
+              "rr": "se myeong"
+            },
+            {
+              "ko": "네 명",
+              "it": "quattro persone",
+              "rr": "ne myeong"
+            },
+            {
+              "ko": "몇 명",
+              "it": "quante persone",
+              "rr": "myeot myeong"
+            },
+            {
+              "ko": "학생",
+              "it": "studente",
+              "rr": "haksaeng"
+            },
+            {
+              "ko": "선생님",
+              "it": "insegnante",
+              "rr": "seonsaengnim"
+            },
+            {
+              "ko": "친구",
+              "it": "amico",
+              "rr": "chingu"
+            },
+            {
+              "ko": "가족",
+              "it": "famiglia",
+              "rr": "gajok"
+            },
+            {
+              "ko": "손님",
+              "it": "cliente, ospite",
+              "rr": "sonnim"
+            },
+            {
+              "ko": "계세요",
+              "it": "c’è (di rispetto)",
+              "rr": "gyeseyo"
+            },
+            {
+              "ko": "모두",
+              "it": "in tutto, tutti",
+              "rr": "modu"
+            }
+          ],
+          "exercises": [
+            {
+              "id": "cnt-02-e1",
+              "type": "reading_mcq",
+              "prompt": "「학생이 세 명 있어요.」 Quanti studenti ci sono?",
+              "options": [
+                "Due",
+                "Tre",
+                "Quattro",
+                "Cinque"
+              ],
+              "answer": "Tre"
+            },
+            {
+              "id": "cnt-02-e2",
+              "type": "fill_blank",
+              "prompt": "Completa con il contatore giusto per una persona a cui si parla con rispetto.",
+              "text": "선생님이 두 ___ 계세요.",
+              "options": [
+                "분",
+                "명",
+                "사람",
+                "개"
+              ],
+              "answer": "분",
+              "explain": "Con 선생님 si usa il contatore di rispetto 분, e il verbo 계시다."
+            },
+            {
+              "id": "cnt-02-e3",
+              "type": "order_words",
+              "prompt": "Metti in ordine: «Ci sono due amici.»",
+              "words": [
+                "친구가",
+                "두",
+                "명",
+                "있어요"
+              ],
+              "answer": "친구가 두 명 있어요"
+            },
+            {
+              "id": "cnt-02-e4",
+              "type": "reading_mcq",
+              "prompt": "Quale frase si dice a un insegnante?",
+              "options": [
+                "선생님이 두 명 계세요.",
+                "선생님이 두 분 계세요.",
+                "선생님이 두 사람 계세요.",
+                "선생님이 두 개 계세요."
+              ],
+              "answer": "선생님이 두 분 계세요.",
+              "explain": "분 è il contatore di rispetto e vuole 계시다."
+            },
+            {
+              "id": "cnt-02-e5",
+              "type": "fill_blank",
+              "prompt": "Completa la domanda: «quanti sono in tutto?».",
+              "text": "모두 몇 ___이에요?",
+              "options": [
+                "명",
+                "개",
+                "마리",
+                "권"
+              ],
+              "answer": "명",
+              "explain": "Per le persone: 몇 명이에요?"
+            },
+            {
+              "id": "cnt-02-e6",
+              "type": "type_meaning",
+              "prompt": "Che cosa dice questa frase?",
+              "text": "가족이 네 명이에요.",
+              "answer": "siamo quattro in famiglia",
+              "accept": [
+                "in famiglia siamo quattro",
+                "la famiglia è di quattro persone",
+                "sono quattro in famiglia"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cnt-03",
+          "slug": "cnt-03",
+          "title": "마리 — Gli animali",
+          "titleKo": "마리 — 고양이 두 마리",
+          "kind": "vocab",
+          "goal": "Contare gli animali con 마리 e non confonderlo con i contatori delle persone e delle cose.",
+          "durationMin": 11,
+          "points": [
+            "마리 conta gli animali, con i numeri nativi: 한 마리, 두 마리, 세 마리.",
+            "L’ordine non cambia: animale + numero + 마리 (고양이가 두 마리 있어요).",
+            "Per le persone non si usa 마리: due gatti sono 두 마리, due studenti 두 명.",
+            "La domanda: 몇 마리예요? «quanti animali sono?»."
+          ],
+          "vocab": [
+            {
+              "ko": "마리",
+              "it": "contatore per gli animali",
+              "rr": "mari"
+            },
+            {
+              "ko": "한 마리",
+              "it": "un animale",
+              "rr": "han mari"
+            },
+            {
+              "ko": "두 마리",
+              "it": "due animali",
+              "rr": "du mari"
+            },
+            {
+              "ko": "세 마리",
+              "it": "tre animali",
+              "rr": "se mari"
+            },
+            {
+              "ko": "네 마리",
+              "it": "quattro animali",
+              "rr": "ne mari"
+            },
+            {
+              "ko": "몇 마리",
+              "it": "quanti animali",
+              "rr": "myeot mari"
+            },
+            {
+              "ko": "고양이",
+              "it": "gatto",
+              "rr": "goyangi"
+            },
+            {
+              "ko": "강아지",
+              "it": "cucciolo, cane piccolo",
+              "rr": "gangaji"
+            },
+            {
+              "ko": "새",
+              "it": "uccello",
+              "rr": "sae"
+            },
+            {
+              "ko": "물고기",
+              "it": "pesce",
+              "rr": "mulgogi"
+            },
+            {
+              "ko": "소",
+              "it": "mucca, bue",
+              "rr": "so"
+            },
+            {
+              "ko": "우리 집",
+              "it": "casa mia",
+              "rr": "uri jip"
+            }
+          ],
+          "exercises": [
+            {
+              "id": "cnt-03-e1",
+              "type": "reading_mcq",
+              "prompt": "「우리 집에 고양이가 두 마리 있어요.」 Quanti gatti ci sono?",
+              "options": [
+                "Uno",
+                "Due",
+                "Tre",
+                "Quattro"
+              ],
+              "answer": "Due"
+            },
+            {
+              "id": "cnt-03-e2",
+              "type": "fill_blank",
+              "prompt": "Completa con il contatore giusto.",
+              "text": "새가 세 ___ 있어요.",
+              "options": [
+                "마리",
+                "명",
+                "개",
+                "권"
+              ],
+              "answer": "마리",
+              "explain": "Gli animali si contano con 마리."
+            },
+            {
+              "id": "cnt-03-e3",
+              "type": "order_words",
+              "prompt": "Metti in ordine: «Ci sono quattro pesci.»",
+              "words": [
+                "물고기가",
+                "네",
+                "마리",
+                "있어요"
+              ],
+              "answer": "물고기가 네 마리 있어요"
+            },
+            {
+              "id": "cnt-03-e4",
+              "type": "reading_mcq",
+              "prompt": "Quale contatore si usa per un gatto?",
+              "options": [
+                "개",
+                "명",
+                "마리",
+                "잔"
+              ],
+              "answer": "마리"
+            },
+            {
+              "id": "cnt-03-e5",
+              "type": "type_meaning",
+              "prompt": "Traduci in italiano.",
+              "text": "강아지 한 마리",
+              "answer": "un cucciolo",
+              "accept": [
+                "un cane",
+                "un cagnolino",
+                "un cucciolo di cane"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cnt-04",
+          "slug": "cnt-04",
+          "title": "권 · 장 · 대 — Libri, fogli, veicoli",
+          "titleKo": "권 · 장 · 대",
+          "kind": "vocab",
+          "goal": "Scegliere il contatore giusto per libri, fogli e biglietti, e per veicoli e macchine.",
+          "durationMin": 13,
+          "points": [
+            "권 conta i libri e i quaderni: 책 한 권, 공책 두 권.",
+            "장 conta i fogli, le foto e i biglietti: 종이 세 장, 표 두 장.",
+            "대 conta veicoli e macchine: 차 한 대, 자전거 두 대, 컴퓨터 세 대.",
+            "Tutti e tre vogliono i numeri nativi: 한 권, 두 장, 세 대.",
+            "La domanda cambia con il contatore: 몇 권이에요? 몇 장이에요? 몇 대예요?"
+          ],
+          "vocab": [
+            {
+              "ko": "권",
+              "it": "contatore per libri",
+              "rr": "gwon"
+            },
+            {
+              "ko": "장",
+              "it": "contatore per fogli, foto, biglietti",
+              "rr": "jang"
+            },
+            {
+              "ko": "대",
+              "it": "contatore per veicoli e macchine",
+              "rr": "dae"
+            },
+            {
+              "ko": "책",
+              "it": "libro",
+              "rr": "chaek"
+            },
+            {
+              "ko": "공책",
+              "it": "quaderno",
+              "rr": "gongchaek"
+            },
+            {
+              "ko": "종이",
+              "it": "carta, foglio",
+              "rr": "jongi"
+            },
+            {
+              "ko": "표",
+              "it": "biglietto",
+              "rr": "pyo"
+            },
+            {
+              "ko": "사진",
+              "it": "foto",
+              "rr": "sajin"
+            },
+            {
+              "ko": "차",
+              "it": "auto",
+              "rr": "cha"
+            },
+            {
+              "ko": "자전거",
+              "it": "bicicletta",
+              "rr": "jajeongeo"
+            },
+            {
+              "ko": "컴퓨터",
+              "it": "computer",
+              "rr": "keompyuteo"
+            },
+            {
+              "ko": "두 권",
+              "it": "due volumi",
+              "rr": "du gwon"
+            },
+            {
+              "ko": "세 장",
+              "it": "tre fogli",
+              "rr": "se jang"
+            },
+            {
+              "ko": "한 대",
+              "it": "un veicolo",
+              "rr": "han dae"
+            }
+          ],
+          "exercises": [
+            {
+              "id": "cnt-04-e1",
+              "type": "reading_mcq",
+              "prompt": "「책이 세 권 있어요.」 Quanti libri ci sono?",
+              "options": [
+                "Due",
+                "Tre",
+                "Quattro",
+                "Cinque"
+              ],
+              "answer": "Tre"
+            },
+            {
+              "id": "cnt-04-e2",
+              "type": "fill_blank",
+              "prompt": "Completa con il contatore giusto.",
+              "text": "표 두 ___ 주세요.",
+              "options": [
+                "장",
+                "권",
+                "대",
+                "개"
+              ],
+              "answer": "장",
+              "explain": "I biglietti sono fogli: si contano con 장."
+            },
+            {
+              "id": "cnt-04-e3",
+              "type": "fill_blank",
+              "prompt": "Completa con il contatore giusto.",
+              "text": "차가 두 ___ 있어요.",
+              "options": [
+                "대",
+                "권",
+                "장",
+                "마리"
+              ],
+              "answer": "대",
+              "explain": "Le auto si contano con 대."
+            },
+            {
+              "id": "cnt-04-e4",
+              "type": "order_words",
+              "prompt": "Metti in ordine: «Ci sono due quaderni.»",
+              "words": [
+                "공책이",
+                "두",
+                "권",
+                "있어요"
+              ],
+              "answer": "공책이 두 권 있어요"
+            },
+            {
+              "id": "cnt-04-e5",
+              "type": "reading_mcq",
+              "prompt": "Quale contatore si usa per una foto?",
+              "options": [
+                "권",
+                "장",
+                "대",
+                "잔"
+              ],
+              "answer": "장"
+            },
+            {
+              "id": "cnt-04-e6",
+              "type": "type_meaning",
+              "prompt": "Traduci in italiano.",
+              "text": "자전거 세 대",
+              "answer": "tre biciclette"
+            }
+          ]
+        },
+        {
+          "id": "cnt-05",
+          "slug": "cnt-05",
+          "title": "잔 · 병 · 그릇 · 인분 — A tavola",
+          "titleKo": "잔 · 병 · 그릇 · 인분",
+          "kind": "vocab",
+          "goal": "Ordinare da bere e da mangiare con il contatore giusto, e riconoscere 인분 che vuole i numeri Sino.",
+          "durationMin": 13,
+          "points": [
+            "잔 conta bicchieri e tazze: 커피 한 잔, 차 두 잔.",
+            "병 conta le bottiglie e 그릇 le ciotole: 물 한 병, 밥 한 그릇.",
+            "인분 conta le porzioni ed è parola sino-coreana: vuole i numeri Sino (일 인분, 이 인분).",
+            "Per ordinare basta il nome con il contatore e 주세요: 커피 두 잔 주세요.",
+            "La domanda: 몇 잔이에요? 몇 인분이에요?"
+          ],
+          "vocab": [
+            {
+              "ko": "잔",
+              "it": "contatore per bicchieri e tazze",
+              "rr": "jan"
+            },
+            {
+              "ko": "병",
+              "it": "contatore per bottiglie",
+              "rr": "byeong"
+            },
+            {
+              "ko": "그릇",
+              "it": "contatore per ciotole",
+              "rr": "geureut"
+            },
+            {
+              "ko": "인분",
+              "it": "contatore per porzioni",
+              "rr": "inbun"
+            },
+            {
+              "ko": "커피",
+              "it": "caffè",
+              "rr": "keopi"
+            },
+            {
+              "ko": "물",
+              "it": "acqua",
+              "rr": "mul"
+            },
+            {
+              "ko": "차",
+              "it": "tè",
+              "rr": "cha"
+            },
+            {
+              "ko": "밥",
+              "it": "riso, pasto",
+              "rr": "bap"
+            },
+            {
+              "ko": "국",
+              "it": "zuppa",
+              "rr": "guk"
+            },
+            {
+              "ko": "비빔밥",
+              "it": "bibimbap",
+              "rr": "bibimbap"
+            },
+            {
+              "ko": "삼겹살",
+              "it": "samgyeopsal, pancetta di maiale",
+              "rr": "samgyeopsal"
+            },
+            {
+              "ko": "한 잔",
+              "it": "un bicchiere",
+              "rr": "han jan"
+            },
+            {
+              "ko": "두 병",
+              "it": "due bottiglie",
+              "rr": "du byeong"
+            },
+            {
+              "ko": "한 그릇",
+              "it": "una ciotola",
+              "rr": "han geureut"
+            },
+            {
+              "ko": "이 인분",
+              "it": "due porzioni",
+              "rr": "i inbun"
+            }
+          ],
+          "exercises": [
+            {
+              "id": "cnt-05-e1",
+              "type": "reading_mcq",
+              "prompt": "「커피 두 잔 주세요.」 Quanti caffè chiede?",
+              "options": [
+                "Uno",
+                "Due",
+                "Tre",
+                "Quattro"
+              ],
+              "answer": "Due"
+            },
+            {
+              "id": "cnt-05-e2",
+              "type": "fill_blank",
+              "prompt": "Completa con il contatore giusto.",
+              "text": "물 한 ___ 주세요.",
+              "options": [
+                "병",
+                "잔",
+                "그릇",
+                "장"
+              ],
+              "answer": "병",
+              "explain": "L’acqua in bottiglia: 물 한 병."
+            },
+            {
+              "id": "cnt-05-e3",
+              "type": "reading_mcq",
+              "prompt": "Quale è giusto per «due porzioni»?",
+              "options": [
+                "두 인분",
+                "이 인분",
+                "둘 인분",
+                "두 명"
+              ],
+              "answer": "이 인분",
+              "explain": "인분 è sino-coreano e vuole i numeri Sino: 이 인분."
+            },
+            {
+              "id": "cnt-05-e4",
+              "type": "fill_blank",
+              "prompt": "Completa con il contatore giusto.",
+              "text": "삼겹살 이 ___ 주세요.",
+              "options": [
+                "인분",
+                "명",
+                "개",
+                "마리"
+              ],
+              "answer": "인분"
+            },
+            {
+              "id": "cnt-05-e5",
+              "type": "order_words",
+              "prompt": "Metti in ordine: «Una ciotola di bibimbap, per favore.»",
+              "words": [
+                "비빔밥",
+                "한",
+                "그릇",
+                "주세요"
+              ],
+              "answer": "비빔밥 한 그릇 주세요"
+            },
+            {
+              "id": "cnt-05-e6",
+              "type": "type_meaning",
+              "prompt": "Traduci in italiano.",
+              "text": "밥 한 그릇",
+              "answer": "una ciotola di riso",
+              "accept": [
+                "una scodella di riso",
+                "un piatto di riso",
+                "una porzione di riso"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "semi-2",
+      "title": "시간 — Il tempo e i numeri della vita",
+      "purpose": "Portare i contatori nella giornata: l’ora, l’età, il piano di casa, le volte e l’ordine delle cose.",
+      "lessons": [
+        {
+          "id": "cnt-06",
+          "slug": "cnt-06",
+          "title": "시 · 분 — Che ore sono",
+          "titleKo": "시 — 몇 시예요?",
+          "kind": "grammar",
+          "goal": "Dire l’ora con le ore native e i minuti Sino, e chiedere a che ora succede qualcosa.",
+          "durationMin": 14,
+          "points": [
+            "Le ore vogliono i numeri nativi: 한 시, 두 시, 세 시, 네 시, 열두 시.",
+            "I minuti vogliono i numeri Sino: 오 분, 이십 분, 삼십 분, 사십오 분.",
+            "Mezza e tre quarti si dicono con 반: 세 시 반 «le tre e mezza».",
+            "오전 è «del mattino», 오후 «del pomeriggio»: 오후 두 시.",
+            "Due domande utili: 지금 몇 시예요? «che ore sono?» e 몇 시에 시작해요? «a che ora comincia?».",
+            "Attenzione: le 12 sono 열두 시, non 십이 시; il minuto «zero» non si dice."
+          ],
+          "vocab": [
+            {
+              "ko": "시",
+              "it": "ora (del quadrante)",
+              "rr": "si"
+            },
+            {
+              "ko": "분",
+              "it": "minuto",
+              "rr": "bun"
+            },
+            {
+              "ko": "반",
+              "it": "mezzo, metà",
+              "rr": "ban"
+            },
+            {
+              "ko": "오전",
+              "it": "del mattino",
+              "rr": "ojeon"
+            },
+            {
+              "ko": "오후",
+              "it": "del pomeriggio",
+              "rr": "ohu"
+            },
+            {
+              "ko": "한 시",
+              "it": "l’una",
+              "rr": "han si"
+            },
+            {
+              "ko": "두 시",
+              "it": "le due",
+              "rr": "du si"
+            },
+            {
+              "ko": "세 시",
+              "it": "le tre",
+              "rr": "se si"
+            },
+            {
+              "ko": "열두 시",
+              "it": "le dodici",
+              "rr": "yeoldu si"
+            },
+            {
+              "ko": "삼십 분",
+              "it": "trenta minuti",
+              "rr": "samsip bun"
+            },
+            {
+              "ko": "사십오 분",
+              "it": "quarantacinque minuti",
+              "rr": "sasibo bun"
+            },
+            {
+              "ko": "지금",
+              "it": "adesso",
+              "rr": "jigeum"
+            },
+            {
+              "ko": "몇 시",
+              "it": "che ora",
+              "rr": "myeot si"
+            },
+            {
+              "ko": "시작해요",
+              "it": "comincia",
+              "rr": "sijakaeyo"
+            },
+            {
+              "ko": "만나요",
+              "it": "ci vediamo",
+              "rr": "mannayo"
+            }
+          ],
+          "exercises": [
+            {
+              "id": "cnt-06-e1",
+              "type": "reading_mcq",
+              "prompt": "「지금 세 시 이십 분이에요.」 Che ore sono?",
+              "options": [
+                "2:20",
+                "3:20",
+                "3:12",
+                "12:03"
+              ],
+              "answer": "3:20",
+              "explain": "세 시 = le tre (numero nativo), 이십 분 = venti minuti (Sino)."
+            },
+            {
+              "id": "cnt-06-e2",
+              "type": "fill_blank",
+              "prompt": "Completa con il numero giusto per l’ora.",
+              "text": "지금 ___ 시예요.",
+              "options": [
+                "세",
+                "삼",
+                "셋",
+                "이"
+              ],
+              "answer": "세",
+              "explain": "L’ora vuole il numero nativo contratto: 세 시, non 삼 시."
+            },
+            {
+              "id": "cnt-06-e3",
+              "type": "fill_blank",
+              "prompt": "Completa con il numero giusto per i minuti.",
+              "text": "세 시 ___ 분이에요.",
+              "options": [
+                "이십",
+                "스물",
+                "둘",
+                "이"
+              ],
+              "answer": "이십",
+              "explain": "I minuti sono Sino: 이십 분."
+            },
+            {
+              "id": "cnt-06-e4",
+              "type": "reading_mcq",
+              "prompt": "Quale frase dice «le sette e mezza»?",
+              "options": [
+                "일곱 시 반",
+                "칠 시 반",
+                "일곱 시 삼십",
+                "일곱 반 시"
+              ],
+              "answer": "일곱 시 반",
+              "explain": "Ora nativa (일곱 시) + 반 per la mezz’ora."
+            },
+            {
+              "id": "cnt-06-e5",
+              "type": "order_words",
+              "prompt": "Metti in ordine: «Ci vediamo alle nove.»",
+              "words": [
+                "아홉",
+                "시에",
+                "만나요"
+              ],
+              "answer": "아홉 시에 만나요",
+              "explain": "Con 에 si dice «alle»: 아홉 시에."
+            },
+            {
+              "id": "cnt-06-e6",
+              "type": "type_reading",
+              "prompt": "Scrivi la pronuncia (romanizzazione) di quest’ora.",
+              "text": "열두 시",
+              "answer": "yeoldu si",
+              "accept": [
+                "yeoldusi"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cnt-07",
+          "slug": "cnt-07",
+          "title": "살 · 층 · 호 — Età, piani, stanze",
+          "titleKo": "살 — 스무 살이에요",
+          "kind": "grammar",
+          "goal": "Dire l’età con i numeri nativi e leggere le etichette di piani e stanze, che vogliono i Sino.",
+          "durationMin": 13,
+          "points": [
+            "살 conta gli anni di età e vuole i numeri nativi: 열 살, 스무 살, 스물세 살.",
+            "Venti è 스무 davanti a 살: 스무 살, non 스물 살; ventuno è 스물한 살.",
+            "층 «piano» e 호 «numero di stanza» sono etichette: vogliono i numeri Sino (삼 층, 삼백이 호).",
+            "La domanda: 몇 살이에요? 몇 층이에요? 몇 호예요?",
+            "Con 살 e 층 il verbo è 이에요 perché finiscono per consonante: 스무 살이에요, 삼 층이에요."
+          ],
+          "vocab": [
+            {
+              "ko": "살",
+              "it": "contatore per gli anni di età",
+              "rr": "sal"
+            },
+            {
+              "ko": "층",
+              "it": "piano di un edificio",
+              "rr": "cheung"
+            },
+            {
+              "ko": "호",
+              "it": "numero di stanza",
+              "rr": "ho"
+            },
+            {
+              "ko": "열 살",
+              "it": "dieci anni",
+              "rr": "yeol sal"
+            },
+            {
+              "ko": "스무 살",
+              "it": "vent’anni",
+              "rr": "seumu sal"
+            },
+            {
+              "ko": "스물한 살",
+              "it": "ventun anni",
+              "rr": "seumulhan sal"
+            },
+            {
+              "ko": "스물세 살",
+              "it": "ventitré anni",
+              "rr": "seumulse sal"
+            },
+            {
+              "ko": "서른 살",
+              "it": "trent’anni",
+              "rr": "seoreun sal"
+            },
+            {
+              "ko": "삼 층",
+              "it": "terzo piano",
+              "rr": "sam cheung"
+            },
+            {
+              "ko": "이 층",
+              "it": "secondo piano",
+              "rr": "i cheung"
+            },
+            {
+              "ko": "삼백이 호",
+              "it": "stanza 302",
+              "rr": "sambaegi ho"
+            },
+            {
+              "ko": "우리 집",
+              "it": "casa mia",
+              "rr": "uri jip"
+            },
+            {
+              "ko": "호텔",
+              "it": "hotel",
+              "rr": "hotel"
+            },
+            {
+              "ko": "방",
+              "it": "stanza, camera",
+              "rr": "bang"
+            },
+            {
+              "ko": "동생",
+              "it": "fratello o sorella minore",
+              "rr": "dongsaeng"
+            }
+          ],
+          "exercises": [
+            {
+              "id": "cnt-07-e1",
+              "type": "reading_mcq",
+              "prompt": "「저는 스물세 살이에요.」 Quanti anni ha?",
+              "options": [
+                "21",
+                "22",
+                "23",
+                "32"
+              ],
+              "answer": "23",
+              "explain": "스물세 = ventitré: 스물 + 세."
+            },
+            {
+              "id": "cnt-07-e2",
+              "type": "fill_blank",
+              "prompt": "Completa con il contatore giusto.",
+              "text": "저는 스무 ___이에요.",
+              "options": [
+                "살",
+                "시",
+                "층",
+                "개"
+              ],
+              "answer": "살"
+            },
+            {
+              "id": "cnt-07-e3",
+              "type": "fill_blank",
+              "prompt": "Completa con il contatore giusto.",
+              "text": "우리 집은 삼 ___이에요.",
+              "options": [
+                "층",
+                "살",
+                "호",
+                "번"
+              ],
+              "answer": "층",
+              "explain": "I piani vogliono i Sino: 삼 층."
+            },
+            {
+              "id": "cnt-07-e4",
+              "type": "reading_mcq",
+              "prompt": "Quale frase dice «ho vent’anni»?",
+              "options": [
+                "저는 스무 살이에요.",
+                "저는 스물 살이에요.",
+                "저는 이십 살이에요.",
+                "저는 스무 살예요."
+              ],
+              "answer": "저는 스무 살이에요.",
+              "explain": "Davanti a 살, 스물 diventa 스무; il verbo è 이에요."
+            },
+            {
+              "id": "cnt-07-e5",
+              "type": "order_words",
+              "prompt": "Metti in ordine: «Casa mia è al terzo piano.»",
+              "words": [
+                "우리",
+                "집은",
+                "삼",
+                "층이에요"
+              ],
+              "answer": "우리 집은 삼 층이에요"
+            },
+            {
+              "id": "cnt-07-e6",
+              "type": "type_meaning",
+              "prompt": "Traduci in italiano.",
+              "text": "스물한 살",
+              "answer": "ventun anni",
+              "accept": [
+                "ventuno anni"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cnt-08",
+          "slug": "cnt-08",
+          "title": "번 · 번째 · 씩 — Volte, ordine, a testa",
+          "titleKo": "번 — 한 번, 첫 번째",
+          "kind": "grammar",
+          "goal": "Dire quante volte, mettere in ordine e distribuire («uno a testa») con 번, 번째 e 씩.",
+          "durationMin": 14,
+          "points": [
+            "번 «volta» vuole i numeri nativi: 한 번, 두 번, 세 번; 다시 한 번 «ancora una volta».",
+            "Come etichetta di numero (autobus, tavolo) 번 è Sino: 삼 번 «il numero tre».",
+            "번째 forma gli ordinali: 첫 번째, 두 번째, 세 번째, 다섯 번째.",
+            "첫 «primo» è irregolare: non si dice 한 번째.",
+            "-씩 significa «a testa, per volta»: 하나씩, 둘씩, 한 개씩.",
+            "La domanda: 몇 번이에요? «quante volte? / quale numero?» e 몇 번째예요? «il quale?»."
+          ],
+          "vocab": [
+            {
+              "ko": "번",
+              "it": "volta; numero",
+              "rr": "beon"
+            },
+            {
+              "ko": "번째",
+              "it": "suffisso degli ordinali",
+              "rr": "beonjjae"
+            },
+            {
+              "ko": "씩",
+              "it": "a testa, per volta",
+              "rr": "ssik"
+            },
+            {
+              "ko": "한 번",
+              "it": "una volta",
+              "rr": "han beon"
+            },
+            {
+              "ko": "두 번",
+              "it": "due volte",
+              "rr": "du beon"
+            },
+            {
+              "ko": "세 번",
+              "it": "tre volte",
+              "rr": "se beon"
+            },
+            {
+              "ko": "첫 번째",
+              "it": "il primo",
+              "rr": "cheot beonjjae"
+            },
+            {
+              "ko": "두 번째",
+              "it": "il secondo",
+              "rr": "du beonjjae"
+            },
+            {
+              "ko": "세 번째",
+              "it": "il terzo",
+              "rr": "se beonjjae"
+            },
+            {
+              "ko": "다시",
+              "it": "di nuovo",
+              "rr": "dasi"
+            },
+            {
+              "ko": "하나씩",
+              "it": "uno a testa",
+              "rr": "hanassik"
+            },
+            {
+              "ko": "둘씩",
+              "it": "due a testa",
+              "rr": "dulssik"
+            },
+            {
+              "ko": "한 개씩",
+              "it": "una cosa a testa",
+              "rr": "han gae ssik"
+            },
+            {
+              "ko": "영화",
+              "it": "film",
+              "rr": "yeonghwa"
+            },
+            {
+              "ko": "말해 주세요",
+              "it": "me lo dica, per favore",
+              "rr": "malhae juseyo"
+            }
+          ],
+          "exercises": [
+            {
+              "id": "cnt-08-e1",
+              "type": "reading_mcq",
+              "prompt": "「이 영화를 두 번 봤어요.」 Quante volte ha visto il film?",
+              "options": [
+                "Una",
+                "Due",
+                "Tre",
+                "Quattro"
+              ],
+              "answer": "Due"
+            },
+            {
+              "id": "cnt-08-e2",
+              "type": "fill_blank",
+              "prompt": "Completa con il numero giusto.",
+              "text": "다시 ___ 번 말해 주세요.",
+              "options": [
+                "한",
+                "일",
+                "하나",
+                "첫"
+              ],
+              "answer": "한",
+              "explain": "번 «volta» vuole il nativo: 한 번."
+            },
+            {
+              "id": "cnt-08-e3",
+              "type": "fill_blank",
+              "prompt": "Completa con la parola giusta.",
+              "text": "첫 ___ 사람이에요.",
+              "options": [
+                "번째",
+                "번",
+                "씩",
+                "개"
+              ],
+              "answer": "번째",
+              "explain": "첫 번째 = il primo."
+            },
+            {
+              "id": "cnt-08-e4",
+              "type": "order_words",
+              "prompt": "Metti in ordine: «Datene una a testa, per favore.»",
+              "words": [
+                "한",
+                "개씩",
+                "주세요"
+              ],
+              "answer": "한 개씩 주세요"
+            },
+            {
+              "id": "cnt-08-e5",
+              "type": "reading_mcq",
+              "prompt": "Quale significa «tre volte»?",
+              "options": [
+                "세 번",
+                "삼 번",
+                "세 번째",
+                "셋 번"
+              ],
+              "answer": "세 번",
+              "explain": "번 «volta» vuole il nativo 세 번; 삼 번 è invece «il numero tre»."
+            },
+            {
+              "id": "cnt-08-e6",
+              "type": "type_meaning",
+              "prompt": "Traduci in italiano.",
+              "text": "둘씩",
+              "answer": "due a testa",
+              "accept": [
+                "due ciascuno",
+                "due per uno",
+                "a due a due",
+                "due alla volta"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cnt-09",
+          "slug": "cnt-09",
+          "title": "Uno scontrino al caffè",
+          "titleKo": "영수증 — 카페",
+          "kind": "reading",
+          "goal": "Leggere uno scontrino vero: quantità, contatori e totale in won.",
+          "durationMin": 12,
+          "points": [
+            "In uno scontrino compaiono i contatori scritti accanto ai numeri: 2잔, 1개.",
+            "원 è il won: 사천 원 = 4.000 won; 만 사천오백 원 = 14.500 won.",
+            "모두 significa «in tutto»: è la riga del totale.",
+            "Qui i numeri si leggono Sino, tranne quelli davanti al contatore 잔.",
+            "Leggere uno scontrino serve a controllare di aver capito quello che si è ordinato."
+          ],
+          "vocab": [
+            {
+              "ko": "영수증",
+              "it": "scontrino",
+              "rr": "yeongsujeung"
+            },
+            {
+              "ko": "주문",
+              "it": "ordine",
+              "rr": "jumun"
+            },
+            {
+              "ko": "아메리카노",
+              "it": "americano, caffè lungo",
+              "rr": "amerikano"
+            },
+            {
+              "ko": "치즈케이크",
+              "it": "cheesecake",
+              "rr": "chijeukeikeu"
+            },
+            {
+              "ko": "잔",
+              "it": "bicchiere, tazza",
+              "rr": "jan"
+            },
+            {
+              "ko": "개",
+              "it": "contatore per le cose",
+              "rr": "gae"
+            },
+            {
+              "ko": "원",
+              "it": "won (moneta coreana)",
+              "rr": "won"
+            },
+            {
+              "ko": "모두",
+              "it": "in tutto",
+              "rr": "modu"
+            },
+            {
+              "ko": "감사합니다",
+              "it": "grazie",
+              "rr": "gamsahamnida"
+            },
+            {
+              "ko": "다음에",
+              "it": "la prossima volta",
+              "rr": "daeume"
+            },
+            {
+              "ko": "또",
+              "it": "di nuovo",
+              "rr": "tto"
+            },
+            {
+              "ko": "오세요",
+              "it": "venga",
+              "rr": "oseyo"
+            }
+          ],
+          "passages": [
+            {
+              "title": "카페 영수증",
+              "lines": [
+                "주문: 아메리카노 두 잔, 치즈케이크 한 개",
+                "아메리카노 2잔 8,000원",
+                "치즈케이크 1개 6,500원",
+                "모두 만 사천오백 원입니다.",
+                "감사합니다. 다음에 또 오세요."
+              ],
+              "gloss": [
+                {
+                  "ko": "영수증",
+                  "it": "scontrino",
+                  "rr": "yeongsujeung"
+                },
+                {
+                  "ko": "주문",
+                  "it": "ordine",
+                  "rr": "jumun"
+                },
+                {
+                  "ko": "잔",
+                  "it": "bicchiere, tazza",
+                  "rr": "jan"
+                },
+                {
+                  "ko": "모두",
+                  "it": "in tutto",
+                  "rr": "modu"
+                },
+                {
+                  "ko": "원",
+                  "it": "won",
+                  "rr": "won"
+                }
+              ],
+              "translation": "Ordine: due americani, una fetta di cheesecake. Americani 2 tazze 8.000 won. Cheesecake 1 pezzo 6.500 won. In tutto sono 14.500 won. Grazie. Torni la prossima volta."
+            }
+          ],
+          "exercises": [
+            {
+              "id": "cnt-09-e1",
+              "type": "reading_mcq",
+              "prompt": "「주문: 아메리카노 두 잔, 치즈케이크 한 개」 Quante bevande ci sono?",
+              "options": [
+                "Una",
+                "Due",
+                "Tre",
+                "Quattro"
+              ],
+              "answer": "Due"
+            },
+            {
+              "id": "cnt-09-e2",
+              "type": "reading_mcq",
+              "prompt": "Quanto costa tutto?",
+              "options": [
+                "8.000 won",
+                "6.500 won",
+                "14.500 won",
+                "45.000 won"
+              ],
+              "answer": "14.500 won",
+              "explain": "아메리카노 8.000 + 치즈케이크 6.500 = 14.500 won."
+            },
+            {
+              "id": "cnt-09-e3",
+              "type": "reading_mcq",
+              "prompt": "Quanti pezzi di torta ci sono?",
+              "options": [
+                "Uno",
+                "Due",
+                "Tre",
+                "Nessuno"
+              ],
+              "answer": "Uno"
+            },
+            {
+              "id": "cnt-09-e4",
+              "type": "type_meaning",
+              "prompt": "Traduci in italiano la riga del totale.",
+              "text": "모두 만 사천오백 원입니다.",
+              "answer": "in tutto sono 14.500 won",
+              "accept": [
+                "in tutto 14.500 won",
+                "sono 14.500 won in tutto",
+                "il totale è 14.500 won"
+              ]
+            },
+            {
+              "id": "cnt-09-e5",
+              "type": "reading_mcq",
+              "prompt": "Nel testo 2잔 si legge usando i numeri…",
+              "options": [
+                "nativi: 두 잔",
+                "Sino: 이 잔",
+                "nativi: 둘 잔",
+                "Sino: 이 잔에"
+              ],
+              "answer": "nativi: 두 잔",
+              "explain": "잔 è un contatore nativo: 2잔 si legge 두 잔."
+            },
+            {
+              "id": "cnt-09-e6",
+              "type": "type_reading",
+              "prompt": "Scrivi la pronuncia (romanizzazione) di «due tazze».",
+              "text": "두 잔",
+              "answer": "du jan",
+              "accept": [
+                "dujan"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cnt-10",
+          "slug": "cnt-10",
+          "title": "Una prenotazione al ristorante",
+          "titleKo": "예약 — 식당",
+          "kind": "reading",
+          "goal": "Leggere una prenotazione: ora, persone, porzioni, piano e numero del tavolo.",
+          "durationMin": 12,
+          "points": [
+            "In una prenotazione convivono ore native (일곱 시) e minuti Sino (삼십 분).",
+            "명 conta le persone, 인분 le porzioni: sono due contatori diversi.",
+            "이 층 è il secondo piano; 삼 번 è il numero tre, con i Sino perché è un’etichetta.",
+            "주문했습니다 è il passato formale di 주문하다 «ordinare».",
+            "늦으시면 전화 주세요: «se siete in ritardo, telefonate»."
+          ],
+          "vocab": [
+            {
+              "ko": "예약",
+              "it": "prenotazione",
+              "rr": "yeyak"
+            },
+            {
+              "ko": "식당",
+              "it": "ristorante",
+              "rr": "sikdang"
+            },
+            {
+              "ko": "시간",
+              "it": "ora, orario",
+              "rr": "sigan"
+            },
+            {
+              "ko": "명",
+              "it": "contatore per le persone",
+              "rr": "myeong"
+            },
+            {
+              "ko": "인분",
+              "it": "porzione",
+              "rr": "inbun"
+            },
+            {
+              "ko": "자리",
+              "it": "posto, tavolo",
+              "rr": "jari"
+            },
+            {
+              "ko": "테이블",
+              "it": "tavolo",
+              "rr": "teibeul"
+            },
+            {
+              "ko": "층",
+              "it": "piano",
+              "rr": "cheung"
+            },
+            {
+              "ko": "번",
+              "it": "numero",
+              "rr": "beon"
+            },
+            {
+              "ko": "주문했습니다",
+              "it": "ho ordinato",
+              "rr": "jumunhaetseumnida"
+            },
+            {
+              "ko": "김치찌개",
+              "it": "stufato di kimchi",
+              "rr": "gimchijjigae"
+            },
+            {
+              "ko": "늦다",
+              "it": "essere in ritardo",
+              "rr": "neutda"
+            },
+            {
+              "ko": "전화",
+              "it": "telefono, chiamata",
+              "rr": "jeonhwa"
+            }
+          ],
+          "passages": [
+            {
+              "title": "식당 예약",
+              "lines": [
+                "예약 시간은 오후 일곱 시 삼십 분입니다.",
+                "네 명입니다.",
+                "삼겹살 이 인분과 김치찌개 한 그릇을 주문했습니다.",
+                "자리는 이 층 삼 번 테이블입니다.",
+                "늦으시면 전화 주세요."
+              ],
+              "gloss": [
+                {
+                  "ko": "예약",
+                  "it": "prenotazione",
+                  "rr": "yeyak"
+                },
+                {
+                  "ko": "자리",
+                  "it": "posto",
+                  "rr": "jari"
+                },
+                {
+                  "ko": "인분",
+                  "it": "porzione",
+                  "rr": "inbun"
+                },
+                {
+                  "ko": "그릇",
+                  "it": "ciotola",
+                  "rr": "geureut"
+                },
+                {
+                  "ko": "늦다",
+                  "it": "essere in ritardo",
+                  "rr": "neutda"
+                }
+              ],
+              "translation": "La prenotazione è per le sette e mezza di sera. Siamo quattro. Abbiamo ordinato due porzioni di samgyeopsal e una ciotola di stufato di kimchi. Il tavolo è al secondo piano, il numero tre. Se siete in ritardo, telefonate."
+            }
+          ],
+          "exercises": [
+            {
+              "id": "cnt-10-e1",
+              "type": "reading_mcq",
+              "prompt": "«예약 시간은 오후 일곱 시 삼십 분입니다.» A che ora è la prenotazione?",
+              "options": [
+                "7:13",
+                "7:30",
+                "17:03",
+                "19:13"
+              ],
+              "answer": "7:30"
+            },
+            {
+              "id": "cnt-10-e2",
+              "type": "reading_mcq",
+              "prompt": "«네 명입니다.» Quante persone sono prenotate?",
+              "options": [
+                "Due",
+                "Tre",
+                "Quattro",
+                "Cinque"
+              ],
+              "answer": "Quattro"
+            },
+            {
+              "id": "cnt-10-e3",
+              "type": "reading_mcq",
+              "prompt": "Quante porzioni di 삼겹살 sono state ordinate?",
+              "options": [
+                "Una",
+                "Due",
+                "Tre",
+                "Quattro"
+              ],
+              "answer": "Due",
+              "explain": "삼겹살 이 인분: due porzioni, con il numero Sino 이."
+            },
+            {
+              "id": "cnt-10-e4",
+              "type": "reading_mcq",
+              "prompt": "Dove si trova il tavolo?",
+              "options": [
+                "Primo piano, tavolo 2",
+                "Secondo piano, tavolo 3",
+                "Terzo piano, tavolo 2",
+                "Secondo piano, tavolo 32"
+              ],
+              "answer": "Secondo piano, tavolo 3",
+              "explain": "이 층 = secondo piano; 삼 번 = numero tre."
+            },
+            {
+              "id": "cnt-10-e5",
+              "type": "type_meaning",
+              "prompt": "Traduci in italiano.",
+              "text": "늦으시면 전화 주세요.",
+              "answer": "se siete in ritardo, telefonate",
+              "accept": [
+                "se sei in ritardo, chiama",
+                "se siete in ritardo chiamate",
+                "se arrivate tardi, telefonate",
+                "se fa tardi mi chiami"
+              ]
+            },
+            {
+              "id": "cnt-10-e6",
+              "type": "reading_mcq",
+              "prompt": "Perché «이 인분» e non «두 인분»?",
+              "options": [
+                "Perché 인분 vuole i numeri Sino",
+                "Perché due si dice sempre 이",
+                "Perché 인분 vuole i numeri nativi",
+                "Perché è un errore del testo"
+              ],
+              "answer": "Perché 인분 vuole i numeri Sino"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

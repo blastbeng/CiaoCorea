@@ -204,6 +204,11 @@ export function VocabularyPage() {
                   >
                     {entry.courseTitle} · {entry.lessonTitle}
                   </Link>
+                  {/^[가-힣]+다$/.test(entry.ko) ? (
+                    <Link className="faint small" to={`/coniuga?w=${encodeURIComponent(entry.ko)}`}>
+                      Vedi le forme coniugate →
+                    </Link>
+                  ) : null}
                 </article>
               ))}
             </section>

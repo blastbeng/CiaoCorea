@@ -11,13 +11,15 @@ compilato in WebAssembly, tenuto in IndexedDB). Il computer che apre il sito
 tiene i propri dati: niente registrazione, niente email, niente password — né da
 creare, né da ricordare, né da recuperare.
 
-Oltre al percorso ci sono sei stanze: il **dizionario** di tutte le parole
+Oltre al percorso ci sono sette stanze: il **dizionario** di tutte le parole
 del curricolo, il **repertorio** che raccoglie le spiegazioni delle lezioni come
 un indice cercabile («dove era -지만?»), la **coda di ripasso** (SRS) che dopo
 due passaggi chiede di scrivere la parola, il **quaderno** dove si scrivono
 frasi proprie confrontandole con un modello, la **banca degli errori** con gli
-esercizi sbagliati da rifare, e la pagina dei **progressi**, con le statistiche
-complessive e il nome con cui essere chiamati. In cima alla home c'è il **piano
+esercizi sbagliati da rifare, la pagina dei **progressi**, con le statistiche
+complessive e il nome con cui essere chiamati, e infine **Coniuga**, dove si
+cerca un verbo e si vede la sua tabella con la regola che la spiega. In cima
+alla home c'è il **piano
 di oggi**: le poche cose da fare, in ordine, sopra all'obiettivo della settimana
 che si sceglie lo studente.
 
@@ -48,6 +50,7 @@ progressi, ripassi e tentativi non si perdono nel passaggio.
 | `/alfabeto` | le lettere dell'hangul: consonanti e vocali con nome e suono, il compositore di sillabe, la tabella delle sillabe e i sette suoni finali |
 | `/pronuncia` | il laboratorio della pronuncia: si scrive una parola e si vede la lettura ricostruita, le sillabe scomposte e le regole che l'hanno cambiata |
 | `/dizionario` | ricerca nelle parole del curricolo, con filtri per corso |
+| `/coniuga` | si scrive un verbo o un aggettivo e si vede la tabella delle forme, con la classe della radice che le spiega |
 | `/analisi` | un testo incollato, parola per parola: quali parole il corso conosce già, quali restano da scoprire e come si legge ognuna |
 | `/repertorio` | le spiegazioni delle lezioni in indice: si cerca una forma e si torna alla lezione |
 | `/quaderno` | le consegne di scrittura: si scrive la frase, poi si confronta con il modello |
@@ -75,7 +78,7 @@ Monorepo npm workspaces, nessun servizio esterno e nessuna dipendenza da AI.
 | `packages/store` | il «server» dentro il browser: SQLite via `sql.js`, repo, rotte, sessioni |
 | `packages/shared` | Tipi condivisi fra store e UI |
 | `packages/curriculum` | Schema zod e contenuti dei corsi (JSON) |
-| `packages/engine` | Correzione esercizi, sblocco lezioni, ripasso SRS, piano, romanizzazione e lettere dell'hangul |
+| `packages/engine` | Correzione esercizi, sblocco lezioni, ripasso SRS, piano, romanizzazione, lettere dell'hangul e coniugazione dei verbi |
 
 Scelte che vale la pena ricordare:
 
@@ -298,6 +301,14 @@ del locale, una notizia breve. Ogni lezione porta il brano in coreano con il
 glossario delle parole difficili, e sotto gli esercizi di comprensione; la
 traduzione italiana del brano arriva solo quando la lezione risulta chiusa.
 
+Il decimo, `semi`, è il corso dei contatori: 개 per le cose, 명 e 분 per le
+persone, 마리 per gli animali, 권·장·대 per libri, fogli e veicoli, 잔·병·그릇·인분
+per la tavola, 시·분 per l'ora, 살·층·호 per età, piani e stanze, 번·번째·씩 per le
+volte, gli ordinali e «a testa». Insegna la cosa che i numeri da soli non dicono:
+davanti al contatore il numero cambia forma (한 개, 두 명, 스무 살) e a volte
+cambia sistema (세 시 ma 이십 분; 두 잔 ma 이 인분). Chiude con due letture vere,
+uno scontrino e una prenotazione.
+
 Il nono, `discorsi`, è il corso che insegna a non fermarsi alla prima frase:
 condizione con -(으)면, concessione con -아/어도, causa con -기 때문에, immediatezza
 con -자마자, contemporaneità con -는 동안, scopo con -(으)러 가다, domande
@@ -309,10 +320,20 @@ del quaderno.
 La prima lezione di ogni corso è sempre aperta, così chi ha già basi può entrare
 da lì; le successive seguono l'ordine del corso.
 
-In tutto: nove corsi, 66 lezioni, 748 voci di lessico, 28 brani di lettura, 19
-dialoghi e 27 consegne di scrittura. Il dizionario consultabile arriva a 832
+In tutto: dieci corsi, 76 lezioni, 888 voci di lessico, 30 brani di lettura, 19
+dialoghi e 27 consegne di scrittura. Il dizionario consultabile arriva a 962
 voci perché comprende anche le parole dei gloss, che sono quelle che si
 incontrano leggendo.
+
+La pagina **Coniuga** (`/coniuga`) è il ponte fra il dizionario e le lezioni:
+si scrive la voce intera (먹다, 살다, 모르다) e si vedono le nove forme che il
+percorso insegna — presente, passato, causa, collegamento, contrasto, formale,
+futuro e i due modificanti — con la romanizzazione e l'ascolto. Accanto c'è la
+classe della radice (regolare, ㄷ, ㄹ, ㅅ, ㅂ, ㅎ, 르, ㅡ, 하다) con la regola che
+spiega perché le forme sono proprio quelle. Le forme vengono da un motore
+(`packages/engine/src/conjugate.ts`) fissato da test che riportano i paradigmi
+verificati voce per voce: dove una classe non permette di dare una forma con
+sicurezza, la pagina scrive «—» invece di inventarla.
 
 ## Il piano della settimana
 

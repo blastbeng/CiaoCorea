@@ -117,6 +117,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           <NavLink to="/alfabeto">Alfabeto</NavLink>
           <NavLink to="/pronuncia">Pronuncia</NavLink>
           <NavLink to="/dizionario">Dizionario</NavLink>
+          <NavLink to="/coniuga">Coniuga</NavLink>
           <NavLink to="/analisi">Analisi</NavLink>
           <NavLink to="/repertorio">Repertorio</NavLink>
           <NavLink to="/quaderno">Quaderno</NavLink>
