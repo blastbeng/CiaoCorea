@@ -52,10 +52,26 @@ function progressMap(ctx: Ctx, userId: string, courseSlug: string): ProgressRow[
   return getProgress(ctx.db, userId, courseSlug);
 }
 
-function courseViews(ctx: Ctx, userId: string): CourseView[] {
-  return getCourses().map((course) =>
-    buildCourseView({ course, progress: progressMap(ctx, userId, course.slug) }),
-  );
+/**
+ * Le viste dei corsi con la regola dei brani già applicata. La politica sta
+ * qui e non nella pagina: se la traduzione di una lezione non chiusa dovesse
+ * uscire dal server per una rotta dimenticata, sarebbe già scritta nella
+ * risposta che lo studente riceve.
+ */
+export function courseViews(ctx: Ctx, userId: string): CourseView[] {
+  return getCourses().map((course) => {
+    const view = buildCourseView({
+      course,
+      progress: progressMap(ctx, userId, course.slug),
+    });
+    return {
+      ...view,
+      units: view.units.map((unit) => ({
+        ...unit,
+        lessons: unit.lessons.map(withPassagePolicy),
+      })),
+    };
+  });
 }
 
 /**

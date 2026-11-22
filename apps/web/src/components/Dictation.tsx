@@ -131,7 +131,7 @@ export function Dictation({ items, lessonId }: { items: VocabItem[]; lessonId: s
                 <button
                   type="button"
                   className="btn btn--ghost"
-                  onClick={() => speakKorean(current.ko, 0.6)}
+                  onClick={() => speakKorean(current.ko, { rate: 0.6 })}
                 >
                   Più lento
                 </button>

@@ -15,6 +15,7 @@ import type {
   GrammarResponse,
   LessonDetail,
   ProfileResponse,
+  ReadingsResponse,
   MistakeAnswerResponse,
   MistakesResponse,
   ReviewCheckResponse,
@@ -119,6 +120,9 @@ export const api = {
   /** Corregge la sfida senza toccare il progresso delle lezioni. */
   submitChallenge: (answers: SubmitAnswer[], durationMs: number) =>
     request<ChallengeResultResponse>('POST', '/api/challenge', { answers, durationMs }),
+
+  /** Tutti i brani del percorso, con la traduzione solo dove è già lecita. */
+  readings: () => request<ReadingsResponse>('GET', '/api/readings'),
 
   /** Solo il numero dei ripassi in scadenza, per il badge nella shell. */
   due: () => request<DueCountResponse>('GET', '/api/progress/due'),

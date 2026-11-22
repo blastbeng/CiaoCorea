@@ -280,7 +280,7 @@ export function ExerciseInput({ exercise, value, onChange, onSubmit, disabled }:
               type="button"
               className="btn btn--sm"
               disabled={disabled}
-              onClick={() => speakKorean(exercise.speak, 0.55)}
+              onClick={() => speakKorean(exercise.speak, { rate: 0.55 })}
               aria-label="Ascolta la frase lentamente"
             >
               🐢 Piano

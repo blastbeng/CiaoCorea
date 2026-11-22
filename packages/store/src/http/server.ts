@@ -8,6 +8,7 @@ import { registerGrammarRoutes } from '../routes/grammar';
 import { registerLessonRoutes } from '../routes/lessons';
 import { registerMistakeRoutes } from '../routes/mistakes';
 import { registerProfileRoutes } from '../routes/profile';
+import { registerReadingRoutes } from '../routes/readings';
 import { registerSyncRoutes } from '../routes/sync';
 import { registerVocabularyRoutes } from '../routes/vocabulary';
 import { registerWritingRoutes } from '../routes/writing';
@@ -22,6 +23,7 @@ export async function buildStoreApp(ctx: Ctx): Promise<LocalApp> {
 
   await registerAuthRoutes(app, ctx);
   await registerLessonRoutes(app, ctx);
+  await registerReadingRoutes(app, ctx);
   await registerChallengeRoutes(app, ctx);
   await registerDialogueRoutes(app, ctx);
   await registerVocabularyRoutes(app, ctx);

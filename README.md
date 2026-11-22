@@ -48,6 +48,7 @@ progressi, ripassi e tentativi non si perdono nel passaggio.
 | `/corso/:slug/salta` | la prova che chiude un corso intero, per chi lo conosce già |
 | `/corso/:slug/lezione/:lessonId` | teoria, brani di lettura, lessico, esercizi, test di salto |
 | `/dialoghi` e `/dialoghi/:slug` | conversazione scritta a copione |
+| `/letture` | la sala di lettura: tutti i brani del percorso, filtrabili per livello e cercabili, con glossario e traduzione dove la lezione è già chiusa |
 | `/alfabeto` | le lettere dell'hangul: consonanti e vocali con nome e suono, il compositore di sillabe, la tabella delle sillabe e i sette suoni finali |
 | `/scrittura` | il quaderno della mano: si ripassa una lettera o una parola con il dito o il mouse, e l'app dice quanta parte della forma è coperta e quanto è finito fuori |
 | `/numeri` | il trainer dei numeri: le due serie, i contatori, che ore sono, i prezzi in won e i numeri di telefono, con le risposte sbagliate che sono gli errori veri (삼 권 invece di 세 권) |
@@ -71,6 +72,12 @@ blocco (한 = ㅎ 히읗 + ㅏ 아 + ㄴ 니은). I nomi delle lettere sono quel
 ufficiali sudcoreani (기역, 디귿, 시옷), raccolti in `packages/engine/src/jamo.ts`
 e verificati dai test: nessuna scheda può mostrare una lettera e pronunciarne
 un'altra.
+
+L'audio è la voce coreana del dispositivo, non una voce qualsiasi: se il
+browser non ne ha una, il pulsante non legge l'hangul con la voce italiana (che
+insegnerebbe suoni inesistenti) — resta muto e spiega come installare una voce
+`ko-KR`. La scelta della voce e il messaggio stanno in
+`apps/web/src/pronounce.ts`, provati da `pronounce.test.ts`.
 
 ## Come è fatto
 
@@ -281,6 +288,7 @@ store dentro la scheda. Richiedono la sessione tutte tranne `bootstrap`,
 | POST | `/api/dialogues/:slug/restart` | riparte da capo, azzerando il progresso del dialogo |
 | GET | `/api/writing` | consegne del quaderno, con lo stato di sblocco e l'ultima prova: senza modello |
 | POST | `/api/writing/:promptId` | confronta il testo con il modello: `verdict`, parole mancanti, modello e nota |
+| GET | `/api/readings` | tutti i brani con corso, lezione e stato; la traduzione è vuota finché la lezione non è chiusa |
 | GET | `/api/mistakes` | banca degli errori: esercizi sbagliati (senza soluzione), lezione di origine, `wrongCount` |
 | POST | `/api/mistakes/:exerciseId` | rifà un esercizio della banca: correzione, `wrongCount` (`null` = uscito), conteggi |
 | GET | `/api/challenge` | la sfida del giorno: dodici esercizi presi solo dalle lezioni già chiuse, scelti in modo stabile per utente e data |
@@ -422,6 +430,24 @@ sta andando la settimana.
 - Date in UTC, settimana da lunedì, `daysLeft` comprende oggi.
 - Quando non c'è niente in scadenza il piano non inventa compiti: resta sulla
   riga della settimana, che è la cosa vera da sapere.
+
+## La sala di lettura
+
+I brani non vivono solo dentro la loro lezione. `/letture` li raccoglie tutti —
+trentaquattro, dai primi testi in hangul alle letture B2 — nell'ordine del
+percorso, con il livello e la lezione di provenienza accanto.
+
+- Si filtra per livello e si cerca nel coreano, nel titolo, nel glossario e
+  nella traduzione: `교통` trova i brani che parlano di trasporti anche se la
+  parola non è nel titolo.
+- Ogni parola resta cliccabile come nella lezione, e il brano intero si può
+  ascoltare con la voce coreana.
+- La traduzione segue la regola della lezione, non quella della pagina: arriva
+  dal server solo per i brani di lezioni superate o saltate. Anche la vista del
+  corso (`/api/courses/:slug`) applica la stessa regola, così la traduzione non
+  esce da nessuna rotta laterale.
+- Il glossario è chiuso in un `<details>`: chi legge vuole il testo, non due
+  elenchi sotto ogni brano.
 
 ## Conversazione
 

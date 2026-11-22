@@ -271,11 +271,24 @@ button {
 
 .app-nav {
   display: flex;
+  /* Le voci sono ormai sedici: su un portatile stretto non entrano accanto al
+     marchio e al profilo. Invece di sfondare la pagina — che la faceva
+     scorrere di lato e tagliava il marchio — la barra si restringe e le voci
+     che non entrano scorrono dentro di lei. */
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
   gap: 0.25rem;
   margin-left: auto;
 }
 
+.app-nav::-webkit-scrollbar {
+  display: none;
+}
+
 .app-nav a {
+  flex: none;
+  white-space: nowrap;
   padding: 0.4rem 0.7rem;
   border-radius: 999px;
   color: var(--ink-soft);
@@ -1346,10 +1359,11 @@ a.lesson-row:hover {
   font-size: 1.1rem;
 }
 
-/* Sette voci più il marchio non stanno in una riga sotto i ~1100px: la barra
-   va a capo una volta sola, e le voci scorrono di lato invece di stringersi
-   fino a spezzare le parole. */
-@media (max-width: 1080px) {
+/* Sedici voci più il marchio e il profilo non stanno in una riga sotto i
+   ~1760px: la barra va a capo una volta sola e prende tutta la larghezza, e le
+   voci che non entrano scorrono di lato invece di sfondare la pagina. Sotto i
+   640px il menu diventa un pannello, perché lì nemmeno una riga a capo basta. */
+@media (max-width: 1760px) {
   .app-header {
     flex-wrap: wrap;
     gap: 0.5rem 1rem;
@@ -1375,6 +1389,16 @@ a.lesson-row:hover {
   .app-nav a {
     flex: none;
     white-space: nowrap;
+  }
+
+  /* Un filo più strette: a 1280 le sedici voci devono stare in una riga. */
+  .app-nav {
+    gap: 0.1rem;
+  }
+
+  .app-nav a {
+    padding: 0.4rem 0.55rem;
+    font-size: 0.9rem;
   }
 }
 
@@ -1844,6 +1868,28 @@ a.lesson-row:hover {
   font-style: italic;
 }
 
+/* Nella sala di lettura il glossario e la traduzione si aprono su richiesta:
+ * chi sta leggendo vuole il testo, non due elenchi sotto ogni brano. */
+.reading-gloss {
+  margin: 0 0 0.75rem;
+}
+
+.reading-gloss > summary,
+.passage__it > summary {
+  cursor: pointer;
+  color: var(--ink-soft);
+  list-style-position: inside;
+}
+
+.reading-gloss > summary:hover,
+.passage__it > summary:hover {
+  color: var(--accent);
+}
+
+.reading-gloss .gloss {
+  margin-top: 0.6rem;
+}
+
 /* ---------- piano di studio ---------- */
 
 .plan__week {
@@ -2170,6 +2216,50 @@ textarea.input--ko {
 
 .pronounce:active {
   transform: scale(0.93);
+}
+
+/* Il pulsante muto: il dispositivo non ha una voce coreana. Non lo si
+ * disabilita, perché la voce può comparire dopo — ma non deve più sembrare
+ * che l'audio sia semplicemente rotto. */
+.pronounce--muted {
+  color: var(--warn-ink, #8a5a00);
+  border-style: dashed;
+}
+
+/* L'avviso che spiega il silenzio: sta in basso, come i cookie, ma più
+ * stretto, e si chiude a mano. Non copre il testo che si sta leggendo. */
+.pronounce-note {
+  position: fixed;
+  left: 50%;
+  bottom: 1rem;
+  z-index: 55;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+  justify-content: space-between;
+  width: min(46rem, calc(100% - 2rem));
+  transform: translateX(-50%);
+  padding: 0.8rem 1rem;
+  background: var(--paper-raised);
+  border: 1px solid var(--warn-line, #d9a441);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.pronounce-note p {
+  flex: 1 1 20rem;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .pronounce-note {
+    align-items: stretch;
+  }
+
+  .pronounce-note .btn {
+    width: 100%;
+  }
 }
 
 /* ------------------------------------------------------------------ */

@@ -4,6 +4,7 @@ import { api, PENDING_CHANGED } from '../api';
 import { hasGeneratedUsername, useAuth } from '../auth';
 import { ThemeToggle } from '../theme';
 import { CookieBanner } from './CookieBanner';
+import { PronounceNotice } from './PronounceNotice';
 import { WelcomeDialog } from './WelcomeDialog';
 
 export function AppShell({ children }: { children: ReactNode }) {
@@ -114,6 +115,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             Percorso
           </NavLink>
           <NavLink to="/dialoghi">Conversazione</NavLink>
+          <NavLink to="/letture">Letture</NavLink>
           <NavLink to="/alfabeto">Alfabeto</NavLink>
           <NavLink to="/scrittura">Scrittura</NavLink>
           <NavLink to="/pronuncia">Pronuncia</NavLink>
@@ -232,6 +234,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           tolgono di mezzo da soli. */}
       <WelcomeDialog />
       <CookieBanner />
+      <PronounceNotice />
     </div>
   );
 }

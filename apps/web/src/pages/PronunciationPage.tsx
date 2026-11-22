@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   decomposeSyllable,
   isHangulSyllable,
@@ -8,6 +8,7 @@ import {
   romanizeWord,
 } from '@ciaocorea/engine';
 import { PronounceButton } from '../components/PronounceButton';
+import { koreanVoice, missingVoiceHint, ttsSupported } from '../pronounce';
 
 /**
  * Il laboratorio di pronuncia: si scrive una parola e si vede che cosa dice la
@@ -110,6 +111,19 @@ const SAMPLES = ['꽃이', '좋다', '국민', '신라', '같이', '닭', '값�
 export function PronunciationPage() {
   const [typed, setTyped] = useState('꽃이');
 
+  // Le voci del browser arrivano un attimo dopo il primo render: si rilegge la
+  // lista quando cambia, altrimenti la pagina direbbe "manca la voce" a chi
+  // ce l'ha. `null` = nessuna voce coreana; stringa = il nome di quella scelta.
+  const [voiceName, setVoiceName] = useState<string | null>(null);
+  useEffect(() => {
+    if (!ttsSupported()) return;
+    const refresh = () => setVoiceName(koreanVoice()?.name ?? null);
+    refresh();
+    const synth = window.speechSynthesis;
+    synth.addEventListener('voiceschanged', refresh);
+    return () => synth.removeEventListener('voiceschanged', refresh);
+  }, []);
+
   // Si guarda la prima parola coreana scritta: il resto (spazi, punteggiatura,
   // una traduzione incollata per sbaglio) non serve al laboratorio.
   const word = useMemo(() => typed.match(/[가-힣]+/u)?.[0] ?? '', [typed]);
@@ -127,6 +141,19 @@ export function PronunciationPage() {
           In coreano la scrittura non cambia quando cambia la pronuncia: la parola resta scritta
           com'è, ma le consonanti si incontrano e si trasformano. Qui puoi scrivere una parola e
           vedere le due cose separate — che cosa dice la scrittura e che cosa si sente.
+        </p>
+        <p className="faint small" role="status">
+          {!ttsSupported()
+            ? missingVoiceHint(null)
+            : voiceName
+              ? (
+                  <>
+                    Audio di questo dispositivo: voce coreana <strong>{voiceName}</strong>.
+                  </>
+                )
+              : missingVoiceHint(
+                  typeof navigator === 'undefined' ? null : navigator.language,
+                )}
         </p>
       </header>
 

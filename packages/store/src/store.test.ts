@@ -16,11 +16,13 @@ import type {
   CourseListResponse,
   CourseSkipResponse,
   CourseSkipTest,
+  CourseView,
   DialogueListResponse,
   DueCountResponse,
   LessonDetail,
   MistakesResponse,
   ProfileResponse,
+  ReadingsResponse,
   ReviewCard,
   ReviewResponse,
   VocabularyResponse,
@@ -540,6 +542,57 @@ describe('sfida mista', () => {
       '/api/mistakes',
     );
     expect(mistakes.items.some((item) => item.exercise.id === first.id)).toBe(true);
+  });
+});
+
+describe('sala di lettura', () => {
+  it('raccoglie tutti i brani e nasconde la traduzione finché la lezione è aperta', async () => {
+    await store.bootstrap();
+
+    const all = await store.call<ReadingsResponse>('GET', '/api/readings');
+    expect(all.readings.length).toBeGreaterThan(30);
+    expect(all.withTranslation).toBe(0);
+    expect(all.readings.every((reading) => reading.translation === '')).toBe(true);
+    expect(new Set(all.readings.map((reading) => reading.id)).size).toBe(all.readings.length);
+
+    // I livelli del percorso ci sono tutti, e i conteggi tornano col totale.
+    const levels = all.levels.map((entry) => entry.level);
+    expect(levels).toContain('pre-A1');
+    expect(levels).toContain('B2');
+    expect(all.levels.reduce((sum, entry) => sum + entry.count, 0)).toBe(all.readings.length);
+
+    // hangul-06 porta un brano: chiusa la lezione, la sua traduzione arriva.
+    // Le lezioni si aprono una dopo l'altra, quindi si chiudono in ordine.
+    for (const id of ['hangul-01', 'hangul-02', 'hangul-03', 'hangul-04', 'hangul-05', 'hangul-06']) {
+      await passLesson('hangul', id);
+    }
+    const after = await store.call<ReadingsResponse>('GET', '/api/readings');
+    const own = after.readings.filter((reading) => reading.lesson.id === 'hangul-06');
+    expect(own).toHaveLength(1);
+    expect(own[0]!.translation.length).toBeGreaterThan(0);
+    expect(after.withTranslation).toBe(all.withTranslation + 1);
+  });
+
+  it('non lascia uscire la traduzione nemmeno dalla vista del corso', async () => {
+    await store.bootstrap();
+
+    const course = (await store.call<{ course: CourseView }>('GET', '/api/courses/hangul')).course;
+    const lessons = course.units
+      .flatMap((unit) => unit.lessons)
+      .filter((lesson) => (lesson.passages ?? []).length > 0);
+    expect(lessons.length).toBeGreaterThan(0);
+    for (const lesson of lessons) {
+      for (const passage of lesson.passages ?? []) expect(passage.translation).toBe('');
+    }
+
+    for (const id of ['hangul-01', 'hangul-02', 'hangul-03', 'hangul-04', 'hangul-05', 'hangul-06']) {
+      await passLesson('hangul', id);
+    }
+    const after = (await store.call<{ course: CourseView }>('GET', '/api/courses/hangul')).course;
+    const closed = after.units
+      .flatMap((unit) => unit.lessons)
+      .find((lesson) => lesson.id === 'hangul-06');
+    expect(closed?.passages?.[0]?.translation.length).toBeGreaterThan(0);
   });
 });
 

@@ -583,6 +583,36 @@ export interface CourseView extends Omit<Course, 'units'> {
   stats: CourseStats;
 }
 
+/**
+ * Un brano del percorso, con la sua provenienza. La sala di lettura li mette
+ * tutti in fila: si rilegge quello che si è già visto senza riaprire la
+ * lezione, e si incontra quello che aspetta più avanti.
+ */
+export interface ReadingRef {
+  /** Chiave stabile: `lezione:indice`, unica in tutto il percorso. */
+  id: string;
+  title: string;
+  /** Il livello del corso: A1, A2, B1… */
+  level: string;
+  course: { slug: string; title: string };
+  lesson: { id: string; title: string; state: LessonState };
+  lines: string[];
+  gloss: VocabItem[];
+  /**
+   * Vuota finché la lezione non è superata o saltata: la traduzione non parte
+   * nemmeno dal server, come nella pagina della lezione.
+   */
+  translation: string;
+}
+
+export interface ReadingsResponse {
+  readings: ReadingRef[];
+  /** I livelli presenti, nell'ordine in cui il percorso li attraversa. */
+  levels: Array<{ level: string; count: number }>;
+  /** Quanti brani hanno già la traduzione disponibile. */
+  withTranslation: number;
+}
+
 export interface SessionUser {
   id: string;
   /**
