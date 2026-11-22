@@ -452,12 +452,12 @@
           "id": "b1-07",
           "slug": "si-dice-che",
           "title": "Si dice che…",
-          "titleKo": "-는다고 하다",
+          "titleKo": "-ㄴ/는다고 하다",
           "kind": "grammar",
           "goal": "Riportare notizie e voci sentite da altri, senza spacciarle per cose viste di persona.",
           "durationMin": 30,
           "points": [
-            "Presente: 오다 → 온다 → 온 + 다고 하다: 비가 온다고 해요 = dicono che pioverà.",
+            "Presente: tema + -ㄴ/는다고 하다. Dopo vocale -ㄴ다고 (오다 → 온다고), dopo consonante -는다고 (먹다 → 먹는다고): 비가 온다고 해요 = dicono che pioverà.",
             "Passato: 올랐다 → 올랐 + 다고: dopo una consonante finale la forma è -다고.",
             "Con i nomi: 학생이라고 해요 = dicono che è uno studente.",
             "Riportare prende le distanze: ciò che si dice è sentito, non visto. Nei messaggi di lavoro protegge da malintesi."
@@ -514,7 +514,7 @@
                 "고"
               ],
               "answer": "ㄴ다고",
-              "explain": "오다 → 온다, il tema è 온 (con ㄴ): dopo una consonante finale si usa -다고, non -는다고."
+              "explain": "오다 ha il tema 오, che finisce in vocale: si usa -ㄴ다고, quindi 온다고. -는다고 si usa dopo una consonante finale (먹는다고)."
             },
             {
               "id": "ex-b1-07-2",

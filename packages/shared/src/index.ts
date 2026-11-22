@@ -286,6 +286,35 @@ export interface CourseSkipResponse {
 }
 
 /**
+ * Una domanda della sfida mista: l'esercizio arriva senza soluzione, con la
+ * lezione e il corso da cui viene. Serve a non perdere il filo: se sbagli,
+ * sai dove tornare a studiare.
+ */
+export type ChallengeExercise = PublicExercise & {
+  course: { slug: string; title: string; level: string };
+  lesson: { id: string; title: string };
+};
+
+export interface ChallengeResponse {
+  exercises: ChallengeExercise[];
+  /** Lezioni già chiuse da cui la sfida può pescare. */
+  availableLessons: number;
+  /** Esercizi disponibili in tutto: sotto una soglia la sfida è troppo corta. */
+  availableExercises: number;
+  /** La data che ha generato questa selezione: cambiando giorno, cambia la sfida. */
+  day: string;
+}
+
+export interface ChallengeResultResponse {
+  score: number;
+  correct: number;
+  total: number;
+  results: ExerciseResult[];
+  /** Quante risposte sbagliate sono entrate nella banca degli errori. */
+  wrong: number;
+}
+
+/**
  * Le due direzioni in cui una parola può tornare. `read` è il riconoscimento
  * (coreano → italiano, con tre pulsanti di autogiudizio); `write` è la
  * produzione (italiano → coreano scritto), che si corregge da sola e non ha

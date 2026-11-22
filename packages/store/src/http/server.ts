@@ -2,6 +2,7 @@ import { LocalApp } from './router';
 import type { Ctx } from './context';
 import { registerAnalysisRoutes } from '../routes/analysis';
 import { registerAuthRoutes } from '../routes/auth';
+import { registerChallengeRoutes } from '../routes/challenge';
 import { registerDialogueRoutes } from '../routes/dialogues';
 import { registerGrammarRoutes } from '../routes/grammar';
 import { registerLessonRoutes } from '../routes/lessons';
@@ -21,6 +22,7 @@ export async function buildStoreApp(ctx: Ctx): Promise<LocalApp> {
 
   await registerAuthRoutes(app, ctx);
   await registerLessonRoutes(app, ctx);
+  await registerChallengeRoutes(app, ctx);
   await registerDialogueRoutes(app, ctx);
   await registerVocabularyRoutes(app, ctx);
   await registerAnalysisRoutes(app, ctx);

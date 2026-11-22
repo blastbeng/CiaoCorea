@@ -1,0 +1,1260 @@
+{
+  "id": "b2",
+  "slug": "b2",
+  "title": "한국어의 결 — Il tessuto del coreano",
+  "subtitle": "B2 · Riportare, trasformare, sfumare",
+  "level": "B2",
+  "description": "Il passo che separa «capisco la frase» da «capisco chi parla»: discorso indiretto, passivo e causativo, forme che raccontano un'esperienza, concessioni, sfumature del parlato e ipotesi mancate. Ogni forma è spiegata per quello che fa, non solo per come si costruisce.",
+  "units": [
+    {
+      "id": "b2-riportare",
+      "title": "Riportare e raccontare",
+      "purpose": "Ciò che si è sentito e ciò che si è visto non sono la stessa cosa: il coreano ha forme diverse per dirlo.",
+      "lessons": [
+        {
+          "id": "b2-01",
+          "slug": "discorso-indiretto-frasi",
+          "title": "Discorso indiretto: frasi e domande",
+          "titleKo": "-ㄴ/는다고 하다, -냐고 하다",
+          "kind": "grammar",
+          "goal": "Riportare un'affermazione o una domanda sentita da altri, spostando il tempo verbale e distinguendo verbi, aggettivi e nomi.",
+          "durationMin": 35,
+          "points": [
+            "Affermazione con un verbo: tema + -ㄴ/는다고 하다. Dopo vocale -ㄴ다고 (오다 → 온다고), dopo consonante -는다고 (먹다 → 먹는다고).",
+            "Con un aggettivo si usa -다고 하다: 바쁘다 → 바쁘다고 해요. Il nome prende -(이)라고 하다: 학생이라고 해요, 의사라고 해요.",
+            "Passato: -았/었다고 하다 (갔다고 해요). Futuro: -(으)ㄹ 거라고 하다 (갈 거라고 해요).",
+            "Domanda: -냐고 하다. Verbi: 먹냐고 / 먹느냐고. Aggettivi: 바쁘냐고, 좋으냐고. Nomi: 학생이냐고.",
+            "Nel parlato -다고 해요 diventa -대요 e -냐고 해요 diventa -냬요: sono contrazioni da riconoscere, non da usare nello scritto formale.",
+            "Riportare non significa credere: la forma dice chi ha parlato, non se la cosa è vera."
+          ],
+          "vocab": [
+            { "ko": "소식", "it": "notizia, novità", "rr": "sosik" },
+            { "ko": "전하다", "it": "riferire, trasmettere", "rr": "jeonhada" },
+            { "ko": "사실", "it": "fatto, realtà", "rr": "sasil" },
+            { "ko": "확실하다", "it": "essere certo, sicuro", "rr": "hwaksilhada" },
+            { "ko": "직접", "it": "direttamente, di persona", "rr": "jikjeop" },
+            { "ko": "인터뷰", "it": "intervista", "rr": "inteobyu" },
+            { "ko": "질문", "it": "domanda", "rr": "jilmun" },
+            { "ko": "대답", "it": "risposta", "rr": "daedap" }
+          ],
+          "exercises": [
+            {
+              "id": "ex-b2-01-1",
+              "type": "fill_blank",
+              "prompt": "Completa: «Dicono che domani piove».",
+              "text": "내일 비가 오___ 해요.",
+              "options": ["ㄴ다고", "는다고", "다고", "라고"],
+              "answer": "ㄴ다고",
+              "explain": "오다 ha il tema 오, che finisce in vocale: -ㄴ다고, quindi 온다고 해요. -는다고 si usa dopo una consonante finale."
+            },
+            {
+              "id": "ex-b2-01-2",
+              "type": "fill_blank",
+              "prompt": "Completa: «Dicono che mangia spesso kimchi».",
+              "text": "김치를 자주 먹___ 해요.",
+              "options": ["는다고", "ㄴ다고", "다고", "냐고"],
+              "answer": "는다고",
+              "explain": "먹다 ha il tema 먹, che finisce in consonante: -는다고, quindi 먹는다고 해요."
+            },
+            {
+              "id": "ex-b2-01-3",
+              "type": "fill_blank",
+              "prompt": "Completa: «Dicono che in questi giorni è occupato».",
+              "text": "요즘 바쁘___ 해요.",
+              "options": ["다고", "ㄴ다고", "는다고", "라고"],
+              "answer": "다고",
+              "explain": "바쁘다 è un aggettivo: prende -다고 하다, non -ㄴ/는다고. Quindi 바쁘다고 해요."
+            },
+            {
+              "id": "ex-b2-01-4",
+              "type": "fill_blank",
+              "prompt": "Completa al passato: «Ha detto che è andato in Corea».",
+              "text": "한국에 갔___ 해요.",
+              "options": ["다고", "는다고", "라고", "냐고"],
+              "answer": "다고",
+              "explain": "갔다 è il tema del passato: -다고 하다. La forma è 갔다고 해요, con la stessa -다고 degli aggettivi."
+            },
+            {
+              "id": "ex-b2-01-5",
+              "type": "fill_blank",
+              "prompt": "Completa al futuro: «Ha detto che partirà domani».",
+              "text": "내일 떠날 ___ 해요.",
+              "options": ["거라고", "다고", "냐고", "자고"],
+              "answer": "거라고",
+              "explain": "Il futuro riportato è -(으)ㄹ 거라고 하다: 떠날 거라고 해요."
+            },
+            {
+              "id": "ex-b2-01-6",
+              "type": "reading_mcq",
+              "prompt": "Quale forma riporta una domanda?",
+              "options": ["-냐고 하다", "-ㄴ/는다고 하다", "-(이)라고 하다", "-(으)ㄹ 거라고 하다"],
+              "answer": "-냐고 하다",
+              "explain": "-냐고 하다 introduce una domanda riportata: 뭐 하냐고 했어요 = mi ha chiesto che cosa facessi."
+            },
+            {
+              "id": "ex-b2-01-7",
+              "type": "order_words",
+              "prompt": "Metti in ordine: «Un amico mi ha chiesto se studio coreano».",
+              "words": ["친구가", "한국어를", "공부하냐고", "물었어요"],
+              "answer": "친구가 한국어를 공부하냐고 물었어요",
+              "explain": "공부하다 è un verbo: la domanda riportata è 공부하냐고. 물었어요 è il verbo che introduce la domanda."
+            },
+            {
+              "id": "ex-b2-01-8",
+              "type": "type_hangul",
+              "prompt": "Scrivi «Dicono che è uno studente» (학생 + -(이)라고 + 해요).",
+              "answer": "학생이라고 해요",
+              "accept": ["학생이라고 해요", "학생이라고해요"],
+              "explain": "학생 finisce in consonante: -이라고. 의사 finirebbe in vocale e prenderebbe -라고: 의사라고 해요."
+            },
+            {
+              "id": "ex-b2-01-9",
+              "type": "reading_mcq",
+              "prompt": "Che differenza c'è fra «비가 온다고 해요» e «비가 온대요»?",
+              "options": [
+                "Nessuna: la seconda è la contrazione parlata della prima",
+                "La seconda dice che piove davvero, la prima no",
+                "La seconda è un ordine",
+                "La prima è passata, la seconda è presente"
+              ],
+              "answer": "Nessuna: la seconda è la contrazione parlata della prima",
+              "explain": "-다고 해요 si contrae in -대요 nel parlato. Il contenuto riportato non cambia; cambia il registro."
+            }
+          ]
+        },
+        {
+          "id": "b2-02",
+          "slug": "discorso-indiretto-ordini",
+          "title": "Discorso indiretto: ordini, inviti, richieste",
+          "titleKo": "-(으)라고 하다, -자고 하다",
+          "kind": "grammar",
+          "goal": "Riportare un ordine, un invito o una richiesta, e distinguere «mi ha chiesto di fare» da «mi ha chiesto di fare per qualcun altro».",
+          "durationMin": 35,
+          "points": [
+            "Ordine: -(으)라고 하다. 가다 → 가라고 해요; 먹다 → 먹으라고 해요. Negativo: -지 말라고 하다.",
+            "Invito o proposta: -자고 하다. 같이 가자고 해요 = ha proposto di andare insieme.",
+            "Richiesta: -아/어 달라고 하다 (사 달라고 했어요 = mi ha chiesto di comprarlo).",
+            "Se la richiesta è di fare qualcosa per una terza persona si usa -아/어 주라고 하다: 동생에게 사 주라고 했어요 = gli ho detto di comprarlo per sua sorella.",
+            "Contrazioni: -(으)라고 해요 → -(으)래요; -자고 해요 → -재요; -아/어 달라고 해요 → -아/어 달래요.",
+            "Non usare -라고 per riportare un'affermazione: -라고 è per i nomi e per gli ordini, non per i verbi coniugati."
+          ],
+          "vocab": [
+            { "ko": "부탁", "it": "richiesta, favore", "rr": "butak" },
+            { "ko": "요청", "it": "richiesta formale", "rr": "yocheong" },
+            { "ko": "명령", "it": "ordine, comando", "rr": "myeongnyeong" },
+            { "ko": "제안", "it": "proposta", "rr": "jean" },
+            { "ko": "허락", "it": "permesso", "rr": "heorak" },
+            { "ko": "거절", "it": "rifiuto", "rr": "geojeol" },
+            { "ko": "약속", "it": "promessa, appuntamento", "rr": "yaksok" },
+            { "ko": "당부", "it": "raccomandazione, esortazione", "rr": "dangbu" }
+          ],
+          "exercises": [
+            {
+              "id": "ex-b2-02-1",
+              "type": "fill_blank",
+              "prompt": "Completa: «Mi ha detto di andare».",
+              "text": "가___ 했어요.",
+              "options": ["라고", "는다고", "자고", "냐고"],
+              "answer": "라고",
+              "explain": "가다 ha il tema 가, che finisce in vocale: 가라고 했어요. È un ordine riportato, non un'affermazione."
+            },
+            {
+              "id": "ex-b2-02-2",
+              "type": "fill_blank",
+              "prompt": "Completa: «Mi ha detto di mangiare».",
+              "text": "먹___ 했어요.",
+              "options": ["으라고", "라고", "는다고", "자고"],
+              "answer": "으라고",
+              "explain": "먹다 ha il tema 먹, che finisce in consonante: -으라고, quindi 먹으라고 했어요."
+            },
+            {
+              "id": "ex-b2-02-3",
+              "type": "fill_blank",
+              "prompt": "Completa: «Mi ha detto di non fare tardi».",
+              "text": "늦지 ___ 했어요.",
+              "options": ["말라고", "않다고", "말자고", "말냐고"],
+              "answer": "말라고",
+              "explain": "L'ordine negativo riportato è -지 말라고 하다: 늦지 말라고 했어요."
+            },
+            {
+              "id": "ex-b2-02-4",
+              "type": "fill_blank",
+              "prompt": "Completa: «Ha proposto di andare insieme».",
+              "text": "같이 가___ 해요.",
+              "options": ["자고", "라고", "다고", "냐고"],
+              "answer": "자고",
+              "explain": "La proposta riportata usa -자고 하다: 같이 가자고 해요."
+            },
+            {
+              "id": "ex-b2-02-5",
+              "type": "fill_blank",
+              "prompt": "Completa: «Mi ha chiesto di comprare il libro».",
+              "text": "책을 사___ 했어요.",
+              "options": ["달라고", "주라고", "라고", "자고"],
+              "answer": "달라고",
+              "explain": "-아/어 달라고 하다 è la richiesta di un favore per sé: 책을 사 달라고 했어요 = mi ha chiesto di comprargli il libro."
+            },
+            {
+              "id": "ex-b2-02-6",
+              "type": "reading_mcq",
+              "prompt": "«동생이 책을 사 달라고 했어요» che cosa significa?",
+              "options": [
+                "Mio fratello minore mi ha chiesto di comprargli un libro",
+                "Ho detto a mio fratello minore di comprare un libro",
+                "Mio fratello minore ha comprato un libro per me",
+                "Mio fratello minore ha rifiutato di comprare un libro"
+              ],
+              "answer": "Mio fratello minore mi ha chiesto di comprargli un libro",
+              "explain": "달라고 segnala che il favore è per chi parla: il soggetto della richiesta riceve l'azione."
+            },
+            {
+              "id": "ex-b2-02-7",
+              "type": "order_words",
+              "prompt": "Metti in ordine: «Il professore ci ha detto di leggere il libro».",
+              "words": ["선생님이", "책을", "읽으라고", "하셨어요"],
+              "answer": "선생님이 책을 읽으라고 하셨어요",
+              "explain": "읽다 → 읽으라고 (tema in consonante). 하셨어요 porta l'onorifico -시- perché il professore è la persona rispettata."
+            },
+            {
+              "id": "ex-b2-02-8",
+              "type": "type_hangul",
+              "prompt": "Scrivi «Mi ha detto di aspettare» (기다리다 → 기다리라고 하다, al passato).",
+              "answer": "기다리라고 했어요",
+              "accept": ["기다리라고 했어요", "기다리라고했어요"],
+              "explain": "기다리다 ha il tema 기다리, che finisce in vocale: 기다리라고 했어요."
+            },
+            {
+              "id": "ex-b2-02-9",
+              "type": "reading_mcq",
+              "prompt": "Quale frase riporta un ordine?",
+              "options": ["먹으라고 했어요", "먹는다고 했어요", "먹자고 했어요", "먹냐고 했어요"],
+              "answer": "먹으라고 했어요",
+              "explain": "-(으)라고 하다 riporta un ordine. -ㄴ/는다고 riporta un'affermazione, -자고 una proposta, -냐고 una domanda."
+            }
+          ]
+        },
+        {
+          "id": "b2-03",
+          "slug": "visto-coi-miei-occhi",
+          "title": "Visto coi miei occhi: -더라 / -던",
+          "titleKo": "-더라고요, -던",
+          "kind": "grammar",
+          "goal": "Raccontare ciò che si è visto o notato di persona, e descrivere con -던 un passato che era in corso o si ripeteva.",
+          "durationMin": 35,
+          "points": [
+            "-더라고요 (반말: -더라) racconta un'esperienza diretta del passato: 비가 오더라고요 = ho visto che pioveva.",
+            "Non è un modo per riportare una voce: per quello serve -다고 하다. -더라고요 dice «l'ho visto io».",
+            "Al passato -았/었더라고요 sottolinea che l'azione era già conclusa: 벌써 끝났더라고요 = ho visto che era già finito.",
+            "-던 è una forma attributiva: descrive qualcosa che era in corso o si faceva abitualmente nel passato: 내가 살던 집 = la casa dove abitavo.",
+            "Con -던 il parlante ricorda una scena o un'abitudine; con -았/었던 sottolinea un evento concluso. La differenza è sottile e non sempre obbligatoria.",
+            "Non usare -더라 per il presente né per ciò che si è solo sentito dire."
+          ],
+          "vocab": [
+            { "ko": "목격하다", "it": "assistere a, vedere di persona", "rr": "mokgyeokhada" },
+            { "ko": "낯설다", "it": "essere estraneo, non familiare", "rr": "natseolda" },
+            { "ko": "익숙하다", "it": "essere familiare, abituato", "rr": "iksukhada" },
+            { "ko": "기억나다", "it": "ricordarsi, venire in mente", "rr": "gieongnada" },
+            { "ko": "예전", "it": "tempo fa, in passato", "rr": "yejeon" },
+            { "ko": "그때", "it": "allora, in quel momento", "rr": "geuttae" },
+            { "ko": "자주", "it": "spesso", "rr": "jaju" },
+            { "ko": "분위기", "it": "atmosfera, clima", "rr": "bunwigi" },
+            { "ko": "골목", "it": "vicolo", "rr": "golmok" },
+            { "ko": "동네", "it": "quartiere, vicinato", "rr": "dongne" }
+          ],
+          "passages": [
+            {
+              "title": "여행에서 돌아와서",
+              "lines": [
+                "부산에 갔는데 바다가 정말 아름답더라고요.",
+                "시장에는 사람이 많더라고요.",
+                "예전에 살던 동네도 찾아갔어요.",
+                "골목이 많이 바뀌었더라고요.",
+                "그때 자주 가던 식당은 아직도 있더라고요."
+              ],
+              "gloss": [
+                { "ko": "바다", "it": "mare", "rr": "bada" },
+                { "ko": "아름답다", "it": "essere bello, splendido", "rr": "areumdapda" },
+                { "ko": "시장", "it": "mercato", "rr": "sijang" },
+                { "ko": "찾아가다", "it": "andare a trovare, recarsi", "rr": "chajagada" },
+                { "ko": "바뀌다", "it": "cambiare", "rr": "bakkwida" },
+                { "ko": "아직도", "it": "ancora, tuttora", "rr": "ajikdo" }
+              ],
+              "translation": "Sono andato a Busan e il mare era davvero splendido. Al mercato c'era molta gente. Sono andato anche nel quartiere dove abitavo una volta: ho visto che i vicoli erano cambiati molto. Il ristorante dove andavo spesso allora esiste ancora."
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ex-b2-03-1",
+              "type": "fill_blank",
+              "prompt": "Completa: «Ho visto che pioveva».",
+              "text": "비가 오___.",
+              "options": ["더라고요", "다고 해요", "냐고 해요", "자고 해요"],
+              "answer": "더라고요",
+              "explain": "-더라고요 racconta ciò che il parlante ha visto di persona: 비가 오더라고요."
+            },
+            {
+              "id": "ex-b2-03-2",
+              "type": "fill_blank",
+              "prompt": "Completa: «Ho notato che era già finito».",
+              "text": "벌써 끝났___.",
+              "options": ["더라고요", "더라고", "던", "다고"],
+              "answer": "더라고요",
+              "explain": "끝났더라고요: -았/었더라고요 dice che al momento dell'osservazione l'azione era già conclusa."
+            },
+            {
+              "id": "ex-b2-03-3",
+              "type": "reading_mcq",
+              "prompt": "Per quale di questi usi è adatto -더라고요?",
+              "options": [
+                "Una cosa che ho visto o notato io, nel passato",
+                "Una voce che mi ha riferito un'altra persona",
+                "Un ordine da dare a qualcuno",
+                "Una previsione sul futuro"
+              ],
+              "answer": "Una cosa che ho visto o notato io, nel passato",
+              "explain": "-더라고요 è la forma dell'esperienza diretta. Per la voce riportata si usa -다고 하다."
+            },
+            {
+              "id": "ex-b2-03-4",
+              "type": "fill_blank",
+              "prompt": "Completa: «La casa dove abitavo».",
+              "text": "내가 살___ 집.",
+              "options": ["던", "더라", "ㄴ", "는"],
+              "answer": "던",
+              "explain": "살던 집 = la casa dove abitavo: -던 descrive un passato in corso o abituale."
+            },
+            {
+              "id": "ex-b2-03-5",
+              "type": "fill_blank",
+              "prompt": "Completa: «Il cibo che stavo mangiando».",
+              "text": "먹___ 음식.",
+              "options": ["던", "더라", "은", "는"],
+              "answer": "던",
+              "explain": "먹던 음식 = il cibo che stavo mangiando / che mangiavo allora. -던 si attacca al tema del verbo."
+            },
+            {
+              "id": "ex-b2-03-6",
+              "type": "order_words",
+              "prompt": "Metti in ordine: «Ho visto che il quartiere era cambiato molto».",
+              "words": ["동네가", "많이", "바뀌었더라고요"],
+              "answer": "동네가 많이 바뀌었더라고요",
+              "explain": "바뀌다 → 바뀌었더라고요: il passato -았/었- più -더라고요. 동네가 è il soggetto del cambiamento."
+            },
+            {
+              "id": "ex-b2-03-7",
+              "type": "type_meaning",
+              "prompt": "Che cosa significa «시장에 사람이 많더라고요»?",
+              "answer": "ho visto che al mercato c'era molta gente",
+              "accept": [
+                "ho visto che al mercato c'era molta gente",
+                "ho notato che al mercato c'era molta gente",
+                "al mercato c'era molta gente, l'ho visto"
+              ],
+              "explain": "-더라고요 aggiunge la testimonianza diretta: non «dicono che», ma «l'ho visto io»."
+            },
+            {
+              "id": "ex-b2-03-8",
+              "type": "reading_mcq",
+              "prompt": "Quale frase riporta una voce sentita da altri, non un'esperienza diretta?",
+              "options": ["비가 온다고 해요", "비가 오더라고요", "비가 왔더라고요", "비가 오던데요"],
+              "answer": "비가 온다고 해요",
+              "explain": "-다고 해요 attribuisce l'informazione a qualcun altro; -더라고요 e -던데요 sono esperienze o osservazioni del parlante."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b2-trasformare",
+      "title": "Subire e far fare",
+      "purpose": "La stessa scena cambia voce: chi riceve l'azione, chi la fa fare, e come la notizia la racconta senza dire chi l'ha compiuta.",
+      "lessons": [
+        {
+          "id": "b2-04",
+          "slug": "passivo",
+          "title": "Il passivo: -이/히/리/기 e -아/어지다",
+          "titleKo": "피동",
+          "kind": "grammar",
+          "goal": "Trasformare una frase attiva in passiva, riconoscere i suffissi brevi e usare -아/어지다 senza confonderlo con «diventare».",
+          "durationMin": 40,
+          "points": [
+            "Nel passivo l'oggetto dell'azione diventa soggetto: 문을 열어요 → 문이 열려요. La particella 을/를 lascia il posto a 이/가.",
+            "Suffissi brevi: -이 (보이다, 쓰이다), -히 (닫히다, 잡히다), -리 (열리다, 팔리다), -기 (끊기다, 빼앗기다). Non c'è una regola che li prevede: si imparano con il verbo.",
+            "Passivo lungo: -아/어지다, produttivo con molti verbi transitivi: 만들다 → 만들어지다, 고치다 → 고쳐지다. Alcuni verbi hanno invece una forma propria, come 바꾸다 → 바뀌다.",
+            "Chi compie l'azione: una persona prende -에게/한테 (경찰에게 잡혔어요); un ente o una norma può prendere -에 의해 (법에 의해 금지되어 있어요).",
+            "Con un aggettivo -아/어지다 significa «diventare», non «essere fatto»: 좋아지다, 예뻐지다, 길어지다. È il cambio di stato, non il passivo.",
+            "Alcuni verbi hanno la stessa forma per passivo e causativo (보이다, 읽히다): è il contesto a dire se qualcosa «si vede» o «si mostra»."
+          ],
+          "vocab": [
+            { "ko": "열리다", "it": "aprirsi, essere aperto", "rr": "yeollida" },
+            { "ko": "닫히다", "it": "chiudersi, essere chiuso", "rr": "dachida" },
+            { "ko": "잡히다", "it": "essere catturato, essere preso", "rr": "japida" },
+            { "ko": "팔리다", "it": "essere venduto", "rr": "pallida" },
+            { "ko": "지어지다", "it": "essere costruito", "rr": "jieojida" },
+            { "ko": "바뀌다", "it": "cambiare, essere cambiato", "rr": "bakkwida" },
+            { "ko": "사용되다", "it": "essere usato", "rr": "sayongdoeda" },
+            { "ko": "발견되다", "it": "essere trovato, scoperto", "rr": "balgyeondoeda" }
+          ],
+          "exercises": [
+            {
+              "id": "ex-b2-04-1",
+              "type": "fill_blank",
+              "prompt": "Completa: «La porta si apre automaticamente».",
+              "text": "문이 자동으로 ___.",
+              "options": ["열려요", "열어요", "열히요", "열리어요"],
+              "answer": "열려요",
+              "explain": "열다 «aprire» → 열리다 «aprirsi». 문이 열려요: la porta è il soggetto, non l'oggetto."
+            },
+            {
+              "id": "ex-b2-04-2",
+              "type": "fill_blank",
+              "prompt": "Completa: «Il ladro è stato catturato dalla polizia».",
+              "text": "도둑이 경찰에게 ___.",
+              "options": ["잡혔어요", "잡았어요", "잡혀요", "잡을 거예요"],
+              "answer": "잡혔어요",
+              "explain": "잡다 → 잡히다 «essere catturato». 경찰에게 introduce chi compie l'azione; il passato è 잡혔어요."
+            },
+            {
+              "id": "ex-b2-04-3",
+              "type": "fill_blank",
+              "prompt": "Completa: «Questo edificio è stato costruito nel 1970».",
+              "text": "이 건물은 1970년에 ___.",
+              "options": ["지어졌어요", "지었어요", "지어요", "지어지어요"],
+              "answer": "지어졌어요",
+              "explain": "짓다 «costruire» → 지어지다 «essere costruito»: 지어졌어요. L'anno prende 에."
+            },
+            {
+              "id": "ex-b2-04-4",
+              "type": "fill_blank",
+              "prompt": "Completa: «La strada è diventata larga». Attenzione: non è un passivo.",
+              "text": "길이 ___.",
+              "options": ["넓어졌어요", "넓혔어요", "넓어요", "넓히었어요"],
+              "answer": "넓어졌어요",
+              "explain": "넓다 è un aggettivo: 넓어지다 significa «diventare largo», un cambio di stato. Non c'è nessuno che «allarga» la strada."
+            },
+            {
+              "id": "ex-b2-04-5",
+              "type": "match_pairs",
+              "prompt": "Collega ogni verbo passivo al suo significato.",
+              "pairs": [
+                { "ko": "열리다", "it": "aprirsi" },
+                { "ko": "닫히다", "it": "chiudersi" },
+                { "ko": "팔리다", "it": "essere venduto" },
+                { "ko": "잡히다", "it": "essere catturato" },
+                { "ko": "지어지다", "it": "essere costruito" }
+              ],
+              "from": "ko",
+              "explain": "I suffissi non si deducono dal verbo attivo: 열리다, 닫히다, 팔리다, 잡히다, 지어지다 vanno riconosciuti come forme lessicali."
+            },
+            {
+              "id": "ex-b2-04-6",
+              "type": "reading_mcq",
+              "prompt": "Quale frase è passiva?",
+              "options": ["문이 열렸어요", "문을 열었어요", "문을 열 거예요", "문을 여세요"],
+              "answer": "문이 열렸어요",
+              "explain": "문이 열렸어요 = la porta si è aperta / è stata aperta. Il soggetto è 문, marcato da 이; l'azione non è compiuta dal soggetto."
+            },
+            {
+              "id": "ex-b2-04-7",
+              "type": "order_words",
+              "prompt": "Metti in ordine: «Il libro è molto venduto».",
+              "words": ["책은", "많이", "팔려요"],
+              "answer": "책은 많이 팔려요",
+              "explain": "팔리다 «essere venduto»: 이 책은 è il tema, 많이 l'avverbio, 팔려요 il passivo al presente."
+            },
+            {
+              "id": "ex-b2-04-8",
+              "type": "type_hangul",
+              "prompt": "Scrivi «La porta è chiusa» (문 + 닫히다, al passato).",
+              "answer": "문이 닫혔어요",
+              "accept": ["문이 닫혔어요", "문이 닫혔다"],
+              "explain": "닫히다 → 닫혔어요. Il soggetto è 문이: la porta non «chiude», è chiusa."
+            },
+            {
+              "id": "ex-b2-04-9",
+              "type": "fill_blank",
+              "prompt": "Completa: «È vietato per legge».",
+              "text": "법___ 금지되어 있어요.",
+              "options": ["에 의해", "에게", "에서", "로"],
+              "answer": "에 의해",
+              "explain": "Per un ente, una norma o una causa impersonale si usa -에 의해. -에게 è per le persone."
+            }
+          ]
+        },
+        {
+          "id": "b2-05",
+          "slug": "causativo",
+          "title": "Il causativo: far fare, lasciar fare",
+          "titleKo": "사동",
+          "kind": "grammar",
+          "goal": "Dire che qualcuno fa o lascia fare qualcosa a un altro, con i causativi brevi e con la forma produttiva -게 하다.",
+          "durationMin": 40,
+          "points": [
+            "Il causativo aggiunge una persona: qualcuno fa sì che un altro compia l'azione. 먹다 «mangiare» → 먹이다 «far mangiare, dare da mangiare».",
+            "Causativi brevi: -이 (먹이다, 보이다), -히 (입히다, 앉히다), -리 (알리다, 울리다), -기 (웃기다, 씻기다), -우 (깨우다, 태우다, 세우다, 재우다).",
+            "La forma lunga -게 하다 è produttiva e trasparente: 가게 하다, 먹게 하다, 웃게 하다. Si può usare quando il causativo breve non esiste o non è sicuro.",
+            "La persona causata prende spesso -에게 quando c'è anche un oggetto (아이에게 밥을 먹였어요), e -을/를 con verbi come 웃기다 (아이를 웃겼어요).",
+            "-게 하다 può significare «fare fare» o «lasciar fare»: il contesto decide. 아이를 웃게 했어요 può essere «ho fatto ridere il bambino» o «l'ho lasciato ridere».",
+            "Alcuni causativi brevi coincidono con passivi: 보이다 può essere «essere visto» o «mostrare», 읽히다 «essere letto» o «far leggere». Non forzare la forma breve se il senso è ambiguo."
+          ],
+          "vocab": [
+            { "ko": "먹이다", "it": "far mangiare, dare da mangiare", "rr": "meogida" },
+            { "ko": "입히다", "it": "far indossare, vestire qualcuno", "rr": "ipida" },
+            { "ko": "앉히다", "it": "far sedere", "rr": "anchida" },
+            { "ko": "웃기다", "it": "far ridere", "rr": "utgida" },
+            { "ko": "깨우다", "it": "svegliare", "rr": "kkaeuda" },
+            { "ko": "태우다", "it": "far salire, dare un passaggio", "rr": "taeuda" },
+            { "ko": "세우다", "it": "far stare in piedi, parcheggiare", "rr": "seuda" },
+            { "ko": "재우다", "it": "mettere a dormire", "rr": "jaeuda" }
+          ],
+          "exercises": [
+            {
+              "id": "ex-b2-05-1",
+              "type": "fill_blank",
+              "prompt": "Completa: «Ho dato da mangiare al bambino».",
+              "text": "아이에게 밥을 ___.",
+              "options": ["먹였어요", "먹었어요", "먹이었어요", "먹혔어요"],
+              "answer": "먹였어요",
+              "explain": "먹다 → 먹이다 «far mangiare». 먹이다 è un verbo in -이, quindi il passato è 먹였어요."
+            },
+            {
+              "id": "ex-b2-05-2",
+              "type": "fill_blank",
+              "prompt": "Completa: «Ho fatto ridere l'amico».",
+              "text": "친구를 ___.",
+              "options": ["웃겼어요", "웃었어요", "웃혔어요", "웃기었어요"],
+              "answer": "웃겼어요",
+              "explain": "웃다 → 웃기다 «far ridere»: 웃기다 al passato diventa 웃겼어요."
+            },
+            {
+              "id": "ex-b2-05-3",
+              "type": "fill_blank",
+              "prompt": "Completa: «Ho svegliato mia sorella».",
+              "text": "여동생을 ___.",
+              "options": ["깨웠어요", "깨었어요", "깨웠히어요", "깨우세요"],
+              "answer": "깨웠어요",
+              "explain": "깨다 → 깨우다 «svegliare» (causativo in -우). Il passato è 깨웠어요."
+            },
+            {
+              "id": "ex-b2-05-4",
+              "type": "fill_blank",
+              "prompt": "Completa con la forma lunga: «Il professore ci ha fatto leggere il testo».",
+              "text": "선생님이 우리에게 그 글을 읽___ 하셨어요.",
+              "options": ["게", "으라고", "자고", "다고"],
+              "answer": "게",
+              "explain": "-게 하다 è il causativo lungo: 읽게 하셨어요 = ci ha fatto leggere. -으라고 sarebbe un ordine riportato, non un causativo."
+            },
+            {
+              "id": "ex-b2-05-5",
+              "type": "reading_mcq",
+              "prompt": "«아이를 앉혔어요» che cosa significa?",
+              "options": [
+                "Ho fatto sedere il bambino",
+                "Mi sono seduto accanto al bambino",
+                "Il bambino si è seduto da solo",
+                "Ho sgridato il bambino"
+              ],
+              "answer": "Ho fatto sedere il bambino",
+              "explain": "앉다 «sedersi» → 앉히다 «far sedere». 아이를 è l'oggetto della persona causata."
+            },
+            {
+              "id": "ex-b2-05-6",
+              "type": "match_pairs",
+              "prompt": "Collega ogni verbo al suo causativo.",
+              "pairs": [
+                { "ko": "먹다", "it": "먹이다" },
+                { "ko": "입다", "it": "입히다" },
+                { "ko": "앉다", "it": "앉히다" },
+                { "ko": "웃다", "it": "웃기다" },
+                { "ko": "깨다", "it": "깨우다" },
+                { "ko": "타다", "it": "태우다" }
+              ],
+              "from": "ko",
+              "explain": "I causativi brevi sono forme lessicali: non si costruiscono a tavolino, ma si riconoscono e si memorizzano."
+            },
+            {
+              "id": "ex-b2-05-7",
+              "type": "order_words",
+              "prompt": "Metti in ordine: «Ho fatto aspettare l'amico».",
+              "words": ["친구를", "기다리게", "했어요"],
+              "answer": "친구를 기다리게 했어요",
+              "explain": "기다리다 → 기다리게 하다: la forma lunga è trasparente e non ha un causativo breve comune."
+            },
+            {
+              "id": "ex-b2-05-8",
+              "type": "type_hangul",
+              "prompt": "Scrivi «Ho fatto ridere il bambino» (아이 + 웃기다, al passato).",
+              "answer": "아이를 웃겼어요",
+              "accept": ["아이를 웃겼어요", "아이를웃겼어요"],
+              "explain": "아이를 웃겼어요: con 웃기다 la persona causata prende 을/를, non 에게."
+            },
+            {
+              "id": "ex-b2-05-9",
+              "type": "reading_mcq",
+              "prompt": "Perché «읽히다» può essere ambiguo?",
+              "options": [
+                "Può significare «essere letto» o «far leggere», secondo il contesto",
+                "Perché è sempre un passivo",
+                "Perché non esiste in coreano",
+                "Perché si usa solo al futuro"
+              ],
+              "answer": "Può significare «essere letto» o «far leggere», secondo il contesto",
+              "explain": "Alcuni suffissi servono sia al passivo sia al causativo. Il contesto e le particelle dicono chi fa e chi riceve l'azione."
+            }
+          ]
+        },
+        {
+          "id": "b2-06",
+          "slug": "lettura-avvisi-notizie",
+          "title": "Leggere avvisi e notizie",
+          "titleKo": "안내문과 기사",
+          "kind": "reading",
+          "goal": "Leggere un avviso condominiale e una breve notizia, riconoscendo il passivo, il registro formale e le formule del testo scritto.",
+          "durationMin": 40,
+          "points": [
+            "L'avviso formale usa -ㅂ니다/습니다 e forme come -됩니다, -하실 수 있습니다: il registro è parte del testo, non un dettaglio.",
+            "Le notizie usano spesso il passivo in -되다/-지다 quando chi compie l'azione non si conosce o non conta: 발견되었습니다, 확인되지 않았습니다.",
+            "«-(으)로 보이다» significa «sembra, appare»: 70년 전에 쓰인 것으로 보입니다 = sembra scritto 70 anni fa.",
+            "«-(으)ㄹ 수 있습니다» esprime possibilità; con -시- diventa una possibilità rispettosa: 이용하실 수 있습니다.",
+            "Nei testi brevi le informazioni sono in ordine: che cosa, quando, dove, che cosa fare. Cercarle prima di tradurre parola per parola.",
+            "Un participio passivo come 쓰인 descrive il nome: 쓰인 편지 = una lettera scritta. Non è un verbo finito."
+          ],
+          "vocab": [
+            { "ko": "안내", "it": "avviso, informazione", "rr": "annae" },
+            { "ko": "점검", "it": "controllo, verifica tecnica", "rr": "jeomgeom" },
+            { "ko": "진행되다", "it": "svolgersi, essere in corso", "rr": "jinhaengdoeda" },
+            { "ko": "사용하다", "it": "usare", "rr": "sayonghada" },
+            { "ko": "계단", "it": "scala, scale", "rr": "gyedan" },
+            { "ko": "정상적으로", "it": "regolarmente, normalmente", "rr": "jeongsangjeogeuro" },
+            { "ko": "불편", "it": "disagio, inconveniente", "rr": "bulpyeon" },
+            { "ko": "죄송합니다", "it": "mi dispiace, chiedo scusa", "rr": "joesonghamnida" },
+            { "ko": "발견되다", "it": "essere trovato, scoperto", "rr": "balgyeondoeda" },
+            { "ko": "보관하다", "it": "conservare, custodire", "rr": "bogwanhada" }
+          ],
+          "passages": [
+            {
+              "title": "엘리베이터 점검 안내",
+              "lines": [
+                "안내 말씀 드립니다.",
+                "오는 15일 오전 10시부터 오후 2시까지 엘리베이터 점검이 진행됩니다.",
+                "점검 중에는 엘리베이터를 사용할 수 없습니다.",
+                "계단은 정상적으로 이용하실 수 있습니다.",
+                "불편을 드려 죄송합니다."
+              ],
+              "gloss": [
+                { "ko": "말씀", "it": "parola (onorifico)", "rr": "malsseum" },
+                { "ko": "오는", "it": "prossimo, che viene", "rr": "oneun" },
+                { "ko": "오전", "it": "mattina, AM", "rr": "ojeon" },
+                { "ko": "오후", "it": "pomeriggio, PM", "rr": "ohu" },
+                { "ko": "이용하다", "it": "utilizzare, servirsi di", "rr": "iyonghada" },
+                { "ko": "불편을 드리다", "it": "causare un disagio", "rr": "bulpyeoneul deurida" }
+              ],
+              "translation": "Un avviso. Dal 15 del mese prossimo, dalle 10 del mattino alle 2 del pomeriggio, si svolgerà il controllo dell'ascensore. Durante il controllo non sarà possibile usare l'ascensore. Le scale restano normalmente utilizzabili. Ci scusiamo per il disagio."
+            },
+            {
+              "title": "시장에서 발견된 편지",
+              "lines": [
+                "서울의 한 시장에서 오래된 편지가 발견되었습니다.",
+                "편지는 70년 전에 쓰인 것으로 보입니다.",
+                "편지를 쓴 사람은 아직 확인되지 않았습니다.",
+                "시는 편지를 박물관에 보관하기로 했습니다."
+              ],
+              "gloss": [
+                { "ko": "오래되다", "it": "essere vecchio, di molto tempo fa", "rr": "oraedoeda" },
+                { "ko": "쓰이다", "it": "essere scritto", "rr": "sseuida" },
+                { "ko": "확인되다", "it": "essere verificato, accertato", "rr": "hwagindoeda" },
+                { "ko": "박물관", "it": "museo", "rr": "bangmulgwan" },
+                { "ko": "보관하기로 하다", "it": "decidere di conservare", "rr": "bogwanhagiro hada" }
+              ],
+              "translation": "In un mercato di Seul è stata trovata una vecchia lettera. Sembra che la lettera sia stata scritta 70 anni fa. Non è ancora stata accertata l'identità di chi l'ha scritta. La città ha deciso di conservare la lettera in un museo."
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ex-b2-06-1",
+              "type": "reading_mcq",
+              "prompt": "Quando non si potrà usare l'ascensore?",
+              "options": [
+                "Dalle 10 alle 14 del giorno 15",
+                "Dalle 2 alle 10 del giorno 15",
+                "Tutto il giorno 15",
+                "Solo di mattina, per un'ora"
+              ],
+              "answer": "Dalle 10 alle 14 del giorno 15",
+              "explain": "오전 10시부터 오후 2시까지: dalle 10 del mattino alle 2 del pomeriggio. 오후 2시 = 14:00."
+            },
+            {
+              "id": "ex-b2-06-2",
+              "type": "reading_mcq",
+              "prompt": "Come possono spostarsi i residenti durante il controllo?",
+              "options": [
+                "Usando le scale",
+                "Usando l'ascensore di servizio",
+                "Non possono spostarsi",
+                "Solo con l'ascensore, ma piano"
+              ],
+              "answer": "Usando le scale",
+              "explain": "계단은 정상적으로 이용하실 수 있습니다: le scale restano normalmente utilizzabili."
+            },
+            {
+              "id": "ex-b2-06-3",
+              "type": "fill_blank",
+              "prompt": "Completa: «Si svolgerà il controllo dell'ascensore».",
+              "text": "엘리베이터 점검이 ___.",
+              "options": ["진행됩니다", "진행합니다", "진행됐습니다", "진행하십시오"],
+              "answer": "진행됩니다",
+              "explain": "진행되다 «svolgersi, essere in corso»: 점검이 진행됩니다. Il soggetto è il controllo, non una persona."
+            },
+            {
+              "id": "ex-b2-06-4",
+              "type": "fill_blank",
+              "prompt": "Completa: «Le scale restano normalmente utilizzabili» (forma rispettosa).",
+              "text": "계단은 정상적으로 이용하___ 수 있습니다.",
+              "options": ["실", "ㄹ", "을", "게"],
+              "answer": "실",
+              "explain": "이용하시다 è la forma onorifica di 이용하다; davanti a -ㄹ 수 있습니다 resta 이용하실 수 있습니다."
+            },
+            {
+              "id": "ex-b2-06-5",
+              "type": "fill_blank",
+              "prompt": "Completa: «Sembra che la lettera sia stata scritta 70 anni fa».",
+              "text": "편지는 70년 전에 ___ 것으로 보입니다.",
+              "options": ["쓰인", "쓴", "쓰는", "쓸"],
+              "answer": "쓰인",
+              "explain": "쓰이다 «essere scritto» → 쓰인, participio passivo che descrive 편지. 쓰인 것으로 보입니다 = sembra scritto."
+            },
+            {
+              "id": "ex-b2-06-6",
+              "type": "fill_blank",
+              "prompt": "Completa: «Non è ancora stata accertata l'identità di chi l'ha scritta».",
+              "text": "편지를 쓴 사람은 아직 ___.",
+              "options": ["확인되지 않았습니다", "확인하지 않았습니다", "확인했습니다", "확인되겠습니다"],
+              "answer": "확인되지 않았습니다",
+              "explain": "확인되다 «essere accertato»: 확인되지 않았습니다. La forma attiva 확인하지 않았습니다 significherebbe «non ho verificato»."
+            },
+            {
+              "id": "ex-b2-06-7",
+              "type": "match_pairs",
+              "prompt": "Collega le parole del testo al loro significato.",
+              "pairs": [
+                { "ko": "점검", "it": "verifica tecnica" },
+                { "ko": "진행되다", "it": "svolgersi" },
+                { "ko": "발견되다", "it": "essere trovato" },
+                { "ko": "보관하다", "it": "conservare" },
+                { "ko": "이용하다", "it": "utilizzare" }
+              ],
+              "from": "ko",
+              "explain": "Sono le parole che tornano negli avvisi e nelle notizie: riconoscerle velocizza la lettura più di una traduzione parola per parola."
+            },
+            {
+              "id": "ex-b2-06-8",
+              "type": "order_words",
+              "prompt": "Metti in ordine: «Durante il controllo non si può usare l'ascensore».",
+              "words": ["점검", "중에는", "엘리베이터를", "사용할", "수", "없습니다"],
+              "answer": "점검 중에는 엘리베이터를 사용할 수 없습니다",
+              "explain": "중에는 = durante. 엘리베이터를 è l'oggetto di 사용하다; -ㄹ 수 없습니다 esprime impossibilità."
+            },
+            {
+              "id": "ex-b2-06-9",
+              "type": "type_meaning",
+              "prompt": "Che cosa dice «불편을 드려 죄송합니다»?",
+              "answer": "ci scusiamo per il disagio",
+              "accept": [
+                "ci scusiamo per il disagio",
+                "siamo spiacenti per il disagio",
+                "chiediamo scusa per il disagio"
+              ],
+              "explain": "불편을 드리다 è la formula con cui un ente si scusa per un disagio causato: letteralmente «le diamo un disagio»."
+            },
+            {
+              "id": "ex-b2-06-10",
+              "type": "reading_mcq",
+              "prompt": "Quale forma del testo è passiva?",
+              "options": ["발견되었습니다", "발견했습니다", "발견하겠습니다", "발견할 수 있습니다"],
+              "answer": "발견되었습니다",
+              "explain": "발견되다 è il passivo di 발견하다: la lettera è stata trovata, non «ha trovato»."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b2-sfumare",
+      "title": "Sfumare e ipotizzare",
+      "purpose": "Le parole dicono che cosa succede; le desinenze dicono come chi parla ci sta dentro: concede, si giustifica, rimpiange.",
+      "lessons": [
+        {
+          "id": "b2-07",
+          "slug": "concessione",
+          "title": "Concedere e contraddire: -기는 하지만, -는데도, -더라도",
+          "titleKo": "-기는 하지만, -는데도, -더라도",
+          "kind": "grammar",
+          "goal": "Distinguere tre modi di dire «ma»: concedere un punto, constatare un contrasto reale, immaginare una condizione che non ferma l'azione.",
+          "durationMin": 35,
+          "points": [
+            "-기는 하지만 (anche -긴 하지만) concede un punto prima di contraddirlo: 비싸기는 하지만 품질이 좋아요 = è vero che è caro, ma la qualità è buona.",
+            "-ㄴ/는데도 constata un contrasto reale: 열심히 공부했는데도 시험을 못 봤어요 = anche se ha studiato, non ha passato l'esame.",
+            "Forme di -는데도: verbo -는데도, aggettivo -(으)ㄴ데도, nome -인데도, passato -았/었는데도.",
+            "-더라도 introduce un'ipotesi che non cambia la decisione: 비가 오더라도 갈 거예요 = anche se dovesse piovere, andrò.",
+            "-는데도 parla di un fatto che c'è stato; -더라도 immagina una possibilità. -기는 하지만 non nega il fatto: lo ammette e lo mette da parte.",
+            "-아/어도 è l'«anche se» quotidiano; -더라도 è più enfatico e spesso più formale."
+          ],
+          "vocab": [
+            { "ko": "품질", "it": "qualità (di un prodotto)", "rr": "pumjil" },
+            { "ko": "오히려", "it": "al contrario, piuttosto", "rr": "ohiryeo" },
+            { "ko": "반면", "it": "invece, al contrario", "rr": "banmyeon" },
+            { "ko": "그럼에도", "it": "ciononostante", "rr": "geureomaedo" },
+            { "ko": "포기하다", "it": "rinunciare, arrendersi", "rr": "pogihada" },
+            { "ko": "노력", "it": "sforzo, impegno", "rr": "noryeok" },
+            { "ko": "비싸다", "it": "essere caro", "rr": "bissada" },
+            { "ko": "그래도", "it": "comunque, anche così", "rr": "geuraedo" }
+          ],
+          "exercises": [
+            {
+              "id": "ex-b2-07-1",
+              "type": "fill_blank",
+              "prompt": "Completa: «È vero che è caro, ma la qualità è buona».",
+              "text": "비싸___ 품질이 좋아요.",
+              "options": ["기는 하지만", "는데도", "더라도", "자고"],
+              "answer": "기는 하지만",
+              "explain": "-기는 하지만 ammette il primo fatto e lo mette da parte: «è vero che è caro, ma…»."
+            },
+            {
+              "id": "ex-b2-07-2",
+              "type": "fill_blank",
+              "prompt": "Completa: «Nonostante abbia studiato, non ha passato l'esame».",
+              "text": "열심히 공부했___ 시험을 못 봤어요.",
+              "options": ["는데도", "기는 하지만", "더라도", "냐고"],
+              "answer": "는데도",
+              "explain": "-았/었는데도 constata un contrasto reale: aveva studiato, eppure non ha passato l'esame."
+            },
+            {
+              "id": "ex-b2-07-3",
+              "type": "fill_blank",
+              "prompt": "Completa: «Anche se è piccolo, è comodo».",
+              "text": "작___ 편해요.",
+              "options": ["은데도", "는데도", "더라도", "기는 하지만"],
+              "answer": "은데도",
+              "explain": "작다 è un aggettivo con tema in consonante: -(으)ㄴ데도, quindi 작은데도."
+            },
+            {
+              "id": "ex-b2-07-4",
+              "type": "fill_blank",
+              "prompt": "Completa: «Nonostante sia uno studente, lavora».",
+              "text": "학생___ 일해요.",
+              "options": ["인데도", "는데도", "은데도", "더라도"],
+              "answer": "인데도",
+              "explain": "Con un nome si usa -인데도: 학생인데도 = nonostante sia uno studente."
+            },
+            {
+              "id": "ex-b2-07-5",
+              "type": "fill_blank",
+              "prompt": "Completa: «Anche se dovesse piovere, andrò».",
+              "text": "비가 오___ 갈 거예요.",
+              "options": ["더라도", "는데도", "기는 하지만", "자고"],
+              "answer": "더라도",
+              "explain": "-더라도 introduces a hypothesis that does not change the decision: 비가 오더라도 갈 거예요."
+            },
+            {
+              "id": "ex-b2-07-6",
+              "type": "reading_mcq",
+              "prompt": "Quale forma parla di un fatto reale che contrasta con l'attesa?",
+              "options": ["-는데도", "-더라도", "-기는 하지만", "-자고"],
+              "answer": "-는데도",
+              "explain": "-는데도 = «nonostante il fatto che…». -더라도 è un'ipotesi, -기는 하지만 è una concessione."
+            },
+            {
+              "id": "ex-b2-07-7",
+              "type": "order_words",
+              "prompt": "Metti in ordine: «Anche se è difficile, non mi arrenderò».",
+              "words": ["어렵더라도", "포기하지", "않을", "거예요"],
+              "answer": "어렵더라도 포기하지 않을 거예요",
+              "explain": "어렵다 → 어렵더라도 (ipotesi concessiva). 포기하지 않다 = non arrendersi."
+            },
+            {
+              "id": "ex-b2-07-8",
+              "type": "type_meaning",
+              "prompt": "Traduci: «맛있기는 하지만 너무 비싸요».",
+              "answer": "è vero che è buono, ma è troppo caro",
+              "accept": [
+                "è vero che è buono, ma è troppo caro",
+                "è buono, ma è troppo caro",
+                "è buono però è troppo caro"
+              ],
+              "explain": "-기는 하지만 riconosce il primo punto e poi lo contraddice: «buono sì, ma troppo caro»."
+            },
+            {
+              "id": "ex-b2-07-9",
+              "type": "fill_blank",
+              "prompt": "Completa: «Anche se ho chiamato, non ha risposto».",
+              "text": "전화했___ 대답이 없었어요.",
+              "options": ["는데도", "더라도", "기는 하지만", "ㄴ다고"],
+              "answer": "는데도",
+              "explain": "전화했다 è un fatto reale; -는데도 lo mette in contrasto con l'assenza di risposta."
+            }
+          ]
+        },
+        {
+          "id": "b2-08",
+          "slug": "sfumature-parlato",
+          "title": "Il tono di chi parla: -잖아요, -거든요, -더라고요",
+          "titleKo": "-잖아요, -거든요, -더라고요",
+          "kind": "grammar",
+          "goal": "Capire che cosa aggiunge una frase quando finisce con -잖아요, -거든요 o -더라고요, e scegliere la forma che non fa sembrare maleducati.",
+          "durationMin": 35,
+          "points": [
+            "-잖아요 richiama qualcosa che l'altro dovrebbe già sapere: 내일 시험이 있잖아요 = domani c'è l'esame, come sai. Può suonare come un rimprovero.",
+            "-거든요 aggiunge un'informazione o una ragione che l'ascoltatore non conosce: 일이 있거든요 = è che ho del lavoro.",
+            "-더라고요 racconta una scoperta fatta di persona: 그 영화 재미있더라고요 = ho trovato che il film era bello.",
+            "In sintesi: -잖아요 = «lo sai già»; -거든요 = «ecco perché, e forse non lo sapevi»; -더라고요 = «l'ho visto io».",
+            "Tutte e tre sono forme del parlato cortese. Nello scritto formale si preferiscono -ㅂ니다/습니다 e i connettivi espliciti.",
+            "-거든요 non è un semplice «perché»: mette la ragione in fondo, come una spiegazione che l'altro non aveva chiesto."
+          ],
+          "vocab": [
+            { "ko": "눈치", "it": "capacità di leggere la situazione", "rr": "nunchi" },
+            { "ko": "기분", "it": "umore, stato d'animo", "rr": "gibun" },
+            { "ko": "부담", "it": "peso, imbarazzo, carico", "rr": "budam" },
+            { "ko": "이유", "it": "motivo, ragione", "rr": "iyu" },
+            { "ko": "상황", "it": "situazione", "rr": "sanghwang" },
+            { "ko": "설명하다", "it": "spiegare", "rr": "seolmyeonghada" },
+            { "ko": "이해하다", "it": "capire, comprendere", "rr": "ihaehada" },
+            { "ko": "오해하다", "it": "fraintendere", "rr": "ohaehada" }
+          ],
+          "exercises": [
+            {
+              "id": "ex-b2-08-1",
+              "type": "reading_mcq",
+              "prompt": "A: «왜 안 왔어요?» B: «길이 막혔___». Quale forma spiega una ragione che l'altro non conosce?",
+              "options": ["거든요", "잖아요", "더라고요", "ㄴ다고요"],
+              "answer": "거든요",
+              "explain": "-거든요 introduce la ragione come informazione nuova: «è che c'era traffico»."
+            },
+            {
+              "id": "ex-b2-08-2",
+              "type": "fill_blank",
+              "prompt": "Completa: «Perché studi già? Domani c'è l'esame, come sai».",
+              "text": "왜 벌써 공부해요? 내일 시험이 있___.",
+              "options": ["잖아요", "거든요", "더라고요", "자고요"],
+              "answer": "잖아요",
+              "explain": "-잖아요 richiama un fatto che l'altro dovrebbe conoscere. Qui può suonare anche un po' di rimprovero."
+            },
+            {
+              "id": "ex-b2-08-3",
+              "type": "fill_blank",
+              "prompt": "Completa: «Ho trovato che il film era interessante».",
+              "text": "그 영화 재미있___.",
+              "options": ["더라고요", "잖아요", "거든요", "ㄴ다고요"],
+              "answer": "더라고요",
+              "explain": "-더라고요 riporta una scoperta personale: l'ho visto e l'ho trovato interessante."
+            },
+            {
+              "id": "ex-b2-08-4",
+              "type": "fill_blank",
+              "prompt": "Completa: «Non posso uscire: è che ho del lavoro».",
+              "text": "못 나가요. 일이 있___.",
+              "options": ["거든요", "잖아요", "더라고요", "는데도"],
+              "answer": "거든요",
+              "explain": "-거든요 chiude la frase con la ragione, come un'informazione che l'altro non aveva."
+            },
+            {
+              "id": "ex-b2-08-5",
+              "type": "reading_mcq",
+              "prompt": "Quale forma può facilmente suonare come un rimprovero?",
+              "options": ["-잖아요", "-거든요", "-더라고요", "-ㅂ니다"],
+              "answer": "-잖아요",
+              "explain": "-잖아요 presuppone che l'altro sappia: se non lo sa, l'effetto è «dovresti saperlo»."
+            },
+            {
+              "id": "ex-b2-08-6",
+              "type": "order_words",
+              "prompt": "Metti in ordine: «Come sai, domani c'è l'esame».",
+              "words": ["내일", "시험이", "있잖아요"],
+              "answer": "내일 시험이 있잖아요",
+              "explain": "있잖아요 = 있- + -잖아요. La frase ricorda un fatto condiviso."
+            },
+            {
+              "id": "ex-b2-08-7",
+              "type": "type_meaning",
+              "prompt": "Che cosa significa «그 사람 기분이 상했더라고요»?",
+              "answer": "ho notato che quella persona si è offesa",
+              "accept": [
+                "ho notato che quella persona si è offesa",
+                "ho visto che quella persona si è offesa",
+                "mi è sembrato che quella persona si fosse offesa"
+              ],
+              "explain": "기분이 상하다 = offendersi. -더라고요 dice che il parlante se n'è accorto di persona."
+            },
+            {
+              "id": "ex-b2-08-8",
+              "type": "fill_blank",
+              "prompt": "Completa: «Non è colpa mia: è che non lo sapevo».",
+              "text": "제 잘못이 아니에요. 몰랐___.",
+              "options": ["거든요", "잖아요", "더라고요", "는데도"],
+              "answer": "거든요",
+              "explain": "몰랐거든요 presenta la non conoscenza come ragione nuova, non come cosa che l'altro doveva sapere."
+            },
+            {
+              "id": "ex-b2-08-9",
+              "type": "reading_mcq",
+              "prompt": "Quale forma dà una ragione che l'ascoltatore non conosce?",
+              "options": ["-거든요", "-잖아요", "-더라고요", "-자고요"],
+              "answer": "-거든요",
+              "explain": "-거든요 = «è che…»: aggiunge un'informazione necessaria a capire, senza dare per scontato che l'altro la sappia."
+            }
+          ]
+        },
+        {
+          "id": "b2-09",
+          "slug": "grado-e-scopo",
+          "title": "Più… e così: -ㄹ수록, -도록",
+          "titleKo": "-ㄹ수록, -도록",
+          "kind": "grammar",
+          "goal": "Esprimere un crescendo («più… più…») e uno scopo o un limite («in modo che…»), senza confondere le due forme.",
+          "durationMin": 35,
+          "points": [
+            "-ㄹ수록 esprime un crescendo: più accade una cosa, più ne segue un'altra. 공부하면 할수록 재미있어요 = più studio, più mi diverto.",
+            "La forma è -(으)ㄹ수록: 좋을수록, 먹을수록. Con un tema che finisce in ㄹ si attacca direttamente: 멀수록.",
+            "Spesso compare con -(으)면: -(으)면 -(으)ㄹ수록. Può anche stare da sola: 갈수록 더워요 = man mano che si va avanti fa più caldo.",
+            "-도록 esprime scopo o limite: «in modo che, fino al punto che». 늦지 않도록 서두르세요 = sbrigatevi per non fare tardi.",
+            "-도록 하다 è un'altra cosa: significa «fare in modo di, assicurarsi di» ed è anche un modo cortese di dare un'istruzione: 내일 꼭 오도록 하세요.",
+            "-게 e -도록 possono entrambi esprimere scopo, ma -도록 è più frequente quando c'è un risultato da evitare o da garantire."
+          ],
+          "vocab": [
+            { "ko": "실력", "it": "abilità, livello di competenza", "rr": "sillyeok" },
+            { "ko": "늘다", "it": "aumentare, crescere", "rr": "neulda" },
+            { "ko": "줄다", "it": "diminuire, ridursi", "rr": "julda" },
+            { "ko": "익숙해지다", "it": "abituarsi, diventare familiare", "rr": "iksukhaejida" },
+            { "ko": "목표", "it": "obiettivo, traguardo", "rr": "mokpyo" },
+            { "ko": "꾸준히", "it": "costantemente, con costanza", "rr": "kkujunhi" },
+            { "ko": "성장", "it": "crescita", "rr": "seongjang" },
+            { "ko": "노력하다", "it": "impegnarsi, sforzarsi", "rr": "noryeokhada" }
+          ],
+          "exercises": [
+            {
+              "id": "ex-b2-09-1",
+              "type": "fill_blank",
+              "prompt": "Completa: «Più studi, più migliori».",
+              "text": "공부하면 ___ 실력이 늘어요.",
+              "options": ["할수록", "하도록", "하게", "하기는"],
+              "answer": "할수록",
+              "explain": "하다 → 하면 할수록: più studi, più… La forma -ㄹ수록 si combina con -면."
+            },
+            {
+              "id": "ex-b2-09-2",
+              "type": "fill_blank",
+              "prompt": "Completa: «Più è alto, più è caro».",
+              "text": "높___ 비싸요.",
+              "options": ["을수록", "수록", "ㄹ수록", "도록"],
+              "answer": "을수록",
+              "explain": "높다 ha il tema 높, che finisce in consonante: 높 + -을수록 = 높을수록."
+            },
+            {
+              "id": "ex-b2-09-3",
+              "type": "fill_blank",
+              "prompt": "Completa: «Man mano che si va avanti, fa più caldo».",
+              "text": "갈___ 더워요.",
+              "options": ["수록", "도록", "게", "면"],
+              "answer": "수록",
+              "explain": "가다 → 갈수록: con un tema che finisce in ㄹ, -ㄹ수록 si attacca direttamente."
+            },
+            {
+              "id": "ex-b2-09-4",
+              "type": "fill_blank",
+              "prompt": "Completa: «Parla piano in modo che tutti capiscano».",
+              "text": "모두 알아듣___ 천천히 말하세요.",
+              "options": ["도록", "수록", "게", "기는"],
+              "answer": "도록",
+              "explain": "-도록 introduce lo scopo: parlare piano affinché tutti capiscano."
+            },
+            {
+              "id": "ex-b2-09-5",
+              "type": "fill_blank",
+              "prompt": "Completa: «Assicurati di arrivare in orario».",
+              "text": "제시간에 도착하___ 하세요.",
+              "options": ["도록", "수록", "게", "고"],
+              "answer": "도록",
+              "explain": "-도록 하세요 è un'istruzione cortese: «fai in modo di arrivare in orario»."
+            },
+            {
+              "id": "ex-b2-09-6",
+              "type": "reading_mcq",
+              "prompt": "Quale forma esprime un crescendo («più… più…»)?",
+              "options": ["-ㄹ수록", "-도록", "-게 하다", "-기는 하지만"],
+              "answer": "-ㄹ수록",
+              "explain": "-ㄹ수록 collega due variazioni proporzionali. -도록 esprime scopo o limite."
+            },
+            {
+              "id": "ex-b2-09-7",
+              "type": "order_words",
+              "prompt": "Metti in ordine: «Più lo guardo, più mi piace».",
+              "words": ["볼수록", "마음에", "들어요"],
+              "answer": "볼수록 마음에 들어요",
+              "explain": "보다 → 볼수록. 마음에 들다 = piacere: letteralmente «entrare nel cuore»."
+            },
+            {
+              "id": "ex-b2-09-8",
+              "type": "type_meaning",
+              "prompt": "Traduci: «잊지 않도록 메모해 두세요».",
+              "answer": "scrivi un promemoria per non dimenticare",
+              "accept": [
+                "scrivi un promemoria per non dimenticare",
+                "prendi nota per non dimenticare",
+                "annota così non dimentichi"
+              ],
+              "explain": "-도록 esprime lo scopo: fare la nota affinché non ci si dimentichi."
+            },
+            {
+              "id": "ex-b2-09-9",
+              "type": "fill_blank",
+              "prompt": "Completa: «Più ci si abitua, più diventa facile».",
+              "text": "익숙해질___ 쉬워져요.",
+              "options": ["수록", "도록", "게", "면"],
+              "answer": "수록",
+              "explain": "익숙해지다 → 익숙해질수록: due cambiamenti che crescono insieme."
+            }
+          ]
+        },
+        {
+          "id": "b2-10",
+          "slug": "ipotesi-mancata",
+          "title": "Se avessi…: -았/었더라면",
+          "titleKo": "-았/었더라면",
+          "kind": "grammar",
+          "goal": "Esprimere un'ipotesi sul passato che non si è avverata, con il rimpianto che porta con sé, e costruire la frase principale al condizionale passato.",
+          "durationMin": 35,
+          "points": [
+            "-았/었더라면 introduce un'ipotesi contraria ai fatti passati: 일찍 출발했더라면 기차를 놓치지 않았을 거예요 = se fossi partito prima, non avrei perso il treno.",
+            "La frase principale va al condizionale passato: -았/었을 거예요, -았/었을 텐데요. Non si usa il presente.",
+            "Il valore è spesso quello del rimpianto: si sa che l'ipotesi non si è realizzata.",
+            "-았/었으면 può esprimere un desiderio o un'ipotesi; -았/었더라면 sottolinea lo sguardo all'indietro e ciò che ormai non è stato.",
+            "Non si usa per il presente o il futuro, né per dare ordini: è una forma che guarda a un passato concluso.",
+            "La frase può anche essere «조금 더 일찍 떠났더라면 좋았을 텐데요»: il rammarico sta nel tono, non solo nella grammatica."
+          ],
+          "vocab": [
+            { "ko": "후회하다", "it": "pentirsi, rimpiangere", "rr": "huhoehada" },
+            { "ko": "선택", "it": "scelta", "rr": "seontaek" },
+            { "ko": "결정", "it": "decisione", "rr": "gyeoljeong" },
+            { "ko": "기회", "it": "occasione, opportunità", "rr": "gihoe" },
+            { "ko": "놓치다", "it": "perdere, lasciarsi sfuggire", "rr": "notchida" },
+            { "ko": "일찍", "it": "presto, in anticipo", "rr": "iljjik" },
+            { "ko": "늦다", "it": "essere tardi", "rr": "neutda" },
+            { "ko": "다행이다", "it": "essere un bene, per fortuna", "rr": "dahaengida" }
+          ],
+          "passages": [
+            {
+              "title": "돌아보면",
+              "lines": [
+                "작년에 유학을 고민했어요.",
+                "조금 더 일찍 결정했더라면 좋았을 텐데요.",
+                "그때 기회를 놓쳤더라면 지금처럼 성장하지 못했을 거예요.",
+                "후회도 있지만, 지금은 다행이라고 생각해요."
+              ],
+              "gloss": [
+                { "ko": "유학", "it": "studiare all'estero", "rr": "yuhak" },
+                { "ko": "고민하다", "it": "riflettere a lungo, preoccuparsi", "rr": "gominhada" },
+                { "ko": "결정하다", "it": "decidere", "rr": "gyeoljeonghada" },
+                { "ko": "성장하다", "it": "crescere", "rr": "seongjanghada" },
+                { "ko": "후회", "it": "rimpianto", "rr": "huhoe" },
+                { "ko": "다행", "it": "fortuna, cosa fortunata", "rr": "dahaeng" }
+              ],
+              "translation": "L'anno scorso ho pensato a lungo a studiare all'estero. Sarebbe stato meglio decidere un po' prima. Se allora avessi perso l'occasione, non sarei cresciuto come sono ora. Ho dei rimpianti, ma ora penso che sia una fortuna."
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ex-b2-10-1",
+              "type": "fill_blank",
+              "prompt": "Completa: «Se fossi partito prima, non avrei perso il treno».",
+              "text": "일찍 출발했___ 기차를 놓치지 않았을 거예요.",
+              "options": ["더라면", "으면", "는데도", "수록"],
+              "answer": "더라면",
+              "explain": "-았/었더라면 introduce un'ipotesi contraria ai fatti passati: non è partito prima, e il treno è stato perso."
+            },
+            {
+              "id": "ex-b2-10-2",
+              "type": "fill_blank",
+              "prompt": "Completa: «Se avessi saputo, avrei chiamato».",
+              "text": "미리 알았___ 전화했을 거예요.",
+              "options": ["더라면", "으면", "는데도", "자고"],
+              "answer": "더라면",
+              "explain": "알다 → 알았더라면. La frase principale è al condizionale passato: 전화했을 거예요."
+            },
+            {
+              "id": "ex-b2-10-3",
+              "type": "fill_blank",
+              "prompt": "Completa: «Se avessi studiato di più, avrei passato l'esame».",
+              "text": "더 공부했더라면 시험에 ___.",
+              "options": ["합격했을 거예요", "합격할 거예요", "합격해요", "합격하세요"],
+              "answer": "합격했을 거예요",
+              "explain": "La conseguenza di un'ipotesi passata mancata va al condizionale passato: 합격했을 거예요."
+            },
+            {
+              "id": "ex-b2-10-4",
+              "type": "reading_mcq",
+              "prompt": "Quale frase esprime il rimpianto per un'azione passata che non è stata fatta?",
+              "options": [
+                "그때 결정했더라면 지금 후회하지 않았을 거예요",
+                "내일 결정하려고 해요",
+                "지금 결정하세요",
+                "결정할 수 있어요"
+              ],
+              "answer": "그때 결정했더라면 지금 후회하지 않았을 거예요",
+              "explain": "La forma -았/었더라면 con la principale -았/었을 거예요 guarda a un passato che non si è realizzato."
+            },
+            {
+              "id": "ex-b2-10-5",
+              "type": "order_words",
+              "prompt": "Metti in ordine: «Se avessi comprato quel libro, l'avrei letto».",
+              "words": ["그", "책을", "샀더라면", "읽었을", "거예요"],
+              "answer": "그 책을 샀더라면 읽었을 거예요",
+              "explain": "사다 → 샀더라면 (passato + 더라면). 읽었을 거예요 è la conseguenza al condizionale passato."
+            },
+            {
+              "id": "ex-b2-10-6",
+              "type": "type_meaning",
+              "prompt": "Traduci: «그때 결정했더라면 지금 후회하지 않았을 거예요».",
+              "answer": "se avessi deciso allora, ora non me ne pentirei",
+              "accept": [
+                "se avessi deciso allora, ora non me ne pentirei",
+                "se avessi deciso allora non mi pentirei ora",
+                "se avessi deciso allora, non rimpiangerei ora"
+              ],
+              "explain": "Il rimpianto è espresso dalla combinazione -았/었더라면 + -지 않았을 거예요."
+            },
+            {
+              "id": "ex-b2-10-7",
+              "type": "fill_blank",
+              "prompt": "Completa: «Se avessi chiamato prima, avremmo mangiato insieme».",
+              "text": "미리 전화했더라면 같이 ___.",
+              "options": ["먹었을 거예요", "먹을 거예요", "먹어요", "먹으세요"],
+              "answer": "먹었을 거예요",
+              "explain": "La principale di -았/었더라면 è al condizionale passato: 먹었을 거예요."
+            },
+            {
+              "id": "ex-b2-10-8",
+              "type": "reading_mcq",
+              "prompt": "Che differenza c'è fra -았/었더라면 e -았/었으면?",
+              "options": [
+                "-더라면 guarda a un passato mancato con rimpianto; -으면 può essere un desiderio o un'ipotesi più neutra",
+                "-더라면 si usa per il futuro; -으면 solo per il passato",
+                "-더라면 è un ordine; -으면 è una domanda",
+                "Non c'è differenza: sono sempre intercambiabili"
+              ],
+              "answer": "-더라면 guarda a un passato mancato con rimpianto; -으면 può essere un desiderio o un'ipotesi più neutra",
+              "explain": "-더라면 sottolinea il guardare indietro a ciò che non è stato; -으면 è più ampio e può esprimere un desiderio."
+            },
+            {
+              "id": "ex-b2-10-9",
+              "type": "fill_blank",
+              "prompt": "Completa: «Peccato non essere partito un po' prima».",
+              "text": "조금 더 일찍 떠났___ 좋았을 텐데요.",
+              "options": ["더라면", "으면", "는데도", "수록"],
+              "answer": "더라면",
+              "explain": "떠났더라면 좋았을 텐데요: un rimpianto cortese per un passato che non è andato così."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

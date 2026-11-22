@@ -205,6 +205,61 @@ export function recordAttempt(db: Db, input: AttemptInput): AttemptOutcome {
   }
 }
 
+export interface ChallengeAnswer {
+  result: ExerciseResult;
+  courseSlug: string;
+  lessonId: string;
+}
+
+/**
+ * La sfida mista non è una lezione: non tocca lo stato delle lezioni, non crea
+ * ripassi e non può sbloccare nulla. Conta però come studio — esercizi e
+ * risposte giuste nelle statistiche del giorno — e aggiorna la banca degli
+ * errori, perché una domanda sbagliata in sfida è una domanda da rivedere come
+ * le altre. Il tutto in una transazione: o si registra la sfida intera, o
+ * niente.
+ */
+export function recordChallenge(
+  db: Db,
+  userId: string,
+  answers: readonly ChallengeAnswer[],
+  now: Date = new Date(),
+): number {
+  if (answers.length === 0) return 0;
+
+  const timestamp = now.toISOString();
+  const day = todayIso(now);
+  const correct = answers.filter((answer) => answer.result.correct).length;
+
+  db.exec('BEGIN');
+  try {
+    db.prepare(
+      `INSERT INTO daily_stats(user_id, day, exercises, correct)
+       VALUES (?, ?, ?, ?)
+       ON CONFLICT(user_id, day) DO UPDATE SET
+         exercises = daily_stats.exercises + excluded.exercises,
+         correct = daily_stats.correct + excluded.correct`,
+    ).run(userId, day, answers.length, correct);
+
+    for (const answer of answers) {
+      syncMistakes(
+        db,
+        userId,
+        answer.courseSlug,
+        answer.lessonId,
+        [answer.result],
+        timestamp,
+      );
+    }
+
+    db.exec('COMMIT');
+    return answers.length - correct;
+  } catch (error) {
+    db.exec('ROLLBACK');
+    throw error;
+  }
+}
+
 /**
  * Giorni consecutivi con almeno un'attività: esercizi di una lezione, ripasso
  * di una carta o un testo nel quaderno. Chi passa la giornata solo dai ripassi

@@ -123,6 +123,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           <NavLink to="/analisi">Analisi</NavLink>
           <NavLink to="/repertorio">Repertorio</NavLink>
           <NavLink to="/quaderno">Quaderno</NavLink>
+          <NavLink to="/sfida">Sfida</NavLink>
           <NavLink to="/ripassi">
             Ripassi
             {dueCards > 0 ? (

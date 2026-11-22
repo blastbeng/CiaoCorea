@@ -57,6 +57,7 @@ progressi, ripassi e tentativi non si perdono nel passaggio.
 | `/analisi` | un testo incollato, parola per parola: quali parole il corso conosce già, quali restano da scoprire e come si legge ognuna |
 | `/repertorio` | le spiegazioni delle lezioni in indice: si cerca una forma e si torna alla lezione |
 | `/quaderno` | le consegne di scrittura: si scrive la frase, poi si confronta con il modello |
+| `/sfida` | dodici domande miste dalle lezioni già chiuse: un ripasso che non cambia il percorso e manda gli errori in banca |
 | `/ripassi` | carte in scadenza, giudizio `ho saputo / quasi / non ricordo`; sotto, le parole fragili da riprovare subito |
 | `/errori` | gli esercizi che hai sbagliato, uno alla volta: azzeccarli li toglie dalla banca |
 | `/progressi` | totali, per corso, parole SRS, obiettivo della settimana, ritmo dei giorni |
@@ -282,6 +283,8 @@ store dentro la scheda. Richiedono la sessione tutte tranne `bootstrap`,
 | POST | `/api/writing/:promptId` | confronta il testo con il modello: `verdict`, parole mancanti, modello e nota |
 | GET | `/api/mistakes` | banca degli errori: esercizi sbagliati (senza soluzione), lezione di origine, `wrongCount` |
 | POST | `/api/mistakes/:exerciseId` | rifà un esercizio della banca: correzione, `wrongCount` (`null` = uscito), conteggi |
+| GET | `/api/challenge` | la sfida del giorno: dodici esercizi presi solo dalle lezioni già chiuse, scelti in modo stabile per utente e data |
+| POST | `/api/challenge` | corregge la sfida, aggiorna le statistiche del giorno e manda gli errori in banca; non tocca il percorso |
 | GET | `/api/sync/export` | il profilo aperto (`scope=profile`) o tutti i profili (`scope=all`) in un file JSON |
 | GET | `/api/sync/code` | il codice veloce: lezioni, ripassi e giorni di studio, compressi in una riga |
 | POST | `/api/sync/preview` | cosa cambierebbe un file: esegue davvero il merge e torna indietro |
@@ -374,8 +377,16 @@ del quaderno.
 La prima lezione di ogni corso è sempre aperta, così chi ha già basi può entrare
 da lì; le successive seguono l'ordine del corso.
 
-In tutto: dieci corsi, 76 lezioni, 888 voci di lessico, 30 brani di lettura, 19
-dialoghi e 27 consegne di scrittura. Il dizionario consultabile arriva a 962
+L'undicesimo, `b2`, porta in terreno avanzato ciò che prima restava fuori:
+discorso indiretto (affermazioni, domande, ordini, inviti e richieste), -더라 e
+-던 per ciò che si è visto di persona, passivo e causativo, la lettura di avvisi
+e notizie, la concessione con -기는 하지만/-는데도/-더라도, le sfumature di
+-잖아요/-거든요/-더라고요, il crescendo di -ㄹ수록 e lo scopo di -도록, e
+l'ipotesi mancata di -았/었더라면. Ogni lezione ha una spiegazione in italiano,
+esempi verificati, otto o nove esercizi e, dove serve, un brano da leggere.
+
+In tutto: undici corsi, 86 lezioni, 972 voci di lessico, 34 brani di lettura, 19
+dialoghi e 27 consegne di scrittura. Il dizionario consultabile arriva a 1067
 voci perché comprende anche le parole dei gloss, che sono quelle che si
 incontrano leggendo.
 
@@ -489,6 +500,28 @@ si azzecca.
   così la banca non è tempo sottratto all'abitudine.
 - La barra in alto mostra quanti esercizi aspettano, e la home lo dice con un
   link: una banca piena che nessuno vede è una banca che non serve.
+
+## Sfida del giorno
+
+Le lezioni chiudono un argomento alla volta; la sfida li rimescola. È un ripasso
+breve, dodici domande, che non sostituisce il percorso ma lo tiene vivo nei
+giorni in cui non c'è voglia di aprire una lezione nuova.
+
+- Il serbatoio sono **solo le lezioni già superate o saltate**: la sfida non
+  anticipa mai grammatica che lo studente non ha ancora incontrato.
+- La scelta è deterministica per utente e giorno (`FNV-1a` sul seme
+  `utente:data`): la stessa sfida resta identica se si ricarica la pagina, e
+  domani ne arriva un'altra. Al massimo due esercizi per lezione, così non
+  diventa il ripasso di una sola lezione.
+- Non tocca `lesson_progress`: una sfida andata male non abbassa il voto di una
+  lezione e non sblocca né blocca nulla. Aggiorna però le statistiche del giorno
+  (`daily_stats.exercises`) e, per ogni errore, la banca degli errori — la
+  stessa manutenzione della pagina Errori.
+- Le domande arrivano al client con corso e lezione di origine, così dopo la
+  correzione si può tornare a rileggere il punto giusto invece di fidarsi della
+  memoria.
+- Finché non c'è nemmeno una lezione chiusa la pagina lo dice e rimanda alla
+  prima lezione, invece di mostrare una sfida vuota.
 
 ## Parole fragili
 

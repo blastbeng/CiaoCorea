@@ -203,6 +203,26 @@ export function Dashboard() {
 
       <PlanCard plan={plan} />
 
+      {/* La sfida non entra nel piano: è un ripasso misto, non un compito.
+          Ma chi ha già chiuso qualcosa può permettersela, e da qui la trova. */}
+      {closedLessons > 0 ? (
+        <section className="card">
+          <div className="row row--between" style={{ alignItems: 'center' }}>
+            <div>
+              <p className="stat-label" style={{ margin: 0 }}>
+                Sfida del giorno
+              </p>
+              <p className="muted small" style={{ margin: '0.3rem 0 0' }}>
+                Dodici domande da lezioni già chiuse: un modo per accorgersi di cosa è rimasto.
+              </p>
+            </div>
+            <Link className="btn btn--sm" to="/sfida">
+              Apri la sfida
+            </Link>
+          </div>
+        </section>
+      ) : null}
+
       {/* Gli errori non entrano nel piano: il piano decide cosa studiare, la
           banca dice cosa hai già sbagliato. Sono due cose diverse e si vedono
           diverse, ma se la banca non è vuota vale la pena dirlo qui. */}

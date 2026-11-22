@@ -8,6 +8,7 @@ import semiRaw from '../data/courses/semi.json';
 import capacitaRaw from '../data/courses/capacita.json';
 import radiciRaw from '../data/courses/radici.json';
 import b1Raw from '../data/courses/b1.json';
+import b2Raw from '../data/courses/b2.json';
 import discorsiRaw from '../data/courses/discorsi.json';
 import dialoguesRaw from '../data/dialogues.json';
 import writingRaw from '../data/writing.json';
@@ -35,6 +36,7 @@ const RAW_COURSES: RawCourse[] = [
   { source: 'capacita.json', raw: capacitaRaw },
   { source: 'radici.json', raw: radiciRaw },
   { source: 'b1.json', raw: b1Raw },
+  { source: 'b2.json', raw: b2Raw },
   { source: 'discorsi.json', raw: discorsiRaw },
 ];
 

@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import {
   courseLessons,
+  findExercise,
   findLesson,
   getCourse,
   getVocabulary,
@@ -10,6 +11,8 @@ import { sampleResponse } from '@ciaocorea/engine';
 import { USERNAME_MAX } from '@ciaocorea/shared';
 import type {
   AttemptResponse,
+  ChallengeResponse,
+  ChallengeResultResponse,
   CourseListResponse,
   CourseSkipResponse,
   CourseSkipTest,
@@ -468,6 +471,75 @@ describe('errori, quaderno e dizionario', () => {
     const list = await store.call<DialogueListResponse>('GET', '/api/dialogues');
     expect(list.dialogues.length).toBeGreaterThan(0);
     expect(list.dialogues[0]?.totalTurns).toBeGreaterThan(0);
+  });
+});
+
+describe('sfida mista', () => {
+  it('si apre solo con una lezione chiusa e non tocca il progresso', async () => {
+    await store.bootstrap();
+
+    const empty = await store.call<ChallengeResponse>('GET', '/api/challenge');
+    expect(empty.exercises).toEqual([]);
+    expect(empty.availableLessons).toBe(0);
+
+    await passLesson('hangul', 'hangul-01');
+
+    const before = await store.call<CourseListResponse>('GET', '/api/courses');
+    const hangulBefore = before.courses.find((course) => course.slug === 'hangul');
+    expect(hangulBefore).toBeDefined();
+
+    const challenge = await store.call<ChallengeResponse>('GET', '/api/challenge');
+    expect(challenge.availableLessons).toBe(1);
+    expect(challenge.exercises.length).toBeGreaterThan(0);
+    expect(challenge.exercises.length).toBeLessThanOrEqual(12);
+    expect(challenge.exercises.every((item) => item.course.slug === 'hangul')).toBe(true);
+
+    // Stessa data e stesso profilo: la sfida non cambia fra due aperture.
+    const again = await store.call<ChallengeResponse>('GET', '/api/challenge');
+    expect(again.exercises.map((item) => item.id)).toEqual(
+      challenge.exercises.map((item) => item.id),
+    );
+
+    const answers = challenge.exercises.map((item) => ({
+      exerciseId: item.id,
+      response: sampleResponse(findExercise(item.id)!.exercise),
+    }));
+    const result = await store.call<ChallengeResultResponse>('POST', '/api/challenge', {
+      answers,
+    });
+    expect(result.total).toBe(challenge.exercises.length);
+    expect(result.score).toBe(100);
+    expect(result.wrong).toBe(0);
+
+    const after = await store.call<CourseListResponse>('GET', '/api/courses');
+    const hangulAfter = after.courses.find((course) => course.slug === 'hangul')!;
+    expect(hangulAfter.stats).toEqual(hangulBefore!.stats);
+  });
+
+  it('una risposta sbagliata entra nella banca degli errori', async () => {
+    await store.bootstrap();
+    await passLesson('hangul', 'hangul-01');
+
+    const challenge = await store.call<ChallengeResponse>('GET', '/api/challenge');
+    const first = challenge.exercises[0]!;
+
+    const answers = challenge.exercises.map((item) => ({
+      exerciseId: item.id,
+      response:
+        item.id === first.id
+          ? 'risposta sbagliata'
+          : sampleResponse(findExercise(item.id)!.exercise),
+    }));
+    const result = await store.call<ChallengeResultResponse>('POST', '/api/challenge', {
+      answers,
+    });
+    expect(result.wrong).toBe(1);
+
+    const mistakes = await store.call<{ items: { exercise: { id: string } }[] }>(
+      'GET',
+      '/api/mistakes',
+    );
+    expect(mistakes.items.some((item) => item.exercise.id === first.id)).toBe(true);
   });
 });
 

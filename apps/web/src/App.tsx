@@ -4,6 +4,7 @@ import { useAuth } from './auth';
 import { AppShell } from './components/AppShell';
 import { AboutPage } from './pages/AboutPage';
 import { AnalysisPage } from './pages/AnalysisPage';
+import { ChallengePage } from './pages/ChallengePage';
 import { AlphabetPage } from './pages/AlphabetPage';
 import { WritingPracticePage } from './pages/WritingPracticePage';
 import { ConiugaPage } from './pages/ConiugaPage';
@@ -73,6 +74,7 @@ export default function App() {
         <Route path="corso/:slug/salta" element={<SkipCoursePage />} />
         <Route path="dialoghi" element={<DialoguesPage />} />
         <Route path="dialoghi/:slug" element={<DialoguePage />} />
+        <Route path="sfida" element={<ChallengePage />} />
         <Route path="ripassi" element={<ReviewPage />} />
         <Route path="errori" element={<MistakesPage />} />
         <Route path="alfabeto" element={<AlphabetPage />} />

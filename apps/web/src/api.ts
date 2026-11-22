@@ -1,5 +1,7 @@
 import type {
   AttemptResponse,
+  ChallengeResponse,
+  ChallengeResultResponse,
   CourseListResponse,
   CourseSkipResponse,
   CourseSkipTest,
@@ -110,6 +112,13 @@ export const api = {
       answers,
       durationMs,
     }),
+
+  /** La sfida del giorno: un misto delle lezioni già chiuse, sempre le stesse. */
+  challenge: () => request<ChallengeResponse>('GET', '/api/challenge'),
+
+  /** Corregge la sfida senza toccare il progresso delle lezioni. */
+  submitChallenge: (answers: SubmitAnswer[], durationMs: number) =>
+    request<ChallengeResultResponse>('POST', '/api/challenge', { answers, durationMs }),
 
   /** Solo il numero dei ripassi in scadenza, per il badge nella shell. */
   due: () => request<DueCountResponse>('GET', '/api/progress/due'),
