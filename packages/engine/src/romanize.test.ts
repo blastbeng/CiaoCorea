@@ -143,6 +143,25 @@ describe('romanizzazione della pronuncia', () => {
     expect(pronunciationRomanize('좋습니다')).toBe('joseumnida');
   });
 
+  it('aspira anche quando la ㅎ è l’iniziale della sillaba dopo', () => {
+    // 제12항: 닫히다 [다치다], 잡히다 [자피다], 앉히다 [안치다].
+    expect(pronunciationRomanize('닫히다')).toBe('dachida');
+    expect(pronunciationRomanize('잡히다')).toBe('japida');
+    expect(pronunciationRomanize('입히다')).toBe('ipida');
+    expect(pronunciationRomanize('앉히다')).toBe('anchida');
+    expect(pronunciationRomanize('먹히다')).toBe('meokida');
+    expect(pronunciationRomanize('시작해요')).toBe('sijakaeyo');
+  });
+
+  it('lascia la ㄹ davanti a ㅁ', () => {
+    // La ㄹ non è una nasale da assimilare: 할머니, 설명, 질문, 골목.
+    expect(pronunciationRomanize('할머니')).toBe('halmeoni');
+    expect(pronunciationRomanize('설명')).toBe('seolmyeong');
+    expect(pronunciationRomanize('질문')).toBe('jilmun');
+    expect(pronunciationRomanize('골목')).toBe('golmok');
+    expect(pronunciationRomanize('별말씀을요')).toBe('byeolmalsseumeuryo');
+  });
+
   it('non segna le consonanti tese, come vuole la RR', () => {
     // 학교 si sente [학꾜], ma la romanizzazione ufficiale è hakgyo.
     expect(pronunciationRomanize('학교')).toBe('hakgyo');

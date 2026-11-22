@@ -124,6 +124,11 @@ Scelte che vale la pena ricordare:
 - **Contenuti in JSON tipizzato**, validati da `npm run content:check`: un
   errore di scrittura (risposta non fra le opzioni, id duplicato) blocca la
   build del contenuto, non lo studente.
+- **La romanizzazione non è libera.** Ogni `rr` deve essere una delle forme che
+  le regole di lettura producono per quella parola (`romanizationMatches`):
+  «sububi» per 수도비 non passa, perché nessuna pronuncia lo giustifica. Le
+  parole del dizionario verificato (`data/reference/romanization.json`) sono
+  confrontate con quello, che resta più autorevole del motore.
 
 ### Il controllo delle particelle
 
@@ -352,21 +357,30 @@ Il quinto, `a2`, alza il livello: passato in -았어요/-었어요, futuro in -(
 dicono cosa si sa fare e cosa si è vissuto: -(으)ㄹ 수 있다/없다 (con la differenza
 fra capacità, permesso e abilità imparata), -아/어 보다, -(으)ㄴ 적이 있다/없다,
 -(으)ㄹ 때, la nominalizzazione con -(으)ㄴ/는 것 e le supposizioni con 것 같다.
-Il settimo, `radici`, è il corso delle radici che cambiano: ㄷ irregolare
+Il corso `radici` è il corso delle radici che cambiano: ㄷ irregolare
 (듣다 → 들어요), ㄹ (살다 → 사세요), ㅂ (춥다 → 추워요), ㅅ e ㅎ (낫다, 파랗다),
 르 (모르다 → 몰라요), il registro formale -ㅂ니다/-습니다 e una lezione finale di
 lettura su un avviso del centro culturale. Ogni lezione insegna la regola con le
 forme vere, non con paradigmi astratti, e la chiude con esercizi di scrittura e
 di romanizzazione.
 
-L'ottavo, `b1`, è fatto solo di testi da leggere:
+Il corso `situazioni` (A2) raccoglie le frasi che servono sul momento, quando
+la grammatica deve uscire subito: -고 있다 per ciò che si sta facendo,
+-(으)면 안 되다 per il divieto, -ㄹ까요?/-ㅂ시다/-ㄹ래요? per proporre,
+-(으)ㄹ게요 per offrirsi, -아/어 두다 per ciò che si lascia pronto,
+-(으)ㄹ 뻔하다 per «c'è mancato poco» e -군요 per ciò che si scopre. Sette
+lezioni, ciascuna con un brano breve e il lessico della situazione; il dialogo
+«La sera prima di partire» le mette in fila in una scena sola, e tre consegne
+del quaderno le fanno scrivere.
+
+Il corso `b1` è fatto solo di testi da leggere:
 l'annuncio di una stanza, il menu con le note in fondo, l'orario di un centro
 culturale, il messaggio di servizio in ufficio, una recensione con la risposta
 del locale, una notizia breve. Ogni lezione porta il brano in coreano con il
 glossario delle parole difficili, e sotto gli esercizi di comprensione; la
 traduzione italiana del brano arriva solo quando la lezione risulta chiusa.
 
-Il decimo, `semi`, è il corso dei contatori: 개 per le cose, 명 e 분 per le
+Il corso `semi` è il corso dei contatori: 개 per le cose, 명 e 분 per le
 persone, 마리 per gli animali, 권·장·대 per libri, fogli e veicoli, 잔·병·그릇·인분
 per la tavola, 시·분 per l'ora, 살·층·호 per età, piani e stanze, 번·번째·씩 per le
 volte, gli ordinali e «a testa». Insegna la cosa che i numeri da soli non dicono:
@@ -374,7 +388,7 @@ davanti al contatore il numero cambia forma (한 개, 두 명, 스무 살) e a v
 cambia sistema (세 시 ma 이십 분; 두 잔 ma 이 인분). Chiude con due letture vere,
 uno scontrino e una prenotazione.
 
-Il nono, `discorsi`, è il corso che insegna a non fermarsi alla prima frase:
+Il corso `discorsi` è il corso che insegna a non fermarsi alla prima frase:
 condizione con -(으)면, concessione con -아/어도, causa con -기 때문에, immediatezza
 con -자마자, contemporaneità con -는 동안, scopo con -(으)러 가다, domande
 indirette con -(으)ㄴ/는지, stati con -아/어 있다 e favore con -아/어 주다. Ogni
@@ -385,7 +399,7 @@ del quaderno.
 La prima lezione di ogni corso è sempre aperta, così chi ha già basi può entrare
 da lì; le successive seguono l'ordine del corso.
 
-L'undicesimo, `b2`, porta in terreno avanzato ciò che prima restava fuori:
+Il corso `b2` porta in terreno avanzato ciò che prima restava fuori:
 discorso indiretto (affermazioni, domande, ordini, inviti e richieste), -더라 e
 -던 per ciò che si è visto di persona, passivo e causativo, la lettura di avvisi
 e notizie, la concessione con -기는 하지만/-는데도/-더라도, le sfumature di
@@ -393,8 +407,8 @@ e notizie, la concessione con -기는 하지만/-는데도/-더라도, le sfumat
 l'ipotesi mancata di -았/었더라면. Ogni lezione ha una spiegazione in italiano,
 esempi verificati, otto o nove esercizi e, dove serve, un brano da leggere.
 
-In tutto: undici corsi, 86 lezioni, 972 voci di lessico, 34 brani di lettura, 19
-dialoghi e 27 consegne di scrittura. Il dizionario consultabile arriva a 1067
+In tutto: dodici corsi, 93 lezioni, 1057 voci di lessico, 41 brani di lettura,
+20 dialoghi e 30 consegne di scrittura. Il dizionario consultabile arriva a 1178
 voci perché comprende anche le parole dei gloss, che sono quelle che si
 incontrano leggendo.
 
@@ -462,6 +476,9 @@ accetta le varianti previste.
 - Con il corso `messaggi` sono arrivati due dialoghi nuovi: una chat per
   organizzare lo studio (`chat-serale`) e un invito a cena in 반말
   (`invito-cena`), entrambi legati alle lezioni di quel corso.
+- Con il corso `situazioni` è arrivato `prima-di-partire`: la sera prima di un
+  viaggio, dove -고 있다, -아/어 두다, -(으)면 안 되다, -(으)ㄹ게요 e -군요 servono
+  tutti nella stessa scena.
 - Alcuni dialoghi sono legati al percorso (`after: {courseSlug, lessonId}`): si
   aprono quando quella lezione è superata o saltata. Finché è chiusa, l'elenco
   mostra "in chiusura" con il link alla lezione da fare, la pagina del dialogo
@@ -491,7 +508,7 @@ patto è un altro, ed è dichiarato allo studente.
   e una nota di grammatica sul punto che quella consegna insegna.
 - Il confronto è mostrato affiancato — il tuo testo e il modello — perché la
   differenza è il materiale di studio.
-- Le consegne sono dodici, due per corso, in
+- Le consegne sono trenta, tre per corso, in
   `packages/curriculum/data/writing.json`. Ognuna cita la lezione che insegna
   quelle parole e si apre quando quella lezione è superata o saltata.
 - Il contenuto è validato da `npm run content:check`: il modello deve contenere

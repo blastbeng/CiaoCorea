@@ -1332,6 +1332,133 @@
     ]
   },
   {
+    "id": "prima-di-partire",
+    "slug": "prima-di-partire",
+    "title": "La sera prima di partire",
+    "level": "A2",
+    "setting": "Domani mattina partite presto per un viaggio. La sera prima, nella stanza che condividete, Yu-jin fa il giro dei preparativi e tu finisci di sistemare le tue cose.",
+    "goal": "Raccontare che cosa stai facendo, dire che cosa hai già preparato, riconoscere un divieto e offrirti di fare la tua parte.",
+    "after": {
+      "courseSlug": "situazioni",
+      "lessonId": "sit-07"
+    },
+    "points": [
+      "-고 있다 racconta quello che si sta facendo in questo momento: 지금 짐을 싸고 있어요.",
+      "-아/어 두다 dice che un'azione è stata fatta e il risultato resta: 표는 가방에 넣어 두었어요.",
+      "-(으)면 안 되다 vieta: 우유는 가방에 넣으면 안 돼요.",
+      "-(으)ㄹ게요 annuncia ciò che farò io: 제가 들고 갈게요."
+    ],
+    "turns": [
+      {
+        "id": "y-1",
+        "speaker": "Yu-jin",
+        "ko": "지금 뭐 하고 있어요?",
+        "it": "Che cosa stai facendo adesso?"
+      },
+      {
+        "id": "s-1",
+        "speaker": "Tu",
+        "ko": "짐을 싸고 있어요.",
+        "it": "Sto facendo i bagagli.",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "짐을 싸고 있어요",
+            "짐을 싸 두었어요",
+            "짐을 싸면 안 돼요"
+          ]
+        },
+        "note": "L'azione è in corso adesso: -고 있다. «짐을 싸 두었어요» direbbe che i bagagli sono già fatti; «싸면 안 돼요» vieterebbe di farli."
+      },
+      {
+        "id": "y-2",
+        "speaker": "Yu-jin",
+        "ko": "내일 아침 일찍 출발하니까 미리 준비해 두는 게 좋아요.",
+        "it": "Partiamo presto domani mattina, quindi è meglio preparare tutto in anticipo."
+      },
+      {
+        "id": "s-2",
+        "speaker": "Tu",
+        "ko": "네, 표는 가방에 넣어 두었어요.",
+        "it": "Sì, i biglietti li ho già messi in borsa.",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "표는 가방에 넣어 두었어요",
+            "표를 가방에 넣어 두었어요",
+            "가방에 넣어 두었어요"
+          ],
+          "hint": "«Ho messo (e lì restano)»: 넣다 + -아/어 두다, al passato."
+        },
+        "note": "넣어 두었어요: l'azione è finita e il risultato dura, per questo è la forma giusta per una cosa preparata in anticipo."
+      },
+      {
+        "id": "y-3",
+        "speaker": "Yu-jin",
+        "ko": "좋아요. 그런데 창문은 닫아 두었어요?",
+        "it": "Bene. E la finestra l'hai lasciata chiusa?"
+      },
+      {
+        "id": "s-3",
+        "speaker": "Tu",
+        "ko": "네, 닫아 두었어요.",
+        "it": "Sì, l'ho lasciata chiusa.",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "네, 닫아 두었어요",
+            "네, 닫고 있어요",
+            "네, 닫을게요"
+          ]
+        },
+        "note": "닫아 두었어요 = è chiusa perché l'ho chiusa. «닫고 있어요» direbbe che la stai chiudendo proprio ora; «닫을게요» prometterebbe di chiuderla."
+      },
+      {
+        "id": "y-4",
+        "speaker": "Yu-jin",
+        "ko": "그런데 우유는 가방에 넣으면 안 돼요.",
+        "it": "Però il latte in borsa non va messo."
+      },
+      {
+        "id": "s-4",
+        "speaker": "Tu",
+        "ko": "아, 그럼 제가 들고 갈게요.",
+        "it": "Ah, allora lo porto io in mano.",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "아, 그럼 제가 들고 갈게요",
+            "아, 그럼 네가 들고 갈게요",
+            "아, 그럼 제가 들고 가요"
+          ]
+        },
+        "note": "-(으)ㄹ게요 annuncia quello che farò io, qui come offerta. «네가 들고 갈게요» darebbe del tu a chi parla di sé: impossibile; «들고 가요» è un presente che non promette nulla."
+      },
+      {
+        "id": "y-5",
+        "speaker": "Yu-jin",
+        "ko": "벌써 다 됐군요! 제가 물을 사 올게요.",
+        "it": "Ah, è già tutto pronto! Vado a comprare l'acqua."
+      },
+      {
+        "id": "s-5",
+        "speaker": "Tu",
+        "ko": "네, 저는 방을 정리할게요.",
+        "it": "Sì, io intanto metto in ordine la stanza.",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "네, 저는 방을 정리할게요",
+            "저는 방을 정리할게요",
+            "방을 정리할게요"
+          ],
+          "hint": "정리하다 + -ㄹ게요: «lo faccio io»."
+        },
+        "note": "정리할게요: il tema 저는 dice chi agisce, e -ㄹ게요 dice che lo fa lui. Il verbo 정리하다 davanti a -ㄹ게요 perde la 다 e prende ㄹ."
+      }
+    ]
+  },
+  {
     "id": "chi-manca",
     "slug": "chi-manca",
     "title": "Perché non è arrivata?",

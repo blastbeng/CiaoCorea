@@ -1,5 +1,7 @@
 import { readFileSync } from 'node:fs';
 
+import { pronunciationRomanize, romanizationMatches } from '@ciaocorea/engine';
+
 import {
   courseLessons,
   getCourses,
@@ -43,6 +45,24 @@ function checkRomanization(vocabulary: { ko: string; rr: string }[]): string[] {
     }
     if (rr.includes('-') && !/[역도]$/.test(ko)) {
       problems.push(`romanizzazione: «${ko}» è «${rr}», i trattini non fanno parte della RR`);
+    }
+    // Una forma che nessuna regola di lettura produce è quasi sempre un refuso
+    // («sububi» per 수도비). Il riferimento verificato, quando c'è, è più
+    // autorevole del motore: lì il confronto è già avvenuto sopra.
+    // Le voci con cifre (1인분) restano fuori: la cifra si legge, ma il motore
+    // non sa farlo. Delle frasi si confronta parola per parola, quando i due
+    // lati hanno lo stesso numero di parole; altrimenti si tace.
+    if (!reference && !/\d/.test(ko)) {
+      const korean = ko.split(/\s+/).map((token) => token.replace(/[?!.,]/g, ''));
+      const roman = rr.split(/\s+/);
+      const aligned =
+        korean.length === roman.length && korean.every((token) => /^[가-힣]+$/.test(token));
+      if (aligned && !korean.every((token, index) => romanizationMatches(token, roman[index]))) {
+        problems.push(
+          `romanizzazione: «${ko}» è «${rr}», che non corrisponde alla pronuncia ` +
+            `(${korean.map((token) => pronunciationRomanize(token)).join(' ')})`,
+        );
+      }
     }
   }
   return problems;

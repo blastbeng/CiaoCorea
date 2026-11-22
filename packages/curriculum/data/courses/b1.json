@@ -62,7 +62,7 @@
                 {"ko": "역세권", "it": "zona ben collegata alla stazione", "rr": "yeoksegwon"},
                 {"ko": "원룸", "it": "monolocale", "rr": "wonnum"},
                 {"ko": "평", "it": "pyeong, unità di superficie (≈ 3,3 m²)", "rr": "pyeong"},
-                {"ko": "수도비", "it": "bolletta dell'acqua", "rr": "sububi"},
+                {"ko": "수도비", "it": "bolletta dell'acqua", "rr": "sudobi"},
                 {"ko": "난방비", "it": "spese di riscaldamento", "rr": "nanbangbi"},
                 {"ko": "신촌역", "it": "stazione di Sinchon", "rr": "Sinchon-yeok"}
               ],

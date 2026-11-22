@@ -527,5 +527,65 @@
     ],
     "model": "안녕하십니까? 저는 마르코입니다. 저는 한국어를 공부합니다.",
     "notes": "Dopo un nome si usa 입니다 (저는 마르코입니다). Per i verbi: 공부하다 → 공부합니다, 읽다 → 읽습니다. 안녕하십니까? è il saluto formale, più cerimonioso di 안녕하세요."
+  },
+  {
+    "id": "w-sit-01",
+    "courseSlug": "situazioni",
+    "lessonId": "sit-01",
+    "title": "Che cosa stai facendo",
+    "task": "Scrivi «Adesso sto leggendo un libro in biblioteca.»",
+    "words": [
+      "지금",
+      "도서관에서",
+      "책을",
+      "읽다",
+      "-고 있다"
+    ],
+    "must": [
+      "읽고 있어요"
+    ],
+    "model": "지금 도서관에서 책을 읽고 있어요.",
+    "notes": "읽다 → 읽고 있어요: il tema 읽- + -고 있다. «Adesso» si dice 지금, e il luogo con 에서 (도서관에서)."
+  },
+  {
+    "id": "w-sit-05",
+    "courseSlug": "situazioni",
+    "lessonId": "sit-05",
+    "title": "Tutto pronto",
+    "task": "Scrivi due frasi: «Ho già preparato la borsa» e «Ho lasciato la finestra chiusa».",
+    "words": [
+      "가방을",
+      "미리",
+      "싸다",
+      "창문은",
+      "닫다",
+      "-아/어 두다"
+    ],
+    "must": [
+      "싸 두었어요",
+      "닫아 두었어요"
+    ],
+    "model": "가방을 미리 싸 두었어요. 창문은 닫아 두었어요.",
+    "alt": [
+      "가방은 미리 싸 두었어요. 창문은 닫아 두었어요."
+    ],
+    "notes": "싸다 → 싸 두었어요 e 닫다 → 닫아 두었어요: -아/어 두다 dice che l'azione è fatta e il risultato resta. Al passato 두었어요 si sente spesso contratto in 뒀어요."
+  },
+  {
+    "id": "w-sit-07",
+    "courseSlug": "situazioni",
+    "lessonId": "sit-07",
+    "title": "Ah, ecco!",
+    "task": "Scrivi «Ah, le chiavi erano qui!» come se l'avessi appena scoperto.",
+    "words": [
+      "열쇠가",
+      "여기",
+      "있다"
+    ],
+    "must": [
+      "있었군요"
+    ],
+    "model": "아, 열쇠가 여기 있었군요!",
+    "notes": "-군요 commenta ciò che si è appena notato: 있다 → 있었군요 (passato, perché le chiavi erano lì). 아 all'inizio dà la sorpresa."
   }
 ]

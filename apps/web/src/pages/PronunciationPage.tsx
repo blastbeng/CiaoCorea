@@ -44,22 +44,25 @@ const RULES: Rule[] = [
   {
     name: 'Aspirazione',
     korean: '격음화',
-    what: 'ㄱ, ㄷ, ㅂ, ㅈ incontrano una ㅎ e diventano ㅋ, ㅌ, ㅍ, ㅊ. La ㅎ finale, davanti a vocale, invece cade.',
+    what: "ㄱ, ㄷ, ㅂ, ㅈ incontrano una ㅎ e diventano ㅋ, ㅌ, ㅍ, ㅊ, sia quando la ㅎ chiude la sillaba sia quando la apre: 좋고, 닫히다. La ㅎ finale, davanti a vocale, invece cade.",
     examples: [
       { ko: '좋고', bracket: '[조코]', rr: 'joko' },
       { ko: '놓다', bracket: '[노타]', rr: 'nota' },
       { ko: '낳지', bracket: '[나치]', rr: 'nachi' },
+      { ko: '닫히다', bracket: '[다치다]', rr: 'dachida' },
+      { ko: '잡히다', bracket: '[자피다]', rr: 'japida' },
       { ko: '좋아', bracket: '[조아]', rr: 'joa' },
     ],
   },
   {
     name: 'Nasalizzazione',
     korean: '비음화',
-    what: 'Davanti a ㄴ o ㅁ, i suoni ㄱ, ㄷ, ㅂ si chiudono nel naso e diventano ㅇ, ㄴ, ㅁ.',
+    what: 'Davanti a ㄴ o ㅁ, i suoni ㄱ, ㄷ, ㅂ si chiudono nel naso e diventano ㅇ, ㄴ, ㅁ. La ㄹ no: davanti a ㅁ resta una l.',
     examples: [
       { ko: '국민', bracket: '[궁민]', rr: 'gungmin' },
       { ko: '백마', bracket: '[뱅마]', rr: 'baengma' },
       { ko: '밥물', bracket: '[밤물]', rr: 'bammul' },
+      { ko: '할머니', bracket: '[할머니]', rr: 'halmeoni' },
     ],
   },
   {

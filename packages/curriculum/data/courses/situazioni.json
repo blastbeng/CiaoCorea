@@ -1,0 +1,826 @@
+{
+  "id": "situazioni",
+  "slug": "situazioni",
+  "title": "Cosa dire sul momento",
+  "subtitle": "Sette mosse per la giornata: quello che stai facendo, quello che non si può, le proposte, le promesse e le occasioni mancate per un soffio.",
+  "level": "A2",
+  "description": "Una cassetta degli attrezzi per le situazioni che capitano ogni giorno: il presente progressivo, il divieto, le proposte tra amici, le promesse, le cose lasciate pronte, i quasi-incidenti e la scoperta di qualcosa che si è appena capito.",
+  "units": [
+    {
+      "id": "situazioni-1",
+      "title": "Nel momento",
+      "purpose": "Le quattro mosse che servono mentre la giornata succede: descrivere, vietare, proporre, promettere.",
+      "lessons": [
+        {
+          "id": "sit-01",
+          "slug": "sto-facendo",
+          "title": "Sto facendo: -고 있다",
+          "titleKo": "-고 있다",
+          "kind": "grammar",
+          "goal": "Raccontare che cosa sta succedendo adesso e distinguerlo da una condizione che dura.",
+          "durationMin": 25,
+          "points": [
+            "-고 있다 è il presente progressivo: 지금 밥을 먹고 있어요 = adesso sto mangiando.",
+            "Si attacca al tema del verbo senza eccezioni: 하다 → 하고 있다, 읽다 → 읽고 있다, 기다리다 → 기다리고 있다.",
+            "Con alcuni verbi l'azione compiuta diventa uno stato, e -고 있다 descrive quello stato, non un'azione in corso: 알고 있어요 = lo so, 입고 있어요 = ce l'ho addosso, 가지고 있어요 = ce l'ho.",
+            "La forma cortese è -고 있어요; al passato -고 있었어요 = stavo facendo.",
+            "Il presente semplice 먹어요 può già voler dire «mangio adesso»: -고 있다 insiste che l'azione è in corso in questo momento."
+          ],
+          "vocab": [
+            { "ko": "지금", "it": "adesso", "rr": "jigeum" },
+            { "ko": "하다", "it": "fare", "rr": "hada" },
+            { "ko": "읽다", "it": "leggere", "rr": "ikda" },
+            { "ko": "기다리다", "it": "aspettare", "rr": "gidarida" },
+            { "ko": "청소하다", "it": "fare le pulizie", "rr": "cheongsohada" },
+            { "ko": "빨래", "it": "il bucato", "rr": "ppallae" },
+            { "ko": "숙제", "it": "i compiti", "rr": "sukje" },
+            { "ko": "준비하다", "it": "preparare", "rr": "junbihada" },
+            { "ko": "전화하다", "it": "telefonare", "rr": "jeonhwahada" },
+            { "ko": "사진", "it": "fotografia", "rr": "sajin" },
+            { "ko": "보다", "it": "guardare", "rr": "boda" },
+            { "ko": "아직", "it": "ancora", "rr": "ajik" },
+            { "ko": "벌써", "it": "già", "rr": "beolsseo" }
+          ],
+          "passages": [
+            {
+              "title": "지금 뭐 해요?",
+              "lines": ["지금 뭐 해요?", "저는 숙제하고 있어요.", "동생은 청소하고 있어요.", "아버지는 신문을 읽고 있어요."],
+              "gloss": [
+                { "ko": "숙제", "it": "compiti", "rr": "sukje" },
+                { "ko": "청소", "it": "pulizia", "rr": "cheongso" },
+                { "ko": "신문", "it": "giornale", "rr": "sinmun" },
+                { "ko": "동생", "it": "fratello o sorella minore", "rr": "dongsaeng" }
+              ],
+              "translation": "Che cosa stai facendo adesso? / Io sto facendo i compiti. / Mio fratello minore sta pulendo. / Papà sta leggendo il giornale."
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ex-sit-01-1",
+              "type": "fill_blank",
+              "prompt": "Completa: «Adesso sto leggendo un libro».",
+              "text": "지금 책을 읽___.",
+              "options": ["고 있어요", "고 싶어요", "으면 안 돼요", "어 두세요"],
+              "answer": "고 있어요",
+              "explain": "-고 있다 mette l'azione in corso: 읽고 있어요 = sto leggendo."
+            },
+            {
+              "id": "ex-sit-01-2",
+              "type": "order_words",
+              "prompt": "Adesso sto aspettando l'autobus.",
+              "words": ["지금", "버스를", "기다리고", "있어요"],
+              "answer": "지금 버스를 기다리고 있어요",
+              "explain": "기다리다 → 기다리고 있다: il tema resta 기다리-."
+            },
+            {
+              "id": "ex-sit-01-3",
+              "type": "type_hangul",
+              "prompt": "Scrivi «Sto facendo i compiti».",
+              "answer": "숙제하고 있어요",
+              "accept": ["숙제하고 있어요", "숙제하고있어요"],
+              "explain": "하다 → 하고 있다; 숙제하고 있어요."
+            },
+            {
+              "id": "ex-sit-01-4",
+              "type": "reading_mcq",
+              "prompt": "«벌써 청소하고 있어요» che cosa vuol dire?",
+              "options": ["Sto già pulendo", "Pulirò più tardi", "Ho pulito ieri", "Devo pulire"],
+              "answer": "Sto già pulendo",
+              "explain": "벌써 = già; -고 있어요 = azione in corso."
+            },
+            {
+              "id": "ex-sit-01-5",
+              "type": "type_meaning",
+              "prompt": "«알고 있어요»",
+              "answer": "lo so",
+              "accept": ["lo so", "lo conosco"],
+              "explain": "알고 있다 non è «sto conoscendo»: descrive lo stato di sapere."
+            },
+            {
+              "id": "ex-sit-01-6",
+              "type": "fill_blank",
+              "prompt": "Completa: «Ieri a quest'ora stavo telefonando».",
+              "text": "어제 이 시간에 전화하___.",
+              "options": ["고 있었어요", "고 있어요", "고 싶었어요", "면 안 됐어요"],
+              "answer": "고 있었어요",
+              "explain": "-고 있었어요 mette l'azione in corso nel passato."
+            },
+            {
+              "id": "ex-sit-01-7",
+              "type": "reading_mcq",
+              "prompt": "Quale frase descrive una condizione (portare gli occhiali), non un'azione in corso?",
+              "options": ["저는 안경을 쓰고 있어요", "저는 책을 읽고 있어요", "저는 밥을 먹고 있어요", "저는 음악을 듣고 있어요"],
+              "answer": "저는 안경을 쓰고 있어요",
+              "explain": "쓰고 있다 = portare addosso: è uno stato, come 알고 있다."
+            },
+            {
+              "id": "ex-sit-01-8",
+              "type": "order_words",
+              "prompt": "Sto guardando le foto.",
+              "words": ["지금", "사진을", "보고", "있어요"],
+              "answer": "지금 사진을 보고 있어요",
+              "explain": "보다 → 보고 있다."
+            },
+            { "id": "ex-sit-01-9", "type": "listen_type", "prompt": "Ascolta e scrivi quello che senti.", "speak": "기다리다", "answer": "기다리다", "explain": "기다리다 = aspettare; 기다리고 있어요 = sto aspettando." }
+          ]
+        },
+        {
+          "id": "sit-02",
+          "slug": "non-si-puo",
+          "title": "Qui non si può: -(으)면 안 되다",
+          "titleKo": "-(으)면 안 되다",
+          "kind": "grammar",
+          "goal": "Dire che una cosa non si può o non si deve fare, senza confonderla con «non è necessario».",
+          "durationMin": 25,
+          "points": [
+            "-(으)면 안 되다 dice che una cosa non si può o non si deve fare: 여기서 사진을 찍으면 안 돼요 = qui non si possono fare foto.",
+            "Forma: tema + -(으)면 안 되다. Dopo vocale -면 (가면 안 돼요), dopo consonante -으면 (먹으면 안 돼요).",
+            "Il tema in ㄹ resta ㄹ: 살다 → 살면 안 돼요, non «사면».",
+            "Non è la stessa cosa di -지 않아도 되다: 안 가도 돼요 = puoi non andare, non è necessario; 가면 안 돼요 = non puoi andare, è vietato.",
+            "Non è nemmeno 못 / -지 못하다: 시험에 못 갔어요 = non sono riuscito ad andare. 안 되다 parla di regole e permessi."
+          ],
+          "vocab": [
+            { "ko": "찍다", "it": "scattare (una foto)", "rr": "jjikda" },
+            { "ko": "담배", "it": "sigaretta", "rr": "dambae" },
+            { "ko": "피우다", "it": "fumare", "rr": "piuda" },
+            { "ko": "주차하다", "it": "parcheggiare", "rr": "juchahada" },
+            { "ko": "출입금지", "it": "vietato l'ingresso", "rr": "churipgeumji" },
+            { "ko": "반납하다", "it": "restituire", "rr": "bannaphada" },
+            { "ko": "여기", "it": "qui", "rr": "yeogi" },
+            { "ko": "도서관", "it": "biblioteca", "rr": "doseogwan" },
+            { "ko": "조용히", "it": "silenziosamente", "rr": "joyonghi" },
+            { "ko": "크게", "it": "forte, ad alta voce", "rr": "keuge" },
+            { "ko": "괜찮다", "it": "andare bene, essere accettabile", "rr": "gwaenchanta" },
+            { "ko": "안 되다", "it": "non andare bene, non si può", "rr": "an doeda" }
+          ],
+          "passages": [
+            {
+              "title": "건물 안내",
+              "lines": ["건물 안에서 담배를 피우면 안 됩니다.", "주차는 뒤쪽 주차장에서만 할 수 있습니다.", "음식물은 밖으로 가지고 나가면 안 됩니다.", "조용히 해 주세요."],
+              "gloss": [
+                { "ko": "건물", "it": "edificio", "rr": "geonmul" },
+                { "ko": "안내", "it": "avviso, indicazioni", "rr": "annae" },
+                { "ko": "뒤쪽", "it": "parte posteriore", "rr": "dwijjok" },
+                { "ko": "주차장", "it": "parcheggio", "rr": "juchajang" },
+                { "ko": "음식물", "it": "cibo, avanzi", "rr": "eumsingmul" },
+                { "ko": "밖", "it": "fuori", "rr": "bak" }
+              ],
+              "translation": "Dentro l'edificio non si può fumare. / Il parcheggio è consentito solo nel parcheggio sul retro. / Non si può portare il cibo fuori. / Per favore, fate silenzio."
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ex-sit-02-1",
+              "type": "fill_blank",
+              "prompt": "Completa: «Qui non si possono fare foto».",
+              "text": "여기서 사진을 찍___.",
+              "options": ["으면 안 돼요", "고 있어요", "어 두세요", "을래요"],
+              "answer": "으면 안 돼요",
+              "explain": "찍다 finisce in consonante: -으면 안 되다."
+            },
+            {
+              "id": "ex-sit-02-2",
+              "type": "order_words",
+              "prompt": "Qui non si può fumare.",
+              "words": ["여기서", "담배를", "피우면", "안", "돼요"],
+              "answer": "여기서 담배를 피우면 안 돼요",
+              "explain": "피우다 + -면 안 되다: 피우면 안 돼요."
+            },
+            {
+              "id": "ex-sit-02-3",
+              "type": "reading_mcq",
+              "prompt": "«출입금지» che cosa significa?",
+              "options": ["Vietato entrare", "Ingresso libero", "Uscita di sicurezza", "Aperto di notte"],
+              "answer": "Vietato entrare",
+              "explain": "출입 = entrare e uscire; 금지 = divieto."
+            },
+            {
+              "id": "ex-sit-02-4",
+              "type": "fill_blank",
+              "prompt": "Completa: «Non è necessario andare».",
+              "text": "안 가___.",
+              "options": ["도 돼요", "면 안 돼요", "고 있어요", "을게요"],
+              "answer": "도 돼요",
+              "explain": "-아/어도 되다 = è permesso; con 안 diventa «non è necessario»."
+            },
+            {
+              "id": "ex-sit-02-5",
+              "type": "type_hangul",
+              "prompt": "Scrivi «Non si può parcheggiare qui».",
+              "answer": "여기에 주차하면 안 돼요",
+              "accept": ["여기에 주차하면 안 돼요", "여기에주차하면안돼요"],
+              "explain": "주차하다 → 주차하면 안 되다."
+            },
+            {
+              "id": "ex-sit-02-6",
+              "type": "reading_mcq",
+              "prompt": "Quale frase vieta una cosa?",
+              "options": ["여기서 자면 안 돼요", "여기서 자도 돼요", "여기서 자고 있어요", "여기서 잘 거예요"],
+              "answer": "여기서 자면 안 돼요",
+              "explain": "-면 안 되다 = divieto; -도 돼요 = permesso."
+            },
+            {
+              "id": "ex-sit-02-7",
+              "type": "fill_blank",
+              "prompt": "Completa: «In biblioteca bisogna stare zitti».",
+              "text": "도서관에서는 조용히 ___.",
+              "options": ["해야 돼요", "하면 안 돼요", "고 있어요", "어 두세요"],
+              "answer": "해야 돼요",
+              "explain": "-아/어야 되다 = si deve."
+            },
+            {
+              "id": "ex-sit-02-8",
+              "type": "type_meaning",
+              "prompt": "«반납하다»",
+              "answer": "restituire",
+              "accept": ["restituire", "riconsegnare"],
+              "explain": "반납 = restituzione: si usa per libri, chiavi, badge."
+            },
+            { "id": "ex-sit-02-9", "type": "listen_type", "prompt": "Ascolta e scrivi quello che senti.", "speak": "주차하다", "answer": "주차하다", "explain": "주차하다 = parcheggiare; 주차장 = parcheggio." }
+          ]
+        },
+        {
+          "id": "sit-03",
+          "slug": "facciamo",
+          "title": "Facciamo? -ㄹ까요? / -ㅂ시다 / -ㄹ래요?",
+          "titleKo": "-ㄹ까요? · -ㅂ시다",
+          "kind": "grammar",
+          "goal": "Proporre, invitare e chiedere che cosa vuole fare l'altra persona, scegliendo la forma giusta per chi si ha davanti.",
+          "durationMin": 30,
+          "points": [
+            "-(으)ㄹ까요? chiede un parere o propone: 같이 갈까요? = andiamo insieme? che ne dici?",
+            "-(으)ㅂ시다 è «facciamo», tra pari o con chi è più giovane: 갑시다, 먹읍시다. A un superiore non si dice.",
+            "-(으)ㄹ래요? chiede l'intenzione dell'altro nel parlato: 뭐 마실래요? = che cosa vuoi bere?",
+            "Forme: tema in vocale + ㄹ까요 (갈까요), in consonante + 을까요 (먹을까요); il tema in ㄹ si comporta come una vocale (살까요).",
+            "Per accettare: 좋아요, 그렇게 해요. Per rifiutare con garbo: 미안해요, 저는 안 갈래요."
+          ],
+          "vocab": [
+            { "ko": "같이", "it": "insieme", "rr": "gachi" },
+            { "ko": "영화", "it": "film", "rr": "yeonghwa" },
+            { "ko": "보다", "it": "guardare", "rr": "boda" },
+            { "ko": "커피", "it": "caffè", "rr": "keopi" },
+            { "ko": "마시다", "it": "bere", "rr": "masida" },
+            { "ko": "산책", "it": "passeggiata", "rr": "sanchaek" },
+            { "ko": "내일", "it": "domani", "rr": "naeil" },
+            { "ko": "좋아요", "it": "va bene", "rr": "joayo" },
+            { "ko": "미안하다", "it": "dispiacersi", "rr": "mianhada" },
+            { "ko": "시간", "it": "tempo", "rr": "sigan" },
+            { "ko": "약속", "it": "appuntamento, promessa", "rr": "yaksok" },
+            { "ko": "갑시다", "it": "andiamo", "rr": "gapsida" }
+          ],
+          "passages": [
+            {
+              "title": "같이 영화 볼까요?",
+              "lines": ["내일 시간 있어요?", "네, 오후에는 괜찮아요.", "같이 영화 볼까요?", "좋아요. 몇 시에 만날까요?", "세 시에 극장 앞에서 만나요."],
+              "gloss": [
+                { "ko": "오후", "it": "pomeriggio", "rr": "ohu" },
+                { "ko": "극장", "it": "cinema, teatro", "rr": "geukjang" },
+                { "ko": "앞", "it": "davanti", "rr": "ap" },
+                { "ko": "만나다", "it": "incontrarsi", "rr": "mannada" },
+                { "ko": "몇 시", "it": "che ora", "rr": "myeot si" }
+              ],
+              "translation": "Domani hai tempo? / Sì, nel pomeriggio va bene. / Andiamo insieme al cinema? / Va bene. A che ora ci vediamo? / Alle tre davanti al cinema."
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ex-sit-03-1",
+              "type": "fill_blank",
+              "prompt": "Completa: «Andiamo insieme?»",
+              "text": "같이 ___?",
+              "options": ["갈까요", "가요", "가면 안 돼요", "가 두세요"],
+              "answer": "갈까요",
+              "explain": "-(으)ㄹ까요 propone e chiede il parere."
+            },
+            {
+              "id": "ex-sit-03-2",
+              "type": "fill_blank",
+              "prompt": "Completa: «Facciamo adesso» (tra amici).",
+              "text": "지금 ___.",
+              "options": ["합시다", "하십시오", "할까요", "해 두세요"],
+              "answer": "합시다",
+              "explain": "-(으)ㅂ시다 = facciamo; 하다 → 합시다."
+            },
+            {
+              "id": "ex-sit-03-3",
+              "type": "reading_mcq",
+              "prompt": "A un professore quale forma NON si usa per proporre?",
+              "options": ["갑시다", "같이 갈까요?", "같이 가시겠어요?", "시간 괜찮으세요?"],
+              "answer": "갑시다",
+              "explain": "-ㅂ시다 è tra pari; a un superiore si usa -ㄹ까요? o una domanda cortese."
+            },
+            {
+              "id": "ex-sit-03-4",
+              "type": "order_words",
+              "prompt": "Domani andiamo insieme al cinema?",
+              "words": ["내일", "같이", "영화", "볼까요?"],
+              "answer": "내일 같이 영화 볼까요?",
+              "explain": "보다 → 볼까요? (tema 보 + ㄹ까요)."
+            },
+            {
+              "id": "ex-sit-03-5",
+              "type": "type_hangul",
+              "prompt": "Scrivi «Facciamo una passeggiata».",
+              "answer": "산책합시다",
+              "accept": ["산책합시다", "산책 합시다"],
+              "explain": "산책하다 → 산책합시다."
+            },
+            {
+              "id": "ex-sit-03-6",
+              "type": "reading_mcq",
+              "prompt": "«먹을래요?» che cosa chiede?",
+              "options": ["Se vuoi mangiare", "Se hai già mangiato", "Se devi mangiare", "Se puoi mangiare"],
+              "answer": "Se vuoi mangiare",
+              "explain": "-ㄹ래요? chiede l'intenzione dell'altro."
+            },
+            {
+              "id": "ex-sit-03-7",
+              "type": "fill_blank",
+              "prompt": "Completa: «Va bene, facciamo così».",
+              "text": "좋아요. 그렇게 ___.",
+              "options": ["해요", "하면 안 돼요", "해 두세요", "합시다"],
+              "answer": "해요",
+              "explain": "그렇게 해요 = facciamo così, risposta naturale a una proposta."
+            },
+            {
+              "id": "ex-sit-03-8",
+              "type": "type_meaning",
+              "prompt": "«몇 시에 만날까요?»",
+              "answer": "a che ora ci incontriamo?",
+              "accept": ["a che ora ci incontriamo?", "a che ora ci vediamo?"],
+              "explain": "만나다 = incontrarsi; -ㄹ까요? chiede il parere."
+            },
+            { "id": "ex-sit-03-9", "type": "listen_type", "prompt": "Ascolta e scrivi quello che senti.", "speak": "산책", "answer": "산책", "explain": "산책 = passeggiata; 산책하다 = fare una passeggiata." }
+          ]
+        },
+        {
+          "id": "sit-04",
+          "slug": "lo-faccio-io",
+          "title": "Lo faccio io: -(으)ㄹ게요",
+          "titleKo": "-(으)ㄹ게요 · -(으)ㄹ래요",
+          "kind": "grammar",
+          "goal": "Promettere, offrirsi e dire che cosa si ha intenzione di fare.",
+          "durationMin": 25,
+          "points": [
+            "-(으)ㄹ게요 annuncia ciò che farò io, spesso come promessa o offerta: 제가 할게요 = lo faccio io.",
+            "Vive solo alla prima persona: 제가 갈게요. «너 갈게요» non esiste: per l'altro si usa -ㄹ래요? oppure -을 거예요?",
+            "-(으)ㄹ래요 dice la volontà di chi parla: 저는 집에 갈래요 = io voglio andare a casa.",
+            "Differenza: -ㄹ게요 risponde a «chi lo fa?» e promette; -ㄹ래요 dice «voglio» e può suonare più deciso.",
+            "Forme: 갈게요, 먹을게요, 살게요; 갈래요, 먹을래요. Il tema in ㄹ resta ㄹ: 살게요."
+          ],
+          "vocab": [
+            { "ko": "제가", "it": "io (con enfasi)", "rr": "jega" },
+            { "ko": "돕다", "it": "aiutare", "rr": "dopda" },
+            { "ko": "사다", "it": "comprare", "rr": "sada" },
+            { "ko": "주다", "it": "dare", "rr": "juda" },
+            { "ko": "집", "it": "casa", "rr": "jip" },
+            { "ko": "먼저", "it": "prima", "rr": "meonjeo" },
+            { "ko": "꼭", "it": "assolutamente", "rr": "kkok" },
+            { "ko": "약속", "it": "promessa, appuntamento", "rr": "yaksok" },
+            { "ko": "짐", "it": "bagaglio", "rr": "jim" },
+            { "ko": "많다", "it": "essere molto", "rr": "manta" },
+            { "ko": "들다", "it": "sollevare, prendere in mano", "rr": "deulda" },
+            { "ko": "문", "it": "porta", "rr": "mun" }
+          ],
+          "passages": [
+            {
+              "title": "제가 도와 드릴게요",
+              "lines": ["짐이 많네요. 제가 도와 드릴게요.", "고마워요. 그럼 이 가방을 들어 주세요.", "네, 제가 들게요.", "먼저 들어가세요. 제가 문을 열게요."],
+              "gloss": [
+                { "ko": "짐", "it": "bagaglio", "rr": "jim" },
+                { "ko": "많다", "it": "essere molto", "rr": "manta" },
+                { "ko": "돕다", "it": "aiutare", "rr": "dopda" },
+                { "ko": "가방", "it": "borsa", "rr": "gabang" },
+                { "ko": "들다", "it": "sollevare", "rr": "deulda" },
+                { "ko": "문", "it": "porta", "rr": "mun" }
+              ],
+              "translation": "Hai molti bagagli. Ti aiuto io. / Grazie. Allora tienimi questa borsa. / Sì, la prendo io. / Entra prima tu: apro io la porta."
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ex-sit-04-1",
+              "type": "fill_blank",
+              "prompt": "Completa: «Lo faccio io».",
+              "text": "제가 ___.",
+              "options": ["할게요", "해요", "하면 안 돼요", "해 두세요"],
+              "answer": "할게요",
+              "explain": "-ㄹ게요: offerta o promessa in prima persona."
+            },
+            {
+              "id": "ex-sit-04-2",
+              "type": "fill_blank",
+              "prompt": "Completa: «Io voglio andare a casa».",
+              "text": "저는 집에 ___.",
+              "options": ["갈래요", "갈게요", "가면 안 돼요", "가 두세요"],
+              "answer": "갈래요",
+              "explain": "-ㄹ래요 dice la volontà di chi parla."
+            },
+            {
+              "id": "ex-sit-04-3",
+              "type": "reading_mcq",
+              "prompt": "Quale frase è sbagliata?",
+              "options": ["너 갈게요", "제가 갈게요", "제가 할게요", "제가 기다릴게요"],
+              "answer": "너 갈게요",
+              "explain": "-ㄹ게요 esiste solo alla prima persona."
+            },
+            {
+              "id": "ex-sit-04-4",
+              "type": "order_words",
+              "prompt": "Le telefono più tardi.",
+              "words": ["나중에", "제가", "전화할게요"],
+              "answer": "나중에 제가 전화할게요",
+              "explain": "전화하다 → 전화할게요."
+            },
+            {
+              "id": "ex-sit-04-5",
+              "type": "type_hangul",
+              "prompt": "Scrivi «Lo compro io».",
+              "answer": "제가 살게요",
+              "accept": ["제가 살게요", "제가살게요"],
+              "explain": "사다 → 살게요 (tema 사 + ㄹ게요)."
+            },
+            {
+              "id": "ex-sit-04-6",
+              "type": "reading_mcq",
+              "prompt": "«먼저 갈게요» che cosa fa chi parla?",
+              "options": ["Annuncia che va via per primo", "Chiede di andare via", "Vieta di andare", "Dice che è già andato"],
+              "answer": "Annuncia che va via per primo",
+              "explain": "-ㄹ게요 annuncia un'azione futura del parlante."
+            },
+            {
+              "id": "ex-sit-04-7",
+              "type": "fill_blank",
+              "prompt": "Completa: «Te lo do io» (offerta).",
+              "text": "제가 ___.",
+              "options": ["줄게요", "주세요", "주면 안 돼요", "주고 있어요"],
+              "answer": "줄게요",
+              "explain": "주다 → 줄게요; 주세요 è «me lo dia», richiesta all'altro."
+            },
+            {
+              "id": "ex-sit-04-8",
+              "type": "type_meaning",
+              "prompt": "«제가 도와 드릴게요»",
+              "answer": "la aiuto io",
+              "accept": ["la aiuto io", "ti aiuto io", "le do una mano io"],
+              "explain": "돕다 davanti a 드리다 diventa 도와: 도와 드리다 è la forma umile di «aiutare»."
+            },
+            { "id": "ex-sit-04-9", "type": "listen_type", "prompt": "Ascolta e scrivi quello che senti.", "speak": "약속", "answer": "약속", "explain": "약속 = promessa, appuntamento; 약속하다 = promettere." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "situazioni-2",
+      "title": "Prima e quasi",
+      "purpose": "Le azioni che si preparano in anticipo, i pericoli evitati per un soffio e le scoperte dell'ultimo minuto.",
+      "lessons": [
+        {
+          "id": "sit-05",
+          "slug": "lasciato-pronto",
+          "title": "Lasciato pronto: -아/어 두다",
+          "titleKo": "-아/어 두다",
+          "kind": "grammar",
+          "goal": "Dire che un'azione si fa e il suo risultato resta, spesso per preparare qualcosa in anticipo.",
+          "durationMin": 30,
+          "points": [
+            "-아/어 두다 dice che l'azione si compie e il risultato resta: 창문을 열어 두세요 = lasci la finestra aperta.",
+            "Si usa per preparare in anticipo: 예약해 두었어요 = ho prenotato, e la prenotazione c'è.",
+            "Forma: tema + -아/어 + 두다: 켜다 → 켜 두다, 끄다 → 꺼 두다, 준비하다 → 준비해 두다.",
+            "Al passato si contrae: 두었어요 → 뒀어요 (예약해 뒀어요).",
+            "-아/어 놓다 è quasi sinonimo nel parlato: 문을 열어 놓았어요. 두다 insiste sul lasciare, 놓다 sull'aver messo lì."
+          ],
+          "vocab": [
+            { "ko": "창문", "it": "finestra", "rr": "changmun" },
+            { "ko": "열다", "it": "aprire", "rr": "yeolda" },
+            { "ko": "닫다", "it": "chiudere", "rr": "datda" },
+            { "ko": "켜다", "it": "accendere", "rr": "kyeoda" },
+            { "ko": "끄다", "it": "spegnere", "rr": "kkeuda" },
+            { "ko": "불", "it": "luce, fuoco", "rr": "bul" },
+            { "ko": "예약하다", "it": "prenotare", "rr": "yeyakhada" },
+            { "ko": "메모", "it": "nota, appunto", "rr": "memo" },
+            { "ko": "두다", "it": "lasciare, mettere", "rr": "duda" },
+            { "ko": "놓다", "it": "posare, mettere giù", "rr": "nota" },
+            { "ko": "미리", "it": "in anticipo", "rr": "miri" },
+            { "ko": "여행", "it": "viaggio", "rr": "yeohaeng" }
+          ],
+          "passages": [
+            {
+              "title": "여행 전에",
+              "lines": ["내일 여행이라서 짐을 미리 싸 두었어요.", "창문은 닫아 두세요.", "불은 꺼 두세요.", "표는 가방에 넣어 두었어요."],
+              "gloss": [
+                { "ko": "여행", "it": "viaggio", "rr": "yeohaeng" },
+                { "ko": "전", "it": "prima", "rr": "jeon" },
+                { "ko": "짐", "it": "bagaglio", "rr": "jim" },
+                { "ko": "싸다", "it": "fare i bagagli, impacchettare", "rr": "ssada" },
+                { "ko": "표", "it": "biglietto", "rr": "pyo" },
+                { "ko": "넣다", "it": "mettere dentro", "rr": "neota" }
+              ],
+              "translation": "Domani parto per un viaggio, quindi ho preparato i bagagli in anticipo. / Lascia chiuse le finestre. / Lascia spenta la luce. / Ho messo il biglietto in borsa."
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ex-sit-05-1",
+              "type": "fill_blank",
+              "prompt": "Completa: «Lascia la finestra aperta».",
+              "text": "창문을 열어 ___.",
+              "options": ["두세요", "주세요", "보세요", "있어요"],
+              "answer": "두세요",
+              "explain": "-아/어 두다: il risultato dell'azione resta."
+            },
+            {
+              "id": "ex-sit-05-2",
+              "type": "fill_blank",
+              "prompt": "Completa: «Ho già prenotato».",
+              "text": "이미 예약해 ___.",
+              "options": ["두었어요", "주었어요", "보았어요", "있었어요"],
+              "answer": "두었어요",
+              "explain": "예약하다 → 예약해 두다 → 예약해 두었어요."
+            },
+            {
+              "id": "ex-sit-05-3",
+              "type": "reading_mcq",
+              "prompt": "«불을 꺼 두세요» che cosa chiede?",
+              "options": ["Di lasciare la luce spenta", "Di accendere la luce", "Di aspettare al buio", "Di cambiare la lampadina"],
+              "answer": "Di lasciare la luce spenta",
+              "explain": "끄다 = spegnere; -아/어 두다 = lasciare in quello stato."
+            },
+            {
+              "id": "ex-sit-05-4",
+              "type": "order_words",
+              "prompt": "Ho messo il biglietto in borsa (e resta lì).",
+              "words": ["표를", "가방에", "넣어", "두었어요"],
+              "answer": "표를 가방에 넣어 두었어요",
+              "explain": "넣다 → 넣어 두다: il biglietto resta nella borsa."
+            },
+            {
+              "id": "ex-sit-05-5",
+              "type": "type_hangul",
+              "prompt": "Scrivi «Ho preparato i bagagli in anticipo» (짐을 싸다).",
+              "answer": "짐을 미리 싸 두었어요",
+              "accept": ["짐을 미리 싸 두었어요", "짐을미리싸두었어요"],
+              "explain": "싸다 → 싸 두다; 미리 = in anticipo."
+            },
+            {
+              "id": "ex-sit-05-6",
+              "type": "reading_mcq",
+              "prompt": "Quale frase significa «ho prenotato (e vale ancora)»?",
+              "options": ["예약해 두었어요", "예약하고 있어요", "예약하면 안 돼요", "예약할게요"],
+              "answer": "예약해 두었어요",
+              "explain": "-아/어 두다 mette l'accento sul risultato che resta."
+            },
+            {
+              "id": "ex-sit-05-7",
+              "type": "fill_blank",
+              "prompt": "Completa: «Chiudi la porta» (e lasciala chiusa).",
+              "text": "문을 닫아 ___.",
+              "options": ["두세요", "주세요", "볼까요", "있어요"],
+              "answer": "두세요",
+              "explain": "닫다 → 닫아 두다."
+            },
+            {
+              "id": "ex-sit-05-8",
+              "type": "type_meaning",
+              "prompt": "«메모해 두었어요»",
+              "answer": "l'ho annotato",
+              "accept": ["l'ho annotato", "ho preso nota", "l'ho scritto"],
+              "explain": "메모하다 → 메모해 두다: l'annotazione resta."
+            },
+            { "id": "ex-sit-05-9", "type": "listen_type", "prompt": "Ascolta e scrivi quello che senti.", "speak": "예약하다", "answer": "예약하다", "explain": "예약 = prenotazione; 예약하다 = prenotare." }
+          ]
+        },
+        {
+          "id": "sit-06",
+          "slug": "quasi",
+          "title": "Ci è mancato poco: -(으)ㄹ 뻔하다",
+          "titleKo": "-(으)ㄹ 뻔하다",
+          "kind": "grammar",
+          "goal": "Raccontare un pericolo o un errore evitato per un soffio.",
+          "durationMin": 25,
+          "points": [
+            "-(으)ㄹ 뻔하다 dice che è mancato poco perché succedesse: 넘어질 뻔했어요 = sono quasi caduto.",
+            "Il verbo prende -(으)ㄹ e 뻔하다 va al passato: 늦을 뻔했어요, 놓칠 뻔했어요.",
+            "Spesso si rinforza con 하마터면: 하마터면 지각할 뻔했어요 = per poco non facevo tardi.",
+            "Si usa anche per il bene mancato: 큰일 날 뻔했어요 = c'è mancato poco che andasse male.",
+            "Non esiste «뻔했다» da solo: senza -(으)ㄹ la frase non regge."
+          ],
+          "vocab": [
+            { "ko": "넘어지다", "it": "cadere", "rr": "neomeojida" },
+            { "ko": "미끄러지다", "it": "scivolare", "rr": "mikkeureojida" },
+            { "ko": "늦다", "it": "essere in ritardo", "rr": "neutda" },
+            { "ko": "놓치다", "it": "perdere (un mezzo, un'occasione)", "rr": "notchida" },
+            { "ko": "지각", "it": "ritardo", "rr": "jigak" },
+            { "ko": "하마터면", "it": "per poco, quasi", "rr": "hamateomyeon" },
+            { "ko": "큰일", "it": "guaio serio", "rr": "keunil" },
+            { "ko": "깜빡하다", "it": "dimenticare per distrazione", "rr": "kkamppakhada" },
+            { "ko": "잃어버리다", "it": "perdere, smarrire", "rr": "ireobeorida" },
+            { "ko": "다치다", "it": "farsi male", "rr": "dachida" },
+            { "ko": "조심하다", "it": "stare attento", "rr": "josimhada" },
+            { "ko": "길", "it": "strada", "rr": "gil" }
+          ],
+          "passages": [
+            {
+              "title": "하마터면 큰일 날 뻔했어요",
+              "lines": ["어제 길이 미끄러워서 넘어질 뻔했어요.", "버스를 놓칠 뻔했지만 다행히 탔어요.", "휴대폰을 잃어버릴 뻔했어요.", "이제는 조심할 거예요."],
+              "gloss": [
+                { "ko": "어제", "it": "ieri", "rr": "eoje" },
+                { "ko": "미끄럽다", "it": "essere scivoloso", "rr": "mikkeureopda" },
+                { "ko": "다행히", "it": "per fortuna", "rr": "dahaenghi" },
+                { "ko": "타다", "it": "prendere (un mezzo)", "rr": "tada" },
+                { "ko": "휴대폰", "it": "cellulare", "rr": "hyudaepon" },
+                { "ko": "이제", "it": "ora, d'ora in poi", "rr": "ije" }
+              ],
+              "translation": "Ieri la strada era scivolosa e sono quasi caduto. / Per poco non perdevo l'autobus, ma per fortuna l'ho preso. / Ho quasi perso il cellulare. / D'ora in poi starò attento."
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ex-sit-06-1",
+              "type": "fill_blank",
+              "prompt": "Completa: «Sono quasi caduto».",
+              "text": "넘어질 ___.",
+              "options": ["뻔했어요", "뻔해요", "거예요", "수 있어요"],
+              "answer": "뻔했어요",
+              "explain": "-(으)ㄹ 뻔하다 si usa al passato."
+            },
+            {
+              "id": "ex-sit-06-2",
+              "type": "order_words",
+              "prompt": "Per poco non ho perso l'autobus.",
+              "words": ["버스를", "놓칠", "뻔했어요"],
+              "answer": "버스를 놓칠 뻔했어요",
+              "explain": "놓치다 → 놓칠 뻔하다."
+            },
+            {
+              "id": "ex-sit-06-3",
+              "type": "fill_blank",
+              "prompt": "Completa: «Per poco non facevo tardi».",
+              "text": "하마터면 지각할 ___.",
+              "options": ["뻔했어요", "거예요", "수 없어요", "게요"],
+              "answer": "뻔했어요",
+              "explain": "하마터면 rinforza -(으)ㄹ 뻔하다."
+            },
+            {
+              "id": "ex-sit-06-4",
+              "type": "reading_mcq",
+              "prompt": "«큰일 날 뻔했어요» significa…",
+              "options": ["C'è mancato poco che andasse male", "È andata male di sicuro", "Sono sicuro che succederà", "È successo un guaio"],
+              "answer": "C'è mancato poco che andasse male",
+              "explain": "뻔하다 = mancato per poco; 큰일 = guaio serio."
+            },
+            {
+              "id": "ex-sit-06-5",
+              "type": "type_hangul",
+              "prompt": "Scrivi «Ho quasi perso il telefono».",
+              "answer": "휴대폰을 잃어버릴 뻔했어요",
+              "accept": ["휴대폰을 잃어버릴 뻔했어요", "휴대폰을잃어버릴뻔했어요"],
+              "explain": "잃어버리다 → 잃어버릴 뻔하다."
+            },
+            {
+              "id": "ex-sit-06-6",
+              "type": "reading_mcq",
+              "prompt": "Quale forma è corretta?",
+              "options": ["늦을 뻔했어요", "늦 뻔했어요", "늦었 뻔해요", "늦을 뻔해요"],
+              "answer": "늦을 뻔했어요",
+              "explain": "Serve -(으)ㄹ prima di 뻔하다, e 뻔하다 al passato."
+            },
+            {
+              "id": "ex-sit-06-7",
+              "type": "fill_blank",
+              "prompt": "Completa: «Per poco non mi facevo male».",
+              "text": "다칠 ___.",
+              "options": ["뻔했어요", "뻔해요", "거예요", "수 있어요"],
+              "answer": "뻔했어요",
+              "explain": "다치다 → 다칠 뻔하다."
+            },
+            {
+              "id": "ex-sit-06-8",
+              "type": "type_meaning",
+              "prompt": "«미끄러지다»",
+              "answer": "scivolare",
+              "accept": ["scivolare"],
+              "explain": "미끄럽다 = scivoloso; 미끄러지다 = scivolare."
+            },
+            { "id": "ex-sit-06-9", "type": "listen_type", "prompt": "Ascolta e scrivi quello che senti.", "speak": "조심하다", "answer": "조심하다", "explain": "조심하다 = stare attento." }
+          ]
+        },
+        {
+          "id": "sit-07",
+          "slug": "ah-ecco",
+          "title": "Ah, ecco: -군요",
+          "titleKo": "-군요 · -는군요",
+          "kind": "grammar",
+          "goal": "Esprimere la scoperta di qualcosa che si è appena capito, con la forma giusta.",
+          "durationMin": 25,
+          "points": [
+            "-군요 dice «ah, ecco, ho appena capito»: 여기 있었군요! = ah, era qui!",
+            "Forma: aggettivi e nomi con 이다 prendono -군요 (바쁘군요, 학생이군요); i verbi prendono -는군요 (먹는군요, 가는군요).",
+            "Il passato è -았/었군요: 먹었군요, 바빴군요.",
+            "Non si usa per le proprie azioni: «저는 가군요» è sbagliato. Si commenta ciò che si nota nell'altro o nel mondo.",
+            "Ha due fratelli: -군, la forma senza cortesia (여기 있군, e nello scritto), e -구나, più enfatico (여기 있구나). -네요 è vicino, ma sottolinea di più la reazione di chi parla."
+          ],
+          "vocab": [
+            { "ko": "드디어", "it": "finalmente", "rr": "deudieo" },
+            { "ko": "벌써", "it": "già", "rr": "beolsseo" },
+            { "ko": "진짜", "it": "davvero", "rr": "jinjja" },
+            { "ko": "정말", "it": "proprio, davvero", "rr": "jeongmal" },
+            { "ko": "찾다", "it": "cercare, trovare", "rr": "chatda" },
+            { "ko": "맞다", "it": "essere giusto", "rr": "matda" },
+            { "ko": "틀리다", "it": "essere sbagliato", "rr": "teullida" },
+            { "ko": "모르다", "it": "non sapere", "rr": "moreuda" },
+            { "ko": "알다", "it": "sapere", "rr": "alda" },
+            { "ko": "그렇다", "it": "essere così", "rr": "geureota" },
+            { "ko": "물론", "it": "certo, naturalmente", "rr": "mullon" },
+            { "ko": "열쇠", "it": "chiave", "rr": "yeolsoe" }
+          ],
+          "passages": [
+            {
+              "title": "드디어 찾았군요",
+              "lines": ["열쇠를 찾았어요?", "네, 드디어 찾았어요. 책상 밑에 있었군요.", "그렇군요. 저도 거기를 못 봤어요.", "이제 됐네요."],
+              "gloss": [
+                { "ko": "열쇠", "it": "chiave", "rr": "yeolsoe" },
+                { "ko": "책상", "it": "scrivania", "rr": "chaeksang" },
+                { "ko": "밑", "it": "sotto", "rr": "mit" },
+                { "ko": "거기", "it": "lì", "rr": "geogi" },
+                { "ko": "이제", "it": "ora", "rr": "ije" },
+                { "ko": "되다", "it": "andare bene, essere a posto", "rr": "doeda" }
+              ],
+              "translation": "Hai trovato le chiavi? / Sì, finalmente le ho trovate. Ah, erano sotto la scrivania. / Capisco. Neanch'io avevo guardato lì. / Adesso è a posto."
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ex-sit-07-1",
+              "type": "fill_blank",
+              "prompt": "Completa: «Ah, era qui!»",
+              "text": "여기 ___!",
+              "options": ["있었군요", "있어요", "있을게요", "있으면 안 돼요"],
+              "answer": "있었군요",
+              "explain": "Passato -았/었군요: la scoperta di uno stato passato."
+            },
+            {
+              "id": "ex-sit-07-2",
+              "type": "fill_blank",
+              "prompt": "Completa: «Sei occupato, vedo».",
+              "text": "바쁘___.",
+              "options": ["군요", "는군요", "었군요", "을게요"],
+              "answer": "군요",
+              "explain": "Aggettivo → -군요."
+            },
+            {
+              "id": "ex-sit-07-3",
+              "type": "fill_blank",
+              "prompt": "Completa: «Stai mangiando, vedo».",
+              "text": "먹___.",
+              "options": ["는군요", "군요", "었군요", "을래요"],
+              "answer": "는군요",
+              "explain": "Verbo → -는군요."
+            },
+            {
+              "id": "ex-sit-07-4",
+              "type": "reading_mcq",
+              "prompt": "Quale frase è sbagliata?",
+              "options": ["저는 가군요", "학생이군요", "바쁘군요", "먹는군요"],
+              "answer": "저는 가군요",
+              "explain": "-군요 non si usa per le proprie azioni."
+            },
+            {
+              "id": "ex-sit-07-5",
+              "type": "order_words",
+              "prompt": "Ah, ecco, la chiave era qui.",
+              "words": ["열쇠가", "여기", "있었군요"],
+              "answer": "열쇠가 여기 있었군요",
+              "explain": "있었군요: scoperta di qualcosa che era lì."
+            },
+            {
+              "id": "ex-sit-07-6",
+              "type": "type_hangul",
+              "prompt": "Scrivi «Ah, è vero!» (맞다).",
+              "answer": "맞군요",
+              "accept": ["맞군요", "맞군요!"],
+              "explain": "맞다 è aggettivo → 맞군요."
+            },
+            {
+              "id": "ex-sit-07-7",
+              "type": "reading_mcq",
+              "prompt": "«드디어 찾았군요» che cosa esprime?",
+              "options": ["La scoperta di aver finalmente trovato", "Un ordine di cercare", "Un divieto", "Una promessa"],
+              "answer": "La scoperta di aver finalmente trovato",
+              "explain": "드디어 = finalmente; -았군요 = scoperta."
+            },
+            {
+              "id": "ex-sit-07-8",
+              "type": "type_meaning",
+              "prompt": "«그렇군요»",
+              "answer": "capisco, ecco",
+              "accept": ["capisco", "ho capito", "ecco", "ah, è così"],
+              "explain": "그렇다 → 그렇군요: «ah, è così»."
+            },
+            { "id": "ex-sit-07-9", "type": "listen_type", "prompt": "Ascolta e scrivi quello che senti.", "speak": "열쇠", "answer": "열쇠", "explain": "열쇠 = chiave." }
+          ]
+        }
+      ]
+    }
+  ]
+}

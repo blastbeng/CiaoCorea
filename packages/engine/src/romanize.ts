@@ -253,18 +253,33 @@ function junction(prev: SyllableParts, next: SyllableParts): Junction {
     if (coda === 'p' || coda === 'm') return { coda: 'm', onset: 'n' };
   }
 
-  // 비음화: davanti a ㄴ e a ㅁ le finali non nasali diventano nasale.
+  // 격음화 con la ㅎ scritta come iniziale della sillaba seguente: la finale
+  // precedente si fonde con essa e diventa aspirata (표준 발음법 제12항).
+  // 닫히다 [다치다] `dachida`, 잡히다 [자피다] `japida`, 입히다 [이피다]
+  // `ipida`, 앉히다 [안치다] `anchida`, 먹히다 [머키다] `mekida`.
+  if (next.lead === 18) {
+    // ㄺ e ㄵ: resta la prima parte e la seconda aspira.
+    if (final === 9) return { coda: 'l', onset: 'k' }; // 밝히다 [발키다]
+    if (final === 5) return { coda: 'n', onset: 'ch' }; // 앉히다 [안치다]
+    // ㄷ + ㅎ dà ㅌ, che davanti a 이/ㅟ diventa ㅊ (구개음화).
+    if (final === 7 || final === 25) {
+      return { coda: '', onset: next.medial === 20 || next.medial === WI ? 'ch' : 't' };
+    }
+    if (final === 1 || final === 24) return { coda: '', onset: 'k' }; // 먹히다
+    if (final === 17 || final === 18 || final === 26) return { coda: '', onset: 'p' };
+  }
+
+  // 비음화: davanti a ㄴ e a ㅁ le finali non nasali diventano nasale. La ㄹ
+  // non c'entra: davanti a ㅁ resta laterale — 할머니 `halmeoni`, 설명
+  // `seolmyeong`, 질문 `jilmun`, 골목 `golmok` (davanti a ㄴ ci pensa la
+  // 유음화 qui sopra).
   if (next.lead === SIL.n || next.lead === SIL.m) {
+    if (final === 8) return { coda: 'l', onset: null };
     if (VELAR.has(final) || final === 21) return { coda: 'ng', onset: null };
     if (LABIAL.has(final)) return { coda: 'm', onset: null };
     if (ALVEOLAR_N.has(final)) return { coda: 'n', onset: null };
     return { coda: next.lead === SIL.n ? 'n' : 'm', onset: null };
   }
-
-  // ㄺ davanti a ㅎ: la laterale resta e la ㅎ si aspira — 밝히다 [발키다]
-  // `balkida`, 읽히다 [일키다] `ilkida`. Senza questa riga la ㄹ spariva
-  // (`bakhida`), che non è una pronuncia coreana.
-  if (final === 9 && next.lead === 18) return { coda: 'l', onset: 'k' };
 
   return { coda: closedCoda(final), onset: null };
 }
