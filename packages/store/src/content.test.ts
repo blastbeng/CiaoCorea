@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { courseLessons, getCourses, getDialogues } from '@ciaocorea/curriculum';
-import { checkDialogueTurn, isCorrect, isStudentTurn } from '@ciaocorea/engine';
+import { checkDialogueTurn, isCorrect, isStudentTurn, sampleResponse } from '@ciaocorea/engine';
 
 /**
  * Lo schema valida la forma del curricolo; qui si valida la sostanza: ogni
@@ -15,7 +15,7 @@ describe('curricolo reale: le soluzioni devono essere correggibili', () => {
     for (const course of getCourses()) {
       for (const lesson of courseLessons(course)) {
         for (const exercise of lesson.exercises) {
-          expect(isCorrect(exercise, exercise.answer), `${course.slug}/${exercise.id}`).toBe(true);
+          expect(isCorrect(exercise, sampleResponse(exercise)), `${course.slug}/${exercise.id}`).toBe(true);
           const alternates = 'accept' in exercise ? (exercise.accept ?? []) : [];
           for (const alternate of alternates) {
             expect(isCorrect(exercise, alternate), `${course.slug}/${exercise.id} (${alternate})`).toBe(

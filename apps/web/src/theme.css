@@ -929,6 +929,119 @@ a.lesson-row:hover {
   font-size: 1.5rem;
 }
 
+/* «Collega le coppie»: due colonne, e la riga scelta si vede. */
+.match {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem;
+}
+
+.match__col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.match__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.7rem 0.9rem;
+  min-height: 2.9rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font-size: 1.02rem;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, opacity 0.15s ease;
+}
+
+.match__item.ko {
+  font-family: var(--font-ko);
+  font-size: 1.35rem;
+}
+
+.match__item:hover:not(:disabled) {
+  border-color: var(--blue);
+}
+
+.match__item--picked {
+  border-color: var(--blue);
+  background: var(--blue-soft);
+  box-shadow: inset 0 0 0 1px var(--blue);
+}
+
+.match__item--linked {
+  border-color: var(--blue);
+}
+
+.match__item--used {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.match__link {
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+}
+
+@media (max-width: 640px) {
+  .match {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* «Scrivere con la mano»: il quaderno e il tratto. */
+.chip--ko {
+  font-family: var(--font-ko);
+  font-size: 1.2rem;
+}
+
+.trace {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.trace__stage {
+  position: relative;
+  width: 320px;
+  max-width: 100%;
+  aspect-ratio: 1;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.trace__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.trace__ink {
+  position: absolute;
+  inset: 0;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.trace__verdict {
+  border-left: 3px solid var(--blue);
+  padding-left: 0.75rem;
+}
+
+.trace__rules {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
 .chips {
   display: flex;
   flex-wrap: wrap;

@@ -4,6 +4,7 @@ import type {
   ExerciseResult,
   Lesson,
   LessonState,
+  MatchPairsExercise,
   PublicExercise,
 } from '@ciaocorea/shared';
 import { compact, foldItalian, foldRomanization, matchesAny, normalizeAnswer } from './normalize';
@@ -110,14 +111,72 @@ export function isCorrect(exercise: Exercise, response: string): boolean {
       return checkOrder(exercise, response);
     case 'fill_blank':
       return checkBlank(exercise, response);
+    case 'match_pairs':
+      return checkMatch(exercise, response);
   }
+}
+
+/**
+ * La soluzione di un «collega»: le coppie nei dati sono già coppie vere,
+ * quindi l'elemento i della colonna fissa va all'elemento i. È l'app a
+ * mescolare la colonna mobile, non chi scrive il corso.
+ */
+export function matchSolution(exercise: MatchPairsExercise): number[] {
+  return exercise.pairs.map((_, index) => index);
+}
+
+/** La risposta di un «collega»: indici separati da virgola, nell'ordine della colonna fissa. */
+export function encodeMatch(indices: readonly number[]): string {
+  return indices.join(',');
+}
+
+/**
+ * Che cosa risponde a un «collega». Ogni elemento deve avere il suo
+ * collegamento e nessuno può averne due: una risposta incompleta, o con un
+ * elemento collegato due volte, non è mezza giusta: è sbagliata.
+ */
+export function checkMatch(exercise: MatchPairsExercise, response: string): boolean {
+  const given = response.split(',').map((part) => Number(part.trim()));
+  if (given.length !== exercise.pairs.length) return false;
+  if (given.some((index) => !Number.isInteger(index) || index < 0 || index >= exercise.pairs.length)) {
+    return false;
+  }
+  if (new Set(given).size !== given.length) return false;
+  return given.every((index, position) => index === matchSolution(exercise)[position]);
+}
+
+/**
+ * La risposta di un «collega» letta indietro: una lista di indici corta o
+ * malformata non è una risposta, e si restituisce vuota.
+ */
+export function parseMatch(response: string): number[] {
+  if (!response.trim()) return [];
+  const given = response.split(',').map((part) => Number(part.trim()));
+  if (given.some((index) => !Number.isInteger(index))) return [];
+  return given;
+}
+
+/**
+ * La risposta che supera l'esercizio, per qualsiasi tipo. Serve ai test che
+ * scorrono tutto il curricolo e a chi deve rispondere per finta: il «collega»
+ * non ha una soluzione scritta nei dati, perché la scrive l'app.
+ */
+export function sampleResponse(exercise: Exercise): string {
+  return exercise.type === 'match_pairs' ? encodeMatch(matchSolution(exercise)) : exercise.answer;
+}
+
+/** La soluzione scritta per esteso, per la scheda degli errori. */
+export function describeMatch(exercise: MatchPairsExercise): string {
+  return exercise.pairs
+    .map((pair) => (exercise.from === 'ko' ? `${pair.ko} → ${pair.it}` : `${pair.it} → ${pair.ko}`))
+    .join(' · ');
 }
 
 export function gradeExercise(exercise: Exercise, response: string): ExerciseResult {
   return {
     exerciseId: exercise.id,
     correct: isCorrect(exercise, response),
-    expected: exercise.answer,
+    expected: exercise.type === 'match_pairs' ? describeMatch(exercise) : exercise.answer,
     response: normalizeAnswer(response),
   };
 }

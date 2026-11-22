@@ -17,7 +17,8 @@
     "typecheck": "tsc -p packages/shared --noEmit && tsc -p packages/engine --noEmit && tsc -p packages/curriculum --noEmit && tsc -p packages/store --noEmit && tsc -p apps/web --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "content:check": "tsx packages/curriculum/scripts/check.ts"
+    "content:check": "tsx packages/curriculum/scripts/check.ts",
+    "content:lint": "tsx packages/curriculum/scripts/lint.ts"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",

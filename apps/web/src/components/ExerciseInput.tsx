@@ -1,6 +1,7 @@
-import type { KeyboardEvent } from 'react';
-import { CLOZE_MARKER, type PublicExercise } from '@ciaocorea/shared';
-import { remainingTiles, splitCloze } from '../exercises';
+import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
+import { CLOZE_MARKER, type MatchPairsExercise, type PublicExercise } from '@ciaocorea/shared';
+import { encodeMatch, parseMatch } from '@ciaocorea/engine';
+import { matchColumns, remainingTiles, splitCloze } from '../exercises';
 import { composeHangul } from '../hangul';
 import { speakKorean, ttsSupported } from '../pronounce';
 import { HangulInput } from './HangulInput';
@@ -203,6 +204,20 @@ export function ExerciseInput({ exercise, value, onChange, onSubmit, disabled }:
     );
   }
 
+  if (exercise.type === 'match_pairs') {
+    // La chiave è l'esercizio: cambiando esercizio il foglio si ricompone
+    // invece di portarsi dietro i collegamenti del precedente.
+    return (
+      <MatchPairsInput
+        key={exercise.id}
+        exercise={exercise}
+        value={value}
+        onChange={onChange}
+        disabled={disabled}
+      />
+    );
+  }
+
   if (exercise.type === 'type_hangul') {
     return (
       <HangulInput
@@ -307,4 +322,149 @@ export function ExerciseInput({ exercise, value, onChange, onSubmit, disabled }:
       spellCheck={false}
     />
   );
+}
+
+/**
+ * «Collega le coppie»: una colonna resta ferma, l'altra è mescolata, e si
+ * uniscono le righe che vanno insieme.
+ *
+ * La risposta si scrive solo quando ogni riga ha il suo partner: finché manca
+ * qualcosa il valore resta vuoto e il pulsante «Conferma» della lezione non si
+ * accende. Un abbinamento a metà non è un esercizio metà giusto.
+ */
+function MatchPairsInput({
+  exercise,
+  value,
+  onChange,
+  disabled,
+}: {
+  exercise: MatchPairsExercise;
+  value: string;
+  onChange: (value: string) => void;
+  disabled: boolean;
+}) {
+  const { fixed, movable } = matchColumns(exercise);
+  const [assigned, setAssigned] = useState<Record<number, number>>(() => startFrom(value, fixed.length));
+  const [picked, setPicked] = useState<number | null>(null);
+  /** L'ultima risposta completa che abbiamo scritto noi: serve a distinguere
+   * il nostro vuoto (abbinamento a metà) dal vuoto di chi ci riprova. */
+  const emitted = useRef('');
+
+  useEffect(() => {
+    if (value !== '' || emitted.current === '') return;
+    emitted.current = '';
+    setAssigned({});
+    setPicked(null);
+  }, [value]);
+
+  const korean = exercise.from === 'ko';
+  /** Il testo che si mostra nella colonna fissa e in quella mobile. */
+  const side = (row: { ko: string; it: string }) => (korean ? row.ko : row.it);
+  const other = (row: { ko: string; it: string }) => (korean ? row.it : row.ko);
+
+  function commit(next: Record<number, number>) {
+    setAssigned(next);
+    const complete = Object.keys(next).length === fixed.length;
+    const response = complete ? encodeMatch(fixed.map((row) => next[row.index])) : '';
+    emitted.current = response;
+    onChange(response);
+  }
+
+  function touchRow(rowIndex: number) {
+    if (disabled) return;
+    if (assigned[rowIndex] !== undefined) {
+      // Toccare una riga già collegata la stacca: si corregge senza ricominciare.
+      const next = { ...assigned };
+      delete next[rowIndex];
+      setPicked(null);
+      commit(next);
+      return;
+    }
+    setPicked(picked === rowIndex ? null : rowIndex);
+  }
+
+  function touchPartner(pairIndex: number) {
+    if (disabled || picked === null) return;
+    const next: Record<number, number> = { ...assigned };
+    // Un partner può stare su una riga sola: se era già usato, si libera l'altra.
+    for (const [rowIndex, used] of Object.entries(next)) {
+      if (used === pairIndex) delete next[Number(rowIndex)];
+    }
+    next[picked] = pairIndex;
+    setPicked(null);
+    commit(next);
+  }
+
+  /** Quali partner sono già stati usati, e da quale riga. */
+  const takenByRow = new Map<number, number>();
+  for (const [rowIndex, pairIndex] of Object.entries(assigned)) takenByRow.set(pairIndex, Number(rowIndex));
+
+  return (
+    <div className="match">
+      <div className="match__col">
+        {fixed.map((row) => {
+          const partner = assigned[row.index];
+          const classes = [
+            'match__item',
+            korean ? 'ko' : '',
+            picked === row.index ? 'match__item--picked' : '',
+            partner !== undefined ? 'match__item--linked' : '',
+          ]
+            .filter(Boolean)
+            .join(' ');
+          return (
+            <button
+              key={row.index}
+              type="button"
+              className={classes}
+              lang={korean ? 'ko' : undefined}
+              disabled={disabled}
+              onClick={() => touchRow(row.index)}
+              aria-label={
+                partner === undefined
+                  ? `${side(row)}: scegli il suo partner`
+                  : `${side(row)} collegato a ${other(fixed[partner])}. Tocca per staccare`
+              }
+            >
+              <span>{side(row)}</span>
+              {partner !== undefined && <small className="match__link">{other(fixed[partner])}</small>}
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="match__col">
+        {movable.map((row) => {
+          const taken = takenByRow.has(row.index);
+          const classes = ['match__item', korean ? '' : 'ko', taken ? 'match__item--used' : '']
+            .filter(Boolean)
+            .join(' ');
+          return (
+            <button
+              key={row.index}
+              type="button"
+              className={classes}
+              lang={korean ? undefined : 'ko'}
+              disabled={disabled || (picked === null && !taken)}
+              onClick={() => touchPartner(row.index)}
+              aria-label={taken ? 'Partner già collegato' : 'Collega alla riga scelta'}
+            >
+              <span>{other(row)}</span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+/** Da una risposta già data, i collegamenti: servono a ridisegnare la schermata
+ * dopo un tentativo senza ricominciare da capo. */
+function startFrom(value: string, count: number): Record<number, number> {
+  const given = parseMatch(value);
+  const start: Record<number, number> = {};
+  given.forEach((pairIndex, position) => {
+    if (position < count && pairIndex >= 0 && pairIndex < count) start[position] = pairIndex;
+  });
+  return start;
 }

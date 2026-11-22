@@ -2,11 +2,15 @@ import { describe, expect, it } from 'vitest';
 import type { Exercise, FillBlankExercise, ListenTypeExercise, OrderWordsExercise } from '@ciaocorea/shared';
 import {
   PASS_THRESHOLD,
+  checkMatch,
+  describeMatch,
   gradeAttempt,
   gradeExercise,
   isCorrect,
   isWrittenExercise,
+  matchSolution,
   pickSkipTest,
+  sampleResponse,
   stripExercise,
 } from './exercises';
 import { INITIAL_SRS, scheduleCard } from './srs';
@@ -315,5 +319,49 @@ describe('ripetizione spaziata', () => {
     expect(next.reps).toBe(0);
     expect(next.lapses).toBe(2);
     expect(next.ease).toBeLessThan(2.5);
+  });
+});
+
+const collega = {
+  id: 'match-1',
+  type: 'match_pairs' as const,
+  prompt: 'Collega ogni cosa al suo contatore',
+  pairs: [
+    { ko: '\ubb3c', it: 'bicchieri' },
+    { ko: '\uc0ac\ub78c', it: 'persone' },
+    { ko: '\ucd95', it: 'piani' },
+  ],
+  from: 'ko' as const,
+};
+
+describe('collega le coppie', () => {
+  it('la soluzione è l’ordine delle coppie nei dati', () => {
+    expect(matchSolution(collega)).toEqual([0, 1, 2]);
+    expect(sampleResponse(collega)).toBe('0,1,2');
+  });
+
+  it('riconosce una risposta giusta e una scambiata', () => {
+    expect(checkMatch(collega, '0,1,2')).toBe(true);
+    expect(isCorrect(collega, '0,1,2')).toBe(true);
+    expect(checkMatch(collega, '1,0,2')).toBe(false);
+  });
+
+  it('una risposta a metà o con un partner usato due volte non è giusta', () => {
+    expect(checkMatch(collega, '0,1')).toBe(false);
+    expect(checkMatch(collega, '0,0,0')).toBe(false);
+    expect(checkMatch(collega, '0,1,9')).toBe(false);
+    expect(checkMatch(collega, '')).toBe(false);
+  });
+
+  it('la scheda degli errori scrive le coppie, non gli indici', () => {
+    const result = gradeExercise(collega, '1,0,2');
+    expect(result.correct).toBe(false);
+    expect(result.expected).toContain('\ubb3c \u2192 bicchieri');
+    expect(result.expected).toContain('\uc0ac\ub78c \u2192 persone');
+  });
+
+  it('con la colonna italiana la descrizione parte dall\'italiano', () => {
+    const reversed = { ...collega, id: 'match-2', from: 'it' as const };
+    expect(describeMatch(reversed)).toContain('bicchieri \u2192 \ubb3c');
   });
 });

@@ -6,6 +6,7 @@ import {
   getVocabulary,
   getWritingPrompts,
 } from '@ciaocorea/curriculum';
+import { sampleResponse } from '@ciaocorea/engine';
 import { USERNAME_MAX } from '@ciaocorea/shared';
 import type {
   AttemptResponse,
@@ -52,7 +53,7 @@ function lessonAnswers(
   expect(lesson, `lezione ${lessonId}`).toBeDefined();
   return (lesson?.exercises ?? []).map((exercise) => ({
     exerciseId: exercise.id,
-    response: exercise.answer,
+    response: sampleResponse(exercise),
   }));
 }
 
@@ -257,7 +258,7 @@ describe('curricolo e progresso', () => {
     const course = getCourse('hangul');
     const answers = new Map<string, string>();
     for (const lesson of course ? courseLessons(course) : []) {
-      for (const exercise of lesson.exercises) answers.set(exercise.id, exercise.answer);
+      for (const exercise of lesson.exercises) answers.set(exercise.id, sampleResponse(exercise));
     }
 
     const body = await store.call<CourseSkipResponse>('POST', '/api/courses/hangul/skip', {
@@ -374,7 +375,7 @@ describe('errori, quaderno e dizionario', () => {
 
     const answers = (lesson?.exercises ?? []).map((item) => ({
       exerciseId: item.id,
-      response: item.id === exercise?.id ? 'sbagliata' : item.answer,
+      response: item.id === exercise?.id ? 'sbagliata' : sampleResponse(item),
     }));
     await store.call('POST', '/api/courses/hangul/lessons/hangul-01/attempts', {
       mode: 'lesson',
@@ -390,7 +391,7 @@ describe('errori, quaderno e dizionario', () => {
     const right = await store.call<{ wrongCount: number | null }>(
       'POST',
       `/api/mistakes/${exercise?.id ?? ''}`,
-      { response: exercise?.answer ?? '' },
+      { response: exercise ? sampleResponse(exercise) : '' },
     );
     expect(right.wrongCount).toBeNull();
     expect((await store.call<MistakesResponse>('GET', '/api/mistakes')).stats.total).toBe(0);

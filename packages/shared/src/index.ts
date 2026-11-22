@@ -108,6 +108,27 @@ export interface FillBlankExercise extends ExerciseBase {
   accept?: string[];
 }
 
+/**
+ * Collega le coppie: due colonne e l'abbinamento da riconoscere.
+ *
+ * È l'esercizio che misura la conoscenza parola per parola senza dare indizi:
+ * nella scelta multipla un'opzione assurda basta a indovinare, qui no. Serve
+ * soprattutto dove la coppia è proprio ciò che si deve ricordare — il contatore
+ * con la cosa che conta (물 → 잔, 사람 → 명), il termine coreano con il suo
+ * senso — e dove un errore si vede subito: due collegamenti su una colonna
+ * sbagliata sono due errori, non uno.
+ *
+ * `pairs` sono le coppie vere, nell'ordine in cui va data la risposta: la
+ * colonna mobile viene mescolata dall'app, non dall'autore, così l'ordine dei
+ * dati resta leggibile e la soluzione non deve essere scritta a mano.
+ */
+export interface MatchPairsExercise extends ExerciseBase {
+  type: 'match_pairs';
+  pairs: { ko: string; it: string }[];
+  /** Quale colonna resta fissa: il coreano o l'italiano. */
+  from: 'ko' | 'it';
+}
+
 export type Exercise =
   | JamoChoiceExercise
   | BlockBuildExercise
@@ -117,7 +138,8 @@ export type Exercise =
   | TypeReadingExercise
   | OrderWordsExercise
   | ListenTypeExercise
-  | FillBlankExercise;
+  | FillBlankExercise
+  | MatchPairsExercise;
 
 /**
  * Esercizio senza soluzione: è ciò che il client riceve.

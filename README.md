@@ -48,6 +48,7 @@ progressi, ripassi e tentativi non si perdono nel passaggio.
 | `/corso/:slug/lezione/:lessonId` | teoria, brani di lettura, lessico, esercizi, test di salto |
 | `/dialoghi` e `/dialoghi/:slug` | conversazione scritta a copione |
 | `/alfabeto` | le lettere dell'hangul: consonanti e vocali con nome e suono, il compositore di sillabe, la tabella delle sillabe e i sette suoni finali |
+| `/scrittura` | il quaderno della mano: si ripassa una lettera o una parola con il dito o il mouse, e l'app dice quanta parte della forma è coperta e quanto è finito fuori |
 | `/pronuncia` | il laboratorio della pronuncia: si scrive una parola e si vede la lettura ricostruita, le sillabe scomposte e le regole che l'hanno cambiata |
 | `/dizionario` | ricerca nelle parole del curricolo, con filtri per corso |
 | `/coniuga` | si scrive un verbo o un aggettivo e si vede la tabella delle forme, con la classe della radice che le spiega |
@@ -114,6 +115,35 @@ Scelte che vale la pena ricordare:
   errore di scrittura (risposta non fra le opzioni, id duplicato) blocca la
   build del contenuto, non lo studente.
 
+### Il controllo delle particelle
+
+`npm run content:lint` cerca in tutto il coreano che l'app mostra le cinque
+particelle che cambiano forma: 이/가, 은/는, 을/를, 과/와, 으로/로. La regola è
+quella dell'ortografia coreana, e ha due punti che si sbagliano facilmente:
+
+- Dopo una consonante finale che si sente la particella è quella delle
+  consonanti: 사람이, 책을, 가방이. La ㅇ finale di 강 è una nasale (ng) e conta
+  come consonante, non come vocale.
+- Dopo una sillaba che non chiude su nulla la particella è quella delle vocali:
+  학교가, 학교를, 학교와.
+- 으로 dopo consonante, 로 dopo vocale, e dopo la ㄹ finale sempre 로: 말로,
+  서울로. La 을 dopo la ㄹ invece resta 을 nella grafia — 팔을 — anche se si
+  pronuncia [를]: è l'esempio dell'ortografia coreana, e non è un errore.
+
+Il controllo giudica solo le parole che la lookup del vocabolario riconosce:
+«읽는» è una desinenza di verbo, non una particella, e marchiarla sarebbe
+peggio che tacere. Le forme sbagliate messe apposta in un esercizio a scelta
+sono elencate in cima allo script, con il motivo.
+
+### Collega le coppie
+
+`match_pairs` è l'esercizio in cui si uniscono due colonne — il contatore e la
+cosa che conta, la parola e il suo senso. A differenza della scelta multipla non
+dà appigli: sbagliare un collegamento ne sposta due. Le coppie nel JSON sono
+quelle vere e nell'ordine della risposta; la colonna mobile la mescola l'app con
+un seme preso dall'id, così la stessa schermata non si rimescola sotto le dita
+e la soluzione non va scritta a mano.
+
 ## Sviluppo
 
 Serve Node 22.5 o successivo. **Nessun file `.env`, nessun servizio da avviare.**
@@ -129,6 +159,7 @@ Comandi utili:
 npm test              # unit + integrazione dello store, in memoria
 npm run typecheck     # tutti i pacchetti, client compreso
 npm run content:check # validazione dei corsi
+npm run content:lint  # particelle coreane scritte male, in tutto il testo mostrato
 npm run build         # sito statico in apps/web/dist
 npm run preview       # anteprima del build, su http://localhost:4173/
 ```

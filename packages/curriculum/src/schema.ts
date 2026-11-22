@@ -80,6 +80,18 @@ export const exerciseSchema = z.discriminatedUnion('type', [
     answer: z.string().min(1),
     accept: z.array(z.string().min(1)).optional(),
   }),
+  z.object({
+    ...exerciseBase,
+    type: z.literal('match_pairs'),
+    /**
+     * Le coppie vere, nell'ordine in cui va data la risposta. La colonna mobile
+     * la mescola l'app con il seme dell'id: nel dato l'abbinamento resta
+     * leggibile e nessuno deve scrivere la soluzione a mano.
+     */
+    pairs: z.array(z.object({ ko: z.string().min(1), it: z.string().min(1) })).min(3).max(8),
+    /** Quale colonna resta ferma. */
+    from: z.enum(['ko', 'it']),
+  }),
 ]);
 
 /**
@@ -315,6 +327,34 @@ export function validateCourse(raw: unknown, source: string): CurriculumProblem[
             }
             if (new Set(exercise.options).size !== exercise.options.length) {
               problems.push({ where: `${source}:${exercise.id}`, message: 'opzioni duplicate' });
+            }
+          }
+        }
+
+        if (exercise.type === 'match_pairs') {
+          const at = `${source}:${exercise.id}`;
+          if (exercise.from !== 'ko' && exercise.from !== 'it') {
+            problems.push({ where: at, message: '«from» deve essere ko o it' });
+          }
+          if (exercise.pairs.length < 3) {
+            problems.push({ where: at, message: 'servono almeno tre coppie, altrimenti è una scelta fra due' });
+          }
+          if (exercise.pairs.length > 8) {
+            problems.push({ where: at, message: 'più di otto coppie si confondono: spezzare l’esercizio' });
+          }
+          exercise.pairs.forEach((pair, index) => {
+            if (!pair.ko.trim()) problems.push({ where: `${at} coppia ${index + 1}`, message: 'lato coreano vuoto' });
+            if (!/\p{Script=Hangul}/u.test(pair.ko)) {
+              problems.push({ where: `${at} coppia ${index + 1}`, message: 'il lato coreano deve essere in Hangul' });
+            }
+            if (!pair.it.trim()) problems.push({ where: `${at} coppia ${index + 1}`, message: 'lato italiano vuoto' });
+          });
+          // Due righe con lo stesso testo rendono l’esercizio indecidibile:
+          // due collegamenti diversi sarebbero entrambi corretti.
+          for (const side of ['ko', 'it'] as const) {
+            const values = exercise.pairs.map((pair) => pair[side].trim().toLocaleLowerCase());
+            if (new Set(values).size !== values.length) {
+              problems.push({ where: at, message: `due «${side}» ripetuti: l’abbinamento non è più unico` });
             }
           }
         }

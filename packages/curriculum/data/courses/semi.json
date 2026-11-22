@@ -648,8 +648,37 @@
               "prompt": "Traduci in italiano.",
               "text": "자전거 세 대",
               "answer": "tre biciclette"
+            },
+            {
+              "id": "cnt-04-e7",
+              "type": "match_pairs",
+              "prompt": "Collega ogni contatore a ciò che conta.",
+              "from": "it",
+              "pairs": [
+                {
+                  "ko": "명",
+                  "it": "persone"
+                },
+                {
+                  "ko": "권",
+                  "it": "libri"
+                },
+                {
+                  "ko": "장",
+                  "it": "fogli e biglietti"
+                },
+                {
+                  "ko": "대",
+                  "it": "veicoli e macchine"
+                },
+                {
+                  "ko": "마리",
+                  "it": "animali"
+                }
+              ],
+              "explain": "명 conta le persone, 권 i libri, 장 i fogli, 대 i veicoli, 마리 gli animali: il contatore si sceglie dalla cosa, non dal numero."
             }
-          ]
+]
         },
         {
           "id": "cnt-05",

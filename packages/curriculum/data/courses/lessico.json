@@ -135,8 +135,49 @@
               "answer": "어머니",
               "hint": "Il nome cortese della madre.",
               "explain": "제 è la forma cortese di «mio» e si attacca alla parola: 제 어머니 = mia madre."
+            },
+            {
+              "id": "l01-e11",
+              "type": "match_pairs",
+              "prompt": "Collega ogni parola di famiglia al suo significato.",
+              "from": "ko",
+              "pairs": [
+                {
+                  "ko": "오빠",
+                  "it": "fratello maggiore, per una ragazza"
+                },
+                {
+                  "ko": "형",
+                  "it": "fratello maggiore, per un ragazzo"
+                },
+                {
+                  "ko": "언니",
+                  "it": "sorella maggiore, per una ragazza"
+                },
+                {
+                  "ko": "누나",
+                  "it": "sorella maggiore, per un ragazzo"
+                },
+                {
+                  "ko": "어머니",
+                  "it": "madre"
+                },
+                {
+                  "ko": "아버지",
+                  "it": "padre"
+                },
+                {
+                  "ko": "할머니",
+                  "it": "nonna"
+                },
+                {
+                  "ko": "할아버지",
+                  "it": "nonno"
+                }
+              ],
+              "explain": "In coreano il fratello maggiore ha due nomi: 오빠 se a parlare è una ragazza, 형 se è un ragazzo. Per le sorelle maggiori vale lo stesso: 언니 per una ragazza, 누나 per un ragazzo."
             }
-          ]
+]
         },
         {
           "id": "less-02",
@@ -468,8 +509,37 @@
               "answer": "è economico",
               "accept": ["economico", "costa poco", "è a buon mercato", "conveniente"],
               "explain": "싸다 → 싸요. Attenzione: 싸다 è anche «essere amaro», ma il contesto decide."
+            },
+            {
+              "id": "l04-e9",
+              "type": "match_pairs",
+              "prompt": "Collega ogni prezzo a come si legge.",
+              "from": "ko",
+              "pairs": [
+                {
+                  "ko": "천 원",
+                  "it": "1.000 won"
+                },
+                {
+                  "ko": "이천 원",
+                  "it": "2.000 won"
+                },
+                {
+                  "ko": "오백 원",
+                  "it": "500 won"
+                },
+                {
+                  "ko": "삼천 원",
+                  "it": "3.000 won"
+                },
+                {
+                  "ko": "만 원",
+                  "it": "10.000 won"
+                }
+              ],
+              "explain": "I prezzi si leggono con i numeri sino-coreani: 천 원 è mille won, 만 원 è diecimila. 원 resta staccato dal numero."
             }
-          ]
+]
         }
 
       ]

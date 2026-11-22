@@ -12,3 +12,4 @@ export * from './plan';
 export * from './writing';
 export * from './jamo';
 export * from './conjugate';
+export * from './particles';
