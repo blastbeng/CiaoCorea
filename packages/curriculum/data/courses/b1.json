@@ -30,8 +30,8 @@
           "vocab": [
             {"ko": "보증금", "it": "deposito cauzionale", "rr": "bojeunggeum"},
             {"ko": "월세", "it": "affitto mensile", "rr": "wolse"},
-            {"ko": "관리비", "it": "spese condominiali", "rr": "gwanribi"},
-            {"ko": "전용면적", "it": "superficie esclusiva", "rr": "jeongnyongmyeonjeok"},
+            {"ko": "관리비", "it": "spese condominiali", "rr": "gwallibi"},
+            {"ko": "전용면적", "it": "superficie esclusiva", "rr": "jeonyongmyeonjeok"},
             {"ko": "입주", "it": "trasferirsi, entrare in casa", "rr": "ipju"},
             {"ko": "도보", "it": "a piedi", "rr": "dobo"},
             {"ko": "지하철", "it": "metropolitana", "rr": "jihacheol"},
@@ -99,7 +99,7 @@
           ],
           "vocab": [
             {"ko": "메뉴", "it": "menu", "rr": "menyu"},
-            {"ko": "1인분", "it": "una porzione, per una persona", "rr": "ilinbun"},
+            {"ko": "1인분", "it": "una porzione, per una persona", "rr": "illinbun"},
             {"ko": "공깃밥", "it": "riso in bianco", "rr": "gonggitbap"},
             {"ko": "매움", "it": "piccantezza", "rr": "maeum"},
             {"ko": "계절 메뉴", "it": "menu stagionale", "rr": "gyejeol menyu"},
@@ -171,7 +171,7 @@
           "vocab": [
             {"ko": "시간표", "it": "orario, tabella degli orari", "rr": "siganpyo"},
             {"ko": "학기", "it": "semestre", "rr": "hakgi"},
-            {"ko": "회화", "it": "conversazione", "rr": "hwihwa"},
+            {"ko": "회화", "it": "conversazione", "rr": "hoehwa"},
             {"ko": "요리", "it": "cucina; cucinare", "rr": "yori"},
             {"ko": "서예", "it": "calligrafia", "rr": "seoye"},
             {"ko": "조리실", "it": "laboratorio di cucina", "rr": "jorisil"},
@@ -199,7 +199,7 @@
               ],
               "gloss": [
                 {"ko": "학기", "it": "semestre", "rr": "hakgi"},
-                {"ko": "회화", "it": "conversazione", "rr": "hwihwa"},
+                {"ko": "회화", "it": "conversazione", "rr": "hoehwa"},
                 {"ko": "조리실", "it": "laboratorio di cucina", "rr": "jorisil"},
                 {"ko": "서예", "it": "calligrafia", "rr": "seoye"},
                 {"ko": "휴관", "it": "chiusura del centro", "rr": "hyugwan"},
@@ -329,7 +329,7 @@
             {"ko": "운전", "it": "guida, guidare", "rr": "unjeon"},
             {"ko": "등교", "it": "andare a scuola, ingresso a scuola", "rr": "deunggyo"},
             {"ko": "늦추다", "it": "posticipare, ritardare", "rr": "neutchuda"},
-            {"ko": "밝히다", "it": "dichiarare, rendere noto", "rr": "balkhida"},
+            {"ko": "밝히다", "it": "dichiarare, rendere noto", "rr": "balkida"},
             { "ko": "오르다", "it": "salire, aumentare", "rr": "oreuda" },
             { "ko": "운전하다", "it": "guidare", "rr": "unjeonhada" },
             { "ko": "조심하다", "it": "fare attenzione", "rr": "josimhada" }

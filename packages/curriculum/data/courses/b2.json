@@ -23,7 +23,7 @@
             "Affermazione con un verbo: tema + -ㄴ/는다고 하다. Dopo vocale -ㄴ다고 (오다 → 온다고), dopo consonante -는다고 (먹다 → 먹는다고).",
             "Con un aggettivo si usa -다고 하다: 바쁘다 → 바쁘다고 해요. Il nome prende -(이)라고 하다: 학생이라고 해요, 의사라고 해요.",
             "Passato: -았/었다고 하다 (갔다고 해요). Futuro: -(으)ㄹ 거라고 하다 (갈 거라고 해요).",
-            "Domanda: -냐고 하다. Verbi: 먹냐고 / 먹느냐고. Aggettivi: 바쁘냐고, 좋으냐고. Nomi: 학생이냐고.",
+            "Domanda: -냐고 하다. Con i verbi la forma piena è -느냐고 (먹느냐고 했어요), ma nel parlato si sente spesso -냐고 (먹냐고 했어요); con gli aggettivi -(으)냐고 (바쁘냐고, 좋으냐고), con i nomi -(이)냐고 (학생이냐고).",
             "Nel parlato -다고 해요 diventa -대요 e -냐고 해요 diventa -냬요: sono contrazioni da riconoscere, non da usare nello scritto formale.",
             "Riportare non significa credere: la forma dice chi ha parlato, non se la cosa è vera."
           ],
@@ -97,7 +97,7 @@
               "prompt": "Metti in ordine: «Un amico mi ha chiesto se studio coreano».",
               "words": ["친구가", "한국어를", "공부하냐고", "물었어요"],
               "answer": "친구가 한국어를 공부하냐고 물었어요",
-              "explain": "공부하다 è un verbo: la domanda riportata è 공부하냐고. 물었어요 è il verbo che introduce la domanda."
+              "explain": "공부하다 è un verbo: la domanda riportata è 공부하(느)냐고. Qui usiamo la forma parlata 공부하냐고; 물었어요 introduce la domanda."
             },
             {
               "id": "ex-b2-01-8",

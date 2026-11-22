@@ -1,6 +1,6 @@
 {
   "_note": "Romanizzazione verificata parola per parola: è il riferimento contro cui content:check confronta il campo `rr` delle voci di lessico. Il valore è la Revised Romanization *della pronuncia standard* (국어의 로마자 표기법 제1항), cioè la forma che vede lo studente: 국민 = gungmin, 학교 = hakgyo.",
-  "_source": "Wiktionary (en) — voce 'Romanizations', riga 'Revised Romanization'; verifica condotta il 2026-11-20 per le parole elencate, più «골라서», la cui forma (ll) è determinata dalle parole della stessa struttura (몰라, 빨리, 올리다, 멀리). Le forme flesse (합니다, 주세요 …) non sono elencate: la loro romanizzazione si ricava dal lemma. Aggiunte del corso B2 verificate il 2026-11-22 con la stessa norma (pronuncia standard, non trascrizione lettera per lettera): 닫히다 = dachida, perché la ㅎ dopo la ㄷ finale dà [다치다].",
+  "_source": "Wiktionary (en) — voce 'Romanizations', riga 'Revised Romanization'; verifica condotta il 2026-11-20 per le parole elencate, più «골라서», la cui forma (ll) è determinata dalle parole della stessa struttura (몰라, 빨리, 올리다, 멀리). Le forme flesse (합니다, 주세요 …) non sono elencate: la loro romanizzazione si ricava dal lemma. Aggiunte del corso B2 verificate il 2026-11-22 con la stessa norma (pronuncia standard, non trascrizione lettera per lettera): 닫히다 = dachida, perché la ㅎ dopo la ㄷ finale dà [다치다]. Aggiunte del 2026-11-22 verificate su Wiktionary (en), voce 'Romanizations': 읽다 = ikda (non «ilkda»: la pronuncia è [익따]), 싫다 = silta, 파랗다 = parata, 빨갛다 = ppalgata, 밝히다 = balkida ([발키다]), 회화 = hoehwa, 왼쪽 = oenjjok.",
   "words": {
     "가능": "ganeung",
     "가능하다": "ganeunghada",
@@ -161,6 +161,7 @@
     "발견되다": "balgyeondoeda",
     "발표": "balpyo",
     "발표하다": "balpyohada",
+    "밝히다": "balkida",
     "밤": "bam",
     "밥": "bap",
     "백": "baek",
@@ -181,6 +182,7 @@
     "비다": "bida",
     "비비다": "bibida",
     "비싸다": "bissada",
+    "빨갛다": "ppalgata",
     "빨리": "ppalli",
     "빵": "ppang",
     "사다": "sada",
@@ -208,6 +210,7 @@
     "시험": "siheom",
     "신라": "silla",
     "실력": "sillyeok",
+    "싫다": "silta",
     "싫어하다": "sireohada",
     "쌀": "ssal",
     "쓰이다": "sseuida",
@@ -268,6 +271,7 @@
     "올리다": "ollida",
     "와": "wa",
     "왜": "wae",
+    "왼쪽": "oenjjok",
     "요금": "yogeum",
     "요청": "yocheong",
     "우체국": "ucheguk",
@@ -303,6 +307,7 @@
     "일정": "iljeong",
     "일찍": "iljjik",
     "일하다": "ilhada",
+    "읽다": "ikda",
     "입히다": "ipida",
     "자주": "jaju",
     "잘하다": "jalhada",
@@ -349,6 +354,7 @@
     "타다": "tada",
     "태우다": "taeuda",
     "팀원": "timwon",
+    "파랗다": "parata",
     "팔리다": "pallida",
     "평균": "pyeonggyun",
     "포기하다": "pogihada",
@@ -375,6 +381,7 @@
     "회사": "hoesa",
     "회의": "hoeui",
     "회의실": "hoeuisil",
+    "회화": "hoehwa",
     "후회": "huhoe",
     "후회하다": "huhoehada"
   }

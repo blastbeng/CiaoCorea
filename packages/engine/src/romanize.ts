@@ -183,6 +183,14 @@ const SIL = {
   m: 6,
 } as const;
 
+/**
+ * I temi in ㄺ che davanti a una desinenza iniziata da ㄱ pronunciano la ㄹ
+ * (표준 발음법 제10항, 다만): 읽고 `ilgo`, 맑게 `malge`. I nomi composti come
+ * 닭고기 restano `dakgogi`, e per questo la regola non è generale: senza
+ * morfologia, si riconoscono i temi che esistono.
+ */
+const LKG_STEMS = new Set(['읽', '맑', '늙', '밝', '굵', '얽', '긁', '묽']);
+
 /** ㅟ: la ㅟ non si lascia trasportare (학위 resta `hagwi`, non `hagwi` con 연음). */
 const WI = 16;
 
@@ -253,6 +261,11 @@ function junction(prev: SyllableParts, next: SyllableParts): Junction {
     return { coda: next.lead === SIL.n ? 'n' : 'm', onset: null };
   }
 
+  // ㄺ davanti a ㅎ: la laterale resta e la ㅎ si aspira — 밝히다 [발키다]
+  // `balkida`, 읽히다 [일키다] `ilkida`. Senza questa riga la ㄹ spariva
+  // (`bakhida`), che non è una pronuncia coreana.
+  if (final === 9 && next.lead === 18) return { coda: 'l', onset: 'k' };
+
   return { coda: closedCoda(final), onset: null };
 }
 
@@ -299,6 +312,17 @@ export function pronunciationRomanize(word: string): string {
       // chiude sulla ㅂ — 밟다 [밥따] `bapda`, 밟고 `bapgo` — mentre davanti a
       // vocale segue la regola (밟아 [발바] `balba`).
       if (chars[i] === '밟' && BALP_CLOSED.has(next.lead)) coda = 'p';
+      // ㄺ davanti a una desinenza che comincia per ㄱ: la ㄹ si sente —
+      // 읽고 [일꼬] `ilgo`, 맑게 [말께] `malge`. Vale per i temi verbali e
+      // aggettivali (읽-, 맑-, 늙-, 밝-, 굵-, 얽-, 긁-, 묽-), non per i
+      // composti nominali come 닭고기 [닥꼬기] `dakgogi`.
+      if (
+        current.final === 9 &&
+        next.lead === 0 &&
+        LKG_STEMS.has(chars.slice(0, i + 1).join(''))
+      ) {
+        coda = 'l';
+      }
     } else if (current.final !== 0) {
       // A fine parola il finale doppio si chiude su un suono solo: 닭 `dak`.
       coda = closedCoda(current.final);

@@ -573,7 +573,7 @@
             { "ko": "지하철", "it": "metropolitana", "rr": "jihacheol" },
             { "ko": "교차로", "it": "incrocio", "rr": "gyocharo" },
             { "ko": "오른쪽", "it": "destra", "rr": "oreunjjok" },
-            { "ko": "왼쪽", "it": "sinistra", "rr": "wenjok" },
+            { "ko": "왼쪽", "it": "sinistra", "rr": "oenjjok" },
             { "ko": "직진", "it": "andare dritto", "rr": "jikjin" },
             { "ko": "건너편", "it": "lato opposto", "rr": "geonneopyeon" },
             { "ko": "표", "it": "biglietto", "rr": "pyo" },
@@ -600,7 +600,7 @@
                 { "ko": "시청", "it": "municipio", "rr": "sicheong" },
                 { "ko": "교차로", "it": "incrocio", "rr": "gyocharo" },
                 { "ko": "건너편", "it": "lato opposto", "rr": "geonneopyeon" },
-                { "ko": "왼쪽", "it": "sinistra", "rr": "wenjok" }
+                { "ko": "왼쪽", "it": "sinistra", "rr": "oenjjok" }
               ],
               "translation": "«Scusi, dov'è l'ufficio postale?» «È accanto al municipio. Superi l'incrocio.» «E la farmacia?» «La farmacia è sul lato opposto dell'ufficio postale: vada a sinistra.»"
             }

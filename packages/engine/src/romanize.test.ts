@@ -110,6 +110,20 @@ describe('romanizzazione della pronuncia', () => {
     expect(pronunciationRomanize('없다')).toBe('eopda');
   });
 
+  it('tiene la ㄹ del ㄺ davanti a ㅎ e alle desinenze in ㄱ', () => {
+    // 밝히다 [발키다] e 읽히다 [일키다]: la ㄹ si sente, la ㅎ diventa ㅋ.
+    expect(pronunciationRomanize('밝히다')).toBe('balkida');
+    expect(pronunciationRomanize('읽히다')).toBe('ilkida');
+    // 읽고 [일꼬], 맑게 [말께]: la desinenza comincia per ㄱ.
+    expect(pronunciationRomanize('읽고')).toBe('ilgo');
+    expect(pronunciationRomanize('맑게')).toBe('malge');
+    expect(pronunciationRomanize('늙고')).toBe('neulgo');
+    // Ma 닭고기 resta un composto di nome + nome: [닥꼬기].
+    expect(pronunciationRomanize('닭고기')).toBe('dakgogi');
+    // E 읽다, davanti a ㄷ, chiude su ㄱ: [익따].
+    expect(pronunciationRomanize('읽다')).toBe('ikda');
+  });
+
   it('divide il finale doppio davanti a vocale', () => {
     expect(pronunciationRomanize('값이')).toBe('gapsi');
     expect(pronunciationRomanize('몫이')).toBe('moksi');
