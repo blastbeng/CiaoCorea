@@ -11,13 +11,14 @@ compilato in WebAssembly, tenuto in IndexedDB). Il computer che apre il sito
 tiene i propri dati: niente registrazione, niente email, niente password — né da
 creare, né da ricordare, né da recuperare.
 
-Oltre al percorso ci sono sette stanze: il **dizionario** di tutte le parole
+Oltre al percorso ci sono le altre stanze: il **dizionario** di tutte le parole
 del curricolo, il **repertorio** che raccoglie le spiegazioni delle lezioni come
 un indice cercabile («dove era -지만?»), la **coda di ripasso** (SRS) che dopo
 due passaggi chiede di scrivere la parola, il **quaderno** dove si scrivono
 frasi proprie confrontandole con un modello, la **banca degli errori** con gli
 esercizi sbagliati da rifare, la pagina dei **progressi**, con le statistiche
-complessive e il nome con cui essere chiamati, e infine **Coniuga**, dove si
+complessive e il nome con cui essere chiamati, il **trainer dei numeri** che
+allena le due serie e i contatori, e infine **Coniuga**, dove si
 cerca un verbo e si vede la sua tabella con la regola che la spiega. In cima
 alla home c'è il **piano
 di oggi**: le poche cose da fare, in ordine, sopra all'obiettivo della settimana
@@ -49,6 +50,7 @@ progressi, ripassi e tentativi non si perdono nel passaggio.
 | `/dialoghi` e `/dialoghi/:slug` | conversazione scritta a copione |
 | `/alfabeto` | le lettere dell'hangul: consonanti e vocali con nome e suono, il compositore di sillabe, la tabella delle sillabe e i sette suoni finali |
 | `/scrittura` | il quaderno della mano: si ripassa una lettera o una parola con il dito o il mouse, e l'app dice quanta parte della forma è coperta e quanto è finito fuori |
+| `/numeri` | il trainer dei numeri: le due serie, i contatori, che ore sono, i prezzi in won e i numeri di telefono, con le risposte sbagliate che sono gli errori veri (삼 권 invece di 세 권) |
 | `/pronuncia` | il laboratorio della pronuncia: si scrive una parola e si vede la lettura ricostruita, le sillabe scomposte e le regole che l'hanno cambiata |
 | `/dizionario` | ricerca nelle parole del curricolo, con filtri per corso |
 | `/coniuga` | si scrive un verbo o un aggettivo e si vede la tabella delle forme, con la classe della radice che le spiega |
@@ -134,6 +136,27 @@ Il controllo giudica solo le parole che la lookup del vocabolario riconosce:
 «읽는» è una desinenza di verbo, non una particella, e marchiarla sarebbe
 peggio che tacere. Le forme sbagliate messe apposta in un esercizio a scelta
 sono elencate in cima allo script, con il motivo.
+
+### Le due serie dei numeri
+
+Il coreano conta con due serie, e la serie non è una preferenza: la decide la
+parola che segue.
+
+- **Sino-coreana** — 일, 이, 삼… — per i soldi (만 원), i minuti (사십 분), le
+  cifre lunghe e i contatori moderni: 층, 호, 월, 일, 년, 인분.
+- **Nativa** — 하나, 둘, 셋… — per le ore (일곱 시), l'età (스무 살) e per le
+  cose che si contano con le dita: 개, 명, 마리, 권, 장, 대, 잔, 병, 시간.
+
+I contatori vivono in `packages/engine/src/numbers.ts`. 장 e 권 sono nativi —
+표 두 장, 책 세 권 — come insegna il corso dei contatori: prima leggevano il
+sino e la scheda di «3권» diceva 삼권 contro la lezione. Lo stesso vale per 대,
+마리 e gli altri contatori aggiunti. `번` resta sino perché nei testi è quasi
+sempre il numero di una linea o di un'uscita (4번 출구); per «volta» il coreano
+usa il nativo (두 번), e la scheda lo dice.
+
+Diecimila si legge 만 e non 일만, mentre cento milioni tiene l'일 (일억); il
+trainer dei numeri (`/numeri`) usa queste stesse funzioni, così pagina e schede
+non possono raccontare cose diverse.
 
 ### Collega le coppie
 

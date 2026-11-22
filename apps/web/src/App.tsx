@@ -15,6 +15,7 @@ import { LessonPage } from './pages/LessonPage';
 import { MistakesPage } from './pages/MistakesPage';
 import { MyProfilePage } from './pages/MyProfilePage';
 import { NotFound } from './pages/NotFound';
+import { NumbersPage } from './pages/NumbersPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { PronunciationPage } from './pages/PronunciationPage';
 import { ProfilesPage } from './pages/ProfilesPage';
@@ -77,6 +78,7 @@ export default function App() {
         <Route path="alfabeto" element={<AlphabetPage />} />
         <Route path="scrittura" element={<WritingPracticePage />} />
         <Route path="pronuncia" element={<PronunciationPage />} />
+        <Route path="numeri" element={<NumbersPage />} />
         <Route path="dizionario" element={<VocabularyPage />} />
         <Route path="coniuga" element={<ConiugaPage />} />
         <Route path="analisi" element={<AnalysisPage />} />

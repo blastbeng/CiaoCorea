@@ -1,5 +1,13 @@
 import { describe, expect, it } from 'vitest';
-import { formatNumber, readNumber, readWrittenNumber } from './numbers';
+import {
+  formatNumber,
+  readNumber,
+  readWrittenNumber,
+  spellCounter,
+  spellDigits,
+  spellNumber,
+  spellSinoGrouped,
+} from './numbers';
 
 describe('readNumber', () => {
   it('legge i numeri sino-coreani composti', () => {
@@ -72,7 +80,7 @@ describe('readWrittenNumber', () => {
   it('moltiplica le unità grandi', () => {
     // 1만 = diecimila: la cifra si legge e si moltiplica per 만.
     expect(readWrittenNumber('1만')?.value).toBe(10_000);
-    expect(readWrittenNumber('1만')?.hangul).toBe('일만');
+    expect(readWrittenNumber('1만')?.hangul).toBe('만');
     expect(readWrittenNumber('55만')?.value).toBe(550_000);
     expect(readWrittenNumber('500만')?.value).toBe(5_000_000);
   });
@@ -107,5 +115,69 @@ describe('readWrittenNumber', () => {
     expect(readWrittenNumber('5xyz')).toBeNull();
     expect(readWrittenNumber('5절')?.unit).toBe('절');
     expect(readWrittenNumber('5권짜리')).toBeNull();
+  });
+});
+
+describe('la serie giusta per ogni contatore', () => {
+  it('legge 장 e 권 con i numeri nativi', () => {
+    // 표 두 장, 책 세 권: sono nativi, come insegna il corso dei contatori.
+    expect(readWrittenNumber('2장')?.hangul).toBe('두장');
+    expect(readWrittenNumber('3권')?.hangul).toBe('세권');
+    expect(readWrittenNumber('3권')?.system).toBe('native');
+  });
+
+  it('legge i contatori che il corso nomina', () => {
+    expect(readWrittenNumber('2대')?.hangul).toBe('두대');
+    expect(readWrittenNumber('3마리')?.hangul).toBe('세마리');
+    expect(readWrittenNumber('2병')?.hangul).toBe('두병');
+    expect(readWrittenNumber('2시간')?.hangul).toBe('두시간');
+    expect(readWrittenNumber('2그릇')?.hangul).toBe('두그릇');
+  });
+
+  it('preferisce 시간 a 시 quando la parola è più lunga', () => {
+    expect(readWrittenNumber('2시간')?.unit).toBe('시간');
+    expect(readWrittenNumber('2시')?.unit).toBe('시');
+  });
+
+  it('tiene il sino per le uscite e i numeri di linea', () => {
+    expect(readWrittenNumber('4번')?.hangul).toBe('사번');
+    expect(readWrittenNumber('3호')?.hangul).toBe('삼호');
+  });
+});
+
+describe('le cifre lunghe', () => {
+  it('dice 만 e non 일만', () => {
+    expect(readWrittenNumber('1만')?.hangul).toBe('만');
+    expect(readWrittenNumber('1만')?.rr).toBe('man');
+    expect(readWrittenNumber('1억')?.hangul).toBe('일억');
+    expect(readWrittenNumber('2만')?.hangul).toBe('이만');
+  });
+
+  it('raggruppa a diecimila negli importi', () => {
+    expect(spellSinoGrouped(12_500)).toBe('만 이천오백');
+    expect(spellSinoGrouped(23_456)).toBe('이만 삼천사백오십육');
+    expect(spellSinoGrouped(10_000)).toBe('만');
+    expect(spellSinoGrouped(5_000)).toBe('오천');
+    expect(spellSinoGrouped(123_456_789)).toBe('일억 이천삼백사십오만 육천칠백팔십구');
+  });
+});
+
+describe('le due serie', () => {
+  it('scrive il cardinale nella serie chiesta', () => {
+    expect(spellNumber(4700, 'sino')).toBe('사천칠백');
+    expect(spellNumber(21, 'native')).toBe('스물한');
+    expect(spellNumber(20, 'native')).toBe('스무');
+  });
+
+  it('legge cifre e contatore insieme', () => {
+    expect(spellCounter(3, '권')).toBe('세권');
+    expect(spellCounter(12, '명')).toBe('열두명');
+    expect(spellCounter(100, '명')).toBe('백명');
+    expect(spellCounter(3, '권')).not.toContain('삼');
+  });
+
+  it('legge un numero di telefono cifra per cifra', () => {
+    expect(spellDigits('010')).toBe('공일공');
+    expect(spellDigits('2345-6789')).toBe('이삼사오육칠팔구');
   });
 });

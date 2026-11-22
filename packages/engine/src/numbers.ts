@@ -152,15 +152,33 @@ const COUNTERS: readonly { ko: string; it: string; rr: string; system: 'sino' | 
   { ko: '분', it: 'minuto', rr: 'bun', system: 'sino' },
   { ko: '초', it: 'secondo', rr: 'cho', system: 'sino' },
   { ko: '층', it: 'piano (di un edificio)', rr: 'cheung', system: 'sino' },
-  { ko: '번', it: 'numero, volta', rr: 'beon', system: 'sino' },
+  // «Volta» vuole il nativo (두 번), ma «numero di linea o di uscita» vuole il
+  // sino (4번 출구): la scheda dice il caso che rende la lettura giusta.
+  { ko: '번', it: 'numero (linea, uscita, banchina); «volta» invece è 두 번', rr: 'beon', system: 'sino' },
   { ko: '호', it: 'numero', rr: 'ho', system: 'sino' },
+  // 시간 va prima di 시, altrimenti «2시간» verrebbe letto due ore e basta.
+  { ko: '시간', it: 'ore (durata)', rr: 'sigan', system: 'native' },
   { ko: '개', it: 'oggetti', rr: 'gae', system: 'native' },
   { ko: '명', it: 'persone', rr: 'myeong', system: 'native' },
   { ko: '살', it: 'anni (di età)', rr: 'sal', system: 'native' },
   { ko: '시', it: 'ora del giorno', rr: 'si', system: 'native' },
   { ko: '잔', it: 'bicchieri', rr: 'jan', system: 'native' },
-  { ko: '장', it: 'fogli, biglietti', rr: 'jang', system: 'sino' },
-  { ko: '권', it: 'libri', rr: 'gwon', system: 'sino' },
+  // 장 e 권 sono nativi: 표 두 장, 책 세 권, come insegna il corso dei contatori.
+  { ko: '장', it: 'fogli, biglietti', rr: 'jang', system: 'native' },
+  { ko: '권', it: 'libri', rr: 'gwon', system: 'native' },
+  { ko: '대', it: 'veicoli e macchine', rr: 'dae', system: 'native' },
+  { ko: '마리', it: 'animali', rr: 'mari', system: 'native' },
+  { ko: '병', it: 'bottiglie', rr: 'byeong', system: 'native' },
+  { ko: '그릇', it: 'scodelle, piatti di portata', rr: 'geureut', system: 'native' },
+  { ko: '접시', it: 'piatti', rr: 'jeopsi', system: 'native' },
+  { ko: '벌', it: 'completi di vestiti', rr: 'beol', system: 'native' },
+  { ko: '켤레', it: 'paia di scarpe o calze', rr: 'kyeolle', system: 'native' },
+  { ko: '송이', it: 'fiori', rr: 'songi', system: 'native' },
+  { ko: '그루', it: 'alberi', rr: 'geuru', system: 'native' },
+  { ko: '채', it: 'case, edifici', rr: 'chae', system: 'native' },
+  { ko: '가지', it: 'tipi, varietà', rr: 'gaji', system: 'native' },
+  { ko: '군데', it: 'luoghi', rr: 'gunde', system: 'native' },
+  { ko: '달', it: 'mesi (durata)', rr: 'dal', system: 'native' },
   { ko: '평', it: 'pyeong (3,3 m²)', rr: 'pyeong', system: 'sino' },
   { ko: '도', it: 'gradi', rr: 'do', system: 'sino' },
 ];
@@ -213,7 +231,9 @@ function sinoHangul(value: number): string {
   if (value >= 10_000) {
     const high = Math.floor(value / 10_000);
     const low = value % 10_000;
-    return `${sinoHangul(high)}만${low ? sinoHangul(low) : ''}`;
+    // Diecimila è 만, non 일만: «만 원», «만 이천 원». L'일 davanti a 만
+    // compare solo negli importi in cifre bancarie, non nella lettura normale.
+    return `${high === 1 ? '' : sinoHangul(high)}만${low ? sinoHangul(low) : ''}`;
   }
   let out = '';
   let rest = value;
@@ -244,9 +264,24 @@ export interface WrittenNumberReading extends NumberReading {
   /** Il contatore o l'unità grande che segue la cifra. */
   unit: string;
   unitIt: string;
-  /** La lettura in hangul: 오층, 세 시, 일만. */
+  /** La lettura in hangul: 오층, 세 시, 만. */
   hangul: string;
 }
+
+/** Un contatore con la serie di numeri che gli spetta. */
+export interface CounterInfo {
+  ko: string;
+  it: string;
+  rr: string;
+  system: 'sino' | 'native';
+}
+
+/**
+ * I contatori che il corso incontra, in ordine di lezione. Servono al trainer
+ * dei numeri: la serie giusta la decide questa tabella e non la pagina, così non
+ * possono divergere.
+ */
+export const COUNTERS_INFO: readonly CounterInfo[] = COUNTERS;
 
 /**
  * Legge una cifra con il suo contatore: 5층, 3월, 12일, 1만, 2호선. Nei testi del
@@ -266,14 +301,16 @@ export function readWrittenNumber(word: string): WrittenNumberReading | null {
     const tail = rest.slice(big.ko.length);
     if (tail === '' || TAILS.some((candidate) => tail === candidate)) {
       const total = value * big.value;
-      const hangul = sinoHangul(value) + big.ko;
+      // «1만» si legge 만, «1억» invece 일억: il coreano tiene l'일 solo davanti
+      // a 억.
+      const head = value === 1 && big.ko !== '억' ? '' : sinoHangul(value);
       return {
         value: total,
         system: 'sino',
-        rr: joinWithUnit(sinoHangul(value), big.rr),
+        rr: head === '' ? big.rr : joinWithUnit(head, big.rr),
         unit: big.ko,
         unitIt: `${big.it} (${big.ko} = ${formatNumber(big.value)})`,
-        hangul,
+        hangul: head + big.ko,
       };
     }
   }
@@ -294,4 +331,42 @@ export function readWrittenNumber(word: string): WrittenNumberReading | null {
       : counter.it,
     hangul: (irregular ?? spelled) + counter.ko,
   };
+}
+
+/** Il cardinale nella serie indicata, senza contatore. */
+export function spellNumber(value: number, system: 'sino' | 'native'): string {
+  return system === 'native' ? nativeHangul(value) : sinoHangul(value);
+}
+
+/**
+ * Cifre lunghe e importi: il coreano raggruppa a diecimila (만) e mette uno
+ * spazio fra i gruppi — 만 이천 오백 원, non 십이천오백 원.
+ */
+export function spellSinoGrouped(value: number): string {
+  if (!Number.isFinite(value) || value <= 0) return '영';
+  const eok = Math.floor(value / 100_000_000);
+  const man = Math.floor((value % 100_000_000) / 10_000);
+  const rest = value % 10_000;
+  const parts: string[] = [];
+  if (eok > 0) parts.push(`${eok === 1 ? '일' : sinoHangul(eok)}억`);
+  if (man > 0) parts.push(`${man === 1 ? '' : sinoHangul(man)}만`);
+  if (rest > 0) parts.push(sinoHangul(rest));
+  return parts.join(' ');
+}
+
+/** La lettura di cifre più contatore, o null se il caso non è riconosciuto. */
+export function spellCounter(value: number, counterKo: string): string | null {
+  return readWrittenNumber(`${value}${counterKo}`)?.hangul ?? null;
+}
+
+/**
+ * Le cifre si leggono una per una, e lo zero è 공: un numero di telefono non si
+ * legge come un numero intero.
+ */
+export function spellDigits(digits: string): string {
+  const names = ['공', '일', '이', '삼', '사', '오', '육', '칠', '팔', '구'];
+  return [...digits]
+    .filter((char) => char >= '0' && char <= '9')
+    .map((char) => names[Number(char)])
+    .join('');
 }
