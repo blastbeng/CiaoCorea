@@ -10,6 +10,9 @@ import type {
   DueCountResponse,
   DialogueDetail,
   DialogueListResponse,
+  ExamPaper,
+  ExamResultResponse,
+  ExamsResponse,
   FragileResponse,
   FragileRetryResponse,
   GrammarResponse,
@@ -120,6 +123,16 @@ export const api = {
   /** Corregge la sfida senza toccare il progresso delle lezioni. */
   submitChallenge: (answers: SubmitAnswer[], durationMs: number) =>
     request<ChallengeResultResponse>('POST', '/api/challenge', { answers, durationMs }),
+
+  /** I traguardi di livello: quanti se ne possono già sostenere e com'è andata. */
+  exams: () => request<ExamsResponse>('GET', '/api/exams'),
+
+  /** La prova di un livello, senza soluzioni: le domande vengono dalle lezioni chiuse. */
+  exam: (level: string) => request<ExamPaper>('GET', `/api/exams/${level}`),
+
+  /** Consegna il traguardo: corregge, registra il migliore e manda gli errori in banca. */
+  submitExam: (level: string, answers: SubmitAnswer[], durationMs: number) =>
+    request<ExamResultResponse>('POST', `/api/exams/${level}`, { answers, durationMs }),
 
   /** Tutti i brani del percorso, con la traduzione solo dove è già lecita. */
   readings: () => request<ReadingsResponse>('GET', '/api/readings'),

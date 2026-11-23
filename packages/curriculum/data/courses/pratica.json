@@ -1,0 +1,658 @@
+{
+  "id": "pratica",
+  "slug": "pratica",
+  "title": "실전 — Cavarsela davvero",
+  "subtitle": "Tre situazioni in cui le parole giuste fanno la differenza: la farmacia, il medico, il guasto in casa.",
+  "level": "A2",
+  "description": "Un corso breve e concreto per chi deve farsi capire fuori dall’aula: descrivere un sintomo, prenotare una visita, chiedere aiuto in emergenza e segnalare un guasto. Ogni lezione ha un brano da leggere, il lessico essenziale e esercizi che chiedono di usarlo, non solo di riconoscerlo.",
+  "units": [
+    {
+      "id": "pratica-1",
+      "title": "Quando qualcosa non va",
+      "purpose": "Dal bancone della farmacia al telefono del palazzo: dire che cosa non funziona e che cosa serve.",
+      "lessons": [
+        {
+          "id": "prat-01",
+          "slug": "in-farmacia",
+          "title": "In farmacia",
+          "titleKo": "약국에서",
+          "kind": "vocab",
+          "goal": "Dire che cosa ti fa male, chiedere il farmaco giusto e capire le istruzioni della confezione.",
+          "durationMin": 14,
+          "points": [
+            "«어디가 아프세요?» è la domanda del farmacista: rispondi con la parte del corpo e 아파요.",
+            "I sintomi più comuni vanno con 이/가: 열이 나요, 기침이 나요, 배가 아파요.",
+            "Il farmaco si chiede con 주세요: 감기약 주세요. «Sì, ce l’ho» è 네, 있어요.",
+            "Le istruzioni dicono quante volte al giorno e quando: 하루에 세 번, 식후에 드세요."
+          ],
+          "vocab": [
+            {
+              "ko": "약국",
+              "it": "farmacia",
+              "rr": "yakguk"
+            },
+            {
+              "ko": "약",
+              "it": "medicina",
+              "rr": "yak"
+            },
+            {
+              "ko": "감기",
+              "it": "raffreddore",
+              "rr": "gamgi"
+            },
+            {
+              "ko": "열",
+              "it": "febbre",
+              "rr": "yeol"
+            },
+            {
+              "ko": "기침",
+              "it": "tosse",
+              "rr": "gichim"
+            },
+            {
+              "ko": "콧물",
+              "it": "muco, naso che cola",
+              "rr": "konmul"
+            },
+            {
+              "ko": "목",
+              "it": "gola, collo",
+              "rr": "mok"
+            },
+            {
+              "ko": "배",
+              "it": "pancia, pera",
+              "rr": "bae"
+            },
+            {
+              "ko": "머리",
+              "it": "testa",
+              "rr": "meori"
+            },
+            {
+              "ko": "아프다",
+              "it": "far male",
+              "rr": "apeuda"
+            },
+            {
+              "ko": "처방전",
+              "it": "ricetta medica",
+              "rr": "cheobangjeon"
+            },
+            {
+              "ko": "하루",
+              "it": "un giorno",
+              "rr": "haru"
+            },
+            {
+              "ko": "식후",
+              "it": "dopo i pasti",
+              "rr": "sikhu"
+            },
+            {
+              "ko": "알약",
+              "it": "compressa",
+              "rr": "allyak"
+            }
+          ],
+          "passages": [
+            {
+              "title": "약국에서",
+              "lines": [
+                "어서 오세요. 어디가 아프세요?",
+                "어제부터 목이 아프고 기침이 나요.",
+                "열도 있어요?",
+                "조금 있어요. 감기약 주세요."
+              ],
+              "gloss": [
+                {
+                  "ko": "목",
+                  "it": "gola",
+                  "rr": "mok"
+                },
+                {
+                  "ko": "기침",
+                  "it": "tosse",
+                  "rr": "gichim"
+                },
+                {
+                  "ko": "열",
+                  "it": "febbre",
+                  "rr": "yeol"
+                },
+                {
+                  "ko": "감기약",
+                  "it": "medicina per il raffreddore",
+                  "rr": "gamgiyak"
+                }
+              ],
+              "translation": "Benvenuto. Dove le fa male? / Da ieri ho mal di gola e la tosse. / Ha anche la febbre? / Un po’. Mi dia qualcosa per il raffreddore."
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ex-prat-01-1",
+              "type": "reading_mcq",
+              "prompt": "Che cosa vuol dire «열이 나요»?",
+              "options": [
+                "Ho la febbre",
+                "Ho sete",
+                "Ho sonno",
+                "Ho freddo"
+              ],
+              "answer": "Ho la febbre",
+              "explain": "열 è la febbre; 나다 è «venire fuori»: la febbre mi viene, cioè ce l’ho."
+            },
+            {
+              "id": "ex-prat-01-2",
+              "type": "type_meaning",
+              "prompt": "Scrivi in italiano che cosa vuol dire «기침이 나요».",
+              "answer": "ho la tosse",
+              "accept": [
+                "tossisco",
+                "ho la tosse"
+              ]
+            },
+            {
+              "id": "ex-prat-01-3",
+              "type": "fill_blank",
+              "prompt": "Completa l’istruzione con il numero giusto.",
+              "text": "약을 하루에 ___ 번 먹어요.",
+              "options": [
+                "세",
+                "삼",
+                "셋"
+              ],
+              "answer": "세",
+              "explain": "Le volte si contano con i numeri nativi, e davanti a un contatore 셋 diventa 세: 세 번 = tre volte. 삼 è la serie sino-coreana e non si usa qui."
+            },
+            {
+              "id": "ex-prat-01-4",
+              "type": "order_words",
+              "prompt": "Metti in ordine: «Ho comprato la medicina per il raffreddore in farmacia».",
+              "words": [
+                "약국에서",
+                "감기약을",
+                "샀어요"
+              ],
+              "answer": "약국에서 감기약을 샀어요"
+            },
+            {
+              "id": "ex-prat-01-5",
+              "type": "match_pairs",
+              "prompt": "Collega ogni parte del corpo al suo significato.",
+              "pairs": [
+                {
+                  "ko": "머리",
+                  "it": "testa"
+                },
+                {
+                  "ko": "배",
+                  "it": "pancia"
+                },
+                {
+                  "ko": "목",
+                  "it": "gola"
+                },
+                {
+                  "ko": "열",
+                  "it": "febbre"
+                }
+              ],
+              "from": "ko"
+            },
+            {
+              "id": "ex-prat-01-6",
+              "type": "reading_mcq",
+              "prompt": "Il farmacista dice «식후에 드세요». Quando prendi la medicina?",
+              "options": [
+                "Dopo i pasti",
+                "Prima di dormire",
+                "A digiuno",
+                "Ogni due ore"
+              ],
+              "answer": "Dopo i pasti",
+              "explain": "식사 è il pasto e 후 vuol dire «dopo»; 드세요 è la forma di rispetto di 먹어요."
+            },
+            {
+              "id": "ex-prat-01-7",
+              "type": "type_hangul",
+              "prompt": "Scrivi in coreano «farmacia».",
+              "answer": "약국"
+            }
+          ]
+        },
+        {
+          "id": "prat-02",
+          "slug": "dal-medico",
+          "title": "Dal medico e in emergenza",
+          "titleKo": "병원과 긴급 전화",
+          "kind": "vocab",
+          "goal": "Prenotare una visita, dire da quando stai male e chiedere aiuto quando serve davvero.",
+          "durationMin": 14,
+          "points": [
+            "«예약하고 싶어요» apre la prenotazione; «언제가 좋으세요?» chiede quando va bene.",
+            "«어제부터 아팠어요» dice da quando: 부터 segna il punto di partenza.",
+            "In emergenza i numeri sono 112 (polizia) e 119 (vigili del fuoco e ambulanza).",
+            "«도와주세요» è «aiutatemi»: la frase da dire per prima, corta e chiara."
+          ],
+          "vocab": [
+            {
+              "ko": "병원",
+              "it": "ospedale",
+              "rr": "byeongwon"
+            },
+            {
+              "ko": "예약",
+              "it": "prenotazione",
+              "rr": "yeyak"
+            },
+            {
+              "ko": "의사",
+              "it": "medico",
+              "rr": "uisa"
+            },
+            {
+              "ko": "간호사",
+              "it": "infermiere",
+              "rr": "ganhosa"
+            },
+            {
+              "ko": "구급차",
+              "it": "ambulanza",
+              "rr": "gugeupcha"
+            },
+            {
+              "ko": "경찰",
+              "it": "polizia",
+              "rr": "gyeongchal"
+            },
+            {
+              "ko": "불",
+              "it": "fuoco",
+              "rr": "bul"
+            },
+            {
+              "ko": "도와주다",
+              "it": "aiutare",
+              "rr": "dowajuda"
+            },
+            {
+              "ko": "어제",
+              "it": "ieri",
+              "rr": "eoje"
+            },
+            {
+              "ko": "부터",
+              "it": "da (punto di partenza)",
+              "rr": "buteo"
+            },
+            {
+              "ko": "접수",
+              "it": "accettazione, registrazione",
+              "rr": "jeopsu"
+            },
+            {
+              "ko": "증상",
+              "it": "sintomo",
+              "rr": "jeungsang"
+            },
+            {
+              "ko": "검사",
+              "it": "esame, analisi",
+              "rr": "geomsa"
+            },
+            {
+              "ko": "기다리다",
+              "it": "aspettare",
+              "rr": "gidarida"
+            }
+          ],
+          "passages": [
+            {
+              "title": "예약하고 싶어요",
+              "lines": [
+                "예약하고 싶어요.",
+                "언제가 좋으세요?",
+                "내일 오전은 어때요?",
+                "네, 10시에 오세요. 신분증을 가져오세요."
+              ],
+              "gloss": [
+                {
+                  "ko": "예약",
+                  "it": "prenotazione",
+                  "rr": "yeyak"
+                },
+                {
+                  "ko": "내일",
+                  "it": "domani",
+                  "rr": "naeil"
+                },
+                {
+                  "ko": "오전",
+                  "it": "mattina",
+                  "rr": "ojeon"
+                },
+                {
+                  "ko": "신분증",
+                  "it": "documento d’identità",
+                  "rr": "sinbunjeung"
+                }
+              ],
+              "translation": "Vorrei prenotare. / Quando le va bene? / Domani mattina come va? / Bene, venga alle 10. Porti un documento d’identità."
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ex-prat-02-1",
+              "type": "reading_mcq",
+              "prompt": "Che cosa chiedi con «예약하고 싶어요»?",
+              "options": [
+                "Vorrei prenotare",
+                "Vorrei pagare",
+                "Vorrei uscire",
+                "Vorrei mangiare"
+              ],
+              "answer": "Vorrei prenotare",
+              "explain": "예약 è la prenotazione; -고 싶어요 esprime il desiderio: «voglio prenotare»."
+            },
+            {
+              "id": "ex-prat-02-2",
+              "type": "fill_blank",
+              "prompt": "Completa: «Sono stato male da ieri».",
+              "text": "어제___ 아팠어요.",
+              "options": [
+                "부터",
+                "까지",
+                "에서"
+              ],
+              "answer": "부터",
+              "explain": "부터 segna l’inizio («da»), 까지 la fine («fino a»): 어제부터 = da ieri."
+            },
+            {
+              "id": "ex-prat-02-3",
+              "type": "order_words",
+              "prompt": "Metti in ordine: «Chiami il 119, per favore».",
+              "words": [
+                "119에",
+                "전화해",
+                "주세요"
+              ],
+              "answer": "119에 전화해 주세요"
+            },
+            {
+              "id": "ex-prat-02-4",
+              "type": "type_meaning",
+              "prompt": "Scrivi in italiano che cosa vuol dire «도와주세요».",
+              "answer": "aiutatemi",
+              "accept": [
+                "aiutami",
+                "aiuto",
+                "mi aiuti"
+              ]
+            },
+            {
+              "id": "ex-prat-02-5",
+              "type": "match_pairs",
+              "prompt": "Collega ogni parola al suo significato.",
+              "pairs": [
+                {
+                  "ko": "병원",
+                  "it": "ospedale"
+                },
+                {
+                  "ko": "의사",
+                  "it": "medico"
+                },
+                {
+                  "ko": "구급차",
+                  "it": "ambulanza"
+                },
+                {
+                  "ko": "경찰",
+                  "it": "polizia"
+                }
+              ],
+              "from": "ko"
+            },
+            {
+              "id": "ex-prat-02-6",
+              "type": "reading_mcq",
+              "prompt": "In Corea, quale numero chiami per un’ambulanza?",
+              "options": [
+                "119",
+                "112",
+                "113",
+                "911"
+              ],
+              "answer": "119",
+              "explain": "119 è il numero di vigili del fuoco e ambulanza; 112 è la polizia. Il 911 statunitense non vale in Corea."
+            },
+            {
+              "id": "ex-prat-02-7",
+              "type": "type_hangul",
+              "prompt": "Scrivi in coreano «ospedale».",
+              "answer": "병원"
+            }
+          ]
+        },
+        {
+          "id": "prat-03",
+          "slug": "un-guasto-in-casa",
+          "title": "Un guasto in casa",
+          "titleKo": "집에서 고장이 났어요",
+          "kind": "vocab",
+          "goal": "Segnalare un guasto, chiedere una riparazione e capire quando arriva chi ripara.",
+          "durationMin": 14,
+          "points": [
+            "«고장이 났어요» dice che qualcosa si è rotto; «막혔어요» che è bloccato.",
+            "안 davanti al verbo nega: 물이 안 나와요, 전기가 안 들어와요.",
+            "Per chiedere una riparazione: 수리해 주실 수 있어요? (-(으)ㄹ 수 있어요 = potere).",
+            "«언제 와 주실 수 있어요?» fissa l’appuntamento; 관리사무소 è l’ufficio del palazzo."
+          ],
+          "vocab": [
+            {
+              "ko": "집",
+              "it": "casa",
+              "rr": "jip"
+            },
+            {
+              "ko": "고장",
+              "it": "guasto",
+              "rr": "gojang"
+            },
+            {
+              "ko": "변기",
+              "it": "water, vaso",
+              "rr": "byeongi"
+            },
+            {
+              "ko": "물",
+              "it": "acqua",
+              "rr": "mul"
+            },
+            {
+              "ko": "전기",
+              "it": "elettricità",
+              "rr": "jeongi"
+            },
+            {
+              "ko": "보일러",
+              "it": "caldaia",
+              "rr": "boilleo"
+            },
+            {
+              "ko": "수도꼭지",
+              "it": "rubinetto",
+              "rr": "sudokkokji"
+            },
+            {
+              "ko": "막히다",
+              "it": "essere intasato",
+              "rr": "makida"
+            },
+            {
+              "ko": "새다",
+              "it": "perdere, gocciolare",
+              "rr": "saeda"
+            },
+            {
+              "ko": "수리",
+              "it": "riparazione",
+              "rr": "suri"
+            },
+            {
+              "ko": "집주인",
+              "it": "padrone di casa",
+              "rr": "jipjuin"
+            },
+            {
+              "ko": "관리사무소",
+              "it": "ufficio di amministrazione del palazzo",
+              "rr": "gwallisamuso"
+            },
+            {
+              "ko": "언제",
+              "it": "quando",
+              "rr": "eonje"
+            },
+            {
+              "ko": "내일",
+              "it": "domani",
+              "rr": "naeil"
+            }
+          ],
+          "passages": [
+            {
+              "title": "여보세요, 관리사무소죠?",
+              "lines": [
+                "여보세요, 관리사무소죠?",
+                "네, 무슨 일이세요?",
+                "보일러가 고장 났어요. 물도 안 나와요.",
+                "알겠습니다. 오후에 수리 기사가 갈 거예요."
+              ],
+              "gloss": [
+                {
+                  "ko": "관리사무소",
+                  "it": "ufficio del palazzo",
+                  "rr": "gwallisamuso"
+                },
+                {
+                  "ko": "보일러",
+                  "it": "caldaia",
+                  "rr": "boilleo"
+                },
+                {
+                  "ko": "수리",
+                  "it": "riparazione",
+                  "rr": "suri"
+                },
+                {
+                  "ko": "기사",
+                  "it": "tecnico",
+                  "rr": "gisa"
+                }
+              ],
+              "translation": "Pronto, è l’ufficio del palazzo? / Sì, che cosa succede? / La caldaia è rotta. Anche l’acqua non esce. / Va bene. Nel pomeriggio passerà il tecnico."
+            }
+          ],
+          "exercises": [
+            {
+              "id": "ex-prat-03-1",
+              "type": "reading_mcq",
+              "prompt": "«변기가 막혔어요». Che cosa succede?",
+              "options": [
+                "Il water è intasato",
+                "Il water perde",
+                "Non c’è acqua",
+                "Il water è nuovo"
+              ],
+              "answer": "Il water è intasato",
+              "explain": "막히다 vuol dire «essere bloccato, intasato»: è la parola del water che non scarica."
+            },
+            {
+              "id": "ex-prat-03-2",
+              "type": "fill_blank",
+              "prompt": "Completa: «L’acqua non esce».",
+              "text": "물이 ___ 나와요.",
+              "options": [
+                "안",
+                "못",
+                "아니"
+              ],
+              "answer": "안",
+              "explain": "안 nega il verbo (non esce); 못 è «non riuscire» e 아니 è la negazione di 이에요/예요, non di un verbo."
+            },
+            {
+              "id": "ex-prat-03-3",
+              "type": "order_words",
+              "prompt": "Metti in ordine: «La caldaia si è rotta».",
+              "words": [
+                "보일러가",
+                "고장",
+                "났어요"
+              ],
+              "answer": "보일러가 고장 났어요"
+            },
+            {
+              "id": "ex-prat-03-4",
+              "type": "type_meaning",
+              "prompt": "Scrivi in italiano che cosa chiedi con «수리해 주실 수 있어요?».",
+              "answer": "può ripararlo?",
+              "accept": [
+                "puoi ripararlo",
+                "potete ripararlo",
+                "può ripararlo"
+              ]
+            },
+            {
+              "id": "ex-prat-03-5",
+              "type": "match_pairs",
+              "prompt": "Collega ogni cosa di casa al suo significato.",
+              "pairs": [
+                {
+                  "ko": "변기",
+                  "it": "water"
+                },
+                {
+                  "ko": "보일러",
+                  "it": "caldaia"
+                },
+                {
+                  "ko": "수도꼭지",
+                  "it": "rubinetto"
+                },
+                {
+                  "ko": "집주인",
+                  "it": "padrone di casa"
+                }
+              ],
+              "from": "ko"
+            },
+            {
+              "id": "ex-prat-03-6",
+              "type": "reading_mcq",
+              "prompt": "A chi telefoni se il riscaldamento del palazzo non funziona?",
+              "options": [
+                "Al 관리사무소",
+                "Al 112",
+                "Alla scuola",
+                "Al ristorante"
+              ],
+              "answer": "Al 관리사무소",
+              "explain": "관리사무소 è l’ufficio che gestisce il palazzo: chiama lui per i guasti comuni, prima del padrone di casa."
+            },
+            {
+              "id": "ex-prat-03-7",
+              "type": "type_hangul",
+              "prompt": "Scrivi in coreano «acqua».",
+              "answer": "물"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -12,6 +12,8 @@ import { ConiugaPage } from './pages/ConiugaPage';
 import { CoursePage } from './pages/CoursePage';
 import { Dashboard } from './pages/Dashboard';
 import { DialoguePage } from './pages/DialoguePage';
+import { ExamPage } from './pages/ExamPage';
+import { TraguardoPage } from './pages/TraguardoPage';
 import { DialoguesPage } from './pages/DialoguesPage';
 import { LessonPage } from './pages/LessonPage';
 import { MistakesPage } from './pages/MistakesPage';
@@ -76,6 +78,8 @@ export default function App() {
         <Route path="dialoghi" element={<DialoguesPage />} />
         <Route path="dialoghi/:slug" element={<DialoguePage />} />
         <Route path="sfida" element={<ChallengePage />} />
+        <Route path="traguardo" element={<TraguardoPage />} />
+        <Route path="traguardo/:level" element={<ExamPage />} />
         <Route path="letture" element={<ReadingsPage />} />
         <Route path="ripassi" element={<ReviewPage />} />
         <Route path="errori" element={<MistakesPage />} />

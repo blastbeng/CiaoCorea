@@ -2,6 +2,7 @@ export * from './normalize';
 export * from './progress';
 export * from './exercises';
 export * from './challenge';
+export * from './exam';
 export * from './srs';
 export * from './dialogue';
 export * from './romanize';

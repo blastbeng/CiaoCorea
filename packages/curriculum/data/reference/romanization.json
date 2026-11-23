@@ -1,6 +1,6 @@
 {
   "_note": "Romanizzazione verificata parola per parola: è il riferimento contro cui content:check confronta il campo `rr` delle voci di lessico. Il valore è la Revised Romanization *della pronuncia standard* (국어의 로마자 표기법 제1항), cioè la forma che vede lo studente: 국민 = gungmin, 학교 = hakgyo.",
-  "_source": "Wiktionary (en) — voce 'Romanizations', riga 'Revised Romanization'; verifica condotta il 2026-11-20 per le parole elencate, più «골라서», la cui forma (ll) è determinata dalle parole della stessa struttura (몰라, 빨리, 올리다, 멀리). Le forme flesse (합니다, 주세요 …) non sono elencate: la loro romanizzazione si ricava dal lemma. Aggiunte del corso B2 verificate il 2026-11-22 con la stessa norma (pronuncia standard, non trascrizione lettera per lettera): 닫히다 = dachida, perché la ㅎ dopo la ㄷ finale dà [다치다]. Aggiunte del 2026-11-22 verificate su Wiktionary (en), voce 'Romanizations': 읽다 = ikda (non «ilkda»: la pronuncia è [익따]), 싫다 = silta, 파랗다 = parata, 빨갛다 = ppalgata, 밝히다 = balkida ([발키다]), 회화 = hoehwa, 왼쪽 = oenjjok. Aggiunte del 2026-11-22: 설명 = seolmyeong e 할머니 = halmeoni (Wiktionary, en, 'Romanizations'), perché la ㄹ davanti a ㅁ non è una nasale da assimilare; 그럼에도 = geureomedo, perché la ㅁ passa alla sillaba dopo ([그러메도]) — la forma precedente, geureomaedo, trascriveva le lettere invece della pronuncia. 원룸 resta wonnum: per gli pseudoanglicismi la pronuncia standard non è fissata e [원눔] è la variante più diffusa (국립국어원, 온라인가나다).",
+  "_source": "Wiktionary (en) — voce 'Romanizations', riga 'Revised Romanization'; verifica condotta il 2026-11-20 per le parole elencate, più «골라서», la cui forma (ll) è determinata dalle parole della stessa struttura (몰라, 빨리, 올리다, 멀리). Le forme flesse (합니다, 주세요 …) non sono elencate: la loro romanizzazione si ricava dal lemma. Aggiunte del corso B2 verificate il 2026-11-22 con la stessa norma (pronuncia standard, non trascrizione lettera per lettera): 닫히다 = dachida, perché la ㅎ dopo la ㄷ finale dà [다치다]. Aggiunte del 2026-11-22 verificate su Wiktionary (en), voce 'Romanizations': 읽다 = ikda (non «ilkda»: la pronuncia è [익따]), 싫다 = silta, 파랗다 = parata, 빨갛다 = ppalgata, 밝히다 = balkida ([발키다]), 회화 = hoehwa, 왼쪽 = oenjjok. Aggiunte del 2026-11-22: 설명 = seolmyeong e 할머니 = halmeoni (Wiktionary, en, 'Romanizations'), perché la ㄹ davanti a ㅁ non è una nasale da assimilare; 그럼에도 = geureomedo, perché la ㅁ passa alla sillaba dopo ([그러메도]) — la forma precedente, geureomaedo, trascriveva le lettere invece della pronuncia. 원룸 resta wonnum: per gli pseudoanglicismi la pronuncia standard non è fissata e [원눔] è la variante più diffusa (국립국어원, 온라인가나다). Aggiunte del corso pratica (2026-11-23): 콧물 = konmul (la ㅅ finale diventa [ㄴ] davanti a ㅁ), 알약 = allyak (la ㄹ finale si raddoppia davanti a 야), 식후 = sikhu (sostantivo: la ㅎ resta scritta, come vuole la regola dei 체언), 막히다 = makida (verbo: la ㅎ dopo ㄱ dà [ㅋ], quindi non si scrive).",
   "words": {
     "가능": "ganeung",
     "가능하다": "ganeunghada",
@@ -131,7 +131,7 @@
     "또": "tto",
     "라면": "ramyeon",
     "마시다": "masida",
-    "막히다": "makhida",
+    "막히다": "makida",
     "만나다": "mannada",
     "만들다": "mandeulda",
     "만지다": "manjida",
@@ -385,6 +385,9 @@
     "후회": "huhoe",
     "후회하다": "huhoehada",
     "설명": "seolmyeong",
-    "할머니": "halmeoni"
+    "할머니": "halmeoni",
+    "콧물": "konmul",
+    "알약": "allyak",
+    "식후": "sikhu"
   }
 }

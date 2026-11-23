@@ -315,6 +315,68 @@ export interface ChallengeResultResponse {
 }
 
 /**
+ * Il traguardo di livello: una prova di metà strada che pesca solo dalle
+ * lezioni già chiuse. Non certifica un livello — dice a che punto si è e che
+ * cosa conviene riprendere.
+ */
+export interface ExamLevelSummary {
+  id: string;
+  label: string;
+  title: string;
+  description: string;
+  /** Lezioni del livello nell’intero curricolo. */
+  totalLessons: number;
+  /** Lezioni del livello già passate o saltate. */
+  closedLessons: number;
+  /** Quante lezioni chiuse servono perché la prova si apra. */
+  requiredLessons: number;
+  /** Quante ne mancano: zero quando è aperta. */
+  missingLessons: number;
+  availableExercises: number;
+  /** Quante domande avrà la prova. */
+  questionCount: number;
+  unlocked: boolean;
+  bestScore: number | null;
+  attempts: number;
+  passed: boolean;
+  passedAt: string | null;
+}
+
+export interface ExamsResponse {
+  levels: ExamLevelSummary[];
+  /** Soglia di superamento in percentuale. */
+  threshold: number;
+  /** La data della selezione: dentro la giornata l’esame resta lo stesso. */
+  day: string;
+}
+
+export type ExamExercise = PublicExercise & {
+  course: { slug: string; title: string; level: string };
+  lesson: { id: string; title: string };
+};
+
+export interface ExamPaper {
+  level: ExamLevelSummary;
+  exercises: ExamExercise[];
+  threshold: number;
+  day: string;
+}
+
+export interface ExamResultResponse {
+  level: ExamLevelSummary;
+  score: number;
+  correct: number;
+  total: number;
+  threshold: number;
+  passed: boolean;
+  /** Vero la prima volta che questo traguardo viene raggiunto. */
+  firstPass: boolean;
+  results: ExerciseResult[];
+  /** Quante risposte sbagliate sono entrate nella banca degli errori. */
+  wrong: number;
+}
+
+/**
  * Le due direzioni in cui una parola può tornare. `read` è il riconoscimento
  * (coreano → italiano, con tre pulsanti di autogiudizio); `write` è la
  * produzione (italiano → coreano scritto), che si corregge da sola e non ha

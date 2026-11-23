@@ -100,6 +100,9 @@ describe('romanizzazione della pronuncia', () => {
     expect(pronunciationRomanize('종로')).toBe('jongno');
     expect(pronunciationRomanize('왕십리')).toBe('wangsimni');
     expect(pronunciationRomanize('담력')).toBe('damnyeok');
+    // Davanti a ㅁ una finale alveolare diventa ㄴ, non ㅁ: 콧물 [콘물].
+    expect(pronunciationRomanize('콧물')).toBe('konmul');
+    expect(pronunciationRomanize('꽃무늬')).toBe('kkonmunui');
   });
 
   it('chiude i finali doppi su un suono solo', () => {

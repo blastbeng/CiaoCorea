@@ -285,6 +285,23 @@ export const MIGRATIONS: Migration[] = [
       CREATE INDEX sync_tombstones_user_idx ON sync_tombstones(user_id, at);
     `,
   },
+  {
+    id: '012-level-exams',
+    sql: `
+      -- Il traguardo di livello. Si tiene il punteggio migliore perché un
+      -- esame è una fotografia: rifarlo peggio non cancella il giorno in cui è
+      -- andato bene. Gli errori però tornano nella banca come per la sfida.
+      CREATE TABLE level_exams (
+        user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+        level TEXT NOT NULL,
+        best_score INTEGER NOT NULL,
+        attempts INTEGER NOT NULL DEFAULT 0,
+        passed_at TEXT,
+        last_at TEXT NOT NULL,
+        PRIMARY KEY (user_id, level)
+      );
+    `,
+  },
 ];
 
 export function migrate(db: Db): void {

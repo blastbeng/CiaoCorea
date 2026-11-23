@@ -19,6 +19,84 @@ function formatDate(value: string): string {
 const GOAL_DAYS = [1, 2, 3, 4, 5, 6, 7];
 
 /**
+ * I traguardi visti dai progressi: solo i livelli già toccati, con il migliore
+ * di sempre. Un traguardo raggiunto è una data, non una medaglia da mostrare
+ * ovunque: qui basta la riga.
+ */
+function ExamProgressCard() {
+  const state = useAsync(() => api.exams(), []);
+
+  if (state.status === 'loading') {
+    return (
+      <section className="card">
+        <h2>Traguardi</h2>
+        <p className="muted small">Leggo i traguardi…</p>
+      </section>
+    );
+  }
+
+  if (state.status === 'error') {
+    return (
+      <section className="card">
+        <h2>Traguardi</h2>
+        <p className="muted small">
+          I traguardi non si sono caricati.{' '}
+          <button type="button" className="btn btn--sm btn--ghost" onClick={state.reload}>
+            Riprova
+          </button>
+        </p>
+      </section>
+    );
+  }
+
+  const { levels } = state.data;
+  const touched = levels.filter((level) => level.unlocked || level.attempts > 0);
+
+  return (
+    <section className="card">
+      <h2>Traguardi</h2>
+      {touched.length === 0 ? (
+        <p className="muted small">
+          Il primo traguardo si apre a metà delle lezioni di un livello: è una prova di quel che
+          hai già chiuso, non un esame su cose mai viste.
+        </p>
+      ) : (
+        <div className="stack stack--tight">
+          {touched.map((level) => (
+            <div className="course-row" key={level.id}>
+              <Link className="course-row__title" to={`/traguardo/${level.id}`}>
+                {level.label} · {level.title}
+              </Link>
+              <span className="faint small">
+                {level.bestScore === null
+                  ? 'ancora da provare'
+                  : `migliore ${level.bestScore}%${level.passed ? ' · raggiunto' : ''}`}
+              </span>
+              <div className="progress">
+                <span
+                  style={{
+                    width: `${
+                      level.totalLessons > 0
+                        ? Math.min(100, (level.closedLessons / level.totalLessons) * 100)
+                        : 0
+                    }%`,
+                  }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+      <div className="row" style={{ marginTop: '0.8rem' }}>
+        <Link className="btn btn--sm" to="/traguardo">
+          Tutti i traguardi
+        </Link>
+      </div>
+    </section>
+  );
+}
+
+/**
  * Obiettivo della settimana: lo sceglie lo studente. Un numero che si regge
  * vale più di uno alto, e sopra quello si costruisce il piano della giornata.
  */
@@ -175,6 +253,8 @@ export function ProfilePage() {
           ))}
         </div>
       </section>
+
+      <ExamProgressCard />
 
       <section className="grid grid--2">
         <div className="card">

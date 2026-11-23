@@ -952,7 +952,7 @@
                 { "ko": "손님", "it": "cliente, ospite", "rr": "sonnim" },
                 { "ko": "물건", "it": "merce, oggetto", "rr": "mulgeon" },
                 { "ko": "고르다", "it": "scegliere", "rr": "goreuda" },
-                { "ko": "막히다", "it": "essere bloccato", "rr": "makhida" },
+                { "ko": "막히다", "it": "essere bloccato", "rr": "makida" },
                 { "ko": "벽", "it": "muro, parete", "rr": "byeok" }
               ],
               "translation": "Il riso è freddo, quindi scaldo la zuppa di riso. Ci sono molti clienti che pagano il prezzo. Quando scelgo la merce nasce un disaccordo. La strada è bloccata, quindi lo sviluppo è lento. Ho acceso una luce sul muro."

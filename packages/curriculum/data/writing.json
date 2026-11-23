@@ -587,5 +587,69 @@
     ],
     "model": "아, 열쇠가 여기 있었군요!",
     "notes": "-군요 commenta ciò che si è appena notato: 있다 → 있었군요 (passato, perché le chiavi erano lì). 아 all'inizio dà la sorpresa."
+  },
+  {
+    "id": "w-prat-01",
+    "courseSlug": "pratica",
+    "lessonId": "prat-01",
+    "title": "Che cosa ti fa male",
+    "task": "Sei in farmacia. Scrivi «Da ieri ho mal di gola e la tosse. Mi dia una medicina per il raffreddore.»",
+    "words": [
+      "어제부터",
+      "목이",
+      "기침이",
+      "감기약"
+    ],
+    "must": [
+      "어제부터",
+      "목이",
+      "기침이",
+      "감기약"
+    ],
+    "model": "어제부터 목이 아프고 기침이 나요. 감기약 주세요.",
+    "notes": "I sintomi vogliono 이/가: 목이 아프고, 기침이 나요. -고 collega due frasi senza chiudere la prima; 주세요 chiude la richiesta."
+  },
+  {
+    "id": "w-prat-02",
+    "courseSlug": "pratica",
+    "lessonId": "prat-02",
+    "title": "Prenotare una visita",
+    "task": "Chiami il medico. Scrivi «Vorrei prenotare. Domani mattina va bene?»",
+    "words": [
+      "예약하고",
+      "내일",
+      "오전"
+    ],
+    "must": [
+      "예약하고",
+      "내일",
+      "오전"
+    ],
+    "model": "예약하고 싶어요. 내일 오전에 괜찮아요?",
+    "alt": [
+      "예약하고 싶어요. 내일 오전은 어때요?"
+    ],
+    "notes": "-고 싶어요 dice «voglio»; 오전 è la mattina prima di mezzogiorno. 괜찮아요? e 어때요? chiedono entrambi se va bene, la seconda è più colloquiale."
+  },
+  {
+    "id": "w-prat-03",
+    "courseSlug": "pratica",
+    "lessonId": "prat-03",
+    "title": "Il guasto",
+    "task": "Chiami l’ufficio del palazzo. Scrivi «La caldaia è rotta e l’acqua non esce. Può ripararla?»",
+    "words": [
+      "보일러가",
+      "고장",
+      "물이",
+      "수리해"
+    ],
+    "must": [
+      "보일러가",
+      "고장",
+      "물이",
+      "수리해"
+    ],
+    "model": "보일러가 고장 났어요. 물이 안 나와요. 수리해 주실 수 있어요?",
+    "notes": "고장이 났어요 è la formula del guasto; 안 davanti a 나와요 nega il verbo. -아/어 주실 수 있어요? è la richiesta cortese di una riparazione."
   }
 ]

@@ -277,8 +277,10 @@ function junction(prev: SyllableParts, next: SyllableParts): Junction {
     if (final === 8) return { coda: 'l', onset: null };
     if (VELAR.has(final) || final === 21) return { coda: 'ng', onset: null };
     if (LABIAL.has(final)) return { coda: 'm', onset: null };
-    if (ALVEOLAR_N.has(final)) return { coda: 'n', onset: null };
-    return { coda: next.lead === SIL.n ? 'n' : 'm', onset: null };
+    // Tutto il resto è alveolare: ㄷ, ㅅ, ㅈ, ㅊ, ㅌ e ㅎ diventano ㄴ anche
+    // davanti a ㅁ (콧물 [콘물] `konmul`, 꽃무늬 [꼰무늬] `kkonmunui`). Solo
+    // ㄱ e ㅂ diventano le nasali della loro famiglia; ㄷ non diventa ㅁ.
+    return { coda: 'n', onset: null };
   }
 
   return { coda: closedCoda(final), onset: null };

@@ -59,6 +59,7 @@ progressi, ripassi e tentativi non si perdono nel passaggio.
 | `/repertorio` | le spiegazioni delle lezioni in indice: si cerca una forma e si torna alla lezione |
 | `/quaderno` | le consegne di scrittura: si scrive la frase, poi si confronta con il modello |
 | `/sfida` | dodici domande miste dalle lezioni già chiuse: un ripasso che non cambia il percorso e manda gli errori in banca |
+| `/traguardo` e `/traguardo/:level` | la prova di livello: venti domande dalle lezioni chiuse di quel livello, 75 per passare, con il punteggio migliore conservato |
 | `/ripassi` | carte in scadenza, giudizio `ho saputo / quasi / non ricordo`; sotto, le parole fragili da riprovare subito |
 | `/errori` | gli esercizi che hai sbagliato, uno alla volta: azzeccarli li toglie dalla banca |
 | `/progressi` | totali, per corso, parole SRS, obiettivo della settimana, ritmo dei giorni |
@@ -298,6 +299,9 @@ store dentro la scheda. Richiedono la sessione tutte tranne `bootstrap`,
 | POST | `/api/mistakes/:exerciseId` | rifà un esercizio della banca: correzione, `wrongCount` (`null` = uscito), conteggi |
 | GET | `/api/challenge` | la sfida del giorno: dodici esercizi presi solo dalle lezioni già chiuse, scelti in modo stabile per utente e data |
 | POST | `/api/challenge` | corregge la sfida, aggiorna le statistiche del giorno e manda gli errori in banca; non tocca il percorso |
+| GET | `/api/exams` | i cinque traguardi: lezioni chiuse, esercizi disponibili, se la prova è aperta e il risultato migliore |
+| GET | `/api/exams/:level` | il foglio della prova: venti esercizi del livello, senza soluzione; la stessa prova finché non la si sostiene |
+| POST | `/api/exams/:level` | corregge la prova, registra il punteggio migliore e manda gli errori in banca |
 | GET | `/api/sync/export` | il profilo aperto (`scope=profile`) o tutti i profili (`scope=all`) in un file JSON |
 | GET | `/api/sync/code` | il codice veloce: lezioni, ripassi e giorni di studio, compressi in una riga |
 | POST | `/api/sync/preview` | cosa cambierebbe un file: esegue davvero il merge e torna indietro |
@@ -373,6 +377,16 @@ lezioni, ciascuna con un brano breve e il lessico della situazione; il dialogo
 «La sera prima di partire» le mette in fila in una scena sola, e tre consegne
 del quaderno le fanno scrivere.
 
+Il corso `pratica` (A2) è quello delle giornate storte: in farmacia per un
+raffreddore, dal medico e al telefono per un'emergenza (112 e 119, con il
+lessico che serve per farsi capire), e in casa quando qualcosa si guasta.
+Insegna a dire cosa fa male e da quando, a chiedere un medicinale e le
+istruzioni (식후에 드세요), a spiegare un guasto e a chiedere che venga qualcuno:
+-아/어요 per la richiesta cortese, -고 per mettere in fila i sintomi, -(으)니까
+per dare la ragione, -아/어야 하다 per l'obbligo e -겠- per la supposizione.
+Ogni lezione ha un brano, il lessico della situazione e sette esercizi; tre
+consegne del quaderno fanno raccontare la scena con parole proprie.
+
 Il corso `b1` è fatto solo di testi da leggere:
 l'annuncio di una stanza, il menu con le note in fondo, l'orario di un centro
 culturale, il messaggio di servizio in ufficio, una recensione con la risposta
@@ -407,8 +421,8 @@ e notizie, la concessione con -기는 하지만/-는데도/-더라도, le sfumat
 l'ipotesi mancata di -았/었더라면. Ogni lezione ha una spiegazione in italiano,
 esempi verificati, otto o nove esercizi e, dove serve, un brano da leggere.
 
-In tutto: dodici corsi, 93 lezioni, 1057 voci di lessico, 41 brani di lettura,
-20 dialoghi e 30 consegne di scrittura. Il dizionario consultabile arriva a 1178
+In tutto: tredici corsi, 96 lezioni, 1099 voci di lessico, 44 brani di lettura,
+20 dialoghi e 33 consegne di scrittura. Il dizionario consultabile arriva a 1224
 voci perché comprende anche le parole dei gloss, che sono quelle che si
 incontrano leggendo.
 
@@ -565,6 +579,32 @@ giorni in cui non c'è voglia di aprire una lezione nuova.
   memoria.
 - Finché non c'è nemmeno una lezione chiusa la pagina lo dice e rimanda alla
   prima lezione, invece di mostrare una sfida vuota.
+
+## Traguardo
+
+La sfida tiene vivo il ripasso; il **traguardo** risponde a un'altra domanda:
+«a che punto sono?». È una prova di livello — Pre-A1, A1, A2, B1, B2 — che
+raccoglie venti domande dalle lezioni già chiuse di quel livello e chiede 75
+per essere superata. Non è un certificato e la pagina lo dice: serve a capire
+cosa è solido e cosa va riletto.
+
+- Si apre quando **metà delle lezioni del livello è chiusa** (almeno quattro) e
+  ci sono abbastanza esercizi da pescare: venti domande senza ripetizioni. Prima
+  la scheda mostra quante lezioni mancano, invece di nascondere la prova.
+- Le domande vengono **solo da quel livello**, al massimo due per lezione, con
+  la stessa scelta deterministica della sfida (seme `utente:livello:giorno`):
+  ricaricare la pagina non cambia il foglio, e ogni tentativo ne genera uno
+  nuovo.
+- Non ci sono aiuti né spiegazioni durante la prova: si risponde, si può
+  tornare indietro, si consegna. Il tempo si vede ma non è un limite.
+- La correzione passa dalla stessa `gradeExercise`; gli errori finiscono nella
+  banca e le statistiche del giorno contano, ma **`lesson_progress` non si
+  tocca**: un traguardo andato male non chiude né riapre lezioni.
+- Si conserva il **punteggio migliore** con il numero di tentativi e la data
+  del primo superamento. Il risultato elenca le risposte sbagliate con la
+  lezione di origine, così «dove tornare» è un link e non un consiglio.
+- Un livello senza corsi nel curricolo resta fuori dalla pagina: meglio non
+  mostrarlo che mostrarlo vuoto.
 
 ## Parole fragili
 

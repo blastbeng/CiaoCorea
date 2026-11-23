@@ -8,6 +8,7 @@ import semiRaw from '../data/courses/semi.json';
 import capacitaRaw from '../data/courses/capacita.json';
 import radiciRaw from '../data/courses/radici.json';
 import situazioniRaw from '../data/courses/situazioni.json';
+import praticaRaw from '../data/courses/pratica.json';
 import b1Raw from '../data/courses/b1.json';
 import discorsiRaw from '../data/courses/discorsi.json';
 import b2Raw from '../data/courses/b2.json';
@@ -37,6 +38,7 @@ const RAW_COURSES: RawCourse[] = [
   { source: 'capacita.json', raw: capacitaRaw },
   { source: 'radici.json', raw: radiciRaw },
   { source: 'situazioni.json', raw: situazioniRaw },
+  { source: 'pratica.json', raw: praticaRaw },
   { source: 'b1.json', raw: b1Raw },
   { source: 'discorsi.json', raw: discorsiRaw },
   { source: 'b2.json', raw: b2Raw },
