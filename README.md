@@ -676,3 +676,24 @@ un elenco a parte, delle parole che **hanno già ceduto almeno due volte**
 - Compare sotto la coda quando non c'è più niente in scadenza (o quando la coda
   è finita): è lì che lo studente ha tempo per una parola che non è ancora
   scaduta.
+
+## Buy me a coffee
+
+CiaoCorea è gratis, non ha pubblicità e non profila nessuno: i progressi
+restano nel browser di chi studia, e nessun dato esce da lì. Dietro c'è una
+persona sola, che scrive le lezioni, controlla le parole una per una e aggiusta
+il codice nel tempo libero.
+
+Se il portale ti ha risparmiato qualche serata di materiale in inglese e vuoi
+che continui a crescere, puoi offrirmi un caffè.
+
+[![Sponsor su GitHub](https://img.shields.io/badge/Sponsor_su_GitHub-blastbeng-ea4aaa?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/blastbeng)
+[![Offrimi un caffè con PayPal](https://img.shields.io/badge/Offrimi_un_caff%C3%A8-PayPal-00457C?logo=paypal&logoColor=white)](https://www.paypal.com/donate/?hosted_button_id=W8JMMLVY3G62C)
+
+Il pulsante **Sponsor** che GitHub mostra in cima a questa pagina apre le due
+strade: **GitHub Sponsors**, per chi vuole un sostegno ricorrente, e **PayPal**,
+per un caffè una volta sola. Non sbloccano niente: CiaoCorea resta completo e
+identico per tutti. Servono a pagare il dominio, le ore di revisione delle
+lezioni e, ogni tanto, un caffè vero.
+
+Grazie a chi studia qui: è già il motivo per cui il sito esiste.

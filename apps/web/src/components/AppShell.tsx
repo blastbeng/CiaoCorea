@@ -5,6 +5,7 @@ import { hasGeneratedUsername, useAuth } from '../auth';
 import { ThemeToggle } from '../theme';
 import { CookieBanner } from './CookieBanner';
 import { PronounceNotice } from './PronounceNotice';
+import { SupportButtons } from './SupportButtons';
 import { WelcomeDialog } from './WelcomeDialog';
 
 export function AppShell({ children }: { children: ReactNode }) {
@@ -219,6 +220,19 @@ export function AppShell({ children }: { children: ReactNode }) {
       {/* Il fondo pagina è il posto della firma: chi arriva in fondo ha studiato
           abbastanza per voler sapere di chi è questo posto. */}
       <footer className="app-footer">
+        {/* Chi arriva in fondo ha studiato abbastanza per decidere se il posto
+            vale un caffè: la richiesta sta qui, piccolo e senza inseguire
+            nessuno. */}
+        <div className="app-footer__support">
+          <p className="app-footer__support-title">
+            <span aria-hidden="true">☕</span> Ti è utile? Offrimi un caffè
+          </p>
+          <p className="app-footer__support-note">
+            CiaoCorea è gratis, senza pubblicità e senza tracciamento: un caffè paga il
+            dominio e le ore di revisione delle lezioni.
+          </p>
+          <SupportButtons />
+        </div>
         <p className="app-footer__project">
           CiaoCorea – Impara il Coreano · esercizi e lettura, un giorno alla volta
         </p>

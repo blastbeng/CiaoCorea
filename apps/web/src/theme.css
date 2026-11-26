@@ -441,6 +441,39 @@ button {
   text-decoration: underline;
 }
 
+/* La richiesta del caffè: in fondo, separata dalla firma. Chi arriva qui ha
+   studiato abbastanza per decidere, e i due bottoni non devono competere con
+   il resto della pagina. */
+.app-footer__support {
+  max-width: 32rem;
+  margin: 0 auto 1.35rem;
+  padding-bottom: 1.35rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.app-footer__support-title {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+/* Doppia classe: `.app-footer p` azzera i margini, e questo è l'unico
+   paragrafo del fondo che ne ha bisogno. */
+.app-footer .app-footer__support-note {
+  margin: 0.25rem 0 0.8rem;
+  font-size: 0.76rem;
+  line-height: 1.55;
+}
+
+/* Doppia classe per vincere sul `.row` che arriva dopo nel foglio. */
+.row.support-actions {
+  gap: 0.5rem;
+}
+
+.app-footer__support .support-actions {
+  justify-content: center;
+}
+
 /* ---------- tema ---------- */
 
 /* Un solo bottone, in alto a destra: mostra il tema in arrivo, non quello

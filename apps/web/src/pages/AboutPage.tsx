@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { SupportButtons } from '../components/SupportButtons';
 
 /**
  * Il primo anno di lavoro nel software. Gli anni di esperienza si contano da
@@ -151,6 +152,21 @@ export function AboutPage() {
             Scrivimi
           </a>
         </div>
+      </section>
+
+      <section className="card" id="sostieni">
+        <h2>Buy me a coffee</h2>
+        <p className="muted">
+          CiaoCorea non ha pubblicità, non vende dati e non chiede un abbonamento: resta
+          gratis per chi studia, e i progressi restano sul suo dispositivo. Se ti è stato
+          utile e vuoi che continui a crescere, puoi offrirmi un caffè.
+        </p>
+        <p className="muted">
+          Non sblocca niente: lezioni, esercizi e correzioni sono gli stessi per tutti.
+          Serve a pagare il dominio, le ore di revisione delle lezioni e, ogni tanto, un
+          caffè vero.
+        </p>
+        <SupportButtons />
       </section>
     </div>
   );
