@@ -2482,5 +2482,114 @@
         "note": "-아/어 주세요 = «faccia … per favore»: 해 주세요. 카드 chiude in ㄷ, quindi il mezzo vuole 으로: 카드로. 부탁드려요 è la forma umile di 부탁하다 e regge l'oggetto: la ricevuta è una richiesta in più, quindi 영수증도. *영수증이* non regge, e 하다+드리다 fa 부탁드려요, non *부탁드리요*."
       }
     ]
+  },
+  {
+    "id": "insidie",
+    "slug": "insidie-a-casa-di-jieun",
+    "title": "A casa di Jieun: quello che l'italiano sbaglia",
+    "level": "B1",
+    "setting": "Sei a casa di Jieun, una compagna di corso. Parli del tuo studio e di come ti chiami con lei: sono le due cose su cui l'italiano ti fa sbagliare senza che tu te ne accorga.",
+    "goal": "Lasciare cadere il soggetto, chiamare l'altra persona con il nome e il 씨, e dare la ragione con la forma giusta.",
+    "points": [
+      "Tre frasi di fila senza «저는» sono normali: il soggetto si dice quando serve, non a ogni verbo.",
+      "A una compagna si dice 이름 + 씨; a un insegnante 선생님; «당신» in faccia a qualcuno è scortese.",
+      "La causa di un fatto vuole -아/어서; il consiglio che si dà a qualcuno vuole -(으)니까."
+    ],
+    "after": {
+      "courseSlug": "insidie",
+      "lessonId": "ins-01"
+    },
+    "turns": [
+      {
+        "id": "j-1",
+        "speaker": "Jieun",
+        "ko": "한국어 많이 늘었어요. 요즘 어떻게 공부해요?",
+        "it": "Il tuo coreano è migliorato molto. Come studi in questi giorni?"
+      },
+      {
+        "id": "s-1",
+        "speaker": "Tu",
+        "ko": "매일 아침에 단어를 외워요.",
+        "it": "Ogni mattina imparo le parole a memoria.",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "매일 아침에 단어를 외워요",
+            "매일 아침에 단어는 외우고",
+            "매일 아침에 단어를 외우세요"
+          ]
+        },
+        "note": "Il «io» italiano qui non serve: il verbo 외워요 è già alla prima persona. Mettere «저는» davanti a ogni frase è la traduzione dell'italiano, non una regola coreana; lo si tiene quando il soggetto è in contrasto."
+      },
+      {
+        "id": "j-2",
+        "speaker": "Jieun",
+        "ko": "오늘 왜 이렇게 피곤해 보여요?",
+        "it": "Perché oggi sembri così stanco?"
+      },
+      {
+        "id": "s-2",
+        "speaker": "Tu",
+        "ko": "어젯밤에 늦게 자서 그래요.",
+        "it": "È perché ieri notte sono andato a letto tardi.",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "어젯밤에 늦게 자서 그래요",
+            "늦게 자서요",
+            "어젯밤에 늦게 잤어요"
+          ]
+        },
+        "note": "La ragione di un fatto che è già successo vuole -아/어서: 자서 그래요. Con -(으)니까 si darebbe un consiglio a qualcuno («피곤하니까 일찍 자세요»), ed è l'altra forma, non questa."
+      },
+      {
+        "id": "j-3",
+        "speaker": "Jieun",
+        "ko": "그럼 오늘은 일찍 자요. 내일 시험이 있으니까요.",
+        "it": "Allora stasera vai a letto presto: domani c'è l'esame."
+      },
+      {
+        "id": "s-3",
+        "speaker": "Tu",
+        "ko": "네, 그런데 지은 씨는 언제 자요?",
+        "it": "Sì, ma tu quando vai a letto, Jieun?",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "네, 그런데 지은 씨는 언제 자요?",
+            "네, 그런데 당신은 언제 자요?",
+            "네, 그런데 지은 씨 당신은 언제 자요?"
+          ]
+        },
+        "note": "Al posto di «tu» si usa il nome con 씨: 지은 씨. «당신» non è il «tu» di tutti i giorni, e in faccia a una compagna suona male."
+      },
+      {
+        "id": "j-4",
+        "speaker": "Jieun",
+        "ko": "저는 보통 열두 시에 자요. 그런데 저한테 «당신»이라고 하면 좀 이상해요.",
+        "it": "Io di solito vado a letto a mezzanotte. Però se mi dai del «당신» è un po' strano."
+      },
+      {
+        "id": "s-4",
+        "speaker": "Tu",
+        "ko": "아, 죄송해요. 지은 씨라고 부를게요.",
+        "it": "Ah, scusa. Ti chiamo «Jieun».",
+        "answer": {
+          "kind": "type",
+          "accept": [
+            "지은 씨라고 부를게요",
+            "지은 씨라고 불러요",
+            "네, 알겠어요"
+          ]
+        },
+        "note": "이름 + 씨 è il nome che fa da pronome: si usa anche quando in italiano diresti «tu». 부르다 è «chiamare», e qui prende 라고 perché si cita il nome."
+      },
+      {
+        "id": "j-5",
+        "speaker": "Jieun",
+        "ko": "그래요. 내일 시험 잘 봐요!",
+        "it": "Bene. In bocca al lupo per l'esame di domani!"
+      }
+    ]
   }
 ]

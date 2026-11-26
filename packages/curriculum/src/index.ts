@@ -11,6 +11,7 @@ import situazioniRaw from '../data/courses/situazioni.json';
 import praticaRaw from '../data/courses/pratica.json';
 import b1Raw from '../data/courses/b1.json';
 import discorsiRaw from '../data/courses/discorsi.json';
+import insidieRaw from '../data/courses/insidie.json';
 import b2Raw from '../data/courses/b2.json';
 import dialoguesRaw from '../data/dialogues.json';
 import writingRaw from '../data/writing.json';
@@ -41,6 +42,7 @@ const RAW_COURSES: RawCourse[] = [
   { source: 'pratica.json', raw: praticaRaw },
   { source: 'b1.json', raw: b1Raw },
   { source: 'discorsi.json', raw: discorsiRaw },
+  { source: 'insidie.json', raw: insidieRaw },
   { source: 'b2.json', raw: b2Raw },
 ];
 

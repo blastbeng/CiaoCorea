@@ -459,10 +459,23 @@ e notizie, la concessione con -기는 하지만/-는데도/-더라도, le sfumat
 l'ipotesi mancata di -았/었더라면. Ogni lezione ha una spiegazione in italiano,
 esempi verificati, otto o nove esercizi e, dove serve, un brano da leggere.
 
-In tutto: tredici corsi, 96 lezioni, 1099 voci di lessico, 44 brani di lettura,
-20 dialoghi e 33 consegne di scrittura. Il dizionario consultabile arriva a 1224
-voci perché comprende anche le parole dei gloss, che sono quelle che si
-incontrano leggendo.
+Il corso `insidie` (B1) è quello che corregge l'italiano dentro il coreano: sei
+lezioni, ciascuna su un'abitudine della nostra lingua. Il soggetto che diciamo a
+ogni frase e che il coreano lascia cadere (e come si chiama qualcuno: nome + 씨,
+선생님, perché «당신» non è il «tu» italiano); il tema 은/는 contro il soggetto
+이/가, con i clitici «lo» e «ne» che in coreano non hanno una particella; le
+particelle che nel parlato cadono e nello scritto restano; i tre «perché»
+(-아/어서, -(으)니까, -기 때문에, con le radici che cambiano: 추우니까, 들으니까,
+사니까); un passato che copre passato prossimo, remoto e imperfetto (-았/었어요,
+-고 있었어요, -아/어 본 적 있어요, 방금); e il «che» quotativo (-ㄴ/는다고,
+-다고, -(이)라고, -(으)ㄹ 거라고 생각해요). Ogni lezione ha un brano con la
+traduzione che si apre a lezione chiusa e sette esercizi, e il dialogo «A casa di
+Jieun» mette le correzioni in scena: tre consegne del quaderno le fanno scrivere.
+
+In tutto: quattordici corsi, 102 lezioni, 1167 voci di lessico, 50 brani di
+lettura, 24 dialoghi e 36 consegne di scrittura. Il dizionario consultabile
+arriva a 1314 voci perché comprende anche le parole dei gloss, che sono quelle
+che si incontrano leggendo.
 
 La pagina **Coniuga** (`/coniuga`) è il ponte fra il dizionario e le lezioni:
 si scrive la voce intera (먹다, 살다, 모르다) e si vedono le nove forme che il
