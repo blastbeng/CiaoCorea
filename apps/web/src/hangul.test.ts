@@ -34,6 +34,22 @@ describe('composeHangul', () => {
     expect(composeHangul('ㅎㅏㄴ 국')).toBe('한 국');
   });
 
+  it('unisce le due consonanti che fanno un 받침 doppio', () => {
+    // ㅂ poi ㅅ: non 업ㅅ, ma ㅄ nella stessa sillaba.
+    expect(composeHangul('ㅇㅓㅂㅅㄷㅏ')).toBe('없다');
+    expect(composeHangul('ㄷㅏㄹㄱ')).toBe('닭');
+  });
+
+  it('fonde le vocali composte, come fa un IME coreano', () => {
+    expect(composeHangul('ㅗㅏ')).toBe('와');
+    expect(composeHangul('ㄱㅗㅏ')).toBe('과');
+    expect(composeHangul('ㅜㅓ')).toBe('워');
+    expect(composeHangul('ㅈㅜㅓ')).toBe('줘');
+    expect(composeHangul('ㅡㅣ')).toBe('의');
+    // ㅐ e ㅔ hanno il tasto proprio: non si compongono.
+    expect(composeHangul('ㅗㅔ')).toBe('오에');
+  });
+
   it('non usa come 받침 le consonanti tese non ammesse', () => {
     // ㄸ non può chiudere sillaba: resta iniziale della successiva.
     expect(composeHangul('ㅏㄸ')).toBe('아ㄸ');

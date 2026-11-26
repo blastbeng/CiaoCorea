@@ -29,6 +29,21 @@ const FINAL_INDEX: Record<string, number> = {
 const CONSONANTS = new Set([...INITIALS, ...Object.keys(FINAL_INDEX)]);
 const VOWELS = new Set(MEDIALS);
 
+/**
+ * Le vocali che la tastiera coreana non ha: si digitano in due, e qui si
+ * fondono nella sillaba che è. ㅐ e ㅔ non stanno: il loro tasto esiste già, e
+ * un IME coreano non li compone dalle vocali semplici.
+ */
+const COMPOSITE_VOWELS: Record<string, string> = {
+  'ㅗㅏ': 'ㅘ',
+  'ㅗㅐ': 'ㅙ',
+  'ㅗㅣ': 'ㅚ',
+  'ㅜㅓ': 'ㅝ',
+  'ㅜㅔ': 'ㅞ',
+  'ㅜㅣ': 'ㅟ',
+  'ㅡㅣ': 'ㅢ',
+};
+
 /** I 받침 doppi si spezzano: la prima resta, la seconda apre la sillaba. */
 const SPLIT_FINAL: Record<string, [string, string]> = {
   'ㄳ': ['ㄱ', 'ㅅ'],
@@ -43,6 +58,11 @@ const SPLIT_FINAL: Record<string, [string, string]> = {
   'ㅀ': ['ㄹ', 'ㅎ'],
   'ㅄ': ['ㅂ', 'ㅅ'],
 };
+
+/** Al contrario: due consonanti in fila che fanno un 받침 doppio (ㅂ + ㅅ = ㅄ). */
+const DOUBLE_FINAL_PAIRS: Record<string, string> = Object.fromEntries(
+  Object.entries(SPLIT_FINAL).map(([double, [first, second]]) => [`${first}${second}`, double]),
+);
 
 interface Block {
   initial: string;
@@ -87,6 +107,15 @@ export function composeHangul(raw: string): string {
         block.final = char;
         continue;
       }
+      // Due consonanti in fila sopra una vocale: sono un 받침 doppio, e si
+      // scrivono così — ㅂ poi ㅅ fa ㅄ, non 업ㅅ.
+      if (block?.vowel && block.final) {
+        const doubled = DOUBLE_FINAL_PAIRS[`${block.final}${char}`];
+        if (doubled) {
+          block.final = doubled;
+          continue;
+        }
+      }
       flush();
       block = { initial: char };
       continue;
@@ -96,6 +125,15 @@ export function composeHangul(raw: string): string {
       if (block && !block.vowel) {
         block.vowel = char;
         continue;
+      }
+      // Due vocali in fila che fanno una composta: restano nella stessa
+      // sillaba, come fa un IME coreano (ㅗ + ㅏ = 와, non 고 + 아).
+      if (block?.vowel && !block.final) {
+        const fused = COMPOSITE_VOWELS[`${block.vowel}${char}`];
+        if (fused) {
+          block.vowel = fused;
+          continue;
+        }
       }
       if (block?.vowel && block.final) {
         const split: [string, string] | undefined = SPLIT_FINAL[block.final];

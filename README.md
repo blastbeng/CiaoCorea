@@ -18,8 +18,11 @@ due passaggi chiede di scrivere la parola, il **quaderno** dove si scrivono
 frasi proprie confrontandole con un modello, la **banca degli errori** con gli
 esercizi sbagliati da rifare, la pagina dei **progressi**, con le statistiche
 complessive e il nome con cui essere chiamati, il **trainer dei numeri** che
-allena le due serie e i contatori, e infine **Coniuga**, dove si
-cerca un verbo e si vede la sua tabella con la regola che la spiega. In cima
+allena le due serie e i contatori, la **palestra** che fa coniugare radici
+irregolari e scegliere particelle senza un numero di volte, il **tutor della
+tastiera** che insegna a digitare l'hangul sul proprio computer, e infine
+**Coniuga**, dove si cerca un verbo e si vede la sua tabella con la regola che
+la spiega. In cima
 alla home c'è il **piano
 di oggi**: le poche cose da fare, in ordine, sopra all'obiettivo della settimana
 che si sceglie lo studente.
@@ -52,6 +55,8 @@ progressi, ripassi e tentativi non si perdono nel passaggio.
 | `/alfabeto` | le lettere dell'hangul: consonanti e vocali con nome e suono, il compositore di sillabe, la tabella delle sillabe e i sette suoni finali |
 | `/scrittura` | il quaderno della mano: si ripassa una lettera o una parola con il dito o il mouse, e l'app dice quanta parte della forma è coperta e quanto è finito fuori |
 | `/numeri` | il trainer dei numeri: le due serie, i contatori, che ore sono, i prezzi in won e i numeri di telefono, con le risposte sbagliate che sono gli errori veri (삼 권 invece di 세 권) |
+| `/palestra` | la palestra senza fine: due drill che non hanno un corso dietro — coniugare una voce del dizionario a una desinenza, e scegliere la faccia giusta della particella. Le forme le fa il motore, non un elenco, così si ripetono all'infinito senza mai vedere una forma inventata |
+| `/tastiera` | il tutor della tastiera coreana (두벌식): si premono i tasti del proprio computer e l'app li traduce in jamo come un IME, con la tastiera a schermo che illumina il tasto dopo e cinque file di parole, dalla sillaba aperta ai finali doppi |
 | `/pronuncia` | il laboratorio della pronuncia: si scrive una parola e si vede la lettura ricostruita, le sillabe scomposte e le regole che l'hanno cambiata |
 | `/dizionario` | ricerca nelle parole del curricolo, con filtri per corso |
 | `/coniuga` | si scrive un verbo o un aggettivo e si vede la tabella delle forme, con la classe della radice che le spiega |
@@ -180,6 +185,39 @@ dà appigli: sbagliare un collegamento ne sposta due. Le coppie nel JSON sono
 quelle vere e nell'ordine della risposta; la colonna mobile la mescola l'app con
 un seme preso dall'id, così la stessa schermata non si rimescola sotto le dita
 e la soluzione non va scritta a mano.
+
+### La palestra senza fine
+
+La lezione spiega una volta, la palestra ripete quante volte serve. Due drill
+senza corso dietro: **radici e desinenze** (una voce del dizionario, una
+desinenza, la forma da scrivere) e **particelle** (una funzione, due facce, e
+decide l'ultima lettera della parola). Nel JSON non c'è nessuna forma scritta a
+mano: le domande escono da `conjugate` e `particleFace`, le stesse funzioni che
+correggono, e le radici sono scelte per coprire tutte le classi irregolari (ㄷ,
+ㄹ, ㅂ, ㅅ, ㅎ, 르, ㅡ). Sono i due punti dove l'italiano non ha appigli — la
+radice che cambia, e la particella che sembra a caso — e lì solo la ripetizione
+con una radice diversa ogni volta lascia il segno.
+
+### La tastiera coreana (두벌식)
+
+Chi impara a scrivere prima o poi deve anche digitare. Il tutor di `/tastiera`
+non chiede di installare nulla: si premono i tasti del proprio computer e
+`apps/web/src/dubeolsik.ts` li traduce in jamo come farebbe un IME, con la
+mappatura **두벌식 (due posti)** verificata: riga in alto ㅂ ㅈ ㄷ ㄱ ㅅ, casa
+ㅁ ㄴ ㅇ ㄹ ㅎ, in basso ㅋ ㅌ ㅊ ㅍ, e lo Shift che dà i cinque raddoppiati
+ㅃ ㅉ ㄸ ㄲ ㅆ più ㅒ ㅖ. Le vocali composite si digitano come due vocali di fila
+(ㅘ = ㅗ+ㅏ, ㅞ = ㅜ+ㅔ), i finali doppi come due consonanti di fila (il ㄺ di
+읽기), la ㅐ e la ㅔ hanno il tasto loro, e numeri e punteggiatura non cambiano:
+lo stesso movimento che si ritrova su un computer di Seul o sulla tastiera
+coreana del telefono.
+
+Le cinque file (sillabe aperte, con ricevitivo, raddoppiati, vocali composite,
+finali doppi) sono parole verificate: `dubeolsik.test.ts` controlla che ogni
+parola si digiti davvero con i tasti previsti (한국 = `gksrnr`, 감사합니다 =
+`rkatkgkqslek`), che ogni consonante, vocale e finale dell'hangul abbia il suo
+tasto, e che una file non contenga parole che c'entrano niente con la sua regola
+— `규칙` sta fuori dai composite perché la ㅓ e la ㅣ non sono mai vicine, e
+`없다` sta fuori dai raddoppiati perché la ㅄ si digit con due tasti normali.
 
 ## Sviluppo
 

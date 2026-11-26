@@ -271,7 +271,7 @@ button {
 
 .app-nav {
   display: flex;
-  /* Le voci sono ormai sedici: su un portatile stretto non entrano accanto al
+  /* Le voci sono ormai diciannove: su un portatile stretto non entrano accanto al
      marchio e al profilo. Invece di sfondare la pagina — che la faceva
      scorrere di lato e tagliava il marchio — la barra si restringe e le voci
      che non entrano scorrono dentro di lei. */
@@ -1189,6 +1189,88 @@ a.lesson-row:hover {
   color: var(--ink-soft);
 }
 
+/* ---------- tastiera coreana: la mappa e i tasti da premere ---------- */
+
+/* Un tasto della mappa dice tre cose: la lettera stampata, il jamo che scrive,
+   il jamo di Shift. L'occhio deve leggere la lettera e il jamo insieme, perché
+   è l'accoppiamento che le dita devono ricordare. */
+.kb-key {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  min-width: 2.6rem;
+  padding: 0.35rem 0.4rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 7px;
+  background: var(--surface);
+}
+
+.kb-key--next {
+  border-color: var(--blue-line);
+  background: var(--blue-soft);
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+
+.kb-key-key {
+  font-family: var(--font);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
+}
+
+.kb-key-jamo {
+  font-family: var(--font-ko);
+  font-size: 1.15rem;
+  line-height: 1.2;
+}
+
+.kb-key-shift {
+  font-family: var(--font-ko);
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+}
+
+.trail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.trail-key {
+  min-width: 1.5rem;
+  padding: 0.2rem 0.35rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--field-soft);
+  font-family: var(--font-mono, var(--font));
+  font-size: 0.85rem;
+  text-align: center;
+  color: var(--ink-faint);
+}
+
+.trail-key--ok {
+  border-color: var(--ok-line);
+  background: var(--ok-soft);
+  color: var(--ok);
+}
+
+.trail-key--bad {
+  border-color: var(--danger-line);
+  background: var(--danger-soft);
+  color: var(--danger-ink);
+}
+
+.trail-key--next-key {
+  border-color: var(--blue-line);
+  color: var(--blue);
+}
+
+.trail-key--hidden {
+  color: transparent;
+}
+
 /* ---------- risultati ---------- */
 
 .score {
@@ -1391,7 +1473,7 @@ a.lesson-row:hover {
     white-space: nowrap;
   }
 
-  /* Un filo più strette: a 1280 le sedici voci devono stare in una riga. */
+  /* Un filo più strette: a 1280 le diciannove voci devono stare in una riga. */
   .app-nav {
     gap: 0.1rem;
   }

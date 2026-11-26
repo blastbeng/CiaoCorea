@@ -2220,5 +2220,267 @@
         "note": "-겠습니다 indica intenzione o promessa: 오겠습니다 = 'verrò, tornerò'. 왔습니다 è il passato ('sono venuto') e qui non funziona."
       }
     ]
+  },
+  {
+    "id": "ospedale",
+    "slug": "ospedale",
+    "title": "In ospedale, dal medico",
+    "level": "A2",
+    "setting": "Hai la febbre da ieri e una tosse che non passa. All'accoglienza dell'ospedale dici che cosa ti fa male e prendi un appuntamento.",
+    "goal": "Descrivere i sintomi, fissare l'ora della visita e chiedere quanto si paga.",
+    "points": [
+      "«아픈 데가 있어요?» è la domanda dell'accoglienza: si risponde con la parte del corpo e 아파요, 열이 나요.",
+      "L'appuntamento si dà con l'ora e 오세요: «세 시에 오세요», «venga alle tre».",
+      "Il costo della visita si chiede con 진료가 얼마예요? / 진료비가 얼마예요?."
+    ],
+    "after": {
+      "courseSlug": "pratica",
+      "lessonId": "prat-02"
+    },
+    "turns": [
+      {
+        "id": "o-1",
+        "speaker": "Accoglienza",
+        "ko": "어서 오세요. 진료를 원하시나요?",
+        "it": "Benvenuto. Desidera una visita?",
+        "note": "원하시나요 è l'onorifico di 원하다: si chiede con rispetto che cosa l'altro desidera."
+      },
+      {
+        "id": "o-2",
+        "speaker": "Tu",
+        "ko": "네, 어제부터 열이 나고 기침이 심해요.",
+        "it": "Sì, da ieri ho la febbre e una tosse forte.",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "네, 어제부터 열이 나고 기침이 심해요.",
+            "네, 어제부터 열을 나고 기침이 심해요.",
+            "네, 어제부터 열이 나고 기침이 심다."
+          ]
+        },
+        "note": "열이 나요 = «ho la febbre», 기침이 심해요 = «la tosse è forte». 열 e 기침 chiudono con una consonante, quindi prendono 이: 열이, 기침이. 열을 나고 mette 을 a 열: la febbre «esce» (나다) e vuole 이. 기침이 심다 è la forma piana da diario, non da banco di reception."
+      },
+      {
+        "id": "o-3",
+        "speaker": "Accoglienza",
+        "ko": "네. 오늘은 오후 세 시에 자리가 있어요.",
+        "it": "Bene. Oggi c'è posto alle tre del pomeriggio.",
+        "note": "자리가 있어요 = «c'è un posto libero». 세 시: l'ora vuole i numeri nativi (세, non 삼)."
+      },
+      {
+        "id": "o-4",
+        "speaker": "Tu",
+        "ko": "세 시에 오겠습니다. 진료비가 얼마예요?",
+        "it": "Verrò alle tre. Quanto costa la visita?",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "세 시에 오겠습니다. 진료비가 얼마예요?",
+            "세 시에 왔습니다. 진료비가 얼마예요?",
+            "세 시에 오겠습니다. 진료비가 몇 예요?"
+          ]
+        },
+        "note": "오겠습니다 è una promessa: «verrò». La domanda sul prezzo è 얼마예요; 비 di 진료비 chiude in ㅂ e prende 가: 진료비가."
+      },
+      {
+        "id": "o-5",
+        "speaker": "Accoglienza",
+        "ko": "초진은 1만 원 정도예요. 3층 내과로 가세요.",
+        "it": "La prima visita è circa 10.000 won. Vada al terzo piano, reparto medicina.",
+        "note": "정도예요 = «circa»: il prezzo è un esempio, l'importo vero lo dicono sempre al banco. 3층 내과로: la direzione vuole (으)로, e 과 finisce in vocale, quindi 로."
+      },
+      {
+        "id": "o-6",
+        "speaker": "Tu",
+        "ko": "네, 감사합니다.",
+        "it": "Sì, grazie.",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "네, 감사합니다.",
+            "네, 고맙습니다.",
+            "네, 미안합니다."
+          ]
+        },
+        "note": "감사합니다 è il ringraziamento formale, adatto a un contesto ufficiale come l'ospedale; fra conoscenti si dice 고마워요 (la ㅂ finale di 고맙- diventa ㅜ davanti ad 어요)."
+      }
+    ]
+  },
+  {
+    "id": "banca",
+    "slug": "banca",
+    "title": "In banca, un conto nuovo",
+    "level": "B1",
+    "setting": "Entri in banca per aprire un conto. Chiedi che documenti servono, quanto si paga e come si fa un bonifico.",
+    "goal": "Capire le istruzioni di uno sportello e chiedere documenti, costi e operazioni.",
+    "points": [
+      "A uno sportello si capisce cosa serve con «~이/가 필요해요»: «신분증이 필요해요», «serve un documento».",
+      "Aprire un conto non costa: si pagano le singole operazioni, e si chiede «수수료가 얼마예요?».",
+      "«-(으)시면» è la forma onorifica di «se»: «서명하시면 됩니다», «se firma va bene»."
+    ],
+    "turns": [
+      {
+        "id": "b-1",
+        "speaker": "Impiegato",
+        "ko": "무엇을 도와드릴까요?",
+        "it": "In che cosa posso aiutarla?",
+        "note": "도와드릴까요 è l'umile di 도와주다: «posso aiutarla?». 드리는 al posto di 주는 quando si fa un'azione per l'altro."
+      },
+      {
+        "id": "b-2",
+        "speaker": "Tu",
+        "ko": "통장을 새로 만들고 싶은데요.",
+        "it": "Vorrei aprire un nuovo libretto di conto.",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "통장을 새로 만들고 싶은데요.",
+            "통장에 새로 만들고 싶은데요.",
+            "통장이 새로 만들고 싶은데요."
+          ]
+        },
+        "note": "-고 싶다 = «volere»: 만들고 싶다. La -요 finale ammorbidisce: al banco si parla con 싶은데요, non col nudo 싶어요. 통장 è l'oggetto di 만들다, quindi 통장을 con 을 dopo la ㄱ finale; 통장에 e 통장이 non reggono."
+      },
+      {
+        "id": "b-3",
+        "speaker": "Impiegato",
+        "ko": "신분증이 필요하고, 계좌 개설은 무료입니다.",
+        "it": "Serve un documento d'identità, e aprire il conto non costa niente.",
+        "note": "필요해요 regge 이/가: 신분증이 필요해요. -고 qui unisce due informazioni: «serve X, e l'apertura è gratuita». In Corea aprire un conto non si paga: si pagano le singole operazioni, come i bonifici (수수료)."
+      },
+      {
+        "id": "b-4",
+        "speaker": "Tu",
+        "ko": "도장도 가져와야 하나요?",
+        "it": "Devo portare anche un timbro?",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "도장도 가져와야 하나요?",
+            "도장도 가져와야 하가요?",
+            "도장도 가져와야 합니까요?"
+          ]
+        },
+        "note": "-(으)야 하다 = «dovere»: 가져와야 하다. Al banco si chiede con la forma cortese: 가져와야 하나요?; identica, più formale, è 가져와야 합니까?. Le due forme non si mescolano: *합니까요* non esiste, e 하다 fa 해요, non *하가요*. La particella «anche» (도) si attacca da sola: 도장도."
+      },
+      {
+        "id": "b-5",
+        "speaker": "Impiegato",
+        "ko": "도장이 없으시면 서명하시면 됩니다. 송금도 여기서 하세요.",
+        "it": "Se non ha il timbro, basta che firmi. Faccia pure i bonifici qui.",
+        "note": "-(으)시면 è la condizione onorifica (하시- + -면): 없으시면, 서명하시면. 서명하시면 됩니다 = «se firma, va bene». Il 도장, il timbro personale, un tempo serviva al posto della firma: oggi in banca basta firmare. 하세요 è l'imperativo cortese."
+      },
+      {
+        "id": "b-6",
+        "speaker": "Tu",
+        "ko": "네, 알겠습니다. 감사합니다.",
+        "it": "Sì, ho capito. Grazie.",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "네, 알겠습니다. 감사합니다.",
+            "네, 아시겠습니다. 감사합니다.",
+            "네, 알겠습니다. 미안합니다."
+          ]
+        },
+        "note": "알겠습니다 = «va bene, ho capito» (futuro di 알다 con -겠습니다). È la risposta di chi accetta un'istruzione."
+      }
+    ]
+  },
+  {
+    "id": "supermercato",
+    "slug": "supermercato",
+    "title": "Al supermercato",
+    "level": "A2",
+    "setting": "Fai la spesa. Chiedi dov'è un prodotto, quanto costa e poi paghi alla cassa.",
+    "goal": "Chiedere dove si trova una cosa, il prezzo, e pagare.",
+    "points": [
+      "Si chiede dove si trova una cosa con «~이/가 어디에 있어요?»: «두부가 어디에 있어요?».",
+      "Il prezzo si chiede con «얼마예요?»; il luogo con에서: «여기에서 계산하면 되나요?».",
+      "Per pagare con la carta si dice «카드로 해 주세요», «faccia con la carta»."
+    ],
+    "turns": [
+      {
+        "id": "m-1",
+        "speaker": "Tu",
+        "ko": "실례합니다. 두부가 어디에 있어요?",
+        "it": "Mi scusi, dov'è il tofu?",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "실례합니다. 두부가 어디에 있어요?",
+            "실례합니다. 두부를 어디에 있어요?",
+            "실례합니다. 두부가 어디를 있어요?"
+          ]
+        },
+        "note": "Si chiede dov'è una cosa con «~이/가 어디에 있어요?»: due parti, il soggetto con 이/가 e il luogo con 에. 두부 finisce in vocale, quindi 가: 두부가. Due errori tipici: mettere 을 a ciò che si cerca (두부를) e mettere 를 al posto di 에 (어디를)."
+      },
+      {
+        "id": "m-2",
+        "speaker": "Commesso",
+        "ko": "채소 코너에 있어요. 김치도 그 근처에 있습니다.",
+        "it": "È nel reparto verdure. Il kimchi è lì vicino.",
+        "note": "-에 indica il luogo dov'è una cosa: 코너에 있어요, 근처에 있습니다. 김치 finisce in vocale: 김치도."
+      },
+      {
+        "id": "m-3",
+        "speaker": "Tu",
+        "ko": "김치는 얼마예요?",
+        "it": "Quanto costa il kimchi?",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "김치는 얼마예요?",
+            "김치를 얼마예요?",
+            "김치는 몇이에요?"
+          ]
+        },
+        "note": "Per il prezzo si chiede 얼마예요. 김치 è il tema della domanda, quindi 은/는: dopo la vocale di 김치 si usa 는: 김치는."
+      },
+      {
+        "id": "m-4",
+        "speaker": "Commesso",
+        "ko": "한 팩에 4,000원이에요.",
+        "it": "4.000 won per un pacco.",
+        "note": "한 è «uno» davanti al contatore. Il numero del prezzo si legge col sino-coreano grouped: 사 천 원."
+      },
+      {
+        "id": "m-5",
+        "speaker": "Tu",
+        "ko": "계산은 여기서 하면 되나요?",
+        "it": "Si paga qui?",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "계산은 여기서 하면 되나요?",
+            "계산은 여기서 하면 되었나요?",
+            "계산은 여기서 하는 됩니다?"
+          ]
+        },
+        "note": "«si può fare?» è «-하면 되나요?». 계산 chiude in ㄴ e prende 은: 계산은. «qui» come luogo dove si fa l'azione vuole 에서: 여기서. 하면 되었나요? mette il passato dove serve il presente, e *하는 됩니다* mescola un participio a un ausiliare: non esiste."
+      },
+      {
+        "id": "m-6",
+        "speaker": "Commesso",
+        "ko": "네, 카드로 하실 거예요, 현금으로 하실 거예요?",
+        "it": "Sì, paga con la carta o in contanti?",
+        "note": "Mezzo di pagamento: 카드로 / 현금으로. 카드 chiude in ㄷ → 으로, 현금 chiude in ㅁ → 으로."
+      },
+      {
+        "id": "m-7",
+        "speaker": "Tu",
+        "ko": "카드로 해 주세요. 영수증도 부탁드려요.",
+        "it": "Con la carta, per favore. E la ricevuta, per favore.",
+        "answer": {
+          "kind": "choice",
+          "options": [
+            "카드로 해 주세요. 영수증도 부탁드려요.",
+            "카드로 해 주세요. 영수증이 부탁드려요.",
+            "카드로 해 주세요. 영수증도 부탁드리요."
+          ]
+        },
+        "note": "-아/어 주세요 = «faccia … per favore»: 해 주세요. 카드 chiude in ㄷ, quindi il mezzo vuole 으로: 카드로. 부탁드려요 è la forma umile di 부탁하다 e regge l'oggetto: la ricevuta è una richiesta in più, quindi 영수증도. *영수증이* non regge, e 하다+드리다 fa 부탁드려요, non *부탁드리요*."
+      }
+    ]
   }
 ]
