@@ -144,40 +144,64 @@ function PlanCard({ plan }: { plan: StudyPlan }) {
 }
 
 /**
+ * Le voci di un livello della mappa: le pagine come chips, i gruppi come
+ * titoli seguiti dalle loro. È lo stesso albero del menu in alto, letto tutto
+ * insieme invece che un ramo alla volta.
+ */
+function SiteMapChips({ entries }: { entries: NavEntry[] }) {
+  const leaves = entries.filter((entry) => entry.to);
+  const groups = entries.filter((entry) => entry.children);
+
+  return (
+    <>
+      {leaves.length > 0 ? (
+        <ul className="sitemap">
+          {leaves.map((leaf) => (
+            <li key={leaf.id}>
+              <Link to={leaf.to ?? '/'} title={leaf.hint}>
+                {leaf.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+      {groups.map((group) => (
+        <div key={group.id} style={{ marginTop: '0.75rem' }}>
+          <p className="sitemap__sub">{group.label}</p>
+          <SiteMapChips entries={group.children ?? []} />
+        </div>
+      ))}
+    </>
+  );
+}
+
+/**
  * La mappa del sito, per chi apre CiaoCorea e non sa dove guardare. Non è un
- * doppione della barra: è la stessa mappa, letta tutta insieme invece che un
- * gruppo alla volta.
+ * doppione del menu in alto: è la stessa mappa, letta tutta insieme invece che
+ * un ramo alla volta.
  */
 function SiteMap() {
-  const groups = NAV.filter(
-    (entry): entry is Extract<NavEntry, { kind: 'group' }> => entry.kind === 'group',
-  );
-
   return (
     <section className="card">
       <p className="stat-label" style={{ margin: 0 }}>
         Che cosa vuoi fare?
       </p>
       <p className="muted small" style={{ margin: '0.3rem 0 0' }}>
-        Il sito è diviso in tre gruppi: imparare, esercitarsi, cercare qualcosa. Le stesse voci
-        sono nel menu in alto.
+        Le voci del menu in alto, tutte in una pagina: cinque strade, e dentro ognuna i suoi
+        gruppi.
       </p>
       <div className="grid grid--3" style={{ marginTop: '0.9rem' }}>
-        {groups.map((group) => (
-          <div key={group.id}>
-            <h3 style={{ margin: '0 0 0.15rem', fontSize: '0.95rem' }}>{group.label}</h3>
-            <p className="faint small" style={{ margin: '0 0 0.55rem' }}>
-              {group.hint}
-            </p>
-            <ul className="sitemap">
-              {group.items.map((item) => (
-                <li key={item.to}>
-                  <Link to={item.to} title={item.hint}>
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+        {NAV.map((entry) => (
+          <div key={entry.id}>
+            <h3 style={{ margin: '0 0 0.15rem', fontSize: '0.95rem' }}>
+              {entry.to ? <Link to={entry.to}>{entry.label}</Link> : entry.label}
+            </h3>
+            {entry.hint ? (
+              <p className="faint small" style={{ margin: '0 0 0.55rem' }}>
+                {entry.hint}
+              </p>
+            ) : null}
+            {entry.children ? <SiteMapChips entries={entry.children} /> : null}
           </div>
         ))}
       </div>

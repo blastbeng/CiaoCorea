@@ -1,159 +1,130 @@
 /**
- * La mappa del sito in un posto solo: la barra in alto, il menu del telefono e
- * la pagina d'ingresso leggono tutti da qui. Diciannove voci in fila non
- * dicono niente a chi arriva; cinque gruppi con un nome e una riga di
- * spiegazione sì. Se una pagina nuova non trova posto in un gruppo, il posto
- * non c'è: prima si decide dove sta, poi si aggiunge.
+ * La mappa del sito in un posto solo: la barra in alto, il cassetto del
+ * telefono e la pagina d'ingresso leggono tutti da qui.
+ *
+ * È un albero, non un elenco: ogni voce può portare a una pagina (`to`) o
+ * aprirne altre (`children`), e i livelli sono quanti servono. La barra mostra
+ * i primi cinque rami; il resto si apre sotto, un livello alla volta, così chi
+ * arriva non vede diciannove nomi in fila ma cinque stanze con le loro porte.
  */
 
-export interface NavItem {
-  to: string;
+export interface NavEntry {
+  /** Stabile: serve a ricordare quale ramo è aperto. */
+  id: string;
   label: string;
-  /** Una riga che dice cosa ci si fa: è quella che salva chi non sa da dove partire. */
-  hint: string;
+  /** Una riga che dice a cosa serve: è quella che salva chi non sa da dove partire. */
+  hint?: string;
+  /** La pagina. Se manca, la voce apre soltanto il suo sottomenù. */
+  to?: string;
+  children?: NavEntry[];
   /** Il conto da mostrare accanto alla voce: ripassi in scadenza o errori da rifare. */
   badge?: 'due' | 'mistakes';
+  /** Pannello appeso a destra: per i rami vicini al bordo dello schermo. */
+  align?: 'right';
 }
-
-export type NavEntry =
-  | { kind: 'link'; id: string; label: string; hint: string; to: string }
-  | { kind: 'group'; id: string; label: string; hint: string; items: NavItem[] };
 
 export const NAV: NavEntry[] = [
   {
-    kind: 'link',
     id: 'percorso',
     label: 'Percorso',
     to: '/',
-    hint: 'Il piano di oggi e i corsi',
+    hint: 'Il piano di oggi e i tuoi corsi',
   },
   {
-    kind: 'group',
-    id: 'imparare',
-    label: 'Imparare',
-    hint: 'Le lettere, i dialoghi, i testi da leggere',
-    items: [
+    id: 'studio',
+    label: 'Studio',
+    hint: 'Le lettere, i testi, la scrittura',
+    children: [
       {
-        to: '/alfabeto',
-        label: 'Alfabeto',
-        hint: 'Le lettere coreane, una per una',
+        id: 'fondamenti',
+        label: 'Fondamenti',
+        hint: 'Da dove si comincia',
+        children: [
+          { id: 'alfabeto', label: 'Alfabeto', to: '/alfabeto', hint: 'Le lettere coreane, una per una' },
+          { id: 'pronuncia', label: 'Pronuncia', to: '/pronuncia', hint: 'Come una parola si legge davvero' },
+          { id: 'numeri', label: 'Numeri', to: '/numeri', hint: 'Le due serie e come si usano' },
+        ],
       },
       {
-        to: '/dialoghi',
-        label: 'Conversazione',
-        hint: 'Dialoghi a copione: rispondi tu',
+        id: 'testi',
+        label: 'Letture e dialoghi',
+        hint: 'Il coreano scritto e parlato',
+        children: [
+          { id: 'letture', label: 'Letture', to: '/letture', hint: 'Brani del percorso, da leggere con calma' },
+          { id: 'conversazione', label: 'Conversazione', to: '/dialoghi', hint: 'Dialoghi a copione: rispondi tu' },
+        ],
       },
       {
-        to: '/letture',
-        label: 'Letture',
-        hint: 'Brani del percorso, da leggere con calma',
-      },
-      {
-        to: '/numeri',
-        label: 'Numeri',
-        hint: 'Le due serie e come si usano',
-      },
-      {
-        to: '/repertorio',
-        label: 'Grammatica',
-        hint: 'Tutte le regole spiegate, in indice',
-      },
-      {
-        to: '/quaderno',
-        label: 'Quaderno',
-        hint: 'Scrivi tu: consegne e modello da confrontare',
+        id: 'scrittura',
+        label: 'Scrivere',
+        hint: 'Con la mano, con la tastiera, di testa tua',
+        children: [
+          { id: 'a-mano', label: 'Scrivere a mano', to: '/scrittura', hint: 'Traccia le lettere con dito o mouse' },
+          { id: 'tastiera', label: 'Tastiera coreana', to: '/tastiera', hint: 'La tastiera dei coreani, tasto per tasto' },
+          { id: 'quaderno', label: 'Quaderno', to: '/quaderno', hint: 'Scrivi tu: consegne e modello da confrontare' },
+        ],
       },
     ],
   },
   {
-    kind: 'group',
     id: 'esercizi',
     label: 'Esercizi',
     hint: 'Ripetere, mettersi alla prova, rifare gli errori',
-    items: [
+    children: [
+      { id: 'palestra', label: 'Palestra', to: '/palestra', hint: 'Esercizi infiniti su una regola' },
+      { id: 'sfida', label: 'Sfida del giorno', to: '/sfida', hint: 'Dodici domande miste dalle lezioni chiuse' },
+      { id: 'traguardo', label: 'Traguardo', to: '/traguardo', hint: 'La prova di fine livello' },
       {
-        to: '/palestra',
-        label: 'Palestra',
-        hint: 'Esercizi infiniti su una regola',
-      },
-      {
-        to: '/sfida',
-        label: 'Sfida del giorno',
-        hint: 'Dodici domande miste dalle lezioni chiuse',
-      },
-      {
-        to: '/traguardo',
-        label: 'Traguardo',
-        hint: 'La prova di fine livello',
-      },
-      {
-        to: '/ripassi',
-        label: 'Ripassi',
-        hint: 'Le parole che tornano al momento giusto',
-        badge: 'due',
-      },
-      {
-        to: '/errori',
-        label: 'Errori',
-        hint: 'Quello che hai sbagliato, da rifare',
-        badge: 'mistakes',
+        id: 'ripasso',
+        label: 'Ripasso',
+        hint: 'Quello che torna indietro',
+        children: [
+          {
+            id: 'ripassi',
+            label: 'Ripassi',
+            to: '/ripassi',
+            hint: 'Le parole che tornano al momento giusto',
+            badge: 'due',
+          },
+          { id: 'errori', label: 'Errori', to: '/errori', hint: 'Quello che hai sbagliato, da rifare', badge: 'mistakes' },
+        ],
       },
     ],
   },
   {
-    kind: 'group',
     id: 'strumenti',
     label: 'Strumenti',
+    align: 'right',
     hint: 'Per quando una parola o una forma non torna',
-    items: [
-      {
-        to: '/dizionario',
-        label: 'Dizionario',
-        hint: 'Le parole del percorso, cercabili',
-      },
-      {
-        to: '/coniuga',
-        label: 'Coniuga',
-        hint: 'Un verbo, tutte le sue forme',
-      },
-      {
-        to: '/analisi',
-        label: 'Analisi',
-        hint: 'Incolla un testo e tocca le parole',
-      },
-      {
-        to: '/pronuncia',
-        label: 'Pronuncia',
-        hint: 'Come una parola si legge davvero',
-      },
-      {
-        to: '/scrittura',
-        label: 'Scrivere a mano',
-        hint: 'Traccia le lettere con dito o mouse',
-      },
-      {
-        to: '/tastiera',
-        label: 'Tastiera coreana',
-        hint: 'La tastiera dei coreani, tasto per tasto',
-      },
+    children: [
+      { id: 'dizionario', label: 'Dizionario', to: '/dizionario', hint: 'Le parole del percorso, cercabili' },
+      { id: 'grammatica', label: 'Grammatica', to: '/repertorio', hint: 'Tutte le regole spiegate, in indice' },
+      { id: 'coniuga', label: 'Coniuga', to: '/coniuga', hint: 'Un verbo, tutte le sue forme' },
+      { id: 'analisi', label: 'Analisi', to: '/analisi', hint: 'Incolla un testo e tocca le parole' },
     ],
   },
   {
-    kind: 'link',
-    id: 'progressi',
-    label: 'Progressi',
-    to: '/progressi',
-    hint: 'Dove sei, cosa hai fatto',
+    id: 'profilo',
+    label: 'Profilo',
+    align: 'right',
+    hint: 'Chi sei qui dentro, e dove sei arrivato',
+    children: [
+      { id: 'il-profilo', label: 'Il tuo profilo', to: '/profilo', hint: 'Il nome con cui ti chiamiamo' },
+      { id: 'progressi', label: 'I tuoi progressi', to: '/progressi', hint: 'Dove sei, cosa hai fatto' },
+      { id: 'profili', label: 'Cambia profilo', to: '/profili', hint: 'Un altro studente su questo browser' },
+      {
+        id: 'sincronizza',
+        label: 'Sincronizza',
+        to: '/sincronizza',
+        hint: 'Salva una copia o portala su un altro dispositivo',
+      },
+      { id: 'chi-sono', label: 'Chi sono', to: '/about', hint: 'Il progetto e chi lo scrive' },
+    ],
   },
 ];
 
-/** Le pagine che non stanno nella barra: sono del profilo, non dello studio. */
-export const ACCOUNT_LINKS: NavItem[] = [
-  { to: '/profilo', label: 'Il tuo profilo', hint: 'Il nome con cui ti chiamiamo' },
-  { to: '/profili', label: 'Cambia profilo', hint: 'Un altro studente su questo browser' },
-  {
-    to: '/sincronizza',
-    label: 'Sincronizza',
-    hint: 'Salva una copia o portala su un altro dispositivo',
-  },
-];
+/** Tutte le foglie, in ordine di lettura: serve alla mappa della home. */
+export function navLeaves(entry: NavEntry): NavEntry[] {
+  if (!entry.children) return entry.to ? [entry] : [];
+  return entry.children.flatMap(navLeaves);
+}
