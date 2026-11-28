@@ -1,12 +1,62 @@
-import { useEffect, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { api, PENDING_CHANGED } from '../api';
 import { hasGeneratedUsername, useAuth } from '../auth';
+import { ACCOUNT_LINKS, NAV, type NavEntry, type NavItem } from '../nav';
 import { ThemeToggle } from '../theme';
 import { CookieBanner } from './CookieBanner';
 import { PronounceNotice } from './PronounceNotice';
 import { SupportButtons } from './SupportButtons';
 import { WelcomeDialog } from './WelcomeDialog';
+
+/**
+ * Sotto questa larghezza la barra non ci sta: le cinque voci diventano un
+ * pannello. Il numero è lo stesso del CSS, ed è l'unico posto in cui cambia.
+ */
+const NARROW_QUERY = '(max-width: 1080px)';
+
+function useNarrowLayout() {
+  const [narrow, setNarrow] = useState(() =>
+    typeof window === 'undefined' ? false : window.matchMedia(NARROW_QUERY).matches,
+  );
+
+  useEffect(() => {
+    const query = window.matchMedia(NARROW_QUERY);
+    const sync = () => setNarrow(query.matches);
+    sync();
+    query.addEventListener('change', sync);
+    return () => query.removeEventListener('change', sync);
+  }, []);
+
+  return narrow;
+}
+
+/** Il conto accanto a una voce: ripassi in scadenza o errori da rifare. */
+function CountBadge({ count, warn }: { count: number; warn?: boolean }) {
+  if (count <= 0) return null;
+  return (
+    <span
+      className={warn ? 'nav-badge nav-badge--warn' : 'nav-badge'}
+      aria-label={
+        warn ? `${count} esercizi da rifare` : `${count} ripassi in scadenza`
+      }
+    >
+      {count > 99 ? '99+' : count}
+    </span>
+  );
+}
+
+function itemBadge(item: NavItem, dueCards: number, mistakes: number) {
+  if (item.badge === 'due') return <CountBadge count={dueCards} />;
+  if (item.badge === 'mistakes') return <CountBadge count={mistakes} warn />;
+  return null;
+}
+
+function groupHasPage(entry: Extract<NavEntry, { kind: 'group' }>, pathname: string) {
+  return entry.items.some(
+    (item) => pathname === item.to || pathname.startsWith(`${item.to}/`),
+  );
+}
 
 export function AppShell({ children }: { children: ReactNode }) {
   const { user } = useAuth();
@@ -17,6 +67,14 @@ export function AppShell({ children }: { children: ReactNode }) {
   const [dueCards, setDueCards] = useState(0);
   const [mistakes, setMistakes] = useState(0);
   const [navOpen, setNavOpen] = useState(false);
+  // Quale gruppo ha la tendina aperta. Uno alla volta: due pannelli aperti
+  // sarebbero di nuovo una lista di voci senza capo né coda.
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const narrow = useNarrowLayout();
+  const navRef = useRef<HTMLElement | null>(null);
+  // Mouse, dito o tastiera: la tendina si comporta in modo diverso, e al click
+  // serve sapere da dove è arrivato.
+  const pointerKind = useRef<string>('');
 
   // I badge sono promemoria, non dati critici: se la richiesta fallisce si
   // tengono i numeri di prima invece di mostrare un errore nella shell.
@@ -44,11 +102,32 @@ export function AppShell({ children }: { children: ReactNode }) {
     };
   }, [location.pathname]);
 
-  // Il menu si chiude da solo quando cambia pagina: aperto sopra il contenuto
-  // nuovo sarebbe solo un ostacolo da togliere.
+  // Si cambia pagina e il menu si chiude: aperto sopra il contenuto nuovo
+  // sarebbe solo un ostacolo da togliere.
   useEffect(() => {
     setNavOpen(false);
+    setOpenMenu(null);
   }, [location.pathname]);
+
+  // Con la tendina aperta, un tocco fuori la chiude; Escape fa lo stesso.
+  useEffect(() => {
+    if (!openMenu) return;
+
+    const onPointerDown = (event: PointerEvent) => {
+      const nav = navRef.current;
+      if (nav && !nav.contains(event.target as Node)) setOpenMenu(null);
+    };
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOpenMenu(null);
+    };
+
+    document.addEventListener('pointerdown', onPointerDown);
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('pointerdown', onPointerDown);
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [openMenu]);
 
   useEffect(() => {
     if (!navOpen) return;
@@ -97,6 +176,12 @@ export function AppShell({ children }: { children: ReactNode }) {
     return () => cancelAnimationFrame(frame);
   }, [location.pathname, location.hash]);
 
+  const groupFrame = (entry: Extract<NavEntry, { kind: 'group' }>) => {
+    const open = openMenu === entry.id;
+    const active = groupHasPage(entry, location.pathname);
+    return { open, active };
+  };
+
   return (
     <div className="app">
       <header className="app-header">
@@ -109,57 +194,115 @@ export function AppShell({ children }: { children: ReactNode }) {
 
         <nav
           id="app-nav"
+          ref={navRef}
           className={navOpen ? 'app-nav app-nav--open' : 'app-nav'}
+          aria-label="Sezioni del sito"
           onClick={() => setNavOpen(false)}
         >
-          <NavLink to="/" end>
-            Percorso
-          </NavLink>
-          <NavLink to="/dialoghi">Conversazione</NavLink>
-          <NavLink to="/letture">Letture</NavLink>
-          <NavLink to="/alfabeto">Alfabeto</NavLink>
-          <NavLink to="/scrittura">Scrittura</NavLink>
-          <NavLink to="/pronuncia">Pronuncia</NavLink>
-          <NavLink to="/numeri">Numeri</NavLink>
-          <NavLink to="/palestra">Palestra</NavLink>
-          <NavLink to="/tastiera">Tastiera</NavLink>
-          <NavLink to="/dizionario">Dizionario</NavLink>
-          <NavLink to="/coniuga">Coniuga</NavLink>
-          <NavLink to="/analisi">Analisi</NavLink>
-          <NavLink to="/repertorio">Repertorio</NavLink>
-          <NavLink to="/quaderno">Quaderno</NavLink>
-          <NavLink to="/sfida">Sfida</NavLink>
-          <NavLink to="/traguardo">Traguardo</NavLink>
-          <NavLink to="/ripassi">
-            Ripassi
-            {dueCards > 0 ? (
-              <span className="nav-badge" aria-label={`${dueCards} ripassi in scadenza`}>
-                {dueCards > 99 ? '99+' : dueCards}
-              </span>
-            ) : null}
-          </NavLink>
-          <NavLink to="/errori">
-            Errori
-            {mistakes > 0 ? (
-              <span
-                className="nav-badge nav-badge--warn"
-                aria-label={`${mistakes} esercizi da rifare`}
-              >
-                {mistakes > 99 ? '99+' : mistakes}
-              </span>
-            ) : null}
-          </NavLink>
-          <NavLink to="/progressi">Progressi</NavLink>
+          {NAV.map((entry) => {
+            if (entry.kind === 'link') {
+              return (
+                <NavLink
+                  key={entry.id}
+                  to={entry.to}
+                  end={entry.to === '/'}
+                  className={({ isActive }) => {
+                    // Un corso e le sue lezioni vivono sotto «Percorso»: la
+                    // barra deve dire che sei lì, non spegnersi del tutto.
+                    const here =
+                      isActive ||
+                      (entry.to === '/' && location.pathname.startsWith('/corso/'));
+                    return here ? 'nav-link active' : 'nav-link';
+                  }}
+                  title={entry.hint}
+                >
+                  {entry.label}
+                </NavLink>
+              );
+            }
 
-          {/* Lo stesso paio di azioni dell'header, per quando l'header è
-              stretto e le ha cedute al menu. */}
+            const { open, active } = groupFrame(entry);
+            const panelId = `nav-panel-${entry.id}`;
+
+            return (
+              <div
+                key={entry.id}
+                className="nav-group"
+                data-open={open ? 'true' : 'false'}
+                data-active={active ? 'true' : 'false'}
+                onPointerEnter={(event) => {
+                  // Solo con il mouse: sul telefono il puntatore non esiste e
+                  // il pannello vive nel cassetto.
+                  if (!narrow && event.pointerType === 'mouse') setOpenMenu(entry.id);
+                }}
+                onPointerLeave={(event) => {
+                  if (!narrow && event.pointerType === 'mouse') {
+                    setOpenMenu((current) => (current === entry.id ? null : current));
+                  }
+                }}
+                onPointerDown={(event) => {
+                  pointerKind.current = event.pointerType;
+                }}
+                onBlur={(event) => {
+                  // Da tastiera non c'è un mouse che esce dal gruppo: la
+                  // tendina si chiude quando il fuoco va fuori da lì.
+                  if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+                    setOpenMenu((current) => (current === entry.id ? null : current));
+                  }
+                }}
+              >
+                {narrow ? (
+                  // Nel cassetto il gruppo è una sezione: titolo e voci, tutte
+                  // in vista. Nascondere pagine dietro un altro tocco sarebbe
+                  // di nuovo il labirinto da cui siamo partiti.
+                  <p className="nav-group__heading">{entry.label}</p>
+                ) : (
+                  <button
+                    type="button"
+                    className="nav-group__toggle"
+                    aria-expanded={open}
+                    aria-controls={panelId}
+                    onClick={(event) => {
+                      // Con il mouse la tendina si è già aperta al passaggio:
+                      // un click che la richiudesse sarebbe solo un lampo. Da
+                      // tastiera (detail 0) e da dito invece il click è il
+                      // gesto che apre e richiude.
+                      const fromMouse = pointerKind.current === 'mouse' && event.detail > 0;
+                      setOpenMenu((current) =>
+                        fromMouse ? entry.id : current === entry.id ? null : entry.id,
+                      );
+                    }}
+                  >
+                    {entry.label}
+                    <span className="nav-group__caret" aria-hidden="true" />
+                  </button>
+                )}
+
+                <div className="nav-panel" id={panelId}>
+                  <p className="nav-panel__intro">{entry.hint}</p>
+                  {entry.items.map((item) => (
+                    <NavLink key={item.to} to={item.to} className="nav-panel__item">
+                      <span className="nav-panel__label">
+                        {item.label}
+                        {itemBadge(item, dueCards, mistakes)}
+                      </span>
+                      <span className="nav-panel__hint">{item.hint}</span>
+                    </NavLink>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+
+          {/* Le pagine del profilo: nella barra starebbero strette, nel
+              cassetto sono le ultime righe, dopo quelle dello studio. */}
           <div className="nav-extra">
-            <Link className="btn btn--sm btn--ghost btn--block" to="/profilo">
-              {nameIsGenerated ? 'Il tuo profilo · cambia il nome' : 'Il tuo profilo'}
-            </Link>
-            <Link className="btn btn--sm btn--ghost btn--block" to="/profili">
-              Profili
-            </Link>
+            {ACCOUNT_LINKS.map((item) => (
+              <NavLink key={item.to} to={item.to} className="nav-panel__item">
+                <span className="nav-panel__label">{item.label}</span>
+                <span className="nav-panel__hint">{item.hint}</span>
+              </NavLink>
+            ))}
           </div>
         </nav>
 
@@ -188,8 +331,8 @@ export function AppShell({ children }: { children: ReactNode }) {
           </div>
         </div>
 
-        {/* Su schermo stretto le sette voci non stanno in una riga: il menu si
-            apre da qui, e il pannello sotto l'header le mostra in colonna. */}
+        {/* Sotto i 1080px le voci non stanno in una riga: il menu si apre da
+            qui, e il pannello sotto l'header le mostra per gruppi. */}
         <button
           type="button"
           className="btn btn--sm btn--ghost nav-toggle"
@@ -199,11 +342,17 @@ export function AppShell({ children }: { children: ReactNode }) {
           aria-label={navOpen ? 'Chiudi il menu' : 'Apri il menu'}
           title={navOpen ? 'Chiudi il menu' : 'Apri il menu'}
         >
-          <span aria-hidden="true">{navOpen ? '✕' : '☰'}</span>
+          {/* Tre barre disegnate, non ☰ e ✕: quei caratteri mancano in molti
+              font e sul sistema sbagliato diventano due quadratini. */}
+          <span className="nav-toggle__bars" data-open={navOpen ? 'true' : 'false'} aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </span>
         </button>
       </header>
 
-      {navOpen ? (
+      {navOpen && narrow ? (
         <button
           type="button"
           className="nav-scrim"
