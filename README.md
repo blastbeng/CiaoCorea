@@ -1,5 +1,12 @@
 # CiaoCorea – Impara il Coreano
 
+## Dove è online
+
+Il portale è pubblicato su **GitHub Pages** all'indirizzo
+**<https://ciaocorea.fabiovalentino.it>**: è questa la copia da usare e da
+linkare. Ogni push su `main` la ricompila e la ripubblica da sola, con il
+workflow [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml).
+
 Portale web per imparare il coreano da autodidatta, pensato per chi parla
 italiano. Si lavora su lettura e scrittura: jamo, sillabe, 받침, lessico,
 comprensione. Il percorso è a tappe, con esercizi corretti nel browser e la
